@@ -9,7 +9,7 @@ permalink: /
 
 <div class="blog-intro {{ page.color }} about-header-fix">
   <div class="profile-wrapper">
-    <div class="profile-pic"><img src="{{ "./images/icons/base-person.png"| relative_url }}" /></div>
+    <div class="profile-pic"><img src="{{ "./images/icons/base-person.png" | relative_url }}" /></div>
     <div class="profile-description">
       <h1>{{ site.name }}</h1>
       <p>{{ site.subheading }}</p>
