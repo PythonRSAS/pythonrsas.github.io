@@ -1,0 +1,58 @@
+#
+# Website's configuration file.
+#
+
+name: Sarah Chen
+description: I'm Sarah Chen. Loving math and using computers to do things, and super passionate about education for youth (Mandarin Chinese, real world practical and beautiful mathematics, computer programming).
+avatar: /images/gogs.jpg
+subheading: Author | Data Scientist | Educator
+image: /images/icons/logo.png
+
+footer-links:
+  email: sarahchen@gmail.com
+  github: sarahchen
+  linkedin: Sarahchen
+  twitter: sarahchen
+  quora: sarahchen
+  stackoverflow:
+  youtube:
+
+google_analytics:
+url: "http://pythonrsas.com/"
+baseurl: ""
+
+permalink: /:title/
+version: v1.0.0
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
+
+sass:
+  style: :compressed
+
+gems:
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - CNAME
+
+plugins:
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+paginate: 4
+excerpt_separator: <!--more-->
