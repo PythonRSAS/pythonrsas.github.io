@@ -45,7 +45,7 @@ permalink: /
               <a href="https://twitter.com/{{ site.footer-links.twitter }}" target="_blank"><img src="{{ "./images/icons/twitter.png" | relative_url }}" title="Twitter" /></a>
               <a href="https://www.youtube.com/c/{{ site.footer-links.youtube }}" target="_blank"><img src="{{ "./images/icons/youtube.png" | relative_url }}" title="YouTube" /></a>
             </div>
-          <p class="about-quote">"There are no constraints on the human mind, no walls around the human spirit, no barriers to our progress except those we ourselves erect" <br>Ronald Reagan</p>
+          <p class="about-quote">“Simple can be harder than complex: You have to work hard to get your thinking clean to make it simple. But it’s worth it in the end because once you get there, you can move mountains.”<br>― Steve Jobs</p>
           <h3>Biography</h3>
           <p style="margin-top: 0px !important;">I'm Sarah Chen. Loving math and using computers to do things, and super passionate about education for youth (Mandarin Chinese, real world practical and beautiful mathematics, computer programming).
           </p>

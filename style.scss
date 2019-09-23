@@ -300,7 +300,7 @@ footer {
     padding: 15px;
     text-align: center;
     color: rgba(255,255,255,0.6);
-    
+
     p  {
       text-align: center;
       color: #ffffff !important;
@@ -676,11 +676,11 @@ figcaption {
     width: 100%;
     text-align: center;
   }
-  
+
   div {
     width: 100%;
   }
-  
+
   .profile-showcase {
     width: 90%;
     height: auto;
@@ -1384,12 +1384,12 @@ figcaption {
     margin: 0px !important;
     color: black !important;
   }
-  
+
   ul {
     margin: 0px !important;
     color: black !important;
   }
-  
+
   center {
     margin-top: 10px;
     font-size: 13px;
@@ -1704,7 +1704,7 @@ figure {
   border-radius: 3px;
   max-width: 900px;
   margin: 50px auto;
-  text-align:center; 
+  text-align:center;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   @include mobile {
     margin: 30px auto;
@@ -2066,7 +2066,7 @@ u {
 }
 
 .links_to_follow {
-  padding: 2px 5px; 
+  padding: 2px 5px;
   background-color: #FEF5C4;
   font-weight: bold;
   font-size: 13px;
@@ -2543,7 +2543,7 @@ input:checked + .slider:before {
   table {
     width: auto;
     margin: 0px auto !important;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); 
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     overflow: hidden;
     border-radius: 5px;
   }
@@ -2713,13 +2713,13 @@ input:checked + .slider:before {
     display: block;
 }
 
-.modal-content { 
+.modal-content {
     animation-name: zoom;
     animation-duration: 0.6s;
 }
 
 @keyframes zoom {
-    from {transform:scale(0)} 
+    from {transform:scale(0)}
     to {transform:scale(1)}
 }
 
@@ -3097,7 +3097,7 @@ del {
 }
 
 #nav_home {
-  background-image: url("/images/icons/home.png");
+  background-image: url("./images/icons/home.png");
   background-repeat: no-repeat;
   background-size: 20px;
   background-position: center 10px;
@@ -3205,7 +3205,7 @@ del {
 }
 
 #nav_blog {
-  background-image: url("/images/icons/blog.png");
+  background-image: url("./images/icons/blog.png");
   background-repeat: no-repeat;
   background-size: 17px;
   background-position: center 10px;
