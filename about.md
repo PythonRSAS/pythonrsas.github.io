@@ -39,11 +39,11 @@ permalink: /
           <div class="about_me_body">
             <div class="social">
               <a href="mailto:{{ site.footer-links.email }}?Subject=Hello"><img src="/images/icons/mail.png" title="Shoot me a mail" /></a>
-              <a href="https://github.com/{{ site.footer-links.github }}" target="_blank"><img src="/images/icons/github.png" title="GitHub" /></a>
-              <a href="https://www.linkedin.com/in/{{ site.footer-links.linkedin }}" target="_blank"><img src="/images/icons/linkedin.png" title="LinkedIn" /></a>
-              <a href="https://www.quora.com/profile/{{ site.footer-links.quora }}" target="_blank"><img src="/images/icons/quora.png" title="Quora" /></a>
-              <a href="https://twitter.com/{{ site.footer-links.twitter }}" target="_blank"><img src="/images/icons/twitter.png" title="Twitter" /></a>
-              <a href="https://www.youtube.com/c/{{ site.footer-links.youtube }}" target="_blank"><img src="/images/icons/youtube.png" title="YouTube" /></a>
+              <a href="https://github.com/{{ site.footer-links.github }}" target="_blank"><img src="{{ "./images/icons/github.png" | relative_url }}" title="GitHub" /></a>
+              <a href="https://www.linkedin.com/in/{{ site.footer-links.linkedin }}" target="_blank"><img src="{{ "./images/icons/linkedin.png" | relative_url }}" title="LinkedIn" /></a>
+              <a href="https://www.quora.com/profile/{{ site.footer-links.quora }}" target="_blank"><img src="{{ "./images/icons/quora.png" | relative_url }}" title="Quora" /></a>
+              <a href="https://twitter.com/{{ site.footer-links.twitter }}" target="_blank"><img src="/{{ ".images/icons/twitter.png" | relative_url }}" title="Twitter" /></a>
+              <a href="https://www.youtube.com/c/{{ site.footer-links.youtube }}" target="_blank"><img src="{{ "./images/icons/youtube.png" | relative_url }}" title="YouTube" /></a>
             </div>
           <p class="about-quote">"There are no constraints on the human mind, no walls around the human spirit, no barriers to our progress except those we ourselves erect" <br>Ronald Reagan</p>
           <h3>Biography</h3>
