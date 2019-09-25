@@ -23,7 +23,7 @@
     <div class="outer-wrapping">
       <div class="inner-container">
           <div class="header-left">
-            <a class='logo' href="https://gogul09.github.io/"><img src="/images/icons/logo.png"/></a>
+            <a class='logo' href="{{ "/" | relative_url }}"><img src="/images/icons/logo.png"/></a>
           </div>
           <div class="topnav header-right" id="top_navigator">
             <a title="home" id = "nav_home" href="{{ site.baseurl }}/"><span>home</span></a>
@@ -35,6 +35,7 @@
 
     <div id="main" role="main">
       {{ content }}
+      {% include pagination.html %}
     </div>
 
     <div class="show-comments" onclick="showComments()"><p id="show_comments"><span id="comment_count" class="disqus-comment-count" data-disqus-url="https://gogul.dev{{ page.url }}"></span></p></div>

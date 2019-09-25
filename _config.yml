@@ -54,5 +54,9 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-paginate: 4
 excerpt_separator: <!--more-->
+
+# specifies how many items should be displayed per page in the blog
+paginate: 6
+paginate_path: "/blog/page:num/"
+recent_post_limit: 4
