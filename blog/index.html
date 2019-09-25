@@ -23,6 +23,7 @@ permalink: /blog
                       </div>
                       <div class="page-treasure">
                         <h2>{{ post.title }}</h2>
+                        <p class="date">{{ post.date | date_to_string: "ordinal", "US" }}</p class=>
                         <p>{{ post.description }}</p>
                       </div>
                     </div>
