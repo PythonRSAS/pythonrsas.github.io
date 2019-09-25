@@ -3,21 +3,21 @@
 #
 
 name: Sarah Chen
-description: I'm Sarah Chen. Loving math and using computers to do things, and super passionate about education for youth (Mandarin Chinese, real world practical and beautiful mathematics, computer programming).
+description: I'm Sarah Chen. Co-author of “Python for SAS Users”.  Domain expert in banking and insurance (added).  Loving math and using computers to do things, and super passionate about education for youth (Mandarin Chinese, real world practical and beautiful mathematics, computer programming).
 avatar: /images/gogs.jpg
-subheading: Author | Data Scientist | Educator
+subheading: Personal Website of Sarah Chen
 image: /images/icons/logo.png
 
 footer-links:
-  email: sarahchen@gmail.com
-  github: sarahchen
-  linkedin: Sarahchen
-  twitter: sarahchen
-  quora: sarahchen
-  stackoverflow:
-  youtube:
+  # email: sarahchen@gmail.com
+  github: PythonRSAS
+  linkedin: sarah-chen-276a1617
+  # twitter: sarahchen
+  # quora: sarahchen
+  # stackoverflow:
+  # youtube:
 
-google_analytics:
+google_analytics: UA-148562161-1
 url: "http://pythonrsas.com/"
 baseurl: "/sarah-web"
 

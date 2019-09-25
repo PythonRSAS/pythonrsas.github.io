@@ -2,14 +2,14 @@
 layout: splash
 heading: sarah chen
 title: Sarah Chen
-description: Personal Website
+description: Personal Website of Sarah Chen
 color: grad-about
 permalink: /
 ---
 
 <div class="blog-intro {{ page.color }} about-header-fix">
   <div class="profile-wrapper">
-    <div class="profile-pic"><img src="{{ "./images/icons/base-person.png" | relative_url }}" /></div>
+    <div class="profile-pic"><img src="{{ "./images/avatar.png" | relative_url }}" /></div>
     <div class="profile-description">
       <h1>{{ site.name }}</h1>
       <p>{{ site.subheading }}</p>
@@ -18,8 +18,8 @@ permalink: /
   <div class="home-follow-wrapper">
     <div class="home-follow">
       <script async defer src="https://buttons.github.io/buttons.js"></script>
-      <a href="https://twitter.com/{{site.footer-links.twitter}}?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-show-count="true">Follow @{{site.footer-links.twitter}}</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-      <a class="github-button" href="https://github.com/{{site.footer-links.github}}" data-show-count="true" data-size="large" aria-label="Follow @{{site.footer-links.github}} on GitHub">Follow</a>
+      <a href="https://twitter.com/{{site.footer-links.twitter}}?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-show-count="true"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <a class="github-button" href="https://github.com/{{site.footer-links.github}}" data-show-count="true" data-size="large" aria-label="Follow @{{site.footer-links.github}} on GitHub"></a>
     </div>
   </div>
 </div>
@@ -38,12 +38,24 @@ permalink: /
         <div>
           <div class="about_me_body">
             <div class="social">
+              {% if site.footer-links.email %}
               <a href="mailto:{{ site.footer-links.email }}?Subject=Hello"><img src="{{ "./images/icons/mail.png" | relative_url }}" title="Shoot me a mail" /></a>
+              {% endif %}
+              {% if site.footer-links.github %}
               <a href="https://github.com/{{ site.footer-links.github }}" target="_blank"><img src="{{ "./images/icons/github.png" | relative_url }}" title="GitHub" /></a>
+              {% endif %}
+              {% if site.footer-links.linkedin %}
               <a href="https://www.linkedin.com/in/{{ site.footer-links.linkedin }}" target="_blank"><img src="{{ "./images/icons/linkedin.png" | relative_url }}" title="LinkedIn" /></a>
+              {% endif %}
+              {% if site.footer-links.quora %}
               <a href="https://www.quora.com/profile/{{ site.footer-links.quora }}" target="_blank"><img src="{{ "./images/icons/quora.png" | relative_url }}" title="Quora" /></a>
+              {% endif %}
+              {% if site.footer-links.twitter %}
               <a href="https://twitter.com/{{ site.footer-links.twitter }}" target="_blank"><img src="{{ "./images/icons/twitter.png" | relative_url }}" title="Twitter" /></a>
+              {% endif %}
+              {% if site.footer-links.youtube %}
               <a href="https://www.youtube.com/c/{{ site.footer-links.youtube }}" target="_blank"><img src="{{ "./images/icons/youtube.png" | relative_url }}" title="YouTube" /></a>
+              {% endif %}
             </div>
           <p class="about-quote">“Simple can be harder than complex: You have to work hard to get your thinking clean to make it simple. But it’s worth it in the end because once you get there, you can move mountains.”<br>― Steve Jobs</p>
           <h3>Biography</h3>
