@@ -11,6 +11,7 @@ image: /images/icons/logo.png
 <div class="home-container">
   <div class="home-articles">
     <div class="home-wrapper">
+
       <div class="page-holder">
         <ul>
         {% for post in paginator.posts %}
@@ -31,6 +32,11 @@ image: /images/icons/logo.png
         {% endfor %}
         </ul>
       </div>
+
+      <aside class="col-sm-12">
+        {% include sidebar.html %}
+      </aside>
+
     </div>
   </div>
 </div>
