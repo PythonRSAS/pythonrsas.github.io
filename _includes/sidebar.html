@@ -1,11 +1,13 @@
 <div class="">
     <h3 class="sidebar-title">Recent Posts</h3>
     <ul class="sidebar-list recent-list">
+        {% for post in site.posts | limit: site.recent_post_limit %}
         <li>
-            <a class="sidebar-thumbnail-wrapper" href="/blog/reactjs-redux-context-api">
-                <p class="sidebar-thumbnail-copy">React.js Redux and Context API</p>
+            <a class="sidebar-thumbnail-wrapper" href="{{ post.url | relative_url }}">
+                <p class="sidebar-thumbnail-copy">{{ post.title | escape }}</p>
             </a>
         </li>
+        {% endfor %}
     </ul>
     <!-- Sidebar - Categgories -->
     <a class="text-decoration-none" href="/blog/categories#categories"><h3 class="sidebar-title">Categories</h3></a>
