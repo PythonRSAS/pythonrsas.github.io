@@ -22,6 +22,7 @@
 @import "about";
 @import "home";
 @import "page";
+@import "bloglayout";
 
 #main {
   min-height: 100vh;
@@ -704,8 +705,6 @@ figcaption {
 }
 
 .home-wrapper {
-  display: flex;
-  height: 100vh;
   // margin: 0px auto;
   // width: 70%;
   hr {
@@ -726,23 +725,23 @@ figcaption {
   }
 }
 
-aside {
-  flex: 0 0 auto;
-  padding-right: 15px;
-}
-@include wrap {
-  .col-sm-12 {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-  .home-wrapper {
-    flex-wrap: wrap;
-  }
-}
-.page-holder {
-  flex: 1 1 auto;
-  overflow: auto;
-}
+// aside {
+//   flex: 0 0 auto;
+//   padding-right: 15px;
+// }
+// @include wrap {
+//   .col-sm-12 {
+//     flex: 0 0 100%;
+//     max-width: 100%;
+//   }
+//   .home-wrapper {
+//     flex-wrap: wrap;
+//   }
+// }
+// .page-holder {
+//   flex: 1 1 auto;
+//   overflow: auto;
+// }
 
 .blog-category-box {
   display: none;

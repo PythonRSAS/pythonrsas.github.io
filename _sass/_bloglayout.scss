@@ -1,0 +1,152 @@
+.row-flex {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px
+}
+
+@media (min-width: 992px) {
+  .col-lg {
+    flex-basis:0;
+    flex-grow: 1;
+    max-width: 100%
+  }
+
+  .col-lg-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%
+  }
+
+  .col-lg-1 {
+    flex: 0 0 8.3333333333%;
+    max-width: 8.3333333333%
+  }
+
+  .col-lg-2 {
+    flex: 0 0 16.6666666667%;
+    max-width: 16.6666666667%
+  }
+
+  .col-lg-3 {
+    flex: 0 0 25%;
+    max-width: 25%
+  }
+
+  .col-lg-4 {
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%
+  }
+
+  .col-lg-5 {
+    flex: 0 0 41.6666666667%;
+    max-width: 41.6666666667%
+  }
+
+  .col-lg-6 {
+    flex: 0 0 50%;
+    max-width: 50%
+  }
+
+  .col-lg-7 {
+    flex: 0 0 58.3333333333%;
+    max-width: 58.3333333333%
+  }
+
+  .col-lg-8 {
+    flex: 0 0 66.6666666667%;
+    max-width: 66.6666666667%
+  }
+
+  .col-lg-9 {
+    flex: 0 0 75%;
+    max-width: 75%
+  }
+
+  .col-lg-10 {
+    flex: 0 0 83.3333333333%;
+    max-width: 83.3333333333%
+  }
+
+  .col-lg-11 {
+    flex: 0 0 91.6666666667%;
+    max-width: 91.6666666667%
+  }
+
+  .col-lg-12 {
+    flex: 0 0 100%;
+    max-width: 100%
+  }
+}
+
+@media (min-width: 992px) {
+  .flex-992-nowrap {
+    flex-wrap: nowrap !important
+  }
+}
+
+@media (min-width: 1200px) {
+  .d-xl-block {
+    display: block !important
+  }
+}
+.align-self-start {
+  align-self: flex-start !important;
+}
+@media (min-width: 576px) {
+  .col-sm-12 {
+    flex: 0 0 100%;
+    max-width: 100%
+  }
+}
+.sticky-top {
+  position:sticky;
+  top: 0;
+  z-index: 1020
+}
+.sidebar {
+  order: 2;
+  font-size: .875rem
+}
+.sidebar {
+  position:sticky;
+  top: .75rem;
+  overflow-y: auto
+}
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto
+}
+
+@media (min-width: 576px) {
+  .container {
+      max-width:540px
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+      max-width:720px
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+      max-width:960px
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+      max-width:1140px
+  }
+}
+
+.container .page-holder ul li {
+  margin: 0px;
+  width: 100%;
+}
