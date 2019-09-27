@@ -86,7 +86,8 @@
 }
 @media (max-width: 991px) {
   .col-sm-992 {
-    flex: 0 0 100%;
+    // flex: 0 0 100%;
+    flex: auto;
     max-width: 100%;
     margin: 0 15px;
   }
