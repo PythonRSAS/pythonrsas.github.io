@@ -124,6 +124,10 @@ nav {
   }
 }
 
+.topnav.header-center {
+  justify-content: center;
+}
+
 .topnav a {
   color: #d5d2cd !important;
   text-align: center;
@@ -169,7 +173,7 @@ nav {
 }
 
 .header-left img:hover {
-  transform: scale(1.2); 
+  transform: scale(1.2);
 }
 
 .header-left h1 a {
