@@ -1,0 +1,31 @@
+---
+layout: page-default
+heading: blog
+title: Blog
+subheading: my journey as an engineer
+description: This blog on Deep Learning, VLSI Design and STA is written by Gogul Ilango. Master VLSI Design, Physical Design, Static Timing Analysis, Deep Learning through my articles, tutorials and resources.
+color: grad-blog
+image: /images/icons/logo.png
+---
+
+<div class="container">
+    <h1 id="categories" class="mb-5 category-title">Categories</h1>
+    <div id="category-list">
+        {% for category in site.categories %}
+        <div class="category-item mb-4">
+            {% capture category_name %}{{ category | first }}{% endcapture %}
+            <h3 id="{{ category_name | slugize }}" class="category-head text-capitalize">{{ category_name }}</h3>
+            {% for post in site.categories[category_name] %}
+            <div>
+                <a class="category-thumbnail-wrapper" href="{{ post.url | relative_url }}">
+                    <div class="thumbnail-text">
+                        <p class="category-thumbnail-copy">{{ post.title | escape }}</p>
+                        <p class="post-excerpts">{{ post.excerpt | strip_html | strip_newlines | truncatewords: 90 }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</div>

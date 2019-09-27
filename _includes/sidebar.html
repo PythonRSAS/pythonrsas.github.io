@@ -10,22 +10,29 @@
         {% endfor %}
     </ul>
     <!-- Sidebar - Categgories -->
-    <a class="text-decoration-none" href="/blog/categories#categories"><h3 class="sidebar-title">Categories</h3></a>
+    <a class="text-decoration-none" href="{{ "/blog/categories#categories" | relative_url }}"><h3 class="sidebar-title">Categories</h3></a>
     <ul class="sidebar-list category-list">
       <!-- https://github.com/mmistakes -->
+      {% assign categories_max = 0 %}
+      {% for category in site.categories %}
+        {% if category[1].size > categories_max %}
+          {% assign categories_max = category[1].size %}
+        {% endif %}
+      {% endfor %}
       <a id="page-title"></a>
       <ul class="category">
-        <li>
-            <a class="text-capitalize bluish" href="/blog/categories#programming">
-            programming
-            <span class="category-count">(3)</span>
-          </a>
-        </li>
-            <a class="text-capitalize bluish" href="/blog/categories#javascript">
-            javascript
-            <span class="category-count">(1)</span>
-          </a>
-        </li>
+        {% for i in (1..categories_max) reversed %}
+          {% for category in site.categories %}
+            {% if category[1].size == i %}
+              <li>
+                  <a class="text-capitalize bluish" href="{{ "/blog/categories" | relative_url }}#{{category[0]|slugize}}">
+                  {{ category[0] | strip }}
+                  <span class="category-count">({{ i }})</span>
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
       </ul>
     </ul>
     <!-- Sidebar - Categgories End-->
