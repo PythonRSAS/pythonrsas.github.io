@@ -87,7 +87,8 @@
 @media (max-width: 991px) {
   .col-sm-992 {
     flex: 0 0 100%;
-    max-width: 100%
+    max-width: 100%;
+    margin-left: 10px;
   }
 }
 @media (min-width: 1200px) {
@@ -197,12 +198,6 @@
         color: black;
       }
     }
-  }
-
-  .sidebar-thumbnail {
-    margin-right: 12px;
-    width: 94px;
-    height: 56px;
   }
 
   .sidebar-thumbnail-copy {
