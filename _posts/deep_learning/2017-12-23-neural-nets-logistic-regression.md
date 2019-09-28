@@ -85,7 +85,6 @@ Download this dataset and make sure you follow the below folder structure.
 <div class="code-head">random-number.r<span>code</span></div>
 
 ```R
-
 #utility functions
 
 readinteger <- function()
@@ -148,9 +147,11 @@ PROC PRINT data = basic;
 RUN;
 ```
 
+
 <div class="code-head">train.py<span>code</span></div>
 
 ```python
+
 #-------------------
 # organize imports
 #-------------------
