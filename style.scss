@@ -2512,7 +2512,7 @@ input:checked + .slider:before {
   border: none;
   outline: none;
   background-color: #ae1b1b;
-  background-image: url(/images/up.png);
+  background-image: url("{{ "/images/up.png" | relative_url }}");
   background-repeat: no-repeat;
   background-size: 15px;
   background-position: center;
@@ -3516,28 +3516,28 @@ del {
 
 .icon-whatsapp {
   &:hover, &:active {
-    content: url("/images/icons/whatsapp-on.png");
+    content: url("{{ "/images/icons/whatsapp-on.png" | relative_url }}");
     filter: invert(0) !important;
   }
 }
 
 .icon-facebook {
   &:hover, &:active {
-    content: url("/images/icons/facebook-on.png");
+    content: url("{{ "/images/icons/facebook-on.png" | relative_url }}");
     filter: invert(0) !important;
   }
 }
 
 .icon-twitter {
   &:hover, &:active {
-    content: url("/images/icons/twitter-on.png");
+    content: url("{{ "/images/icons/twitter-on.png" | relative_url }}");
     filter: invert(0) !important;
   }
 }
 
 .icon-linkedin {
   &:hover, &:active {
-    content: url("/images/icons/linkedin-on.png");
+    content: url("{{ "/images/icons/linkedin-on.png" | relative_url }}");
     filter: invert(0) !important;
   }
 }
