@@ -1,6 +1,6 @@
 ---
 layout: post
-category: software
+category: programming
 class: Deep Learning
 title: Logistic Regression with a Neural Network mindset using NumPy and Python
 description: Build a binary classifier logistic regression model with a neural network mindset using numpy and python.
