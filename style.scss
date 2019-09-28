@@ -3575,3 +3575,7 @@ del {
 .pagination span, .pagination a {
   padding: 0 3px;
 }
+
+pre[class*=language-] {
+  margin-top:0 !important;
+}

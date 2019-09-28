@@ -120,6 +120,7 @@ while(guess != num)
     cat("It's smaller!\n")
   }
 }
+
 ```
 ### SAS code
 
@@ -242,16 +243,6 @@ h5_test = h5py.File("test_x.h5", 'w')
 h5_test.create_dataset("data_test", data=np.array(test_x))
 h5_test.close()
 ```
-
-```
-train_labels : ['airplane', 'bike']
-train_x shape: (12288, 1500)
-train_y shape: (1, 1500)
-test_x shape : (12288, 100)
-test_y shape : (1, 100)
-```
-{: .code-out}
-
 
 
 <div class="code-head">Folder Structure<span>rule</span></div>
