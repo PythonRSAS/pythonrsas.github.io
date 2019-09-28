@@ -80,8 +80,180 @@ We will use the [CALTECH-101](http://www.vision.caltech.edu/Image_Datasets/Calte
 
 Download this dataset and make sure you follow the below folder structure.
 
-<div class="code-head">Folder Structure<span>rule</span></div>
+### R code
 
+<div class="code-head">random-number.r<span>code</span></div>
+
+```R
+
+#utility functions
+
+readinteger <- function()
+{
+  n <- readline(prompt="Enter an integer: ")
+  if(!grepl("^[0-9]+$",n))
+  {
+    return(readinteger())
+  }
+  return(as.integer(n))
+}
+
+# real program start here
+
+num <- round(runif(1) * 100, digits = 0)
+guess <- -1
+
+cat("Guess a number between 0 and 100.\n")
+
+while(guess != num)
+{
+  guess <- readinteger()
+  if (guess == num)
+  {
+    cat("Congratulations,", num, "is right.\n")
+  }
+  else if (guess < num)
+  {
+    cat("It's bigger!\n")
+  }
+  else if(guess > num)
+  {
+    cat("It's smaller!\n")
+  }
+}
+```
+### SAS code
+
+<div class="code-head">list.sas<span>code</span></div>
+
+```sas
+OPTIONS LS = 75 PS = 58 NODATE;
+
+DATA basic;
+  input subj 1-4 name $ 6-23 clinic $ 25-28
+        gender 30 no_vis 32-33 type_vis 35-37
+        expense 39-45;
+  DATALINES;
+1024 Alice Smith        LEWN 1  7 101 1001.98
+1167 Maryann White      LEWN 1  2 101 2999.34
+1168 Thomas Jones       ALTO 2 10 190 3904.89
+1201 Benedictine Arnold ALTO 2  1 190 1450.23
+1302 Felicia Ho         MNMC 1  7 190 1209.94
+1471 John Smith         MNMC 2  6 187 1763.09
+1980 Jane Smiley        MNMC 1  5 190 3567.00
+  ;
+RUN;
+
+PROC PRINT data = basic;
+RUN;
+```
+
+<div class="code-head">train.py<span>code</span></div>
+
+```python
+#-------------------
+# organize imports
+#-------------------
+import numpy as np
+import os
+import h5py
+import glob
+import cv2
+from keras.preprocessing import image
+
+#------------------------
+# dataset pre-processing
+#------------------------
+train_path   = "G:\\workspace\\machine-intelligence\\deep-learning\\logistic-regression\\dataset\\train"
+test_path    = "G:\\workspace\\machine-intelligence\\deep-learning\\logistic-regression\\dataset\\test"
+train_labels = os.listdir(train_path)
+test_labels  = os.listdir(test_path)
+
+# tunable parameters
+image_size       = (64, 64)
+num_train_images = 1500
+num_test_images  = 100
+num_channels     = 3
+
+# train_x dimension = {(64*64*3), 1500}
+# train_y dimension = {1, 1500}
+# test_x dimension  = {(64*64*3), 100}
+# test_y dimension  = {1, 100}
+train_x = np.zeros(((image_size[0]*image_size[1]*num_channels), num_train_images))
+train_y = np.zeros((1, num_train_images))
+test_x  = np.zeros(((image_size[0]*image_size[1]*num_channels), num_test_images))
+test_y  = np.zeros((1, num_test_images))
+
+#----------------
+# TRAIN dataset
+#----------------
+count = 0
+num_label = 0
+for i, label in enumerate(train_labels):
+  cur_path = train_path + "\\" + label
+  for image_path in glob.glob(cur_path + "/*.jpg"):
+    img = image.load_img(image_path, target_size=image_size)
+    x   = image.img_to_array(img)
+    x   = x.flatten()
+    x   = np.expand_dims(x, axis=0)
+    train_x[:,count] = x
+    train_y[:,count] = num_label
+    count += 1
+  num_label += 1
+
+#--------------
+# TEST dataset
+#--------------
+count = 0
+num_label = 0
+for i, label in enumerate(test_labels):
+  cur_path = test_path + "\\" + label
+  for image_path in glob.glob(cur_path + "/*.jpg"):
+    img = image.load_img(image_path, target_size=image_size)
+    x   = image.img_to_array(img)
+    x   = x.flatten()
+    x   = np.expand_dims(x, axis=0)
+    test_x[:,count] = x
+    test_y[:,count] = num_label
+    count += 1
+  num_label += 1
+
+#------------------
+# standardization
+#------------------
+train_x = train_x/255.
+test_x  = test_x/255.
+
+print("train_labels : " + str(train_labels))
+print("train_x shape: " + str(train_x.shape))
+print("train_y shape: " + str(train_y.shape))
+print("test_x shape : " + str(test_x.shape))
+print("test_y shape : " + str(test_y.shape))
+
+#-----------------
+# save using h5py
+#-----------------
+h5_train = h5py.File("train_x.h5", 'w')
+h5_train.create_dataset("data_train", data=np.array(train_x))
+h5_train.close()
+
+h5_test = h5py.File("test_x.h5", 'w')
+h5_test.create_dataset("data_test", data=np.array(test_x))
+h5_test.close()
+```
+
+```
+train_labels : ['airplane', 'bike']
+train_x shape: (12288, 1500)
+train_y shape: (1, 1500)
+test_x shape : (12288, 100)
+test_y shape : (1, 100)
+```
+{: .code-out}
+
+
+
+<div class="code-head">Folder Structure<span>rule</span></div>
 ```python
 |--logistic-regression
 |--|--dataset
