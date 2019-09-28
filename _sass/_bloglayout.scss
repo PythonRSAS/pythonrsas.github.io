@@ -176,7 +176,8 @@
     padding: 0;
     font-size: 0.875rem;
     a.bluish {
-      color: #637787 !important;
+      // color: #637787 !important;
+      color: #6b6b6b !important;
       text-decoration: none !important;
       &:hover {
         color: black !important;
@@ -214,7 +215,8 @@
 
   .sidebar-thumbnail-copy {
     font-size: .875rem;
-    color: #637787;
+    // color: #637787; bluish
+    color: #6b6b6b;
     margin: 0px !important;
   }
   span.category-count {
