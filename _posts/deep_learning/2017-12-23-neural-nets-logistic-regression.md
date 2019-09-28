@@ -9,20 +9,6 @@ permalink: software/neural-nets-logistic-regression
 image: https://drive.google.com/uc?id=1oZN0tSeBA91_XlyCmsOfLbJLeQ2_7wMi
 ---
 
-<div class="git-showcase">
-  <div>
-    <a class="github-button" href="https://github.com/Gogul09" data-show-count="true" aria-label="Follow @Gogul09 on GitHub">Follow @Gogul09</a>
-  </div>
-
-  <div>
-    <a class="github-button" href="https://github.com/Gogul09/deep-learning-fundamentals/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork Gogul09/deep-learning-fundamentals on GitHub">Fork</a>
-  </div>
-
-  <div>
-    <a class="github-button" href="https://github.com/Gogul09/deep-learning-fundamentals" data-icon="octicon-star" data-show-count="true" aria-label="Star Gogul09/deep-learning-fundamentals on GitHub">Star</a>
-  </div>  
-</div>
-
 <div class="sidebar_tracker" id="sidebar_tracker">
   <button onclick="closeSidebar('sidebar_tracker_content')">X</button>
   <p onclick="showSidebar('sidebar_tracker_content')">Contents</p>
@@ -64,7 +50,7 @@ A look at what we will be building at the end of this tutorial is shown below. A
   <figcaption>Figure 1. Binary Classification using Logistic Regression Neural Network model</figcaption>
 </figure>
 
-<h3 id="prerequisites">Prerequisites</h3> 
+<h3 id="prerequisites">Prerequisites</h3>
 
 Before reading this tutorial, you must have some basic understanding of the following.
 
@@ -74,9 +60,9 @@ Before reading this tutorial, you must have some basic understanding of the foll
 * Linear algebra
 * Calculus
 
-<h3 id="image-as-a-vector">Image as a vector</h3> 
+<h3 id="image-as-a-vector">Image as a vector</h3>
 
-The input to the logistic regression model is an image. An image is a three-dimensional matrix that holds pixel intensity values of Red, Green and Blue channels. In Deep Learning, what we do first is that we convert this image (3d-matrix) to a 1d-matrix (also called as a vector). 
+The input to the logistic regression model is an image. An image is a three-dimensional matrix that holds pixel intensity values of Red, Green and Blue channels. In Deep Learning, what we do first is that we convert this image (3d-matrix) to a 1d-matrix (also called as a vector).
 
 For example, if our image is of dimension [640, 480, 3] where 640 is the width, 480 is the height and 3 is the number of channels, then the flattened version of the image or 1-d representation of the image will be [1, 921600].
 
@@ -90,7 +76,7 @@ To better understand this, look at the image below.
 </figure>
 
 <h3 id="dataset">Dataset</h3>
-We will use the [CALTECH-101](http://www.vision.caltech.edu/Image_Datasets/Caltech101/){:target="_blank"} dataset which has images belonging to 101 categories such as airplane, bike, elephant etc. As we are dealing with a binary classification problem, we will specifically use images from two categories <span class="coding">airplane</span> and <span class="coding">bike</span>. 
+We will use the [CALTECH-101](http://www.vision.caltech.edu/Image_Datasets/Caltech101/){:target="_blank"} dataset which has images belonging to 101 categories such as airplane, bike, elephant etc. As we are dealing with a binary classification problem, we will specifically use images from two categories <span class="coding">airplane</span> and <span class="coding">bike</span>.
 
 Download this dataset and make sure you follow the below folder structure.
 
@@ -139,19 +125,19 @@ Before starting anything, make sure you have the following number of images in e
 Let's fix the input image size with dimensions \\([64, 64, 3]\\), meaning \\(64\\) is the width and height with \\(3\\) channels. The flattened vector will then have dimension \\([1, 12288]\\). We will also need to know the total number of training images that we are going to use so that we can build an empty numpy array with that dimension and then fill it up after flattening every image. In our case, total number of train images <span class="coding">num_train_images</span> = \\(1500\\) and total number of test images <span class="coding">num_test_images</span> = \\(100\\).
 
 We need to define four numpy arrays filled with zeros.
-* Array of dimension \\([12288, 1500]\\) to hold our train images. 
-* Array of dimension \\([12288, 100]\\) to hold our test images. 
-* Array of dimension \\([1, 1500]\\) to hold our train labels. 
-* Array of dimension \\([1, 100]\\) to hold our test labels. 
+* Array of dimension \\([12288, 1500]\\) to hold our train images.
+* Array of dimension \\([12288, 100]\\) to hold our test images.
+* Array of dimension \\([1, 1500]\\) to hold our train labels.
+* Array of dimension \\([1, 100]\\) to hold our test labels.
 
-For each image in the dataset: 
+For each image in the dataset:
 * Convert the image into a matrix of fixed size using <span class="coding">load_img()</span> in Keras - \\([64, 64, 3]\\).
 * Convert the image into a row vector using <span class="coding">flatten()</span> in NumPy - \\([12288,]\\)
 * Expand the dimensions of the above vector using <span class="coding">np.expand_dims()</span> in NumPy - \\([1, 12288]\\)
 * Concatenate this vector to a numpy array <span class="coding">train_x</span> of dimension \\([12288, 1500]\\).
 * Concatenate this vector's label to a numpy array  <span class="coding">train_y</span> of dimension \\([1, 1500]\\).
 
-We need to perform the above procedure for test data to get <span class="coding">test_x</span> and <span class="coding">test_y</span>. 
+We need to perform the above procedure for test data to get <span class="coding">test_x</span> and <span class="coding">test_y</span>.
 
 We then standardize <span class="coding">train_x</span> and <span class="coding">test_x</span> by dividing each pixel intensity value by 255. This is because normalizing the image matrix makes our learning algorithm better.
 
@@ -180,7 +166,7 @@ from keras.preprocessing import image
 train_path   = "G:\\workspace\\machine-intelligence\\deep-learning\\logistic-regression\\dataset\\train"
 test_path    = "G:\\workspace\\machine-intelligence\\deep-learning\\logistic-regression\\dataset\\test"
 train_labels = os.listdir(train_path)
-test_labels  = os.listdir(test_path) 
+test_labels  = os.listdir(test_path)
 
 # tunable parameters
 image_size       = (64, 64)
@@ -217,8 +203,8 @@ for i, label in enumerate(train_labels):
 #--------------
 # TEST dataset
 #--------------
-count = 0 
-num_label = 0 
+count = 0
+num_label = 0
 for i, label in enumerate(test_labels):
 	cur_path = test_path + "\\" + label
 	for image_path in glob.glob(cur_path + "/*.jpg"):
@@ -273,7 +259,7 @@ test_y shape : (1, 100)
 
 By looking at the above figure, the problem that we are going to solve is this -
 
-> Given an input image, our model must be able to figure out the label by telling whether it is an <span class="coding">airplane</span> or a <span class="coding">bike</span>. 
+> Given an input image, our model must be able to figure out the label by telling whether it is an <span class="coding">airplane</span> or a <span class="coding">bike</span>.
 
 #### A simple neuron
 
@@ -285,10 +271,10 @@ An artificial neuron (shown as purple circle in Figure 3) is a biologically insp
 Every input value \\(x_{(i)}\\) to an artificial neuron has a weight \\(w_{(i)}\\) associated with it which tells about the relative importance of that input with other inputs. Each weight \\(w_{(i)}\\) is multiplied with its corresponding input \\(x_{(i)}\\) and gets summed up to produce a single value \\(z\\).
 
 #### Activation
-After computing the weighted sum \\(z\\), an activation function \\(a = g(z)\\) is applied to this weighted sum \\(z\\). Activation function is a simple mathematical transformation of an input value to an output value by introducing a non-linearity. This is necessary because real-world inputs are non-linear and we need our neural network to learn this non-linearity somehow.   
+After computing the weighted sum \\(z\\), an activation function \\(a = g(z)\\) is applied to this weighted sum \\(z\\). Activation function is a simple mathematical transformation of an input value to an output value by introducing a non-linearity. This is necessary because real-world inputs are non-linear and we need our neural network to learn this non-linearity somehow.
 
 <h3 id="logistic-regression-concept">Logistic Regression concept</h3>
-1. Initialize the weights <span class="coding">w</span> and biases <span class="coding">b</span> to random values (say 0 or using random distribution). 
+1. Initialize the weights <span class="coding">w</span> and biases <span class="coding">b</span> to random values (say 0 or using random distribution).
 2. Foreach training sample in the dataset -
    * Calculate the output value \\(a^{(i)}\\) for an input sample \\(x^{(i)}\\).
    	 * First: find out the weighted sum \\(z^{(i)}\\).
@@ -317,7 +303,7 @@ As you can see, the weights array has a dimension of shape \\([1, 12288]\\) and 
   <figcaption>Figure 5. Computing derivatives of parameters "w" and "b" with respect to loss function "L" on one training example.</figcaption>
 </figure>
 
-The above figure shows us how to visualize forward propagation and backpropagation as a computation graph for one training example. 
+The above figure shows us how to visualize forward propagation and backpropagation as a computation graph for one training example.
 * Forward propagation (for a single training example)
   * Calculate the weighted sum \\(z = w_1x_1 + w_2x_2 + b\\).
   * Calculate the activation \\(a = \sigma(z)\\).
@@ -519,7 +505,7 @@ def predict_image(w, b, X):
 We will use all the above functions into a main function named <span class="coding">model()</span>.
 * *Input* - Training image matrix <span class="coding">X_train</span>, Training image labels <span class="coding">Y_train</span>, Testing image matrix <span class="coding">X_test</span>, Test image labels <span class="coding">Y_test</span>, number of iterations for gradient descent <span class="coding">epochs</span> and learning rate <span class="coding">lr</span>.
 * *Output* - Logistic regression model dictionary having the parameters (w,b), predictions, costs, learning rate, epochs.
- 
+
 <div class="code-head">train.py<span>code</span></div>
 
 ```python
@@ -537,9 +523,9 @@ def model(X_train, Y_train, X_test, Y_test, epochs, lr):
 	print("test_accuracy : {} %".format(100-np.mean(np.abs(Y_predict_test  - Y_test)) * 100))
 
 	log_reg_model = {"costs": costs,
-				     "Y_predict_test": Y_predict_test, 
-					 "Y_predict_train" : Y_predict_train, 
-					 "w" : w, 
+				     "Y_predict_test": Y_predict_test,
+					 "Y_predict_train" : Y_predict_train,
+					 "w" : w,
 					 "b" : b,
 					 "learning_rate" : lr,
 					 "epochs": epochs}
