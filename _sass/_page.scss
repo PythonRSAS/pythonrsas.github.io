@@ -128,6 +128,9 @@
     width: 100%;
   }
 }
+.page-holder .page-treasure {
+  margin-right:10px;
+}
 
 .page-holder .page-treasure:first-child {
     margin-left: 0;
@@ -137,9 +140,9 @@
   display: flex;
   background-color: white;
   margin: 10px;
-  padding: 20px;
-  border-radius: 5px;
-  border: 1px solid #ececec;
+  // padding: 20px;
+  border-radius: 8px;
+  // border: 1px solid #ececec;
   flex-direction: row;
   transition: transform .3s;
   &:hover, &:active {
@@ -168,14 +171,14 @@
 }
 
 .page-treasure-image div {
-  width: 70px;
-  height: 70px;
+  width: 150px;
+  height: 150px;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
-  // border-radius: 50%;
+  border-radius: 8px;
 }
 
 .page-holder .page-treasure h2 {
@@ -183,7 +186,7 @@
   line-height: initial;
   color: black;
   padding: 0;
-  margin: 0;
+  margin: 5px 0 0 0;
   height: initial;
   @include mobile {
     font-size: 13px;
