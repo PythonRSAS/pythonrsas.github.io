@@ -404,16 +404,6 @@ h5_test = h5py.File("test_x.h5", 'w')
 h5_test.create_dataset("data_test", data=np.array(test_x))
 h5_test.close()
 ```
-
-```
-train_labels : ['airplane', 'bike']
-train_x shape: (12288, 1500)
-train_y shape: (1, 1500)
-test_x shape : (12288, 100)
-test_y shape : (1, 100)
-```
-{: .code-out}
-
 <h3 id="logistic-regression-pipeline">Logistic Regression pipeline</h3>
 
 <figure>
@@ -707,38 +697,6 @@ Finally, we can train our model using the below code. This produces the train ac
 # activate the logistic regression model
 myModel = model(train_x, train_y, test_x, test_y, epochs, lr)
 ```
-
-```
-Using TensorFlow backend.
-train_labels : ['airplane', 'bike']
-train_x shape: (12288, 1500)
-train_y shape: (1, 1500)
-test_x shape : (12288, 101)
-test_y shape : (1, 101)
-cost after 0 epochs: 0.693147
-cost after 100 epochs: 0.136297
-cost after 200 epochs: 0.092398
-cost after 300 epochs: 0.076973
-cost after 400 epochs: 0.067062
-cost after 500 epochs: 0.059735
-cost after 600 epochs: 0.053994
-cost after 700 epochs: 0.049335
-cost after 800 epochs: 0.045456
-cost after 900 epochs: 0.042167
-cost after 1000 epochs: 0.039335
-cost after 1100 epochs: 0.036868
-cost after 1200 epochs: 0.034697
-cost after 1300 epochs: 0.032769
-cost after 1400 epochs: 0.031045
-cost after 1500 epochs: 0.029493
-cost after 1600 epochs: 0.028088
-cost after 1700 epochs: 0.026810
-cost after 1800 epochs: 0.025642
-cost after 1900 epochs: 0.024570
-train_accuracy: 99.66666666666667 %
-test_accuracy : 100.0 %
-```
-{: .code-out}
 
 <h3 id="testing-the-trained-model">Testing the trained model (optional)</h3>
 
