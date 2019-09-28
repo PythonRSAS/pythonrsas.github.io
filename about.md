@@ -69,17 +69,6 @@ permalink: /
             <li>Co-founder of Magic Math Mandarin https://www.magicmathmandarin.org/.</li>
           </ul>
           <p><strong>Expertise: </strong>credit risk (wholesale in C&I and CRE), personal auto pricing, actuarial reserve analysis, statistical inference, time series analysis, algorithm design, TensorFlow, machine learning models (regression/boosting/bagging/stacking), natural language processing (NLP), deep learning models (LSTM/GRU/CNN/autoencoders), Python, R, SAS.</p>
-          <div class="highlight-box">
-            <p>In case you're wondering, this site </p>
-            <ul style="margin: 0px !important;">
-              <li>Hosted proudly through <a href="https://github.com/" target="_blank">GitHub</a>.</li>
-              <li>Designed and developed on a <a href="https://www.microsoft.com/en-in/software-download/windows10" target="_blank">Windows 10</a> machine.</li>
-              <li>Written using my favorite text-editor <a href="https://www.sublimetext.com/3" target="_blank">Sublime Text 3</a>.</li>
-              <li>Handcrafted using the awesome <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>.</li>
-              <li>Uses the beautiful <a href="https://fonts.google.com/" target="_blank">Google Fonts</a>.</li>
-              <li>Uses handcrafted icons made by <a href="https://www.flaticon.com/authors/flat-icons" title="Flat Icons">Flat Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>.</li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
