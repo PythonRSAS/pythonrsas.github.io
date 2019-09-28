@@ -46,7 +46,7 @@ Before understanding the math behind a Deep Neural Network and implementing it i
 A look at what we will be building at the end of this tutorial is shown below. A binary classifier that will classify an image as either <span class="coding">airplane</span> or <span class="coding">bike</span>.
 
 <figure>
-  <img src="/images/software/logistic-regression/out.gif">
+  <img src="{{ "/images/software/logistic-regression/out.gif" | relative_url }}">
   <figcaption>Figure 1. Binary Classification using Logistic Regression Neural Network model</figcaption>
 </figure>
 
@@ -71,7 +71,7 @@ Notice that in the above vector dimension, we represent the image as a row vecto
 To better understand this, look at the image below.
 
 <figure>
-  <img src="/images/software/logistic-regression/image-to-vector.jpg">
+  <img src="{{ "/images/software/logistic-regression/image-to-vector.jpg" | relative_url }}">
   <figcaption>Figure 2. Image (3-d) to Vector (1-d)</figcaption>
 </figure>
 
@@ -253,7 +253,7 @@ test_y shape : (1, 100)
 <h3 id="logistic-regression-pipeline">Logistic Regression pipeline</h3>
 
 <figure>
-  <img src="/images/software/logistic-regression/logistic-regression-neural-network.jpg">
+  <img src="{{ "/images/software/logistic-regression/logistic-regression-neural-network.jpg" | relative_url }}">
   <figcaption>Figure 3. Logistic Regression - A Simple Neural Network</figcaption>
 </figure>
 
@@ -291,7 +291,7 @@ One interesting thing in the above algorithm is that we will not be using the fo
 After successfully pre-processing the dataset, please look at the below image to visually understand how the dimensions of our numpy arrays look like.
 
 <figure>
-  <img src="/images/software/logistic-regression/dimensions.jpg">
+  <img src="{{ "/images/software/logistic-regression/dimensions.jpg" | relative_url }}">
   <figcaption>Figure 4. Dimensions of weights, train image matrix, biases and labels.</figcaption>
 </figure>
 
@@ -299,7 +299,7 @@ As you can see, the weights array has a dimension of shape \\([1, 12288]\\) and 
 
 <h3 id="gradient-descent">Gradient Descent</h3>
 <figure>
-  <img src="/images/software/logistic-regression/computation-graph-1.jpg">
+  <img src="{{ "/images/software/logistic-regression/computation-graph-1.jpg" | relative_url }}">
   <figcaption>Figure 5. Computing derivatives of parameters "w" and "b" with respect to loss function "L" on one training example.</figcaption>
 </figure>
 
@@ -612,7 +612,7 @@ for test_img_path in test_img_paths:
 ```
 
 <figure>
-  <img src="/images/software/logistic-regression/out.gif">
+  <img src="{{ "/images/software/logistic-regression/out.gif" | relative_url }}">
   <figcaption>Figure 5. Making predictions using OpenCV on test data</figcaption>
 </figure>
 
