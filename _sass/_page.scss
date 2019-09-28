@@ -179,6 +179,10 @@
   align-items: center;
   justify-content: center;
   border-radius: 8px;
+  @include mobile {
+    width: 70px;
+    height: 70px;
+  }
 }
 
 .page-holder .page-treasure h2 {
@@ -189,7 +193,7 @@
   margin: 10px 0 0 0;
   height: initial;
   @include mobile {
-    font-size: 13px;
+    font-size: 12px;
   }
 }
 

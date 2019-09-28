@@ -1812,6 +1812,9 @@ figure {
 .post-link .date {
   font-size: 12px;
   font-weight: bold;
+  @include mobile {
+    font-size: 10px;
+  }
 }
 
 #my-description {
