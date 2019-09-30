@@ -1,5 +1,5 @@
 var items = document.querySelectorAll(".my-timeline li");
- 
+
 function isElementInViewport(el) {
   var rect = el.getBoundingClientRect();
   return (
@@ -9,7 +9,7 @@ function isElementInViewport(el) {
     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   );
 }
- 
+
 function callbackFunc() {
   for (var i = 0; i < items.length; i++) {
     if (isElementInViewport(items[i])) {
@@ -17,7 +17,7 @@ function callbackFunc() {
     }
   }
 }
- 
+
 window.addEventListener("load", callbackFunc);
 window.addEventListener("scroll", callbackFunc);
 
@@ -178,7 +178,7 @@ function showHideModal(imgId) {
   var span = document.getElementsByClassName("close")[0];
 
   // When the user clicks on <span> (x), close the modal
-  span.onclick = function() { 
+  span.onclick = function() {
       modal.style.display = "none";
       modalBool = 0;
   }
@@ -204,20 +204,20 @@ function openSideNav() {
   document.getElementById("awesomeSideNav").style.padding = "15px";
 }
 
-var slideIndex = 1;
-showDivs(slideIndex);
+// var slideIndex = 1;
+// showDivs(slideIndex);
 
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
+// function plusDivs(n) {
+//   showDivs(slideIndex += n);
+// }
 
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("moocs_slides");
-  if (n > x.length) {slideIndex = 1} 
-  if (n < 1) {slideIndex = x.length} ;
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none"; 
-  }
-  x[slideIndex-1].style.display = "block"; 
-}
+// function showDivs(n) {
+//   var i;
+//   var x = document.getElementsByClassName("moocs_slides");
+//   if (n > x.length) {slideIndex = 1}
+//   if (n < 1) {slideIndex = x.length} ;
+//   for (i = 0; i < x.length; i++) {
+//     x[i].style.display = "none";
+//   }
+//   x[slideIndex-1].style.display = "block";
+// }

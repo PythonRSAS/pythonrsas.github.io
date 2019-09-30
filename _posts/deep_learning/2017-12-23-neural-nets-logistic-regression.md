@@ -9,25 +9,6 @@ permalink: software/neural-nets-logistic-regression
 image: https://drive.google.com/uc?id=1oZN0tSeBA91_XlyCmsOfLbJLeQ2_7wMi
 ---
 
-<div class="sidebar_tracker" id="sidebar_tracker">
-  <button onclick="closeSidebar('sidebar_tracker_content')">X</button>
-  <p onclick="showSidebar('sidebar_tracker_content')">Contents</p>
-  <ul id="sidebar_tracker_content">
-    <li><a class="sidebar_links" onclick="handleSideBarLinks(this.id)" id="link_1" href="#image-as-a-vector">Image as a vector</a></li>
-    <li><a class="sidebar_links" onclick="handleSideBarLinks(this.id)" id="link_2" href="#dataset">Dataset</a></li>
-    <li><a class="sidebar_links" onclick="handleSideBarLinks(this.id)" id="link_3" href="#logistic-regression-pipeline">Logisitic Regression pipeline</a></li>
-    <li><a class="sidebar_links" onclick="handleSideBarLinks(this.id)" id="link_4" href="#logistic-regression-concept">Logistic Regression concept</a></li>
-    <li><a class="sidebar_links" onclick="handleSideBarLinks(this.id)" id="link_5" href="#vectorization">Vectorization</a></li>
-    <li><a class="sidebar_links" onclick="handleSideBarLinks(this.id)" id="link_6" href="#gradient-descent">Gradient Descent</a></li>
-    <li><a class="sidebar_links" onclick="handleSideBarLinks(this.id)" id="link_7" href="#mathematical-equations">Mathematical equations</a></li>
-    <li><a class="sidebar_links" onclick="handleSideBarLinks(this.id)" id="link_8" href="#math-to-code">Math to Code</a></li>
-    <li><a class="sidebar_links" onclick="handleSideBarLinks(this.id)" id="link_9" href="#fitting-it-all-together">Fitting it all together</a></li>
-    <li><a class="sidebar_links" onclick="handleSideBarLinks(this.id)" id="link_10" href="#training-the-model">Training the model</a></li>
-    <li><a class="sidebar_links" onclick="handleSideBarLinks(this.id)" id="link_11" href="#testing-the-trained-model">Testing the trained model (optional)</a></li>
-    <li><a class="sidebar_links" onclick="handleSideBarLinks(this.id)" id="link_12" href="#resources">Resources</a></li>
-  </ul>
-</div>
-
 Before understanding the math behind a Deep Neural Network and implementing it in code, it is better to get a mindset of how Logistic Regression algorithm could be modelled as a simple Neural Network that actually learns from data. Implementing AI algorithms from scratch gives you that "ahha" moment and confidence to build your own algorithms in future.
 
 > **Update**: As Python2 faces [end of life](https://pythonclock.org/), the below code only supports **Python3**.
