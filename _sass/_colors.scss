@@ -29,3 +29,11 @@ $logo_blue  : #4387f9;
 $logo_green : #47af63;
 $logo_yellow: #f5ca4c;
 $logo_gray  : #e5e5e5;
+
+//sarah color
+$hero: #a93c59;
+$hero-light-1 : lighten($hero, 52%);
+$hero-light-2 : lighten($hero, 45%);
+$hero-light-2 : lighten($hero, 5%);
+
+$hero-dark : darken($hero, 20%);

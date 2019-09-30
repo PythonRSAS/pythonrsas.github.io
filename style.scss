@@ -256,12 +256,12 @@ blockquote {
 blockquote p {
   margin-bottom: 10px !important;
   font-weight: 300;
-  background-color: lavenderblush;
+  background-color: $hero-light-1;
   font-style: normal !important;
   font-family: "Roboto",sans-serif;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   padding: 30px;
-  color: #cd3769;
+  color: $hero;
   border-radius: 10px;
   &:hover, &:active {
     box-shadow: 2px 5px 6px rgba(72,72,72,0.14);
@@ -277,7 +277,7 @@ blockquote p {
 }
 
 .wrapper-footer {
-  background-color: #d22e2e;
+  background-color: $hero;
   height: auto;
   width: 100%;
   display: flex;
@@ -2261,14 +2261,14 @@ u {
 }
 
 .coding {
-  background-color: #ffefef !important;
+  background-color: $hero-light-1 !important;
   font-size: 12px !important;
   font-family: monospace !important;
   line-height: 25px;
   border-radius: 4px !important;
   padding: 3px 6px !important;
-  color: #d2372a !important;
-  border: 1px solid #fad1d1;
+  color:  $hero !important;
+  border: 1px solid $hero-light-2;
 }
 
 code {
@@ -2511,7 +2511,7 @@ input:checked + .slider:before {
   z-index: 2000;
   border: none;
   outline: none;
-  background-color: #ae1b1b;
+  background-color: $hero;
   background-image: url("{{ "/images/up.png" | relative_url }}");
   background-repeat: no-repeat;
   background-size: 15px;
