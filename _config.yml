@@ -19,7 +19,7 @@ footer-links:
 
 google_analytics: UA-148562161-1
 url: "http://pythonrsas.com/"
-baseurl: "/sarah-web"
+baseurl: "/Pythonrsas"
 
 permalink: /:title/
 version: v1.0.0
