@@ -334,3 +334,20 @@
   }
 }
 
+.post-cover :not(.sidebar_tracker) ul,ul.timeline {
+  list-style: none;
+}
+
+.post-cover :not(.sidebar_tracker) ul li::before,ul.timeline li::before {
+  content: "\2022";
+  color: $hero;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  font-size: 18px;
+}
+
+.home-follow a {
+  display: none;
+}
