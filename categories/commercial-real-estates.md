@@ -1,11 +1,11 @@
 ---
 layout: page-doc
-title: Programming
+title: Commercial Real Estates
 subheading: Learn how to make use of your brain to write code.
 description: Learn how to make use of your brain to write code.
 color: grad-blog
 image: "/images/icons/real-estate.svg"
-permalink: /programming
+permalink: /commercial-real-estates
 ---
 
 <div class="home-container">

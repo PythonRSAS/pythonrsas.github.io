@@ -1,10 +1,10 @@
 ---
 layout: page-doc
-title: Computer Vision
+title: Python for SAS Users
 subheading: Learn how to make your USB webcam or camera to understand world's information.
 description: Learn how to make your USB webcam or camera to understand world's information.
 color: grad-blog
-image: "{{ "/images/icons/python.svg" | relative_url }}"
+image: "/images/icons/python.svg"
 permalink: /python-for-sas
 ---
 

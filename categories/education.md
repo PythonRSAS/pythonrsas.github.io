@@ -1,6 +1,6 @@
 ---
 layout: page-doc
-title: Travel
+title: Education
 subheading: Learn how traveling creates peace within you.
 description: Learn how traveling creates peace within you.
 color: grad-blog

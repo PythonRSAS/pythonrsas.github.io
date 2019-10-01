@@ -1,6 +1,6 @@
 ---
 layout: page-doc
-title: ASIC Design
+title: Credit Risk
 subheading: Learn how to design a chip using which you could create electronics applications.
 description: Learn how to design a chip using which you could create electronics applications.
 color: grad-blog
