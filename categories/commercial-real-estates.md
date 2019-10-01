@@ -1,11 +1,11 @@
 ---
 layout: page-doc
-title: Computer Vision
-subheading: Learn how to make your USB webcam or camera to understand world's information.
-description: Learn how to make your USB webcam or camera to understand world's information.
+title: Programming
+subheading: Learn how to make use of your brain to write code.
+description: Learn how to make use of your brain to write code.
 color: grad-blog
-image: https://drive.google.com/uc?id=1JlY2yLUGNofJjxc7r4zJIDrNQx6xNpxC
-permalink: /computer-vision
+image: "/images/icons/real-estate.svg"
+permalink: /programming
 ---
 
 <div class="home-container">
@@ -15,7 +15,7 @@ permalink: /computer-vision
         <ul>
         {% for post in site.posts %}
           {% if post.categories contains 'software' %}
-            {% if post.class contains 'Computer Vision' %}
+            {% if post.class contains 'Programming' %}
                 <li>
                   <a class="post-link" href="{{ site.baseurl }}{{ post.url }}">
                     <div class="page-treasure-wrapper">

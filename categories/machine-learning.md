@@ -4,7 +4,7 @@ title: Machine Learning
 subheading: Learn how to create algorithms that don't require you to write logic.
 description: Learn how to create algorithms that don't require you to write logic.
 color: grad-blog
-image: https://drive.google.com/uc?id=1yK8ZrZWN2-tPVzGJU3ENuGAZ8wKG16aT
+image: "/images/icons/machine-learning.svg"
 permalink: /machine-learning
 ---
 

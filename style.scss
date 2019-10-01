@@ -3188,10 +3188,10 @@ del {
     }
 }
 
-#nav_photography {
-  background-image: url("/images/icons/photography.png");
+#nav_category {
+  background-image: url("{{ "/images/icons/category.png" | relative_url }}");
   background-repeat: no-repeat;
-  background-size: 25px;
+  background-size: 20px;
   background-position: center 8px;
   -webkit-filter: invert(50%); /* Safari */
   filter: invert(50%);
@@ -3202,7 +3202,7 @@ del {
   }
 }
 
-#nav_photography:hover {
+#nav_category:hover {
     background-color: #000000;
     -webkit-filter: invert(100%); /* Safari */
     filter: invert(100%);

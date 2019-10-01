@@ -1,11 +1,11 @@
 ---
 layout: page-doc
-title: Travel
-subheading: Learn how traveling creates peace within you.
-description: Learn how traveling creates peace within you.
+title: Computer Vision
+subheading: Learn how to make your USB webcam or camera to understand world's information.
+description: Learn how to make your USB webcam or camera to understand world's information.
 color: grad-blog
-image: https://drive.google.com/uc?id=1VC73N1GZyp2tsxFzuRj4mMvJg0wcauLl
-permalink: /travel
+image: "{{ "/images/icons/python.svg" | relative_url }}"
+permalink: /python-for-sas
 ---
 
 <div class="home-container">
@@ -14,8 +14,9 @@ permalink: /travel
       <div class="page-holder">
         <ul>
         {% for post in site.posts %}
-          {% if post.category contains 'travel' %}
-              <li>
+          {% if post.categories contains 'software' %}
+            {% if post.class contains 'Computer Vision' %}
+                <li>
                   <a class="post-link" href="{{ site.baseurl }}{{ post.url }}">
                     <div class="page-treasure-wrapper">
                       <div class="page-treasure-image" >
@@ -28,6 +29,7 @@ permalink: /travel
                     </div>
                   </a>
                 </li>
+              {% endif %}
             {% endif %}
         {% endfor %}
         </ul>
