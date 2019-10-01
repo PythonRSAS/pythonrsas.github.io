@@ -7,7 +7,8 @@ description: Understand how to get started with Machine Learning which has turne
 author: Gogul Ilango
 permalink: software/getting-started-machine-learning
 image: https://drive.google.com/uc?id=1b5sC_T-CysvP_toHuolmcrI_i_UpN7R3
---- 
+tag: machine learning
+---
 
 <div class="sidebar_tracker" id="sidebar_tracker">
    <button onclick="closeSidebar('sidebar_tracker_content')">X</button>
@@ -41,7 +42,7 @@ This is because the number of tutorials, videos, lectures, infographics, slides 
 
 Before I get into any jargon, let me say that machine learning is all about **data** and **computational power**. The whole idea behind this learning thing is that we make use of past data and our algorithmic thinking to solve problems around our world.
 
-Easiest example to think is **weather prediction**. How do we know tomorrow's weather in Tanjore? Only because of past recorded (historic) data collected over years combined with algorithmic thinking to make future predictions. 
+Easiest example to think is **weather prediction**. How do we know tomorrow's weather in Tanjore? Only because of past recorded (historic) data collected over years combined with algorithmic thinking to make future predictions.
 
 Key take away from these two points is that, without data, machine learning fails and without algorithms + compute, machine learning fails.
 
@@ -55,7 +56,7 @@ You must have learnt mathematics during your school/college days. As we are deal
 * [Calculus](https://www.edx.org/learn/calculus){:target="_blank"}
 * [Algorithms and Data Structures](https://www.edx.org/course?search_query=algorithms){:target="_blank"}
 
-And you need to trust me here because, how do you think your machine learning algorithm predicts tomorrow's weather? Code? Nope. Its math translated to code! We need a firm grip on fundamental concepts in math to move forward in this fast distruptive technology. 
+And you need to trust me here because, how do you think your machine learning algorithm predicts tomorrow's weather? Code? Nope. Its math translated to code! We need a firm grip on fundamental concepts in math to move forward in this fast distruptive technology.
 
 We can take the courses mentioned above to familiarize ourselves with math needed for machine learning. If you skip this step and think that you can write code without math, you will definitely revisit this line at some point in time.
 
@@ -67,7 +68,7 @@ Python programming language is a no-brainer choice when it comes to machine lear
 * [HackerRank](https://www.hackerrank.com/){:target="_blank"}
 * [Python Programming Resources](https://gogul.dev/software/python-programming){:target="_blank"}
 
-It will take some time to get a good grip on Python (say 1-2 months). After that, we could start learning python libraries that are used for machine learning such as 
+It will take some time to get a good grip on Python (say 1-2 months). After that, we could start learning python libraries that are used for machine learning such as
 
 * [NumPy](https://numpy.org/){:target="_blank"}
 * [SciPy](https://www.scipy.org/){:target="_blank"}
@@ -95,7 +96,7 @@ model = LogisticRegression(random_state=9)
     <figcaption>Figure 2. Supervised Machine Learning in a Nutshell</figcaption>
 </figure>
 
-As you see from the above figure, as a beginner, we will mostly focus on supervised machine learning which means we have *labeled data* using which we train an algorithm to predict label of unseen new data. Currently, majority of the applications fall under this category of machine learning. 
+As you see from the above figure, as a beginner, we will mostly focus on supervised machine learning which means we have *labeled data* using which we train an algorithm to predict label of unseen new data. Currently, majority of the applications fall under this category of machine learning.
 
 There are two other types of machine learning such as *Unsupervised Learning* and *Reinforcement Learning* which we will be learning once we get a good grip on *Supervised Learning*.
 
@@ -132,7 +133,7 @@ This is very much needed to highlight us from others. Learning how each algorith
 
 <h3 id="applying-everything">Applying everything</h3>
 
-Learning and understanding is just half the part. We need to apply what we have learnt so far. Solving ML problems is highly helpful for you as well as the community. That's why, we have a dedicated place called [Kaggle](http://kaggle.com){:target="_blank"}. 
+Learning and understanding is just half the part. We need to apply what we have learnt so far. Solving ML problems is highly helpful for you as well as the community. That's why, we have a dedicated place called [Kaggle](http://kaggle.com){:target="_blank"}.
 
 Using Kaggle, we can compete with ML practitioners worldwide and win prizes! Kaggle has integrated Jupyter notebook environment for us, so that we can work on a problem, code it, solve it and share it with the community online.
 

@@ -7,6 +7,7 @@ description: Understand how to approach a machine learning regression problem us
 author: Gogul Ilango
 permalink: /software/regression-example-boston-housing-prices
 image: https://drive.google.com/uc?id=1J5BYkUjjeylaMlMpvlOrPfnPLrSNTf1N
+tag: regression problem
 ---
 
 <div class="sidebar_tracker" id="sidebar_tracker">
@@ -35,10 +36,10 @@ image: https://drive.google.com/uc?id=1J5BYkUjjeylaMlMpvlOrPfnPLrSNTf1N
 
   <div>
 	<a class="github-button" href="https://github.com/Gogul09/explore-machine-learning" data-icon="octicon-star" data-show-count="true" aria-label="Star Gogul09/explore-machine-learning on GitHub">Star</a>
-  </div>  
+  </div>
 </div>
 
-**In machine learning, the ability of a model to predict continuous or real values based on a training dataset is called Regression. With a small dataset and some great python libraries, we can solve such a problem with ease.** 
+**In machine learning, the ability of a model to predict continuous or real values based on a training dataset is called Regression. With a small dataset and some great python libraries, we can solve such a problem with ease.**
 
 In this blog post, we will learn how to solve a supervised regression problem using the famous Boston housing price dataset. Other than location and square footage, a house value is determined by various other factors. Let's analyze this problem in detail and come up with our own machine learning model to predict a housing price.
 
@@ -65,9 +66,9 @@ I assume you have basic knowledge in installing Python and its packages using <s
 * <span class="coding">scikit-learn</span> - To create machine learning models easily and make predictions.
 
 ### Boston Housing Prices Dataset
-In this dataset, each row describes a boston town or suburb. There are 506 rows and 13 attributes (features) with a target column (price). 
+In this dataset, each row describes a boston town or suburb. There are 506 rows and 13 attributes (features) with a target column (price).
 
-The problem that we are going to solve here is that given a set of features that describe a house in Boston, our machine learning model must predict the house price. To train our machine learning model with boston housing data, we will be using scikit-learn's [boston](http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html){:target="_blank"} dataset. 
+The problem that we are going to solve here is that given a set of features that describe a house in Boston, our machine learning model must predict the house price. To train our machine learning model with boston housing data, we will be using scikit-learn's [boston](http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html){:target="_blank"} dataset.
 
 We will use pandas and scikit-learn to load and explore the dataset. The dataset can easily be loaded from scikit-learn's <span class="coding">datasets</span> module using <span class="coding">load_boston</span> function.
 
@@ -81,7 +82,7 @@ pd.options.display.float_format = '{:,.2f}'.format
 dataset = load_boston()
 ```
 
-There are four keys in this dataset using which we can access more information about the dataset. <span class="coding">data</span>, <span class="coding">target</span>, <span class="coding">feature_names</span> and <span class="coding">DESCR</span> are the four keys which could be accessed using <span class="coding">keys()</span> on the <span class="coding">dataset</span> variable. 
+There are four keys in this dataset using which we can access more information about the dataset. <span class="coding">data</span>, <span class="coding">target</span>, <span class="coding">feature_names</span> and <span class="coding">DESCR</span> are the four keys which could be accessed using <span class="coding">keys()</span> on the <span class="coding">dataset</span> variable.
 
 <div class="code-head">train.py<span>code</span></div>
 
@@ -194,7 +195,7 @@ problems.
 ### Analyze the dataset
 
 We can easily convert the dataset into a pandas dataframe to perform exploratory data analysis. Simply pass in the <span class="coding">dataset.data</span> as an argument to <span class="coding">pd.DataFrame()</span>. We can view the first 5 rows in the dataset using <span class="coding">head()</span> function.
- 
+
 <div class="code-head">train.py<span>code</span></div>
 
 ```python
@@ -216,7 +217,7 @@ print(df.head())
 ```
 {: .code-out}
 
-We can also specify the column names <span class="coding">columns</span> of the dataframe using <span class="coding">feature_names</span> instead of the indexes shown above. 
+We can also specify the column names <span class="coding">columns</span> of the dataframe using <span class="coding">feature_names</span> instead of the indexes shown above.
 
 <div class="code-head">train.py<span>code</span></div>
 
@@ -254,7 +255,7 @@ print(df.head())
 ```
 {: .code-out}
 
-We can check the datatype of each column using <span class="coding">dtypes</span> to make sure every column has numeric datatype. If a column has different datatype such as string or character, we need to map that column to a numeric datatype such as integer or float. For this dataset, luckily there is no such column. 
+We can check the datatype of each column using <span class="coding">dtypes</span> to make sure every column has numeric datatype. If a column has different datatype such as string or character, we need to map that column to a numeric datatype such as integer or float. For this dataset, luckily there is no such column.
 
 <div class="code-head">train.py<span>code</span></div>
 
@@ -420,21 +421,21 @@ print(pd.isnull(df).any())
 ```
 
 ```
-CRIM       False 
-ZN         False 
-INDUS      False 
-CHAS       False 
-NOX        False 
-RM         False 
-AGE        False 
-DIS        False 
-RAD        False 
-TAX        False 
-PTRATIO    False 
-B          False 
-LSTAT      False 
-PRICE      False 
-dtype: bool      
+CRIM       False
+ZN         False
+INDUS      False
+CHAS       False
+NOX        False
+RM         False
+AGE        False
+DIS        False
+RAD        False
+TAX        False
+PTRATIO    False
+B          False
+LSTAT      False
+PRICE      False
+dtype: bool
 ```
 {: .code-out}
 
@@ -448,25 +449,25 @@ file_report = "boston_housing.txt"
 with open(file_report, "w") as f:
 	f.write("Features shape : {}".format(df.drop("PRICE", axis=1).shape))
 	f.write("\n")
-	
+
 	f.write("Target shape   : {}".format(df["PRICE"].shape))
 	f.write("\n")
-	
+
 	f.write("\nColumn names")
 	f.write("\n")
 	f.write(str(df.columns))
 	f.write("\n")
-	
+
 	f.write("\nStatistical summary")
 	f.write("\n")
 	f.write(str(df.describe()))
 	f.write("\n")
-	
+
 	f.write("\nDatatypes")
 	f.write("\n")
 	f.write(str(df.dtypes))
 	f.write("\n")
-	
+
 	f.write("\nPEARSON correlation")
 	f.write("\n")
 	f.write(str(df.corr(method="pearson")))
@@ -476,7 +477,7 @@ with open(file_report, "w") as f:
 	f.write("\n")
 	f.write(str(df.corr(method="spearman")))
 	f.write("\n")
-	
+
 	f.write("\nKENDALL correlation")
 	f.write("\n")
 	f.write(str(df.corr(method="kendall")))
@@ -492,8 +493,8 @@ We will use two types of visualization strategy namely univariate plots and biva
 
 #### Box plot
 
-A box-whisker plot is a univariate plot used to visualize a data distribution. 
-* The ends of whiskers are the maximum and minimum range of data distribution. 
+A box-whisker plot is a univariate plot used to visualize a data distribution.
+* The ends of whiskers are the maximum and minimum range of data distribution.
 * The central line in the box is the median of the entire data distribution.
 * The right and left edges in the box are the medians of data distribution to the right and left from the central median, respectively.
 
@@ -604,7 +605,7 @@ if not os.path.exists("plots/multivariate"):
 for i, col in enumerate(cols):
 	if (i == len(cols) - 1):
 		pass
-	else: 
+	else:
 		sns.jointplot(x=col, y="PRICE", data=df);
 		plt.savefig("plots/multivariate/target_vs_" + str(i) + ".png")
 		plt.clf()
@@ -658,14 +659,14 @@ plt.close()
 </figure>
 
 
-We see a lot of structure in this dataset with outliers and different data distributions. Two key take aways from these visualizations are 
+We see a lot of structure in this dataset with outliers and different data distributions. Two key take aways from these visualizations are
 
 * Data is not standardized (meaning there are different data distributions).
 * Data is not normalized (meaning there are differing scales of data).
 
 ### Training regression models
 
-By looking at the dataset, we simply can't suggest the best regression model for this problem. So, we will try out different regression models available in scikit-learn with a 10-fold cross validation method. 
+By looking at the dataset, we simply can't suggest the best regression model for this problem. So, we will try out different regression models available in scikit-learn with a 10-fold cross validation method.
 
 It means we split the training data into <span class="coding">train</span> and <span class="coding">test</span> data using a <span class="coding">test_size</span> parameter for 10-folds. Each fold will have different samples that are not present in other folds. By this way, we can throughly train our model on different samples in the dataset.
 
@@ -717,8 +718,8 @@ print(Y_test.shape)
 ```
 (404, 13)
 (102, 13)
-(404,)   
-(102,)    
+(404,)
+(102,)
 ```
 {: .code-out}
 
@@ -766,7 +767,7 @@ for model_name in models:
 	model   = models[model_name]
 	k_fold  = KFold(n_splits=folds, random_state=seed)
 	results = cross_val_score(model, X_train, Y_train, cv=k_fold, scoring=metric)
-	
+
 	model_results.append(results)
 	model_names.append(model_name)
 	print("{}: {}, {}".format(model_name, round(results.mean(), 3), round(results.std(), 3)))
@@ -850,7 +851,7 @@ plt.close()
 We could still tune different regression models used in this example using scikit-learn's <span class="coding">GridSearchCV()</span> function. By tuning, we mean trying out different hyper-parameters for each model. You can check [this](http://scikit-learn.org/stable/modules/grid_search.html){:target="_blank"} post to perform hyperparameter tuning.
 
 
-#### Feature Importance 
+#### Feature Importance
 
 Once we have a trained model, we can understand feature importance (or variable importance) of the dataset which tells us how important each feature is, to predict the target. Figure 7 shows relative importance of different feature in the dataset made by our best model Gradient Boosting Regressor (GBR).
 

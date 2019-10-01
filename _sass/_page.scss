@@ -190,12 +190,15 @@
 }
 
 .page-holder .page-treasure h2 {
-  font-size: 22px;
+  font-size: 32px;
   line-height: initial;
-  color: black;
+  color: black !important;
   padding: 0;
-  margin: 10px 0 0 0;
+  margin: 0;
+  // margin: 10px 0 0 0;
   height: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   @include mobile {
     font-size: 12px;
   }

@@ -7,6 +7,7 @@ description: Let's learn and understand Google's TensorFlow.js and Magenta.js to
 author: Gogul Ilango
 permalink: software/creating-intelligent-music-applications-in-the-browser
 image: https://drive.google.com/uc?id=1r1XBlHVK8lJk8CvyEmF-W9fSobKWf_ww
+tag: music creation
 ---
 
 <div class="git-showcase">
@@ -20,7 +21,7 @@ image: https://drive.google.com/uc?id=1r1XBlHVK8lJk8CvyEmF-W9fSobKWf_ww
 
   <div>
 	<a class="github-button" href="https://github.com/Gogul09/deep-drum" data-icon="octicon-star" data-show-count="true" aria-label="Star Gogul09/deep-drum on GitHub">Star</a>
-  </div>  
+  </div>
 </div>
 
 <div class="sidebar_tracker" id="sidebar_tracker">
@@ -46,7 +47,7 @@ After the introduction of Google's [TensorFlow.js](https://js.tensorflow.org/){:
 <h3 id="why-music-and-ml">Why Music and ML?</h3>
 
 
-Music generation has already began to catch the eyes of machine learning devs and there are numerous projects that are getting pushed in [GitHub](https://github.com/search?q=music+generation){:target="_blank"} every week. Although there exist a barrier between AI Researchers and AI Developers such as complex mathematics that involve derivations and jargons, there is still hope for an AI enthusiast to use code and some music knowledge to create exciting applications that was a dream few years back. 
+Music generation has already began to catch the eyes of machine learning devs and there are numerous projects that are getting pushed in [GitHub](https://github.com/search?q=music+generation){:target="_blank"} every week. Although there exist a barrier between AI Researchers and AI Developers such as complex mathematics that involve derivations and jargons, there is still hope for an AI enthusiast to use code and some music knowledge to create exciting applications that was a dream few years back.
 
 Leveraging the capabilities of TensorFlow.js, we now have Google's [Magenta.js](https://magenta.tensorflow.org/){:target="_blank"} using which any developer with knowledge on javascript and music could create a music application that has intelligence built in to it.
 
@@ -113,7 +114,7 @@ drums_rnn.initialize();
 
 We have 10 individual drumkit instrument such as <span class="coding">kick</span>, <span class="coding">snare</span>, <span class="coding">hihat closed</span>, <span class="coding">hihat open</span>, <span class="coding">tom low</span>, <span class="coding">tom mid</span>, <span class="coding">tom high</span>, <span class="coding">clap</span> and <span class="coding">ride</span>. Hence, we define an array named <span class="coding">seed_pattern</span> to hold the **ON** time step of each instrument (in an array) at every time step.
 
-For example, I have initialized the <span class="coding">seed_pattern</span> as shown below. This means, for a <span class="coding">seed_limit</span> of 4 time steps, we assign the input pattern like this - 
+For example, I have initialized the <span class="coding">seed_pattern</span> as shown below. This means, for a <span class="coding">seed_limit</span> of 4 time steps, we assign the input pattern like this -
 
 * <span class="coding">kick</span> should be **ON** at first and third time step.
 * <span class="coding">snare</span> shouldn't be turned **ON** within <span class="coding">seed_limit</span>.
@@ -126,15 +127,15 @@ Notice we start first time step as 0 in code.
 
 ```javascript
 var seed_pattern = [
-	[0, 2], 
-	[], 
-	[2], 
-	[], 
-	[2], 
-	[], 
-	[0, 2], 
-	[], 
-	[1, 2], 
+	[0, 2],
+	[],
+	[2],
+	[],
+	[2],
+	[],
+	[0, 2],
+	[],
+	[1, 2],
 	[]
 ];
 ```
@@ -193,9 +194,9 @@ function drum_to_note_sequence(quantize_tensor) {
 
 The way I figured out what's inside <span class="coding">mm.sequences.quantizeNoteSequence</span> is through the browser's console and some help by looking at the code of few [demos](https://magenta.tensorflow.org/demos){:target="_blank"} in Magenta's website. Values like <span class="coding">timeSignatures</span>, <span class="coding">tempos</span> and <span class="coding">totalTime</span> need to be set according to one's preferences. You could even assign these values dynamically.
 
-The main thing you need to take care here is the conversion of our input <span class="coding">seed_pattern</span> into musical quantization format that Magenta accepts which includes defining each drumkit instrument's <span class="coding">pitch</span>, <span class="coding">startTime</span> and <span class="coding">endTime</span>. 
+The main thing you need to take care here is the conversion of our input <span class="coding">seed_pattern</span> into musical quantization format that Magenta accepts which includes defining each drumkit instrument's <span class="coding">pitch</span>, <span class="coding">startTime</span> and <span class="coding">endTime</span>.
 
-<span class="coding">pitch</span> of a drumkit note is the MIDI value of that note which could be obtained from this [mapping](https://github.com/Gogul09/deep-drum/blob/master/js/reverse_midi_map.js){:target="_blank"}. <span class="coding">startTime</span> and <span class="coding">endTime</span> are quantization values that defines the start and end time for a single note. 
+<span class="coding">pitch</span> of a drumkit note is the MIDI value of that note which could be obtained from this [mapping](https://github.com/Gogul09/deep-drum/blob/master/js/reverse_midi_map.js){:target="_blank"}. <span class="coding">startTime</span> and <span class="coding">endTime</span> are quantization values that defines the start and end time for a single note.
 
 For example, for our first time step, <span class="coding">kick</span> will have the following values.
 * <span class="coding">pitch</span> - 36
@@ -230,7 +231,7 @@ function note_to_drum_sequence(seq, pLength) {
 }
 ```
 
-First, we use <span class="coding">continueSequence()</span> function of <span class="coding">drums_rnn</span> to predict the next sequence values for all our drumkit instruments and store it in a variable named <span class="coding">predicted_sequence</span>. These predictions will be based on the same old magenta's quantization format having MIDI-mapped pitch values, start time and end time. 
+First, we use <span class="coding">continueSequence()</span> function of <span class="coding">drums_rnn</span> to predict the next sequence values for all our drumkit instruments and store it in a variable named <span class="coding">predicted_sequence</span>. These predictions will be based on the same old magenta's quantization format having MIDI-mapped pitch values, start time and end time.
 
 We define an array named <span class="coding">res</span> and store the predicted sequence values based on its <span class="coding">quantizedStartStep</span>. We then concatenate the predicted sequence with the input <span class="coding">seed_pattern</span> to generate a beat!
 

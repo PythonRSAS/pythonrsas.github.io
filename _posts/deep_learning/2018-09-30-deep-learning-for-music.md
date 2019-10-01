@@ -6,6 +6,7 @@ title: Deep Learning meets Music
 description: Let's understand how to create music using Deep Learning and Machine Learning algorithms.
 permalink: software/deep-learning-for-music
 image: https://drive.google.com/uc?id=1RAl1IS-dvH-7g-b94QWLGqubp_tLtIhm
+tag: deep learning music
 ---
 
 <div class="sidebar_tracker" id="sidebar_tracker">

@@ -6,6 +6,7 @@ title: Classifying images using Keras MobileNet and TensorFlow.js in Google Chro
 description: Learn how to perform image classification (recognition) using Keras MobileNet and TensorFlow.js.
 permalink: software/mobile-net-tensorflow-js
 image: https://drive.google.com/uc?id=1AUebpO4EK4JJSSchFFYiMZlFDoa1LLoy
+tag: image classifying
 ---
 
 <div class="git-showcase">
@@ -19,7 +20,7 @@ image: https://drive.google.com/uc?id=1AUebpO4EK4JJSSchFFYiMZlFDoa1LLoy
 
   <div>
   <a class="github-button" href="https://github.com/Gogul09/mobile-net-projects" data-icon="octicon-star" data-show-count="true" aria-label="Star Gogul09/mobile-net-projects on GitHub">Star</a>
-  </div>  
+  </div>
 </div>
 
 <div class="sidebar_tracker" id="sidebar_tracker">
@@ -45,7 +46,7 @@ The interactive demo of what we will be making at the end of the tutorial is sho
 <ol>
   <li>Click <b>Load Model</b> to load MobileNet model in your browser.</li>
   <li>Loading image -
-    <ul style="margin-bottom: 0px !important;">  
+    <ul style="margin-bottom: 0px !important;">
       <li>Click <b>Demo Image</b> to import a random image that belongs to an ImageNet category.</li>
       <li>Click <b>Upload Image</b> if you want to import an image from your disk.</li>
     </ul>
@@ -176,10 +177,10 @@ if __name__ == '__main__':
 ```
 
 ```
-[[('n01806143', 'peacock', 0.9998889), 
-  ('n01806567', 'quail', 3.463593e-05), 
-  ('n02018795', 'bustard', 2.7573227e-05), 
-  ('n01847000', 'drake', 1.1352683e-05), 
+[[('n01806143', 'peacock', 0.9998889),
+  ('n01806567', 'quail', 3.463593e-05),
+  ('n02018795', 'bustard', 2.7573227e-05),
+  ('n01847000', 'drake', 1.1352683e-05),
   ('n01795545', 'black_grouse', 1.0532762e-05)]]
 ```
 {: .code-out}
@@ -194,7 +195,7 @@ if __name__ == '__main__':
 * Line 32 prints out the top-5 predictions of the test image.
 * Lines 36-38 converts <a href="#convert-keras-model-into-tf-js-layers-format">keras mobilenet model into tf.js layers format</a> at <span class="coding">save_path</span>.
 
-Please make sure you change the <span class="coding">test_img_path</span> in line 19 to test an image from your disk. Figure 2 (shown below) is the test image that I have chosen and the MobileNet model accurately predicted it as a <span class="coding">peacock</span> with a probability of 99.99%. Pretty cool! 😍 
+Please make sure you change the <span class="coding">test_img_path</span> in line 19 to test an image from your disk. Figure 2 (shown below) is the test image that I have chosen and the MobileNet model accurately predicted it as a <span class="coding">peacock</span> with a probability of 99.99%. Pretty cool! 😍
 
 <figure>
   <img src="/images/software/mobile-net-tensorflow-js/test_image_1.jpg" class="typical-image">
@@ -248,7 +249,7 @@ This is crucial for our application to work because if you host these model file
 
 Let's get started with the sweet TensorFlow.js 😘
 
-You need these three javascript libraries loaded in your website. 
+You need these three javascript libraries loaded in your website.
 1. <span class="coding">IMAGENET_CLASSES</span> variable that has all the ImageNet categories indexed which could easily be loaded from [here](https://github.com/tensorflow/tfjs-examples/blob/master/mobilenet/imagenet_classes.js){:target="_blank"}.
 2. TensorFlow.js latest source.
 3. jQuery to make JavaScript easier.
@@ -256,9 +257,9 @@ You need these three javascript libraries loaded in your website.
 <div class="code-head">index.html<span>code</span></div>
 
 ```html
-<script type="text/javascript" src="/js/imagenet_classes.js"></script> 
+<script type="text/javascript" src="/js/imagenet_classes.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>  
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 ```
 
 Once you load all the above three scripts, you can open up a new file named <span class="coding">mobile-net.js</span> that will have all the functionality needed to make Keras MobileNet model work in a web browser.
@@ -267,7 +268,7 @@ The user interface that I made at the start of the tutorial has HTML, CSS and Ja
 
 <h3 id="load-keras-model-into-tf-js">1. Load Keras model into TF.js</h3>
 
-Firstly, you need to load the Keras pretrained model json that you have stored in your web server. To do this, you can use the below code snippet. 
+Firstly, you need to load the Keras pretrained model json that you have stored in your web server. To do this, you can use the below code snippet.
 
 The below code snippet is an <span class="coding">async</span> function that loads a keras model json using <span class="coding">tf.loadModel()</span>. In line 17, <span class="coding">await</span> means without disturbing the UI, you are asking JavaScript to load model behind the scenes. To view the status of model loading, we use a progress bar as well as <span class="coding">console.log()</span>.
 
@@ -285,13 +286,13 @@ async function loadModel() {
 
   // model name is "mobilenet"
   modelName = "mobilenet";
-  
+
   // clear the model variable
   model = undefined;
-  
+
   // load the model using a HTTPS request (where you have stored your model files)
   model = await tf.loadLayersModel('https://gogul09.github.io/models/mobilenet/model.json');
-  
+
   // hide model loading progress box
   loader.style.display = "none";
   load_button.disabled = true;
@@ -314,13 +315,13 @@ To upload an image from disk, you can use the below code snippet which makes use
 <div class="code-head">mobile-net.js<span>code</span></div>
 
 ```javascript
-// if there is a change to "Upload Image" button, 
+// if there is a change to "Upload Image" button,
 // load and render the image
 $("#select-file-image").change(function() {
   renderImage(this.files[0]);
 }
 
-// renders the image which is loaded from disk to the img tag 
+// renders the image which is loaded from disk to the img tag
 function renderImage(file) {
   var reader = new FileReader();
   reader.onload = function(event) {
@@ -358,7 +359,7 @@ function preprocessImage(image, modelName) {
   // if model is not available, send the tensor with expanded dimensions
   if (modelName === undefined) {
     return tensor.expandDims();
-  } 
+  }
 
   // if model is mobilenet, feature scale tensor image to range [-1, 1]
   else if (modelName === "mobilenet") {
@@ -366,7 +367,7 @@ function preprocessImage(image, modelName) {
     return tensor.sub(offset)
       .div(offset)
       .expandDims();
-  } 
+  }
 
   // else throw an error
   else {
@@ -381,7 +382,7 @@ After preprocessing the image, I have made a handler for **Predict** button. Aga
 
 Prediction using a Tf.js model is straightforward as Keras which uses <span class="coding">model.predict(tensor)</span>. To get the predictions, we pass it <span class="coding">data()</span> to the former.
 
-Results from the predictions are mapped to an array named <span class="coding">results</span> using <span class="coding">IMAGENET_CLASSES</span> that we loaded at the beginning of this tutorial. We also sort this array based on the probability that is highest using <span class="coding">sort()</span> and take only the top-5 probabilities using <span class="coding">slice()</span>. 
+Results from the predictions are mapped to an array named <span class="coding">results</span> using <span class="coding">IMAGENET_CLASSES</span> that we loaded at the beginning of this tutorial. We also sort this array based on the probability that is highest using <span class="coding">sort()</span> and take only the top-5 probabilities using <span class="coding">slice()</span>.
 
 <div class="code-head">mobile-net.js<span>code</span></div>
 
@@ -437,9 +438,9 @@ There you go! We now have the power of state-of-the-art Keras pretrained model M
 
 Notice that the mobilenet model loads very quickly in the browser and makes predictions very fast 😎
 
-<script type="text/javascript" src="/js/imagenet_classes.js"></script> 
+<script type="text/javascript" src="/js/imagenet_classes.js"></script>
 <script src="https://unpkg.com/@tensorflow/tfjs"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>  
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="/js/mobile-net.js"></script>
 
 ### References

@@ -6,6 +6,7 @@ title: Deep Learning Meets Physics
 description: Let's understand what our universe is made of using Deep Learning and Machine Learning algorithms.
 permalink: software/deep-learning-meets-physics
 image: https://drive.google.com/uc?id=17x1zxwfnObTzt0saxWraadnDIcRzaHbK
+tag: deep learning
 ---
 
 <div class="sidebar_tracker" id="sidebar_tracker">
@@ -21,7 +22,7 @@ image: https://drive.google.com/uc?id=17x1zxwfnObTzt0saxWraadnDIcRzaHbK
   </ul>
 </div>
 
-I'm always fascinated by the matter around us which make my neurons think what's inside matter? How matter formed at the first place? Who created or what created matter that exist now in our universe? Why there isn't much anti-matter as there is matter in this universe? These fundamental questions are still being researched by the greatest human beings of our time across the world. 
+I'm always fascinated by the matter around us which make my neurons think what's inside matter? How matter formed at the first place? Who created or what created matter that exist now in our universe? Why there isn't much anti-matter as there is matter in this universe? These fundamental questions are still being researched by the greatest human beings of our time across the world.
 
 > Space and time are modes by which we think, not conditions under which we live - Albert Einstein
 
@@ -43,7 +44,7 @@ Scientists are CERN are researching about this composition of our universe and s
 * Fastest racetrack on Earth where protons travel at 99.9999991% of the speed of light.
 * Emptiest place in the solar system where particules circulate in the highest vacuum.
 * Hottest spot in the galaxy where lead ion collisions create temperatures 100,000x hotter than the hearth of the sun.
-* In 1989, Tim Berners-Lee proposed the creation of a distributed information system which is evolved into what we call the World Wide Web. 
+* In 1989, Tim Berners-Lee proposed the creation of a distributed information system which is evolved into what we call the World Wide Web.
 * The World's first [web page](http://info.cern.ch/){:target="_blank"} was originated from CERN.
 
 <div class="youtube-video-container">
@@ -57,7 +58,7 @@ There are four major experiments done using the Large Hadron Collider (LHC) at C
 * [ALICE](https://en.wikipedia.org/wiki/ALICE_experiment){:target="_blank"} - A Large Ion Collider Experiment
 * [LHCb](https://en.wikipedia.org/wiki/LHCb_experiment){:target="_blank"} - LHC-beauty
 
-Other three experiments at LHC are 
+Other three experiments at LHC are
 
 * [TOTEM](https://en.wikipedia.org/wiki/TOTEM_experiment){:target="_blank"} - Total Cross Section, Elastic Scattering and Diffraction Dissociation
 * [LHCf](https://en.wikipedia.org/wiki/LHCf_experiment){:target="_blank"} - LHC-forward
@@ -70,7 +71,7 @@ Kindly visit [this](https://home.cern/science/accelerators/large-hadron-collider
   <figcaption>Figure 2. Experiments at CERN - CMS, ALICE, ATLAS, LHCb</figcaption>
 </figure>
 
-Ok, why do we need such a big instrumental setup to explore what's inside an atom? Let's understand why we need to figure out what's inside an atom at the first place? 
+Ok, why do we need such a big instrumental setup to explore what's inside an atom? Let's understand why we need to figure out what's inside an atom at the first place?
 
 It's assumed that everything that we see around us (sun, earth, moon, stars, trees, humans etc.,) began with the [Big Bang](https://en.wikipedia.org/wiki/Big_Bang){:target="_blank"}. Before learning about the fundamental particles and forces of nature, please read [Chronology of the Universe](https://en.wikipedia.org/wiki/Chronology_of_the_universe){:target="_blank"} to understand the history, present and future of our universe so that you will come to a conclusion that finding the most fundamental particle (that makes up matter) and how forces of nature interact with that particle is what we need to find out.
 
@@ -83,7 +84,7 @@ Above picture tells us, Big Bang happened at a specific point in time which conv
 
 <h3 id="the-standard-model">The Standard Model</h3>
 
-Matter that we see around us is found to be made of few basic building blocks united by four fundamental forces in nature. You can read more about the standard model [here](https://home.cern/science/physics/standard-model){:target="_blank"}. 
+Matter that we see around us is found to be made of few basic building blocks united by four fundamental forces in nature. You can read more about the standard model [here](https://home.cern/science/physics/standard-model){:target="_blank"}.
 
 <figure>
   <img src="https://drive.google.com/uc?id=17dGzpVj42v1fYvYXe7HHO2F7e1xYinkh">
@@ -126,7 +127,7 @@ It's very interesting to know Deep Learning algorithms such as Convolutional Neu
 
 On 4 July 2012, CMS and ATLAS experiments at LHC confirmed the discovery of Higgs Boson. How a particle decays into other particles is the key factor to understand and measure the characteristics of the particle. It's confirmed that Higgs Boson decays into two tau particles which is a small signal buried in background noise.
 
-Recently, I became aware of Higgs Boson Machine Learning Challenge conducted by CERN and Kaggle on 2014. Here is the link to the challenge - [Higgs boson machine-learning challenge](https://home.cern/news/news/computing/higgs-boson-machine-learning-challenge){:target="_blank"}. 
+Recently, I became aware of Higgs Boson Machine Learning Challenge conducted by CERN and Kaggle on 2014. Here is the link to the challenge - [Higgs boson machine-learning challenge](https://home.cern/news/news/computing/higgs-boson-machine-learning-challenge){:target="_blank"}.
 
 If you know machine learning, it's enough to participate in this competition as the task is to classify ATLAS events as **tau tau decay of a higgs boson** or **background noise** using the features characterizing the events.
 

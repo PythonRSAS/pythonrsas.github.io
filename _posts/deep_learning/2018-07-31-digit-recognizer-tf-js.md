@@ -6,6 +6,7 @@ title: Recognizing Digits using TensorFlow.js in Google Chrome
 description: Learn how to recognize handwritten digits based on user's drawing in Google Chrome using a Deep Neural Network (Convolutional Neural Network and Multi-Layer Perceptron)
 permalink: software/digit-recognizer-tf-js
 image: https://drive.google.com/uc?id=1vXEUEoSbRw-ImdA5g1L1PAzBJQHF9PVy
+tag : TensorFlow
 ---
 
 <div class="git-showcase">
@@ -23,7 +24,7 @@ image: https://drive.google.com/uc?id=1vXEUEoSbRw-ImdA5g1L1PAzBJQHF9PVy
 
   <div>
     <a href="https://www.youtube.com/watch?v=WTaXfYOhqmY" target="_blank"><img src="/images/icons/youtube-icon.png" class="youtube-showcase" /></a>
-  </div>    
+  </div>
 </div>
 
 <div class="sidebar_tracker" id="sidebar_tracker">
@@ -41,7 +42,7 @@ image: https://drive.google.com/uc?id=1vXEUEoSbRw-ImdA5g1L1PAzBJQHF9PVy
 
 **In this blog post, we will create a simple web application that provides a canvas (mobile + desktop + laptop + tablet ready) for the user to draw a digit and uses a deep neural network (MLP or CNN) to predict what digit the user had drawn.**
 
-As we already know the capabilities offered by [TensorFlow.js](https://js.tensorflow.org/){:target="_blank"}, we will extend the ideas to create two Deep Neural Networks (MLP and CNN) in Keras Python environment to recognize digits and use TensorFlow.js to predict the user drawn digit on a canvas in a web browser. In this learning path, we will restrict the user to draw a single digit between [0, 9] and later we will extend the idea to multiple digits. 
+As we already know the capabilities offered by [TensorFlow.js](https://js.tensorflow.org/){:target="_blank"}, we will extend the ideas to create two Deep Neural Networks (MLP and CNN) in Keras Python environment to recognize digits and use TensorFlow.js to predict the user drawn digit on a canvas in a web browser. In this learning path, we will restrict the user to draw a single digit between [0, 9] and later we will extend the idea to multiple digits.
 
 Below is the interactive demo that you can use to draw a digit between [0, 9] and the Deep Neural Network (MLP or CNN) that is running in your browser will predict what that digit is in the form of a bar chart.
 
@@ -89,7 +90,7 @@ Below is the interactive demo that you can use to draw a digit between [0, 9] an
 
 <h3 id="deep-neural-network-for-digit-recognition">Deep Neural Network for Digit Recognition</h3>
 
-I have already posted a tutorial a year ago on how to build Deep Neural Nets (specifically a Multi-Layer Perceptron) to recognize hand-written digits using Keras and Python [here](https://gogul09.github.io/software/digits-recognition-mlp){:target="_blank"}. I highly encourage you to read that post before proceeding here. 
+I have already posted a tutorial a year ago on how to build Deep Neural Nets (specifically a Multi-Layer Perceptron) to recognize hand-written digits using Keras and Python [here](https://gogul09.github.io/software/digits-recognition-mlp){:target="_blank"}. I highly encourage you to read that post before proceeding here.
 
 I assume you have familiarity in using Keras before proceeding (else please read my other tutorials on Keras [here](https://gogul09.github.io/software/first-neural-network-keras){:target="_blank"} and [here](https://gogul09.github.io/software/flower-recognition-deep-learning){:target="_blank"}). If you are a beginner to Keras, I strongly encourage you to visit [Keras documentation](https://keras.io/){:target="_blank"} where you could find tons of information on how to use the library and learn from examples found [here](https://github.com/keras-team/keras/tree/master/examples){:target="_blank"}.
 
@@ -97,7 +98,7 @@ For this tutorial, we will learn to create two popular Deep Neural Networks (DNN
 
 ##### Simple MLP using Keras and Python
 
-We will simply use a Keras MLP model using Python, dump out the model and weights in Tf.js layers format (as we did [here](https://gogul09.github.io/software/mobile-net-tensorflow-js){:target="_blank"}). After that, we will load the Keras dumped model and weights in our browser and use TensorFlow.js to make predictions. 
+We will simply use a Keras MLP model using Python, dump out the model and weights in Tf.js layers format (as we did [here](https://gogul09.github.io/software/mobile-net-tensorflow-js){:target="_blank"}). After that, we will load the Keras dumped model and weights in our browser and use TensorFlow.js to make predictions.
 
 To do this, here is the python code that fetches and loads MNIST dataset, trains a simple multi-layer perceptron with two hidden layers having 512 and 256 neurons respectively on a training data of 60000 images with labels, validates the trained model with 10000 unlabeled images and saves the model along with weights in Tf.js layers format in <span class="coding">model_save_path</span>.
 
@@ -155,7 +156,7 @@ model.compile(loss="categorical_crossentropy",
               metrics=["accuracy"])
 
 # fit the model
-history = model.fit(trainData, 
+history = model.fit(trainData,
                     mTrainLabels,
                     validation_data=(testData, mTestLabels),
                     batch_size=batch_size,
@@ -181,15 +182,15 @@ tfjs.converters.save_keras_model(model, model_save_path)
 
 Two important things to watch carefully here are **image size** and **input vector size** to MLP. Keras function <span class="coding">mnist.load_data()</span> loads images of size of **[28, 28]**. We flatten this image into a vector of size **784** for the MLP. We also scale the pixel values between **[0, 1]** for the algorithm to perform better. These are the image preprocessing operations that we will do in the front-end too using javascript.
 
-After training and validating the MLP, we save the model architecture and weights using <span class="coding">tensorflowjs</span> under <span class="coding">model_save_path</span>. We will upload this folder to our website from where we could easily load this Keras model in TensorFlow.js using HTTPS request to make predictions in the browser. 
+After training and validating the MLP, we save the model architecture and weights using <span class="coding">tensorflowjs</span> under <span class="coding">model_save_path</span>. We will upload this folder to our website from where we could easily load this Keras model in TensorFlow.js using HTTPS request to make predictions in the browser.
 
 ##### Simple CNN using Keras and Python
 
-One caveat on using MNIST dataset from Keras is that the dataset is well cleaned, images are centered, cropped and aligned perfectly. So, there is very minimal preprocessing work required from a developer. But, the MLP model that we created above, isn't well suited for cases like HTML5 canvas where different users have different handwriting. 
+One caveat on using MNIST dataset from Keras is that the dataset is well cleaned, images are centered, cropped and aligned perfectly. So, there is very minimal preprocessing work required from a developer. But, the MLP model that we created above, isn't well suited for cases like HTML5 canvas where different users have different handwriting.
 
 That's why we need to create a CNN (Convolutional Neural Network) which automatically learns from 2D matrix instead of vectorizing the canvas into a 1d vector.
 
-Below is the python code snippet to create a simple CNN that fetches and loads MNIST dataset, trains a simple CNN with 
+Below is the python code snippet to create a simple CNN that fetches and loads MNIST dataset, trains a simple CNN with
 
 * One <span class="coding">Convolution2D()</span> layer with 32 feature maps with size [5, 5] and <span class="coding">relu</span> activation function that takes in the input canvas size of [28, 28, 1].
 * One <span class="coding">MaxPooling2D()</span> layer with a pool size of [2, 2].
@@ -246,12 +247,12 @@ model.add(Dense(128, activation='relu'))
 model.add(Dense(num_classes, activation='softmax'))
 
 # compile model
-model.compile(loss='categorical_crossentropy', 
-        optimizer='adam', 
+model.compile(loss='categorical_crossentropy',
+        optimizer='adam',
         metrics=['accuracy'])
 
 # fit the model
-history = model.fit(trainData, 
+history = model.fit(trainData,
                     mTrainLabels,
                     validation_data=(testData, mTestLabels),
                     batch_size=batch_size,
@@ -287,7 +288,7 @@ Now let's get into the front-end code for this tutorial. Before we start anythin
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>  
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script type="text/javascript" src="/js/app.js"></script>
 ```
@@ -379,7 +380,7 @@ For a smooth user experience, we will add in some style for the above created HT
   cursor: pointer;
   border: 1px solid #a58e3a;
   font-size: 12px;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   margin: 0px auto;
   border-radius: 5px;
 }
@@ -474,9 +475,9 @@ ctx = canvas.getContext("2d");
 
 Notice we get the context <span class="coding">ctx</span> of the canvas that we created dynamically using <span class="coding">canvas.getContext("2d")</span>.
 
-When the user draws on the canvas, we need to register the position X and Y within the browser. To do that, we make use of <span class="coding">mousedown</span> and <span class="coding">touchstart</span> functions. For mobile and tablet devices, we need to tell JavaScript to prevent the default functionality of scroll if canvas is touched using <span class="coding">e.preventDefault()</span> function. 
+When the user draws on the canvas, we need to register the position X and Y within the browser. To do that, we make use of <span class="coding">mousedown</span> and <span class="coding">touchstart</span> functions. For mobile and tablet devices, we need to tell JavaScript to prevent the default functionality of scroll if canvas is touched using <span class="coding">e.preventDefault()</span> function.
 
-When the user starts drawing, we pass the X and Y values to <span class="coding">addUserGesture()</span> function and set the <span class="coding">drawing</span> flag <span class="coding">true</span>. 
+When the user starts drawing, we pass the X and Y values to <span class="coding">addUserGesture()</span> function and set the <span class="coding">drawing</span> flag <span class="coding">true</span>.
 
 Below two code snippets does these functions for both mobile and desktop devices.
 
@@ -689,10 +690,10 @@ async function loadModel() {
 
   // clear the model variable
   model = undefined;
-  
+
   // load the model using a HTTPS request (where you have stored your model files)
   model = await tf.loadLayersModel("https://gogul09.github.io/models/" + modelName + "/model.json");
-  
+
   console.log("model loaded..");
 }
 
@@ -700,7 +701,7 @@ loadModel();
 ```
 
 ##### Preprocess Canvas
-After loading the model, we need to preprocess the canvas drawn by the user to feed it to the DNN (MLP or CNN) that we have trained using Keras. 
+After loading the model, we need to preprocess the canvas drawn by the user to feed it to the DNN (MLP or CNN) that we have trained using Keras.
 
 <div class="note">
 <p><b>Warning</b>: Preprocessing the HTML5 canvas element is the crucial step in this application.</p>
@@ -732,11 +733,11 @@ function preprocessCanvas(image, modelName) {
   // if model is not available, send the tensor with expanded dimensions
   if (modelName === undefined) {
     alert("No model defined..")
-  } 
+  }
 
   // if model is digitrecognizermlp, perform all the preprocessing
   else if (modelName === "digitrecognizermlp") {
-    
+
     // resize the input image to digitrecognizermlp's target size of (784, )
     let tensor = tf.browser.fromPixels(image)
         .resizeNearestNeighbor([28, 28])
@@ -768,7 +769,7 @@ function preprocessCanvas(image, modelName) {
 
 ##### Predict
 
-Finally, we are ready to predict what the user has drawn using our loaded DNN (MLP or CNN) model with preprocessed canvas tensor available. 
+Finally, we are ready to predict what the user has drawn using our loaded DNN (MLP or CNN) model with preprocessed canvas tensor available.
 
 We use the method <span class="coding">model.predict()</span> and pass in our canvas tensor as the argument and get the predictions using <span class="coding">data()</span>. We convert the predictions into a JavaScript array and use <span class="coding">displayChart()</span> to display the predictions in a visually pleasing format.
 
@@ -783,7 +784,7 @@ Displaying the model predictions in the form of a chart is optional. By the way,
 function boundingBox() {
   var minX = Math.min.apply(Math, clickX) - 20;
   var maxX = Math.max.apply(Math, clickX) + 20;
-  
+
   var minY = Math.min.apply(Math, clickY) - 20;
   var maxY = Math.max.apply(Math, clickY) + 20;
 
@@ -809,7 +810,7 @@ async function predict() {
   // get the user drawn region alone cropped
   croppedCanvas = boundingBox();
 
-  // show the cropped image 
+  // show the cropped image
   document.getElementById("canvas_output").style.display = "block";
 
   // preprocess canvas
@@ -860,7 +861,7 @@ function loadChart(label, data, modelSelected) {
           }]
       },
 
-      // you can also play around with options for the 
+      // you can also play around with options for the
       // chart if you find time!
       options: {}
   });
@@ -873,7 +874,7 @@ function loadChart(label, data, modelSelected) {
 function displayChart(data) {
   var select_model  = document.getElementById("select_model");
   var select_option = select_model.options[select_model.selectedIndex].value;
-  
+
   label = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   if (firstTime == 0) {
     loadChart(label, data, select_option);
@@ -899,6 +900,6 @@ That's it! Finally, we have built something awesome using multiple programming l
 7. [Convolutional Neural Network](https://en.wikipedia.org/wiki/Convolutional_neural_network){:target="_blank"}
 
 <script src="https://unpkg.com/@tensorflow/tfjs"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>  
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script type="text/javascript" src="/js/digits-recognizer.js"></script>
