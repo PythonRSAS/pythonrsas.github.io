@@ -66,6 +66,7 @@ article {
 h1, h2, h3, h4, h5 {
   line-height: 1.7;
   padding: 0;
+  color: $hero !important;
 
   @include mobile {
     line-height: 1.4;
@@ -182,6 +183,7 @@ em, i {
 
 strong, b {
   font-weight: bold;
+  color: $hero;
 }
 
 img {
