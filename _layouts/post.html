@@ -6,7 +6,7 @@ layout: post-default
 	<div class="grad-post">
 		<h1>{{ page.title }}</h1>
 		<div class="post-subheading">
-			<p>{{ page.class }} | {{ page.date | date_to_long_string }}</p>
+			<p>{{ page.tag }} | {{ page.date | date_to_long_string }}</p>
 		</div>
 		{% include share.html %}
 	</div>
@@ -29,9 +29,4 @@ layout: post-default
 </div>
 
 <script type="text/javascript">
-
-	window.onscroll = function() {
-		windowScrollHandler();
-	};
-
 </script>

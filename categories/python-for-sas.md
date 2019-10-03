@@ -1,8 +1,8 @@
 ---
 layout: page-doc
 title: Python for SAS Users
-subheading: Learn how to make your USB webcam or camera to understand world's information.
-description: Learn how to make your USB webcam or camera to understand world's information.
+subheading: Extension of the book "Python for SAS Users".
+description: Extension of the book "Python for SAS Users".
 color: grad-blog
 image: "/images/icons/python.svg"
 permalink: /python-for-sas
@@ -14,8 +14,7 @@ permalink: /python-for-sas
       <div class="page-holder">
         <ul>
         {% for post in site.posts %}
-          {% if post.categories contains 'software' %}
-            {% if post.class contains 'Computer Vision' %}
+          {% if post.categories contains 'python for sas' %}
                 <li>
                   <a class="post-link" href="{{ site.baseurl }}{{ post.url }}">
                     <div class="page-treasure-wrapper">
@@ -29,7 +28,6 @@ permalink: /python-for-sas
                     </div>
                   </a>
                 </li>
-              {% endif %}
             {% endif %}
         {% endfor %}
         </ul>

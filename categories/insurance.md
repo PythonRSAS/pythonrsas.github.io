@@ -1,12 +1,11 @@
 ---
 layout: page-doc
-title: Commercial Real Estates
-subheading: Commercial real estate credit risk models.
-description: Commercial real estate credit risk models.
+title: Insurance
+subheading: Actuarial trainings and the changing world.
+description: Actuarial trainings and the changing world.
 color: grad-blog
-image: "/images/icons/real-estate.svg"
-permalink: /commercial-real-estates
-image: https://drive.google.com/uc?id=1edu-wUoFkrMuoemONmOvsIMpnvkAdFXY
+image: "/images/icons/insurance.svg"
+permalink: /insurance
 ---
 
 <div class="home-container">
@@ -15,8 +14,8 @@ image: https://drive.google.com/uc?id=1edu-wUoFkrMuoemONmOvsIMpnvkAdFXY
       <div class="page-holder">
         <ul>
         {% for post in site.posts %}
-          {% if post.categories contains "real estates" %}
-                <li>
+          {% if post.categories contains 'insurance' %}
+		            <li>
                   <a class="post-link" href="{{ site.baseurl }}{{ post.url }}">
                     <div class="page-treasure-wrapper">
                       <div class="page-treasure-image" >

@@ -1,8 +1,8 @@
 ---
 layout: page-doc
 title: Machine Learning
-subheading: Learn how to create algorithms that don't require you to write logic.
-description: Learn how to create algorithms that don't require you to write logic.
+subheading: Fundamental concepts and different techniques in Python, R and SAS.
+description: Fundamental concepts and different techniques in Python, R and SAS.
 color: grad-blog
 image: "/images/icons/machine-learning.svg"
 permalink: /machine-learning
@@ -14,8 +14,7 @@ permalink: /machine-learning
       <div class="page-holder">
         <ul>
         {% for post in site.posts %}
-          {% if post.categories contains 'software' %}
-            {% if post.class contains 'Machine Learning' %}
+            {% if post.categories contains 'machine learning' %}
                 <li>
                   <a class="post-link" href="{{ site.baseurl }}{{ post.url }}">
                     <div class="page-treasure-wrapper">
@@ -29,7 +28,6 @@ permalink: /machine-learning
                     </div>
                   </a>
                 </li>
-              {% endif %}
             {% endif %}
         {% endfor %}
         </ul>

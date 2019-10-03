@@ -1,8 +1,8 @@
 ---
 layout: page-doc
 title: Deep Learning
-subheading: Learn how to create deep neural networks to solve challenging problems.
-description: Learn how to create deep neural networks to solve challenging problems.
+subheading: Deep learning in non-computer vision problems
+description: Deep learning in non-computer vision problems
 color: grad-blog
 image: "/images/icons/deep-learning.svg"
 permalink: /deep-learning
@@ -14,8 +14,7 @@ permalink: /deep-learning
       <div class="page-holder">
         <ul>
         {% for post in site.posts %}
-          {% if post.categories contains 'software' %}
-            {% if post.class contains 'Deep Learning' %}
+            {% if post.categories contains 'deep learning' %}
                 <li>
                   <a class="post-link" href="{{ site.baseurl }}{{ post.url }}">
                     <div class="page-treasure-wrapper">
@@ -29,7 +28,6 @@ permalink: /deep-learning
                     </div>
                   </a>
                 </li>
-              {% endif %}
             {% endif %}
         {% endfor %}
         </ul>

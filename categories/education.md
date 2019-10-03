@@ -1,8 +1,8 @@
 ---
 layout: page-doc
 title: Education
-subheading: Learn how traveling creates peace within you.
-description: Learn how traveling creates peace within you.
+subheading: Different perspectives on educations.
+description: Different perspectives on educations.
 color: grad-blog
 image: "/images/icons/education.svg"
 permalink: /education
@@ -14,7 +14,7 @@ permalink: /education
       <div class="page-holder">
         <ul>
         {% for post in site.posts %}
-          {% if post.category contains 'travel' %}
+          {% if post.category contains 'education' %}
               <li>
                   <a class="post-link" href="{{ site.baseurl }}{{ post.url }}">
                     <div class="page-treasure-wrapper">

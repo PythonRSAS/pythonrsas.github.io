@@ -1,8 +1,8 @@
 ---
 layout: page-doc
 title: Credit Risk
-subheading: Learn how to design a chip using which you could create electronics applications.
-description: Learn how to design a chip using which you could create electronics applications.
+subheading: Credit risk, PD, LGD, and EAD models.
+description: Credit risk, PD, LGD, and EAD models.
 color: grad-blog
 image: "/images/icons/credit-risk.svg"
 permalink: /credit-risk
@@ -14,8 +14,7 @@ permalink: /credit-risk
       <div class="page-holder">
         <ul>
         {% for post in site.posts %}
-          {% if post.categories contains 'hardware' %}
-          		{% if post.class contains 'ASIC Design' %}
+          		{% if post.categories contains 'credit risk' %}
 		            <li>
                   <a class="post-link" href="{{ site.baseurl }}{{ post.url }}">
                     <div class="page-treasure-wrapper">
@@ -29,7 +28,6 @@ permalink: /credit-risk
                     </div>
                   </a>
                 </li>
-            	{% endif %}
             {% endif %}
         {% endfor %}
         </ul>
