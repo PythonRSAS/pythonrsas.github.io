@@ -10,10 +10,7 @@ image: https://drive.google.com/uc?id=1crVhO4CHemFakRIxXYYo8HnfO-Z7sc1A
 
 **While we are postponing, life speeds by.**
 
-> **Update**: Lorem ipsum dolor. [end of life](https://pythonclock.org/), Aliquip ad magna laborum eu ut aute ut quis in veniam in. **Python3**.
-
-Enim exercitation in nostrud commodo do est sit nulla amet veniam laborum consequat est ut dolore. Non cillum tempor ea ut pariatur tempor elit sed et magna. Lorem ipsum esse in in minim quis ut occ!
-
+<!-- > not used for now**Update**: Lorem ipsum dolor. [end of life](https://pythonclock.org/), Aliquip ad magna laborum eu ut aute ut quis in veniam in. **Python3**. -->
 
 ### 1. Timestamp, Period and Timedelta 
 
