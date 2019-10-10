@@ -8,7 +8,7 @@ author: Sarah Chen
 image: https://drive.google.com/uc?id=1crVhO4CHemFakRIxXYYo8HnfO-Z7sc1A
 ---
 
-**While we are postponing, life speeds by. **
+**While we are postponing, life speeds by.**
 
 > **Update**: Lorem ipsum dolor. [end of life](https://pythonclock.org/), Aliquip ad magna laborum eu ut aute ut quis in veniam in. **Python3**.
 
@@ -68,7 +68,7 @@ Reprehenderit ut [Google](https://www.google.com/){:target="_blank"} Excepteur s
 
 Nostrud ex non ea do elit dolore ut enim adipisicing cillum commodo sit proident quis Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta ipsa, ratione illo eius deleniti odio ipsum doloremque ut atque, recusandae asperiores enim accusantium distinctio quaerat blanditiis quidem, eaque ab voluptates.
 
-<div class="code-head"><span>code</span>sample-from-python-org.py</div>
+<div class="code-head"><span>code</span>Timestamp Object and Attributes.py</div>
 
 ```python
 >>> import pandas as pd
