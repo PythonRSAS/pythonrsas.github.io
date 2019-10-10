@@ -44,9 +44,26 @@ Out: 2
 Out: 3
 
 ```
-* Line (1), From version 0.20.0. there is a new origin parameter in pandas that one can specify an alternative starting point for creation of a DatetimeIndex.  For example, using 1960-01-01 as the starting date would make pandas dates have the same reference starting date as SAS date
-* Line (1-3) If you do not specify origin, then the default is origin='unix', which defaults to 1970-01-01 00:00:00.  This is commonly called 'unix epoch' or POSIX time. 
-* Line (4-7) Sit irure ut ut id do culpa ullamco qui est.
+* From pandas version 0.20.0. there is a new origin parameter for specifying an alternative starting point for creation of a DatetimeIndex.  For example, using 1960-01-01 as the starting date would make pandas dates have the same reference starting date as SAS date
+* If you do not specify origin, then the default is origin='unix', which defaults to 1970-01-01 00:00:00.  This is commonly called 'unix epoch' or POSIX time. 
+* Pandas represents timestamps in nanosecond resolution.  Hence the time span that can be represented using a 64-bit integer is limited to approximately 584 years.   On the other hand, SAS does not have such limitation  as SAS stores dates as integers, datetime and time as real numbers. 
+<div class="code-head"><span>code</span>SAS Date Time and Datetime Stamps.sas</div>
+
+```sas
+>>> DATA _NULL_;
+    d1=DATE();
+    t1=TIME();
+    dt1=datetime();
+    PUT d1 DATE9-;
+    PUT t1 TIME10.;
+    PUT dt1 DATETIME21.2;
+    RUN;
+
+Out: 	20:56:09
+ 		07JAN2020
+07JAN2020:20:56:08.79
+
+```
 
 ### Nulla proident dolor cupidatat  deserunt eiusmod eu id ex.
 
