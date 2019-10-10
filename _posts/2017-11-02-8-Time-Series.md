@@ -76,7 +76,7 @@ Out:  DatetimeIndex(['2020-01-02', '2020-01-03', '2020-01-04'], dtype='datetime6
 Base SAS does not have vectorized operations.  To create similar output, one may write a simple loop such as the one below:
 <div class="code-head"><span>code</span>SAS Date Time Sequence.sas</div>
 
-```python
+```sas
 >>> %let start = 02Jan2020;
 >>> %let end = 04Jan2020;
 >>> DATA _null_;
@@ -87,9 +87,43 @@ Base SAS does not have vectorized operations.  To create similar output, one may
 
 ```
 
-### Nulla proident dolor cupidatat  deserunt eiusmod eu id ex.
+### Period.
 
-Lorem ipsum sint ut labore fugiat eiusmod voluptate exercitana culpa dolore sit sint enim. Lorem ipsum in velit ex laborinisi dolor laboris sed do enim sit eu <span class="coding">Odkfsdy</span> dfsdgg.
+While a Timestamp represents a point in time, a Period represents a time span or segment, or commonly known as interval to SAS users.   Periods are non-overlapping time segments uniform in length. 
+Some might wonder why we need period if we have Timestamp, or vice versa.   The answer is that point, and period represent different perspectives on how we think of time and record data in time, which result in different attributes.  For example, we can talk about GDP produced from a period of a year, or stock price at a point of time.   Period has <span class="coding">start_time</span> and <span class="coding">end_time</span>  attributes while Timestamp does not.     Period can be used to check if a specific event occurs within a certain period.  
+The next example shows an instance of Period object and illustrates its attributes.  Notice how <span class="coding">freq = </span>  parameter dictates the time span, and how the two Periods differ and even though they are created from the same timestamp.  
+
+<div class="code-head"><span>code</span>Period Object and its Special Attributes.py</div>
+
+```py
+>>> period1=pd.Period('2020-01-02', freq='D')
+>>> period1
+[Out]: Period('2020-01-02', 'D')
+
+>>> period1.ordinal
+[Out]: 18263
+
+>>> period1.start_time
+[Out]: Timestamp('2020-01-02 00:00:00')
+	
+>>> period1.end_time
+[Out]: Timestamp('2020-01-02 23:59:59-999999999')
+
+>>> period1.to_timestamp()
+[Out]: Timestamp('2020-01-02 00:00:00')
+
+>>> period2=pd.Period('2020-01-02', freq='m')
+>>> period2
+[Out]: Period('2020-01', 'M')
+
+>>> period2.start_time
+[Out]: Timestamp('2020-01-01 00:00:00')
+
+>>> period2.end_time
+[Out]: Timestamp('2020-01-31 23:59:59-999999999')
+
+
+```
 
 We will use the above Deep Neural Network architecture which has a **sdfsdle yutm xvwe**, **2 pire xaq**.
 
