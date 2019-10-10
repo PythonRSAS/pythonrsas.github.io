@@ -47,22 +47,31 @@ Out: 3
 * From pandas version 0.20.0. there is a new origin parameter for specifying an alternative starting point for creation of a DatetimeIndex.  For example, using 1960-01-01 as the starting date would make pandas dates have the same reference starting date as SAS date
 * If you do not specify origin, then the default is origin='unix', which defaults to 1970-01-01 00:00:00.  This is commonly called 'unix epoch' or POSIX time. 
 * Pandas represents timestamps in nanosecond resolution.  Hence the time span that can be represented using a 64-bit integer is limited to approximately 584 years.   On the other hand, SAS does not have such limitation  as SAS stores dates as integers, datetime and time as real numbers. 
+
+SAS date or time are stored internally in numbers and represented according to formats user specified.  Example below prints current date, time, and datetime stamps.  
 <div class="code-head"><span>code</span>SAS Date Time and Datetime Stamps.sas</div>
 
 ```sas
 >>> DATA _NULL_;
-    d1=DATE();
-    t1=TIME();
-    dt1=datetime();
-    PUT d1 DATE9-;
-    PUT t1 TIME10.;
-    PUT dt1 DATETIME21.2;
-    RUN;
+>>> d1=DATE();
+>>> t1=TIME();
+>>> dt1=datetime();
+>>> PUT d1 DATE9-;
+>>> PUT t1 TIME10.;
+>>> PUT dt1 DATETIME21.2;
+>>> RUN;
+Out: 	20:56:09 09OCT2019 
 
-Out: 	20:56:09
- 		07JAN2020
-07JAN2020:20:56:08.79
 
+```
+
+As mentioned earlier, pandas is built on top of numpy.  Vectorized operations from numpy can be applied directly on Timestamp object to create a sequence of dates or times, which is automatically coerced into DatetimeIndex object.   This is illustrated in the next example. 
+<div class="code-head"><span>code</span>Vectorized Operation on Timestamp.py</div>
+
+```python
+>>> date1= pd.Timestamp('2020-01-02')
+>>> date1 + pd.to_timedelta(np.arange(3),'D')
+Out:  DatetimeIndex(['2020-01-02', '2020-01-03', '2020-01-04'], dtype='datetime64[ns]', freq=None)
 ```
 
 ### Nulla proident dolor cupidatat  deserunt eiusmod eu id ex.
