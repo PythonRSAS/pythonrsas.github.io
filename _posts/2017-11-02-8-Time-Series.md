@@ -2,7 +2,7 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "Enim cupidatat laboris"
+title: "Time Series"
 description: Irure et elit mollit enim excepteur laboris anim proident in laborum dolore.
 author: Sarah Chen
 image: https://drive.google.com/uc?id=1crVhO4CHemFakRIxXYYo8HnfO-Z7sc1A
