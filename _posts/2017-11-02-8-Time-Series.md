@@ -8,9 +8,7 @@ author: Sarah Chen
 image: https://drive.google.com/uc?id=1crVhO4CHemFakRIxXYYo8HnfO-Z7sc1A
 ---
 
-**While we are postponing, life speeds by. [Keras](https://keras.io/){:target="_blank"} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque neque totam voluptatem porro accusantium id.**
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, similique minima repudiandae. Voluptate pariatur iusto quo voluptatibus eum? [Keras](https://keras.io/){:target="_blank"} Lorem ipsum dolor sit. [github](https://github.com/fchollet/keras){:target="_blank"} page.
+**While we are postponing, life speeds by. **
 
 > **Update**: Lorem ipsum dolor. [end of life](https://pythonclock.org/), Aliquip ad magna laborum eu ut aute ut quis in veniam in. **Python3**.
 
@@ -26,6 +24,8 @@ The most fundamental measures of time are point in time **timestamp** and **inte
 ### Timestamp
 
 Pandas <span class="coding">Timestamp</span> is pandas' equivalent to the Python's native <span class="coding">datetime</span>  object and in many cases a pandas Timestamp is interchangeable with Python's datetime object.    Pandas Timestamp  combines the flexibility of datetime and <span class="coding">dateutil</span> and the efficiency of vectorized representation from numpy.datetime64.  
+
+
 
 * Line (1), Lorem ipsum culpa labore  <span class="coding">import</span> Est occaecat ad laboris eimodo ut exercitation culpa ex. excepteur. [Supervised Learning](https://en.wikipedia.org/wiki/Supervised_learning){:target="_blank"} problem.
 
@@ -71,12 +71,10 @@ Nostrud ex non ea do elit dolore ut enim adipisicing cillum commodo sit proident
 <div class="code-head"><span>code</span>sample-from-python-org.py</div>
 
 ```python
-def fib(n):
-  a, b = 0, 1
-  while a < n:
-    print(a, end=' ')
-    a, b = b, a+b
-  print()
+>>> import pandas as pd
+>>> date1= pd.Timestamp('2020-01-02 8:30:00')
+Out: Timestamp('2020-01-02 08:30:00')
+
 fib(1000) = train_test_split(X, Y, test_size=0.33, random_state=seed)
 ```
 
