@@ -3,7 +3,7 @@ layout: post
 tag : Learning Python and SAS
 category: "python for sas"
 title: "Time Series"
-description: Irure et elit mollit enim excepteur laboris anim proident in laborum dolore.
+description: Time series data process and analysis using Python and SA.
 author: Sarah Chen
 image: https://drive.google.com/uc?id=1crVhO4CHemFakRIxXYYo8HnfO-Z7sc1A
 ---
