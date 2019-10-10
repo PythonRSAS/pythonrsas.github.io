@@ -24,46 +24,12 @@ Pandas <span class="coding">Timestamp</span> is pandas' equivalent to the Python
 
 
 
-* Line (1), Lorem ipsum culpa labore  <span class="coding">import</span> Est occaecat ad laboris eimodo ut exercitation culpa ex. excepteur. [Supervised Learning](https://en.wikipedia.org/wiki/Supervised_learning){:target="_blank"} problem.
-
+* Line (1), Lorem ipsum culpa labore  
 <figure>
   <img src="{{ "/images/posts/laptop.jpg" | relative_url }}">
   <figcaption>Figure 1. Generic Laptop Screen</figcaption>
 </figure>
 
-Lorem ipsum deserunt consequat. **java tengh** Ad ex quis dolor oe esse qui. (**random** or **lorem values**). Lorem ipsum dolor sit amet, sicing elit. Error autem dolor dolores, Modi temporibus aitis? (**done** or **reb perfect**) Laborum do in ullamco duis magna et nostrud (adipisicing) commodo enim do.
-
-Ex voluptate. **Blablasdf** and **Rdfdsgga**.
-
-* **Blablasdf** - Aliqua reprehenderit Exercitation  **dgs* or a **sdsgsdry**, then it is a Classification problem. *Ex: Predicting the name of a flower species.*
-* **Rdfdsgga** - Sit eiusmerit laboris aliqua elit in est  **real** or **dhjhdfk** Cupidatat deserunt ex est ex ut voluptate et qui ex velit officia irure ut. *Ex: Anim eu reprehenderit nulla sunt ut laboris.*
-
-Velit sunt in quis et et dolore pariatur ullamc elit voluptate culpa duis excepteur aliqua consectetur excepteur ad ut id cupidatat.
-
-<div class="note"><p>
-<b>Note</b>: Proident minim ut anim duis, mollit incididunt tempor laborum. <a href="https://www.coursera.org/learn/machine-learning" target="_blank">Commodo veniam veniam aliquip </a> and <a href="https://www.coursera.org/specializations/deep-learning" target="_blank">Dolor consectetur officia</a> Et dolore anim dolor ex <a href="http://deeplearning.stanford.edu/tutorial/" target="_blank">Stanford University's</a>.
-</p></div>
-
-Qui ut nulla non occaecat deserunt sed non esse officia dolore fugiat mollit eiusmod aliquip excepteur in consequat sit do dolor proident adipisicing culpa ut adipisicing incididunt quis in.
-
-### Sint ex magna incididunt in ir
-
-> Ut magna Consequat aute volupthenderit incididunt consequat amet. **Dfsd** and **Rfskldf Posoe**.
-
- Consequat aute volupthenderit! Minim sed dolor in duis dolore consequat / quis magna excepteur id nostrud duis dolore elit labore commodo. Quis aliquip laboris magna in anim id do sit sint. Qui adipisicing incididunt amet aute eu veniam ad proident do ut adipisicing consectetur labore ex excepteur.
-
-* **Afsdd kifdgll** - Lorem, ipsum, nostrud ut, sed in aliqua do .
-* **Asdfsdfsd ksohk** - Deserunt, qislla, culpa, laborum, fugiat.
-* **Vdfumber of Jsksdfkl** - Exercitation irure dolore ullamco ullam voluptate esse qui.
-* **Klsdlf of slll** - Tgkdfg lfgfgd fgkgdfl.
-* **Ius ksdf fddd** - Exercitation eiusmod non in minim aliqua occaecat ut.
-
-Reprehenderit ut [Google](https://www.google.com/){:target="_blank"} Excepteur sunt nisi anim. Lorem ipsum non aliqua sunt minim eu voluptate reprehenderit anim voluptate ut eu exercitation laborempor commodo velit.(last column in the dataset). Anim esse **Fugiat labore** Dolore consequat tempor deserunt.
-
-* **1 = yes!** Excepteur et dolor commodo adipisicing s occaecat dolor.
-* **0 = no!** tExcepteur et dolor no commodo adipisicing s occaecat dolor.
-
-Nostrud ex non ea do elit dolore ut enim adipisicing cillum commodo sit proident quis Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta ipsa, ratione illo eius deleniti odio ipsum doloremque ut atque, recusandae asperiores enim accusantium distinctio quaerat blanditiis quidem, eaque ab voluptates.
 
 <div class="code-head"><span>code</span>Timestamp Object and Attributes.py</div>
 
