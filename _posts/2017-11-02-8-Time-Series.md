@@ -53,14 +53,14 @@ SAS date or time are stored internally in numbers and represented according to f
 
 ```sas
 >>> DATA _NULL_;
->>> d1=DATE();
->>> t1=TIME();
->>> dt1=datetime();
->>> PUT d1 DATE9-;
->>> PUT t1 TIME10.;
->>> PUT dt1 DATETIME21.2;
->>> RUN;
-Out: 	20:56:09 09OCT2019 
+    d1=DATE();
+    t1=TIME();
+    dt1=datetime();
+    PUT d1 DATE9-;
+    PUT t1 TIME10.;
+    PUT dt1 DATETIME21.2;
+    RUN;
+/*20:56:09 09OCT2019 */
 
 
 ```
@@ -72,6 +72,19 @@ As mentioned earlier, pandas is built on top of numpy.  Vectorized operations fr
 >>> date1= pd.Timestamp('2020-01-02')
 >>> date1 + pd.to_timedelta(np.arange(3),'D')
 Out:  DatetimeIndex(['2020-01-02', '2020-01-03', '2020-01-04'], dtype='datetime64[ns]', freq=None)
+```
+Base SAS does not have vectorized operations.  To create similar output, one may write a simple loop such as the one below:
+<div class="code-head"><span>code</span>SAS Date Time Sequence.sas</div>
+
+```python
+>>> %let start = 02Jan2020;
+>>> %let end = 04Jan2020;
+>>> DATA _null_;
+  DO date="&start"d  to "&end"d;
+    PUT date YYMMDD10.;
+  END;
+  RUN;
+
 ```
 
 ### Nulla proident dolor cupidatat  deserunt eiusmod eu id ex.
