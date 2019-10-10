@@ -118,31 +118,30 @@ The next example shows an instance of Period object and illustrates its attribut
 
 >>> period2.end_time
 [Out]: Timestamp('2020-01-31 23:59:59-999999999')
-
-
 ```
 
-We will use the above Deep Neural Network architecture which has a **sdfsdle yutm xvwe**, **2 pire xaq**.
+Most financial reports are on quarterly data.  Many companies have fiscal years that are different from calendar years.  For example, Microsoft's fiscal year starts from July and ends in June.  WalMart's fiscal year starts in February and ends in January. 
 
-Dolor deserunt incididunt ut ea tempor occaecat magna eiusmod fugiat commodo. Laboris aliqua dolore esse labore ea cupidatat do labore ullamco veniam aliquip eu fugiat. Incididunt eiusmod amet exercitation sint veniam aliqua et fugiat anim sit laborum nisi reprehenderit nulla sint. Aliquip aliqua aliquip exercitation ea non sit laboris non culpa sed cupidatat consectetur voluptate dolor incididunt in. In ad tempor culpa cillum in magna est veniam in aliqua anim.
+You can specify which month to end in a quarter.  The default is class="coding">freq='Q-Dec'</span>, which means that period ending time is at the end of the quarter coinciding with calendar year.   The flexibility of quarter in pandas period time span facilitates different reporting and makes it simple and convenient.   
 
-Dolor cillum voluptate mollit laborum voluptate anim dolore dolor sunt eiusmod do tempor sunt culpa tempor reprehenderit ea enim excepteur. Ea consectetur ullamco ut in sed mollit in ut nulla laborum dolor consectetur aute magna labore qui et in consequat reprehenderit sint in duis consectetur.
+We will look at an example: 
 
-<div class="code-head"><span>code</span>from-doc-site.py</div>
+<div class="code-head"><span>code</span>Period freq='Q' and Options for Month Ending.py</div>
 
 ```python
->>> import math
->>> raw_data = [56.2, float('NaN'), 51.7, 55.3, 52.5, float('NaN'), 47.8]
->>> filtered_data = []
->>> for value in raw_data:
-...     if not math.isnan(value):
-...         filtered_data.append(value)
-...
->>> filtered_data
-[56.2, 51.7, 55.3, 52.5, 47.8]
+>>> period1=pd.Period('2020-01', freq='Q')
+[Out]: Period('2020Q1', 'Q-DEC')
+>>> period1.end_time
+Out : Timestamp('2020-03-31 23:59:59-999999999')
+>>> period1=pd.Period('2020-01', freq='Q-Jan')
+>>> period1
+[Out]: Period('2020Q4', 'Q-JAN')
+>>> period1.end_time
+[Out]: Timestamp('2020-01-31 23:59:59-999999999')
 ```
 
-* Line (1), Lorem ipsum culpa labore  <span class="coding">import</span> Est occaecat ad laboris eimodo ut exercitation culpa ex.
+* You can perform various mathematical operations on Period, such as adding or subtracting an integer, which is simpler than using the pd.offset object. 
+* Adding or subtracting two periods is as simple as integer addition and subtraction, if the frequencies are the same.     Finally, you can also convert Period to different frequencies.    
 * Line (2), Pariatur consectetur ut mollit in eu esse :
   * <span class="coding">[8]]</span>: Im occaecat aliquip eiusmod cupidatat in velit aute magna cupidatat
   * <span class="coding">raw</span>: Lorem ipsum ullamco est dolore magna ut pariatur exercitation ea esse anim labore.
