@@ -2,8 +2,8 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "Time Series"
-description: Time series data process and analysis using Python and SA.
+title: "Timestamp, Period and Timedelta"
+description: Time series data processing using Python and SAS.
 author: Sarah Chen
 image: https://drive.google.com/uc?id=1crVhO4CHemFakRIxXYYo8HnfO-Z7sc1A
 ---
@@ -12,7 +12,6 @@ image: https://drive.google.com/uc?id=1crVhO4CHemFakRIxXYYo8HnfO-Z7sc1A
 
 <!-- > not used for now**Update**: Lorem ipsum dolor. [end of life](https://pythonclock.org/), Aliquip ad magna laborum eu ut aute ut quis in veniam in. **Python3**. -->
 
-### 1. Timestamp, Period and Timedelta 
 
 The most fundamental measures of time are point in time (time stamp) and intervals (fixed or variable), and the difference between them, timedelta.  These objects provide building blocks for comprehensive time series data processes.  
 
@@ -61,8 +60,6 @@ SAS date or time are stored internally in numbers and represented according to f
     PUT dt1 DATETIME21.2;
     RUN;
 /*20:56:09 09OCT2019 */
-
-
 ```
 
 As mentioned earlier, pandas is built on top of numpy.  Vectorized operations from numpy can be applied directly on Timestamp object to create a sequence of dates or times, which is automatically coerced into DatetimeIndex object.   This is illustrated in the next example. 
