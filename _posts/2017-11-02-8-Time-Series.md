@@ -23,14 +23,6 @@ The most fundamental measures of time are point in time **timestamp** and **inte
 Pandas <span class="coding">Timestamp</span> is pandas' equivalent to the Python's native <span class="coding">datetime</span>  object and in many cases a pandas Timestamp is interchangeable with Python's datetime object.    Pandas Timestamp  combines the flexibility of datetime and <span class="coding">dateutil</span> and the efficiency of vectorized representation from numpy.datetime64.  
 
 
-
-* Line (1), Lorem ipsum culpa labore  
-<figure>
-  <img src="{{ "/images/posts/laptop.jpg" | relative_url }}">
-  <figcaption>Figure 1. Generic Laptop Screen</figcaption>
-</figure>
-
-
 <div class="code-head"><span>code</span>Timestamp Object and Attributes.py</div>
 
 ```python
@@ -52,8 +44,8 @@ Out: 2
 Out: 3
 
 ```
-
-* Line (1-3) Proident dolor cupidatat nostrud irure commodo nostrud els esse officia exercitation.
+* Line (1), From version 0.20.0. there is a new origin parameter in pandas that one can specify an alternative starting point for creation of a DatetimeIndex.  For example, using 1960-01-01 as the starting date would make pandas dates have the same reference starting date as SAS date
+* Line (1-3) If you do not specify origin, then the default is origin='unix', which defaults to 1970-01-01 00:00:00.  This is commonly called 'unix epoch' or POSIX time. 
 * Line (4-7) Sit irure ut ut id do culpa ullamco qui est.
 
 ### Nulla proident dolor cupidatat  deserunt eiusmod eu id ex.
