@@ -72,7 +72,19 @@ Nostrud ex non ea do elit dolore ut enim adipisicing cillum commodo sit proident
 >>> date1= pd.Timestamp('2020-01-02 8:30:00')
 Out: Timestamp('2020-01-02 08:30:00')
 
-fib(1000) = train_test_split(X, Y, test_size=0.33, random_state=seed)
+>>> date1.time()
+Out: datetime.time(8, 30)
+>>> date1.date()
+Out: datetime.date(2020, 1, 2)
+>>> date1.year
+Out: 2020
+>>> date1.month
+Out: 1
+>>> date1.day
+Out: 2
+>>> date1.dayofweek
+Out: 3
+
 ```
 
 * Line (1-3) Proident dolor cupidatat nostrud irure commodo nostrud els esse officia exercitation.
