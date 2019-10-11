@@ -84,7 +84,7 @@ Base SAS does not have vectorized operations.  To create similar output, one may
 
 ```
 
-### Period.
+### Period
 
 While a Timestamp represents a point in time, a Period represents a time span or segment, or commonly known as interval to SAS users.   Periods are non-overlapping time segments uniform in length. 
 Some might wonder why we need period if we have Timestamp, or vice versa.   The answer is that point, and period represent different perspectives on how we think of time and record data in time, which result in different attributes.  For example, we can talk about GDP produced from a period of a year, or stock price at a point of time.   Period has <span class="coding">start_time</span> and <span class="coding">end_time</span>  attributes while Timestamp does not.     Period can be used to check if a specific event occurs within a certain period.  
@@ -119,32 +119,66 @@ The next example shows an instance of Period object and illustrates its attribut
 >>> period2.end_time
 [Out]: Timestamp('2020-01-31 23:59:59-999999999')
 ```
-
 Most financial reports are on quarterly data.  Many companies have fiscal years that are different from calendar years.  For example, Microsoft's fiscal year starts from July and ends in June.  WalMart's fiscal year starts in February and ends in January. 
 
-You can specify which month to end in a quarter.  The default is class="coding">freq='Q-Dec'</span>, which means that period ending time is at the end of the quarter coinciding with calendar year.   The flexibility of quarter in pandas period time span facilitates different reporting and makes it simple and convenient.   
+You can specify which month to end in a quarter.  The default is <span class="coding">freq='Q-Dec'</span>, which means that period ending time is at the end of the quarter coinciding with calendar year.   The flexibility of quarter in pandas period time span facilitates different reporting and makes it simple and convenient.  
 
-We will look at an example: 
+For example, you can convert a column of datetime sequence to quarter end datatime by using <span class="coding">to_period('Q').end_time</span>.  Of course, you can align all timestamps to beginning of quater by <span class="coding">to_period('Q').start_time</span>.  Similarly, you can nomralize a column of dates to their corresponding week, month, or year start or end dates.   This is very useful for merging datasets that have different datetime resolutions. 
 
 <div class="code-head"><span>code</span>Period freq='Q' and Options for Month Ending.py</div>
 
 ```python
+>>> date1.to_period('Q').end_time
+Out: Timestamp('2020-03-31 23:59:59.999999999')
 >>> period1=pd.Period('2020-01', freq='Q')
-[Out]: Period('2020Q1', 'Q-DEC')
->>> period1.end_time
-Out : Timestamp('2020-03-31 23:59:59-999999999')
+Out: Period('2020Q1', 'Q-DEC')
 >>> period1=pd.Period('2020-01', freq='Q-Jan')
 >>> period1
-[Out]: Period('2020Q4', 'Q-JAN')
+Out: Period('2020Q4', 'Q-JAN')
 >>> period1.end_time
-[Out]: Timestamp('2020-01-31 23:59:59-999999999')
+Out: Timestamp('2020-01-31 23:59:59-999999999')
 ```
 
 * You can perform various mathematical operations on Period, such as adding or subtracting an integer, which is simpler than using the pd.offset object. 
-* Adding or subtracting two periods is as simple as integer addition and subtraction, if the frequencies are the same.     Finally, you can also convert Period to different frequencies.    
-* Line (2), Pariatur consectetur ut mollit in eu esse :
-  * <span class="coding">[8]]</span>: Im occaecat aliquip eiusmod cupidatat in velit aute magna cupidatat
-  * <span class="coding">raw</span>: Lorem ipsum ullamco est dolore magna ut pariatur exercitation ea esse anim labore.
-  * <span class="coding">data</span>: specify whether <span class="coding">uniform</span> or  <span class="coding">normal</span>.
+* Adding or subtracting two periods is as simple as integer addition and subtraction, if the frequencies 
+are the same.     Finally, you can also convert Period to different frequencies.    
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo quas ipsam, magnam vel architecto cumque deserunt inventore autem voluptatem minus molestias fuga unde corporis soluta quisquam sapiente consequatur, aut tempora labore id repellat omnis harum? Eveniet velit laboriosam, quas optio, enim iure nesciunt repudiandae hic temporibus facilis, corporis maxime qui quis esse nam? Quod, enim, odio? Sapiente blanditiis quisquam voluptatem fuga quod fugit molestiae illum dolor itaque id ipsam, quasi, quae repellendus error placeat impedit maxime qui nobis est veritatis.
+<div class="code-head"><span>code</span>Arithmetic Operations on Period Object.py</div>
+
+```py
+>>> period3 = period2 + 12
+>>> period3
+[Out]: Period('2021-01', 'M')
+
+>>> period3 - period2
+[Out]:<12 * MonthEnds>
+
+>>> q = pd.Period('2020Q4')
+>>> q + 1
+[Out]: Period('2020Q1', 'Q-DEC')
+
+>>> q.asfreq('m', how='start')
+[Out]: Period('2020-10', 'M')
+
+>>> q.asfreq('m', how='end')
+[Out]: Period('2020-12', 'M')
+```
+
+* Period has the same attributes such as <span class="coding">.day</span>, <span class="coding">.dayofweek</span>, <span class="coding">.quarter</span> and so on as Timestamp, but it does not have <span class="coding">.date</span> or <span class="coding">.time</span> attributes the way Timestamp does.  
+
+### Timedelta
+Pandas Timedelta is differences in times, expressed in difference units, e.g. days, hours, minutes, seconds. Timedelta is the pandas equivalent of python datetime.timedelta, and is interchangeable with it in most cases. Timedelta are differences in time expressed in different units, such as days, hours, minutes, seconds and can be positive or negative.  Consider Listing 9-11, pandas Timedelta.   The example first shows how Timedelta can be used to increment and Timestamp, then calculates age in years by converting a Timedelta object to an int via the Timedelta.days() method and then divide by 365.   
+<div class="code-head"><span>code</span>Pandas Timedelta and Age Calculation.py</div>
+
+```py
+>>> pd_ts     = pd.Timestamp('2020-02-14 00:00:00')
+>>> pd_td     = pd.Timedelta(days=1, hours=1, minutes=1, 
+	seconds=1)
+>>> pd_ts - pd_td
+[Out]: Timestamp('2020-02-12 22:58:59')
+>>> DoB = pd.Timestamp('2000-02-14 07:00:00')
+>>> age = (pd.Timestamp.now() - DoB).days/365
+
+```
+
+* Period has the same attributes such as <span class="coding">.day</span>, <span class="coding">.dayofweek</span>, <span class="coding">.quarter</span> and so on as Timestamp, but it does not have <span class="coding">.date</span> or <span class="coding">.time</span> attributes the way Timestamp does.  
