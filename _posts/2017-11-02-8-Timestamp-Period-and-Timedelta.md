@@ -5,7 +5,8 @@ category: "python for sas"
 title: "Timestamp, Period and Timedelta"
 description: Time series data processing using Python and SAS.
 author: Sarah Chen
-image: https://drive.google.com/uc?id=1crVhO4CHemFakRIxXYYo8HnfO-Z7sc1A
+image: http://drive.google.com/uc?export=view&id=1QNhSCjhI-OjvGSmalSfEIguyenBK-wZG
+
 ---
 
 **While we are postponing, life speeds by.**

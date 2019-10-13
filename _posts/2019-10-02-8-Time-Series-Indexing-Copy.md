@@ -2,27 +2,28 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "Time Series Indexing Copy"
+title: "Time Series Indexing"
 description: Time series data processing using Python and SAS.
 author: Sarah Chen
-image: https://drive.google.com/uc?id=1crVhO4CHemFakRIxXYYo8HnfO-Z7sc1A
+image: https://drive.google.com/uc?export=view&id=1qdvZnKpHH8QlnmjJq-l-zE3rajpTyXxm
+
 ---
 
 **While we are postponing, life speeds by.**
 
 <!-- > not used for now**Update**: Lorem ipsum dolor. [end of life](https://pythonclock.org/), Aliquip ad magna laborum eu ut aute ut quis in veniam in. **Python3**. -->
 
-One of the main uses of Timestamp and Period objects is indexing.   Indexing is so vital to pandas time series operations that lists of Timestamp or Period objects are automatically coerced to <span class="coding">DatetimeIndex</span> and <span class="coding">PeriodIndex</span> respectively when used as index.   Recall from Chapter 4 Indexing and Grouping, that a pandas index is simply a method to label rows.   Python pandas is so powerful and convenient in handling time series that you may want it to be your go-to tool for time series data, especially for financial data. 
+One of the main uses of Timestamp and Period objects is indexing.   Indexing is so vital to pandas timeseries operations that lists of Timestamp or Period objects are automatically coerced to <span class="coding">DatetimeIndex</span> and <span class="coding">PeriodIndex</span> respectively when used as index.   Recall a pandas index is simply a way to label rows.   Python pandas is so powerful and convenient in handling timeseries that you may want it to be your go-to tool for timeseries data, especially for financial data. 
 
-SAS users need to be aware that pandas allow duplicate index.  When we perform strict time series analysis, we would need to remove duplicates.  
+SAS users need to be aware that pandas allow duplicate index.  When we perform strict timeseries analysis, we would need to remove duplicates.  
 
 
-The most fundamental measures of time are point in time **timestamp** and **intervals** (fixed or variable), and the difference between them **timedelta**.  These objects provide building blocks for comprehensive time series data processes.    [here](https://github.com){:target="_blank"}.
+The most fundamental measures of time are point in time **timestamp** and **intervals** (fixed or variable), and the difference between them **timedelta**.  These objects provide building blocks for comprehensive timeseries data processes.  You can refer to python native datetime module [here](https://docs.python.org/3/library/datetime.html){:target="_blank"}.
 
 ### DatetimeIndex
 
-Pandas <span class="coding">Timestamp</span> is pandas' equivalent to the Python's native <span class="coding">datetime</span>  object and in many cases a pandas Timestamp is interchangeable with Python's datetime object.    Pandas Timestamp  combines the flexibility of datetime and <span class="coding">dateutil</span> and the efficiency of vectorized representation from numpy.datetime64.  
-The example below illustrates how a list of objects with mixed formats is automatically coerced to Datetimeindex by .
+Pandas <span class="coding">Timestamp</span> is pandas' equivalent to the Python's native datetime  object and in many cases a pandas Timestamp is interchangeable with Python's datetime object.    Pandas Timestamp  combines the flexibility of datetime and <span class="coding">dateutil</span> and the efficiency of vectorized representation from numpy.datetime64.  
+The example below illustrates how a list of objects with mixed formats is automatically coerced to <span class="coding">Datetimeindex</span> by .
 
 <div class="code-head"><span>code</span>Pandas DatetimeIndex.py</div>
 
@@ -32,10 +33,9 @@ The example below illustrates how a list of objects with mixed formats is automa
 [Out]: DatetimeIndex(['2020-01-02', '2020-04-01', 
 '2020-07-04', '2020-07-04', '2020-12-31'],
      dtype='datetime64[ns]', freq=None)
-
 ```
-* From pandas version 0.20.0. there is a new origin parameter for specifying an alternative starting point for creation of a DatetimeIndex.  For example, using 1960-01-01 as the starting date would make pandas dates have the same reference starting date as SAS date
-* If you do not specify origin, then the default is origin='unix', which defaults to 1970-01-01 00:00:00.  This is commonly called 'unix epoch' or POSIX time. 
+* From pandas version 0.20.0. there is a new <span class="coding">origin</span> parameter for specifying an alternative starting point for creation of a <span class="coding">DatetimeIndex</span>.  For example, using 1960-01-01 as the starting date would make pandas dates have the same reference starting date as SAS date
+* If you do not specify origin, then the default is <span class="coding">origin='unix'</span>, which defaults to 1970-01-01 00:00:00.  This is commonly called 'unix epoch' or POSIX time. 
 * Pandas represents timestamps in nanosecond resolution.  Hence the time span that can be represented using a 64-bit integer is limited to approximately 584 years.   On the other hand, SAS does not have such limitation  as SAS stores dates as integers, datetime and time as real numbers. 
 
 SAS date or time are stored internally in numbers and represented according to formats user specified.  Example below prints current date, time, and datetime stamps.  
@@ -53,7 +53,7 @@ SAS date or time are stored internally in numbers and represented according to f
 /*20:56:09 09OCT2019 */
 ```
 
-As mentioned earlier, pandas is built on top of numpy.  Vectorized operations from numpy can be applied directly on Timestamp object to create a sequence of dates or times, which is automatically coerced into DatetimeIndex object.   This is illustrated in the next example. 
+As mentioned earlier, pandas is built on top of numpy.  Vectorized operations from numpy can be applied directly on Timestamp object to create a sequence of dates or times, which is automatically coerced into <span class="coding">DatetimeIndex</span> object.   This is illustrated in the next example. 
 <div class="code-head"><span>code</span>Vectorized Operation on Timestamp.py</div>
 
 ```python
@@ -72,11 +72,12 @@ Base SAS does not have vectorized operations.  To create similar output, one may
     PUT date YYMMDD10.;
   END;
   RUN;
-
 ```
 
 ### Partial String Indexing
-In SAS, subsetting date ranges are performed via <span class="coding">WHERE</span> clause or IF statement in a <span class="coding">DATA</DATA></span> step, or <span class="coding">WHERE</span> clause in <span class="coding">PROC SQL</span>. Since pandas DatetimeIndex has all the basic functions of regular index , you can use the regular index methods to slice and dice DataFrame or Series, and use DatetimeIndex to perform “partial string indexing”.   For example, omitting the day component extracts all rows belong to a particular year or month.   The uses of partial string index are interspersed throughout the remainder of the Indexing section and are identified in the text.
+In SAS, subsetting date ranges are performed via <span class="coding">WHERE</span> clause or <span class='coding'>IF</span> statement in a <span class="coding">DATA</span> step, or <span class="coding">WHERE</span> clause in <span class="coding">PROC SQL</span>. Since pandas <span class="coding">DatetimeIndex</span> has all the basic functions of regular index , you can use the regular index methods to slice and dice DataFrame or Series, and use <span class="coding">DatetimeIndex</span> to perform “partial string indexing”.   
+
+For example, omitting the day component extracts all rows belong to a particular year or month.   The uses of partial string index are interspersed throughout the remainder of the Indexing section and are identified in the text.
 
 ### An Example Using Historical Bitcoin Trade Data
 It is time for a real life example.  We use Python library <span class="coding" >pandas_datareader</span> to get historical Bitcoin data from Yahoo Finance.   In example below, we show steps to import, store, reload stored DataFrame and perform index slicing. 
@@ -100,7 +101,7 @@ Date
 2019-08-14  10451.6   9497.1  10031.9  10264.7  840141301
 2019-08-17  10381.5  10231.4  10360.4  10256.5   18056754 
 
->>> df.index.inferred_freq 
+>>> <span class="coding">df.index.inferred_freq </span>
 #retruns nothing because freq is irregular
 
 # the dates when the maximum took place
@@ -128,103 +129,265 @@ Date
 2017-12-22               15,824               10,876
 
 >>> df.loc["2018",df.columns.isin(['High','Low'])].
-plot(title="Bitcoin 2018 daily high and low price time series")
+plot(title="Bitcoin 2018 daily high and low price timeseries")
 ```
 <figure>
-  <img src="{{ "/images/posts/Bitcoin 2018 daily high and low price time series.png" | relative_url }}">
-  <figcaption>Figure 1. Bitcoin 2018 daily high and low price time series</figcaption>
+  <img src="{{ "/images/posts/Bitcoin 2018 daily high and low price timeseries.png" | relative_url }}">
+  <figcaption>Figure 1. Bitcoin 2018 daily high and low price timeseries</figcaption>
 </figure>
 
-The next example shows an instance of Period object and illustrates its attributes.  Notice how <span class="coding">freq = </span>  parameter dictates the time span, and how the two Periods differ and even though they are created from the same timestamp.  
+### PeriodIndex
+Recall that for pandas, a Period is a bounded time segment, i.e. time span, uniform in length with a start and end date with a given frequency and has the associated PeriodIndex, we can define a PeriodIndex directly by using the <span class="coding">pd.PeriodIndex</span> or <span class='coding'>pd.period_range()</span> constructor, which creates a list of periods with frequency specified.   Unlike a <span class="coding">DatetimeIndex</span>, labels for the PeriodIndex are Period objects.    
 
-<div class="code-head"><span>code</span>Period Object and its Special Attributes.py</div>
-
-```py
->>> period1=pd.Period('2020-01-02', freq='D')
->>> period1
-[Out]: Period('2020-01-02', 'D')
-
->>> period1.ordinal
-[Out]: 18263
-
->>> period1.start_time
-[Out]: Timestamp('2020-01-02 00:00:00')
-	
->>> period1.end_time
-[Out]: Timestamp('2020-01-02 23:59:59-999999999')
-
->>> period1.to_timestamp()
-[Out]: Timestamp('2020-01-02 00:00:00')
-
->>> period2=pd.Period('2020-01-02', freq='m')
->>> period2
-[Out]: Period('2020-01', 'M')
-
->>> period2.start_time
-[Out]: Timestamp('2020-01-01 00:00:00')
-
->>> period2.end_time
-[Out]: Timestamp('2020-01-31 23:59:59-999999999')
-```
-Most financial reports are on quarterly data.  Many companies have fiscal years that are different from calendar years.  For example, Microsoft's fiscal year starts from July and ends in June.  WalMart's fiscal year starts in February and ends in January. 
-
-You can specify which month to end in a quarter.  The default is <span class="coding">freq='Q-Dec'</span>, which means that period ending time is at the end of the quarter coinciding with calendar year.   The flexibility of quarter in pandas period time span facilitates different reporting and makes it simple and convenient.  
-
-For example, you can convert a column of datetime sequence to quarter end datatime by using <span class="coding">to_period('Q').end_time</span>.  Of course, you can align all timestamps to beginning of quater by <span class="coding">to_period('Q').start_time</span>.  Similarly, you can nomralize a column of dates to their corresponding week, month, or year start or end dates.   This is very useful for merging datasets that have different datetime resolutions. 
-
-<div class="code-head"><span>code</span>Period freq='Q' and Options for Month Ending.py</div>
+<div class="code-head"><span>code</span> Constructing PeriodIndex Object using pd.PeriodIndex() and pd.period_range().py</div>
 
 ```python
->>> date1.to_period('Q').end_time
-Out: Timestamp('2020-03-31 23:59:59.999999999')
->>> period1=pd.Period('2020-01', freq='Q')
-Out: Period('2020Q1', 'Q-DEC')
->>> period1=pd.Period('2020-01', freq='Q-Jan')
->>> period1
-Out: Period('2020Q4', 'Q-JAN')
->>> period1.end_time
-Out: Timestamp('2020-01-31 23:59:59-999999999')
+>>> dates = ['2020-01-02', '2020-4-1','2020-07-04', '2020-12-31']
+>>> periodIndexDay = pd.PeriodIndex(dates, freq='D')
+>>> periodIndexDay
+[Out]: PeriodIndex(['2020-01-02', '2020-04-01', '2020-07-04', '2020-12-31'], dtype='period[D]', freq='D')
+
+>>> pd.PeriodIndex(dates, freq='M')
+[Out]: PeriodIndex(['2020-01', '2020-04', '2020-07', '2020-12'], dtype='period[M]', freq='M')
+
+>>> pd.PeriodIndex(dates, freq='Q')
+[Out]: PeriodIndex(['2020Q1', '2020Q2', '2020Q3', '2020Q4'], dtype='period[Q-DEC]', freq='Q-DEC')
+
+>>> idx = pd.period_range('2020','2022', freq='Q')
+>>> idx
+[Out]: PeriodIndex(['2020Q1', '2020Q2', '2020Q3', '2020Q4', '2021Q1', '2021Q2',
+             '2021Q3', '2021Q4', '2022Q1'],dtype='period[Q-DEC]', freq='Q-DEC')
+```
+Note:
+* We can convert a series of <span class="coding">DatetimeIndex</span> to <span class='coding'>PeriodIndex</span> by the <span class="coding">.to_period()</span> function.  
+*  If you have to parse datetime from string format before you convert it to period index, you can use <span class="coding">pd.to_datetime('string', format ='%d-%b-%y'M).dt.to_period('M')</span>
+Conversely, <span class='coding'>PeriodIndex</span> can be converted to <span class="coding">DatetimeIndex</span> using either <span class="coding">pd.to_timestamp</span> or <span class="coding">.astype('datetime64[ns]')</span>.  
+
+<div class="code-head"><span>code</span> Converting between Period index and  DatetimeIndex.py</div>
+
+```python
+>>> idx.to_timestamp()
+[Out]: DatetimeIndex(['2020-01-01', '2020-04-01', '2020-07-01', '2020-10-01', '2021-01-01', '2021-04-01', '2021-07-01', '2021-10-01', '2022-01-01'], dtype='datetime64[ns]', freq='QS-OCT')
+>>> idx.astype('datetime64[ns]') # output is the same as above 
+>>> idx.to_timestamp().to_period(freq='Q') # gives the orginal PeriodIndex back
+[Out]: PeriodIndex(['2020Q1', '2020Q2', '2020Q3', '2020Q4', '2021Q1', '2021Q2', '2021Q3', '2021Q4', '2022Q1'], dtype='period[Q-DEC]', freq='Q-DEC')
+```
+As with <span class="coding">Datetimeindex</span>, we can apply “partial string indexing” to PeriodIndex.   The following example shows how convenient it is to subset data by passing a component of a datetime.  
+<div class="code-head"><span>code</span> Partial String Indexing using PeriodIndex py</div>
+
+```python
+>>> df = pd.DataFrame({'x' :np.random.randint(0, high = 10, size =9)}, index = idx)
+>>> df
+[Out]: 
+        x
+2020Q1  6
+2020Q2  3
+2020Q3  7
+2020Q4  4
+2020Q1  6
+2021Q2  9
+2021Q3  2
+2021Q4  6
+2022Q1  7
+>>> df['2020'].sum()
+[Out]: 
+x    20
+dtype: int64
+```
+### TimeDeltaIndex
+TimeDeltaIndex is like a series of numbers with day and/or time units. 
+TimeDeltaIndex can be created by 
+1.  taking the difference of two dates, 
+2.  converting using to_timedelta(), or
+3.  defining using pd.timedelta_range()
+
+The following example below illustrates each of these methods.  While the examples given are mostly in days for simplicity, there is a very wide range of units that can be used.  
+
+<div class="code-head"><span>code</span> TimedeltaIndex.py</div>
+
+```python
+>>> dateTimeIndex = pd.DatetimeIndex(pd.date_range( start='1/1/2020', periods=4, freq='M')) 
+>>> dateTimeIndex - dateTimeIndex[0]
+[Out]: 
+TimedeltaIndex(['0 days', '29 days', '60 days', '90 days'], dtype='timedelta64[ns]', freq=None) 
+
+>>> pd.to_timedelta(np.arange(4),'D') *10
+[Out]: 
+TimedeltaIndex(['0 days', '10 days', '20 days', '30 days'], dtype='timedelta64[ns]', freq=None)
+
+>>> pd.timedelta_range(start='0 days', periods=3)
+[Out]: 
+TimedeltaIndex(['0 days', '1 days', '2 days'], dtype='timedelta64[ns]', freq='D') 
+
+>>> pd.timedelta_range(start='5 days', periods=3, freq='24H')
+[Out]: 
+TimedeltaIndex(['5 days', '6 days', '7 days'], dtype='timedelta64[ns]', freq='24H')
 ```
 
-* Various mathematical operations can be performed on Period, such as adding or subtracting an integer.  
-* Adding or subtracting two periods is as simple as integer addition and subtraction, if the frequencies are the same.     Finally, you can also convert Period to different frequencies.    
+For reference, example below shows differencing in SAS datetime.  
 
-<div class="code-head"><span>code</span>Arithmetic Operations on Period Object.py</div>
+<div class="code-head"><span>code</span> SAS Datetime Differencing.sas</div>
 
-```py
->>> period3 = period2 + 12
->>> period3
-[Out]: Period('2021-01', 'M')
-
->>> period3 - period2
-[Out]:<12 * MonthEnds>
-
->>> q = pd.Period('2020Q4')
->>> q + 1
-[Out]: Period('2020Q1', 'Q-DEC')
-
->>> q.asfreq('m', how='start')
-[Out]: Period('2020-10', 'M')
-
->>> q.asfreq('m', how='end')
-[Out]: Period('2020-12', 'M')
+```sas  
+>>> DATA df;
+INPUT startdate DATE9- @11 enddate DATE9-;
+Duration=enddate-startdate;
+DATALINES;
+15dec2020 15dec2020
+17oct2020 02nov2020
+22jan2021 11mar2021;
+>>> PROC PRINT DATA=df;
+    FORMAT startdate enddate DATE9-;
+  RUN; 
+[Out]: 
+Obs startdate Enddate Duration
+1 15-Dec-19 15-Dec-19 0
+2 17-Oct-20 2-Nov-20  16
+3 22-Jan-21 11-Mar-21 48
 ```
 
-* Period has the same attributes such as <span class="coding">.day</span>, <span class="coding">.dayofweek</span>, <span class="coding">.quarter</span> and so on as Timestamp, but it does not have <span class="coding">.date</span> or <span class="coding">.time</span> attributes the way Timestamp does.  
+### Multiindex
+Many timeseries operations cannot be performed if there are duplicated indices.   As mentioned earlier, when the <span class="coding">datetimeindex</span> is irregular, nothing will be returned from <span class="coding">df.index.inferred_freq</span>.  There are multiple ways to remove duplicates in pandas.  When the duplicates are in the columns, <span class="coding">DataFrame.sort_value()</span>, <span class="coding">DataFrame.drop_duplicates()</span>,and <span class="coding">DataFrame.set_index()</span> are the standard procedures to sort, drop duplicate and set index to clean data.   When the duplicates are in <span class="coding">DatetimeIndex</span>, we can use <span class="coding">DataFrame.index.duplicated()</span> to get the array of boolean values of whether an index is a duplicate.  
 
-### Timedelta
-Pandas Timedelta is differences in times, expressed in difference units, e.g. days, hours, minutes, seconds. Timedelta is the pandas equivalent of python datetime.timedelta, and is interchangeable with it in most cases. Timedelta are differences in time expressed in different units, such as days, hours, minutes, seconds and can be positive or negative.  Consider Listing 9-11, pandas Timedelta.   The example first shows how Timedelta can be used to increment and Timestamp, then calculates age in years by converting a Timedelta object to an int via the Timedelta.days() method and then divide by 365.   
-<div class="code-head"><span>code</span>Pandas Timedelta and Age Calculation.py</div>
+The <span class="coding">keep = 'first'</span>, <span class="coding">keep = 'last'</span>, or <span class="coding">keep = False</span> option is to mask those duplicates from being identified as True.   By default, for each set of duplicated values, the first occurrence is set to False and all others to True, in effect, keeping the first occurance when you drop duplicates.  To summarize:
 
-```py
->>> pd_ts     = pd.Timestamp('2020-02-14 00:00:00')
->>> pd_td     = pd.Timedelta(days=1, hours=1, minutes=1, 
-	seconds=1)
->>> pd_ts - pd_td
-[Out]: Timestamp('2020-02-12 22:58:59')
->>> DoB = pd.Timestamp('2000-02-14 07:00:00')
->>> age = (pd.Timestamp.now() - DoB).days/365
+• 'first', marking duplicates as True except the first occurrence
 
+• 'last',marking duplicates as True except the last occurrence
+
+• False, marking all duplicates as True
+
+Here is an example of using <span class="coding">DataFrame.index.duplicated()</span>.  Because we use <span class="coding">keep = False</span>, all the duplicated indices are shown, including first and last.  
+
+<div class="code-head"><span>code</span> Checking Duplicated Index.py</div>
+
+```python
+>>> df[df.index.duplicated(keep=False)].High
+[Out]:
+Date
+2011-03-27       0.9
+2011-03-27       0.9
+2012-03-25       4.7
+2012-03-25       4.7
+2013-03-31     106.0
+2013-03-31      93.8
+2014-03-30     473.4
+2014-03-30     479.0
+2015-03-29     248.8
+2015-03-29     252.8
+2016-03-27     425.4
+2016-03-27     427.4
+2017-03-26    1048.8
+2017-03-26    1004.3
+2018-03-25    8521.0
+2018-03-25    8690.4
+2019-03-31    4164.3
+2019-03-31    4129.4
+Name: High, dtype: float64
 ```
+### Stack and Unstack
+Many timeseries operations cannot be performed if there are duplicated indices.   As mentioned earlier, when the <span class="coding">datetimeindex</span> is irregular, nothing will be returned from <span class="coding">df.index.inferred_freq</span>.  There are multiple ways to remove duplicates in pandas.  When the duplicates are in the columns, <span class="coding">DataFrame.sort_value()</span>, <span class="coding">DataFrame.drop_duplicates()</span>,and <span class="coding">DataFrame.set_index() </span>are the standard procedures to sort, drop duplicate and set index to clean data.   When the duplicates are in <span class="coding">DatetimeIndex</span>, we can use <span class="coding">DataFrame.index.duplicated()</span> to get the array of boolean values of whether an index is a duplicate.  
 
-* Period has the same attributes such as <span class="coding">.day</span>, <span class="coding">.dayofweek</span>, <span class="coding">.quarter</span> and so on as Timestamp, but it does not have <span class="coding">.date</span> or <span class="coding">.time</span> attributes the way Timestamp does.  
+The <span class="coding">keep = 'first'/ 'last' /False</span> option is to mask those duplicates from being identified as True.   By default, for each set of duplicated values, the first occurrence is set to False and all others to True, in effect, keeping the first occurance when you drop duplicates.  
+
+• 'first', marking duplicates as True except the first occurrence
+
+• 'last',marking duplicates as True except the last occurrence
+
+• False, marking all duplicates as True
+
+The following example provides an example of <span class="coding">DataFrame.index.duplicated()</span> using the Bitcoin timeseries data.  Because we use <span class="coding">keep = False</span>, all the duplicated indices are shown, including first and last.  
+<div class="code-head"><span>code</span> Checking Duplicated Index.py</div>
+
+```python
+>>> df[df.index.duplicated(keep=False)].High
+[Out]:
+Date
+2011-03-27                      1
+2011-03-27                      1
+2012-03-25                      5
+2012-03-25                      5
+2013-03-31                    106
+2013-03-31                     94
+2014-03-30                    479
+2014-03-30                    473
+2015-03-29                    253
+2015-03-29                    249
+2016-03-27                    427
+2016-03-27                    425
+```
+### Duplicates in Index
+Many timeseries operations cannot be performed if there are duplicated indices.   As mentioned earlier, when the <span class="coding">datetimeindex</span> is irregular, nothing will be returned from <span class="coding">df.index.inferred_freq</span>.  There are multiple ways to remove duplicates in pandas.  When the duplicates are in the columns, <span class="coding">DataFrame.sort_value()</span>, <span class="coding">DataFrame.drop_duplicates()</span>,and <span class="coding">DataFrame.set_index</span>() are the standard procedures to sort, drop duplicate and set index to clean data.   When the duplicates are in <span class="coding">DatetimeIndex</span>, we can use <span class="coding">DataFrame.index.duplicated()</span> to get the array of boolean values of whether an index is a duplicate.  
+
+The keep = 'first'/ 'last' /False option is to mask those duplicates from being identified as True.   By default, for each set of duplicated values, the first occurrence is set to False and all others to True, in effect, keeping the first occurance when you drop duplicates.  
+
+• 'first', marking duplicates as True except the first occurrence
+
+• 'last',marking duplicates as True except the last occurrence
+
+• False, marking all duplicates as True
+
+The example below provides an example of <span class="coding">DataFrame.index.duplicated()</span> using the Bitcoin timeseries data.  Because we use <span class="coding">keep = False</span>, all the duplicated indices are shown, including first and last.  
+<div class="code-head"><span>code</span> Checking Duplicated Index.py</div>
+
+```python
+>>> df[df.index.duplicated(keep=False)].High
+[Out]:
+Date
+2011-03-27                      1
+2011-03-27                      1
+2012-03-25                      5
+2012-03-25                      5
+2013-03-31                    106
+2013-03-31                     94
+2014-03-30                    479
+2014-03-30                    473
+2015-03-29                    253
+2015-03-29                    249
+2016-03-27                    427
+2016-03-27                    425
+2017-03-26                  1,004
+2017-03-26                  1,049
+2018-03-25                  8,690
+2018-03-25                  8,521
+Name: High, dtype: float64
+```
+The following exaple illustrates three simple ways to drop duplicates.  The first two methods use <span class="coding">keep = 'first'</span>, meaning keeping only the first of the duplicates.  The third method uses resample, which is a type of groupby.     As an added bonus, using resample the datetime frequency is set to 'D', which was not set before in the original timeseries imported.  Having a frequency is important for timeseries operations involving the index.  For example, tshift method will give errors if frequency is not set.   More on shifting and resampling in later subsections of this chapter.     
+<div class="code-head"><span>code</span> Three Methods for Removing Duplicated DatetimeIndex.py</div>
+
+```python
+>>> #Method 1
+>>> df = df[~df.index.duplicated(keep='first')] 
+
+>>> #Method 2
+>>> df.groupby(df.index).first()
+
+>>> #Method 3
+>>> df.resample('D').mean()
+```
+Note:
+Using <span class="coding">groupby</span> or <span class="coding">resample</span>  allows more sophisticated ways of handling duplicates such as keeping the mean or median. 
+ 
+In SAS, many options are available readily for removing duplidates.  In the example below, we use SAS <span class='coding'>PROC TIMESERIES</span> to remove duplicates when we specify the <span class='coding'>INTERVAL</span> parameter to be equal to  <span class='coding'>ID</span> time unit.  Different options are available including how you want to treat missing dates and missing data.   We use <span class="coding">ACCUMULATE = MEDIAN</span> although you can also specify <span class="coding">TOTAL</span>, <span class="coding">AVERAGE</span>, <span class="coding">MINIMUM</span>, <span class="coding">MAXIMUM</span> and etc.  In example below, we use the same data from Bitcoin Prices with <span class='coding'>PROC TIMESERIES</span>.
+<div class="code-head"><span>code</span> Removing Duplicated Date using PROC TIMESERIES.sas</div>
+
+```sas
+>>> PROC TIMESERIES DATA = history
+OUT = timeseries;
+ID date 
+    INTERVAL = DAY ACCUMULATE = MEDIAN;
+    VAR High Low Open Close Adj_close Volume;
+RUN;
+```
+After duplicated dates and times are removed, one can go on performing more time series analysis. 
+### Missing Values
+  So far we have not had to deal with missing datetime in using the Bitcoin timeseries because Bitcoin is traded around the world everyday including weekends and holidays.  
+
+  However, many other timeseries have missing datetime either due to weekends/holidays or errors/omissions.    For example, stocks are not traded on weekends or holidays and therefore stocks timeseries will not have any values for those dates.    Furthermore, time-based events may not happen every weekday, for example, large bankruptcies.   In general, there are three types of missing datetime in a timeseries:
+1.  Weekend
+This can be easily handled via <span class="coding">asfreq('B')</span> or other types of frequency/offset.
+2.  Holidays
+These can be handled using pandas.tseries.holiday or custom holiday calendar. 
+3.  Other causes
+These missing can be left as missing or imputed using various methods, for example, <span class='coding'>ffill</span>. 
+Missing datetime handling will be demonstrated using a real life example, using historical Apple stock price. 

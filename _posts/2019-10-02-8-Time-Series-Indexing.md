@@ -2,10 +2,11 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "Time Series Indexing"
+title: "Plotting Time Series"
 description: Time series data processing using Python and SAS.
 author: Sarah Chen
-image: https://drive.google.com/uc?id=1crVhO4CHemFakRIxXYYo8HnfO-Z7sc1A
+image: http://drive.google.com/uc?export=view&id=1hXH-eJF20B6xAJvc1W5icAzePG1MwUuO
+
 ---
 
 **While we are postponing, life speeds by.**
@@ -22,7 +23,7 @@ The most fundamental measures of time are point in time **timestamp** and **inte
 ### DatetimeIndex
 
 Pandas <span class="coding">Timestamp</span> is pandas' equivalent to the Python's native <span class="coding">datetime</span>  object and in many cases a pandas Timestamp is interchangeable with Python's datetime object.    Pandas Timestamp  combines the flexibility of datetime and <span class="coding">dateutil</span> and the efficiency of vectorized representation from numpy.datetime64.  
-The example below illustrates how a list of objects with mixed formats is automatically coerced to Datetimeindex by .
+The example below illustrates how a list of objects with mixed formats is automatically coerced to <span class="coding">Datetimeindex</span> by .
 
 <div class="code-head"><span>code</span>Pandas DatetimeIndex.py</div>
 
@@ -34,7 +35,7 @@ The example below illustrates how a list of objects with mixed formats is automa
      dtype='datetime64[ns]', freq=None)
 
 ```
-* From pandas version 0.20.0. there is a new origin parameter for specifying an alternative starting point for creation of a DatetimeIndex.  For example, using 1960-01-01 as the starting date would make pandas dates have the same reference starting date as SAS date
+* From pandas version 0.20.0. there is a new origin parameter for specifying an alternative starting point for creation of a <span class="coding">DatetimeIndex</span>.  For example, using 1960-01-01 as the starting date would make pandas dates have the same reference starting date as SAS date
 * If you do not specify origin, then the default is origin='unix', which defaults to 1970-01-01 00:00:00.  This is commonly called 'unix epoch' or POSIX time. 
 * Pandas represents timestamps in nanosecond resolution.  Hence the time span that can be represented using a 64-bit integer is limited to approximately 584 years.   On the other hand, SAS does not have such limitation  as SAS stores dates as integers, datetime and time as real numbers. 
 
@@ -53,7 +54,7 @@ SAS date or time are stored internally in numbers and represented according to f
 /*20:56:09 09OCT2019 */
 ```
 
-As mentioned earlier, pandas is built on top of numpy.  Vectorized operations from numpy can be applied directly on Timestamp object to create a sequence of dates or times, which is automatically coerced into DatetimeIndex object.   This is illustrated in the next example. 
+As mentioned earlier, pandas is built on top of numpy.  Vectorized operations from numpy can be applied directly on Timestamp object to create a sequence of dates or times, which is automatically coerced into <span class"=coding>DatetimeIndex</span> object.   This is illustrated in the next example. 
 <div class="code-head"><span>code</span>Vectorized Operation on Timestamp.py</div>
 
 ```python
