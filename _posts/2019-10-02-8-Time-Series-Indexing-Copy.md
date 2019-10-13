@@ -75,10 +75,66 @@ Base SAS does not have vectorized operations.  To create similar output, one may
 
 ```
 
-### Period
+### Partial String Indexing
+In SAS, subsetting date ranges are performed via <span class="coding">WHERE</span> clause or IF statement in a <span class="coding">DATA</DATA></span> step, or <span class="coding">WHERE</span> clause in <span class="coding">PROC SQL</span>. Since pandas DatetimeIndex has all the basic functions of regular index , you can use the regular index methods to slice and dice DataFrame or Series, and use DatetimeIndex to perform “partial string indexing”.   For example, omitting the day component extracts all rows belong to a particular year or month.   The uses of partial string index are interspersed throughout the remainder of the Indexing section and are identified in the text.
 
-While a Timestamp represents a point in time, a Period represents a time span or segment, or commonly known as interval to SAS users.   Periods are non-overlapping time segments uniform in length. 
-Some might wonder why we need period if we have Timestamp, or vice versa.   The answer is that point, and period represent different perspectives on how we think of time and record data in time, which result in different attributes.  For example, we can talk about GDP produced from a period of a year, or stock price at a point of time.   Period has <span class="coding">start_time</span> and <span class="coding">end_time</span>  attributes while Timestamp does not.     Period can be used to check if a specific event occurs within a certain period.  
+### An Example Using Historical Bitcoin Trade Data
+It is time for a real life example.  We use Python library <span class="coding" >pandas_datareader</span> to get historical Bitcoin data from Yahoo Finance.   In example below, we show steps to import, store, reload stored DataFrame and perform index slicing. 
+<div class="code-head"><span>code</span> Bitcoin Historical Prices using DatetimeIndex.py</div>
+
+```python
+>>> import pandas_datareader.data as pdr
+>>> import matplotlib.pyplot as plt
+>>> import datetime
+>>> df = pdr.get_data_yahoo('BTC-USD', 
+start=datetime.datetime(2010, 7, 16), 
+end=datetime.date.today())
+>>> df.drop('Adj Close', axis=1, inplace=True) 
+>>> df.tail()
+[Out]:
+               High      Low     Open    Close     Volume
+Date
+2019-08-11  11554.7  11240.4  11549.1  11387.4  229908138
+2019-08-12  11439.5  10765.3  11387.4  10872.0  483240069
+2019-08-13  10873.4   9924.6  10872.0  10031.9  728247545
+2019-08-14  10451.6   9497.1  10031.9  10264.7  840141301
+2019-08-17  10381.5  10231.4  10360.4  10256.5   18056754 
+
+>>> df.index.inferred_freq 
+#retruns nothing because freq is irregular
+
+# the dates when the maximum took place
+>>> df.idxmax(axis=0, skipna=True)
+[Out]:
+High        2017-12-17
+Low         2017-12-17
+Open        2017-12-17
+Close       2017-12-16
+Volume      2017-12-22
+dtype: datetime64[ns]
+
+>>> pd.options.display.float_format = '{:20,.1f}'.format 
+
+>>> df1 = df.loc["2017-12-17":"2017-12-22",df.columns.isin(['High','Low'])]
+>>> df1
+[Out]:
+                           High                  Low
+Date
+2017-12-17               19,871               18,751
+2017-12-18               19,221               18,114
+2017-12-19               19,022               16,813
+2017-12-20               17,814               15,643
+2017-12-21               17,302               14,953
+2017-12-22               15,824               10,876
+
+>>> df.loc["2018",df.columns.isin(['High','Low'])].
+plot(title="Bitcoin 2018 daily high and low price time series")
+```
+<figure>
+  <img src="{{ "/images/posts/Bitcoin 2018 daily high and low price time series.png" | relative_url }}">
+  <figcaption>Figure 1. Bitcoin 2018 daily high and low price time series</figcaption>
+</figure>
+
 The next example shows an instance of Period object and illustrates its attributes.  Notice how <span class="coding">freq = </span>  parameter dictates the time span, and how the two Periods differ and even though they are created from the same timestamp.  
 
 <div class="code-head"><span>code</span>Period Object and its Special Attributes.py</div>
@@ -130,9 +186,8 @@ Out: Period('2020Q4', 'Q-JAN')
 Out: Timestamp('2020-01-31 23:59:59-999999999')
 ```
 
-* You can perform various mathematical operations on Period, such as adding or subtracting an integer, which is simpler than using the pd.offset object. 
-* Adding or subtracting two periods is as simple as integer addition and subtraction, if the frequencies 
-are the same.     Finally, you can also convert Period to different frequencies.    
+* Various mathematical operations can be performed on Period, such as adding or subtracting an integer.  
+* Adding or subtracting two periods is as simple as integer addition and subtraction, if the frequencies are the same.     Finally, you can also convert Period to different frequencies.    
 
 <div class="code-head"><span>code</span>Arithmetic Operations on Period Object.py</div>
 
