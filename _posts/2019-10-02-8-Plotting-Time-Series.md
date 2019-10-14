@@ -13,7 +13,7 @@ image: http://drive.google.com/uc?export=view&id=1hXH-eJF20B6xAJvc1W5icAzePG1MwU
 
 <!-- > not used for now**Update**: Lorem ipsum dolor. [end of life](https://pythonclock.org/), Aliquip ad magna laborum eu ut aute ut quis in veniam in. **Python3**. -->
 
-One of the main uses of Timestamp and Period objects is indexing.   Indexing is so vital to pandas time series operations that lists of Timestamp or Period objects are automatically coerced to <span class="coding">DatetimeIndex</span> and <span class="coding">PeriodIndex</span> respectively when used as index.   Recall from Chapter 4 Indexing and Grouping, that a pandas index is simply a method to label rows.   Python pandas is so powerful and convenient in handling time series that you may want it to be your go-to tool for time series data, especially for financial data. 
+Visualizing time series is an essential part of analyzing time series data.   To be able to quickly summarize, compare, contrast and extract information from data in different resolutions of time dimension is an important skill in almost all industries.   It can be both easy and challenging to plot time series, depending on the requirements.   We will start with the basics and then add spices and flavors.
 
 SAS users need to be aware that pandas allow duplicate index.  When we perform strict time series analysis, we would need to remove duplicates.  
 

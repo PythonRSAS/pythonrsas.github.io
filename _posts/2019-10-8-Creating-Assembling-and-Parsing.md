@@ -2,7 +2,7 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "Creating, Assembling, and Parsing Datetime"
+title: "Creating Assembling and Parsing"
 description: Time series data processing using Python and SAS.
 author: Sarah Chen
 image: http://drive.google.com/uc?export=view&id=1QCuv6RGm8y1vdPU4DitqOZPIbx8Nw-yM

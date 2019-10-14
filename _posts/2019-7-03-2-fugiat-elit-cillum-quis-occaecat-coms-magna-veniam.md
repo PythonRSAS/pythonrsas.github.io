@@ -5,7 +5,7 @@ category: education
 title: "Fugiat elit cillum quis occaecat coms magna veniam"
 description: Dolore veniam mollit magna ea in nisi minim ullamco enim nulla magna officia.
 author: Sarah Chen
-image: https://drive.google.com/uc?id=1AUebpO4EK4JJSSchFFYiMZlFDoa1LLoy
+image: https://www.audubon.org/sites/default/files/styles/hero_image/public/sfw_nationalgeographic_1517960.jpg?itok=F5pikjxg
 ---
 
 **Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia consequuntur, provident nemo soluta similique, maiores sit dicta doloremque facere laudantium [Keras](https://keras.io/){:target="_blank"} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque neque totam voluptatem porro accusantium id.**
