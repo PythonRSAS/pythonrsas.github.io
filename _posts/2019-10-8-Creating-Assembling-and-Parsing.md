@@ -5,7 +5,7 @@ category: "python for sas"
 title: "Creating Assembling and Parsing"
 description: Time series data processing using Python and SAS.
 author: Sarah Chen
-image: http://drive.google.com/uc?export=view&id=1QCuv6RGm8y1vdPU4DitqOZPIbx8Nw-yM
+# image: http://drive.google.com/uc?export=view&id=1QCuv6RGm8y1vdPU4DitqOZPIbx8Nw-yM
 ---
 
 **While we are postponing, life speeds by.**

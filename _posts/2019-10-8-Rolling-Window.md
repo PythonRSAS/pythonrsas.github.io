@@ -5,7 +5,7 @@ category: "python for sas"
 title: "Rolling Window"
 description: Time series data processing using Python and SAS.
 author: Sarah Chen
-image: http://drive.google.com/uc?export=view&id=1QCuv6RGm8y1vdPU4DitqOZPIbx8Nw-yM
+# image: http://drive.google.com/uc?export=view&id=1QCuv6RGm8y1vdPU4DitqOZPIbx8Nw-yM
 ---
 
 **While we are postponing, life speeds by.**
@@ -40,8 +40,8 @@ From pandas documentation:
     window will be a variable sized based on the observations included in
 the time-period. This is only valid for datetime-like indexes.
  
-    <span class="coding">min_periods</span>: int, default None
-    Minimum number of observations in window required to have a value
+* <span class="coding">min_periods</span>: int, default None
+Minimum number of observations in window required to have a value
 (otherwise result is NA). 
 
 For a window that is specified by an offset, this will default to 1.

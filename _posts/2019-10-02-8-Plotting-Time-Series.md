@@ -5,7 +5,7 @@ category: "python for sas"
 title: "Plotting Time Series"
 description: Time series data processing using Python and SAS.
 author: Sarah Chen
-image: http://drive.google.com/uc?export=view&id=1hXH-eJF20B6xAJvc1W5icAzePG1MwUuO
+# image: http://drive.google.com/uc?export=view&id=1hXH-eJF20B6xAJvc1W5icAzePG1MwUuO
 
 ---
 

@@ -5,7 +5,7 @@ category: "python for sas"
 title: "Time Series Indexing"
 description: Time series data processing using Python and SAS.
 author: Sarah Chen
-image: https://drive.google.com/uc?export=view&id=1qdvZnKpHH8QlnmjJq-l-zE3rajpTyXxm
+# image: https://drive.google.com/uc?export=view&id=1qdvZnKpHH8QlnmjJq-l-zE3rajpTyXxm
 
 ---
 
