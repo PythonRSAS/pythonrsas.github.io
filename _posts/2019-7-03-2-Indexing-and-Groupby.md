@@ -438,10 +438,13 @@ Tanner       II  South     113    122
 Chang       III  North      69    101
 Gupta       III  South      11     22
 ```
-Because the index was ‘dropped’ in Listing 4-14 Drop <span class="coding">DataFrame</span> Index, the index is set again, this time with the syntax:
-df.set_index('Name', inplace=True) to enable slicing with labels using the <span class="coding">.loc</span> indexer.
+Because the index was ‘dropped’ in the example below Drop <span class="coding">DataFrame</span> Index, the index is set again, this time with the syntax:
+```python
+df.set_index('Name', inplace=True) 
+```
+to enable slicing with labels using the <span class="coding">.loc</span> indexer.
 
-In the following example, SAS IN Operator illustrates the same capability using the IN operator. The IN operator performs an implied truth test by including values from a list that match values from the sector variable. The IN operator is also valid with an <span class="coding">IF</span>  statement in a Data Step.   
+In the following example, SAS IN Operator illustrates the same capability using the IN operator. The <span class="coding">IN</span> operator performs an implied truth test by including values from a list that match values from the sector variable. The <span class="coding">IN</span> operator is also valid with an <span class="coding">IF</span>  statement in a Data Step.   
 
 <div class="code-head"><span>code</span> SAS IN Operator.py</div>
 
@@ -455,7 +458,7 @@ In the following example, SAS IN Operator illustrates the same capability using 
  
 Figure 4-4. IN Operator Results
 #### Updating
-The .loc indexer can update or set values (the term used with Pandas documentation).  Consider the example below, Set Values Matching a List of Labels.
+The <span class="coding">.loc</span> indexer can update or set values (the term used with Pandas documentation).  Consider the example below, Set Values Matching a List of Labels.
 
 <div class="code-head"><span>code</span> Set Values Matching a List of Labels.py</div>
 
@@ -474,17 +477,17 @@ Jurat     100
 Gupta     100
 Name: After dtype: int64
 ```
-The first call to the <span class="coding">.loc</span> indexer supplies a Python List of <span class="coding">Name </span>labels for three individuals along with their corresponding After values and returns a Series.  
+The first call to the <span class="coding">.loc</span> indexer supplies a Python List of <span class="coding">Name</span> labels for three individuals along with their corresponding After values and returns a Series.  
 
-Recall that a Series is analogous to a single <span class="coding">DataFrame</span> column.  The second call to the <span class="coding">.loc</span> indexer sets (updates) the After column for each of the labels in the Python list:
+Recall that a Series is analogous to a single <span class="coding">DataFrame</span> column.  The second call to the <span class="coding">.loc</span> indexer sets <span class="coding">(updates)</span> the After column for each of the labels in the Python list:
 ```python
  ['Patton', 'Jurat', 'Gupta']
 ```
-The SAS analog is illustatred in the example below, IN Operator Conditionally Select Rows.  
+The SAS analog is illustatred in the example below, <span class="coding">IN</span> Operator Conditionally Select Rows.  
 
 <div class="code-head"><span>code</span> IN Operator Conditionally Select Rows.py</div>
 
-```python
+```sas
 4  data df;
 5      set df;
 6  if _n_ = 1 then put
@@ -494,18 +497,20 @@ The SAS analog is illustatred in the example below, IN Operator Conditionally Se
 10     put @1 name @10 after;
 11     end;
 12  run;
-```
+
 OUTPUT:
 
 Name     After
 Patton   100
 Jurat    100
 Gupta    100
+```
 
 NOTE: There were 13 observations read from the data set WORK.DF.
 NOTE: The data set WORK.DF has 13 observations and 5 variables.
 
-This example uses the IN operator with an IF/THEN DO/END block updating the after variable conditionally.
+This example uses the <span class="coding">IN</span> operator with an <span class="coding">IF</span>/<span class="coding">THEN</span> <span class=
+"coding">DO</span>/<span class="coding">END</span> block updating the after variable conditionally.
 
 Setting values for an entire <span class="coding">DataFrame</span> column is illustated in the following example, Set Values for a Column.
 
@@ -523,9 +528,9 @@ Jurat           I   West      51    100
 Aden           II  North      71    100
 ```
 
-The call to the <span class="coding">.loc</span> indexer slices all rows from the df <span class="coding">DataFrame</span> since no start and stop values are supplied indicated by a colon (:).  The column slice After is set to 100.
+The call to the <span class="coding">.loc</span> indexer slices all rows from the df <span class="coding">DataFrame</span> since no start and stop values are supplied indicated by a colon <span class="coding">:</span>.  The column slice After is set to 100.
 ### Return Rows and Columns by Position
-The <span class="coding">.iloc</span> indexer uses integer positions (from 0 to length-1 of the axis) for slicing rows and columns.  Allowed inputs to <span class="coding">.iloc</span> are:
+The <span class="coding">.iloc</span> indexer uses integer positions <span class="coding">(from 0 to length-1 of the axis)</span> for slicing rows and columns.  Allowed inputs to <span class="coding">.iloc</span> are:
 • An integer, e.g. 12
 
 • A Python list of integers [4, 2, 22]
@@ -534,12 +539,12 @@ The <span class="coding">.iloc</span> indexer uses integer positions (from 0 to 
 
 The stop position for the <span class="coding">.iloc</span> indexer is exclusive, meaning not included.  This is  in contrast to the <span class="coding">.loc</span> indexer which is inclusive.
 The syntax for the <span class="coding">.iloc</span> indexer is:
+```python
 df.iloc[row selection, column selection]
-
+```
 A comma (,) is used to separate the request of row slices from column slices. A colon (:) is used to request a range of items.  The absence of either a column or row selector is an implicit request for all columns or rows, respectively.
 
-These features are illustrated below.  Listing 4-21, Return df First and Last Row, return the introduces the <span class="coding">.iloc</span> indexer.
-Listing 4-21. Return df First and Last Row
+These features are illustrated below.  In the following example, Return <span class="coding">df</span> First and Last Row, return the introduces the <span class="coding">.iloc</span> indexer.
 
 <div class="code-head"><span>code</span> Return df First and Last Row
 .py</div>
@@ -566,16 +571,16 @@ The same logic for SAS is illustrated in the example below, Return First and Las
 8  if _n_  = 1 then output;
 9  if last = 1 then output;
 10 run;
-
+```
 NOTE: There were 12 observations read from the data set WORK.DF.
 NOTE: The data set WORK.DF1 has 2 observations and 5 variables.
 
 11 proc print data = df1 noobs;  
 12 run;
 ```
-The input dataset df uses the end = dataset option to detect the last observation reading the df dataset.  The end = dataset option initializes a variable’s value to 0 and is set to 1 when the last observation is read.  
+The input dataset df uses the <span class="coding">end = dataset</span> option to detect the last observation reading the df dataset.  The <span class="coding">end = dataset</span> option initializes a variable’s value to 0 and is set to 1 when the last observation is read.  
 
-Sub-setting IF statements are used to output the first and last observation to the output dataset df1.  The output dataset is displayed in Figure 4-5, First and Last Observation.  The noobs option for PROC PRINT supresses the display of the SAS observation number contained in the automatic SAS variable <span class="coding">_n_</span>.
+Sub-setting <span class="coding">IF</span> statements are used to output the first and last observation to the output dataset <span class="coding">df1</span>.  The output dataset is displayed in Figure 4-5, First and Last Observation.  The noobs option for PROC PRINT supresses the display of the SAS observation number contained in the automatic SAS variable <span class="coding">_n_</span>.
 
 Figure 4-5. First and Last Observation
 The <span class="coding">.iloc</span> indexer accomodates a Python list of integers as well as a slice object to define row and column selections.  In the following example, <span class="coding">.iloc</span> Using List and Slice Object, illustrates combining these selectors.  
