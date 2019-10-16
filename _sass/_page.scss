@@ -143,9 +143,9 @@
   display: flex;
   background-color: white;
   margin: 10px;
-  // padding: 20px;
+  padding: 20px;
   border-radius: 8px;
-  // border: 1px solid #ececec;
+  border: 1px solid #ececec;
   flex-direction: row;
   transition: transform .3s;
   &:hover, &:active {
@@ -166,6 +166,11 @@
   }
 }
 
+.page-holder .page-treasure-wrapper:hover h2,.page-holder .page-treasure-wrapper:active h2 {
+    color: #df2a25 !important;
+}
+
+
 .page-treasure-image {
   margin-right: 20px;
   border-radius: 5px;
@@ -175,14 +180,14 @@
 }
 
 .page-treasure-image div {
-  width: 150px;
-  height: 150px;
+  width: 70px;
+  height: 70px;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 50%;
   @include mobile {
     width: 70px;
     height: 70px;
@@ -190,7 +195,7 @@
 }
 
 .page-holder .page-treasure h2 {
-  font-size: 32px;
+  font-size: 15px;
   line-height: initial;
   color: black !important;
   padding: 0;

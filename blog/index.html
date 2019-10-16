@@ -18,7 +18,7 @@ color: grad-blog
                             <a class="post-link" href="{{ site.baseurl }}{{ post.url }}">
                                 <div class="page-treasure-wrapper">
                                     <div class="page-treasure-image">
-                                        <div class="bg-image" style="background-image: url('{{ post.image }}')"></div>
+                                        <div class="bg-image" style="background-image: url('{{ post.image | relative_url }}')"></div>
                                     </div>
                                     <div class="page-treasure">
                                         <h4>{{ post.tag }}</h4>

@@ -1,0 +1,206 @@
+/**
+ * VS theme by Andrew Lock (https://andrewlock.net)
+ * Inspired by Visual Studio syntax coloring
+ */
+
+code[class*="language-sas"] {
+  color: #393A34;
+  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: .9em;
+  line-height: 1.2em;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre {
+  &[class*="language-sas"] {
+    color: #393A34;
+    font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+    direction: ltr;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    font-size: .9em;
+    line-height: 1.2em;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+
+    &::-moz-selection, ::-moz-selection {
+      background: #C1DEF1;
+    }
+  }
+
+  > code[class*="language-sas"] {
+    font-size: 1em;
+  }
+}
+
+code[class*="language-sas"] {
+  &::-moz-selection, ::-moz-selection {
+    background: #C1DEF1;
+  }
+}
+
+pre[class*="language-sas"] {
+  &::selection, ::selection {
+    background: #C1DEF1;
+  }
+}
+
+code[class*="language-sas"] {
+  &::selection, ::selection {
+    background: #C1DEF1;
+  }
+}
+
+/* Code blocks */
+
+pre[class*="language-sas"] {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  border: 1px solid #dddddd;
+  background-color: white;
+}
+
+/* Inline code */
+
+:not(pre) > code[class*="language-sas"] {
+  padding: .2em;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background: #f8f8f8;
+  border: 1px solid #dddddd;
+}
+
+code.language-sas .token {
+  &.comment, &.prolog, &.doctype, &.cdata {
+    color: #008000;
+    font-style: italic;
+  }
+
+  &.namespace {
+    opacity: .7;
+  }
+
+  &.string {
+    color: #A31515;
+  }
+
+  &.punctuation, &.operator {
+    color: #393A34;
+
+    /* no highlight */
+  }
+
+  &.url, &.symbol, &.number, &.boolean, &.variable, &.constant, &.inserted {
+    color: #36acaa;
+  }
+
+  &.atrule, &.keyword, &.attr-value {
+    color: #0000ff;
+  }
+}
+
+.language-sas .language-autohotkey .token.selector {
+  color: #0000ff;
+}
+
+.language-sas .language-json .token {
+  &.boolean, &.number {
+    color: #0000ff;
+  }
+}
+
+code[class*="language-css"] {
+  color: #0000ff;
+}
+
+.language-sas .token {
+  &.function {
+    color: #393A34;
+  }
+
+  &.deleted {
+    color: #9a050f;
+  }
+}
+
+.language-sas .language-autohotkey .token.tag {
+  color: #9a050f;
+}
+
+.language-sas .token.selector, .language-autohotkey .token.keyword {
+  color: #00009f;
+}
+
+.language-sas .token {
+  &.important, &.bold {
+    font-weight: bold;
+  }
+
+  &.italic {
+    font-style: italic;
+  }
+
+  &.class-name {
+    color: #2B91AF;
+  }
+}
+
+.language-sas .language-json .token.property {
+  color: #2B91AF;
+}
+
+.language-sas .token {
+  &.tag, &.selector {
+    color: #800000;
+  }
+
+  &.attr-name, &.property, &.regex, &.entity {
+    color: #ff0000;
+  }
+
+  &.directive.tag .tag {
+    background: #ffff00;
+    color: #393A34;
+  }
+}
+
+/* overrides color-values for the Line Numbers plugin
+ * http://prismjs.com/plugins/line-numbers/
+ */
+
+.language-sas .line-numbers .line-numbers-rows {
+  border-right-color: #a5a5a5;
+}
+
+.language-sas .line-numbers-rows > span:before {
+  color: #2B91AF;
+}
+
+/* overrides color-values for the Line Highlight plugin
+* http://prismjs.com/plugins/line-highlight/
+*/
+
+.language-sas .line-highlight {
+  background: rgba(193, 222, 241, 0.2);
+  background: -webkit-linear-gradient(left, rgba(193, 222, 241, 0.2) 70%, rgba(221, 222, 241, 0));
+  background: linear-gradient(to right, rgba(193, 222, 241, 0.2) 70%, rgba(221, 222, 241, 0));
+}

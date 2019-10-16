@@ -20,7 +20,7 @@ image: https://drive.google.com/uc?id=1edu-wUoFkrMuoemONmOvsIMpnvkAdFXY
                   <a class="post-link" href="{{ site.baseurl }}{{ post.url }}">
                     <div class="page-treasure-wrapper">
                       <div class="page-treasure-image" >
-                        <div style="background-image: url('{{ post.image }}')"></div>
+                        <div style="background-image: url('{{ post.image | relative_url }}')"></div>
                       </div>
                       <div class="page-treasure">
                         <h2>{{ post.title }}</h2>

@@ -5,7 +5,7 @@ category: "credit risk"
 title: "Nostrud occaecat"
 description: Ex dolore cillum ad sunt irure reprehenderit elit aliqua proident qui sed aliquip deserunt ullamco ea ut est in.
 author: Sarah Chen
-# image: https://www.federalreserve.gov/images/_DSC1401_obscured_3000_mphomepage.jpg
+image: images\posts\laptop.jpg
 ---
 
 **At any given moment, there are hundreds of trillions of debt or credit.**

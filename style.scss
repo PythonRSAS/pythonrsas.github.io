@@ -13,9 +13,9 @@
 @import "sidebar";
 @import "navbar";
 @import "navbarsplash";
-@import "mobilenetdemo";
-@import "digitrecognizer";
-@import "emotionrecognizer";
+// @import "mobilenetdemo";
+// @import "digitrecognizer";
+// @import "emotionrecognizer";
 @import "deepdrum";
 @import "splash";
 @import "carbon";
@@ -3581,7 +3581,8 @@ pre[class*=language-] {
 }
 
 #page-doc .page-holder ul li {
-  margin: 0;
-  width:100%;
+  list-style-type: none;
+  width: 60%;
+  margin: 0px auto
 }
 
