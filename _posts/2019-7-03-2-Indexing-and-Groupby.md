@@ -7,8 +7,8 @@ description: Data processing using Python and SAS.
 author: Sarah Chen
 # image: https://www.audubon.org/sites/default/files/styles/hero_image/public/sfw_nationalgeographic_1517960.jpg?itok=F5pikjxg
 ---
+### Indexing and GroupBy
 
-###Indexing and GroupBy
 SAS users tend to think of indexing SAS data sets to either improve query performance or as a method to avoid dataset sorting. Another use case for using SAS indexes is to provide direct access to a specific observation in a dataset. 
 
 For example, in order to retrieve an observation whose value for the variable <span class="coding">Name </span>is ‘Lassiter’, absent an index, SAS performs a sequential read starting with the first observation in the dataset.  SAS normally begins reading at observation one reading the dataset in sequence for <span class="coding">name =</span>‘Lassiter’ until all observations are read.  
@@ -28,7 +28,7 @@ When a <span class="coding">DataFrame</span> is assigned an index, the rows rema
 
 In the following example, Create <span class="coding">DataFrame</span> Index illustrates the <span class="coding">set_index</span> method using the <span class="coding">_N_</span> column.  In this example, the values from the <span class="coding">ID</span> column supply labels for the <span class="coding">DataFrame</span> rows.
 
-<div class="code-head"><span>code</span Create DataFrame Index.py</div>
+<div class="code-head"><span>code</span> Create DataFrame Index.py</div>
 
 ```python
 <div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
@@ -367,9 +367,9 @@ The Boolean comparisons are enclosed with parentheses ( ) and utilize any of the
 
 In this example the Boolean comparisons contain two predicates; the first is (df['Sector'] == 'West') and the second is (df['Before'] > 20). The Boolean operator & (and) joins the predicates and therefore both must return True in order to meet the row selection criteria.
 
-Note the sytax differences between Listing 4-11, Return Row and Column Slices and 4.12, Return Rows Conditionally.  In the former rows are sliced based on labels.  The latter uses the df['Sector'] and df['Before'] to designate column names for the conditional expression.
+Note the sytax differences between Return Row and Column Slices and Return Rows Conditionally.  In the former rows are sliced based on labels.  The latter uses the df['Sector'] and df['Before'] to designate column names for the conditional expression.
 
-Suppose we wish to sub-set rows based on the last letter of the value for the <span class="coding">Name </span>column ending with the letter ‘r’.  In the following example, Conditionally Return Rows with String Manipulation combines the <span class="coding">.loc</span>() indexer with the .str.endswith attribute to satisfy the request.
+Suppose we wish to sub-set rows based on the last letter of the value for the <span class="coding">Name </span>column ending with the letter ‘r’.  In the following example, Conditionally Return Rows with String Manipulation combines the <span class="coding">.loc</span>() indexer with the <span class="coding">.str.endswith</span> attribute to satisfy the request.
 
 <div class="code-head"><span>code</span> Conditionally Return Rows with String Manipulation.py</div>
 
@@ -377,9 +377,9 @@ Suppose we wish to sub-set rows based on the last letter of the value for the <s
 df.loc[df['Name'].str.endswith("r"), ['District', 'Sector']]
 KeyError: 'the label [Name] is not in the [index]'
 ```
-Unfortunately, this example raises a KeyError since the column <span class="coding">Name </span>was dropped when the df.index was initially created in the following example, Add Index to <span class="coding">DataFrame</span>. 
+Unfortunately, this example raises a KeyError since the column <span class="coding">Name </span>was dropped when the <span class="coding">df.index</span> was initially created in the following example, Add Index to <span class="coding">DataFrame</span>. 
 
-Note this error message is truncated here.  One remedy for the KeyError  is to ‘return’ the <span class="coding">Name </span>column using the .reset_index function illustrated in the example below, Drop <span class="coding">DataFrame</span> Index.
+Note this error message is truncated here.  One remedy for the KeyError  is to ‘return’ the <span class="coding">Name </span>column using the <span class="coding">.reset_index</span> function illustrated in the example below, Drop <span class="coding">DataFrame</span> Index.
 
 <div class="code-head"><span>code</span> Drop DataFrame Index.py</div>
 
@@ -392,15 +392,20 @@ Note this error message is truncated here.  One remedy for the KeyError  is to �
 7  Milner      15     65 
 ```
 In this example the syntax:
+
+```python
 df.reset_index(inplace = True)
-calls the .reset_index method to ‘drop’ the index and return the <span class="coding">Name </span>column as one of the columns on the df <span class="coding">DataFrame</span>.  
+calls the .reset_index method to ‘drop’ the index and return the <span class="coding">Name </span>column as one of the columns on the df <span class="coding">DataFrame</span>.
+```
+The <span class="coding">inplace = true</span> argument performs the operation in-place. The second line in the program chains the <span class="coding">.str.endswith("r")</span> attribute to the <span class="coding">Name </span>column and returns True for any value whose last letter in the sequence is ‘r’. 
 
-The <span class="coding">inplace = true</span> argument performs the operation in-place. The second line in the program chains the .str.endswith("r") attribute to the <span class="coding">Name </span>column and returns True for any value whose last letter in the sequence is ‘r’. 
-
-The purpose of this example is to simply illustrate resetting an index with the reset_index method.  The more Pythonic remedy for the KeyError illustrated in the example below is: df.loc[df.index.str.endswith('r'), ['District', 'Sector']]The analog SAS program is shown in the following example, Conditionally Return Observations with String Manipulation.
+The purpose of this example is to simply illustrate resetting an index with the <span class="coding">reset_index</span> method.  The more Pythonic remedy for the KeyError illustrated in the example below is: 
+```python
+df.loc[df.index.str.endswith('r'), ['District', 'Sector']]
+```
+The analog SAS program is shown in the following example, Conditionally Return Observations with String Manipulation.
 
 <div class="code-head"><span>code</span> Conditionally Return Observations with String Manipulation.py</div>
-
 ```python
 4  proc sql;
 5    select name
@@ -410,10 +415,10 @@ The purpose of this example is to simply illustrate resetting an index with the 
 9    where substr(reverse(trim(name)),1,1) = 'r';
 10 quit;
 ```
-The nested functions in the WHERE clause work from the inside out by:
-1. Calling the TRIM function to remove trailing blanks 
-2. Calling the REVERSE function to reverse the letters in the variable name
-3. Calling the SUBSTR (left of =) function to test if the first letter is ‘r’
+The nested functions in the <span class="coding">WHERE</span> clause work from the inside out by:
+1. Calling the <span class="coding">TRIM</span> function to remove trailing blanks 
+2. Calling the <span class="coding">REVERSE</span> function to reverse the letters in the variable name
+3. Calling the <span class="coding">SUBSTR</span> <span class="coding">(left of =)</span> function to test if the first letter is ‘r’
 Figure 4-3, Last Name Ends with ‘r’, displays the output from <span class="coding">PROC SQL</span>.
  
 Figure 4-3. Last Name Ends with ‘r’
@@ -549,8 +554,7 @@ LeMay       III   West   LeMay      35     69
 
 In this example a Python list of row values based on their position is passed to the <span class="coding">.iloc</span> indexer.  Row 0 is the first row and row -1 is the last row in the df <span class="coding">DataFrame</span>.
 
-The same logic for SAS is illustrated in Listing 4-22, Return First and Last Observation.
-Listing 4-22. Return First and Last Observation
+The same logic for SAS is illustrated in the example below, Return First and Last Observation.
 
 <div class="code-head"><span>code</span> Return First and Last Observation.py</div>
 
@@ -574,9 +578,9 @@ The input dataset df uses the end = dataset option to detect the last observatio
 Sub-setting IF statements are used to output the first and last observation to the output dataset df1.  The output dataset is displayed in Figure 4-5, First and Last Observation.  The noobs option for PROC PRINT supresses the display of the SAS observation number contained in the automatic SAS variable <span class="coding">_n_</span>.
 
 Figure 4-5. First and Last Observation
-The <span class="coding">.iloc</span> indexer accomodates a Python list of integers as well as a slice object to define row and column selections.  Listing 4-23 <span class="coding">.iloc</span> Using List and Slice Object, illustrates combining these selectors.  
+The <span class="coding">.iloc</span> indexer accomodates a Python list of integers as well as a slice object to define row and column selections.  In the following example, <span class="coding">.iloc</span> Using List and Slice Object, illustrates combining these selectors.  
 
-<div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
+<div class="code-head"><span>code</span> Using List and Slice Object.py</div>
 
 ```python
 >>> df.reset_index(inplace = True)
@@ -595,8 +599,7 @@ df.iloc[ : , :3]
 
 If the column slicer stop position exceeds the number of columns in the <span class="coding">DataFrame</span> then all columns are returned.  
 
-The <span class="coding">.iloc</span> indexer accepts the value -1 value to indicate the last object in a sequence, -2 as second to last, and so on.  Listing 4-24 Return Last Row From Last Column illustrates this feature.
-Listing 4-24. Return Last Row From Last Column
+The <span class="coding">.iloc</span> indexer accepts the value -1 value to indicate the last object in a sequence, -2 as second to last, and so on. 
 
 <div class="code-head"><span>code</span> Return Last Row From Last Column.py</div>
 
