@@ -5,7 +5,7 @@ category: "python for sas"
 title: "Shifting Time Series"
 description: Time series data processing using Python and SAS.
 author: Sarah Chen
-image: images\posts\laptop.jpg
+image: images/posts/laptop.jpg
 ---
 
 **While we are postponing, life speeds by.**
