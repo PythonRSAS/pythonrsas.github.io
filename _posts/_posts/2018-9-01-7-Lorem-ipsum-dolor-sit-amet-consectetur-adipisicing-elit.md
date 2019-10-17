@@ -1,11 +1,11 @@
 ---
 layout: post
-tag: The art of Learning
-category: education
-title: "Fugiat elit cillum quis occaecat coms magna veniam"
-description: Dolore veniam mollit magna ea in nisi minim ullamco enim nulla magna officia.
+tag: commercialy available
+category: "real estates"
+title: "Lorem ipsum dolor sit amet consectetur adipisicing elit"
+description: Eiusmod laboris dolore sunt eiusmod enim ex ea sunt irure occaecat in elit sint.
 author: Sarah Chen
-# image: https://www.audubon.org/sites/default/files/styles/hero_image/public/sfw_nationalgeographic_1517960.jpg?itok=F5pikjxg
+image: https://drive.google.com/uc?id=1oZN0tSeBA91_XlyCmsOfLbJLeQ2_7wMi
 ---
 
 **Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia consequuntur, provident nemo soluta similique, maiores sit dicta doloremque facere laudantium [Keras](https://keras.io/){:target="_blank"} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque neque totam voluptatem porro accusantium id.**
@@ -34,74 +34,6 @@ In consequat anim sunt excepteur. [Supervised Learning](https://en.wikipedia.org
 </figure>
 
 Lorem ipsum deserunt consequat. **java tengh** Ad ex quis dolor oe esse qui. (**random** or **lorem values**). Lorem ipsum dolor sit amet, sicing elit. Error autem dolor dolores, Modi temporibus aitis? (**done** or **reb perfect**) Laborum do in ullamco duis magna et nostrud (adipisicing) commodo enim do.
-
-### R code
-
-<div class="code-head">random-number.r<span>code</span></div>
-
-```R
-#utility functions
-
-readinteger <- function()
-{
-  n <- readline(prompt="Enter an integer: ")
-  if(!grepl("^[0-9]+$",n))
-  {
-    return(readinteger())
-  }
-  return(as.integer(n))
-}
-
-# real program start here
-
-num <- round(runif(1) * 100, digits = 0)
-guess <- -1
-
-cat("Guess a number between 0 and 100.\n")
-
-while(guess != num)
-{
-  guess <- readinteger()
-  if (guess == num)
-  {
-    cat("Congratulations,", num, "is right.\n")
-  }
-  else if (guess < num)
-  {
-    cat("It's bigger!\n")
-  }
-  else if(guess > num)
-  {
-    cat("It's smaller!\n")
-  }
-}
-
-```
-### SAS code
-
-<div class="code-head">list.sas<span>code</span></div>
-
-```sas
-OPTIONS LS = 75 PS = 58 NODATE;
-
-DATA basic;
-  input subj 1-4 name $ 6-23 clinic $ 25-28
-        gender 30 no_vis 32-33 type_vis 35-37
-        expense 39-45;
-  DATALINES;
-1024 Alice Smith        LEWN 1  7 101 1001.98
-1167 Maryann White      LEWN 1  2 101 2999.34
-1168 Thomas Jones       ALTO 2 10 190 3904.89
-1201 Benedictine Arnold ALTO 2  1 190 1450.23
-1302 Felicia Ho         MNMC 1  7 190 1209.94
-1471 John Smith         MNMC 2  6 187 1763.09
-1980 Jane Smiley        MNMC 1  5 190 3567.00
-  ;
-RUN;
-
-PROC PRINT data = basic;
-RUN;
-```
 
 Ex voluptate. **Blablasdf** and **Rdfdsgga**.
 
