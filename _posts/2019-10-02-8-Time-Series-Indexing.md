@@ -13,7 +13,9 @@ author: Sarah Chen
 
 <!-- > not used for now**Update**: Lorem ipsum dolor. [end of life](https://pythonclock.org/), Aliquip ad magna laborum eu ut aute ut quis in veniam in. **Python3**. -->
 
-One of the main uses of Timestamp and Period objects is indexing.   Indexing is so vital to pandas timeseries operations that lists of Timestamp or Period objects are automatically coerced to <span class="coding">DatetimeIndex</span> and <span class="coding">PeriodIndex</span> respectively when used as index.   Recall a pandas index is simply a way to label rows.   Python pandas is so powerful and convenient in handling timeseries that you may want it to be your go-to tool for timeseries data, especially for financial data. 
+The most fundamental measures of time are point in time **timestamp** and **intervals** (fixed or variable), and the difference between them **timedelta**.  These objects provide building blocks for comprehensive timeseries data processes.  
+
+Recall a pandas index is simply a way to label rows.  One of the main uses of Timestamp and Period objects is indexing.   Lists of Timestamp or Period objects are automatically coerced to <span class="coding">DatetimeIndex</span> and <span class="coding">PeriodIndex</span> respectively when used as index.    Python pandas is powerful and convenient in handling timeseries.  But there are also traps and tips you should be aware in order to avoid errors. 
 
 In this post, you will learn: 
 
@@ -35,10 +37,15 @@ In this post, you will learn:
 
 [Missing Values](#Missing-Values)
 
+Let's get started. 
+<figure>
+  <img src="{{ "/images/posts/alex-azabache.jpg" | relative_url }}">
+  <figcaption>Photo by Alex Azabache</figcaption>
+</figure>
+
 SAS users need to be aware that pandas allow duplicate index.  When we perform strict timeseries analysis, we would need to remove duplicates.  
 
 
-The most fundamental measures of time are point in time **timestamp** and **intervals** (fixed or variable), and the difference between them **timedelta**.  These objects provide building blocks for comprehensive timeseries data processes.  You can refer to python native datetime module [here](https://docs.python.org/3/library/datetime.html){:target="_blank"}.
 
 <h3 id="DatetimeIndex">DatetimeIndex</h3>
 
@@ -418,3 +425,7 @@ These can be handled using pandas.tseries.holiday or custom holiday calendar.
 3.  Other causes
 These missing can be left as missing or imputed using various methods, for example, <span class='coding'>ffill</span>. 
 Missing datetime handling will be demonstrated using a real life example, using historical Apple stock price. 
+
+
+### Further Reading
+- [Python native datetime module](https://docs.python.org/3/library/datetime.html){:target="_blank"}.
