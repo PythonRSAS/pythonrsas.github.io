@@ -140,9 +140,9 @@ dict_keys(['I', 'II', 'III'])
 'II': Int64Index([4, 5, 6, 7], dtype='int64'), 
 'III': Int64Index([8, 9, 10, 11, 12], dtype='int64')}
 ```
-The syntax  gb.groups.keys()returns a Python list for the keys’ values.  The syntax  gb.groups returns a Python dictionary of key/value pairs for each key, mapped to a group, along with a corresponding list of values indicating which rows compose a given group.  In this example, rows 0, 1, 2, and 3 define the groupby level for District = 'I'.
+The syntax  <span class="coding">gb.groups.keys()</span> returns a Python list for the keys’ values.  The syntax  gb.groups returns a Python dictionary of key/value pairs for each key, mapped to a group, along with a corresponding list of values indicating which rows compose a given group.  In this example, rows 0, 1, 2, and 3 define the groupby level for District = 'I'.
 
-Consider the following example, Summary by District illustrates similar logic calling PROC SUMMARY to create a ‘grouped’ dataset summing the numeric variables by district.
+Consider the following example, Summary by District illustrates similar logic calling <span class="coding">PROC SUMMARY</span> to create a ‘grouped’ dataset summing the numeric variables by district.
 
 <div class="code-head"><span>code</span> Summary by District.sas</div>
 
@@ -222,7 +222,7 @@ Note:
 * In this example a for loop iterates over the GroupBy object to produce a custom report.  As we have seen previously, iterating manually over objects can be useful.
 * However the apply method is a more productive alternative for applying methods and functions.
 
-With SAS, the same report is easily produced using the <span class='coding'>Data</span> step by group processing as shown in the example below, Iterative By Group Processing.  While we could have called PROC PRINT for this example, the goal for the example is to illustrate how first.district and last.district behaviors for By Group processing.
+With SAS, the same report is easily produced using the <span class='coding'>Data</span> step by group processing as shown in the example below, Iterative By Group Processing.  While we could have called <span class="coding">PROC PRINT</span> for this example, the goal for the example is to illustrate how first.district and last.district behaviors for By Group processing.
 
 <div class="code-head"><span>code</span> Iterative By Group Processing.sas</div>
 
@@ -243,7 +243,7 @@ file print;
     put '=========================================';
  run;
 ```
-In general, SAS By Group processing is established with either PROC SORT or an ORDER BY statement in PROC SQL.  For Data step processing when a BY statement is encountered, SAS creates the automatic variables first.<by_variable> and last.<by_variable> to permit truth testing to control logic by identifying observations as first or last in the by group.  The statement fragment:
+In general, SAS By Group processing is established with either <span class="coding">PROC SORT</span> or an ORDER BY statement in <span class="coding">PROC SQL</span>.  For Data step processing when a BY statement is encountered, SAS creates the automatic variables first.<by_variable> and last.<by_variable> to permit truth testing to control logic by identifying observations as first or last in the by group.  The statement fragment:
 if first.district then
 
 is a truth test with an implied Boolean evaluation of 0 for false and 1 for true.  In our example, the statement above can be also be written as:
@@ -327,7 +327,7 @@ NOTE: The data set WORK.GB_SUM has 3 observations and 6 variables.
 13 proc print data = gb_sum noobs;
 14 run;
 ```
-Figure 4-11, By Group Statistics for Different Variables Ouput displays the output created by PROC SUMMARY.
+In the example, By Group Statistics for Different Variables Ouput illustrates the output created by <span class="coding">PROC SUMMARY</span>.
 
 #### Filtering by Group
 A common coding pattern for data analysis is applying actions to a set of data based on a group’s statistic.  As an example, consider the example below, Group By Filtering on a Statistic.
@@ -425,7 +425,7 @@ df['Age'].groupby(df['Age_Fmt']).apply(stats).unstack()
 
 creates the GroupBy object using unique values from the Age_Fmt column as the group’s levels and is attached to the df['Age'] column.  The apply method calls the defined function stats applying the statistics column values within each group.  The unstack method reshapes the returned object from a stacked form (in this case a Series object) to an unstacked form (a “wide” DataFrame).   
 
-The same logic in SAS is shown in the following example, By Group With Continuous Variable.  In this example the aggregation functions for the age variable statistics are produced with PROC SQL.
+The same logic in SAS is shown in the following example, By Group With Continuous Variable.  In this example the aggregation functions for the age variable statistics are produced with <span class="coding">PROC SQL</span>.
 
 <div class="code-head"><span>code</span> By Group With Continuous Variable.sas</div>
 
@@ -449,9 +449,8 @@ from
 group by fmt.label;
 quit;
 ```
-<span class='coding'>PROC FORMAT</span> provides similar binning logic as the cut method in the Python example Listing 4-59, GroupBy Continuous Column.  The cntlout = groups option outputs a dataset containing several variables including the label variable holding the value labels for the user-defined agefmt. format.  The aggregation functions are applied to the age variable using <span class="coding">PROC SQL</span>.  <span class="coding">PROC SQL</span> uses a left join to combine rows on the label column from the groups table (created with cntlout =) with rows from the aggregation functions applied to the age column from the df dataset.  The output from <span class="coding">PROC SQL</span> is displayed in Figure 4-12, Group By with Continuous Values.
+<span class='coding'>PROC FORMAT</span> provides similar binning logic as the cut method in the Python example, GroupBy Continuous Column.  The cntlout = groups option outputs a dataset containing several variables including the label variable holding the value labels for the user-defined agefmt. format.  The aggregation functions are applied to the age variable using <span class="coding">PROC SQL</span>.  <span class="coding">PROC SQL</span> uses a left join to combine rows on the label column from the groups table (created with cntlout =) with rows from the aggregation functions applied to the age column from the df dataset.  The output from <span class="coding">PROC SQL</span> is displayed in the example Group By with Continuous Values.
  
-Figure 4-12. Group By with Continuous Values
 #### Transform Based on Group Statistic
 Up to this point the GroupBy objects return DataFrames with fewer rows than the original DataFrame.  This is to be expected since GroupBy objects are commonly used in aggregation operations.  There are cases where you wish to apply a transformation based on group statistics and merge the transformed version with the original DataFrame.  Calculating a z-score is an example illustrated in the example below Transform Based on GroupBy Statistic.
 
@@ -492,7 +491,7 @@ df1 = pd.concat([df, z], axis = 1)
 
 creates the df1 DataFrame by concatenating the df and z DataFrames along the columns with the axis = 1 argument.  We cover the details for Pandas concatenation and joins in Chapter 5, Advanced Data Management.
 
-Listing 4-62 Transform Based on By Group Statistic illustrates the same logic in SAS.  PROC SUMMARY is called to create the intermediate variables used for calculating the z-scores.  PROC SORT is called to sort the df dataset and the z_out dataset produced by PROC SUMMARY using the variable district as the sort keys. 
+In the following example, Transform Based on By Group Statistic illustrates the same logic in SAS.  <span class="coding">PROC SUMMARY</span> is called to create the intermediate variables used for calculating the z-scores.  <span class="coding">PROC SORT</span> is called to sort the df dataset and the z_out dataset produced by <span class="coding">PROC SUMMARY</span> using the variable district as the sort keys. 
 
 <div class="code-head"><span>code</span> Transform Based on By Group Statistic.sas</div>
 
@@ -529,10 +528,8 @@ Listing 4-62 Transform Based on By Group Statistic illustrates the same logic in
 33 run;
 
 ```
-The final step uses a Data step to merge the df and z_out datasets on the district sort key and performs the z-score calculations.  The indermediate variables from the z_out dataset are dropped with a DROP list.  Figure 4-13, Transformations with By Group Statistics displays the output producted by PROC PRINT.
-
+The final step uses a Data step to merge the df and z_out datasets on the district sort key and performs the z-score calculations.  The indermediate variables from the z_out dataset are dropped with a DROP list.
  
-Figure 4-13. Transformations with BY Group Statistics
 ### Pivot
 Pandas provide the pivot_table function to create speadsheet-style pivot tables.  The pivot_table function enables aggregation of data values across row and column dimensions.   As we will see shortly, pivot_table function not only provides a multi-dimensional view of your data, but it turns out to be a convenient method to apply a <span class="coding">MultiIndex</span> to DataFrame rows and columns.
 
@@ -625,15 +622,15 @@ pd.pivot_table(df2,values     = ['Amount'],
 ```
 From, Output of Sales by Year Over Territory shows that the EMEA territory has an usually high amount of cancellations compared to the rest of the organization.  
 
-To produce the same report with SAS requires multiple steps after the .csv file is read with PROC IMPORT.  The task is to summarize the amount variable and transpose the territory variable’s unique values into variables.  The steps are:
+To produce the same report with SAS requires multiple steps after the .csv file is read with <span class="coding">PROC IMPORT</span>.  The task is to summarize the amount variable and transpose the territory variable’s unique values into variables.  The steps are:
 
-1.  Sort the sales_detail dataset created with PROC IMPORT by the territory variable.
+1.  Sort the sales_detail dataset created with <span class="coding">PROC IMPORT</span> by the territory variable.
 
-2.  Summarize the sales_detail dataset by territory for the amount variable with PROC SUMMARY.  Output summary as sales_sum dataset.
+2.  Summarize the sales_detail dataset by territory for the amount variable with <span class="coding">PROC SUMMARY</span>.  Output summary as sales_sum dataset.
 
 3.  Sort the sales_sum dataset by the variables year status.
 
-4.  Transpose the sales_sum dataset on the territory variable (<span class="coding">ID</span>) by year status with PROC TRANSPOSE.  Create a transposed dataset called sales_trans.
+4.  Transpose the sales_sum dataset on the territory variable (<span class="coding">ID</span>) by year status with <span class="coding">PROC TRANSPOSE</span>.  Create a transposed dataset called sales_trans.
 
 5.  Print the sales_trans dataset using the SAS-supplied dollar13.2 format.
 
