@@ -20,9 +20,8 @@ Consider Listing 4-37, Slice Month 3 for all Years.   In this example we wish to
 tickets.loc[(:,3),:]
 
 is the appropirate syntax.  However, this syntax raises an error since it is illeagl to use a colon inside a tuple constructor.   Recall a tuple is an immutable sequence of items enclosed by parenthesis. As a convenience the Python’s built-in slice(None)function selects all the content for a level. In this case we want month level 3 for all years.  
-Listing 4-37. Slice Month 3 for all Years
 
-<div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
+<div class="code-head"><span>code</span> Slice Month 3 for all Years.py</div>
 
 ```python
 >>> tickets.loc[(slice(None), 3), :]
@@ -37,10 +36,9 @@ Year Month
 The syntax slice(None) is the slicer for the Year column which includes all values for a given level, in this case, 2015 to 2018 followed by 3 to designate the level for month.  All columns are returned since no column slicer was given.
 Another way to request this same sub-set is:
 tickets.loc[(slice(None), slice(3,3)), :]
-Consider the request for all years and months 2 and 3 as the row slicer in Listing 4-38, Slice Months 2 and 3 for all Years.
-Listing 4-38. Slice Months 2 and 3 for all Years
+Consider the request for all years and months 2 and 3 as the row slicer in the following example:
 
-<div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
+<div class="code-head"><span>code</span> Slice Months 2 and 3 for all Years.py</div>
 
 ```python
 >>> tickets.loc[(slice(None), slice(2,3)), :]
@@ -62,10 +60,7 @@ idx_obj = ((slice(None), slice(2,3)), slice(None))
 tickets.loc[idx_obj]
 This syntax helps in further understanding exactly how the slicing operation is performed.  The first slice(None) requests all of the rows for the outer row label, years 2015 to 2018.  slice(2,3) returns months 2 and 3 for inner row label.  The last slice(None) requests all columns, that is, both the outer column Area and the inner column When.
 Fairly quickly, however, we begin to have difficulty supplying a collection of tuples  for the slicers used by the <span class="coding">.loc</span> indexer.  Fortunately, Pandas provides the IndexSlice object to deal with this situation.  
-Consider Listing 4-39 IndexSlice Object, as an alternative to Listing 4-39, IndexSlice Object.
-Listing 4-39. IndexSlice Object
-
-<div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
+<div class="code-head"><span>code</span> IndexSlice Object.py</div>
 
 ```python
 >>> idx = pd.IndexSlice
@@ -87,9 +82,9 @@ The IndexSlice object provides a more natural syntax for slicing operations on M
 tickets.loc[idx[2015:2018, 2:3], :]
 return years 2015:2018 inclusive on the outer level of the <span class="coding">MultiIndex</span> for the rows and months 2 and 3 inclusive on the inner level.  The colon (:) designates the start and stop positions for these row labels.  Following the row slicer is a comma (,) to designate the column slicer.  With no explicit column slices defined all columns are returned.  
 Consider Listing 4-40, Slicing Rows and Columns, Example 1.
-Listing 4-40, Slicing Rows and Columns, Example 1
 
-<div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
+
+<div class="code-head"><span>code</span> Slicing Rows and Columns, Example 1.py</div>
 
 ```python
 >>> idx = pd.IndexSlice
@@ -102,10 +97,9 @@ Year Month
 ```
 The row slicer returns levels 2018  for Year on the outer level of the <span class="coding">MultiIndex</span> and 2 and 3 from Month on the inner level.  The column slicer returns the levels City and Rural from Area on the outer level of the <span class="coding">MultiIndex</span>.  In this example, the column slicer did not slice along the inner level of the <span class="coding">MultiIndex</span> on When.
 
-Listing 4-41, Slicing Rows and Slicing Columns, Example 2, illustrates details for slicing columns.  
-Listing 4-41. Slicing Rows and Slicing Columns, Example 2
+ 
 
-<div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
+<div class="code-head"><span>code</span> Slicing Rows and Slicing Columns, Example 2.py</div>
 
 ```python
 >>> idx = pd.IndexSlice
@@ -122,10 +116,9 @@ Often times we need to sub-set based on conditional criteria.  Pandas allows the
 
 We can identify instances where the number of tickets relates to a given threshold by creating a Boolean mask and applying it to the <span class="coding">DataFrame</span> using the <span class="coding">.loc</span> indexer.  Specifically, we want to know when the number of tickets issued in the city during the day is greater than 25.  
 
-Listing 4-42, Conditional Slicing, illustrates this feature.
-Listing 4-42. Conditional Slicing
 
-<div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
+
+<div class="code-head"><span>code</span> Conditional Slicing.py</div>
 
 ```python
 >>> mask = tickets[('City' ,'Day' )] > 25
@@ -138,9 +131,9 @@ Name: (City, Day), dtype: float64
 In this example we define the mask object using the column slicing syntax followed by the Boolean operator greater than (>) and 25 as the threshold value.  Rows are sliced using the conditional with the mask object.  The columns are sliced using the City level from Area and the Day level from When.   Area is the outer level of the column <span class="coding">MultiIndex</span> and When is the inner level.
 
 Another form of conditional slicing uses the Pandas where attribute.  The where attribute returns a <span class="coding">DataFrame</span> the same size as the original whose corresponding values are returned when the condition is True.  When the condition is <span class="coding">False</span>, the default behavior is to return NaN’s.  This feature is illustrated in Listing 4-43, <span class="coding">DataFrame</span> where Attribute.  
-Listing 4-43. DataFrame where Attribute
+ 
 
-<div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
+<div class="code-head"><span>code</span> DataFrame where Attribute.py</div>
 
 ```python
 >>> missing = "XXX"
@@ -165,10 +158,9 @@ The other = argument assigns an arbitrary value for the False condition.  Also n
 #### Cross Sections
 Pandas <span class="coding">DataFrame</span>s provision a cross section method called xs as another means for returning rows and columns from an indexed <span class="coding">DataFrame</span> or partial data in the case of a MultiIndexed <span class="coding">DataFrame</span>.  The compact syntax offered by the xs method makes it fairly easy to subset MultiIndexed <span class="coding">DataFrame</span>s.  The xs method is read only.  
 
-Consider Listing 4-44, xs Cross Section, Example 1.  
-Listing 4-44.  xs Cross Section, Example 1
+  
 
-<div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
+<div class="code-head"><span>code</span> xs Cross Section, Example 1.py</div>
 
 ```python
 >>> tickets.xs((1), level='Month')
@@ -182,10 +174,9 @@ Year
 ```
 The xs cross section method has two agruments.  The first argument, in this example is level 1 and the second argument level = 'Month' returning the rows for  month 1 for all years with all columns.  Recall the Month column is a component of the <span class="coding">MultiIndex</span> to form the row labels.  
 
-The the xs cross section method works along a column axis illustrated in Listing 4-45, xs Cross Section, Example 2.
-Listing 4-45. xs Cross Section, Example 2
+The the xs cross section method works along a column axis illustrated in 
 
-<div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
+<div class="code-head"><span>code</span> xs Cross Section, Example 2.py</div>
 
 ```python
 >> tickets.xs(('City'), level='Area', axis = 1)
@@ -207,9 +198,9 @@ Year Month
 In this example we return all rows for the level City.  The axis = 1 argument returns just the columns for the level City. 
 
 Because the xs cross section method returns a <span class="coding">DataFrame</span> we can apply mathematical and statistical functions as attributes.  Listing 4-46, xs Cross Section, Example 3 returns the sum of all tickets issued during daylight hours in each of the three area.
-Listing 4-46. xs Cross Section, Example 3
 
-<div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
+
+<div class="code-head"><span>code</span> xs Cross Section, Example 3.py</div>
 
 ```python
 >>> tickets.xs(('Day'), level='When', axis = 1).sum()
@@ -218,10 +209,9 @@ City       178.0
 Rural      164.0
 Suburbs    178.0
 ```
-Listing 4-47, Summed Tickets Where Day over Area is the analog program for Listing 4-46.  
-Listing 4-47. Summed Tickets Where Day over Area
 
-<div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
+
+<div class="code-head"><span>code</span> Summed Tickets Where Day over Area.py</div>
 
 ```python
 4 proc sql;
