@@ -7,6 +7,7 @@ description: Data processing using Python and SAS.
 author: Sarah Chen
 # image: https://www.audubon.org/sites/default/files/styles/hero_image/public/sfw_nationalgeographic_1517960.jpg?itok=F5pikjxg
 ---
+This post is an extension of "Chapter 4: Indexing and GroupBy" from our ["Python for SAS Users" book.](https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001/ref=sr_1_1?qid=1571850820&refinements=p_27%3ASarah+Chen&s=books&sr=1-1&text=Sarah+Chen)  
 We cover the following topics:
 
 [- GroupBy](#GroupBy)
@@ -23,7 +24,11 @@ We cover the following topics:
 
 [- Pivot Table](#Pivot)
 
-
+Let's get started. 
+<figure>
+  <img src="{{ "/images/posts/caleb-stokes.jpg" | relative_url }}">
+  <figcaption>Photo by Caleb Stokes</figcaption>
+</figure>
 
 <h3 id="GroupBy">GroupBy</h3>
 
