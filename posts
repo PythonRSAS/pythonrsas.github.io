@@ -7,8 +7,18 @@ description: Data processing using Python and SAS.
 author: Sarah Chen
 # image: https://www.audubon.org/sites/default/files/styles/hero_image/public/sfw_nationalgeographic_1517960.jpg?itok=F5pikjxg
 ---
+In this post, you will learn:
 
-##### Slicing Rows and Columns
+[- Slicing Rows and Columns](#Slicing-Rows-and-Columns)
+
+[- Conditional Slicing](#Conditional-Slicing)
+
+[- Cross Sections](#Cross-Sections)
+
+
+
+<h3 id="Slicing-Rows-and-Columns">Slicing Rows and Columns</h3>
+
 Consider the following example, Slice Month 3 for all Years. In this example we wish to return the 3rd month for each year. Based on what we have learned about row and column slicing up to this point, it is reasonable to conclude the statement:
 ```python
 tickets.loc[(:,3),:]
@@ -114,7 +124,8 @@ Year Month
      3       3.0  32.0
 ```
 The row slicer returns levels 2018 for Year on the outer level of the <span class="coding">MultiIndex</span> and 2 and 3 from Month on the inner level.  The column slicer returns the levels City for Area on the outer level of the <span class="coding">MultiIndex</span> and the levels Day and Night on the inner level from When.
-##### Conditional Slicing
+<h3 id="Conditional-Slicing">Conditional Slicing</h3>
+
 Often times we need to sub-set based on conditional criteria.  Pandas allows the <span class="coding">.loc</span> indexer to permit a Boolean mask for slicing based an criteria applied to values in the DataFrame.  We introduced the concept of a Boolean mask in Chapter 3, Introduction to Pandas in the section on isnull.
 
 We can identify instances where the number of tickets relates to a given threshold by creating a Boolean mask and applying it to the DataFrame using the <span class="coding">.loc</span> indexer.  Specifically, we want to know when the number of tickets issued in the city during the day is greater than 25.  
@@ -159,7 +170,8 @@ Year Month
      3      XXX    32    33   XXX     XXX   XXX
 ```
 The other = argument assigns an arbitrary value for the False condition.  Also notice how the returned DataFrame is the same shape as the original.
-#### Cross Sections
+<h3 id="Cross-Sections">Cross Sections</h3>
+
 Pandas DataFrames provision a cross section method called xs as another means for returning rows and columns from an indexed DataFrame or partial data in the case of a MultiIndexed DataFrame.  The compact syntax offered by the xs method makes it fairly easy to subset MultiIndexed DataFrames.  The xs method is read only.  
 
 Consider Listing 4-44, xs Cross Section, Example 1.  

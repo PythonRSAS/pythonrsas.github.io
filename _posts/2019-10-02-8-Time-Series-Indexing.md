@@ -19,23 +19,23 @@ Recall a pandas index is simply a way to label rows.  One of the main uses of Ti
 
 In this post, you will learn: 
 
-[DatetimeIndex](#DatetimeIndex)
+[- DatetimeIndex](#DatetimeIndex)
 
-[Partial String Indexing](#Partial-String-Indexing)
+[- Partial String Indexing](#Partial-String-Indexing)
 
-[An Example Using Historical Bitcoin Trade Data](#An-Example-Using Historical-Bitcoin-Trade-Data)
+[- An Example Using Historical Bitcoin Trade Data](#An-Example-Using Historical-Bitcoin-Trade-Data)
 
-[PeriodIndex](#PeriodIndex)
+[- PeriodIndex](#PeriodIndex)
 
-[TimeDeltaIndex](#TimeDeltaIndex)
+[- TimeDeltaIndex](#TimeDeltaIndex)
 
-[Multiindex](#Multiindex)
+[- Multiindex](#Multiindex)
 
-[Stack and Unstack](#Stack-and-Unstack)
+[- Stack and Unstack](#Stack-and-Unstack)
 
-[Duplicates in Index](#Duplicates-in-Index)
+[- Duplicates in Index](#Duplicates-in-Index)
 
-[Missing Values](#Missing-Values)
+[- Missing Values](#Missing-Values)
 
 Let's get started. 
 <figure>

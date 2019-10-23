@@ -9,21 +9,24 @@ author: Sarah Chen
 ---
 We cover the following topics:
 
-**1.GroupBy**
+[- GroupBy](#GroupBy)
 
-**2. Iteration Over Groups**
+[- Iteration Over Groups](#Iteration-Over-Gruops)
 
-**3. GroupBy Summary Statistics**
+[- GroupBy Summary Statistics](#GroupBy-Summary-Statistics)
 
-**4. Filtering by Group**
+[- Filtering by Group](#Filtering-by-Group)
 
-**5. Group by Column with Continuous Values**
+[- Group by Column with Continuous Values](#Group-by-Column-with-Continuous-Values)
 
-**6. Transform Based on Group Statistic**
+[- Transform Based on Group Statistic](#Transform-based-on-Group-Statistic)
 
-**7. Pivot**
+[- Pivot Table](#Pivot)
 
-### GroupBy
+
+
+<h3 id="GroupBy">GroupBy</h3>
+
 A common pattern for data analysis familiar to SAS users is BY-group processing.  SAS defines BY-group processing as:
 …a method of processing observations from one or more SAS data sets that are grouped or ordered by values of one or more common variables. The most common use of BY-group processing in the <span class="coding">DATA</span> step is to combine two or more SAS data sets by using the BY statement with a <span class="coding">SET</span>, <span class="coding">MERGE</span>, <span class="coding">MODIFY</span>, or <span class="coding">UPDATE</span> statement. 
 
@@ -109,7 +112,7 @@ Index(['I', 'II', 'III'], dtype='object', name='District')
 
 Note:
 * All numeric columns in the underlying df DataFrame are grouped by the unique levels from the District column and then summed within each group.  Of course, the sum method is just one possibility here.  
-* ???Later in this chapter we will illustrate examples for selecting individual columns and applying different aggregation methods as well as applying nearly any valid DataFrame operation????
+* At the end of the post, we will illustrate examples for selecting individual columns and applying different applying any valid DataFrame operation.
 * The DataFrame returned after a groupby-apply operation is indexed with the by-column.  
 
 
@@ -183,12 +186,13 @@ data df;
 ```
 
 
-#### Iteration Over Groups
+<h3 id="Iteration-Over-Groups">Iteration Over Groups</h3>
+
 The GroupBy object supports iterating over the defined groups.  As an example, consider the example below, Iterate Over Groups.
 
-<div class="code-head"><span>code</span> Iterate Over Groups.sas</div>
+<div class="code-head"><span>code</span> Iterate Over Groups.py</div>
 
-```sas
+```python
 >>> gb = df.groupby(['District'])
 >>> for name, group in gb:
 ...     print('Group Name===> ',name)
@@ -222,7 +226,7 @@ Note:
 * In this example a for loop iterates over the GroupBy object to produce a custom report.  As we have seen previously, iterating manually over objects can be useful.
 * However the apply method is a more productive alternative for applying methods and functions.
 
-With SAS, the same report is easily produced using the <span class='coding'>Data</span> step by group processing as shown in the example below, Iterative By Group Processing.  While we could have called <span class="coding">PROC PRINT</span> for this example, the goal for the example is to illustrate how first.district and last.district behaviors for By Group processing.
+With SAS, the same report is easily produced using the <span class='coding'>Data</span> step by group processing as shown in the example below, Iterative By Group Processing.  While we could have called <span class="coding">PROC PRINT</span> for this example, the goal for the example is to illustrate how <span class='coding'>first. </span>and <span class='coding'>last.</span> behaviors for By Group processing.
 
 <div class="code-head"><span>code</span> Iterative By Group Processing.sas</div>
 
@@ -243,14 +247,11 @@ file print;
     put '=========================================';
  run;
 ```
-In general, SAS By Group processing is established with either <span class="coding">PROC SORT</span> or an ORDER BY statement in <span class="coding">PROC SQL</span>.  For Data step processing when a BY statement is encountered, SAS creates the automatic variables first.<by_variable> and last.<by_variable> to permit truth testing to control logic by identifying observations as first or last in the by group.  The statement fragment:
-if first.district then
+In general, SAS By Group processing is established with either <span class="coding">PROC SORT</span> or an <span class='coding'>ORDER BY</span> statement in <span class="coding">PROC SQL</span>.  
 
-is a truth test with an implied Boolean evaluation of 0 for false and 1 for true.  In our example, the statement above can be also be written as:
+For Data step processing when a <span class='coding'>BY</span> statement is encountered, SAS creates the automatic variables <span class='coding'>first.by_variable</span> and <span class='coding'>last.by_variable</span> to permit truth testing to control logic by identifying observations as first or last in the by group.  
 
-if first.distrct = 1 then 
-
-Similarly, pandas provisions the first and last methods for the groupby object as illustrated in the following example, Return First and Last Rows from GroupBy returns the first and last row respectively for each group.
+Similarly, pandas provisions the <span class='coding'>first</span> and <span class='coding'>last</span> methods for the groupby object as illustrated in the following example, "Return First and Last Rows from GroupBy" returns the first and last row respectively for each group.
 
 <div class="code-head"><span>code</span> Return First and Last Rows from GroupBy.py</div>
 
@@ -268,12 +269,13 @@ I          West   Jurat      51     55   22
 II         West  Milner      15     65   22
 III        West   LeMay      35     69   20
 ```
-#### GroupBy Summary Statistics
-As mentioned earlier a GroupBy feature is the ability to accept most methods applicable to a DataFrame by applying the methods to individual groups.  Consider the example below, Summary Statistics by Group.
+<h3 id="GroupBy-Summary-Statistics">GroupBy Summary Statistics</h3>
 
-<div class="code-head"><span>code</span> Summary Statistics by Group.sas</div>
+As mentioned earlier, a GroupBy feature is the ability to accept most methods applicable to a DataFrame by applying the methods to individual groups as shown in the example below, "Summary Statistics by Group".
 
-```sas
+<div class="code-head"><span>code</span> Summary Statistics by Group.py</div>
+
+```python
 >>> pd.options.display.float_format = '{:,.2f}'.format
 >>> gb.describe()
            Age                                           ...     
@@ -287,7 +289,8 @@ III       5.00 20.20 0.84 19.00 20.00 20.00 21.00 21.00  ...
 [3 rows x 24 columns]
 ```
 This example illustrates how methods not specifically implemented for the GroupBy object are passed through allowing groups to call the method.  Here the DataFrame’s desribe method performs the aggregration describing values for each group. Due to page width limitations, only a portion of the actual output is presented here.
-We can apply different aggregation methods to different columns defined by the GroupBy object.  In the following example, Applying sum over GroupBy the sum method is applied to all numeric columns.  Consider the following example, Different Statistics Over Group Columns illustrates different statistics applied to columns.
+
+We can apply different aggregation methods to different columns defined by the GroupBy object.  In the following example, Applying sum over GroupBy the sum method is applied to all numeric columns.  Consider the following example, "Different Statistics Over Group Columns" illustrates different statistics applied to columns.
 
 <div class="code-head"><span>code</span> Different Statistics Over Group Columns.py</div>
 
@@ -305,32 +308,30 @@ II       23.75     85   356  84.50 26.62
 III      20.20     35   302  69.00 30.20
 ```
 In this example the agg function is applied to the gb GroupBy object using a Python dictionary to identify aggregation methods applied to designated columns.  Recall a Python dictionary is a data structure for holding key/value pairs.  To accommodate multiple statistics for a given column, we pass a Python list of methods as the value for the dictionary.  For example, the After column has as its value a Python list of aggregation methods, sum, median, and std.
-In the following example, By Group Statistics over Different Variable illustrates the same approach using SAS.
+
+In the following example, "By Group Statistics over Different Variable" illustrates the same approach using SAS. In the example, By Group Statistics for Different Variables Ouput illustrates the output created by <span class="coding">PROC SUMMARY</span>.
 
 <div class="code-head"><span>code</span> By Group Statistics over Different Variable.sas</div>
 
 ```sas
-4 proc summary data=df nway;
-5    class district;
-6    output out=gb_sum (drop = _TYPE_ _FREQ_)
-7       mean(age)       = age_mean
-8       median(before)  = bfr_median
-9       sum(after)      = aft_sum
-10      median(after)   = aft_median
-11      std(after)      = aft_std;
-12 run;
-```
-NOTE: There were 13 observations read from the data set WORK.DF.
-NOTE: The data set WORK.GB_SUM has 3 observations and 6 variables.
+PROC SUMMARY DATA=df NWAY;
+CLASS DISTRICT;
+OUTPUT OUT=gb_sum (drop = _TYPE_ _FREQ_)
+mean(age)       = age_mean
+median(before)  = bfr_median
+sum(after)      = aft_sum
+median(after)   = aft_median
+std(after)      = aft_std;
+RUN;
 
-```sas
-13 proc print data = gb_sum noobs;
-14 run;
+PROC PRINT DATA = gb_sum NOOBS;
+RUN;
 ```
-In the example, By Group Statistics for Different Variables Ouput illustrates the output created by <span class="coding">PROC SUMMARY</span>.
 
-#### Filtering by Group
-A common coding pattern for data analysis is applying actions to a set of data based on a group’s statistic.  As an example, consider the example below, Group By Filtering on a Statistic.
+
+<h3 id="Filtering-by-Group">Filtering by Group</h3>
+
+A common coding pattern for data analysis is applying actions to a set of data based on a group’s statistic.  As an example, consider the example below, "Group By Filtering on a Statistic".
 
 <div class="code-head"><span>code</span> Group By Filtering on a Statistic.py</div>
 
@@ -376,7 +377,8 @@ def is used to define a Python function followed by the function’s name; in th
 A new DataFrame is created by by passing the std_1 function to filter method of the GroupBy object.
 
 Notice how no rows are returned from the District column with a value of ‘II’.
-#### Group by Column with Continuous Values 
+<h3 id="Group-by-Column-with-Continuous-Values">Group by Column with Continuous Values</h3>
+
 Sometimes the desire is to use columns with continuous values as a GroupBy object.  Consider the case of age where these values are continuous.  To create a meaningful GroupBy object, the first step is mapping continuous values into ‘buckets’ and applying these binned values to a GroupBy operation.  The binned values are mapped using the apply method to create the GroupBy object.  This action allows aggregations to be performed based on group values determined by bin ranges formed with the Age column.  
 Here we illustrate this pattern using the Pandas cut method for segmenting and sorting data values into bins.  Consider the following example, GroupBY Column With Continuous Values.
 
@@ -415,13 +417,9 @@ assigns the ‘cut-points’ to the bins object as a Python list of values repre
 ```python
 df['Age_Fmt'] = pd.cut(df['Age'], bins, labels=gp_labels)
 ```
-defining the Age_Fmt column in the df DataFrame.  This assignment creates column values by calling the cut method for the df['Age'] column (with bins and labels defined).  Note that pd.cut uses the syntax  pd to refer to the <span class="coding">Name </span>for the Pandas library that is loaded into the namespace with:
+defining the Age_Fmt column in the df DataFrame.  This assignment creates column values by calling the cut method for the df['Age'] column (with bins and labels defined).  
 
-import pandas as pd
-
-The syntax:
-
-df['Age'].groupby(df['Age_Fmt']).apply(stats).unstack()
+The syntax: <span class="coding">df['Age'].groupby(df['Age_Fmt']).apply(stats).unstack()</span>
 
 creates the GroupBy object using unique values from the Age_Fmt column as the group’s levels and is attached to the df['Age'] column.  The apply method calls the defined function stats applying the statistics column values within each group.  The unstack method reshapes the returned object from a stacked form (in this case a Series object) to an unstacked form (a “wide” DataFrame).   
 
@@ -451,7 +449,8 @@ quit;
 ```
 <span class='coding'>PROC FORMAT</span> provides similar binning logic as the cut method in the Python example, GroupBy Continuous Column.  The cntlout = groups option outputs a dataset containing several variables including the label variable holding the value labels for the user-defined agefmt. format.  The aggregation functions are applied to the age variable using <span class="coding">PROC SQL</span>.  <span class="coding">PROC SQL</span> uses a left join to combine rows on the label column from the groups table (created with cntlout =) with rows from the aggregation functions applied to the age column from the df dataset.  The output from <span class="coding">PROC SQL</span> is displayed in the example Group By with Continuous Values.
  
-#### Transform Based on Group Statistic
+<h3 id="Transform-based-on-Group-Statistic">Transform Based on Group Statistic</h3>
+
 Up to this point the GroupBy objects return DataFrames with fewer rows than the original DataFrame.  This is to be expected since GroupBy objects are commonly used in aggregation operations.  There are cases where you wish to apply a transformation based on group statistics and merge the transformed version with the original DataFrame.  Calculating a z-score is an example illustrated in the example below Transform Based on GroupBy Statistic.
 
 <div class="code-head"><span>code</span> Transform Based on GroupBy Statistic.py</div>
@@ -479,17 +478,13 @@ Index(['Before', 'After', 'Age'], dtype='object')
 ```
 The logic to compute the z-score is accomplished by creating the z DataFrame with a GroupBy object using the syntax:
 
-z = df.groupby('District').transform(lambda x: (x - x.mean()) / x.std())
+<span class='coding'>z = df.groupby('District').transform(lambda x: (x - x.mean()) / x.std())</span>
 
 In this example a lamdba expression is used to create an anonymous, or in-line function defining the z-score calculation.  Like the def function this expression creates a function, but does not provide it a name.  Hence, it is known as an anonymous function.
 
 The transform function computes the z-score for rows within each group using the group’s computed mean and standard deviation.  The transform function returns a DataFrame the same shape as the input DataFrame making it useful for combining the two together.
 
-Because Pandas allows the same name for multiple columns the rename attribute is applied to the z DataFrame passing a Python dictionary of key/value pairs where the key is the old column name and the value is the new column name.  The syntax:
-
-df1 = pd.concat([df, z], axis = 1)
-
-creates the df1 DataFrame by concatenating the df and z DataFrames along the columns with the axis = 1 argument.  We cover the details for Pandas concatenation and joins in Chapter 5, Advanced Data Management.
+Because Pandas allows the same name for multiple columns the rename attribute is applied to the z DataFrame passing a Python dictionary of key/value pairs where the key is the old column name and the value is the new column name.  
 
 In the following example, Transform Based on By Group Statistic illustrates the same logic in SAS.  <span class="coding">PROC SUMMARY</span> is called to create the intermediate variables used for calculating the z-scores.  <span class="coding">PROC SORT</span> is called to sort the df dataset and the z_out dataset produced by <span class="coding">PROC SUMMARY</span> using the variable district as the sort keys. 
 
@@ -530,18 +525,19 @@ In the following example, Transform Based on By Group Statistic illustrates the 
 ```
 The final step uses a Data step to merge the df and z_out datasets on the district sort key and performs the z-score calculations.  The indermediate variables from the z_out dataset are dropped with a DROP list.
  
-### Pivot
+<h3 id="Pivot">Pivot Table</h3>
+
 Pandas provide the pivot_table function to create speadsheet-style pivot tables.  The pivot_table function enables aggregation of data values across row and column dimensions.   As we will see shortly, pivot_table function not only provides a multi-dimensional view of your data, but it turns out to be a convenient method to apply a <span class="coding">MultiIndex</span> to DataFrame rows and columns.
 
-Begin by using read_csv method to read detailed sales transaction data collected between 2016 and 2017 in Listing 4-63, Pivot Table Basics.  This input data is transaction details referred to as stacked, or long format.  There is one row per transaction.
+Begin by using read_csv method to read detailed sales transaction data collected between 2018 and 2019 in Listing 4-63, Pivot Table Basics.  This input data is transaction details referred to as stacked, or long format.  There is one row per transaction.
 
-Notice the read_csv method uses the parameter na_filter = False.  Without calling this argument the Territory column does not include rows with the value ‘NA’.  In our case, ‘NA’  denotes the value of North America and not missing values.  Later in chapter 7, Panda Readers, we explore numerous arguments to the read_csv function in detail.
+Notice the read_csv method uses the parameter na_filter = False.  Without calling this argument the Territory column does not include rows with the value ‘NA’.  In our case, ‘NA’  denotes the value of North America and not missing values.  In the chapter 6 of the book, "Pandas Readers and Writers", we explore numerous arguments to the read_csv function in detail.
 Listing 4-63. Pivot Table Basics
 
 <div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
 
 ```python
->>> url = "https://raw.githubusercontent.com/RandyBetancourt/PythonForSASUsers/master/data/Sales_Detail.csv"
+>>> url = "https://raw.githubusercontent.com/PythonRSAS/PythonForSASUsers/master/data/Sales_Detail.csv"
 >>> df2 = pd.read_csv(url, na_filter = False)
 >>> df2.info()
 <class 'pandas.core.frame.DataFrame'>
@@ -566,14 +562,14 @@ memory usage: 220.6+ KB
                     Amount
 Territory             APAC     EMEA       NA
 Year ProductLine
-2016 Classic Cars 3,523.60 4,099.44 4,217.20
+2018 Classic Cars 3,523.60 4,099.44 4,217.20
      Motorcycles  3,749.53 3,309.57 3,298.12
      Planes       3,067.60 3,214.70 3,018.64
      Ships             nan 3,189.14 2,827.89
      Trains       1,681.35 2,708.73 2,573.10
      Trucks       3,681.24 3,709.23 3,778.57
      Vintage Cars 2,915.15 2,927.97 3,020.52
-2017 Classic Cars 3,649.29 4,062.57 3,996.12
+2019 Classic Cars 3,649.29 4,062.57 3,996.12
      Motorcycles  2,675.38 3,736.90 3,649.07
      Planes       2,914.59 3,047.34 3,645.51
      Ships        2,079.88 3,030.86 3,067.40
@@ -637,12 +633,12 @@ To produce the same report with SAS requires multiple steps after the .csv file 
  
 ### Summary
 
-In this chapter we discussed the role for indexing and hierarchical indexing as a means for providing labels for DataFrame rows and columns.  We introduced in the three indexers along with slicers to return sub-sets from a DataFrame:
+In this post we discussed the role for indexing and hierarchical indexing as a means for providing labels for DataFrame rows and columns.  We introduced in the three indexers along with slicers to return sub-sets from a DataFrame:
 
-1.  [ ] operator
+1.  <span class='coding'>[ ]</span> operator
 
 2.  <span class="coding">.loc</span> indexer for slicing along rows and columns using labels
 
 3.  <span class="coding">.iloc</span> indexer for slicing along rows and columns based on a values position along an index
 We examined how to apply a range of methods to the subset DataFrames to perform common data manipulation methods for analysis.  
-We provide a detailed discussion on the GroupBy object for split-apply-combine operations.  We also provided a general introduction to pivot tables.  Together these examples lay the foundation for Chapter 5, Advanced Data Management where we examine joining DataFrames through concatenation and merging methods.
+We provide a detailed discussion on the GroupBy object for split-apply-combine operations.  We also provided a general introduction to pivot tables.  Together these examples lay the foundation for "Chapter 5: Data Management" where we examine joining DataFrames through concatenation and merging methods.

@@ -7,10 +7,18 @@ description: Data processing using Python and SAS.
 author: Sarah Chen
 # image: http://drive.google.com/uc?export=view&id=1eAHEYDGldo9p03m9leLOxDfcD41Fvm1X
 ---
+In this post we will cover:
+
+[- MultiIndexing](#MultiIndexing)
+
+[- Basic Sub-sets with MultiIndexes](#Basic-Sub-sets-with-MultiIndexes)
+
+[- Advanced Indexing with MultiIndexes](#Advanced-Indexing-with-MultiIndexes)
 
 
 
-### MultiIndexing
+<h3 id="MultiIndexing">MultiIndexing</h3>
+
 Thus far, the use of indexes involves a single column labeling DataFrame rows. See Add Index to DataFrame as an illustration.  This section introduces MultiIndexing, also known as hierarchical indexing.  
 
 Often the data for analysis is captured at the detail level.  As part of performing an exploratory analysis, a <span class="coding">MultiIndex</span> DataFrame provides a useful multi-dimensional ‘view’ of data. 
@@ -162,7 +170,8 @@ table year * month ,
 ```
 The row dimension crosses <span class='coding'>*</span> the month variable with the year variable.  The column dimension crosses <span class='coding'>*</span> values for tickets with the area variable which in turn is crossed <span class='coding'>*</span> with the when variable and together they are crossed with the summed value for the tickets variable.
  
-#### Basic Sub-sets with MultiIndexes
+<h3 id="Basic-Sub-sets-with-MultiIndexes">Basic Sub-sets with MultiIndexes</h3>
+
 With the tickets DataFrame created having hierarchical indexes for rows and columns, we can apply a range of methods for sub setting as well as applying condition-based logic as filtering criteria. 
 
 An important feature of hierarchical indexing is the ability to select data by a “partial” label identifying a subgroup in the data. Partial selection “drops” levels of the hierarchical index from the results using methods analogous to row and column slicing for regular DataFrames.  
@@ -292,7 +301,8 @@ NOTE: There were 72 observations read from the data set WORK.TICKETS.
 NOTE: The data set WORK.SUM_TICKETS has 24 observations and 4 variables.
 ```
 The <span class="coding">NWAY</span> option requests a combination for all levels of variable values listed on the <span class="coding">CLASS</span> statement.  The <span class="coding">sum(tickets)=tickets_sum</span> option then sums the number of tickets for each <span class="coding">NWAY</span> crossing.
-#### Advanced Indexing with MultiIndexes
+<h3 id="Advanced-Indexing-with-MultiIndexes">Advanced Indexing with MultiIndexes</h3>
+
 Earlier in the chapter we detailed the <span class="coding">.loc</span> indexer for slicing rows and columns with indexed DataFrames.  See the section entitled, Return Rows and Columns by Label in this chapter.   Slicing rows and columns with the <span class="coding">.loc</span> indexer can be used with a MultiIndexed DataFrame using similar syntax.  The <span class="coding">.loc</span> indexer supports Boolean logic for filtering criteria.  
 
 The <span class="coding">.loc</span> indexer enables partial slicing using hierarchically indexed rows and/or columns.  Begin by returning the DataFrame along with its index and columns information in the example below, Return Ticket Index and Column Levels.
