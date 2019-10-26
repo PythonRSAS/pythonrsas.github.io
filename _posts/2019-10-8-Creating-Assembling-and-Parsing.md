@@ -8,10 +8,19 @@ author: Sarah Chen
 # image: http://drive.google.com/uc?export=view&id=1QCuv6RGm8y1vdPU4DitqOZPIbx8Nw-yM
 ---
 
-**While we are postponing, life speeds by.**
+In this post, you will learn: 
 
-<!-- > not used for now**Update**: Lorem ipsum dolor. [end of life](https://pythonclock.org/), Aliquip ad magna laborum eu ut aute ut quis in veniam in. **Python3**. -->
+[Creating](#Creating)
 
+[Assembling](#Assembling)
+
+[Parsing](#Parsing)
+
+Let's get started. 
+<figure>
+  <img src="{{ "/images/posts/alex-azabache.jpg" | relative_url }}">
+  <figcaption>Photo by Alex Azabache</figcaption>
+</figure>
 
 In practice, we often need to perform the following in working with time series or panel data before we start to manipulate them:
 
@@ -20,7 +29,7 @@ In practice, we often need to perform the following in working with time series 
 3.  Convert or parse strings to desired date, time or datetime formats
 4.  Convert number to desired date, time or datetime objects
 
-#### Creating
+<h3 id="Creating">Creating</h3>
 
 As we have seen so far, it is easy to create a series of date, time or datetime with pandas.   Using the <span class="coding">pd.date_range()</span>, <span class='coding'>pd.period_range()</span> <span class='coding'>pd.timedelta_range()</span> function, we can build datetime or period indices or timedelta with just a few lines of code.   
 
@@ -75,7 +84,8 @@ pd.to_timedelta(arg, unit='ns', box=True, errors='raise')
 ```python
 pd.to_datetime(arg, errors='raise', dayfirst=False, yearfirst=False, utc=None, box=True, format=None, exact=True, unit=None, infer_datetime_format=False, origin='unix', cache=False)
 ```
-####  Assembling
+<h3 id="Assembling">Assembling</h3>
+
 As in SAS, a datetime variable can be assembled by providing the components: year, month, day, and more, in Python you can use <span class="coding">pd.to_datetime()</span> to build date or datetime objects by passing the right columns or entire dataframe as shown in the example below:
 <div class="code-head"><span>code</span> Assembling Datetime Object.py</div>
 
@@ -139,8 +149,8 @@ For reverse operation, i.e. to get the number of datetime units between two time
 >>> (pd.to_datetime(18081, unit='D') - pd.Timestamp("1970-01-01")) // pd.Timedelta('1D')
 [Out]: 18081
 ```
+<h3 id="Parsing">Parsing</h3>
 
-#### Parsing   
 If your data is not in any of the formats that pandas can read readily but it has a regular pattern, then you can apply brute force string slicing to extract date, time or datetime.    Even though some of the examples are not from pandas, we list them because of context. The following example below shows an example of using dateutl.parser to parse string into datetime object.  
 <div class="code-head"><span>code</span> Other Parsing Tools from dateutl.parser.py</div>
 

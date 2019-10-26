@@ -9,16 +9,25 @@ image: http://drive.google.com/uc?export=view&id=1QNhSCjhI-OjvGSmalSfEIguyenBK-w
 
 ---
 
-**While we are postponing, life speeds by.**
+In this post, you will learn: 
 
-<!-- > not used for now**Update**: Lorem ipsum dolor. [end of life](https://pythonclock.org/), Aliquip ad magna laborum eu ut aute ut quis in veniam in. **Python3**. -->
+[Timestamp](#Timestamp)
 
+[Period](#Period)
+
+[Timedelta](#Timedelta)
+
+Let's get started.
+<figure>
+  <img src="{{ "/images/posts/tan-kaninthanond.jpg" | relative_url }}">
+  <figcaption>Photo by Tan Kaninthanond</figcaption>
+</figure>
 
 The most fundamental measures of time are point in time (time stamp) and intervals (fixed or variable), and the difference between them, timedelta.  These objects provide building blocks for comprehensive time series data processes.  
 
 The most fundamental measures of time are point in time **timestamp** and **intervals** (fixed or variable), and the difference between them **timedelta**.  These objects provide building blocks for comprehensive time series data processes.    [here](https://github.com){:target="_blank"}.
 
-### Timestamp
+<h3 id="Timestamp">Timestamp</h3>
 
 Pandas <span class="coding">Timestamp</span> is pandas' equivalent to the Python's native <span class="coding">datetime</span>  object and in many cases a pandas Timestamp is interchangeable with Python's datetime object.    Pandas Timestamp  combines the flexibility of datetime and <span class="coding">dateutil</span> and the efficiency of vectorized representation from numpy.datetime64.  
 
@@ -85,7 +94,7 @@ Base SAS does not have vectorized operations.  To create similar output, one may
 
 ```
 
-### Period
+<h3 id="Period">Period</h3>
 
 While a Timestamp represents a point in time, a Period represents a time span or segment, or commonly known as interval to SAS users.   Periods are non-overlapping time segments uniform in length. 
 Some might wonder why we need period if we have Timestamp, or vice versa.   The answer is that point, and period represent different perspectives on how we think of time and record data in time, which result in different attributes.  For example, we can talk about GDP produced from a period of a year, or stock price at a point of time.   Period has <span class="coding">start_time</span> and <span class="coding">end_time</span>  attributes while Timestamp does not.     Period can be used to check if a specific event occurs within a certain period.  
@@ -167,8 +176,9 @@ are the same.     Finally, you can also convert Period to different frequencies.
 
 * Period has the same attributes such as <span class="coding">.day</span>, <span class="coding">.dayofweek</span>, <span class="coding">.quarter</span> and so on as Timestamp, but it does not have <span class="coding">.date</span> or <span class="coding">.time</span> attributes the way Timestamp does.  
 
-### Timedelta
-Pandas Timedelta is differences in times, expressed in difference units, e.g. days, hours, minutes, seconds. Timedelta is the pandas equivalent of python datetime.timedelta, and is interchangeable with it in most cases. Timedelta are differences in time expressed in different units, such as days, hours, minutes, seconds and can be positive or negative.  Consider Listing 9-11, pandas Timedelta.   The example first shows how Timedelta can be used to increment and Timestamp, then calculates age in years by converting a Timedelta object to an int via the Timedelta.days() method and then divide by 365.   
+<h3 id="Timedelta">Timedelta</h3>
+
+Pandas Timedelta is differences in times, expressed in difference units, e.g. days, hours, minutes, seconds. Timedelta is the pandas equivalent of python datetime.timedelta, and is interchangeable with it in most cases. Timedelta are differences in time expressed in different units, such as days, hours, minutes, seconds and can be positive or negative.  Consider the following examle, pandas Timedelta.   The example first shows how Timedelta can be used to increment and Timestamp, then calculates age in years by converting a Timedelta object to an int via the Timedelta.days() method and then divide by 365.   
 <div class="code-head"><span>code</span>Pandas Timedelta and Age Calculation.py</div>
 
 ```py

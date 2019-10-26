@@ -8,16 +8,8 @@ author: Sarah Chen
 image: https://drive.google.com/uc?id=1crVhO4CHemFakRIxXYYo8HnfO-Z7sc1A
 ---
 
-**Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia consequuntur, provident nemo soluta similique, maiores sit dicta doloremque facere laudantium [Keras](https://keras.io/){:target="_blank"} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque neque totam voluptatem porro accusantium id.**
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, similique minima repudiandae. Voluptate pariatur iusto quo voluptatibus eum? [Keras](https://keras.io/){:target="_blank"} Lorem ipsum dolor sit. [github](https://github.com/fchollet/keras){:target="_blank"} page.
-
-> **Update**: Lorem ipsum dolor. [end of life](https://pythonclock.org/), Aliquip ad magna laborum eu ut aute ut quis in veniam in. **Python3**.
-
+### Introdution
 Linear models are used in almost everywhere, including in deep learning neural network models .   There are many variations of linear regression models: ordinary least squares linear regression, regularized OLS linear regression fitted by minimizing a penalized version of the least squares cost function, polynomial regression, generalized linear regression, linear models that use different error definitions, linear regression learned using gradient descent, and more.   
-
-
-
 
 ### Linear Regression and Least Squares
 

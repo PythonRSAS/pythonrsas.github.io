@@ -8,11 +8,6 @@ author: Sarah Chen
 image: images/posts/laptop.jpg
 ---
 
-**While we are postponing, life speeds by.**
-
-<!-- > not used for now**Update**: Lorem ipsum dolor. [end of life](https://pythonclock.org/), Aliquip ad magna laborum eu ut aute ut quis in veniam in. **Python3**. -->
-
-
 In SAS there are multiple ways to shift time series data, i.e. to create leads and lags, including the <span class="coding">LAG</span> function or the more powerful one is <span class="coding">PROC EXPAND</span>.  In Python pandas, shifting is also called “sliding window”.    There are two main shifting methods in pandas: <span class="coding">shift()</span> and <span class="coding">tshift()</span>.  These two methods take the same parameters, where the defaults are: <span class="coding">periods=1, freq=None, axis=0</span>.
 The difference between them is that <span class="coding">shift()</span> shifts the data whereas <span class="coding">tshift()</span> shift the index.   Both can take positive or negative integers to specify number of shifting periods, where positive integer results in lagging and negative number results in leading.
 
@@ -32,12 +27,10 @@ In the following example below, we use <span class='coding'>df[~df.index.duplica
 'tshift7']].plot(title='Daily price High,
 7 day shift and tshift')
 ```
-Figure 1-2. pandas shift() and tshift() Example with Bitcoin 2018 Historical Prices
-
-
 Visually there seems to be no difference between <span class="coding">shift()</span> and <span class="coding">tshift()</span>.  In fact, the shift7 line is not even visible because it is mostly overlapped by the tshift7 line.  This is because for nearly the entire time span the datetime index has no gap and that the frequency we specified for the <span class="coding">tshift()</span> is the same as <span class="coding">shift()</span>.
 
 However, if we look at the data in detail, we can see the subtle difference as shown in example below.
+
 <div class="code-head"><span>code</span> Shifting Data and DatetimeIndex in pandas.py</div>
 
 ```python
