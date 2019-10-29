@@ -1,12 +1,20 @@
 ---
 layout: post
-tag : Learning Python and SAS
-category: "python for sas"
+tag : Machine Learning in Practice
+category: "machine learning"
 title: "Linear Regression Feature Selection"
 description: Eu est laboris consectetur ut consequat do ullamco ut incididunt incididunt velit laboris nostrud exercitation in velit sit.
 author: Sarah Chen
 image: https://drive.google.com/uc?id=1crVhO4CHemFakRIxXYYo8HnfO-Z7sc1A
 ---
+
+“Simple can be harder than complex: You have to work hard to get your thinking clean to make it simple. But it’s worth it in the end because once you get there, you can move mountains.” 
+― Steve Jobs 
+
+Linear models are used in almost everywhere, including in deep learning neural network models. There are many variations of linear regression models: ordinary least squares linear regression, regularized OLS linear regression fitted by minimizing a penalized version of the least squares cost function, polynomial regression, generalized linear regression, linear models that use different error definitions, linear regression learned using gradient descent, and more.    
+
+In many business contexts, the goal of model selection is interpretability and business intuition with acceptable accuracy.  Linear models are often preferred to other more sophisticated models for its strength in interpretation and stable performance.   It depends on the purpose, you may find Python, R, and SAS are all very useful.  If you are using statistical learning and want results fast and stable.
+
 In this post, you will learn: 
 
 [Linear Regression](#Linear-Regression)
@@ -31,25 +39,17 @@ Let's get started.
 
 <h3 id="Linear-Regression">Linear Regression</h3>
 
-“Simple can be harder than complex: You have to work hard to get your thinking clean to make it simple. But it’s worth it in the end because once you get there, you can move mountains.” 
-― Steve Jobs 
+It is important to distinguish linear regression and the least squares approach.   Although the terms "least squares" and "linear model" are closely linked, they are not synonymous.   
 
-Linear models are used in almost everywhere, including in deep learning neural network models .   There are many variations of linear regression models: ordinary least squares linear regression, regularized OLS linear regression fitted by minimizing a penalized version of the least squares cost function, polynomial regression, generalized linear regression, linear models that use different error definitions, linear regression learned using gradient descent, and more.    
-
-In many business contexts, the goal of model selection is interpretability and business intuition with acceptable accuracy.  Linear models are often preferred to other more sophisticated models for its strength in interpretation and stable performance.   It depends on the purpose, you may find Python, R, and SAS are all very useful.  If you are using statistical learning and want results fast and stable.
-
-Before going further, it is important to distinguish linear regression and the least squares approach.   Although the terms "least squares" and "linear model" are closely linked, they are not synonymous.   Linear model refers to model specification being a weighted sum of the parameters for a continuous target variable such as y = a + bx.   Whereas least squares approach is a model fitting method, which is to minimized the sum of squared errors.   
+Linear model refers to model specification being a weighted sum of the parameters for a continuous target variable such as y = a + bx.   Whereas least squares approach is a model fitting method, which is to minimized the sum of squared errors.   
 
 Linear regression models can be fitted in other ways, such as least absolute deviations regression, or by minimizing a penalized version of the least squares cost function as in ridge regression (L2-norm penalty), lasso (L1-norm penalty) and elastic net (L1 and L2).  
+
 Conversely, the least squares approach can be used to fit models that are not linear models. 
 
-We will start small, with a one-feature dataset, and present graphic presentation of linear regression on the four subsets of the Anscomebe quartet  dataset.   
+We will start with a one-feature dataset, and present graphic presentation of linear regression on the four subsets of the Anscomebe quartet  dataset.   
 
-In example below, we use the seaborn library to plot the linear regression plots  on the four stylized subsets of Anscomebe data.  
-• The first set of data appears to be the typical linear relationship and follow the assumption of normality.   
-• The second set of data does not seem normally distributed.  A quadratic line would be a better fit. 
-• The third set of data is linear, but is affected by one outlier.  Unless the outlier is important to keep, one should consider robust regression. 
-• The fourth set of data does not show any relationship between x and y, even though the Pearson linear correlation is large.  
+In example below, we use the seaborn library to plot the linear regression plots  on the four stylized subsets of Anscomebe data.    
 
 <div class="code-head"><span>code</span> Linear Regression on the Anscomebe Quartet Dataset.py</div> 
 ```python
@@ -66,6 +66,14 @@ In example below, we use the seaborn library to plot the linear regression plots
 
 >>> sns.lmplot(x="x", y="y", col="dataset", hue="dataset", data= anscombe, palette="muted", scatter_kws={"s": 50, "alpha": 1})
 ```
+• The first set of data appears to be the typical linear relationship and follow the assumption of normality.   
+
+• The second set of data does not seem normally distributed.  A quadratic line would be a better fit. 
+
+• The third set of data is linear, but is affected by one outlier.  Unless the outlier is important to keep, one should consider robust regression. 
+
+• The fourth set of data does not show any relationship between x and y, even though the Pearson linear correlation is large.
+
 In the following example shows that the summary statistics are nearly identical between the four sets of data in the Anscomebe dataset, including mean, median, standard deviation, Pearson linear correlation .   But their rank correlations are quite different, as indicated by the Spearman and Kendall’s tau. 
 
 ```pyhon
@@ -331,7 +339,7 @@ NOX      AGE        0.731470
 
 <h3 id="Variable-Selection">Variable Selection</h3>
 
-Python sklearn doesn't have a forward selection algorithm. However, it does provide recursive feature elimination, which is a greedy feature elimination algorithm similar to sequential backward selection.   Suggest hypotheses about the causes of observed phenomena
+The python sklearn libary doesn't have a forward selection algorithm. However, it does provide recursive feature elimination, which is a greedy feature elimination algorithm similar to sequential backward selection.   Suggest hypotheses about the causes of observed phenomena
 1.  Support the selection of appropriate statistical tools and techniques
 2.  Provide a basis for further data collection through surveys or experiments
  Statistics and visual analysis both are key tools.
@@ -369,8 +377,7 @@ o PCA
 o Partial least squares
 Unlike the subset selection method, the shrinkage methods do not explicitly select variables.  If shrinkage is large enough, it sets some coefficients to close to zero.  They simultaneous estimate coefficients and reduce overfitting.  
 The shrinkage and regularization method is a derivative of the least squares method by adding on linear sum of the coefficients as penalty.  Hence the sum of errors not only depend on the errors due to predictions but also on the size of the coefficients.  This is in effect biased estimator.  
-The <span class=
-"coding">PROC GLMSELECT</span> has an array of customizing options.   
+The <span class="coding">PROC GLMSELECT</span> has an array of customizing options.   
 We will use the well-known Boston Housing dataset to illustrate. 
 While seaborn heatmap is prettier, we use 
 

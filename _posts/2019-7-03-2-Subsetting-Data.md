@@ -9,17 +9,18 @@ author: Sarah Chen
 ---
 In this post, you will learn:
 
-[- Slicing Rows and Columns](#Slicing-Rows-and-Columns)
+[Slicing Rows and Columns](#Slicing-Rows-and-Columns)
 
-[- Conditional Slicing](#Conditional-Slicing)
+[Conditional Slicing](#Conditional-Slicing)
 
-[- Cross Sections](#Cross-Sections)
+[Cross Sections](#Cross-Sections)
 
 
 
 <h3 id="Slicing-Rows-and-Columns">Slicing Rows and Columns</h3>
 
 Consider the following example, Slice Month 3 for all Years. In this example we wish to return the 3rd month for each year. Based on what we have learned about row and column slicing up to this point, it is reasonable to conclude the statement:
+
 ```python
 tickets.loc[(:,3),:]
 ```
@@ -44,10 +45,9 @@ Another way to request this same sub-set is:
 ```python
 tickets.loc[(slice(None), slice(3,3)), :]
 ```
-Consider the request for all years and months 2 and 3 as the row slicer in Listing 4-38, Slice Months 2 and 3 for all Years.
+Consider the request for all years and months 2 and 3 as the row slicer in, Slice Months 2 and 3 for all Years.
 
-
-<div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
+<div class="code-head"><span>code</span> Slice Months 2 and 3 for all Years.py</div>
 
 ```python
 >>> tickets.loc[(slice(None), slice(2,3)), :]
@@ -69,10 +69,9 @@ idx_obj = ((slice(None), slice(2,3)), slice(None))
 tickets.loc[idx_obj]
 This syntax helps in further understanding exactly how the slicing operation is performed.  The first slice(None) requests all of the rows for the outer row label, years 2015 to 2018.  slice(2,3) returns months 2 and 3 for inner row label.  The last slice(None) requests all columns, that is, both the outer column Area and the inner column When.
 Fairly quickly, however, we begin to have difficulty supplying a collection of tuples  for the slicers used by the <span class="coding">.loc</span> indexer.  Fortunately, Pandas provides the IndexSlice object to deal with this situation.  
-Consider Listing 4-39 IndexSlice Object, as an alternative to Listing 4-39, IndexSlice Object.
-Listing 4-39. IndexSlice Object
+Consider the following example, IndexSlice Object, as an alternative to, IndexSlice Object.
 
-<div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
+<div class="code-head"><span>code</span> IndexSlice Object.py</div>
 
 ```python
 >>> idx = pd.IndexSlice
