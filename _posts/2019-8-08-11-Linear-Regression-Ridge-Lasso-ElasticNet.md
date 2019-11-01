@@ -581,10 +581,11 @@ We can actually select all selection criterion.
 
 Note:
 1.  LASSO is a convex optimization technique, which allows for very fast computing.  We can get the entire solution path within seconds even with a laptop. 
-2.  There are many very convenient options in SAS <span class="coding">GLMSELECT</span>.  For example, if you have categorical features, you can simply put it in a CLASS statement and don't have to do anything else. 
+
+2.  There are many very convenient options in SAS <span class="coding">GLMSELECT</span>.  For example, if you have categorical features, you can simply put it in a <span class="coding">CLASS</span> statement and don't have to do anything else. 
 
 Direct method:
-The PARTITION statement splits 2/3 of the data for training and 1/3 of the data for out-of-sample testing.  Output figure top part shows the LASSO coefficient progression for the training data, while the bottom shows the progression of errors (The y-axis “ASE” means “average square error) on the test data along the progression.  
+The <span class="coding">PARTITION</span> statement splits 2/3 of the data for training and 1/3 of the data for out-of-sample testing.  Output figure top part shows the LASSO coefficient progression for the training data, while the bottom shows the progression of errors (The y-axis “ASE” means “average square error) on the test data along the progression.  
 
 The vertical line shows where the minimum testing error is. This helps us look at the top part of the figure, where the model selection.   We can also look at the plot “Progression of Average Squared Errors”, which shows errors for both training and validation data as the shrinkage parameter changes.  And the selected step is where these two errors are equal.   
 
@@ -612,9 +613,7 @@ With it, we include the seed option which allows us to specify a random number s
 
 And the out all option, tells SAS to include, both, the training and test observations in a single output data set that has a new variable called selected, to indicate whether an observation belongs to the training set, or the test set. I will use the glmselect procedure to test my lasso regression model. data=traintest tells SAS to use the randomly split dataset, and the plots=all option, asks that all plots associated with the lasso regression be printed. 
 
-With it we include the seed option, which allows us to specify a random number seed, which will be used in the cross-validation process. The partition command assigns each observation a role, based on the variable called selected, to indicate whether the observation is a training or test observation. Observations with a value of one on the selected variable, are assigned the role of training observation. 
-
-And observations with a value of zero, are assigned the role of test observation. The model command specifies the regression model for which my response variable, school connected-ness, is equal to the list of the 23 candidate predictor variables. 
+With it we include the seed option, which allows us to specify a random number seed, which will be used in the cross-validation process. The partition command assigns each observation a role, based on the variable called selected, to indicate whether the observation is a training or test observation. Observations with a value of one on the selected variable, are assigned the role of training observation.                                                                                          
 
 After the slash, we specify the options we want to use to test the model. The selection option tells us which method to use to compute the parameters for variable selection. In this example, I will use the LAR algorithm, parameters for variable selection. 
 
