@@ -78,7 +78,7 @@ RUN;
 
 Now we are ready to slice the Tickets data. 
 
-* **Problem 1:** Say we wish to return the 3rd month for each year.
+* **Problem 1:** Say we wish to return all the data for the 3rd month of every year.
 
 Recall a tuple is an immutable sequence of items enclosed by parenthesis. As a convenience the Python’s built-in <span class='coding'>slice(None)</span> function selects all the content for a level. In this case we want month level 3 for all years.  
 
@@ -101,7 +101,7 @@ Note:
 - It would work the same <span class='coding'>tickets.loc[(slice(None), slice(3,3)), :]</span>
 -Error would be raised if we use tickets.loc[(:,3),:] because it is illeagl to use a colon inside a tuple constructor.   
 
-* **Problem 2:**  Slice Months 2 and 3 for all Years.
+* **Problem 2:**  Now we want data from both months 2 and 3 for all years.
 
 <div class="code-head"><span>code</span> Slice Months 2 and 3 for all Years.py</div>
 
@@ -124,41 +124,32 @@ Note: - The same results are accomplished with: <span class='coding'>tickets.loc
 
 * **Use <span class='coding'>pd.IndexSlice</span>  to accomplish all the above with simplier syntax:** 
 
-Pandas <span class='coding'>IndexSlice</span> object provides convenient method for slicing multi-indexed DataFrames. 
+Pandas <span class='coding'>IndexSlice</span> object provides convenient method for slicing multi-indexed DataFrames.  We get exactly the same result as the last example with the following. 
 
-<div class="code-head"><span>code</span> IndexSlice Object.py</div>
-
-```python
->>> idx = pd.IndexSlice
->>> tickets.loc[idx[2017:2020, 2:3], :]
-```
-The IndexSlice object provides a more natural syntax for slicing operations on MultiIndexed rows and columns.  In this case, the slice:
-
-tickets.loc[idx[2017:2020, 2:3], :]
-
-return years 2017:2020 inclusive on the outer level of the <span class="coding">MultiIndex</span> for the rows and months 2 and 3 inclusive on the inner level. 
-
-The colon <span class="coding">:</span> designates the start and stop positions for these row labels. Following the row slicer is a comma (,) to designate the column slicer. With no explicit column slices defined all columns are returned. Consider the example below, Slicing Rows and Columns, Example 1.
-
-<div class="code-head"><span>code</span> Slicing Rows and Columns, Example 1.py</div>
+<div class="code-head"><span>code</span> Slice Months 2 and 3 for all Years Using IndexSlice.py</div>
 
 ```python
->>> tickets.loc[pd.IndexSlice[2018:, 2:3 ], 'City' : 'Rural']
-Area       City       Rural
-When        Day Night   Day Night
+>>> tickets.loc[pd.IndexSlice[2017:, 2:3 ], :]
+Area       City       Rural       Suburbs
+When        Day Night   Day Night     Day Night
 Year Month
-2018 2        7    23     3     5
-     3        9    17    31    48
-2019 2        5    33    19     2
-     3       31    12    19    17
-2020 2       35    14     9    14
-     3        3    32    33    21
+2017 2       11    18     3    30      42    15
+     3        5    54     7     5      14    18
+2018 2        7    23     3     5      19     1
+     3        9    17    31    48       2    17
+2019 2        5    33    19     2       7    10
+     3       31    12    19    17      14     2
+2020 2       35    14     9    14      10     1
+     3        3    32    33    21      24     6
 ```
-The row slicer returns levels 2018 for Year on the outer level of the <span class="coding">MultiIndex</span> and 2 and 3 from Month on the inner level.  The column slicer returns the levels City and Rural from Area on the outer level of the <span class="coding">MultiIndex</span>.  
 
-In this example, the column slicer did not slice along the inner level of the <span class="coding">MultiIndex</span> on When. In the example below, Slicing Rows and Slicing Columns, Example 2, illustrates details for slicing columns.  
+In Problem 2, the column slicer did not slice along the inner level of the <span class="coding">MultiIndex</span> on When. We will get to that in the next example. 
 
-<div class="code-head"><span>code</span> Slicing Rows and Slicing Columns, Example 2.py</div>
+* **Problem 3:**  Retrieve data since 2018 for Month 2 and 3, and only for Area is 'City' for both 'Day' and 'Night' time. 
+
+The example below, Slicing Rows and Slicing Columns, illustrates details for slicing columns.  
+
+<div class="code-head"><span>code</span> Slicing Both Rows and Columns Using IndexSLice.py</div>
 
 ```python
 >>> idx = pd.IndexSlice
