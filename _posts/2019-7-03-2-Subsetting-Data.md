@@ -12,10 +12,12 @@ In this post, you will learn:
 
 [Slicing Rows and Columns](#Slicing-Rows-and-Columns)
 
+1. Use <span class='coding'>slice()</span> tuple with .loc slicer.  For example, <span class='coding'>.loc[((slice(None), slice(2,3)), slice(None))]</span>
+2. Use <span class='coding'>pd.IndexSlice</span> to accomplish the same thing but with simplier syntax. 
+
 [Conditional Slicing](#Conditional-Slicing)
 
 [Cross Sections](#Cross-Sections)
-
 
 
 <h3 id="Slicing-Rows-and-Columns">Slicing Rows and Columns</h3>
@@ -25,7 +27,7 @@ First, let's get a multi-indexed dummy dataset, which was similar to the one on 
 >>> import pandas as pd 
 >>> import numpy as np 
 >>> np.random.seed(654321)
->>> idx = pd.MultiIndex.from_product([[2015, 2016, 2017, 2018], [1, 2, 3]], names = ['Year', 'Month']) 
+>>> idx = pd.MultiIndex.from_product([[2017, 2018,2019,2020], [1, 2, 3]], names = ['Year', 'Month']) 
 >>> columns=pd.MultiIndex.from_product([['City' , 'Suburbs', 'Rural'],['Day' , 'Night']], names = ['Area', 'When']) 
 >>> data =abs(((np.random.randn(12, 6))*100//5).astype(int))
 >>> tickets = pd.DataFrame(data, index=idx, columns = columns).sort_index().sort_index(axis=1)
@@ -47,7 +49,7 @@ Year Month
      2       35    14      10     1     9    14
      3        3    32      24     6    33    21
 ```
-Similarly, we create this data in SAS using a DATA step followed by PROC TABULATE. 
+Similarly, we create this data in SAS using a DATA step followed by <span class="code">PROC TABULATE</span>. 
 
 <div class="code-head"><span>code</span>  Tickets Dataset from PROC TABULATE.sas</div>
 ```sas
@@ -55,7 +57,7 @@ DATA TICKETS;
 LENGTH area $ 7 
        when $  9; 
 CALL STREAMINIT(123456); 
-DO year = 2015, 2016, 2017, 2018; 
+DO year = 2017, 2018, 2019, 2020; 
   DO month = 1, 2, 3; 
        DO area = 'city', 'rural', 'suburbs'; 
           DO when = 'day', 'night'; 
@@ -76,100 +78,83 @@ RUN;
 
 Now we are ready to slice the Tickets data. 
 
-Say we wish to return the 3rd month for each year.
+* **Problem 1:** Say we wish to return the 3rd month for each year.
 
-Recall a tuple is an immutable sequence of items enclosed by parenthesis. As a convenience the Python’s built-in slice(None)function selects all the content for a level. In this case we want month level 3 for all years.  
+Recall a tuple is an immutable sequence of items enclosed by parenthesis. As a convenience the Python’s built-in <span class='coding'>slice(None)</span> function selects all the content for a level. In this case we want month level 3 for all years.  
 
 <div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
 
 ```python
 >>> tickets.loc[(slice(None), 3), :]
-Area        City       Rural       Suburbs
-When         Day Night   Day Night     Day Night
+[Out]:
+Area       City       Rural       Suburbs
+When        Day Night   Day Night     Day Night
 Year Month
-2015 3       5.0  54.0   7.0   6.0    14.0  18.0
-2016 3       9.0  17.0  31.0  48.0     2.0  17.0
-2017 3      31.0  12.0  19.0  17.0    14.0   2.0
-2018 3       3.0  32.0  33.0  21.0    24.0   6.0
+2017 3        2    26     9    37      17     6
+2018 3       29    12    15    15       2    17
+2019 3       27    38     7     2      11    26
+2020 3       11    12    10    47      27     9
 ```
-The syntax slice(None) is the slicer for the Year column which includes all values for a given level, in this case, 2015 to 2018 followed by 3 to designate the level for month.  All columns are returned since no column slicer was given.
-
-Another way to request this same sub-set is:
-
-```python
-tickets.loc[(slice(None), slice(3,3)), :]
-```
+The syntax <span class="code">slice(None)</span> is the slicer for the Year column which includes all values for a given level, in this case, 2017 to 2020 followed by 3 to designate the level for month.  All columns are returned since no column slicer was given.
 
 Note:
-- Error would be raised if we use tickets.loc[(:,3),:] because it is illeagl to use a colon inside a tuple constructor.   
+- It would work the same <span class='coding'>tickets.loc[(slice(None), slice(3,3)), :]</span>
+-Error would be raised if we use tickets.loc[(:,3),:] because it is illeagl to use a colon inside a tuple constructor.   
 
-Consider the request for all years and months 2 and 3 as the row slicer in, Slice Months 2 and 3 for all Years.
+* **Problem 2:**  Slice Months 2 and 3 for all Years.
 
 <div class="code-head"><span>code</span> Slice Months 2 and 3 for all Years.py</div>
 
 ```python
 >>> tickets.loc[(slice(None), slice(2,3)), :]
-Area        City       Rural       Suburbs
-When         Day Night   Day Night     Day Night
+[Out]:
+Area       City       Rural       Suburbs
+When        Day Night   Day Night     Day Night
 Year Month
-2015 2      11.0  18.0   3.0  30.0    42.0  15.0
-     3       5.0  54.0   7.0   6.0    14.0  18.0
-2016 2       7.0  23.0   3.0   5.0    19.0   2.0
-     3       9.0  17.0  31.0  48.0     2.0  17.0
-2017 2       5.0  33.0  19.0   2.0     7.0  10.0
-     3      31.0  12.0  19.0  17.0    14.0   2.0
-2018 2      35.0  14.0   9.0  14.0    10.0   1.0
-     3       3.0  32.0  33.0  21.0    24.0   6.0
+2017 2       11    18     3    30      42    15
+     3        5    54     7     5      14    18
+2018 2        7    23     3     5      19     1
+     3        9    17    31    48       2    17
+2019 2        5    33    19     2       7    10
+     3       31    12    19    17      14     2
+2020 2       35    14     9    14      10     1
+     3        3    32    33    21      24     6
 ```
-Alternatively, the same results are accomplished with the syntax:
+Note: - The same results are accomplished with: <span class='coding'>tickets.loc[((slice(None), slice(2,3)), slice(None))]</span>
 
-```python
-idx_obj = ((slice(None), slice(2,3)), slice(None))
-tickets.loc[idx_obj]
-```
-This syntax helps in further understanding exactly how the slicing operation is performed.  The first slice(None) requests all of the rows for the outer row label, years 2015 to 2018.  slice(2,3) returns months 2 and 3 for inner row label.  The last slice(None) requests all columns, that is, both the outer column Area and the inner column When.
+* **Use <span class='coding'>pd.IndexSlice</span>  to accomplish all the above with simplier syntax:** 
 
-Fairly quickly, however, we begin to have difficulty supplying a collection of tuples  for the slicers used by the <span class="coding">.loc</span> indexer.  Fortunately, Pandas provides the IndexSlice object to deal with this situation.  
-Consider the following example, IndexSlice Object, as an alternative to, IndexSlice Object.
+Pandas <span class='coding'>IndexSlice</span> object provides convenient method for slicing multi-indexed DataFrames. 
 
 <div class="code-head"><span>code</span> IndexSlice Object.py</div>
 
 ```python
 >>> idx = pd.IndexSlice
->>> tickets.loc[idx[2015:2018, 2:3], :]
->>>
-Area        City       Rural       Suburbs
-When         Day Night   Day Night     Day Night
-Year Month
-2015 2      11.0  18.0   3.0  30.0    42.0  15.0
-     3       5.0  54.0   7.0   6.0    14.0  18.0
-2016 2       7.0  23.0   3.0   5.0    19.0   2.0
-     3       9.0  17.0  31.0  48.0     2.0  17.0
-2017 2       5.0  33.0  19.0   2.0     7.0  10.0
-     3      31.0  12.0  19.0  17.0    14.0   2.0
-2018 2      35.0  14.0   9.0  14.0    10.0   1.0
-     3       3.0  32.0  33.0  21.0    24.0   6.0
+>>> tickets.loc[idx[2017:2020, 2:3], :]
 ```
 The IndexSlice object provides a more natural syntax for slicing operations on MultiIndexed rows and columns.  In this case, the slice:
 
-tickets.loc[idx[2015:2018, 2:3], :]
+tickets.loc[idx[2017:2020, 2:3], :]
 
-return years 2015:2018 inclusive on the outer level of the <span class="coding">MultiIndex</span> for the rows and months 2 and 3 inclusive on the inner level. 
+return years 2017:2020 inclusive on the outer level of the <span class="coding">MultiIndex</span> for the rows and months 2 and 3 inclusive on the inner level. 
 
 The colon <span class="coding">:</span> designates the start and stop positions for these row labels. Following the row slicer is a comma (,) to designate the column slicer. With no explicit column slices defined all columns are returned. Consider the example below, Slicing Rows and Columns, Example 1.
 
 <div class="code-head"><span>code</span> Slicing Rows and Columns, Example 1.py</div>
 
 ```python
->>> idx = pd.IndexSlice
->>> tickets.loc[idx[2018:, 2:3 ], 'City' : 'Rural']
-Area        City       Rural
-When         Day Night   Day Night
+>>> tickets.loc[pd.IndexSlice[2018:, 2:3 ], 'City' : 'Rural']
+Area       City       Rural
+When        Day Night   Day Night
 Year Month
-2018 2      35.0  14.0   9.0  14.0
-     3       3.0  32.0  33.0  21.0
+2018 2        7    23     3     5
+     3        9    17    31    48
+2019 2        5    33    19     2
+     3       31    12    19    17
+2020 2       35    14     9    14
+     3        3    32    33    21
 ```
-The row slicer returns levels 2018  for Year on the outer level of the <span class="coding">MultiIndex</span> and 2 and 3 from Month on the inner level.  The column slicer returns the levels City and Rural from Area on the outer level of the <span class="coding">MultiIndex</span>.  
+The row slicer returns levels 2018 for Year on the outer level of the <span class="coding">MultiIndex</span> and 2 and 3 from Month on the inner level.  The column slicer returns the levels City and Rural from Area on the outer level of the <span class="coding">MultiIndex</span>.  
 
 In this example, the column slicer did not slice along the inner level of the <span class="coding">MultiIndex</span> on When. In the example below, Slicing Rows and Slicing Columns, Example 2, illustrates details for slicing columns.  
 
@@ -178,11 +163,15 @@ In this example, the column slicer did not slice along the inner level of the <s
 ```python
 >>> idx = pd.IndexSlice
 >>> tickets.loc[idx[2018:, 2:3 ], idx['City', 'Day' : 'Night']]
-Area        City
-When         Day Night
+Area       City
+When        Day Night
 Year Month
-2018 2      35.0  14.0
-     3       3.0  32.0
+2018 2        7    23
+     3        9    17
+2019 2        5    33
+     3       31    12
+2020 2       35    14
+     3        3    32
 ```
 The row slicer returns levels 2018 for Year on the outer level of the <span class="coding">MultiIndex</span> and 2 and 3 from Month on the inner level.  The column slicer returns the levels City for Area on the outer level of the <span class="coding">MultiIndex</span> and the levels Day and Night on the inner level from When.
 
