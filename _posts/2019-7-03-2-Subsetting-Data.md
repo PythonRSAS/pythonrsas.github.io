@@ -7,12 +7,15 @@ description: Data processing using Python and SAS.
 author: Sarah Chen
 # image: https://www.audubon.org/sites/default/files/styles/hero_image/public/sfw_nationalgeographic_1517960.jpg?itok=F5pikjxg
 ---
-To be able to subset data masterfully is essential for working with data.  This post is taken partially from Chapter 4 "IndexIng and groupBy" of our book (from page 134) [Python for SAS Users](https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001/ref=sr_1_3?crid=21NME5C69YGV7&keywords=python+for+sas+users&qid=1572638715&sprefix=python+for+sas+%2Caps%2C196&sr=8-3). 
+To be able to subset data masterfully is essential for working with data.  This post is about subsetting multiindexed DataFrame and is partially based from Chapter 4 "IndexIng and groupBy" of my co-authored book (from page 134) [Python for SAS Users](https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001/ref=sr_1_3?crid=21NME5C69YGV7&keywords=python+for+sas+users&qid=1572638715&sprefix=python+for+sas+%2Caps%2C196&sr=8-3). 
+
+Recall that multiindex is array of tuples. So to slice it, we need to be familar with tuples and its associates methods.
+
 In this post, you will learn:
 
 [Slicing Rows and Columns](#Slicing-Rows-and-Columns)
 
-1. Use <span class='coding'>slice()</span> tuple with .loc slicer.  For example, <span class='coding'>.loc[((slice(None), slice(2,3)), slice(None))]</span>
+1. Use <span class='coding'>slice()</span> with the.loc index slicer.  For example, <span class='coding'>.loc[((slice(None), slice(2,3)), slice(None))]</span>
 2. Use <span class='coding'>pd.IndexSlice</span> to accomplish the same thing but with simplier syntax. 
 
 [Conditional Slicing](#Conditional-Slicing)
@@ -33,21 +36,21 @@ First, let's get a multi-indexed dummy dataset, which was similar to the one on 
 >>> tickets = pd.DataFrame(data, index=idx, columns = columns).sort_index().sort_index(axis=1)
 >>> print(tickets)
 [Out]:
-Area        City          Suburbs       Rural
-When        Day Night     Day Night   Day Night
+Area       City       Rural       Suburbs
+When        Day Night   Day Night     Day Night
 Year Month
-2017 1       15    18       3     3     9     3
-     2       11    18      42    15     3    30
-     3        5    54      14    18     7     5
-2018 1       11    17      11    26     1     0
-     2        7    23      19     1     3     5
-     3        9    17       2    17    31    48
-2019 1       21     5      11     2    22    10
-     2        5    33       7    10    19     2
-     3       31    12      14     2    19    17
-2020 1       25    10      20    15     8     4
-     2       35    14      10     1     9    14
-     3        3    32      24     6    33    21
+2017 1       15    18     9     3       3     3
+     2       11    18     3    30      42    15
+     3        5    54     7     5      14    18
+2018 1       11    17     1     0      11    26
+     2        7    23     3     5      19     1
+     3        9    17    31    48       2    17
+2019 1       21     5    22    10      11     2
+     2        5    33    19     2       7    10
+     3       31    12    19    17      14     2
+2020 1       25    10     8     4      20    15
+     2       35    14     9    14      10     1
+     3        3    32    33    21      24     6
 ```
 Similarly, we create this data in SAS using a DATA step followed by <span class="code">PROC TABULATE</span>. 
 
@@ -120,7 +123,7 @@ Year Month
 2020 2       35    14     9    14      10     1
      3        3    32    33    21      24     6
 ```
-Note: - The same results are accomplished with: <span class='coding'>tickets.loc[((slice(None), slice(2,3)), slice(None))]</span>
+Note: The same results are accomplished with: <span class='coding'>tickets.loc[((slice(None), slice(2,3)), slice(None))]</span>
 
 * **Use <span class='coding'>pd.IndexSlice</span>  to accomplish all the above with simplier syntax:** 
 
@@ -168,19 +171,22 @@ The row slicer returns levels 2018 for Year on the outer level of the <span clas
 
 <h3 id="Conditional-Slicing">Conditional Slicing</h3>
 
-Often times we need to sub-set based on conditional criteria.  Pandas allows the <span class="coding">.loc</span> indexer to permit a Boolean mask for slicing based an criteria applied to values in the DataFrame.  We introduced the concept of a Boolean mask in Chapter 3, Introduction to Pandas in the section on isnull.
+Often times we need to sub-set based on conditional criteria on the values (as opposed to the index).  The <span class="coding">.loc</span> indexer permits a Boolean mask for slicing based an criteria applied to values in the DataFrame, such as <span class="coding">.isnull()</span>.
 
-We can identify instances where the number of tickets relates to a given threshold by creating a Boolean mask and applying it to the DataFrame using the <span class="coding">.loc</span> indexer.  Specifically, we want to know when the number of tickets issued in the city during the day is greater than 25.  
+We can identify instances where the number of tickets relates to a given threshold by creating a Boolean mask and applying it to the DataFrame using the <span class="coding">.loc</span> indexer.  
+* **Problem 4:**  Want to know when the number of tickets issued in the city during the day is greater than 25. 
 
 <div class="code-head"><span>code</span> Conditional Slicing.py</div>
 
 ```python
->>> mask = tickets[('City' ,'Day' )] > 25
->>> tickets.loc[idx[mask], idx['City', 'Day']]
+>>> tickets.loc[pd.IndexSlice[tickets[('City' ,'Day' )] > 25], pd.IndexSlice['City', 'Day']]
+# or more simplily
+>>> tickets.loc[idx[tickets[('City' ,'Day' )] > 25], idx['City', 'Day']]
+[Out]:
 Year  Month
-2017  3        31.0
-2018  2        35.0
-Name: (City, Day), dtype: float64
+2019  3        31
+2020  2        35
+Name: (City, Day), dtype: int32
 ```
 In this example we define the mask object using the column slicing syntax followed by the Boolean operator greater than (>) and 25 as the threshold value.  
 
