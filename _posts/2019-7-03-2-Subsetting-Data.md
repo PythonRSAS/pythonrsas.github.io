@@ -11,17 +11,21 @@ To be able to subset data masterfully is essential for working with data.  This 
 
 Recall that multiindex is array of tuples. So to slice it, we need to be familar with tuples and its associates methods.
 
-In this post, you will learn:
+In this post, you will learn how to slice and dice multiindexed DataFrame anyway you wish, by indexing or on condition, and whether you want to return a DataFrame or just make a quick selection:
 
-[Slicing Rows and Columns](#Slicing-Rows-and-Columns)
+[Slicing Rows and Columns by Index](#Slicing-Rows-and-Columns)
 
 1. Use <span class='coding'>slice()</span> with the.loc index slicer.  For example, <span class='coding'>.loc[((slice(None), slice(2,3)), slice(None))]</span>
 2. Use <span class='coding'>pd.IndexSlice</span> to accomplish the same thing but with simplier syntax. 
 
 [Conditional Slicing](#Conditional-Slicing)
+1. Use <span class='coding'>.loc </span> index slicer with boolean mask.
+2. Use <span class='coding'>df.where()</span>. 
 
-[Cross Sections](#Cross-Sections)
+[Selection via Cross Sections](#Cross-Sections)
+Selection with the <span class='coding'>.xs </span> method.
 
+Let's begin.
 
 <h3 id="Slicing-Rows-and-Columns">Slicing Rows and Columns</h3>
 First, let's get a multi-indexed dummy dataset, which was similar to the one on page 134.
@@ -127,12 +131,12 @@ Note: The same results are accomplished with: <span class='coding'>tickets.loc[(
 
 * **Use <span class='coding'>pd.IndexSlice</span>  to accomplish all the above with simplier syntax:** 
 
-Pandas <span class='coding'>IndexSlice</span> object provides convenient method for slicing multi-indexed DataFrames.  We get exactly the same result as the last example with the following. 
+Pandas <span class='coding'>IndexSlice</span> object provides convenient method for slicing multi-indexed DataFrames.  We get exactly the same result as the last example with the following, without having to type "slice" everytime (though we do have to type it once in the "pd.IndexSlice")
 
 <div class="code-head"><span>code</span> Slice Months 2 and 3 for all Years Using IndexSlice.py</div>
 
 ```python
->>> tickets.loc[pd.IndexSlice[2017:, 2:3 ], :]
+>>> tickets.loc[pd.IndexSlice[:, 2:3 ], :]
 Area       City       Rural       Suburbs
 When        Day Night   Day Night     Day Night
 Year Month
@@ -192,7 +196,7 @@ In this example we define the mask object using the column slicing syntax follow
 
 Rows are sliced using the conditional with the mask object.  The columns are sliced using the City level from Area and the Day level from When.   Area is the outer level of the column <span class="coding">MultiIndex</span> and When is the inner level.
 
-Another form of conditional slicing uses the Pandas where attribute.  The where attribute returns a DataFrame the same size as the original whose corresponding values are returned when the condition is True.  When the condition is <span class="coding">False</span>, the default behavior is to return NaN’s.  This feature is illustrated in the following example, DataFrame where Attribute.  
+Another form of conditional slicing uses the Pandas <span class='coding'>where</span> attribute.  The <span class='coding'>where</span> attribute returns a DataFrame the same size as the original whose corresponding values are returned when the condition is True.  When the condition is <span class="coding">False</span>, the default behavior is to return NaN’s.  This feature is illustrated in the following example, DataFrame where Attribute.  
 
 <div class="code-head"><span>code</span> DataFrame where Attribute.py</div>
 
@@ -202,37 +206,39 @@ Another form of conditional slicing uses the Pandas where attribute.  The where 
 Area       City       Rural       Suburbs
 When        Day Night   Day Night     Day Night
 Year Month
-2015 1      XXX   XXX   XXX   XXX     XXX   XXX
+2017 1      XXX   XXX   XXX   XXX     XXX   XXX
      2      XXX   XXX   XXX   XXX      42   XXX
      3      XXX    54   XXX   XXX     XXX   XXX
-2016 1      XXX   XXX   XXX   XXX     XXX   XXX
+2018 1      XXX   XXX   XXX   XXX     XXX   XXX
      2      XXX   XXX   XXX   XXX     XXX   XXX
      3      XXX   XXX    31    48     XXX   XXX
-2017 1      XXX   XXX   XXX   XXX     XXX   XXX
+2019 1      XXX   XXX   XXX   XXX     XXX   XXX
      2      XXX    33   XXX   XXX     XXX   XXX
      3       31   XXX   XXX   XXX     XXX   XXX
-2018 1      XXX   XXX   XXX   XXX     XXX   XXX
+2020 1      XXX   XXX   XXX   XXX     XXX   XXX
      2       35   XXX   XXX   XXX     XXX   XXX
      3      XXX    32    33   XXX     XXX   XXX
 ```
-The other = argument assigns an arbitrary value for the False condition.  Also notice how the returned DataFrame is the same shape as the original.
+The <span class='coding'>other =</span> argument assigns an arbitrary value for the False condition.  Also notice how the returned DataFrame is the same shape as the original.
 <h3 id="Cross-Sections">Cross Sections</h3>
 
-Pandas DataFrames provision a cross section method called xs as another means for returning rows and columns from an indexed DataFrame or partial data in the case of a MultiIndexed DataFrame.  
+Pandas DataFrames provision a cross section method called <span class='coding'>xs</span> as another means for returning rows and columns from an indexed DataFrame or partial data in the case of a MultiIndexed DataFrame.  
 
-The compact syntax offered by the xs method makes it fairly easy to subset MultiIndexed DataFrames.  The xs method is read only. Consider the following example, xs Cross Section, Example 1.  
+The compact syntax offered by the <span class='coding'>xs</span> method makes it fairly easy to subset MultiIndexed DataFrames.  The <span class='coding'>xs</span> method is read only. Consider the following example, <span class='coding'>xs</span> Cross Section, Example 1.  
 
 <div class="code-head"><span>code</span> xs Cross Section, Example 1.py</div>
 
 ```python
 >>> tickets.xs((1), level='Month')
-Area  City       Rural       Suburbs
-When   Day Night   Day Night     Day Night
+[Out]:
+Area City       Rural       Suburbs
+When  Day Night   Day Night     Day Night
 Year
-2015  15.0  18.0   9.0   3.0     3.0   3.0
-2016  11.0  17.0   1.0   0.0    11.0  26.0
-2017  21.0   5.0  22.0  10.0    12.0   2.0
-2018  25.0  10.0   8.0   4.0    20.0  15.0
+2017   15    18     9     3       3     3
+2018   11    17     1     0      11    26
+2019   21     5    22    10      11     2
+2020   25    10     8     4      20    15
+
 ```
 The xs cross section method has two agruments.  The first argument, in this example is level 1 and the second argument <span class="coding">level = 'Month'</span> returning the rows for  month 1 for all years with all columns.  
 
@@ -270,11 +276,13 @@ City       178.0
 Rural      164.0
 Suburbs    178.0
 ```
+
+The following SAS code performs exactly the same as the above Python code, using <span class='coding'>PROC SQL</span>.   SAS <span class='coding'>PROC SQL</span> is extremely powerful and has a similar syntax as most other flavors of SQL out there. 
 <div class="code-head"><span>code</span> Summed Tickets Where Day over Area.sas</div>
 
 ```sas
 4 PROC SQL;
-5 SELECT UNIQUE AREA
+5 SELECT UNIQUE area
 6      , SUM(tickets) AS sum_by_area
 7 FROM tickets
 8     WHERE WHEN = 'day'
