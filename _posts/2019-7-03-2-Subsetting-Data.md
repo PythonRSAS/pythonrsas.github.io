@@ -272,9 +272,9 @@ Because the xs cross section method returns a DataFrame we can apply mathematica
 ```python
 >>> tickets.xs(('Day'), level='When', axis = 1).sum()
 Area
-City       178.0
-Rural      164.0
-Suburbs    178.0
+City       178
+Rural      164
+Suburbs    177
 ```
 
 The following SAS code performs exactly the same as the above Python code, using <span class='coding'>PROC SQL</span>.   SAS <span class='coding'>PROC SQL</span> is extremely powerful and has a similar syntax as most other flavors of SQL out there. 
