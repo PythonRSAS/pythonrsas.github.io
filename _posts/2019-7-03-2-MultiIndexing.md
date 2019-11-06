@@ -24,12 +24,10 @@ In this post we will cover:
 
 This section introduces MultiIndexing, also known as hierarchical indexing.  The main advantage of MultiIndexing is to be able drill down data without the need of using <span class='coding'>groupby</span>. 
 
-While many SAS users have probably not found the need to use indexing or composite indexing, probably all SAS users have encountered what looks like Python MultiIndex from the output of <span class="coding">PROC FREQ</span> and <span class="coding">PROC MEANS</span>.  For example, if you have used <span class="coding">PROC FREQ</span> followed by two column names in the <span class="coding">TABLES</span> statement such as TABLES a\*b, you would have seen the hierchical frequency output.  
+While many SAS users have probably not found the need to use indexing or composite indexing, probably all SAS users have encountered what looks like Python MultiIndex from the output of <span class="coding">PROC FREQ</span> and <span class="coding">PROC MEANS</span>, or <span class="coding">PROC TABULATE</span>.  For example, if you have used <span class="coding">PROC FREQ</span> followed by two column names in the <span class="coding">TABLES</span> statement such as TABLES a\*b, you would have seen the hierchical frequency output.  As part of data analysis, a <span class="coding">MultiIndex</span> DataFrame provides a useful multi-dimensional ‘view’ of data, the same way you find it useful to use multidimensional Excel pivot tables. 
 
+In a DataFrame, rows and columns may have multiple levels of indices defined with a <span class="coding">MultiIndex</span> object.  Later in this chapter we will see the benefits from MutliIndexing for ‘pivoting’ DataFrames much the same way an Excel spreadsheet can be pivoted.  We will also discuss ‘stacking’ data as a means for ‘slimminging’ DataFrames and ‘unstacking’ to perform the reverse operation. 
 
-Often the data for analysis is captured at the detail level.  As part of performing an exploratory analysis, a <span class="coding">MultiIndex</span> DataFrame provides a useful multi-dimensional ‘view’ of data. 
-
-In a DataFrame, rows and columns may have multiple levels of indices defined with a <span class="coding">MultiIndex</span> object. Later in this chapter we will see the benefits from MutliIndexing for ‘pivoting’ DataFrames much the same way an Excel spreadsheet can be pivoted.  We will also discuss ‘stacking’ data as a means for ‘flattening’ DataFrames and ‘unstacking’ to perform the reverse operation. To begin, consider MultiIndex Details.  The example creates a hierarchical index for the columns in the df DataFrame.
 
 <div class="code-head"><span>code</span> MultiIndex Details.py</div>
 
@@ -43,25 +41,23 @@ In a DataFrame, rows and columns may have multiple levels of indices defined wit
 >>> df = pd.DataFrame(np.random.randn(2,6),index = ['Row 1','Row 2'],columns = cols)
 >>> print(nl,
 ...       df)
-
+[Out]:
        Test1      Test2       Test3
         Pre Post   Pre  Post   Pre  Post
 Row 1 -0.65 0.85  1.08 -1.79  0.94 -0.76
 Row 2  0.72 1.02  0.97 -0.04 -0.07  0.81
 ```
 
-To control the ouput, <span class='coding'>pd.options.display.float_format</span> displays floats two places to the right of the decimal.  There are several different constructors for defining a <span class="coding">MultiIndex</span>.  This example uses <span class='coding'>pd.MultiIndex.from_tuples</span> to define a hierarchical index for the DataFrame columns.  
-
-A Python tuple is a data structure similar to a list used to hold unlike items such as strings, ints, floats, etc. Unlike a list, tuples are immutable and are defined using a pair of parentheses ( ).   In this example the for loops are short-cuts creating the strings to populate the tuples.  
-
-Without the for loops the syntax is:
+NOTE:
+  1. To control the ouput, <span class='coding'>pd.options.display.float_format</span> displays floats two places to the right of the decimal.  There are several different constructors for defining a <span class="coding">MultiIndex</span>.  This example uses <span class='coding'>pd.MultiIndex.from_tuples</span> to define a hierarchical index for the DataFrame columns.  
+  2. Without the for loops the syntax is:
 
 ```python
 pd.MultiIndex.from_tuples([('Test1', 'Pre'), ('Test1', 'Post'), 
     ('Test2', 'Pre'), ('Test2', 'Post'),('Test3', 'Pre'), ('Test3', 'Post')])
 ```
 
-The df DataFrame in this example uses the DataFrame constructor assigning row labels with <span class='coding'>index=['Row 1','Row 2']</span> and <span class='coding'>columns = col</span> creating the <span class="coding">MultiIndexed</span> or hierarchical columns.  
+  3. The df DataFrame in this example uses the DataFrame constructor assigning row labels with <span class='coding'>index=['Row 1','Row 2']</span> and <span class='coding'>columns = col</span> creating the <span class="coding">MultiIndexed</span> or hierarchical columns.  
 
 With the df DataFrame constructed along with its hierarchical columns and row labels, let’s examine the constituent components closely by considering Multi-Indexed Details.
 
@@ -77,7 +73,7 @@ With the df DataFrame constructed along with its hierarchical columns and row la
 ...   nl              ,
 ...       'Col Level 2:'  , df.columns.levels[1])
 
-Out:
+[Out]:
  Index:       Index(['Row 1', 'Row 2'], dtype='object')
  Columns:     MultiIndex(levels=[['Test1', 'Test2', 'Test3'], ['Post', 'Pre']],
            codes=[[0, 0, 1, 1, 2, 2], [1, 0, 1, 0, 1, 0]])
@@ -86,8 +82,9 @@ Out:
 ```
 Recall  a pandas index is  simply a method to assign labels to rows.  In this example statement <span class='coding'>df.columns</span> returns the DataFrame column labels. In this case, a Python list of lists which are the unique levels from the <span class="coding">MultiIndex</span> assigned as columns.  
 
-The labels return a Python list of lists referencing these levels on the index, in this case, two levels.  The statement <span class='coding'>df.columns.levels[0] </span>
-returns a Python list of column lables used in the outer-most level of the hierarchical index.  The statement <span class="coding">df.columns.levels[1]</span> returns the inner-most level of the hierarchical index.  
+The labels return a Python list of lists referencing these levels on the index, in this case, two levels.  Like peeling an onion, we start from the outer layer.  
+
+The statement <span class='coding'>df.columns.levels[0] </span> returns a Python list of column labels used in the outer-most level of the hierarchical index.  The statement <span class="coding">df.columns.levels[1]</span> returns the inner-most level of the hierarchical index.  
 
 Whether assigned to the DataFrame rows or columns,  a hierarchical index can have a arbitrary number of levels. To further understand MultiIndexes we construct a more elaborate DataFrame. 
 
@@ -99,7 +96,7 @@ The following example, Create tickets DataFrame, illustrates a hierarchical inde
 >>> import pandas as pd
 >>> import numpy as np
 >>> np.random.seed(654321)
->>> idx = pd.MultiIndex.from_product([[2015, 2016, 2017, 2018],
+>>> idx = pd.MultiIndex.from_product([[2017, 2018, 2019, 2020],
 ...                          [1, 2, 3]],
 ...                  names = ['Year', 'Month'])
 >>> columns=pd.MultiIndex.from_product([['City' , 'Suburbs', 'Rural'],
