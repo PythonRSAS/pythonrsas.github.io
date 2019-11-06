@@ -50,7 +50,7 @@ Row 2  0.72 1.02  0.97 -0.04 -0.07  0.81
 NOTE:
   1. The df DataFrame in this example uses the DataFrame constructor assigning row labels with <span class='coding'>index=['Row 1','Row 2']</span> and <span class='coding'>columns = col</span> creating the <span class="coding">MultiIndexed</span> or hierarchical columns.  
   2. To control the ouput, <span class='coding'>pd.options.display.float_format</span> displays floats two places to the right of the decimal.  There are several different constructors for defining a <span class="coding">MultiIndex</span>.  This example uses <span class='coding'>pd.MultiIndex.from_tuples</span> to define a hierarchical index for the DataFrame columns.  
-  3. Alternatively, we can also use pd.MultiIndex.from_tuples, and the syntax is:
+  3. Alternatively, we can also use <span class='coding'>pd.MultiIndex.from_tuples</span>, and the syntax is:
 
 ```python
 cols = pd.MultiIndex.from_tuples([ (x,y) for x in ['Test1','Test2','Test3'] for y in ['Pre','Post']])
@@ -65,21 +65,19 @@ With the df DataFrame constructed along with its hierarchical columns and row la
 <div class="code-head"><span>code</span>Multi-Indexed Details.py</div>
 
 ```python
->>> print(nl,
-...       'Index:      '  , df.index,
-...   nl              ,
-...       'Columns:    '  , df.columns,
-...   nl              ,
-...       'Col Level 1:'  , df.columns.levels[0],
-...   nl              ,
-...       'Col Level 2:'  , df.columns.levels[1])
+>>> df.index
+[Out]: Index(['Row 1', 'Row 2'], dtype='object')
 
-[Out]:
- Index:       Index(['Row 1', 'Row 2'], dtype='object')
- Columns:     MultiIndex(levels=[['Test1', 'Test2', 'Test3'], ['Post', 'Pre']],
-           codes=[[0, 0, 1, 1, 2, 2], [1, 0, 1, 0, 1, 0]])
- Col Level 1: Index(['Test1', 'Test2', 'Test3'], dtype='object')
- Col Level 2: Index(['Post', 'Pre'], dtype='object')
+>>> df.columns
+[Out]: MultiIndex(levels=[['Test1', 'Test2', 'Test3'], ['Post', 'Pre']],
+           labels=[[0, 0, 1, 1, 2, 2], [1, 0, 1, 0, 1, 0]])
+
+>>> df.columns.levels[0]
+[Out]: Index(['Test1', 'Test2', 'Test3'], dtype='object')
+
+>>> df.columns.levels[1]
+[Out]:Index(['Post', 'Pre'], dtype='object')
+
 ```
 Recall  a pandas index is  simply a method to assign labels to rows.  In this example statement <span class='coding'>df.columns</span> returns the DataFrame column labels. In this case, a Python list of lists which are the unique levels from the <span class="coding">MultiIndex</span> assigned as columns.  
 
