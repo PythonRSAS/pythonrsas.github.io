@@ -24,10 +24,9 @@ In this post we will cover:
 
 This section introduces MultiIndexing, also known as hierarchical indexing.  The main advantage of MultiIndexing is to be able drill down data without the need of using <span class='coding'>groupby</span>. 
 
-While many SAS users have probably not found the need to use indexing or composite indexing, probably all SAS users have encountered what looks like Python MultiIndex from the output of <span class="coding">PROC FREQ</span> and <span class="coding">PROC MEANS</span>, or <span class="coding">PROC TABULATE</span>.  For example, if you have used <span class="coding">PROC FREQ</span> followed by two column names in the <span class="coding">TABLES</span> statement such as TABLES a\*b, you would have seen the hierchical frequency output.  As part of data analysis, a <span class="coding">MultiIndex</span> DataFrame provides a useful multi-dimensional ‘view’ of data, the same way you find it useful to use multidimensional Excel pivot tables. 
+While many SAS users have not used indexing or composite indexing, all SAS users have encountered what looks like Python MultiIndex from the output of <span class="coding">PROC FREQ</span> and <span class="coding">PROC MEANS</span>, or <span class="coding">PROC TABULATE</span>.  For example, if you have used <span class="coding">PROC FREQ</span> followed by two column names in the <span class="coding">TABLES</span> statement such as TABLES a\*b, you would have seen the hierchical frequency output.  As part of data analysis, a <span class="coding">MultiIndex</span> DataFrame provides a useful multi-dimensional ‘view’ of data, the same way you find it useful to use multidimensional Excel pivot tables. 
 
 In a DataFrame, rows and columns may have multiple levels of indices defined with a <span class="coding">MultiIndex</span> object.  Later in this chapter we will see the benefits from MutliIndexing for ‘pivoting’ DataFrames much the same way an Excel spreadsheet can be pivoted.  We will also discuss ‘stacking’ data as a means for ‘slimminging’ DataFrames and ‘unstacking’ to perform the reverse operation. 
-
 
 <div class="code-head"><span>code</span> MultiIndex Details.py</div>
 
@@ -35,7 +34,7 @@ In a DataFrame, rows and columns may have multiple levels of indices defined wit
 >>> import pandas as pd
 >>> import numpy as np
 >>> pd.options.display.float_format = '{:,.2f}'.format
->>> cols = pd.MultiIndex.from_tuples([ (x,y) for x in ['Test1','Test2','Test3'] for y in ['Pre','Post']])
+>>> cols = pd.MultiIndex.from_product([['Test1','Test2','Test3'],['Pre','Post']])
 >>> nl = '\n'
 >>> np.random.seed(98765)
 >>> df = pd.DataFrame(np.random.randn(2,6),index = ['Row 1','Row 2'],columns = cols)
@@ -49,15 +48,17 @@ Row 2  0.72 1.02  0.97 -0.04 -0.07  0.81
 ```
 
 NOTE:
-  1. To control the ouput, <span class='coding'>pd.options.display.float_format</span> displays floats two places to the right of the decimal.  There are several different constructors for defining a <span class="coding">MultiIndex</span>.  This example uses <span class='coding'>pd.MultiIndex.from_tuples</span> to define a hierarchical index for the DataFrame columns.  
-  2. Without the for loops the syntax is:
+  1. The df DataFrame in this example uses the DataFrame constructor assigning row labels with <span class='coding'>index=['Row 1','Row 2']</span> and <span class='coding'>columns = col</span> creating the <span class="coding">MultiIndexed</span> or hierarchical columns.  
+  2. To control the ouput, <span class='coding'>pd.options.display.float_format</span> displays floats two places to the right of the decimal.  There are several different constructors for defining a <span class="coding">MultiIndex</span>.  This example uses <span class='coding'>pd.MultiIndex.from_tuples</span> to define a hierarchical index for the DataFrame columns.  
+  3. Alternatively, we can also use pd.MultiIndex.from_tuples, and the syntax is:
 
 ```python
+cols = pd.MultiIndex.from_tuples([ (x,y) for x in ['Test1','Test2','Test3'] for y in ['Pre','Post']])
+df = pd.DataFrame(np.random.randn(2,6),index = ['Row 1','Row 2'],columns = cols)
+# or 
 pd.MultiIndex.from_tuples([('Test1', 'Pre'), ('Test1', 'Post'), 
     ('Test2', 'Pre'), ('Test2', 'Post'),('Test3', 'Pre'), ('Test3', 'Post')])
 ```
-
-  3. The df DataFrame in this example uses the DataFrame constructor assigning row labels with <span class='coding'>index=['Row 1','Row 2']</span> and <span class='coding'>columns = col</span> creating the <span class="coding">MultiIndexed</span> or hierarchical columns.  
 
 With the df DataFrame constructed along with its hierarchical columns and row labels, let’s examine the constituent components closely by considering Multi-Indexed Details.
 
