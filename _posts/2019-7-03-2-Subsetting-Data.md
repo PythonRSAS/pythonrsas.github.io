@@ -9,9 +9,9 @@ author: Sarah Chen
 ---
 To be able to subset data masterfully is essential for working with data.  This post is about subsetting multiindexed DataFrame and is partially based from Chapter 4 "IndexIng and groupBy" of my co-authored book (from page 134) [Python for SAS Users](https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001/ref=sr_1_3?crid=21NME5C69YGV7&keywords=python+for+sas+users&qid=1572638715&sprefix=python+for+sas+%2Caps%2C196&sr=8-3). 
 
-Recall that multiindex is array of tuples. So to slice it, we need to be familar with tuples and its associates methods.
+Recall that multiindex can be seen as array of tuples. For a review of multiindexing, please see my post on Multiindexing, which corresponds to the section starting from page 131 of the book. 
 
-In this post, you will learn how to slice and dice multiindexed DataFrame anyway you wish, by indexing or on condition, and whether you want to return a DataFrame or just make a quick selection:
+In this post, you will learn how to slice and dice multiindexed DataFrame anyway you wish, by indexing or on condition, however complex, and to make a quick selection:
 
 [Slicing Rows and Columns by Index](#Slicing-Rows-and-Columns)
 

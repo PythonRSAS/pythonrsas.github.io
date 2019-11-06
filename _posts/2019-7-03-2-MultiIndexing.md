@@ -7,6 +7,9 @@ description: Data processing using Python and SAS.
 author: Sarah Chen
 # image: http://drive.google.com/uc?export=view&id=1eAHEYDGldo9p03m9leLOxDfcD41Fvm1X
 ---
+This post is about multiindexing in pandas and is partially based on Chapter 4 "IndexIng and groupBy" of my co-authored book (from page 131) [Python for SAS Users](https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001/ref=sr_1_3?crid=21NME5C69YGV7&keywords=python+for+sas+users&qid=1572638715&sprefix=python+for+sas+%2Caps%2C196&sr=8-3). 
+
+
 In this post we will cover:
 
 [- MultiIndexing](#MultiIndexing)
@@ -19,7 +22,10 @@ In this post we will cover:
 
 <h3 id="MultiIndexing">MultiIndexing</h3>
 
-Thus far, the use of indexes involves a single column labeling DataFrame rows. See Add Index to DataFrame as an illustration.  This section introduces MultiIndexing, also known as hierarchical indexing.  
+This section introduces MultiIndexing, also known as hierarchical indexing.  The main advantage of MultiIndexing is to be able drill down data without the need of using <span class='coding'>groupby</span>. 
+
+While many SAS users have probably not found the need to use indexing or composite indexing, probably all SAS users have encountered what looks like Python MultiIndex from the output of <span class="coding">PROC FREQ</span> and <span class="coding">PROC MEANS</span>.  For example, if you have used <span class="coding">PROC FREQ</span> followed by two column names in the <span class="coding">TABLES</span> statement such as TABLES a\*b, you would have seen the hierchical frequency output.  
+
 
 Often the data for analysis is captured at the detail level.  As part of performing an exploratory analysis, a <span class="coding">MultiIndex</span> DataFrame provides a useful multi-dimensional ‘view’ of data. 
 
@@ -155,7 +161,7 @@ NOTE: The data set WORK.TICKETS has 72 observations and 5 variables.
 22                area=' ' * when=' ' * sum=' ' * tickets=' ';
 23  run;
 ```
-The Data Step uses nested <span class="coding">DO</span>/<span class="coding">END</span> blocks generating the class variables area, when, year, and  month.  The tickets variable is created with nested functions working from the inside out:
+The DATA step uses nested <span class="coding">DO</span>/<span class="coding">END</span> blocks generating the class variables area, when, year, and  month.  The tickets variable is created with nested functions working from the inside out:
 
 1.  The <span class="coding">RAND</span> function draws values from the normal distribution random number generator.  These values are then multiplied by 100 and the product is divided by 5.
 
@@ -165,7 +171,7 @@ The Data Step uses nested <span class="coding">DO</span>/<span class="coding">EN
 
 <span class="coding">PROC TABULATE</span> illustrates the <span class="coding">TABLE</span> statement syntax that constructs this particular output:
 ```sas
-table year * month ,
+TABLE year * month ,
       area=' ' * when=' ' * sum=' ' * tickets=' ';
 ```
 The row dimension crosses <span class='coding'>*</span> the month variable with the year variable.  The column dimension crosses <span class='coding'>*</span> values for tickets with the area variable which in turn is crossed <span class='coding'>*</span> with the when variable and together they are crossed with the summed value for the tickets variable.
