@@ -2,7 +2,7 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "Creating Assembling and Parsing"
+title: "Tips for Working with Timeseries"
 description: Time series data processing using Python and SAS.
 author: Sarah Chen
 # image: http://drive.google.com/uc?export=view&id=1QCuv6RGm8y1vdPU4DitqOZPIbx8Nw-yM
@@ -10,7 +10,7 @@ author: Sarah Chen
 
 In this post, you will learn: 
 
-[Creating](#Creating)
+[ComparingDates](#Comparing-Dates)
 
 [Assembling](#Assembling)
 
@@ -22,31 +22,23 @@ Let's get started.
   <figcaption>Photo by Alex Azabache</figcaption>
 </figure>
 
-In practice, we often need to perform the following in working with time series or panel data before we start to manipulate them:
+This post covers miscllenous tips we need for working with datatime in Python and SAS.
 
-1.  Create a time series directly
-2.  Assembling from multiple columns
-3.  Convert or parse strings to desired date, time or datetime formats
-4.  Convert number to desired date, time or datetime objects
+<h3 id="Comparing-Dates">ComparingDates</h3>
 
-<h3 id="Creating">Creating</h3>
-
-As we have seen so far, it is easy to create a series of date, time or datetime with pandas.   Using the <span class="coding">pd.date_range()</span>, <span class='coding'>pd.period_range()</span> <span class='coding'>pd.timedelta_range()</span> function, we can build datetime or period indices or timedelta with just a few lines of code.   
-
-In addition, <span class="coding">pd.PeriodIndex()</span> and <span class="coding">pd.DatetimeIndex()</span> can directly take a list of date or datetime-like strings to construct period index or datetime index.   
-For easy reference, we summarize the functions covered, their default syntax, and followed with simple examples as below:
-
-• To create date range using date_range
+• To slice data using Date column by comparing against a date in Python when the date column is not the index
 
 ```python
-pd.date_range(start=None, end=None, periods=None, freq=None, tz=None, normalize=False,
-name=None, closed=None, **kwargs )
+df[df.Date.dt.year>2010]
 ```
-Example:
-```python
-pd.date_range('2020-01-01','2020-12-31',freq="Q")
-DatetimeIndex(['2020-03-31', '2020-06-30', '2020-09-30', '2020-12-31'], 
-dtype='datetime64[ns]', freq='Q-DEC')
+• To slice data by comparing against a date in SAS
+
+```sas
+if Date > '30Dec2010'd;
+/* or where Date > '30Dec2010'd;*/ 
+
+/*or*/
+if year(Date) > 2010;
 ```
 
 • To create business date range that can incorporate custom frequency ranges, holidays and time zones
