@@ -81,7 +81,9 @@ With the df DataFrame constructed along with its hierarchical columns and row la
 ```
 Recall  a pandas index is  simply a method to assign labels to rows.  In this example statement <span class='coding'>df.columns</span> returns the DataFrame column labels. In this case, a Python list of lists which are the unique levels from the <span class="coding">MultiIndex</span> assigned as columns.  
 
-The labels return a Python list of lists referencing these levels on the index, in this case, two levels.  Like peeling an onion, we start from the outer layer.  
+The labels return a Python list of lists referencing these levels on the index, in this case, two levels.  
+
+Like peeling an onion, we start from the outer layer.  
 
 The statement <span class='coding'>df.columns.levels[0] </span> returns a Python list of column labels used in the outer-most level of the hierarchical index.  The statement <span class="coding">df.columns.levels[1]</span> returns the inner-most level of the hierarchical index.  
 
