@@ -1,20 +1,20 @@
 ---
 layout: post
-tag : Learning Python and SAS
+tag : Learning Python and SAS and R
 category: "python for sas"
-title: "Resources for Using SAS"
+title: "Resources for SAS, R and Python"
 description: resources for SAS users, including SAS technical support, conference proceedings and/or e-mail LISTSERVs, and SAS users groups. 
 author: Sarah Chen
 # image: http://drive.google.com/uc?export=view&id=1QCuv6RGm8y1vdPU4DitqOZPIbx8Nw-yM
 ---
 
-This post is for anyone who is experiencing lack of support at work due to cost cutting.  Chances are, you need it :)
+This post covers good resources for Python, R, and SAS (although the actual order is reversed), and it is continuously evolving.  
 
 [SAS Support and Resources](#Comparing-Dates)
 
 [R Resources](#R)
 
-[Parsing](#Parsing)
+[Python Resources](#Python)
 
 Let's get started. 
 <figure>
@@ -61,3 +61,5 @@ This post covers miscllenous tips we need for working with datatime in Python an
  - from Muhammad Ali Gulzar at UCLA
 
 [*Quick R tour*](https://www.statmethods.net/)
+
+<h3 id="Python">Python Resources</h3>
