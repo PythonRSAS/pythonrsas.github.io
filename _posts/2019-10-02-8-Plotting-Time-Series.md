@@ -9,7 +9,7 @@ image: http://drive.google.com/uc?export=view&id=1hXH-eJF20B6xAJvc1W5icAzePG1MwU
 
 ---
 
-In this post, you will learn: 
+Visualizing time series is an essential part of analyzing time series data.    In this post, you will learn: 
 
 [DatetimeIndex](#DatetimeIndex)
 
@@ -24,48 +24,29 @@ Let's get started.
 </figure>
 
 
-Visualizing time series is an essential part of analyzing time series data.   To be able to quickly summarize, compare, contrast and extract information from data in different resolutions of time dimension is an important skill in almost all industries.   It can be both easy and challenging to plot time series, depending on the requirements.   We will start with the basics and then add spices and flavors.
-
-SAS users need to be aware that pandas allow duplicate index.  When we perform strict time series analysis, we would need to remove duplicates.  
+The SERIES statement produces time series plots.
 
 
-The most fundamental measures of time are point in time **timestamp** and **intervals** (fixed or variable), and the difference between them **timedelta**.  These objects provide building blocks for comprehensive time series data processes.    [here](https://github.com){:target="_blank"}.
-
-<h3 id="DatetimeIndex">DatetimeIndex</h3>
-
-Pandas <span class="coding">Timestamp</span> is pandas' equivalent to the Python's native <span class="coding">datetime</span>  object and in many cases a pandas Timestamp is interchangeable with Python's datetime object.    Pandas Timestamp  combines the flexibility of datetime and <span class="coding">dateutil</span> and the efficiency of vectorized representation from numpy.datetime64.  
-The example below illustrates how a list of objects with mixed formats is automatically coerced to <span class="coding">Datetimeindex</span> by .
-
-<div class="code-head"><span>code</span>Pandas DatetimeIndex.py</div>
-
-```python
->>> dates = ['1-02-2020', '4-1-2020','2020-07-04', '4th of July, 2020', '2020-12-31']
->>> pd.to_datetime(dates, dayfirst=False)
-[Out]: DatetimeIndex(['2020-01-02', '2020-04-01', 
-'2020-07-04', '2020-07-04', '2020-12-31'],
-     dtype='datetime64[ns]', freq=None)
-
-```
-* From pandas version 0.20.0. there is a new origin parameter for specifying an alternative starting point for creation of a <span class="coding">DatetimeIndex</span>.  For example, using 1960-01-01 as the starting date would make pandas dates have the same reference starting date as SAS date
-* If you do not specify origin, then the default is origin='unix', which defaults to 1970-01-01 00:00:00.  This is commonly called 'unix epoch' or POSIX time. 
-* Pandas represents timestamps in nanosecond resolution.  Hence the time span that can be represented using a 64-bit integer is limited to approximately 584 years.   On the other hand, SAS does not have such limitation  as SAS stores dates as integers, datetime and time as real numbers. 
-
-SAS date or time are stored internally in numbers and represented according to formats user specified.  Example below prints current date, time, and datetime stamps.  
-<div class="code-head"><span>code</span>SAS Date Time and Datetime Stamps.sas</div>
+One of the most commonly used plots in business is the bar-line plot, where bars are for frequency and lines are for aggregations such as sum, mean or median. 
+<div class="code-head"><span>code</span>Bar-line plots.sas</div>
 
 ```sas
->>> DATA _NULL_;
-    d1=DATE();
-    t1=TIME();
-    dt1=datetime();
-    PUT d1 DATE9-;
-    PUT t1 TIME10.;
-    PUT dt1 DATETIME21.2;
-    RUN;
-/*20:56:09 09OCT2019 */
+ODS GRAPHICS ON / WIDTH=12IN HEIGHT=5IN;
+PROC SGPLOT DATA=df;
+VBAR date/ DATASKIN=PRESSED FILLATTRS=(COLOR=LIGGR);
+VLINE date/RESPONSE=X1 STAT=MEAN LEGENDLABEL ='  ' Y2AXIS LINEATTRS=(THICKNESS=1.5 PATTERN=SOLID COLOR=RED) Y2AXIS;
+VLINE date/RESPONSE=X2 STAT=MEAN LEGENDLABEL ='  ' Y2AXIS LINEATTRS=(THICKNESS=1.5 PATTERN=SOLID COLOR=MEDIUMBLUE) Y2AXIS;
+YAXIS VALUES=(0, 100) OFFSETMIN=0 LABEL = "volumn";
+Y2AXIS GRID VALUES=(0, 10, 100,1000) OFFSETMIN=0 LABEL = "X1";
+XAXIS VALUES=(   );
+INSET "your text for annotation"/POSITION =TOP;
+RUN;
 ```
 
-As mentioned earlier, pandas is built on top of numpy.  Vectorized operations from numpy can be applied directly on Timestamp object to create a sequence of dates or times, which is automatically coerced into <span class"=coding>DatetimeIndex</span> object.   This is illustrated in the next example. 
+Note:
+ - The VBAR statement produces vertical bar charts and HBAR produces horizontal bar charts.   By default, frequency counts for each category are plotted. 
+  - When the RESPONSE option is speciﬁed, summary statistics (sums, means, etc.) can be plotted separately for each category of the speciﬁed response variable.
+
 <div class="code-head"><span>code</span>Vectorized Operation on Timestamp.py</div>
 
 ```python
