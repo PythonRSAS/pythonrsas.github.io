@@ -29,16 +29,20 @@ This post covers miscllenous tips we need for working with datatime in Python an
 • To slice data using Date column by comparing against a date in Python when the date column is not the index
 
 ```python
-df[df.Date.dt.year>2010]
+df[df.Date.dt.year>2010] #comparing year
+# or when you need to compare against a specific date
+import datetime
+df[df.Date.dt.date > datetime.date(2010,12,30)]
 ```
 • To slice data by comparing against a date in SAS
 
 ```sas
+if year(Date) > 2010;
+
+/*or, to compare against a specific date*/
+
 if Date > '30Dec2010'd;
 /* or where Date > '30Dec2010'd;*/ 
-
-/*or*/
-if year(Date) > 2010;
 ```
 
 • To create business date range that can incorporate custom frequency ranges, holidays and time zones
