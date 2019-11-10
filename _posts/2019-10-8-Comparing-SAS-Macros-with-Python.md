@@ -1,14 +1,14 @@
 ---
 layout: post
-tag : Learning Python and SAS and R
+tag : Learning Python and SAS
 category: "python for sas"
-title: "Resources for SAS, R and Python"
-description: Resources for SAS, Python and R users, including SAS technical support, conference proceedings and users groups. 
+title: "Comparing SAS Macros with Python"
+description: For experienced SAS programmers, SAS macros are super useful and essential tools.  Python code has many similarities to SAS macros.  For Python users, the post gives glimpes of SAS macros via Python code. 
 author: Sarah Chen
-# image: http://drive.google.com/uc?export=view&id=1QCuv6RGm8y1vdPU4DitqOZPIbx8Nw-yM
+image: http://drive.google.com/uc?export=view&id=1QCuv6RGm8y1vdPU4DitqOZPIbx8Nw-yM
 ---
 
-This post covers good resources for Python, R, and SAS (although the actual order is reversed), and it is continuously evolving.  As data analysts or data scientists, we expand ourself by being multilingual.  
+To many SAS users SAS macro is one of the reasons why SAS is so powerful.  Macros allow SAS to have "object-oriented" functionalities like Python and R.  
 
 [SAS Support and Resources](#Comparing-Dates)
 
@@ -16,13 +16,13 @@ This post covers good resources for Python, R, and SAS (although the actual orde
 
 [Python Resources](#Python)
 
-Let's get started. 
 <figure>
   <img src="{{ "/images/posts/alex-azabache.jpg" | relative_url }}">
   <figcaption>Photo by Alex Azabache</figcaption>
 </figure>
+Let's get started. 
 
-This post covers miscllenous tips we need for working with datatime in Python and SAS.
+
 
 <h3 id="Comparing-Dates">SAS Support and Resources</h3>
 
@@ -63,4 +63,3 @@ This post covers miscllenous tips we need for working with datatime in Python an
 [*Quick R tour*](https://www.statmethods.net/)
 
 <h3 id="Python">Python Resources</h3>
-
