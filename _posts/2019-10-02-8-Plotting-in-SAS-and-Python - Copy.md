@@ -2,8 +2,8 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "Plotting in SAS and Python"
-description: Various essential plots using Python and SAS.
+title: "Plotting-in-SAS-and-Python - Copy"
+description: Import, manipulate, plot, and do whatever you want with time series and panel data.
 author: Sarah Chen
 image: http://drive.google.com/uc?export=view&id=1hXH-eJF20B6xAJvc1W5icAzePG1MwUuO
 
@@ -28,6 +28,36 @@ Let's get started.
 <h4 id="Bar-line-plot">Bar-line plot</h4>
 
 One of the most commonly used plots in business is the bar-line plot, where bars are for frequency and lines are for aggregations such as sum, mean or median. 
+
+<div class="code-head"><span>code</span>Getting Data.python</div>
+
+```python
+>>> import pandas_datareader.data as pdr
+>>> AAPL = pdr.get_data_yahoo('AAPL', start=pd.Timestamp(1980, 7, 16), end=pd.Timestamp(2019, 11, 10))
+
+```
+
+<div class="code-head"><span>code</span>Getting Data.sas</div>
+
+```sas
+>>>  FILENAME quandl temp;
+PROC HTTP URL="https://www.quandl.com/api/v3/datasets/BCHAIN/MKPRU.json?api_key=XXXXXXXXXXXXXXXXXXXXXX"
+     METHOD = "GET"
+OUT = quandl;
+RUN;
+>>> DATA bitcoin(KEEP=date datec price);
+LENGTH date 8;
+FORMAT date DATE9-;
+SET dataset_data(RENAME=(element1=datec element2=price));
+date = INPUT(datec,??is8601da.);
+RUN;
+
+>>> TITLE "Bitcoin time series";
+>>> PROC sgplot DATA=bitcoin(WHERE=(date >= '17Dec2017'd));
+SERIES X=date Y=price;
+RUN;
+```
+
 
 <div class="code-head"><span>code</span>Bar-line plots.sas</div>
 
