@@ -83,7 +83,7 @@ run;
 ```
 The output is in figure below.  The blue line shows trading volume whereas the red line shows closing price.  The straight line is the linear trend, with dashed lines indicating 95% confidence interval. 
 <figure>
-  <img src="{{ "/images/posts/Apple_Linear_Trend.png" | relative_url }}">
+  <img src="{{ "/images/posts/Apple_Linear_Trend.PNG" | relative_url }}">
   <figcaption>Apple</figcaption>
 </figure>
 
