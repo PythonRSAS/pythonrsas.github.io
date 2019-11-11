@@ -36,6 +36,55 @@ One of the most commonly used plots in business is the bar-line plot, where bars
 >>> AAPL = pdr.get_data_yahoo('AAPL', start=pd.Timestamp(1980, 7, 16), end=pd.Timestamp(2019, 11, 10))
 
 ```
+<div class="code-head"><span>code</span>Getting Apple Stock Price and Plot High Low.sas</div>
+
+```sas
+/* store temp files */
+filename out "%sysfunc(getoption(WORK))/output.txt";
+filename hdrout "%sysfunc(getoption(WORK))/response1.txt";
+
+LIBNAME lib_name "/folders/myfolders/TSdata";
+
+proc http 
+    out=data 
+    headerout=hdrout2
+    url="https://query1.finance.yahoo.com/v7/finance/download/AAPL?period1=1279252800%str(&)period2=1577097600%str(&)interval=1d%str(&)events=history%str(&)crumb=&getCrumb."
+    method="get";
+run;
+ 
+proc import
+ file=data
+ out=LIB_NAME.aapl
+ dbms=csv
+ replace;
+run;
+
+proc sgplot data=lib_name.aapl;
+  highlow x=date high=high low=low / open=open close=close;
+  xaxis display=(nolabel) minor;
+/*   yaxis display=("nolabel"); */
+run;
+
+```
+
+
+<div class="code-head"><span>code</span>Apple Stock Linear Trend.sas</div>
+
+```sas
+ods graphics / reset width=8in height=3in imagename="aapl_2010_2019";
+  title "Apple Daily Close (Alpha=0.1) Degree=1 on &sysdate";
+proc sgplot data=lib_name.aapl noautolegend subpixel;
+  series x=date y=volume/ LEGENDLABEL="Volume";
+  series x=date y=close / y2axis LEGENDLABEL= "Closing Price";
+  reg x=date y=close / y2axis nomarkers clm cli alpha=0.1 cliattrs=(color='red'); 
+  y2axis grid  LABEL="Price";
+  xaxis grid ;
+run;
+```
+<figure>
+  <img src="{{ "/images/posts/Apple_Linear_Trend.jpg" | relative_url }}">
+  <figcaption>Apple</figcaption>
+</figure>
 
 <div class="code-head"><span>code</span>Getting Data.sas</div>
 
