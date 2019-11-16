@@ -14,12 +14,8 @@ In this post (partially taken from my upcoming book), we go over how to set up y
 **- [Saving Images](#Saving-Images)**
 
 **- [Title Footnote and Annotations](#Enhance-Images)**
-<!-- 
-<figure>
-  <img src="{{ "/images/posts/tan-kaninthanond.jpg" | relative_url }}">
-  <figcaption>Photo by Tan Kaninthanond</figcaption>
-</figure>
- -->Let's get started.
+
+Let's get started.
 
 <h3 id="Saving-Images">Saving Images</h3>
 
