@@ -2,7 +2,7 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "Plotting-in-SAS-and-Python - Copy"
+title: "Plotting Timeseries in SAS and Python"
 description: Import, manipulate, plot, and do whatever you want with time series and panel data.
 author: Sarah Chen
 image: http://drive.google.com/uc?export=view&id=1hXH-eJF20B6xAJvc1W5icAzePG1MwUuO
