@@ -111,6 +111,8 @@ Note:
 - <span class='coding'>ODS TRACE ON</span> writes names of outputs (tables and images) to the log. 
 - <span class='coding'>ODS SELECT </span> is used to to choose a few selected pieces of the output.
 
+Using matplotlib you can use the savefig() function.  While it is most common to save plots as .png, it is nice to know that there are actually many options for file type.  All you have to do is change the file extension in the savefig(). 
+
 <div class="code-head"><span>code</span>save images.py</div>
 
 ```python
