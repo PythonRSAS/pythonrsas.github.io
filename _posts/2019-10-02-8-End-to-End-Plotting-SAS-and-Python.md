@@ -74,6 +74,8 @@ Note:
 
 Using matplotlib you can use the savefig() function.  While it is most common to save plots as .png, it is nice to know that there are actually many options for file type.  All you have to do is change the file extension in the savefig(). 
 
+However, as the function is only for saving figure, you cannot save figure and tables together like you do in SAS ODS. 
+
 <div class="code-head"><span>code</span>save images.py</div>
 
 ```python

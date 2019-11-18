@@ -9,7 +9,7 @@ image: http://drive.google.com/uc?export=view&id=1hXH-eJF20B6xAJvc1W5icAzePG1MwU
 
 ---
 
-Visualizing time series is an essential part of analyzing time series data.    In this post (partially taken from my upcoming book), we go over a few very commonly used plots and compare the code in SAS, Python, and ways to save images.  For non-SAS users, we intentionally upcase the SAS keywords, even though SAS is not case-sensititve.  
+In this post (partially taken from my upcoming book), we go over a few very commonly used plots and compare the code in SAS, Python, and ways to save images.  For non-SAS users, we intentionally upcase the SAS keywords, even though SAS is not case-sensititve.  
 
 **- [Bar-line plot](#Bar-line-plot)**
 
@@ -20,8 +20,8 @@ Visualizing time series is an essential part of analyzing time series data.    I
 **- [Title Footnote and Annotations](#Enhance-Images)**
 
 <figure>
-  <img src="{{ "/images/posts/tan-kaninthanond.jpg" | relative_url }}">
-  <figcaption>Photo by Tan Kaninthanond</figcaption>
+  <img src="{{ "/images/posts/PythonVisLandscape2018.jpg" | relative_url }}">
+  <!-- <figcaption> source</figcaption> -->
 </figure>
 Let's get started.
 
