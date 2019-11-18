@@ -5,7 +5,7 @@ category: "python for sas"
 title: "Timestamp, Period and Timedelta"
 description: Time series data processing using Python and SAS.
 author: Sarah Chen
-image: http://drive.google.com/uc?export=view&id=1QNhSCjhI-OjvGSmalSfEIguyenBK-wZG
+image: images/posts/sean-o.jpg
 
 ---
 
@@ -19,8 +19,8 @@ In this post, you will learn:
 
 Let's get started.
 <figure>
-  <img src="{{ "/images/posts/tan-kaninthanond.jpg" | relative_url }}">
-  <figcaption>Photo by Tan Kaninthanond</figcaption>
+  <img src="{{ "/images/posts/sean-o.jpg" | relative_url }}">
+  <figcaption>Photo by Sean O</figcaption>
 </figure>
 
 The most fundamental measures of time are point in time (time stamp) and intervals (fixed or variable), and the difference between them, timedelta.  These objects provide building blocks for comprehensive time series data processes.  

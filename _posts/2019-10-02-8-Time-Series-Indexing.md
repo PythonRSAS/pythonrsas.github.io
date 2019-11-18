@@ -5,10 +5,10 @@ category: "python for sas"
 title: "Time Series Indexing"
 description: Time series data processing using Python and SAS.
 author: Sarah Chen
-# image: https://drive.google.com/uc?export=view&id=1qdvZnKpHH8QlnmjJq-l-zE3rajpTyXxm
-
+image: images/posts/derek-mack.jpg
 ---
-
+<!-- image: images/posts/derek-mack.jpg -->
+<!-- https://drive.google.com/uc?export=view&id=1qdvZnKpHH8QlnmjJq-l-zE3rajpTyXxm -->
 **While we are postponing, life speeds by.**
 
 <!-- > not used for now**Update**: Lorem ipsum dolor. [end of life](https://pythonclock.org/), Aliquip ad magna laborum eu ut aute ut quis in veniam in. **Python3**. -->
@@ -36,12 +36,12 @@ In this post, you will learn:
 [- Duplicates in Index](#Duplicates-in-Index)
 
 [- Missing Values](#Missing-Values)
+<figure>
+  <img src="{{ "/images/posts/derek-mack.jpg" | relative_url }}">
+  <figcaption>Photo by Derek Mack</figcaption>
+</figure>
 
 Let's get started. 
-<figure>
-  <img src="{{ "/images/posts/alex-azabache.jpg" | relative_url }}">
-  <figcaption>Photo by Alex Azabache</figcaption>
-</figure>
 
 SAS users need to be aware that pandas allow duplicate index.  When we perform strict timeseries analysis, we would need to remove duplicates.  
 
