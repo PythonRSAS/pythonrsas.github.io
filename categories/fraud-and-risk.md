@@ -1,11 +1,11 @@
 ---
 layout: page-doc
-title: Commercial Real Estates
-subheading: Commercial real estate credit risk models.
-description: Commercial real estate credit risk models.
+title: Fraud and Risk
+subheading: Fraud, AML, ACH and payments.
+description: Fraud, AML, ACH and payments.
 color: grad-blog
 image: "/images/icons/real-estate.svg"
-permalink: /commercial-real-estates
+permalink: /fraud-and-risk
 image: https://drive.google.com/uc?id=1edu-wUoFkrMuoemONmOvsIMpnvkAdFXY
 ---
 
@@ -15,7 +15,7 @@ image: https://drive.google.com/uc?id=1edu-wUoFkrMuoemONmOvsIMpnvkAdFXY
       <div class="page-holder">
         <ul>
         {% for post in site.posts %}
-          {% if post.categories contains "real estates" %}
+          {% if post.categories contains "fraud and risk" %}
                 <li>
                   <a class="post-link" href="{{ site.baseurl }}{{ post.url }}">
                     <div class="page-treasure-wrapper">

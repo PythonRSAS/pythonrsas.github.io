@@ -70,16 +70,16 @@ permalink: /category
           {% endfor %}
           <p class="no_of_posts">{{ machine_learning_count }} posts</p>
         </div>
-        <div class="commercial-real-estates" onclick="location.href='{{ site.baseurl }}/commercial-real-estates';">
+        <div class="commercial-real-estates" onclick="location.href='{{ site.baseurl }}/fraud-and-risk';">
           <img src="{{ "/images/icons/real-estate.svg" | relative_url }}"/>
-          <h4>Commercial Real Estate</h4>
-          <p>Commercial real estate credit risk models.</p>
+          <h4>Fraud and Risk</h4>
+          <p>Fraud, AML, ACH and payments.</p>
           {% for post in site.posts %}
-            {% if post.categories contains 'real estates' %}
-                {% capture real_estates_count %} {{ real_estates_count | plus: 1 }} {% endcapture %}
+            {% if post.categories contains 'fraud and risk' %}
+                {% capture fraud_and_risk_count %} {{ fraud_and_risk_count | plus: 1 }} {% endcapture %}
             {% endif %}
           {% endfor %}
-          <p class="no_of_posts">{{ real_estates_count }} posts</p>
+          <p class="no_of_posts">{{ fraud_and_risk_count }} posts</p>
         </div>
         <div class="education" onclick="location.href='{{ site.baseurl }}/education';">
           <img src="{{ "/images/icons/education.svg" | relative_url }}" />
@@ -91,6 +91,17 @@ permalink: /category
             {% endif %}
           {% endfor %}
           <p class="no_of_posts">{{ education_count }} posts</p>
+        </div>
+        <div class="market-risk" onclick="location.href='{{ site.baseurl }}/market-risk';">
+          <img src="{{ "/images/icons/market.svg" | relative_url }}" />
+          <h4>Market and Traded Risk</h4>
+          <p>Market risk VaR and simulations.</p>
+          {% for post in site.posts %}
+            {% if post.categories contains 'market risk' %}
+                {% capture market_risk_count %} {{ market_risk_count | plus: 1 }} {% endcapture %}
+            {% endif %}
+          {% endfor %}
+          <p class="no_of_posts">{{ market_risk_count }} posts</p>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 ---
 layout: post
 tag: commercialy available
-category: "real estates"
+category: "fraud and risk"
 title: "Lorem ipsum dolor sit amet consectetur adipisicing elit"
 description: Eiusmod laboris dolore sunt eiusmod enim ex ea sunt irure occaecat in elit sint.
 author: Sarah Chen
