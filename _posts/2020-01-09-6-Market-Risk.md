@@ -33,9 +33,7 @@ But the assumptions are not valid:
 * **mark-to-market pricing** - It is not difficult to obtain mark-to-market prices for the past, but it is impossible to measure mark-to-market pricing for the future. So banks often use book value.  This is a proxy but can be very far off. 
 * **no trading in the portfolio.** - For institutions, especially the larger ones, their portfolio change often.
 
-VaR can still provide us with some ballpark for our market risk in a "normal day".   
-
-However, normal days don't last.  
+VaR can still provide us with some ballpark for our market risk in a "normal day".   However, normal days don't last.  
 
 We have concluded that for various reasons it is close to impossible to predict market risk VaR.
 
