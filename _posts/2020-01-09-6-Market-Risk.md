@@ -14,8 +14,6 @@ image: images\posts\laptop.jpg
 The first factor listed by the Fed is "The sensitivity of the financial institution's earnings or the economic value of its capital to adverse changes in interest rates 利率风险, foreign exchanges rates 汇率风险, commodity prices, or equity prices 股市风险."   A more appropriate name should be "financial market risk". 
 
 
-### What causes them
-
 Stock prices, exchange rates and interest rates are provided and updated in real time.  But what causes stock prices to fluctuate a lot?  There can be many reasons: political, operational, industry change, competitions, and many more.  Most of them are very difficult or impossible to predict. 
 Let's keep them in the back of the mind when we think about market risk. 
 
