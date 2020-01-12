@@ -14,6 +14,13 @@ There is a Chinese saying "道高一尺,魔高一丈".  The English translation 
 
 Each authentication 身份验证 method has its shortfalls.  Frausters can steal and fake finger prints or other types of unique IDs just like how they steal and fake passwords or checks.    A quick search will yield many sites that offer them for sale.  
 
+Mobil payment risk control rely on multiple dimensions of user information to identify user instead of password only. 
+
+This way, even if passwords are stolen by fraudsters using phishing or other tricks, information from other dimensions such as id (security questions), location, device, behavior and so on can help authenticating the user.  
+
+Analytic models can produce real time risk score.  Base on the score, the payment can be approved or blocked.  
+
+
 <figure>
   <img src="{{ "/images/posts/mobilePaymentRiskControl.JPG" | relative_url }}" width="600">
   <figcaption>Mobile Payment Risk Control</figcaption>
