@@ -5,7 +5,7 @@ category: "fraud and risk"
 title: "Fraud Risk Functions"
 description: Overview of fraud risk functions in a start up or a larger organization
 author: Sarah Chen
-image: images\posts\Defense-Michael-Jordan.jpg
+image: images/posts/Defense-Michael-Jordan.JPG
 <!-- image: https://drive.google.com/uc?id=1oZN0tSeBA91_XlyCmsOfLbJLeQ2_7wMi -->
 ---
 

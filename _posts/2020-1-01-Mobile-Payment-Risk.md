@@ -5,7 +5,7 @@ category: "fraud and risk"
 title: "Mobile Payment Risk"
 description: The convenience of mobile payments 移动支付 comes with higher payment risk 风险. 
 author: Sarah Chen
-image: https://drive.google.com/uc?id=1oZN0tSeBA91_XlyCmsOfLbJLeQ2_7wMi
+image: images/posts/mobilePaymentRiskControl.JPG
 ---
 
 Faster mobile payments through messaging, social media apps, payment apps, QR code, and even face scan give users a lot of convinience but also opens more room for fraud risk, which has been on the rise.   
@@ -13,6 +13,12 @@ Faster mobile payments through messaging, social media apps, payment apps, QR co
 There is a Chinese saying "道高一尺,魔高一丈".  The English translation is "While the priest climbs a post, the devil climbs ten." 
 
 Each authentication 身份验证 method has its shortfalls.  Frausters can steal and fake finger prints or other types of unique IDs just like how they steal and fake passwords or checks.    A quick search will yield many sites that offer them for sale.  
+
+<figure>
+  <img src="{{ "/images/posts/mobilePaymentRiskControl.JPG" | relative_url }}" width="400">
+  <figcaption>Mobile Payment Risk Control</figcaption>
+</figure>
+
 
 While it is not possible to eliminate payment fraud, the risk can be minimized and contained by balancing multiple factors and better technology 更好的技术. 
 
