@@ -15,7 +15,7 @@ There is a Chinese saying "道高一尺,魔高一丈".  The English translation 
 Each authentication 身份验证 method has its shortfalls.  Frausters can steal and fake finger prints or other types of unique IDs just like how they steal and fake passwords or checks.    A quick search will yield many sites that offer them for sale.  
 
 <figure>
-  <img src="{{ "/images/posts/mobilePaymentRiskControl.JPG" | relative_url }}" width="400">
+  <img src="{{ "/images/posts/mobilePaymentRiskControl.JPG" | relative_url }}" width="600">
   <figcaption>Mobile Payment Risk Control</figcaption>
 </figure>
 
