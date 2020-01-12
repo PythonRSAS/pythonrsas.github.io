@@ -46,7 +46,7 @@ Externally, fraud risk team need to work with business partners and regulators.
 
 Mobile payment risk management heavily involves technology.  
 
-The fraud risk team invest in learning the latest technologies that can take anti-fraud to the next level.  For example, the combination of face scan 刷脸 and finger print scan 指纹识别is a step up in security and convenience than passwords. 
+The fraud risk team invest in learning the latest technologies that can take anti-fraud to the next level.  For example, the combination of voice, iris, face scan 刷脸 and finger print scan 指纹识别is a step up in security and convenience than passwords. 
 
 It should have data engineer/scientists, and people who are knowledgeable in investigations and have the sensitivity for identify and explore emerging risks.  
 
