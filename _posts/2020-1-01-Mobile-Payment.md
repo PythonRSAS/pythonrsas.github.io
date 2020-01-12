@@ -3,9 +3,9 @@ layout: post
 tag: fraud risk
 category: "fraud and risk"
 title: "Mobile Payment"
-description: The convenience of mobile payments 移动支付 comes with higher payment risk 风险. 
+description: Summary of mobile payments 移动支付 and history
 author: Sarah Chen
-image: https://drive.google.com/uc?id=1oZN0tSeBA91_XlyCmsOfLbJLeQ2_7wMi
+image: images/posts/paymentHistory.jpg
 ---
 
 Mobile wallet 移动钱包 are digital forms of wallet that people carry (or used to carry) in their pockets.  
@@ -26,6 +26,6 @@ The flow chart below summarizes the history of technology and events that evolve
 
 
 <figure>
-  <img src="{{ "/images/posts/paymentHistory.jpg" | relative_url }}" width="400">
+  <img src="{{ "/images/posts/paymentHistory.jpg" | relative_url }}" width="800">
   <figcaption>Mobile Payment History</figcaption>
 </figure>
