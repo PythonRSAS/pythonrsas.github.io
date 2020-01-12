@@ -12,10 +12,6 @@ I have often been asked these questions: why did you switch from insurance to ba
 What's an actuary? 
 Are you better at being an life/health/property insurance actuary, fraud risk expert, credit and traded risk expert in banking, or, are you actually a Python/SAS developer/programmer? 
 
-<figure>
-  <img src="{{ "/images/posts/many-lifes-actuary.jpg" | relative_url }}" width="400">
-  <figcaption>Many Lives</figcaption>
-</figure>
 
 I hope to answer these once and for all in this short article on what I have learned from being an actuary that works in banks, insurance, fintech and some more:
 
@@ -31,7 +27,7 @@ Money should earn more money with time. By investing premium or deposits from cu
 
 <figure>
   <img src="{{ "/images/posts/einstein_money.png" | relative_url }}" width="400">
-  <figcaption>Cartoon from the Far Side</figcaption>
+  <figcaption>Cartoon from the Far Side by Gary Larson</figcaption>
 </figure>
 
 **3. Use data; when data is scarce, use simulation**
@@ -49,12 +45,6 @@ I honed analytic/modeling skills/experiences by using both the most granular and
 Without saying, managing risk has great value. Not only that the business of risk managing has become trillion dollar industries, but also that should be part of the foundation of any rational business will based on.  
 
 Successfully managing old and new forms of risk is essential for protection and growth. 
-
-
-<figure>
-  <img src="{{ "/images/posts/actuary-risk.jpg" | relative_url }}" width="400">
-  <figcaption>Risk from Avoiding All Risks</figcaption>
-</figure>
 
 
 #actuary #analytics #risk #bank #insurance #fintech #data #ai #ml #lawoflargenumbers #bias #variance
