@@ -5,7 +5,8 @@ category: "fraud and risk"
 title: "Fraud Risk Functions"
 description: Overview of fraud risk functions in a start up or a larger organization
 author: Sarah Chen
-image: https://drive.google.com/uc?id=1oZN0tSeBA91_XlyCmsOfLbJLeQ2_7wMi
+image: images\posts\Defense-Michael-Jordan.jpg
+<!-- image: https://drive.google.com/uc?id=1oZN0tSeBA91_XlyCmsOfLbJLeQ2_7wMi -->
 ---
 
 In most sports, such as basketball, it takes both good offense and good defense to win.  Same is in business.  We can analogize the fraud protection as defense. 
