@@ -5,7 +5,7 @@ category: "fraud and risk"
 title: "Mobile Payment"
 description: Summary of mobile payments 移动支付 and history
 author: Sarah Chen
-image: images/posts/paymentHistory.jpg
+image: images/posts/paymentHistory.JPG
 ---
 
 Mobile wallet 移动钱包 are digital forms of wallet that people carry (or used to carry) in their pockets.  
@@ -26,6 +26,6 @@ The flow chart below summarizes the history of technology and events that evolve
 
 
 <figure>
-  <img src="{{ "/images/posts/paymentHistory.jpg" | relative_url }}" width="800">
+  <img src="{{ "/images/posts/paymentHistory.JPG" | relative_url }}" width="800">
   <figcaption>Mobile Payment History</figcaption>
 </figure>
