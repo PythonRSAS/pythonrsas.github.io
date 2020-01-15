@@ -63,9 +63,10 @@ The fraud risk team invest in learning the latest technologies that can take ant
 
 It should have data engineer/scientists, and people who are knowledgeable in investigations and have the sensitivity for identify and explore emerging risks.  
 
-
 > **Places to learn more**
 
-
-- [Banks Payments 2020](https://www.slideshare.net/mohit11/payments-2020-banks-payments){:target="_blank"} 
-
+<!-- TIPS  ** must be at the start and end and no space in between!!! -->
+* **[NACHA](https://www.nacha.org/){:target="_blank"}** - an organization on payments.
+* **[Banks Payments 2020](https://www.slideshare.net/mohit11/payments-2020-banks-payments){:target="_blank"}**
+* **Vdfumber of Jsksdfkl** - Exercitation irure dolore ullamco ullam voluptate esse qui.
+* **Klsdlf of slll** - Tgkdfg lfgfgd fgkgdfl.

@@ -3,28 +3,24 @@ layout: post
 tag : Learning Python and SAS
 category: "python for sas"
 title: "Tips for Working with Timeseries"
-description: Time series data processing using Python and SAS.
+description: Comparing and assembling dates, and parsing timeseries in Python and SAS.
 author: Sarah Chen
-# image: http://drive.google.com/uc?export=view&id=1QCuv6RGm8y1vdPU4DitqOZPIbx8Nw-yM
+image: images/posts/arindam-saha.jpg
 ---
 
-In this post, you will learn: 
+This post covers miscellaneous tips for working with datatime in Python and SAS.
 
-[ComparingDates](#Comparing-Dates)
+> **[1. Comparing dates        ](#Comparing-Dates)**
+> **[2. Assembling](#Assembling)**
+> **[3. Parsing](#Parsing)**
 
-[Assembling](#Assembling)
-
-[Parsing](#Parsing)
-
-Let's get started. 
 <figure>
-  <img src="{{ "/images/posts/alex-azabache.jpg" | relative_url }}">
-  <figcaption>Photo by Alex Azabache</figcaption>
+  <img src="{{ "/images/posts/arindam-saha.jpg" | relative_url }}" width='800'>
+  <figcaption>Photo by arindam saha</figcaption>
 </figure>
 
-This post covers miscllenous tips we need for working with datatime in Python and SAS.
-
-<h3 id="Comparing-Dates">ComparingDates</h3>
+<h3 id="Comparing-Dates">Comparing Dates</h3>
+> **[Comparing dates](#Comparing-Dates)**
 
 • To slice data using Date column by comparing against a date in Python when the date column is not the index
 
@@ -82,7 +78,9 @@ pd.to_datetime(arg, errors='raise', dayfirst=False, yearfirst=False, utc=None, b
 ```
 <h3 id="Assembling">Assembling</h3>
 
-As in SAS, a datetime variable can be assembled by providing the components: year, month, day, and more, in Python you can use <span class="coding">pd.to_datetime()</span> to build date or datetime objects by passing the right columns or entire dataframe as shown in the example below:
+In SAS, a datetime variable can be assembled by providing the components: year, month, day, and more. This is the case for most programming languages.
+
+In Python you can use <span class="coding">pd.to_datetime()</span> to build date or datetime objects by passing the right columns or entire dataframe as shown in the example below:
 <div class="code-head"><span>code</span> Assembling Datetime Object.py</div>
 
 ```python
