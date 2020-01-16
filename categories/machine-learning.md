@@ -1,8 +1,8 @@
 ---
 layout: page-doc
 title: Machine Learning
-subheading: Fundamental concepts and different techniques in Python, R and SAS.
-description: Fundamental concepts and different techniques in Python, R and SAS.
+subheading: Fundamental concepts, techniques, and interpretability.
+description: Fundamental concepts, techniques, and interpretability.
 color: grad-blog
 image: "/images/icons/machine-learning.svg"
 permalink: /machine-learning
