@@ -19,7 +19,7 @@ permalink: /
     <div class="home-follow">
       <script async defer src="https://buttons.github.io/buttons.js"></script>
       <a href="https://twitter.com/{{site.footer-links.twitter}}?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-show-count="true"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-      <a class="github-button" href="https://github.com/{{site.footer-links.github}}" data-show-count="true" data-size="large" aria-label="Follow @{{site.footer-links.github}} on GitHub">Follow</a>
+      <!-- <a class="github-button" href="https://github.com/{{site.footer-links.github}}" data-show-count="false" data-size="large" aria-label="Follow @{{site.footer-links.github}} on GitHub">Follow</a> -->
     </div>
   </div>
 </div>
