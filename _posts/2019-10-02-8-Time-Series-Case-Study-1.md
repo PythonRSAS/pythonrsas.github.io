@@ -2,10 +2,10 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "Time Series Case Study1"
+title: "Time Series Case Study 1"
 description: Import zip file, extract, manipulate, and plot CCAR 2019 Federal Reserve Macro Scenarios
 author: Sarah Chen
-image: http://drive.google.com/uc?export=view&id=1hXH-eJF20B6xAJvc1W5icAzePG1MwUuO
+image: images/posts/CCAR-Scenarios.png
 
 ---
 

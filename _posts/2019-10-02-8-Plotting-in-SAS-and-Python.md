@@ -5,7 +5,7 @@ category: "python for sas"
 title: "Plotting in SAS and Python"
 description: Various essential plots using Python and SAS.
 author: Sarah Chen
-image: http://drive.google.com/uc?export=view&id=1hXH-eJF20B6xAJvc1W5icAzePG1MwUuO
+image: images/posts/PythonVisLandscape2018.jpg
 
 ---
 

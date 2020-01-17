@@ -2,7 +2,7 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "End to End Plotting in SAS and Python"
+title: "Saving Plots in SAS and Python"
 description: Setting up and saving plots in Python and SAS.
 author: Sarah Chen
 image: http://drive.google.com/uc?export=view&id=1hXH-eJF20B6xAJvc1W5icAzePG1MwUuO

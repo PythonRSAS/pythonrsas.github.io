@@ -5,7 +5,7 @@ category: "python for sas"
 title: "Plotting Timeseries in SAS and Python"
 description: Import, manipulate, plot, and do whatever you want with time series and panel data.
 author: Sarah Chen
-image: http://drive.google.com/uc?export=view&id=1hXH-eJF20B6xAJvc1W5icAzePG1MwUuO
+image: images/posts/Apple_Linear_Trend.PNG
 
 ---
 
@@ -19,10 +19,6 @@ Visualizing time series is an essential part of analyzing time series data.    I
 
 **- [Title Footnote and Annotations](#Enhance-Images)**
 
-<figure>
-  <img src="{{ "/images/posts/tan-kaninthanond.jpg" | relative_url }}">
-  <figcaption>Photo by Tan Kaninthanond</figcaption>
-</figure>
 Let's get started.
 
 <h4 id="Bar-line-plot">Bar-line plot</h4>
