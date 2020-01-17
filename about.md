@@ -63,10 +63,10 @@ permalink: /
           </p>
           <ul class="timeline">
             <li>Co-author of Python for SAS Users: A SAS oriented introduction to Python.</li>
-            <li>Domain expert in bank credit risk, forecasting, stress testing, fraud risk, insurance pricing and reserving.</li>
-            <li>Twelve years of hands-on experience in development of predictive models and efficient algorithms in banking and insurance.</li>
+            <li>Domain expert in bank credit and market risk, fraud risk, and insurance pricing and reserving.</li>
+            <li>Analytic lead with twelve years of hands-on experience in development of predictive models and efficient algorithms in banking and insurance.</li>
             <li>Fellow of the Casualty Actuarial Society (FCAS), Fellow of the Society of Actuaries (FSA).</li>
-            <li>Co-founder of Magic Math Mandarin https://www.magicmathmandarin.org/.</li>
+            <li>Co-founder of <a href=" https://www.magicmathmandarin.org/"> Magic Math Mandarin </a></li>
           </ul>
           <p><strong>Expertise: </strong>credit risk (wholesale in C&I and CRE), personal auto pricing, actuarial reserve analysis, statistical inference, time series analysis, algorithm design, TensorFlow, machine learning models (regression/boosting/bagging/stacking), natural language processing (NLP), deep learning models (LSTM/GRU/CNN/autoencoders), Python, R, SAS.</p>
         </div>
