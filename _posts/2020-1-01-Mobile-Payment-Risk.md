@@ -20,6 +20,9 @@ This way, even if passwords are stolen by fraudsters using phishing or other tri
 
 But we need to be aware that fraudsters can fake the same IP address, browser, device since those information are often hacked along with the account number and passwords.  
 
+Besides, **any information that is captured about the customer to identify the customer, if leaked or hacked, can be used against the account.**
+
+It is like a sword with two edges. 
 
 <figure>
   <img src="{{ "/images/posts/mobilePaymentRiskControl.JPG" | relative_url }}" width="600">
