@@ -18,7 +18,7 @@ Mobil payment risk control rely on multiple dimensions of user information to id
 
 This way, even if passwords are stolen by fraudsters using phishing or other tricks, information from other dimensions such as id (security questions), location, device, behavior and so on can help authenticating the user.  
 
-Analytic models can produce real time risk score.  Base on the score, the payment can be approved or blocked.  
+But we need to be aware that fraudsters can fake the same IP address, browser, device since those information are often hacked along with the account number and passwords.  
 
 
 <figure>
@@ -66,7 +66,8 @@ It should have data engineer/scientists, and people who are knowledgeable in inv
 > **Places to learn more**
 
 <!-- TIPS  ** must be at the start and end and no space in between!!! -->
-* **[NACHA](https://www.nacha.org/){:target="_blank"}** - an organization on payments.
+<!-- * **[NACHA](https://www.nacha.org/){:target="_blank"}** - an organization on payments.
 * **[Banks Payments 2020](https://www.slideshare.net/mohit11/payments-2020-banks-payments){:target="_blank"}**
 * **Vdfumber of Jsksdfkl** - Exercitation irure dolore ullamco ullam voluptate esse qui.
 * **Klsdlf of slll** - Tgkdfg lfgfgd fgkgdfl.
+ -->

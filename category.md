@@ -62,7 +62,7 @@ permalink: /category
         <div class="machine-learning" onclick="location.href='{{ site.baseurl }}/machine-learning';">
             <img src="{{ "/images/icons/machine-learning.svg" | relative_url }}" />
             <h4>Statistical and Machine learning</h4>
-            <p>Fundamental concepts and different techniques in Python, R and SAS.</p>
+            <p>Fundamental concepts, techniques, and interpretability.</p>
             {% for post in site.posts %}
               {% if post.categories contains 'machine learning' %}
                 {% capture machine_learning_count %} {{ machine_learning_count | plus: 1 }} {% endcapture %}
