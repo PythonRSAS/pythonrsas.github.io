@@ -5,9 +5,13 @@ category: "python for sas"
 title: "MultiIndexing"
 description: Data processing using Python and SAS.
 author: Sarah Chen
-# image: http://drive.google.com/uc?export=view&id=1eAHEYDGldo9p03m9leLOxDfcD41Fvm1X
+image: images/posts/tan-kaninthanond.JPG
 ---
 
+<figure>
+  <img src="{{ "/images/posts/tan-kaninthanond.jpg" | relative_url }}">
+  <figcaption>Photo by Tan Kaninthanond</figcaption>
+</figure>
 
 
 ### MultiIndexing
