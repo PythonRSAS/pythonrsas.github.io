@@ -5,7 +5,7 @@ category: "python for sas"
 title: "MultiIndexing"
 description: Data processing using Python and SAS.
 author: Sarah Chen
-image: images/posts/tan-kaninthanond.JPG
+image: images/posts/tan-kaninthanond.jpg
 ---
 This post is about multiindexing in pandas and is partially based on Chapter 4 "IndexIng and groupBy" of my co-authored book (from page 131) [Python for SAS Users](https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001/ref=sr_1_3?crid=21NME5C69YGV7&keywords=python+for+sas+users&qid=1572638715&sprefix=python+for+sas+%2Caps%2C196&sr=8-3). 
 
