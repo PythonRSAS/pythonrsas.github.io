@@ -64,11 +64,12 @@ permalink: /
           <ul class="timeline">
             <li>Domain expert in bank credit and market risk, fraud risk, and insurance pricing and reserving.</li>
             <li>Analytic lead with twelve years of hands-on experience in development of predictive models and efficient algorithms in banking and insurance.</li>
-            <li>Fellow of the <a href="https://www.casact.org/">Casualty Actuarial Society</a> (FCAS), Fellow of the <a href=" https://www.soa.org/"> Society of Actuaries</a> (FSA).</li>
+            <li>Fellow of the <a href="https://www.casact.org/" target="_blank">Casualty Actuarial Society</a> (FCAS), Fellow of the <a href=" https://www.soa.org/" target="_blank"> Society of Actuaries</a> (FSA).</li>
             <li>Co-founder of <a href=" https://www.magicmathmandarin.org/"> Magic Math Mandarin </a></li>
-            <li>Co-author of <a href="https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001">Python for SAS Users</a></li>
+            <li>Co-author of <a href="https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001" target="_blank">Python for SAS Users</a></li>
+            <li><a href="https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001" target="_blank">Columbia University</a> 2007, B.A. Mathematics, summa cum laude</li>
           </ul>
-          <p><strong>Expertise: </strong>credit and market risk, fraud risk, personal auto pricing, actuarial reserve analysis, statistical inference, time series analysis, algorithm design, TensorFlow, machine learning models (regression/boosting/bagging/stacking), natural language processing (NLP), deep learning models (LSTM/GRU/CNN/autoencoders), Python, R, SAS and SQL.</p>
+          <p><strong>Expertise: </strong>analytic risk management, data management, time series analysis, algorithm design,statistical, machine learning, and deep learning models , Python, R, SAS and SQL.</p>
         </div>
       </div>
       </div>
@@ -93,7 +94,7 @@ permalink: /
           <ul>
             <li>
               <div>
-                <h4><a href="https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001">Python for SAS Users</a></h4>
+                <h4><a href="https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001" target="_blank">Python for SAS Users</a></h4>
                 <p>A SAS-Oriented Introduction to Python</p>
                 <p><i>Apress</i></p>
               </div>
