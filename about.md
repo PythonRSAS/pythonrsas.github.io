@@ -62,11 +62,11 @@ permalink: /
           <p style="margin-top: 0px !important;">I'm Sarah Chen. Loving math and using computers to do things, and super passionate about education for youth (Mandarin Chinese, real world practical and beautiful mathematics, computer programming).
           </p>
           <ul class="timeline">
-            <li>Co-author of <a href="https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001">Python for SAS Users</a></li>
             <li>Domain expert in bank credit and market risk, fraud risk, and insurance pricing and reserving.</li>
             <li>Analytic lead with twelve years of hands-on experience in development of predictive models and efficient algorithms in banking and insurance.</li>
-            <li>Fellow of the <a href="https://www.casact.org/">Casualty Actuarial Society</a> (FCAS), Fellow of the <a href=" https://www.soa.org/"> Society of Actuaries</a>(FSA).</li>
+            <li>Fellow of the <a href="https://www.casact.org/">Casualty Actuarial Society</a> (FCAS), Fellow of the <a href=" https://www.soa.org/"> Society of Actuaries</a> (FSA).</li>
             <li>Co-founder of <a href=" https://www.magicmathmandarin.org/"> Magic Math Mandarin </a></li>
+            <li>Co-author of <a href="https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001">Python for SAS Users</a></li>
           </ul>
           <p><strong>Expertise: </strong>credit and market risk, fraud risk, personal auto pricing, actuarial reserve analysis, statistical inference, time series analysis, algorithm design, TensorFlow, machine learning models (regression/boosting/bagging/stacking), natural language processing (NLP), deep learning models (LSTM/GRU/CNN/autoencoders), Python, R, SAS and SQL.</p>
         </div>
