@@ -5,7 +5,7 @@ category: "python for sas"
 title: "Comparing SAS Macros with Python"
 description: For experienced SAS programmers, SAS macros are super useful and essential tools.  Python code has many similarities to SAS macros.  For Python users, the post gives glimpes of SAS macros via Python code. 
 author: Sarah Chen
-image: http://drive.google.com/uc?export=view&id=1QCuv6RGm8y1vdPU4DitqOZPIbx8Nw-yM
+image: images/posts/robert-lukeman.jpg
 ---
 
 To many SAS users SAS macro is one of the reasons why SAS is so powerful.  Macros allow SAS to have "object-oriented" functionalities like Python and R.  
@@ -17,8 +17,8 @@ To many SAS users SAS macro is one of the reasons why SAS is so powerful.  Macro
 [Python Resources](#Python)
 
 <figure>
-  <img src="{{ "/images/posts/alex-azabache.jpg" | relative_url }}">
-  <figcaption>Photo by Alex Azabache</figcaption>
+  <img src="{{ "/images/posts/robert-lukeman.jpg" | relative_url }}">
+  <figcaption>Photo by robert-lukeman</figcaption>
 </figure>
 Let's get started. 
 
