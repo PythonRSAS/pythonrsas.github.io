@@ -5,8 +5,12 @@ category: education
 title: "Learn by Doing"
 description: Learning by doing, with the right attitudes, values and fun
 author: Sarah Chen
-# image: https://www.audubon.org/sites/default/files/styles/hero_image/public/sfw_nationalgeographic_1517960.jpg?itok=F5pikjxg
+image: images/posts/photos/IMG-0630.jpg
 ---
+<figure> 
+   <img src="{{"/images/posts/photos/IMG-0630.JPG"| relative_url}}"> 
+   <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
+</figure> 
 
 - Taken from my post in [Raising Smart and Tough Kids](https://www.magicmathmandarin.org/raising-smart-and-tough-kids/) with permission from <a href=" https://www.magicmathmandarin.org/"> Magic Math Mandarin </a>.
 
