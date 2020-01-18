@@ -5,7 +5,7 @@ category: "market risk"
 title: "Introdution to Market Risk 市场风险"
 description: Description of financial market risk and common metrics
 author: Sarah Chen
-image: images\posts\laptop.jpg
+image: images/posts/VaR_diagram.jpg
 ---
 
 
