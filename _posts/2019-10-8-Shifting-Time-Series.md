@@ -5,8 +5,13 @@ category: "python for sas"
 title: "Shifting Time Series"
 description: Time series data processing using Python and SAS.
 author: Sarah Chen
-image: images/posts/laptop.jpg
+image: images/posts/paul-gilmor.JPG
 ---
+
+<figure>
+  <img src="{{ "/images/posts/paul-gilmor.jpg" | relative_url }}" width='800'>
+  <figcaption>Photo by paul-gilmor</figcaption>
+</figure>
 
 In SAS there are multiple ways to shift time series data, i.e. to create leads and lags, including the <span class="coding">LAG</span> function or the more powerful one is <span class="coding">PROC EXPAND</span>.  In Python pandas, shifting is also called “sliding window”.    There are two main shifting methods in pandas: <span class="coding">shift()</span> and <span class="coding">tshift()</span>.  These two methods take the same parameters, where the defaults are: <span class="coding">periods=1, freq=None, axis=0</span>.
 The difference between them is that <span class="coding">shift()</span> shifts the data whereas <span class="coding">tshift()</span> shift the index.   Both can take positive or negative integers to specify number of shifting periods, where positive integer results in lagging and negative number results in leading.

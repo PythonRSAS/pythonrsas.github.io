@@ -5,7 +5,7 @@ category: "python for sas"
 title: "Constructing, Assembling, Parsing"
 description: Time series data processing using Python and SAS.
 author: Sarah Chen
-# image: http://drive.google.com/uc?export=view&id=1QCuv6RGm8y1vdPU4DitqOZPIbx8Nw-yM
+image: images/posts/leonard-cotte-c1Jp-fo53U8.JPG
 ---
 
 In this post, you will learn: 
@@ -18,8 +18,8 @@ In this post, you will learn:
 
 Let's get started. 
 <figure>
-  <img src="{{ "/images/posts/alex-azabache.jpg" | relative_url }}">
-  <figcaption>Photo by Alex Azabache</figcaption>
+  <img src="{{ "/images/posts/leonard-cotte-c1Jp-fo53U8.jpg" | relative_url }}">
+  <figcaption>Photo by leonard-cotte</figcaption>
 </figure>
 
 In practice, we often need to perform the following in working with time series or panel data before we start to manipulate them:
