@@ -71,17 +71,31 @@ permalink: /
           <p><strong>Expertise: </strong>credit and market risk, fraud risk, personal auto pricing, actuarial reserve analysis, statistical inference, time series analysis, algorithm design, TensorFlow, machine learning models (regression/boosting/bagging/stacking), natural language processing (NLP), deep learning models (LSTM/GRU/CNN/autoencoders), Python, R, SAS and SQL.</p>
         </div>
       </div>
-    </div>
+      </div>
       <!--Publications STARTS-->
       <div class="blog-category-box work-category-box about-category-box" id="box_publications" style="box-shadow: none !important;">
         <div class="work-inner-box">
-          <h2>2017</h2>
+          <h2>2019</h2>
           <ul>
             <li>
               <div>
-                <h4><a href="https://link.springer.com/chapter/10.1007/978-981-10-7895-8_25" target="_blank">This site is under construction</a></h4>
-                <p>Sarah</p>
-                <p><i>CVIP-2017, Springer pp 317-330</i></p>
+                <h4><a href="https://www.amazon.com/Fun-Chinese-Poems-Kids-delightfully/dp/1734315202/ref=sr_1_1?keywords=fun+chinese+poems+for+kids&qid=1579308749&sr=8-1" target="_blank">Fun Chinese Poems for Kids</a></h4>
+                <p>delightfully illustrated, annotated with Pinyin, and full English translations</p>
+                <p><i>Magic Math Mandarin</i></p>
+              </div>
+            </li>
+          </ul>
+          <br>
+          <br>
+        </div>
+        <div class="work-inner-box">
+          <h2>2019</h2>
+          <ul>
+            <li>
+              <div>
+                <h4><a href="https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001">Python for SAS Users</a></h4>
+                <p>A SAS-Oriented Introduction to Python</p>
+                <p><i>Apress</i></p>
               </div>
             </li>
           </ul>

@@ -19,7 +19,7 @@ In this post we will cover:
 [- Advanced Indexing with MultiIndexes](#Advanced-Indexing-with-MultiIndexes)
 
 <figure>
-  <img src="{{ "/images/posts/tan-kaninthanond.JPG" | relative_url }}">
+  <img src="{{ "/images/posts/tan-kaninthanond.jpg" | relative_url }}">
   <figcaption>Photo by Tan Kaninthanond</figcaption>
 </figure>
 
