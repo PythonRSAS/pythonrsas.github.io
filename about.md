@@ -67,9 +67,9 @@ permalink: /
             <li>Fellow of the <a href="https://www.casact.org/" target="_blank">Casualty Actuarial Society</a> (FCAS), Fellow of the <a href=" https://www.soa.org/" target="_blank"> Society of Actuaries</a> (FSA).</li>
             <li>Co-founder of <a href=" https://www.magicmathmandarin.org/"> Magic Math Mandarin </a></li>
             <li>Co-author of <a href="https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001" target="_blank">Python for SAS Users</a></li>
-            <li><a href="https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001" target="_blank">Columbia University</a> 2007, B.A. Mathematics, summa cum laude</li>
+            <li><a href="https://www.math.columbia.edu/" target="_blank">Columbia University</a> 2007, B.A. Mathematics, summa cum laude</li>
           </ul>
-          <p><strong>Expertise: </strong>analytic risk management, data management, time series analysis, algorithm design,statistical, machine learning, and deep learning models , Python, R, SAS and SQL.</p>
+          <p><strong>Expertise: </strong>analytic lead, risk management, data management, time series analysis, algorithm design,statistical, machine learning, and deep learning models , Python, R, SAS and SQL.</p>
         </div>
       </div>
       </div>

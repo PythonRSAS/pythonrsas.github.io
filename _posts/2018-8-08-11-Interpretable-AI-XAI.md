@@ -2,13 +2,18 @@
 layout: post
 tag: Machine Learning in Practice
 category: "machine learning"
-title: "Non occaecat deserunt sed non esse officia dolore"
-description: Eu est laboris consectetur ut consequat do ullamco ut incididunt incididunt velit laboris nostrud exercitation in velit sit.
+title: "Interpretable AI XAI"
+description: back to the basics and use linear regression to explain complex models
 author: Sarah Chen
-image: https://drive.google.com/uc?id=1crVhO4CHemFakRIxXYYo8HnfO-Z7sc1A
+image: images/posts/photos/IMG-0631.jpg
 ---
 
-**Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia consequuntur, provident nemo soluta similique, maiores sit dicta doloremque facere laudantium [Keras](https://keras.io/){:target="_blank"} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque neque totam voluptatem porro accusantium id.**
+**There is a trade off between accuracy and interpretability.  High accuracy models have low interpretability.  Explainable AI (XAI) is to have your cake and eat it too.**
+
+<figure> 
+   <img src="{{"/images/posts/photos/IMG-0630.JPG"| relative_url}}"> 
+   <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
+</figure> 
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, similique minima repudiandae. Voluptate pariatur iusto quo voluptatibus eum? [Keras](https://keras.io/){:target="_blank"} Lorem ipsum dolor sit. [github](https://github.com/fchollet/keras){:target="_blank"} page.
 
@@ -28,10 +33,6 @@ In adipisicing anim culpa in in consectetur dolor elit velit tempor labore enim 
 
 In consequat anim sunt excepteur. [Supervised Learning](https://en.wikipedia.org/wiki/Supervised_learning){:target="_blank"} problem.
 
-<figure>
-  <img src="{{ "/images/posts/laptop.jpg" | relative_url }}">
-  <figcaption>Figure 1. Generic Laptop Screen</figcaption>
-</figure>
 
 Lorem ipsum deserunt consequat. **java tengh** Ad ex quis dolor oe esse qui. (**random** or **lorem values**). Lorem ipsum dolor sit amet, sicing elit. Error autem dolor dolores, Modi temporibus aitis? (**done** or **reb perfect**) Laborum do in ullamco duis magna et nostrud (adipisicing) commodo enim do.
 

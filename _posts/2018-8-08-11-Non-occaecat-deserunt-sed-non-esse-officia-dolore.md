@@ -2,10 +2,10 @@
 layout: post
 tag: Machine Learning in Practice
 category: "machine learning"
-title: "Interpretable AI (XAI)
+title: "Non occaecat deserunt sed non esse officia dolore"
 description: Eu est laboris consectetur ut consequat do ullamco ut incididunt incididunt velit laboris nostrud exercitation in velit sit.
 author: Sarah Chen
-image: https://drive.google.com/uc?id=1crVhO4CHemFakRIxXYYo8HnfO-Z7sc1A
+image: images/posts/photos/IMG-0632.jpg
 ---
 
 **Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia consequuntur, provident nemo soluta similique, maiores sit dicta doloremque facere laudantium [Keras](https://keras.io/){:target="_blank"} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque neque totam voluptatem porro accusantium id.**
