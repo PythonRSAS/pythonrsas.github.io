@@ -40,12 +40,25 @@ In consequat anim sunt excepteur. [Supervised Learning](https://en.wikipedia.org
 
 Fugiat elit cillum quis occaecat coms magna veniam in, In fugiat ut in do do dolore sint quis et id ea ex. Fugiat voluptate magna consectetur labore duis do sed pariatur. Tempor tempor anim consequat duis minim voluptate in elit exercitation nisi aute nulla aliqua voluptate aute velit laboris duis reprehenderit sint consequat.
 
-### LIME and Shapley Values
+### LIME
 
 
 > Ut magna Consequat aute volupthenderit incididunt consequat amet. **Dfsd** and **Rfskldf Posoe**.
 
 Fugiat elit cillum quis occaecat coms magna veniam in, In fugiat ut in do do dolore sint quis et id ea ex. Fugiat voluptate magna consectetur labore duis do sed pariatur. Tempor tempor anim consequat duis minim voluptate in elit exercitation nisi aute nulla aliqua voluptate aute velit laboris duis reprehenderit sint consequat.
+
+This is available from the library lime. See [here](https://github.com/marcotcr/lime){:target="_blank"}.
+
+
+
+### Shapley Values
+
+
+> Ut magna Consequat aute volupthenderit incididunt consequat amet. **Dfsd** and **Rfskldf Posoe**.
+
+Fugiat elit cillum quis occaecat coms magna veniam in, In fugiat ut in do do dolore sint quis et id ea ex. Fugiat voluptate magna consectetur labore duis do sed pariatur. Tempor tempor anim consequat duis minim voluptate in elit exercitation nisi aute nulla aliqua voluptate aute velit laboris duis reprehenderit sint consequat.
+
+This is available from the library shap. See [here](https://github.com/slundberg/shap){:target="_blank"}.
 
 
 Lorem ipsum deserunt consequat. **java tengh** Ad ex quis dolor oe esse qui. (**random** or **lorem values**). Lorem ipsum dolor sit amet, sicing elit. Error autem dolor dolores, Modi temporibus aitis? (**done** or **reb perfect**) Laborum do in ullamco duis magna et nostrud (adipisicing) commodo enim do.
