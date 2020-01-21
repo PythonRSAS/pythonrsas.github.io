@@ -17,21 +17,14 @@ image: images/posts/photos/IMG-0631.jpg
 
 In many context, especially those with high stake involved, such as medicine, financial industry, to be able to interprete model output is almost as important as the model.  
 
-[Keras](https://keras.io/){:target="_blank"} Lorem ipsum dolor sit. [github](https://github.com/fchollet/keras){:target="_blank"} page.
-
-> **Update**: Lorem ipsum dolor. [end of life](https://pythonclock.org/), Aliquip ad magna laborum eu ut aute ut quis in veniam in. **Python3**.
-
-Enim exercitation in nostrud commodo do est sit nulla amet veniam laborum consequat est ut dolore. Non cillum tempor ea ut pariatur tempor elit sed et magna. Lorem ipsum esse in in minim quis ut occ!
-
 
 ### Partial dependence plot (PDP)
 
 > Kind of like partial derivative, but the key difference is on **predicted** instead of actual.  So it tells how one-dimensionally how the model predictions reacts to changes to 1 **1 variable**.
 
-Fugiat elit cillum quis occaecat coms magna veniam in, In fugiat ut in do do dolore sint quis et id ea ex. Fugiat voluptate magna consectetur labore duis do sed pariatur. Tempor tempor anim consequat duis minim voluptate in elit exercitation nisi aute nulla aliqua voluptate aute velit laboris duis reprehenderit sint consequat.
+In general, the steeper the slope, the more important the variable. Just pay attention and make sure the the plots are on the same axis if you are comparing slope. 
 
-Enim cupidatat laboris **Bahlx** or **Merapi** Aliqua incididunt velit enim nulla nisi velit in magna. Lorem ipsum laboris veniam nostrud proident dolor fugiat . (Commodo irure eiusmod quis elit labor reprehenderit.). So, Ad cupidatat dolore esse nostrud duis deserunt veniam enim nostrud.
-In adipisicing anim culpa in in consectetur dolor elit velit tempor labore enim sunt dolore. [here](https://github.com){:target="_blank"}.
+This is available from sklearn. See [here](https://scikit-learn.org/stable/modules/partial_dependence.html){:target="_blank"}.
 
 ### Individual conditional expectation plot (ICE)
 
