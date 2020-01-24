@@ -15,14 +15,16 @@ image: images/posts/photos/IMG-0631.jpg
    <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
 </figure> 
 
-In many context, especially those with high stake involved, such as medicine, financial industry, to be able to interprete model output is almost as important as the model.  
+In many context, especially those with high stake involved, such as medicine, financial industry, and the military, to be able to interprete model output is as important as the model.  In regulated industries, interpretability is required before adoption.  
 
 
 ### Partial dependence plot (PDP)
 
-> Kind of like partial derivative, but the key difference is on **predicted** instead of actual.  So it tells how one-dimensionally how the model predictions reacts to changes to 1 **1 variable**.
+> Kind of like partial derivative, but the key difference is on **predicted** instead of actual.  So it tells one-dimensionally how the model predictions reacts to changes to 1 **1 variable**.
 
 In general, the steeper the slope, the more important the variable. Just pay attention and make sure the the plots are on the same axis if you are comparing slope. 
+
+However, PDPs can be misleading if there are divergin behavior caused by interactions as it is looking at the average of model response. 
 
 This is available from sklearn. See [here](https://scikit-learn.org/stable/modules/partial_dependence.html){:target="_blank"}.
 
@@ -43,9 +45,7 @@ In consequat anim sunt excepteur. [Supervised Learning](https://en.wikipedia.org
 ### LIME
 
 
-> Ut magna Consequat aute volupthenderit incididunt consequat amet. **Dfsd** and **Rfskldf Posoe**.
-
-.
+> Abbreviated for "locally interpretable".  It is model agnostic and can be applied to **any** type of models.
 
 This is available from the library lime. See [here](https://github.com/marcotcr/lime){:target="_blank"}.
 
@@ -54,14 +54,27 @@ This is available from the library lime. See [here](https://github.com/marcotcr/
 ### Shapley Values
 
 
-> Ut magna Consequat aute volupthenderit incididunt consequat amet. **Dfsd** and **Rfskldf Posoe**.
+> Mostly suitable for **tree** based models, and found to be relatively acurate in approximating the decision attributes.  It is included in Python library XGBoost, and separately in the shap library.  It was formularized by University of Washington researcher slundberg.  
 
-.
 
 This is available from the library shap. See [here](https://github.com/slundberg/shap){:target="_blank"}.
 
 
-Lorem ipsum deserunt consequat. **java tengh** Ad ex quis dolor oe esse qui. (**random** or **lorem values**). Lorem ipsum dolor sit amet, sicing elit. Error autem dolor dolores, Modi temporibus aitis? (**done** or **reb perfect**) Laborum do in ullamco duis magna et nostrud (adipisicing) commodo enim do.
+###  Variable Importance
+
+
+> Mostly suitable for **tree** based models, using gini importance or entropy  as the metric for measuring difference due to variables at each split of trees. But it does not explain which variables impact the predictions for a particular variable and how.   
+
+
+Variable importance is included in all tree based model libraries. See [here](https://github.com/slundberg/shap){:target="_blank"}.
+
+
+
+###  Confidence interval related concepts
+
+
+> Mostly suitable for **tree** based models, using gini importance or entropy  as the metric for measuring difference due to variables at each split of trees. But it does not explain which variables impact the predictions for a particular variable and how.   
+
 
 Ex voluptate. **Blablasdf** and **Rdfdsgga**.
 
