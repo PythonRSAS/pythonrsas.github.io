@@ -38,7 +38,7 @@ Some examples for the first question are:
 * **Election** -  how likely will a candidate win
 * **Government** -  how likely our allies will be supportive of our actions, etc.
 
-Monetary credit can be categorized in 4 groups: government, household, financial sector and non-financial companies. 
+Debt (or credit) can be categorized in 4 groups: government, household, financial sector and non-financial companies. 
 
 Below figure is from Visual Capitalist as of end of 2019, on governament debt. 
 <figure>
