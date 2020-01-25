@@ -5,7 +5,7 @@ category: "credit risk"
 title: "Overviews of Credit-Risk"
 description: Thoughts on credit risk, and general wisdoms that I heard
 author: Sarah Chen
-image: images\posts\world_Debt.jpg
+image: images\posts\world_debt.jpg
 ---
 
 **At any given moment, there are hundreds of trillions of debt or credit.**
@@ -38,7 +38,7 @@ Some examples for the first question are:
 
 
 <figure>
-  <img src="{{ "/images/posts/world_Debt.jpg" | relative_url }}">
+  <img src="{{ "/images/posts/world_debt.jpg" | relative_url }}">
   <figcaption>Total Debt by Country- by Visual Capitalist</figcaption>
 </figure>
 
