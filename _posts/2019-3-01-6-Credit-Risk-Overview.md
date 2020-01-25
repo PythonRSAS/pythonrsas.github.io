@@ -8,7 +8,7 @@ author: Sarah Chen
 image: images/posts/worldDebt.jpg
 ---
 
-**At any given moment, there are hundreds of trillions of debt or credit.**
+At any given moment, there are hundreds of trillions of debt or credit.  You can "have a look" at [All of the World’s Money and Markets in One Visualization](https://money.visualcapitalist.com/worlds-money-markets-one-visualization-2017/)
 
 
 > **Credit risk** is the **uncertainty** associated with some event, where the event is specifically about whether the borrower will pay back the money borrowed.  
@@ -38,10 +38,12 @@ Some examples for the first question are:
 * **Election** -  how likely will a candidate win
 * **Government** -  how likely our allies will be supportive of our actions, etc.
 
+Monetary credit can be categorized in 4 groups: government, household, financial sector and non-financial companies. 
 
+Below figure is from Visual Capitalist as of end of 2019, on governament debt. 
 <figure>
   <img src="{{ "/images/posts/worldDebt.jpg" | relative_url }}">
-  <figcaption>Total Debt by Country- by Visual Capitalist</figcaption>
+  <figcaption>Total Debt by Country (government debt)- by Visual Capitalist</figcaption>
 </figure>
 
 
