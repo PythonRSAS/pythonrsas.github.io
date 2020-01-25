@@ -5,7 +5,7 @@ category: "credit risk"
 title: "Overviews of Credit-Risk"
 description: Thoughts on credit risk, and general wisdoms that I heard
 author: Sarah Chen
-image: images\posts\world_Debt.JPG
+image: images\posts\world_Debt.jpg
 ---
 
 **At any given moment, there are hundreds of trillions of debt or credit.**
