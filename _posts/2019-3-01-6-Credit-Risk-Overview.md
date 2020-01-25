@@ -3,7 +3,7 @@ layout: post
 tag: Assesing risk factor
 category: "credit risk"
 title: "Overviews of Credit-Risk"
-description: my thoughts on credit risk, and general wisdoms that I heard
+description: Thoughts on credit risk, and general wisdoms that I heard
 author: Sarah Chen
 image: images\posts\world_Debt.JPG
 ---
