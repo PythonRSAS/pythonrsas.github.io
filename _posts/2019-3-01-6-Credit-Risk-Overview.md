@@ -71,11 +71,17 @@ If you look at the all the public companies that specializes in managing data an
 
 For example:
 **Google** 
+
 **Facebook**
+
 **Moody's**
+
 **S&P Global**
+
 **Verisk**
+
 **Equifax**
+
 **Salesforce** 
 
 Collecting more data, knowing how to manage them is the foundation to the growth.   If we can extrapolate, whether the computing power + analytics can deliver more incremental value will determine whether these companies will continue to outshine others.  
