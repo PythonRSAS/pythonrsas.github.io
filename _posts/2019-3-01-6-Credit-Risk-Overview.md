@@ -65,26 +65,22 @@ In credit risk modeling, loan vintage, or origination time, matters.  Those loan
 
 ### the Only Thing that is Better than Data is More Data
 
-> I learned this from my friend Professor David Belanger (former chief scientist at AT&T), who might have quoted somesone.  
+> I learned this from my friend Professor David Belanger (former chief scientist at AT&T), who might have quoted someone.  
 
 If you look at the all the public companies that specializes in managing data and providing insights from their data, you will notice that they have all done well in the last ten years, in comparion with the rest. 
 
 For example:
-**Google** 
+* **Google** 
+* **Facebook**
+* **Moody's**
+* **Equifax**
+* **S&P Global**
+* **Verisk**
+* **Salesforce** 
 
-**Facebook**
+Collecting more data (wider and longer), knowing how to organize and manage them is the foundation to the growth.   Those who ignore this mantra have been penalized heavily (check out a few on their stock performance if they are still around). 
 
-**Moody's**
-
-**S&P Global**
-
-**Verisk**
-
-**Equifax**
-
-**Salesforce** 
-
-Collecting more data, knowing how to manage them is the foundation to the growth.   If we can extrapolate, whether the computing power + analytics can deliver more incremental value will determine whether these companies will continue to outshine others.  
+If we can extrapolate, whether the computing power + analytics can deliver more incremental value will determine whether these companies will continue to outshine others.  
 
 ### technology matters
 
