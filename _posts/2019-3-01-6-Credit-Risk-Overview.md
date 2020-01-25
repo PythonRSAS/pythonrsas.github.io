@@ -10,7 +10,6 @@ image: images\posts\world_Debt.jpg
 
 **At any given moment, there are hundreds of trillions of debt or credit.**
 
-[Keras](https://keras.io/){:target="_blank"} Lorem ipsum dolor sit. [github](https://github.com/fchollet/keras){:target="_blank"} page.
 
 > **What is credit risk**: it is the **uncertainty** associated with an event, where the event is specifically about whether the borrower will pay back the money borrowed.  
 
@@ -20,20 +19,6 @@ Like every business that wants to scale needs to be a technology company, every 
 
 
 The uncertainty can be examined in many ways.  One of the common measure is how likely the borrower will not pay back.  This type of question is called "probability of default", often abbreviated as 'PD'.
-
-
-• An auto insurer:  how likely a driver will have an accident and how likely a vehicle will be in an accident during policy period,
-• A lending institution:  how likely will the borrower pay back the money on due date
-• A trading firm:  how likely will our counterparty default, whether due to internal or external causes 
-• An investor: how likely will a portfolio have superior returns
-• A tech company: how likely product X will produce great sales
-• A utility company: how likely will the customer pay bills on time
-• Economist: how likely will recession happen in the year
-• Election: how likely will a candidate win
-• Government: how likely our allies will be supportive of our actions, etc.
-
-
-### Dolore nulla ut ut sint amet duis cillum.
 
 Credit scoring is used in every industry even though the term credit is usually associated with money borrowing.   What is in common across different industries are the following two questions:
 1.  How likely is something going to happen
@@ -51,8 +36,9 @@ Some examples for the first question are:
 * **Blablasdf** -  Election: how likely will a candidate win
 * **Blablasdf** -  Government: how likely our allies will be supportive of our actions, etc.
 
+
 <figure>
-  <img src="{{ "/images/posts/world_Debt.JPG" | relative_url }}">
+  <img src="{{ "/images/posts/world_Debt.jpg" | relative_url }}">
   <figcaption>Total Debt by Country- by Visual Capitalist</figcaption>
 </figure>
 
