@@ -41,15 +41,15 @@ Credit scoring is used in every industry even though the term credit is usually 
 
 
 Some examples for the first question are:
-• An auto insurer:  how likely a driver will have an accident and how likely a vehicle will be in an accident during policy period,
-• A lending institution:  how likely will the borrower pay back the money on due date
-• A trading firm:  how likely will our counterparty default, whether due to internal or external causes 
-• An investor: how likely will a portfolio have superior returns
-• A tech company: how likely product X will produce great sales
-• A utility company: how likely will the customer pay bills on time
-• Economist: how likely will recession happen in the year
-• Election: how likely will a candidate win
-• Government: how likely our allies will be supportive of our actions, etc.
+* **Auto insurance** -  An auto insurer:  how likely a driver will have an accident and how likely a vehicle will be in an accident during policy period,
+* **lending institution** -  how likely will the borrower pay back the money on due date
+* **Blablasdf** -  An investor: how likely will a portfolio have superior returns
+* **trading firm** -  how likely will our counterparty default, whether due to internal or external causes 
+* **tech company** -  how likely product X will produce great sales
+* **utility company** -  how likely will the customer pay bills on time
+* **everyone** -  how likely will recession happen in the year
+* **Blablasdf** -  Election: how likely will a candidate win
+* **Blablasdf** -  Government: how likely our allies will be supportive of our actions, etc.
 
 <figure>
   <img src="{{ "/images/posts/world_Debt.JPG" | relative_url }}">
@@ -61,18 +61,12 @@ In adipisicing anim culpa in in consectetur dolor elit velit tempor labore enim 
 
 ### Dolor pariatur velit velit parluptate nulla cupidatat.
 
-In consequat anim sunt excepteur. [Supervised Learning](https://en.wikipedia.org/wiki/Supervised_learning){:target="_blank"} problem.
-
-<figure>
-  <img src="{{ "/images/posts/laptop.jpg" | relative_url }}">
-  <figcaption>Figure 1. Generic Laptop Screen</figcaption>
-</figure>
 
 Lorem ipsum deserunt consequat. **java tengh** Ad ex quis dolor oe esse qui. (**random** or **lorem values**). Lorem ipsum dolor sit amet, sicing elit. Error autem dolor dolores, Modi temporibus aitis? (**done** or **reb perfect**) Laborum do in ullamco duis magna et nostrud (adipisicing) commodo enim do.
 
 Ex voluptate. **Blablasdf** and **Rdfdsgga**.
 
-* **Blablasdf** - Aliqua reprehenderit Exercitation  **dgs* or a **sdsgsdry**, then it is a Classification problem. *Ex: Predicting the name of a flower species.*
+* **Blablasdf** - Aliqua reprehenderit Exercitation  **dgs* or a **sdsgsdy**, then it is a Classification problem. *Ex: Predicting the name of a flower species.*
 * **Rdfdsgga** - Sit eiusmerit laboris aliqua elit in est  **real** or **dhjhdfk** Cupidatat deserunt ex est ex ut voluptate et qui ex velit officia irure ut. *Ex: Anim eu reprehenderit nulla sunt ut laboris.*
 
 Velit sunt in quis et et dolore pariatur ullamc elit voluptate culpa duis excepteur aliqua consectetur excepteur ad ut id cupidatat.
