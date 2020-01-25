@@ -2,19 +2,35 @@
 layout: post
 tag: Assesing risk factor
 category: "credit risk"
-title: "Land and Construction Credit-Risk"
-description: Ex dolore cillum ad sunt irure reprehenderit elit aliqua proident qui sed aliquip deserunt ullamco ea ut est in.
+title: "Overviews of Credit-Risk"
+description: my thoughts on credit risk, and general wisdoms that I heard
 author: Sarah Chen
-image: images\posts\laptop.jpg
+image: images\posts\world_Debt.JPG
 ---
 
 **At any given moment, there are hundreds of trillions of debt or credit.**
 
 [Keras](https://keras.io/){:target="_blank"} Lorem ipsum dolor sit. [github](https://github.com/fchollet/keras){:target="_blank"} page.
 
-> **Update**: Lorem ipsum dolor. [end of life](https://pythonclock.org/), Aliquip ad magna laborum eu ut aute ut quis in veniam in. **Python3**.
+> **What is credit risk**: it is the **uncertainty** associated with an event, where the event is specifically about whether the borrower will pay back the money borrowed.  
 
-Construction loans are considered the riskier than income producing commercial real estate loans!
+In a broader context, credit risk exists in every industry, and concerns every company.  
+
+Like every business that wants to scale needs to be a technology company, every business that wants to scale succesfully financially needs to be a financial company, and in particular, on credit risk.  
+
+
+The uncertainty can be examined in many ways.  One of the common measure is how likely the borrower will not pay back.  This type of question is called "probability of default", often abbreviated as 'PD'.
+
+
+• An auto insurer:  how likely a driver will have an accident and how likely a vehicle will be in an accident during policy period,
+• A lending institution:  how likely will the borrower pay back the money on due date
+• A trading firm:  how likely will our counterparty default, whether due to internal or external causes 
+• An investor: how likely will a portfolio have superior returns
+• A tech company: how likely product X will produce great sales
+• A utility company: how likely will the customer pay bills on time
+• Economist: how likely will recession happen in the year
+• Election: how likely will a candidate win
+• Government: how likely our allies will be supportive of our actions, etc.
 
 
 ### Dolore nulla ut ut sint amet duis cillum.
@@ -35,6 +51,10 @@ Some examples for the first question are:
 • Election: how likely will a candidate win
 • Government: how likely our allies will be supportive of our actions, etc.
 
+<figure>
+  <img src="{{ "/images/posts/world_Debt.JPG" | relative_url }}">
+  <figcaption>Total Debt by Country- by Visual Capitalist</figcaption>
+</figure>
 
 Enim cupidatat laboris **Bahlx** or **Merapi** Aliqua incididunt velit enim nulla nisi velit in magna. Lorem ipsum laboris veniam nostrud proident dolor fugiat . (Commodo irure eiusmod quis elit labor reprehenderit.). So, Ad cupidatat dolore esse nostrud duis deserunt veniam enim nostrud.
 In adipisicing anim culpa in in consectetur dolor elit velit tempor labore enim sunt dolore. [here](https://github.com){:target="_blank"}.
