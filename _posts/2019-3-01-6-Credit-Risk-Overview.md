@@ -5,7 +5,7 @@ category: "credit risk"
 title: "Overviews of Credit-Risk"
 description: Thoughts on credit risk, and general wisdoms
 author: Sarah Chen
-image: images\posts\worldDebt.jpg
+image: images/posts/worldDebt.jpg
 ---
 
 **At any given moment, there are hundreds of trillions of debt or credit.**
@@ -28,15 +28,15 @@ What is in common across different industries are the following two questions:
 
 
 Some examples for the first question are:
+* **Lending institution** -  how likely will the borrower pay back the money on due date
 * **Auto insurance** -  An auto insurer:  how likely a driver will have an accident and how likely a vehicle will be in an accident during policy period,
-* **lending institution** -  how likely will the borrower pay back the money on due date
-* **Blablasdf** -  An investor: how likely will a portfolio have superior returns
-* **trading firm** -  how likely will our counterparty default, whether due to internal or external causes 
-* **tech company** -  how likely product X will produce great sales
-* **utility company** -  how likely will the customer pay bills on time
-* **everyone** -  how likely will recession happen in the year
-* **Blablasdf** -  Election: how likely will a candidate win
-* **Blablasdf** -  Government: how likely our allies will be supportive of our actions, etc.
+* **Investors** -  how likely will a portfolio have superior returns and beat the market
+* **Trading firm** -  how likely will our counterparty default, whether due to internal or external causes 
+* **Consumer company** -  how likely product X will produce great sales
+* **Utility company** -  how likely will the customer pay bills on time
+* **Everyone** -  how likely will recession happen in the year
+* **Election** -  how likely will a candidate win
+* **Government** -  how likely our allies will be supportive of our actions, etc.
 
 
 <figure>
