@@ -67,6 +67,19 @@ In credit risk modeling, loan vintage, or origination time, matters.  Those loan
 
 > I learned this from my friend Professor David Belanger (former chief scientist at AT&T), who might have quoted somesone.  
 
+If you look at the all the public companies that specializes in managing data and providing insights from their data, you will notice that they have all done well in the last ten years, in comparion with the rest. 
+
+For example:
+**Google** 
+**Facebook**
+**Moody's**
+**S&P Global**
+**Verisk**
+**Equifax**
+**Salesforce** 
+
+Collecting more data, knowing how to manage them is the foundation to the growth.   If we can extrapolate, whether the computing power + analytics can deliver more incremental value will determine whether these companies will continue to outshine others.  
+
 ### technology matters
 
 > Technology is how we do things.   We all know the difference in speed between walking and flying.   There is technology in analytics. 
