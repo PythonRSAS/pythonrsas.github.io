@@ -3,24 +3,26 @@ layout: post
 tag: Assesing risk factor
 category: "credit risk"
 title: "Overviews of Credit-Risk"
-description: Thoughts on credit risk, and general wisdoms that I heard
+description: Thoughts on credit risk, and general wisdoms
 author: Sarah Chen
-image: images\posts\world_debt.jpg
+image: images\posts\worldDebt.jpg
 ---
 
 **At any given moment, there are hundreds of trillions of debt or credit.**
 
 
-> **What is credit risk**: it is the **uncertainty** associated with an event, where the event is specifically about whether the borrower will pay back the money borrowed.  
+> **Credit risk** is the **uncertainty** associated with some event, where the event is specifically about whether the borrower will pay back the money borrowed.  
 
 In a broader context, credit risk exists in every industry, and concerns every company.  
 
-Like every business that wants to scale needs to be a technology company, every business that wants to scale succesfully financially needs to be a financial company, and in particular, on credit risk.  
+Like every business that wants to scale needs to be a **technology** company, every business that wants to scale succesfully financially needs to be a **financial** company, and in particular, on credit risk.  
 
 
 The uncertainty can be examined in many ways.  One of the common measure is how likely the borrower will not pay back.  This type of question is called "probability of default", often abbreviated as 'PD'.
 
-Credit scoring is used in every industry even though the term credit is usually associated with money borrowing.   What is in common across different industries are the following two questions:
+Credit scoring is used in every industry even though the term credit is usually associated with money borrowing.   
+
+What is in common across different industries are the following two questions:
 1.  How likely is something going to happen
 2.  If it happens, what is the impact
 
@@ -38,7 +40,7 @@ Some examples for the first question are:
 
 
 <figure>
-  <img src="{{ "/images/posts/world_debt.jpg" | relative_url }}">
+  <img src="{{ "/images/posts/worldDebt.jpg" | relative_url }}">
   <figcaption>Total Debt by Country- by Visual Capitalist</figcaption>
 </figure>
 
