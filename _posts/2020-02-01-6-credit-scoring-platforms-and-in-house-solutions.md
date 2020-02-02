@@ -5,7 +5,7 @@ category: "credit risk"
 title: "Credit Scoring Platforms and In-House Solutions"
 description: Notes on credit scoring platforms, approaches and in-house solutions from large and very small ones
 author: Sarah Chen
-image: images\posts\equifax_pres.jpg
+image: images\posts\equifax_pres.JPG
 ---
 
 This post is a summary on credit scoring platforms and credit scoring in-house solutions out there and what they do. 
@@ -23,17 +23,17 @@ It promises a 30-day deployment.
 
 
 <figure>
-  <img src="{{ "/images/posts/equifax_pres1.jpg" | relative_url }}">
+  <img src="{{ "/images/posts/equifax_pres1.JPG" | relative_url }}">
   <figcaption>Equifax Ignite</figcaption>
 </figure>
 
 <figure>
-  <img src="{{ "/images/posts/equifax_pres2.jpg" | relative_url }}">
+  <img src="{{ "/images/posts/equifax_pres2.JPG" | relative_url }}">
   <figcaption>Equifax Ignite</figcaption>
 </figure>
 
 <figure>
-  <img src="{{ "/images/posts/equifax_pres3.jpg" | relative_url }}">
+  <img src="{{ "/images/posts/equifax_pres3.JPG" | relative_url }}">
   <figcaption>Equifax Ignite</figcaption>
 </figure>
 
@@ -76,7 +76,7 @@ But the solution is not working out well everywhere.
 In-house solution has advantages if the people of the house is working together and not working separately.  
 
 <figure>
-  <img src="{{ "/images/posts/sas_in_house_credit_scoring.jpg" | relative_url }}">
+  <img src="{{ "/images/posts/sas_in_house_credit_scoring.JPG" | relative_url }}">
   <figcaption>SAS in-house credit scoring development process</figcaption>
 </figure>
 
@@ -98,7 +98,7 @@ Here is its value proposition from its website:
 "Traditional ways of building risk models require much time, a great deal of heavy lifting and specialised expertise. This is what GiniMacine changes. Without a PhD in statistics and the necessity to write code, you can build, validate and deploy powerful scoring models. With its intuitive UI and a wealth of pro-level features, GiniMachine is a perfect fit for risk managers, developers and business owners alike."
 
 <figure>
-  <img src="{{ "/images/posts/gini-machine.jpg" | relative_url }}">
+  <img src="{{ "/images/posts/gini-machine.JPG" | relative_url }}">
   <figcaption>gini machine</figcaption>
 </figure>
 
@@ -109,7 +109,7 @@ But we know that these days even a teenager can write and run gradient boosting 
 But the key things are **missing**: **model risk**?   **interpretability**?  **regulatory approvals**? actual **business success**? 
 
 <figure>
-  <img src="{{ "/images/posts/gini-machine-promise.jpg" | relative_url }}">
+  <img src="{{ "/images/posts/gini-machine-promise.JPG" | relative_url }}">
   <figcaption>gini machine promise</figcaption>
 </figure>
 
