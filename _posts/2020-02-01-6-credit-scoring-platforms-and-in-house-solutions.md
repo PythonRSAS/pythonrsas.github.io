@@ -75,7 +75,7 @@ The pain is correctly identified.
 
 But the solution is not working out well everywhere.  
 
-In-house solution has advantages if the people of the house is working together and not working separately.  
+In-house solution advantages can be realized only if the **people in-the-house** are working together and not working separately.  
 
 <figure>
   <img src="{{ "/images/posts/sas_in_house_credit_scoring.JPG" | relative_url }}">
