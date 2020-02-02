@@ -102,7 +102,9 @@ Here is its value proposition from its website:
   <figcaption>gini machine</figcaption>
 </figure>
 
-It makes quick promises like the ones below.  Hands-on people know that these days even a teenager can write and run gradient boosting code that gives you better "performance". 
+It makes quick promises like those in the screenshot below.  
+
+But we know that these days even a teenager can write and run gradient boosting code that gives you better "performance". 
 
 But the key things are **missing**: **model risk**?   **interpretability**?  **regulatory approvals**? actual **business success**? 
 
@@ -113,10 +115,10 @@ But the key things are **missing**: **model risk**?   **interpretability**?  **r
 
 ### Lenddo
 
+Its [website](https://www.lenddo.com/products.html#creditscore) has a popup ad about an event from 2017, which clearly is **outdated**. 
+
 Value proposition:
 > "Lenddo’s patented score is a powerful predictor of an individual’s character or 'willingness to pay'"
-
-Its [website](https://www.lenddo.com/products.html#creditscore) has a popup ad about an event from 2017, which clearly means it is **outdated**. 
 
 Timelines of this company and events seem to be pre-2017 and have stopped at 2017.   
 
