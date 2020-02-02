@@ -7,7 +7,7 @@ description: Data processing using Python and SAS.
 author: Sarah Chen
 # image: https://www.audubon.org/sites/default/files/styles/hero_image/public/sfw_nationalgeographic_1517960.jpg?itok=F5pikjxg
 ---
-In this post, you will learn:
+
 
 [- Slicing Rows and Columns](#Slicing-Rows-and-Columns)
 

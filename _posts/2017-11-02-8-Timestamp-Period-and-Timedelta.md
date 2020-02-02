@@ -9,7 +9,7 @@ image: images/posts/sean-o.jpg
 
 ---
 
-In this post, you will learn: 
+ 
 
 [Timestamp](#Timestamp)
 

@@ -38,7 +38,7 @@ Use simulation when there is little data available such as catastrophic loss fro
 
 **4. Analytics works**
 
-I honed analytic/modeling skills/experiences by using both the most granular and the largest personal auto data available and the aggregated loss and revenue in my actuarial trainings, by hands on building statistical and machine learning models, which in principle are still about bias and variance. These skills/experience have only gotten more enhanced with more experiences overtime by relentless learning and practicing.
+I honed analytic/modeling skills/experiences by using both the most granular and the largest insurance data available and the aggregated loss and revenue in my actuarial trainings, by hands on building statistical and machine learning models, which in principle are still about bias and variance. These skills/experience have only gotten more enhanced with more experiences overtime by relentless learning and practicing.
 
 **5. Manage risk for protection and growth**
 
