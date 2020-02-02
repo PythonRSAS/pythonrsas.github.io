@@ -5,7 +5,7 @@ category: "credit risk"
 title: "Credit Scoring Platforms and In-House Solutions"
 description: Notes on credit scoring platforms, approaches and in-house solutions from large and very small ones
 author: Sarah Chen
-image: images\posts\equifax_pres.jpg
+image: images/posts/equifax_pres.jpg
 ---
 
 This post is a summary on credit scoring platforms and credit scoring in-house solutions out there and what they do. 
