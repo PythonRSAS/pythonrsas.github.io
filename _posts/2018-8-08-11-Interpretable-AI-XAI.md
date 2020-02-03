@@ -53,16 +53,7 @@ This is available from sklearn. See [here](https://scikit-learn.org/stable/modul
 ### Individual conditional expectation plot (ICE)
 
 
-> Ut magna Consequat aute volupthenderit incididunt consequat amet. **Dfsd** and **Rfskldf Posoe**.
 
-In consequat anim sunt excepteur. [Supervised Learning](https://en.wikipedia.org/wiki/Supervised_learning){:target="_blank"} problem.
-
-### Feature importance plot
-
-
-> For tree-based models, it ranks the contribution of each feature.
-
-Feature importance has been going to for a long time.  
 
 ### LIME
 
