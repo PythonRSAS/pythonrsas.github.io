@@ -51,9 +51,9 @@ This is a quote from
 
 "Quickly develop, validate, deploy and track credit scorecards in house – while minimizing model risk and improving governance. We've combined award-winning data management, data mining and reporting capabilities in a powerful credit scoring solution that is faster, cheaper and more flexible than any outsourcing alternative."
 
-It promises faster, cheapter and more flexibble than outsourcing alternative on application and behavior scoring for virtually all lending products – including commercial loans, cards, installment loans and mortgages.
+[It](https://www.sas.com/content/dam/SAS/en_us/doc/productbrief/sas-credit-scoring-100665.pdf){:target="_blank"} promises faster, cheapter and more flexibble than outsourcing alternative on application and behavior scoring for virtually all lending products – including commercial loans, cards, installment loans and mortgages.
 
-I know that SAS can deliver "Sustainable, auditable model development environment."
+SAS has delivered "sustainable, auditable model development environment."
 
 But what caught my eyes are these words:
 
@@ -73,7 +73,7 @@ In the [white paper](https://www.sas.com/content/dam/SAS/en_us/doc/whitepaper1/i
 
 The **pain is correctly identified**.  
 
-But unfortunately the solution is not working out well everywhere.  
+Unfortunately not everywhere the solution has worked out well .  
 
 In-house solution advantages can be realized only if the **people in-the-house** are working together and not working separately.  
 
@@ -81,10 +81,6 @@ In-house solution advantages can be realized only if the **people in-the-house**
   <img src="{{ "/images/posts/sas_in_house_credit_scoring.JPG" | relative_url }}">
   <figcaption>SAS in-house credit scoring development process</figcaption>
 </figure>
-
-
-
-Here is the [product brief](https://www.sas.com/content/dam/SAS/en_us/doc/productbrief/sas-credit-scoring-100665.pdf){:target="_blank"}
 
 
 
