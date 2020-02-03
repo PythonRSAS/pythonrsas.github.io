@@ -63,18 +63,18 @@ feature_names = [i.split(' (', 1)[0] for i in iris.feature_names]
 stdev = np.std([tree.feature_importances_ for tree in forest.estimators_],
              axis=0)
 
-importances_names= pd.DataFrame(zip(importances, stdev), columns=['importance','stdev'], index=feature_names)
-importances_names.sort_values(by='importance',ascending=False, inplace=True)
+importances_df= pd.DataFrame(zip(importances, stdev), columns=['importance','stdev'], index=feature_names)
+importances_df.sort_values(by='importance',ascending=False, inplace=True)
 # Print the feature ranking
 print("Feature ranking:")
-print(importances_names)
+print(importances_df)
 
 # Plot the feature importances of the forest
 plt.figure()
 plt.title("Feature importances")
-plt.bar(range(X.shape[1]), importances_names.importance,
-       color="g", yerr=importances_names.stdev, align="center")
-plt.xticks(range(X.shape[1]), importances_names.index)
+plt.bar(range(X.shape[1]), importances_df.importance,
+       color="g", yerr=importances_df.stdev, align="center")
+plt.xticks(range(X.shape[1]), importances_df.index)
 plt.xlim([-1, X.shape[1]])
 plt.tight_layout()
 plt.show()
