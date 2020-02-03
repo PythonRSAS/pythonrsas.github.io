@@ -15,30 +15,68 @@ image: images/posts/photos/IMG-0631.jpg
    <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
 </figure> 
 
-In linear regression, there has been well-established theory and diagnostics on how a model works, such as confidence interval, p-value and etc.  
+In linear regression, there has been well-established theory and diagnostics on how a model works, such as the model statement y = a + bX, confidence interval, p-value and etc.  
 
-In linear regression and situations where linear regression are used (in neural network as well) balance of bias and variance can be strived for using regularizers. 
+In linear regression and situations where linear regression are used (in neural network as well) balance of bias and variance can be strived for using regularizers to prevent overfitting, and instability due to multicollinearity. 
 
-So, yes, machine learning is powerful leveraging computing power and data. Then, why should anyone just accept black boxes and expect less from the ML/AI models?   
+So, yes, machine learning is powerful leveraging computing power and data. But then, why should anyone just accept black boxes and expect less from the ML/AI models?   
 
-For low-consequence machine learning models or those that we find to be the best option such as those used in postal code sorting, air craft collision avoidance systems, explanation is not necessary.
+For low-consequence machine learning models or those that we find to be the best option such as those used in postal code sorting, image recognition, explanation is not necessary as long as we know that the algorithms are working as demonstrated.  Blackboxes are fine. 
 
-However, in many context, especially those with high stake especially involving people, such as medicine, financial industry, and the military, to be able to interprete model output is as important as the model.  In regulated industries, interpretability is required before adoption.  
+However, in many context, especially those with high stake especially involving people, such as health care/medicine, financial industry, and the military, to be able to interprete model output is as important as the model.  
+
+In regulated industries, interpretability is required before adoption.  
 
 A genearal introduction from theoretical point of view on definitions of interpretability is in [Towards A Rigorous Science of Interpretable Machine Learning](https://arxiv.org/pdf/1702.08608.pdf){:target="_blank"}.
 
-There is a wide array of 
+Interpretable AI (XAI) has been a very active area in recent years, motivated by commercial reasons (to gain from the available technology) and regulatory needs. 
+
+There are two categories of tools in both the old and latest machine learning interpretability methods and models:
 
 * **tools for helping us to understand ML/AI models**
-* **monotonicity as regularizers** to ensure interpretability
+* **monotonicity as regularizers** to ensure interpretability built into the models
 
-Here is a quick summary of some of the old and latest machine learning interpretability methods and models: 
+Here is a quick summary of some of the old and new XAI methods and algorithms: 
 
 
 ###  Variable Importance and Plot
 
 
 > Mostly suitable for **tree** based models, using gini importance or entropy  as the metric for measuring difference due to variables at each split of trees. But it does not explain which variables impact the predictions for a particular variable and how. 
+
+A side note, [A Comparison of R, SAS, and Python Implementations of Random Forests](https://digitalcommons.usu.edu/cgi/viewcontent.cgi?article=2295&=&context=gradreports&=&sei-redir=1&referer=https%253A%252F%252Fwww.bing.com%252Fsearch%253Fq%253Dvariable%252520importance%252520random%252520forest%252520R%252520python%252520sas%2526qs%253Dn%2526form%253DQBRE%2526sp%253D-1%2526pq%253Dvariable%252520importance%252520random%252520forest%252520r%252520python%252520sas%2526sc%253D0-46%2526sk%253D%2526cvid%253D333C6D25045444419A8E386D9BCA7771#search=%22variable%20importance%20random%20forest%20R%20python%20sas%22){:target="_blank"} documented comparisons on different variable importance implementation amongst Python R SAS.   
+
+
+### [Tree Interpreter](https://github.com/andosa/treeinterpreter){:target="_blank"}
+
+Tree Interpreter (formulated by Andos Saabas) is a ingenius method to represent how trees in linear regression formats. It is very intuitive and beautiful.  For joint contributions cases such as XOR you will need to explicitly test it.   
+
+<div class="code-head"><span>code</span>tree-interpreter-example.py</div>
+
+```python
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import load_iris
+iris = load_iris()
+ 
+rf = RandomForestClassifier(max_depth = 4)
+idx = np.arange(len(iris.target))
+np.random.shuffle(idx) #inplace
+ 
+rf.fit(iris.data[idx][:100], iris.target[idx][:100])
+# Let’s predict now for a single instance.
+instance = iris.data[idx][100:101]
+print (rf.predict_proba(instance))
+
+# Breakdown of feature contributions:
+prediction, bias, contributions = ti.predict(rf, instance)
+print( "Prediction", prediction)
+print( "Bias (trainset prior)", bias)
+print( "Feature contributions:")
+for c, feature in zip(contributions[0], 
+                             iris.feature_names):
+    print( feature, c)
+```
+
 
 ### Partial dependence plot (PDP)
 
