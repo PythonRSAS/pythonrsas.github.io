@@ -8,13 +8,13 @@ author: Sarah Chen
 image: images/posts/equifax_pres.JPG
 ---
 
-This post is a summary on credit scoring platforms and credit scoring in-house solutions out there and what they do. 
+This post is a survey on credit scoring platforms and credit scoring in-house solutions out there and what they do. 
 
-All credit scoring in the US must adhere to FCRA, ECOA, SCRA and FHA.  
+Note that all credit scoring in the US must adhere to FCRA, ECOA, SCRA and FHA.  
 
-So, security, data privacy + machine learning interpretability are pre-requisites.  
+So, data security, privacy + machine learning interpretability are pre-requisites.  
 
-The order of the platforms in the post is completely **random**.  There is **no implied superiority**.  In fact, some of them are very small start-ups. 
+The order of the platforms in the post is completely **random**.  There is **no implied superiority**.  In fact, some of them have been the gold standard whereas some are very small start-ups. 
 
 
 ### Equifax Ignite
@@ -127,7 +127,7 @@ Value proposition:
 
 ### Lenddo
 
-[website](https://www.lenddo.com/products.html#creditscore) has a popup ad about an event from 2017, which clearly is **outdated**.   Timelines of this company and events seem to be pre-2017 and have stopped at 2017.
+[website](https://www.lenddo.com/products.html#creditscore){:target="_blank"} has a popup ad about an event from 2017, which clearly is **outdated**.   Timelines of this company and events seem to be pre-2017 and have stopped at 2017.
 
 Value proposition:
 > "Lenddo’s patented score is a powerful predictor of an individual’s character or 'willingness to pay'"
@@ -137,10 +137,50 @@ It offers cloud-based alternative credit scoring and identity verification solut
 
 Its product is intended to be complimentary to traditional credit scoring. 
 
-### Scienaptic
+### [zest](https://www.zest.ai/)
+[zest](https://www.zest.ai/) has a much more sophisticated website that promises business results such as:
+> x% lower charge off rate and y% increase in approval rate
 
-Is it just another platform to promise you 1 second credit decision?  
+Reduce losses. Increase approvals. Fast. 
+
+Value proposition:
+> ZAML® (Zest Automated Machine Learning) is a machine learning credit and risk modeling solution with *end-to-end explainability* and **compliant** and allows flexible Engagements
+
+With Automated Machine Learning from Zest, lenders small and large are able to originate more loans with greater confidence by assessing borrower risk more accurately—all while remaining compliant with regulatory demands. hundreds of variables and thousands of interaction effects.
+
+Its target industries are: consumer lending (include auto and mortgage), commercial lending, insurance and telecom. 
+
+The company is based in Burbank, CA, and seems to promote a great working enviroment, with the mission "Our mission is to make fair and transparent credit available to everyone." 
+
+<figure>
+  <img src="{{ "/images/posts/zest.JPG" | relative_url }}">
+  <figcaption>zest timeline</figcaption>
+</figure>
 
 
+### [Scienaptic.ai](https://www.scienaptic.ai/)
+
+Is it just another platform to promise you 1 second credit decision?  [Scienaptic.ai](https://www.scienaptic.ai/) website homepage looks remarkably like [zest](https://www.zest.ai/), with the same color scheme and java-scripted moving network background, likely to be somewhat symbolic of neural network algorithm used.  
 
 
+Value proposition:
+> "Ether platform reduce friction inherent in current credit decisioning processes.
+> Unique AI algorithms that are **fully compliant and explainable proprietary**
+
+The proposition demonstrates that, like Equifax, they understand in order for banking customers to use it, the tool needs to be interpretable.  Like Equifax, Scienaptic also promises 30-day deployment, and within customer's firewall.
+
+
+The description of a platform and the promise that **"Nothing leaves your firewall. Ever"** seem *contradictory*.  Is it **in-house or platform**? 
+
+<figure>
+  <img src="{{ "/images/posts/scienaptic.JPG" | relative_url }}">
+  <figcaption>scienaptic ether</figcaption>
+</figure>
+
+The Ether platform has pre-built APIs for both traditional and **alternative** credit data sources to accelerate data ingestion for sharper credit decisioning.  This seems to be a function that Equifax also has. 
+
+### Summary
+
+There are a lot of activities in the space of applying new technologies (big data + machine learning) to credit scoring in financial services.  The competition is very fierce.   
+
+The winners will need: great product + great people to execute + a viable philosophy/idea. Great execution that help customer making/saving lots of money without higher risk will be the key in building trust and opening doors to more customers.  
