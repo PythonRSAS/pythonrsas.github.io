@@ -151,6 +151,12 @@ The description of a platform and the promise that **"Nothing leaves your firewa
 
 The Ether platform has pre-built APIs for both traditional and **alternative** credit data sources to accelerate data ingestion for sharper credit decisioning.  This seems to be a function that Equifax also has. 
 
+
+### Discover and Zest
+
+Discover Financial Services has entered an agreement with ZestFinance, a developer of underwriting software, to create what they call the world’s biggest platform for AI-based credit scoring according to a company release.
+
+
 ### Summary
 
 There are a lot of activities in the space of applying new technologies (big data + machine learning) to credit scoring in financial services.  The competition is very fierce.   

@@ -112,7 +112,7 @@ For an overview, see Google scientist Maya Gupta's TensorFlow Dev Summit 2019 vi
 Here are a few screenshots from the video. 
 
 <figure>
-  <img src="{{ "/images/posts/TF_lattice1.jpg" | relative_url }}">
+  <img src="{{ "/images/posts/TF_lattice1.JPG" | relative_url }}">
   <figcaption>TF_lattice1</figcaption>
 </figure>
 
@@ -128,7 +128,7 @@ TF Lattice hits the problem exactly by using monotonicity as the **regularizer**
 1-d lattice is just a piecewise linear function. 
 
 <figure>
-  <img src="{{ "/images/posts/TF_lattice2.jpg" | relative_url }}">
+  <img src="{{ "/images/posts/TF_lattice2.JPG" | relative_url }}">
   <figcaption>TF_lattice2</figcaption>
 </figure>
 
@@ -136,13 +136,13 @@ TF Lattice hits the problem exactly by using monotonicity as the **regularizer**
 Multidimensional lattice are trained using empirical risk minimization, the same as you see with DNN.
 
 <figure>
-  <img src="{{ "/images/posts/TF_lattice3.jpg" | relative_url }}">
+  <img src="{{ "/images/posts/TF_lattice3.JPG" | relative_url }}">
   <figcaption>TF_lattice3</figcaption>
 </figure>
 
 
 <figure>
-  <img src="{{ "/images/posts/TF_lattice4.jpg" | relative_url }}">
+  <img src="{{ "/images/posts/TF_lattice4.JPG" | relative_url }}">
   <figcaption>TF_lattice4</figcaption>
 </figure>
 
