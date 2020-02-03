@@ -45,7 +45,7 @@ It promises a 30-day deployment.
 
 Well-established credit scoring historically for **in-house** development.
 
-This is a quote from SAS website:
+This is a quote from SAS website
 [SAS Credit Scoring](https://www.sas.com/en_us/software/credit-scoring.html){:target="_blank"}:
 
 
@@ -71,9 +71,9 @@ And then there is the promise of ["Fast in-house scorecard development"](https:/
 In the [white paper](https://www.sas.com/content/dam/SAS/en_us/doc/whitepaper1/infrastructure-credit-risk-model-development-108925.pdf){:target="_blank"} , SAS acurately summarizes the problems:
 > issues with the activities that occur before and after modeling, such as accessing data, data cleansing, getting business buy-in, recoding models, validating models, creating documentation, producing audit reports, implementing models, and other operational activities. As a result, the entire analytics and modeling process is slow and difficult. 
 
-The pain is correctly identified.  
+The **pain is correctly identified**.  
 
-But the solution is not working out well everywhere.  
+But unfortunately the solution is not working out well everywhere.  
 
 In-house solution advantages can be realized only if the **people in-the-house** are working together and not working separately.  
 
