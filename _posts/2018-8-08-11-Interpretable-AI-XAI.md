@@ -152,7 +152,7 @@ Recommended resources:
 
 
 
-###  Confidence interval related concepts
+###  Confidence intervals
 
 
-> Mostly suitable for **tree** based models, using gini importance or entropy  as the metric for measuring difference due to variables at each split of trees. But it does not explain which variables impact the predictions for a particular variable and how.   
+> Don't forget **resampling** techniques that make ensemble models so successful can be used to compile confidence intervals, and generate similar concepts like p-values.  
