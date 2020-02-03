@@ -92,23 +92,21 @@ Besides SAS, other commerical in-house solutions include [Matlab from mathworks]
 
 ### Gini Machine
 
-From a startup in Lithuania.  
+Europe startup in Lithuania.  
 
-Selling point: machine learning platform for fast credit scoring. 
+Value proposition: machine learning platform for fast credit scoring. 
 
-Here is its value proposition from its website:
-"Traditional ways of building risk models require much time, a great deal of heavy lifting and specialised expertise. This is what GiniMacine changes. Without a PhD in statistics and the necessity to write code, you can build, validate and deploy powerful scoring models. With its intuitive UI and a wealth of pro-level features, GiniMachine is a perfect fit for risk managers, developers and business owners alike."
+> "Traditional ways of building risk models require much time, a great deal of heavy lifting and specialised expertise. This is what GiniMacine changes."
 
 <figure>
   <img src="{{ "/images/posts/gini-machine.JPG" | relative_url }}">
   <figcaption>gini machine</figcaption>
 </figure>
 
-It makes quick promises like those in the screenshot below.  
 
 But we know that these days even a teenager can write and run gradient boosting code that gives you better "performance". 
 
-But the key things are **missing**: **model risk**?   **interpretability**?  **regulatory approvals**? actual **business success**? 
+But where the key things like **model risk, interpretability, regulatory approvals, business success are missing**
 
 <figure>
   <img src="{{ "/images/posts/gini-machine-promise.JPG" | relative_url }}">
@@ -117,7 +115,7 @@ But the key things are **missing**: **model risk**?   **interpretability**?  **r
 
 ### underwrite.ai
 
-Despite a name associated with credit and insurance, the [company](http://www.underwrite.ai/){:target="_blank"} does not seem to have a focused goal as the company founder is discussing financial services and cancer at the same time in the same presentation. 
+Despite a name associated with credit and insurance, the [company](http://www.underwrite.ai/){:target="_blank"} does not seem to have a focused goal as the company founder is discussing financial services and cancer at the same time in the same presentation. Let's see its collaboration with [h2o.ai](https://www.h2o.ai/company/news/underwrite-ai-leverages-h2o-ai-to-modernize-credit-with-ai/){:target="_blank"}  will bring. 
 
 Value proposition:
 > Use thousands of data points from credit bureau sources + machine learning + target profitability and customer lifetime value instead of default of individuals and SMEs.
@@ -138,6 +136,11 @@ Value proposition:
 It offers cloud-based alternative credit scoring and identity verification solutions on individual and SMEs, where "alternative" means social media and any digital foot print /online behavior. 
 
 Its product is intended to be complimentary to traditional credit scoring. 
+
+### Scienaptic
+
+Is it just another platform to promise you 1 second credit decision?  
+
 
 
 
