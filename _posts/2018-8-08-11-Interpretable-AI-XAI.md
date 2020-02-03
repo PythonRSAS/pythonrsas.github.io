@@ -21,7 +21,7 @@ In linear regression and situations where linear regression are used (in neural 
 
 So, yes, machine learning is powerful leveraging computing power and data. But then, why should anyone just accept black boxes and expect less from the ML/AI models?   
 
-For low-consequence machine learning models or those that we find to be the best option such as those used in postal code sorting, image recognition, explanation is not necessary as long as we know that the algorithms are working as demonstrated.  Blackboxes are fine. 
+For low-consequence machine learning models or those that we find to be the best option such as those used in postal code sorting, image recognition, explanation is not necessary as long as we know that the algorithms are working as demonstrated--Blackboxes are fine. 
 
 However, in many context, especially those with high stake especially involving people, such as health care/medicine, financial industry, and the military, to be able to interprete model output is as important as the model.  
 
@@ -44,6 +44,47 @@ Here is a quick summary of some of the old and new XAI methods and algorithms:
 
 > Mostly suitable for **tree** based models, using gini importance or entropy  as the metric for measuring difference due to variables at each split of trees. But it does not explain which variables impact the predictions for a particular variable and how. 
 
+<div class="code-head"><span>code</span>tree-interpreter-example.py</div>
+
+```python
+from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.datasets import load_iris
+iris = load_iris()
+X = iris.data
+y = iris.target
+ 
+forest = ExtraTreesClassifier(n_estimators=250,
+                              random_state=0)
+
+forest.fit(X, y)
+importances = forest.feature_importances_
+feature_names = [i.split(' (', 1)[0] for i in iris.feature_names]
+
+stdev = np.std([tree.feature_importances_ for tree in forest.estimators_],
+             axis=0)
+
+importances_names= pd.DataFrame(zip(importances, stdev), columns=['importance','stdev'], index=feature_names)
+importances_names.sort_values(by='importance',ascending=False, inplace=True)
+# Print the feature ranking
+print("Feature ranking:")
+print(importances_names)
+
+# Plot the feature importances of the forest
+plt.figure()
+plt.title("Feature importances")
+plt.bar(range(X.shape[1]), importances_names.importance,
+       color="g", yerr=importances_names.stdev, align="center")
+plt.xticks(range(X.shape[1]), importances_names.index)
+plt.xlim([-1, X.shape[1]])
+plt.tight_layout()
+plt.show()
+```
+
+<figure>
+  <img src="{{ "/images/posts/Feature importances with error.png" | relative_url }}">
+  <figcaption>Feature Importances with Stdev</figcaption>
+</figure>
+
 A side note, [A Comparison of R, SAS, and Python Implementations of Random Forests](https://digitalcommons.usu.edu/cgi/viewcontent.cgi?article=2295&=&context=gradreports&=&sei-redir=1&referer=https%253A%252F%252Fwww.bing.com%252Fsearch%253Fq%253Dvariable%252520importance%252520random%252520forest%252520R%252520python%252520sas%2526qs%253Dn%2526form%253DQBRE%2526sp%253D-1%2526pq%253Dvariable%252520importance%252520random%252520forest%252520r%252520python%252520sas%2526sc%253D0-46%2526sk%253D%2526cvid%253D333C6D25045444419A8E386D9BCA7771#search=%22variable%20importance%20random%20forest%20R%20python%20sas%22){:target="_blank"} documented comparisons on different variable importance implementation amongst Python R SAS.   
 
 
@@ -57,21 +98,26 @@ Since a tree is nothing but the growth from root to leaves, if we can explain ea
 
 In this formulation, bias corresponds to the intercept in linear regression while "contribution" of a variable is somewhat similar to beta*x.  
 
-It is intuitive and beautiful.  For joint contributions cases such as XOR you will need to explicitly test it.
+It is intuitive and beautiful.  One 'limitation' is that for joint contributions cases such as XOR you will need to explicitly test the joint contribution.
 
 <div class="code-head"><span>code</span>tree-interpreter-example.py</div>
 
 ```python
 from sklearn.ensemble import RandomForestClassifier
+from treeinterpreter import treeinterpreter as ti
+import numpy as np
+
 from sklearn.datasets import load_iris
 iris = load_iris()
- 
+X = iris.data
+y = iris.target
+
 rf = RandomForestClassifier(max_depth = 4)
 idx = np.arange(len(iris.target))
 np.random.shuffle(idx) #inplace
  
 rf.fit(iris.data[idx][:100], iris.target[idx][:100])
-# Let’s predict now for a single instance.
+# predict for a single instance.
 instance = iris.data[idx][100:101]
 print (rf.predict_proba(instance))
 
