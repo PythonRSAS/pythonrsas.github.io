@@ -49,7 +49,15 @@ A side note, [A Comparison of R, SAS, and Python Implementations of Random Fores
 
 ### [Tree Interpreter](https://github.com/andosa/treeinterpreter){:target="_blank"}
 
-Tree Interpreter (formulated by Andos Saabas) is a ingenius method to represent how trees in linear regression formats. It is very intuitive and beautiful.  For joint contributions cases such as XOR you will need to explicitly test it.   
+Tree Interpreter (formulated by Andos Saabas) is a ingenius method to represent how trees in linear regression formats.  
+
+Since a forest is nothing but a collection of trees (average of the scores from trees), if we can explain a tree, we can explain a forest. 
+
+Since a tree is nothing but the growth from root to leaves, if we can explain each split/step, we can explain a tree. 
+
+In this formulation, bias corresponds to the intercept in linear regression while "contribution" of a variable is somewhat similar to beta*x.  
+
+It is intuitive and beautiful.  For joint contributions cases such as XOR you will need to explicitly test it.
 
 <div class="code-head"><span>code</span>tree-interpreter-example.py</div>
 
