@@ -86,29 +86,6 @@ In-house solution advantages can be realized only if the **people in-the-house**
 
 Besides SAS, other commerical in-house solutions include [Matlab from mathworks](https://www.mathworks.com/discovery/credit-scoring-model.html){:target="_blank"}
 
-### Gini Machine
-
-Europe startup in Lithuania.  
-
-Value proposition: machine learning platform for fast credit scoring. 
-
-> "Traditional ways of building risk models require much time, a great deal of heavy lifting and specialised expertise. This is what GiniMacine changes."
-
-<figure>
-  <img src="{{ "/images/posts/gini-machine.JPG" | relative_url }}">
-  <figcaption>gini machine</figcaption>
-</figure>
-
-
-But we know that these days even a teenager can write and run gradient boosting code that gives you better "performance". 
-
-But where the key things like **model risk, interpretability, regulatory approvals, business success are missing**
-
-<figure>
-  <img src="{{ "/images/posts/gini-machine-promise.JPG" | relative_url }}">
-  <figcaption>gini machine promise</figcaption>
-</figure>
-
 ### underwrite.ai
 
 Despite a name associated with credit and insurance, the [company](http://www.underwrite.ai/){:target="_blank"} does not seem to have a focused goal as the company founder is discussing financial services and cancer at the same time in the same presentation. Let's see its collaboration with [h2o.ai](https://www.h2o.ai/company/news/underwrite-ai-leverages-h2o-ai-to-modernize-credit-with-ai/){:target="_blank"}  will bring. 
