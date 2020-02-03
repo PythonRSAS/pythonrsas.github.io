@@ -98,9 +98,9 @@ Value proposition:
 
 
 
-### Lenddo
+### [Lenddo](https://www.lenddo.com/products.html#creditscore){:target="_blank"}
 
-[website](https://www.lenddo.com/products.html#creditscore){:target="_blank"} has a popup ad about an event from 2017, which clearly is **outdated**.   Timelines of this company and events seem to be pre-2017 and have stopped at 2017.
+Its [website](https://www.lenddo.com/products.html#creditscore){:target="_blank"} has a popup ad about an event from 2017, which clearly is **outdated**.   Timelines of this company and events seem to have stopped at 2017 despite a lot of funding and publicity in early years.
 
 Value proposition:
 > "Lenddo’s patented score is a powerful predictor of an individual’s character or 'willingness to pay'"
