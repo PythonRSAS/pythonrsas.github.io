@@ -5,7 +5,7 @@ category: "credit risk"
 title: "Credit Scoring Platforms and In-House Solutions"
 description: Notes on credit scoring platforms, approaches and in-house solutions from large and very small ones
 author: Sarah Chen
-image: images/posts/equifax_pres.jpg
+image: images/posts/equifax_pres.JPG
 ---
 
 This post is a summary on credit scoring platforms and credit scoring in-house solutions out there and what they do. 
@@ -115,19 +115,29 @@ But the key things are **missing**: **model risk**?   **interpretability**?  **r
   <figcaption>gini machine promise</figcaption>
 </figure>
 
+### underwrite.ai
+
+Despite a name associated with credit and insurance, the [company](http://www.underwrite.ai/){:target="_blank"} does not seem to have a focused goal as the company founder is discussing financial services and cancer at the same time in the same presentation. 
+
+Value proposition:
+> Use thousands of data points from credit bureau sources + machine learning + target profitability and customer lifetime value instead of default of individuals and SMEs.
+
+
+>"If you have no portfolio data, we have models based upon massive quantities of publicly available datasets covering everything from home mortgage and automobile to peer to peer lending and cash advance."
+
+
+
 ### Lenddo
 
-Its [website](https://www.lenddo.com/products.html#creditscore) has a popup ad about an event from 2017, which clearly is **outdated**. 
+[website](https://www.lenddo.com/products.html#creditscore) has a popup ad about an event from 2017, which clearly is **outdated**.   Timelines of this company and events seem to be pre-2017 and have stopped at 2017.
 
 Value proposition:
 > "Lenddo’s patented score is a powerful predictor of an individual’s character or 'willingness to pay'"
 
-Timelines of this company and events seem to be pre-2017 and have stopped at 2017.   
+   
+It offers cloud-based alternative credit scoring and identity verification solutions on individual and SMEs, where "alternative" means social media and any digital foot print /online behavior. 
 
-"Market leader in alternative credit scoring and identity verification solutions, allowing individuals and SMEs to use their digital footprints to unlock access to financial services with the use of cloud-based solutions."
-
-Either the company is working on something in secrecy or has stopped existence. 
+Its product is intended to be complimentary to traditional credit scoring. 
 
 
-The LenddoScore can be deployed at the wide end of the funnel to prioritize applications or within an existing underwriting scorecard to reduce risk or approve more applications. The LenddoScore complements traditional underwriting tools, like credit scores, because it relies exclusively on non-traditional data derived from a customer’s social data and online behavior. When the LenddoScore is added to a traditional underwriting scorecard, it has been proven to better discriminate between good and bad borrowers. 
 
