@@ -8,13 +8,13 @@ author: Sarah Chen
 image: images/posts/equifax_pres.JPG
 ---
 
-This post is a survey on credit scoring platforms and credit scoring in-house solutions out there and what they do. 
+This post is a survey on some of the credit scoring platforms and credit scoring in-house solutions out there and what they do.  There are many opportunities for moving forward credit scoring but the competition is fierce: existing proprietary analytic software companies, new analytic analytics-as-a-service companies leveraging open source and cloud computing, old powerhouse credit scoring companies, and new credit scoring platforms. 
 
 Note that all credit scoring in the US must adhere to FCRA, ECOA, SCRA and FHA.  
 
 So, data security, privacy + machine learning interpretability are pre-requisites.  
 
-The order of the platforms in the post is completely **random**.  There is **no implied superiority**.  In fact, some of them have been the gold standard whereas some are very small start-ups. 
+The order of the companies in the post is completely **random**.  There is *no implied superiority*.  In fact, some of them have been historical gold standards whereas some are very small start-ups. 
 
 
 ### Equifax Ignite
@@ -45,8 +45,8 @@ It promises a 30-day deployment.
 
 Well-established credit scoring historically for **in-house** development.
 
-This is a quote from SAS website
-[SAS Credit Scoring](https://www.sas.com/en_us/software/credit-scoring.html){:target="_blank"}:
+This is a quote from 
+[SAS website](https://www.sas.com/en_us/software/credit-scoring.html){:target="_blank"}:
 
 
 "Quickly develop, validate, deploy and track credit scorecards in house – while minimizing model risk and improving governance. We've combined award-winning data management, data mining and reporting capabilities in a powerful credit scoring solution that is faster, cheaper and more flexible than any outsourcing alternative."
