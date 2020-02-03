@@ -141,7 +141,6 @@ Its product is intended to be complimentary to traditional credit scoring.
 [zest](https://www.zest.ai/) has a much more sophisticated website that promises business results such as:
 > x% lower charge off rate and y% increase in approval rate
 
-Reduce losses. Increase approvals. Fast. 
 
 Value proposition:
 > ZAML® (Zest Automated Machine Learning) is a machine learning credit and risk modeling solution with *end-to-end explainability* and **compliant** and allows flexible Engagements
