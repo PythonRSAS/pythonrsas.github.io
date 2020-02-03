@@ -15,13 +15,22 @@ image: images/posts/photos/IMG-0631.jpg
    <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
 </figure> 
 
-In linear regression, there has been well-established theory and diagnostics on how a model works, such as confidence interval, p-value and etc.  Why should anyone expect less from the so-called AI models?   
+In linear regression, there has been well-established theory and diagnostics on how a model works, such as confidence interval, p-value and etc.  
+
+In linear regression and situations where linear regression are used (in neural network as well) balance of bias and variance can be strived for using regularizers. 
+
+So, yes, machine learning is powerful leveraging computing power and data. Then, why should anyone just accept black boxes and expect less from the ML/AI models?   
 
 For low-consequence machine learning models or those that we find to be the best option such as those used in postal code sorting, air craft collision avoidance systems, explanation is not necessary.
 
-However, in many context, especially those with high stake involved especially involving people, such as medicine, financial industry, and the military, to be able to interprete model output is as important as the model.  In regulated industries, interpretability is required before adoption.  
+However, in many context, especially those with high stake especially involving people, such as medicine, financial industry, and the military, to be able to interprete model output is as important as the model.  In regulated industries, interpretability is required before adoption.  
 
-A good genearal introduction is in [Towards A Rigorous Science of Interpretable Machine Learning](https://arxiv.org/pdf/1702.08608.pdf){:target="_blank"}.
+A genearal introduction from theoretical point of view on definitions of interpretability is in [Towards A Rigorous Science of Interpretable Machine Learning](https://arxiv.org/pdf/1702.08608.pdf){:target="_blank"}.
+
+There is a wide array of 
+
+* **tools for helping us to understand ML/AI models**
+* **monotonicity as regularizers** to ensure interpretability
 
 Here is a quick summary of some of the old and latest machine learning interpretability methods and models: 
 
@@ -156,11 +165,3 @@ Recommended resources:
 
 
 > Mostly suitable for **tree** based models, using gini importance or entropy  as the metric for measuring difference due to variables at each split of trees. But it does not explain which variables impact the predictions for a particular variable and how.   
-
-
-Ex voluptate. **Blablasdf** and **Rdfdsgga**.
-
-* **Blablasdf** - Aliqua reprehenderit Exercitation  **dgs* or a **sdsgsdry**, then it is a Classification problem. *Ex: Predicting the name of a flower species.*
-* **Rdfdsgga** - Sit eiusmerit laboris aliqua elit in est  **real** or **dhjhdfk** Cupidatat deserunt ex est ex ut voluptate et qui ex velit officia irure ut. *Ex: Anim eu reprehenderit nulla sunt ut laboris.*
-
-Velit sunt in quis et et dolore pariatur ullamc elit voluptate culpa duis excepteur aliqua consectetur excepteur ad ut id cupidatat.
