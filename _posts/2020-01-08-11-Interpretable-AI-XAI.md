@@ -85,12 +85,12 @@ plt.show()
   <figcaption>Feature Importances with Stdev</figcaption>
 </figure>
 
-A side note: [A Comparison of R, SAS, and Python Implementations of Random Forests](https://digitalcommons.usu.edu/cgi/viewcontent.cgi?article=2295&=&context=gradreports&=&sei-redir=1&referer=https%253A%252F%252Fwww.bing.com%252Fsearch%253Fq%253Dvariable%252520importance%252520random%252520forest%252520R%252520python%252520sas%2526qs%253Dn%2526form%253DQBRE%2526sp%253D-1%2526pq%253Dvariable%252520importance%252520random%252520forest%252520r%252520python%252520sas%2526sc%253D0-46%2526sk%253D%2526cvid%253D333C6D25045444419A8E386D9BCA7771#search=%22variable%20importance%20random%20forest%20R%20python%20sas%22){:target="_blank"} documented comparisons on different variable importance implementation amongst Python R SAS.   
+A side note: [A Comparison of R, SAS, and Python Implementations of Random Forests](https://digitalcommons.usu.edu/cgi/viewcontent.cgi?article=2295&=&context=gradreports&=&sei-redir=1&referer=https%253A%252F%252Fwww.bing.com%252Fsearch%253Fq%253Dvariable%252520importance%252520random%252520forest%252520R%252520python%252520sas%2526qs%253Dn%2526form%253DQBRE%2526sp%253D-1%2526pq%253Dvariable%252520importance%252520random%252520forest%252520r%252520python%252520sas%2526sc%253D0-46%2526sk%253D%2526cvid%253D333C6D25045444419A8E386D9BCA7771#search=%22variable%20importance%20random%20forest%20R%20python%20sas%22){:target="_blank"} documented comparisons on different variable importance implementation amongst Python R SAS on one dataset.   
 
 
 ### [Tree Interpreter](https://github.com/andosa/treeinterpreter){:target="_blank"}
 
-Tree Interpreter (formulated by Andos Saabas) is a ingenius method to represent how trees in linear regression formats.  
+Tree Interpreter (formulated by Andos Saabas) is a ingenius method to understand feature contribution in trees using linear regression representation.
 
 Since a forest is nothing but a collection of trees (average of the scores from trees), if we can explain a tree, we can explain a forest. 
 
@@ -138,7 +138,7 @@ for c, feature in zip(contributions[0],
 
 In general, the steeper the slope, the more important the variable. Just pay attention and make sure the the plots are on the same axis if you are comparing slope. 
 
-However, PDPs can be misleading if there are divergin behavior caused by interactions as it is looking at the average of model response. 
+However, PDPs can be misleading if there are divergent behavior caused by interactions as it is looking at the average of model response. 
 
 This is available from sklearn. See [here](https://scikit-learn.org/stable/modules/partial_dependence.html){:target="_blank"}.
 
