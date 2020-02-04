@@ -134,13 +134,46 @@ for c, feature in zip(contributions[0],
 
 ### Partial dependence plot (PDP)
 
-> Kind of like partial derivative, but the key difference is on **predicted** instead of actual.  So it tells one-dimensionally how the model predictions reacts to changes to 1 **1 variable**.
+> Kind of like partial derivative, but the key difference is on **predicted** instead of actual.  So it tells one-dimensionally how the model predictions reacts to changes to one single variable.
+
+How it is computed: 
+> At each value of a variable in question, the model is evaluated for all observations of the other model inputs, and the output is then averaged. 
 
 In general, the steeper the slope, the more important the variable. Just pay attention and make sure the the plots are on the same axis if you are comparing slope. 
 
-However, PDPs can be misleading if there are divergent behavior caused by interactions as it is looking at the average of model response. 
+But, the relationship they depict is only valid if the variable of interest does not interact strongly with other model inputs. 
 
-This is available from sklearn. See [here](https://scikit-learn.org/stable/modules/partial_dependence.html){:target="_blank"}.
+In other words, PDPs can be misleading if there are divergent behavior caused by interactions as it is looking at the average of model response. 
+
+See [sklearn documentation](https://scikit-learn.org/stable/modules/partial_dependence.html){:target="_blank"}.
+
+As an example, we plot the most important feature (using Random Forest) in the Boston Housing dataset using the convinient plot_partial_dependence method from sklearn. 
+
+<div class="code-head"><span>code</span>one-way partial dependence.py</div>
+
+```python
+from sklearn.inspection import plot_partial_dependence
+
+# fit model
+rfr = RandomForestRegressor(random_state=RANDOM_STATE) 
+rfr.set_params(**eval(df.params[0]))
+rfr.fit(X,y)
+
+X = pd.DataFrame(X, columns=boston.feature_names)
+
+# call function
+plot_partial_dependence(rfc, X, ["RM"])
+title="Partial Dependence Plot - RM"
+plt.title("%s" %title)
+plt.tight_layout()
+plt.savefig("%s" %title, dpi=300)
+```
+
+<figure>
+  <img src="{{ "/images/posts/Plot Partial Dependence - RM.png" | relative_url }}">
+  <figcaption>1-D Partial Dependence Plot</figcaption>
+</figure>
+
 
 ### Individual conditional expectation plot (ICE)
 
