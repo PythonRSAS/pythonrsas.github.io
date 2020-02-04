@@ -160,12 +160,30 @@ plt.tight_layout()
 plot_partial_dependence(rfc, X, feat_imp.nlargest(6).index, n_cols=3, ax=ax)
 
 ```
+Note that even in this super clean dataset, the PD plots do not show monotonicity between modeled housing price and the features.  If we dig a bit deeper (such as using 2D PD or ICE), we will observe interactions.  
+
+<div class="code-head"><span>code</span>one-way partial dependence.py</div>
+
+```python
+
+fig, ax = plt.subplots(2, 3, figsize=(16,6))
+for i,col in enumerate(feat_imp.nlargest(6).index.tolist()):
+     if i <= 2:
+        sns.regplot(x=boston_df[col], y=boston_df["MEDV"], ax=ax[0,i])
+     else:
+        sns.regplot(x=boston_df[col], y=boston_df["MEDV"], ax=ax[1,i-3])
+fig.tight_layout()
+fig.subplots_adjust(top=0.95)
+```
+
+While there are similarities observed between the subplots of the PDPs, they are far from the same. 
 
 <figure>
-  <img src="{{ "/images/posts/Partial Dependence Plot for Top 6 Features.png" | relative_url }}">
-  <figcaption>1-D Partial Dependence Plot</figcaption>
+  <img src="{{ "/images/posts/Top 6 Features Scatter Plots.png" | relative_url }}">
+  <figcaption>Scatter Plot</figcaption>
 </figure>
 
+Let's compare with scatterplots of the same six features with target. 
 
 ### Individual conditional expectation plot (ICE)
 
