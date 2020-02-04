@@ -15,9 +15,9 @@ image: images\posts\photos\IMG-0631.jpg
    <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
 </figure> 
 
-In linear regression, there has been well-established theory and diagnostics on how a model works, such as the model statement y = a + bX, confidence interval, p-value and etc.  
+In linear regression, there has been well-established theory and diagnostics on how a model works, such as the model statement y = a + bX, confidence interval, p-value (assuming x is not relevant what's the chance of having this kind of relationship to y) and etc.  
 
-In linear regression and situations where linear regression are used (in neural network as well) balance of bias and variance can be strived for using regularizers to prevent overfitting, and instability due to multicollinearity. 
+In linear regression and situations where linear regression are used (in neural network as well) balance of bias and variance can be strived for by using regularizers to prevent overfitting and instability due to multicollinearity. 
 
 So, yes, machine learning is powerful leveraging computing power and data. But then, why should anyone just accept black boxes and expect less from the ML/AI models?   
 
@@ -33,8 +33,8 @@ Interpretable AI (XAI) has been a very active area in recent years, motivated by
 
 There are two categories of tools in both the old and latest machine learning interpretability methods and models:
 
-* **tools for helping us to understand ML/AI models**
-* **monotonicity as regularizers** to ensure interpretability built into the models
+* **tools for helping us to understand ML/AI models** where Linear regression is leveraged either in representation or used locally. 
+* **monotonicity as regularizers** to ensure interpretability built into the models.  
 
 Here is a quick summary of some of the old and new XAI methods and algorithms: 
 
@@ -44,7 +44,7 @@ Here is a quick summary of some of the old and new XAI methods and algorithms:
 
 > Mostly suitable for **tree** based models, using gini importance or entropy  as the metric for measuring difference due to variables at each split of trees. But it does not explain which variables impact the predictions for a particular variable and how. 
 
-<div class="code-head"><span>code</span>tree-interpreter-example.py</div>
+<div class="code-head"><span>code</span>feature-importance.py</div>
 
 ```python
 from sklearn.ensemble import ExtraTreesClassifier
