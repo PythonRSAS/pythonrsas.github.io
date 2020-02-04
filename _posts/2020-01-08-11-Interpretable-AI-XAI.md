@@ -3,12 +3,12 @@ layout: post
 tag: Machine Learning in Practice
 category: "machine learning"
 title: "Interpretable AI XAI"
-description: overview on PDP, ICE, LIME and Shapley valuees, back to the basics and use linear regression to explain complex models
+description: There is a trade off between accuracy and interpretability.  High accuracy models have low interpretability and potential problems.  Explainable AI (XAI) is to have your cake and eat it too.
 author: Sarah Chen
-image: images/posts/photos/IMG-0631.jpg
+image: images\posts\photos\IMG-0631.jpg
 ---
 
-**There is a trade off between accuracy and interpretability.  High accuracy models have low interpretability.  Explainable AI (XAI) is to have your cake and eat it too.**
+**There is a trade off between accuracy and interpretability.  High accuracy models have low interpretability and potential problems.  Explainable AI (XAI) is to have your cake and eat it too.**
 
 <figure> 
    <img src="{{"/images/posts/photos/IMG-0631.JPG"| relative_url}}"> 
