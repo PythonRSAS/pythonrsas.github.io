@@ -106,12 +106,10 @@ It is intuitive and beautiful.  One 'limitation' is that for joint contributions
 from sklearn.ensemble import RandomForestClassifier
 from treeinterpreter import treeinterpreter as ti
 import numpy as np
-
 from sklearn.datasets import load_iris
 iris = load_iris()
 X = iris.data
 y = iris.target
-
 rf = RandomForestClassifier(max_depth = 4)
 idx = np.arange(len(iris.target))
 np.random.shuffle(idx) #inplace
@@ -130,12 +128,10 @@ for c, feature in zip(contributions[0],
                              iris.feature_names):
     print( feature, c)
 ```
-
-
 ### Partial dependence plot (PDP)
 
 > Kind of like partial derivative, but the key difference is on **predicted** instead of actual.  So it tells one-dimensionally how the model predictions reacts to changes to one single variable.
-> At each value of a variable in question, the model is evaluated for all observations of the other model inputs, and the output is then averaged. 
+> At each value of a variable in question, the model is evaluated for all observations of the other model inputs, and the predictions are then averaged. 
 
 In general, the steeper the slope, the more important the variable. Just pay attention and make sure the the plots are on the same axis if you are comparing slope. 
 
@@ -143,20 +139,17 @@ But, the relationship they depict is only valid if the variable of interest does
 
 In other words, PDPs can be misleading if there are divergent behavior caused by interactions as it is looking at the average of model response. 
 
-See [sklearn documentation](https://scikit-learn.org/stable/modules/partial_dependence.html){:target="_blank"}.
+As an example, we plot the top sixe most important features according to a random forest model on the Boston Housing dataset using the convinient plot_partial_dependence method from [sklearn](https://scikit-learn.org/stable/modules/partial_dependence.html){:target="_blank"}.
 
-As an example, we plot the top sixe most important features according to a random forest model on the Boston Housing dataset using the convinient plot_partial_dependence method from sklearn. 
 
 <div class="code-head"><span>code</span>one-way partial dependence.py</div>
 
 ```python
 from sklearn.inspection import plot_partial_dependence
-
 plt.style.use('ggplot')
 fig, ax = plt.subplots(2, 3, figsize=(12,5))
 plt.tight_layout()
 plot_partial_dependence(rfc, X, feat_imp.nlargest(6).index, n_cols=3, ax=ax)
-
 ```
 Note that even in this super clean dataset, the PD plots do not show monotonicity between modeled housing price and the features.  If we dig a bit deeper (such as using 2D PD or ICE), we will observe interactions.  
 <figure>
@@ -165,8 +158,15 @@ Note that even in this super clean dataset, the PD plots do not show monotonicit
 </figure>
 <div class="code-head"><span>code</span>one-way partial dependence.py</div>
 
-```python
+Comparing them with scatterplots of the same six features with target,while there are similarities observed between the subplots of the PDPs, they are far from the same:
 
+* **scatterplot**: is at obervation level between predictor and target
+* **PD plot**: is between predictor and average prediction
+
+But you kind of can imagine that PDP is approximating collapsing target along the y-axis in a scatterplot. 
+
+Note that had we used a linear regression model, the direction of 'DIS' (distance to employment ceters) would have been unintuitive.  
+```python
 fig, ax = plt.subplots(2, 3, figsize=(16,6))
 for i,col in enumerate(feat_imp.nlargest(6).index.tolist()):
      if i <= 2:
@@ -176,20 +176,10 @@ for i,col in enumerate(feat_imp.nlargest(6).index.tolist()):
 fig.tight_layout()
 fig.subplots_adjust(top=0.95)
 ```
-Comparing them with scatterplots of the same six features with target,while there are similarities observed between the subplots of the PDPs, they are far from the same:
-
-* **scatterplot**: is at obervation level between predictor and target
-* **PD plot**: is between predictor and average prediction
-
-But you kind of can imagine that PDP is approximating collapsing target along the y-axis in a scatterplot. 
-
-
-Note that had we used a linear regression model, the direction of 'DIS' (distance to employment ceters) would have been unintuitive.  
 <figure>
   <img src="{{ "/images/posts/Top 6 Features Scatter Plots.png" | relative_url }}">
   <figcaption>Scatterplot of the Same Six Features with Actual Price</figcaption>
 </figure>
-
 
 ### Individual conditional expectation plot (ICE)
 
@@ -202,6 +192,12 @@ As its name implies, it plots at individual observation level.  In ICE plots the
 ICE plots can help us see individual differences and identify subgroups and interactions between model inputs. 
 
 Since ICE is at observation level, it quickly becomes a scaling issue.   So in practice, we often bin the variable in question.  
+
+An example from Python [PDPbox](https://github.com/SauceCat/PDPbox)
+<figure>
+  <img src="{{ "/images/posts/pdpbox_plot.png" | relative_url }}">
+  <figcaption>PDPbox Plot</figcaption>
+</figure>
 
 ### LIME
 
@@ -303,4 +299,4 @@ Recommended resources:
 ###  Confidence intervals
 
 
-> Don't forget **resampling** techniques that make ensemble models so successful can be used to compile confidence intervals, and generate similar concepts like p-values.  
+> The same **resampling** techniques that make ensemble models so successful can be used to compile confidence intervals, and generate similar concepts like p-values.  
