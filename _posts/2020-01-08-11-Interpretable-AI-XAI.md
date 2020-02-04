@@ -147,30 +147,22 @@ In other words, PDPs can be misleading if there are divergent behavior caused by
 
 See [sklearn documentation](https://scikit-learn.org/stable/modules/partial_dependence.html){:target="_blank"}.
 
-As an example, we plot the most important feature (using Random Forest) in the Boston Housing dataset using the convinient plot_partial_dependence method from sklearn. 
+As an example, we plot the top sixe most important features according to a random forest model on the Boston Housing dataset using the convinient plot_partial_dependence method from sklearn. 
 
 <div class="code-head"><span>code</span>one-way partial dependence.py</div>
 
 ```python
 from sklearn.inspection import plot_partial_dependence
 
-# fit model
-rfr = RandomForestRegressor(random_state=RANDOM_STATE) 
-rfr.set_params(**eval(df.params[0]))
-rfr.fit(X,y)
-
-X = pd.DataFrame(X, columns=boston.feature_names)
-
-# call function
-plot_partial_dependence(rfc, X, ["RM"])
-title="Partial Dependence Plot - RM"
-plt.title("%s" %title)
+plt.style.use('ggplot')
+fig, ax = plt.subplots(2, 3, figsize=(12,5))
 plt.tight_layout()
-plt.savefig("%s" %title, dpi=300)
+plot_partial_dependence(rfc, X, feat_imp.nlargest(6).index, n_cols=3, ax=ax)
+
 ```
 
 <figure>
-  <img src="{{ "/images/posts/Plot Partial Dependence - RM.png" | relative_url }}">
+  <img src="{{ "/images/posts/Partial Dependence Plot for Top 6 Features.png" | relative_url }}">
   <figcaption>1-D Partial Dependence Plot</figcaption>
 </figure>
 
