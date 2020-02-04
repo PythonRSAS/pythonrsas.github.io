@@ -135,8 +135,6 @@ for c, feature in zip(contributions[0],
 ### Partial dependence plot (PDP)
 
 > Kind of like partial derivative, but the key difference is on **predicted** instead of actual.  So it tells one-dimensionally how the model predictions reacts to changes to one single variable.
-
-How it is computed: 
 > At each value of a variable in question, the model is evaluated for all observations of the other model inputs, and the output is then averaged. 
 
 In general, the steeper the slope, the more important the variable. Just pay attention and make sure the the plots are on the same axis if you are comparing slope. 
@@ -179,19 +177,24 @@ fig.tight_layout()
 fig.subplots_adjust(top=0.95)
 ```
 
-While there are similarities observed between the subplots of the PDPs, they are far from the same. 
+Comparing them with scatterplots of the same six features with target. 
+While there are similarities observed between the subplots of the PDPs, they are far from the same.  Note that had we used a linear regression model, the direction of 'DIS' (distance to employment ceters) would have been unintuitive.  
 
 <figure>
   <img src="{{ "/images/posts/Top 6 Features Scatter Plots.png" | relative_url }}">
-  <figcaption>Scatter Plot</figcaption>
+  <figcaption>Scatter Plot of the Same Six Features with Actual Price</figcaption>
 </figure>
 
-Let's compare with scatterplots of the same six features with target. 
 
 ### Individual conditional expectation plot (ICE)
 
+Individual conditional expectation plots were introduced in in “Peeking Inside the Black Box: Visualizing Statistical Learning with Plots of Individual Conditional Expectation”  (arXiv:1309.6392).  
 
+Like PD, ICE is another model agnostic method to help us interprete models.
 
+As its name implies, it plots at individual observation level.  In ICE plots the predictions are not aggregated, i.e., the plot is at observation level,  over the range of X values of the variable of interest.
+
+ICE plots can help us see individual differences and identify subgroups and interactions between model inputs. 
 
 ### LIME
 
