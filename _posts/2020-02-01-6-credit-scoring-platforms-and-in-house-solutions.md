@@ -10,16 +10,18 @@ image: images/posts/equifax_pres.JPG
 
 This post is a survey on some of the credit scoring platforms and credit scoring in-house solutions out there and what they do.  There are many opportunities for moving forward credit scoring but the competition is fierce: existing proprietary analytic software companies, new analytic analytics-as-a-service companies leveraging open source and cloud computing, old powerhouse credit scoring companies, and new credit scoring platforms. 
 
-Note that all credit scoring in the US must adhere to FCRA, ECOA, SCRA and FHA.  
+In less regulated countries like China there has been heavy use of machine learning in credit scoring and social scoring (Ali Pay, Baidu Finance, JD Finance).  
 
-So, data security, privacy + machine learning interpretability are pre-requisites.  
+In the US that all credit scoring in regulated industries must adhere to [FCRA](https://www.ftc.gov/enforcement/rules/rulemaking-regulatory-reform-proceedings/fair-credit-reporting-act){:target="_blank"}, [ECOA](https://www.justice.gov/crt/equal-credit-opportunity-act-3){:target="_blank"}, [SCRA](https://www.justice.gov/servicemembers/servicemembers-civil-relief-act-scra){:target="_blank"} and [FHA](https://www.hud.gov/federal_housing_administration){:target="_blank"}. 
+
+So, data security, privacy + machine learning interpretability (to ensure fairness) are pre-requisites.  
 
 The order of the companies in the post is completely **random**.  There is *no implied superiority*.  In fact, some of them have been historical gold standards whereas some are very small start-ups. 
 
 
 ### Equifax Ignite
 
-It is a hardoop data platform that supposedly provide data linked and ready, plus analytics functions, with the option of using monotonicity-enforced neural network, or logistic regression. 
+It is a hardoop platform that supposedly provide linked and ready data, along with analytics functions, and the option of using monotonicity-enforced neural network, or logistic regression. 
 
 It promises a 30-day deployment. 
 
@@ -41,7 +43,7 @@ It promises a 30-day deployment.
 
 
 
-### SAS Credit Scoring.
+### [SAS Credit Scoring](https://www.sas.com/en_us/software/credit-scoring.html){:target="_blank"}
 
 Well-established credit scoring historically for **in-house** development.
 
@@ -69,7 +71,7 @@ And then there is the promise of ["Fast in-house scorecard development"](https:/
 
 
 In the [white paper](https://www.sas.com/content/dam/SAS/en_us/doc/whitepaper1/infrastructure-credit-risk-model-development-108925.pdf){:target="_blank"} , SAS acurately summarizes the problems:
-> issues with the activities that occur before and after modeling, such as accessing data, data cleansing, getting business buy-in, recoding models, validating models, creating documentation, producing audit reports, implementing models, and other operational activities. As a result, the entire analytics and modeling process is slow and difficult. 
+> issues with the activities that occur **before and after modeling**, such as **accessing data, data cleansing, getting business buy-in, recoding models, validating models, creating documentation, producing audit reports, implementing models, and other operational activities**. As a result, the entire analytics and modeling process is slow and difficult.
 
 The **pain is correctly identified**.  
 
@@ -83,8 +85,7 @@ In-house solution advantages can be realized only if the **people in-the-house**
 </figure>
 
 
-
-Besides SAS, other commerical in-house solutions include [Matlab from mathworks](https://www.mathworks.com/discovery/credit-scoring-model.html){:target="_blank"}
+Besides SAS, other well-established commerical in-house solutions include [Matlab from mathworks](https://www.mathworks.com/discovery/credit-scoring-model.html){:target="_blank"} and others. 
 
 ### underwrite.ai
 
@@ -116,11 +117,11 @@ Its product is intended to be complimentary to traditional credit scoring.
 
 
 Value proposition:
-> ZAML® (Zest Automated Machine Learning) is a machine learning credit and risk modeling solution with *end-to-end explainability* and **compliant** and allows flexible Engagements
-
-With Automated Machine Learning from Zest, lenders small and large are able to originate more loans with greater confidence by assessing borrower risk more accurately—all while remaining compliant with regulatory demands. hundreds of variables and thousands of interaction effects.
+> ZAML® (Zest Automated Machine Learning) is a machine learning credit and risk modeling solution with *end-to-end explainability* and **compliant** and allows flexible engagements
 
 Its target industries are: consumer lending (include auto and mortgage), commercial lending, insurance and telecom. 
+
+Zest promises that lenders small and large (banks) can originate more loans with greater confidence by assessing borrower risk more accurately—all while remaining compliant with regulatory demands as their models use hundreds of variables and thousands of interaction effects.  
 
 The company is based in Burbank, CA, and seems to promote a great working enviroment, with the mission "Our mission is to make fair and transparent credit available to everyone." 
 
@@ -152,13 +153,39 @@ The description of a platform and the promise that **"Nothing leaves your firewa
 The Ether platform has pre-built APIs for both traditional and **alternative** credit data sources to accelerate data ingestion for sharper credit decisioning.  This seems to be a function that Equifax also has. 
 
 
-### Discover and Zest
+### Discover and Zest Partnership
 
 Discover Financial Services has entered an agreement with ZestFinance, a developer of underwriting software, to create what they call the world’s biggest platform for AI-based credit scoring according to a company release.
+
+In [2019 Lendit keynote](https://youtu.be/3sT7KcJz7g4) Discover CEO Roger Hochschild talked about the challenges in personal loans is that many of the credit losses are actually frauds.  Due to this, traditional credit scoring would not work well.
+
+One of the motivations behind their partnership is *"explainability in fair lending"*.  
+
+Zest CEO [Douglas Merrill](Douglas Merrill)[says](https://youtu.be/3sT7KcJz7g4) "if people finds that it matters to be explainable then they will find a way to explanable.  Neural network is not materially harder to explain than, say, support vector machine."
 
 
 ### Summary
 
-There are a lot of activities in the space of applying new technologies (big data + machine learning) to credit scoring in financial services.  The competition is very fierce.   
+There are a lot of activities in the space of applying new technologies (big data + machine learning) to credit scoring (not limited to financial industry).  The competition is very fierce.   
 
 The winners will need: great product + great people to execute + a viable philosophy/idea. Great execution that help customer making/saving lots of money without higher risk will be the key in building trust and opening doors to more customers.  
+
+
+### After Thoughts
+
+* **Credit scoring team and Fraud team** 
+should work together.  You can score credit and price it appropriately.  
+
+It has been my experience that in large banks teams unfortunately don't distinguish fraud and credit losses when they build commercial lending models.   
+
+But you cannot score credit when it not actually credit. 
+
+So my conclusion is an reiteration of what SAS Credit Scoring had figured out long ago: 
+> **360 view of customer**, with a new touch: **do it fast and explainable** on commercial lending. 
+
+* **Value goes beyond credit scoring**: 
+combining 360 view data of customer + machine learning goes beyond credit scoring.  It can improve dramatically **customer experience** in every touch point. 
+
+However, there is a caveat: it may be hard to get to 360 for personal credit in the US as there is a force or traditional value that goes aginst it: the rights to **privacy**.  This will prevent consolidating alternative data sources into a useful database. 
+
+* **Winner takes it all** has been the rule of the game in platforms.  It will happen to credit scoring as well.  If we have a great product that has value to, say, banks, we should understand how their business work and what their pain points are, and how we can help them save cost and make more money.  Talk to the buying decision maker. 

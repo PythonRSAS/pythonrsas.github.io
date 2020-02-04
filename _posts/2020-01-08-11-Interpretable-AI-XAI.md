@@ -85,7 +85,7 @@ plt.show()
   <figcaption>Feature Importances with Stdev</figcaption>
 </figure>
 
-A side note, [A Comparison of R, SAS, and Python Implementations of Random Forests](https://digitalcommons.usu.edu/cgi/viewcontent.cgi?article=2295&=&context=gradreports&=&sei-redir=1&referer=https%253A%252F%252Fwww.bing.com%252Fsearch%253Fq%253Dvariable%252520importance%252520random%252520forest%252520R%252520python%252520sas%2526qs%253Dn%2526form%253DQBRE%2526sp%253D-1%2526pq%253Dvariable%252520importance%252520random%252520forest%252520r%252520python%252520sas%2526sc%253D0-46%2526sk%253D%2526cvid%253D333C6D25045444419A8E386D9BCA7771#search=%22variable%20importance%20random%20forest%20R%20python%20sas%22){:target="_blank"} documented comparisons on different variable importance implementation amongst Python R SAS.   
+A side note: [A Comparison of R, SAS, and Python Implementations of Random Forests](https://digitalcommons.usu.edu/cgi/viewcontent.cgi?article=2295&=&context=gradreports&=&sei-redir=1&referer=https%253A%252F%252Fwww.bing.com%252Fsearch%253Fq%253Dvariable%252520importance%252520random%252520forest%252520R%252520python%252520sas%2526qs%253Dn%2526form%253DQBRE%2526sp%253D-1%2526pq%253Dvariable%252520importance%252520random%252520forest%252520r%252520python%252520sas%2526sc%253D0-46%2526sk%253D%2526cvid%253D333C6D25045444419A8E386D9BCA7771#search=%22variable%20importance%20random%20forest%20R%20python%20sas%22){:target="_blank"} documented comparisons on different variable importance implementation amongst Python R SAS.   
 
 
 ### [Tree Interpreter](https://github.com/andosa/treeinterpreter){:target="_blank"}
