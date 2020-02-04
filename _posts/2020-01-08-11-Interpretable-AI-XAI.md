@@ -176,13 +176,18 @@ for i,col in enumerate(feat_imp.nlargest(6).index.tolist()):
 fig.tight_layout()
 fig.subplots_adjust(top=0.95)
 ```
+Comparing them with scatterplots of the same six features with target,while there are similarities observed between the subplots of the PDPs, they are far from the same:
 
-Comparing them with scatterplots of the same six features with target. 
-While there are similarities observed between the subplots of the PDPs, they are far from the same.  Note that had we used a linear regression model, the direction of 'DIS' (distance to employment ceters) would have been unintuitive.  
+* **scatterplot**: is at obervation level between predictor and target
+* **PD plot**: is between predictor and average prediction
 
+But you kind of can imagine that PDP is approximating collapsing target along the y-axis in a scatterplot. 
+
+
+Note that had we used a linear regression model, the direction of 'DIS' (distance to employment ceters) would have been unintuitive.  
 <figure>
   <img src="{{ "/images/posts/Top 6 Features Scatter Plots.png" | relative_url }}">
-  <figcaption>Scatter Plot of the Same Six Features with Actual Price</figcaption>
+  <figcaption>Scatterplot of the Same Six Features with Actual Price</figcaption>
 </figure>
 
 
