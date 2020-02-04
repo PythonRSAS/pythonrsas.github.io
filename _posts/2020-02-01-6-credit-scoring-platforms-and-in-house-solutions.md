@@ -161,7 +161,7 @@ In [2019 Lendit keynote](https://youtu.be/3sT7KcJz7g4) Discover CEO Roger Hochsc
 
 One of the motivations behind their partnership is *"explainability in fair lending"*.  
 
-Zest CEO [Douglas Merrill](Douglas Merrill)[says](https://youtu.be/3sT7KcJz7g4) "if people finds that it matters to be explainable then they will find a way to explanable.  Neural network is not materially harder to explain than, say, support vector machine."
+Zest CEO [Douglas Merrill](Douglas Merrill) [says](https://youtu.be/3sT7KcJz7g4) "if people finds that it matters to be explainable then they will find a way to explanable.  Neural network is not materially harder to explain than, say, support vector machine."
 
 
 ### Summary
