@@ -196,6 +196,8 @@ As its name implies, it plots at individual observation level.  In ICE plots the
 
 ICE plots can help us see individual differences and identify subgroups and interactions between model inputs. 
 
+Since ICE is at observation level, it quickly becomes a scaling issue.   So in practice, we often bin the variable in question.  
+
 ### LIME
 
 > Abbreviated for "Local Interpretable Model-Agnostic Explanations".  It is model agnostic and can be applied to any type of models.
