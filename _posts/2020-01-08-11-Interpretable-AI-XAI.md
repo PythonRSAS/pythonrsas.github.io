@@ -90,7 +90,7 @@ A side note: [A Comparison of R, SAS, and Python Implementations of Random Fores
 
 ### [Tree Interpreter](https://github.com/andosa/treeinterpreter){:target="_blank"}
 
-Tree Interpreter (formulated by Andos Saabas) is a ingenius method to understand feature contribution in trees using linear regression representation.
+Tree Interpreter (formulated by Andos Saabas) is an ingenius method to understand feature contribution in trees using linear regression representation.
 
 Since a forest is nothing but a collection of trees (average of the scores from trees), if we can explain a tree, we can explain a forest. 
 
@@ -161,7 +161,10 @@ plot_partial_dependence(rfc, X, feat_imp.nlargest(6).index, n_cols=3, ax=ax)
 
 ```
 Note that even in this super clean dataset, the PD plots do not show monotonicity between modeled housing price and the features.  If we dig a bit deeper (such as using 2D PD or ICE), we will observe interactions.  
-
+<figure>
+  <img src="{{ "/images/posts/Partial Dependence Plot for Top 6 Features.png" | relative_url }}">
+  <figcaption>Partial Dependence Plot for Top 6 Features</figcaption>
+</figure>
 <div class="code-head"><span>code</span>one-way partial dependence.py</div>
 
 ```python
