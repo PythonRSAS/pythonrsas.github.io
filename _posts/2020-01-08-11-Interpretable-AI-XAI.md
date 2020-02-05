@@ -5,7 +5,7 @@ category: "machine learning"
 title: "Interpretable AI XAI"
 description: There is a trade off between accuracy and interpretability.  High accuracy models have low interpretability and potential problems.  Explainable AI (XAI) is to have your cake and eat it too.
 author: Sarah Chen
-image: images\posts\photos\IMG-0631.jpg
+image: images/posts/photos/IMG-0631.jpg
 ---
 
 **There is a trade off between accuracy and interpretability.  High accuracy models have low interpretability and potential problems.  Explainable AI (XAI) is to have your cake and eat it too.**
@@ -166,16 +166,6 @@ Comparing them with scatterplots of the same six features with target,while ther
 But you kind of can imagine that PDP is approximating collapsing target along the y-axis in a scatterplot. 
 
 Note that had we used a linear regression model, the direction of 'DIS' (distance to employment ceters) would have been unintuitive.  
-```python
-fig, ax = plt.subplots(2, 3, figsize=(16,6))
-for i,col in enumerate(feat_imp.nlargest(6).index.tolist()):
-     if i <= 2:
-        sns.regplot(x=boston_df[col], y=boston_df["MEDV"], ax=ax[0,i])
-     else:
-        sns.regplot(x=boston_df[col], y=boston_df["MEDV"], ax=ax[1,i-3])
-fig.tight_layout()
-fig.subplots_adjust(top=0.95)
-```
 <figure>
   <img src="{{ "/images/posts/Top 6 Features Scatter Plots.png" | relative_url }}">
   <figcaption>Scatterplot of the Same Six Features with Actual Price</figcaption>
@@ -200,13 +190,19 @@ An example from Python [PDPbox](https://github.com/SauceCat/PDPbox)
 </figure>
 
 ### LIME
+Abbreviated for "Local Interpretable Model-Agnostic Explanations".  It was formulated first by Marco Tulio Ribeiro and others in 2016.  
 
-> Abbreviated for "Local Interpretable Model-Agnostic Explanations".  It is model agnostic and can be applied to any type of models.
+> It is model agnostic and can be applied to most models by creating localized linear regression model around a particular observation based on a perturbed sample set of data, which is based on the distribution of the original input data. 
 
-It was formulated first by Marco Tulio Ribeiro and others in 2016.  
+The sample set is scored by the original model and sample observations are weighted based on distance to the observation of interest. 
 
-This is available from the library lime. See [here](https://github.com/marcotcr/lime){:target="_blank"}.
+Next, variable selection is performed using the L1 LASSO technique as in linear models. 
 
+Finally, a linear regression is created to explain the relationship between the perturbed input data and the perturbed target variable. 
+
+The final result is an easily interpreted linear regression model that is valid near the observation of interest.
+
+This is available from the library [lime](https://github.com/marcotcr/lime){:target="_blank"}.
 
 
 ### Shapley Values
