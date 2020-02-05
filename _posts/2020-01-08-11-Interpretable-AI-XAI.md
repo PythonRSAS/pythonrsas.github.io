@@ -5,7 +5,7 @@ category: "machine learning"
 title: "Interpretable AI XAI"
 description: There is a trade off between accuracy and interpretability.  High accuracy models have low interpretability and potential problems.  Explainable AI (XAI) is to have your cake and eat it too.
 author: Sarah Chen
-image: images/posts/photos/IMG-0631.jpg
+image: images/posts/photos/IMG-0631.JPG
 ---
 
 **There is a trade off between accuracy and interpretability.  High accuracy models have low interpretability and potential problems.  Explainable AI (XAI) is to have your cake and eat it too.**
