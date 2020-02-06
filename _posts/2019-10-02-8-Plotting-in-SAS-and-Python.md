@@ -6,7 +6,6 @@ title: "Plotting in SAS and Python"
 description: Various essential plots using Python and SAS.
 author: Sarah Chen
 image: images/posts/PythonVisLandscape2018.jpg
-
 ---
 
 In this post (partially taken from my upcoming book), we go over a few very commonly used plots and compare the code in SAS, Python, and ways to save images.  For non-SAS users, we intentionally upcase the SAS keywords, even though SAS is not case-sensititve.  

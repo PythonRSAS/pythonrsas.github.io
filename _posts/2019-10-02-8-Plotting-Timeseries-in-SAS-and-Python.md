@@ -6,14 +6,16 @@ title: "Plotting Timeseries in SAS and Python"
 description: Import, manipulate, plot, and do whatever you want with time series and panel data.
 author: Sarah Chen
 image: images/posts/Apple_Linear_Trend.PNG
-
 ---
 
 Visualizing time series is an essential part of analyzing time series data.    In this post (partially taken from my upcoming book), we go over a few very commonly used plots and compare the code in SAS, Python, and ways to save images.  For non-SAS users, we intentionally upcase the SAS keywords, even though SAS is not case-sensititve.  
 
-**- [Bar-line plot](#Bar-line-plot)**
+<div class="note"><p>
+<b>Note</b>: When the first book published in November 2019, pandas was at version 0.24, Updated code for <a href="https://pandas.pydata.org/pandas-docs/version/1.0.0/whatsnew/v1.0.0.html" target="_blank">andas version 1.0.0 </a>  
+are labeled with "Updated" in this post.
+</p></div>
 
-[Period](#Period)
+**- [Line plot](#line-plot)**
 
 **- [Saving Images](#Saving-Images)**
 
@@ -21,13 +23,64 @@ Visualizing time series is an essential part of analyzing time series data.    I
 
 Let's get started.
 
-<h4 id="Bar-line-plot">Bar-line plot</h4>
+<h4 id="line-plot">Line plot</h4>
 
-One of the most commonly used plots in business is the bar-line plot, where bars are for frequency and lines are for aggregations such as sum, mean or median. 
+Time series data are commonly represented as lines, which are often plotted after resampling on different frequencies and aggregations such as sum, mean or median. 
 
-<div class="code-head"><span>code</span>Getting Data.python</div>
+An example of looking at 20 years of S&P 500 index from year 2000. 
+
+<div class="code-head"><span>code</span>Getting Data Updated.py</div>
 
 ```python
+# works with pandas version 1.0.0 and pandas_datareader version 0.8
+>>> import matplotlib.pyplot as plt
+>>> import datetime
+>>> start = datetime.datetime(2000, 1, 1)
+>>> end=datetime.date.today()
+>>> from pandas_datareader.data import DataReader #updated
+>>> >>> pd.options.display.float_format = '{:12,.1f}'.format
+>>> symbol = "^GSPC" #S&P 500
+>>> df = DataReader(symbol,"yahoo", start=start,end=end)
+>>> print(df.head().to_markdown()) #updated
+>>> print(df.head())
+```
+Here is what the data looks like:
+
+| Date                |    High |     Low |    Open |   Close |     Volume |   Adj Close |
+|:--------------------|--------:|--------:|--------:|--------:|-----------:|------------:|
+| 2000-01-03 00:00:00 | 1478    | 1438.36 | 1469.25 | 1455.22 | 9.318e+08  |     1455.22 |
+| 2000-01-04 00:00:00 | 1455.22 | 1397.43 | 1455.22 | 1399.42 | 1.009e+09  |     1399.42 |
+| 2000-01-05 00:00:00 | 1413.27 | 1377.68 | 1399.42 | 1402.11 | 1.0855e+09 |     1402.11 |
+| 2000-01-06 00:00:00 | 1411.9  | 1392.1  | 1402.11 | 1403.45 | 1.0923e+09 |     1403.45 |
+| 2000-01-07 00:00:00 | 1441.47 | 1400.73 | 1403.45 | 1441.47 | 1.2252e+09 |     1441.47 |
+
+[S&P 500](https://www.investopedia.com/ask/answers/040215/what-does-sp-500-index-measure-and-how-it-calculated.asp) (source: investopedia) 
+> a float-adjusted market-cap weighted index. It’s calculated by taking the sum of the adjusted market capitalization of all S&P 500 stocks and then dividing it with an index divisor, which is a proprietary figure developed by Standard & Poor's.
+
+<div class="code-head"><span>code</span>S&P Daily and Monthly mean.py</div>
+
+```python
+# works with pandas version 1.0.0
+>>> r = df.resample('M')
+>>> df_m= r.mean()
+>>> df_d_m = pd.merge(df, df_m, how='left', left_index=True, right_index=True,suffixes=('_d', '_m'))
+>>> df_d_m.fillna(method='bfill', inplace=True)
+>>> title = "S&P Daily and Monthly mean - bfill"
+>>> df_d_m.loc['2010':,['High_d','High_m']].plot()
+>>> plt.title("%s"%title)
+>>> plt.tight_layout()
+>>> plt.show()
+```
+<figure>
+  <img src="{{ "/images/posts/S&P 500 Daily and Monthly mean - bfill.PNG" | relative_url }}">
+  <figcaption>S&P 500 Daily and Monthly mean -bfill</figcaption>
+</figure>
+
+For older version of pandas, use the following examples:
+<div class="code-head"><span>code</span>Getting Data.py</div>
+
+```python
+# works with pandas version 0.24 
 >>> import pandas_datareader.data as pdr
 >>> AAPL = pdr.get_data_yahoo('AAPL', start=pd.Timestamp(1980, 7, 16), end=pd.Timestamp(2019, 11, 10))
 
