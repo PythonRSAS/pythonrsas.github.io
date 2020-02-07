@@ -1,8 +1,8 @@
 ---
 layout: page-doc
 title: Market and Traded Risk
-subheading: Market risk VaR and simulations.
-description: Market risk VaR and simulations.
+subheading: Market risk VaR, simulations, LIBOR, SOFR and other.
+description: Market risk VaR, simulations, LIBOR, SOFR and other.
 color: grad-blog
 image: "/images/icons/market.svg"
 permalink: /market-risk
