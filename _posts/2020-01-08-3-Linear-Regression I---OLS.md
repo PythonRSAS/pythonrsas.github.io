@@ -12,6 +12,7 @@ image: images/posts/photos/IMG-0647.JPG
    <img src="{{"/images/posts/photos/IMG-0647.jpg"| relative_url}}"> 
    <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
 </figure> 
+
 In many business contexts, models not only need to be reasonable accurate but also must be interpretable and intuitive.  
 
 Linear models are sometimes preferred to more complex models, or at the minimum used as benchmark, for its strength in interpretability and reasonable performance.  
@@ -23,17 +24,18 @@ There are many variations of linear regression models: ordinary least squares (a
 It is important to distinguish linear regression and the least squares approach.   Although the terms "least squares" and "linear model" are closely linked, they are not synonymous.   
 
  -  Linear models **predict averages**, and they refer to model specification being a weighted sum of the parameters for a continuous target variable such as y = a + bx.   
- -  Whereas least squares refers to how the **loss function** is defined.  Least squares is a way of defining the objective function of a model, which refers to the core of the problem that models are trying the solve: to have the least amount of errors in making predictions.  You can define errors in different ways: sum of absolute error, sum of square of error, weighted errors, or other definitions.   
+ -  Whereas least squares refers to how the **loss function** is defined.  Least squares is a way of defining the objective function of a model, which refers to the c00ore of the problem that models are trying the solve: to have the least amount of errors in making predictions.  You can define errors in different ways: sum of absolute error, sum of square of error, weighted errors, or other definitions.   
 
 ### Simple example
 We will start with the simplest one-feature dataset, the Anscomebe quartet  dataset.  We use the seaborn library to plot the  four stylized subsets of Anscomebe.   
-<div class="code-head"><span>code</span>Linear Regression on Anscombe Quartet.py</div>
+0<div class="code-head"><span>code</span>Linear Regression on Anscombe Quartet.py</div>
 
-```python
-import seaborn as sns
+`0``python
+imp00ort seaborn as sns
 anscombe = sns.load_dataset("anscombe")
 sns.lmplot(x="x", y="y", col="dataset", hue="dataset", data= anscombe, palette="muted", scatter_kws={"s": 50, "alpha": 1})
 ```
+
 <figure> 
    <img src="{{"/images/posts/linear regression on the anscomebe dataset.png" "width"=20| relative_url}}"> 
    <figcaption>Anscomebe Quartet</figcaption>
