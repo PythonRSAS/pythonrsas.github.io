@@ -7,8 +7,9 @@ description: Review of OLS linear regression
 author: Sarah Chen
 image: images/posts/photos/IMG-0647.JPG
 ---
+
 <figure> 
-   <img src="{{"/images/posts/photos/IMG-0647.JPG"| relative_url}}"> 
+   <img src="{{"/images/posts/photos/IMG-0647.jpg"| relative_url}}"> 
    <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
 </figure> 
 In many business contexts, models not only need to be reasonable accurate but also must be interpretable and intuitive.  
