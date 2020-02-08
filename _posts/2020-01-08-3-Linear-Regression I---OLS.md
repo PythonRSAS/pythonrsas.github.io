@@ -101,7 +101,7 @@ for i in ['I','II','III', 'IV']:
 # coefficient: 0.500
 ```
 
-### LinearRegression from sklearn
+### OLS from sklearn
 The sklearn.LinearRegression class is a wrapper around [scipy](https://github.com/scipy/scipy/blob/v1.4.1/scipy/linalg/basic.py#L1047-L1246)
 ```python
 LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
@@ -153,13 +153,15 @@ plt.close()
 # R square: 0.67
 ```
 <figure> 
-   <img src="{{"/images/posts/OLS Regression for Anscomebe Dataset 1.PNG"| relative_url}}"> 
+   <img src="{{"/images/posts/OLS Regression for Anscomebe Dataset 1.png"| relative_url}}"> 
    <figcaption>OLS linear regression on Anscomebe</figcaption>
 </figure>
 
 1.	When requesting R square using <code class="coding">r2_score</code>, the order matters. It should be r2_score(y_actual, y_pred).   The actual value goes first, then the predicted.  We will get a wrong result if the order is not followed.  
 2.	In case we did not know it already, the square of the pearson correlation coefficient is R square for the one-feature case.   So next time if we have doubts about which implementation of OLS, sklearn or statsmodel, is correct, this could be one of your testing tools.
 
+### OLS Using Statsmodels
+To get p-values and other statistical metrics like those from SAS and R, we use the Python statsmodels library. 
 
 <div class="code-head"><span>code</span>OLS Regression Using Statsmodels.py</div>
 
@@ -170,6 +172,4 @@ plt.close()
 >>> result = smod.fit()
 >>> print(result.summary())
 ```
-To get p-values and other statistical metrics like those from SAS and R, we use the Python statsmodels library. 
-
 For plain OLS, we recommend we use <code class="coding">statsmodels.formula.api</code> instead of <code class="coding">statsmodels.api</code>, even though their names sound similar.   The formula api uses the <code class="coding">patsy</code> package to convert data and formula into matrices.  The latter requires adding a column of constants to the array of independent variables commonly denoted as “X”.     
