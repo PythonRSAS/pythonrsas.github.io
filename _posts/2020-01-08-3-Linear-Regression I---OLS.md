@@ -34,7 +34,7 @@ anscombe = sns.load_dataset("anscombe")
 sns.lmplot(x="x", y="y", col="dataset", hue="dataset", data= anscombe, palette="muted", scatter_kws={"s": 50, "alpha": 1})
 ```
 <figure> 
-   <img src="{{"/images/posts/linear regression on the anscomebe dataset.PNG" "width"=20| relative_url}}"> 
+   <img src="{{"/images/posts/linear regression on the anscomebe dataset.png" "width"=20| relative_url}}"> 
    <figcaption>Anscomebe Quartet</figcaption>
 </figure> 
 
