@@ -27,11 +27,12 @@ It is important to distinguish linear regression and the least squares approach.
  -  Whereas least squares refers to how the **loss function** is defined.  Least squares is a way of defining the objective function of a model, which refers to the c00ore of the problem that models are trying the solve: to have the least amount of errors in making predictions.  You can define errors in different ways: sum of absolute error, sum of square of error, weighted errors, or other definitions.   
 
 ### Simple example
-We will start with the simplest one-feature dataset, the Anscomebe quartet  dataset.  We use the seaborn library to plot the  four stylized subsets of Anscomebe.   
-0<div class="code-head"><span>code</span>Linear Regression on Anscombe Quartet.py</div>
+We will start with the simplest one-feature dataset, the Anscomebe quartet  dataset.  We use the seaborn library to plot the  four stylized subsets of Anscomebe. 
 
-`0``python
-imp00ort seaborn as sns
+<div class="code-head"><span>code</span>Linear Regression on Anscombe Quartet.py</div>
+
+```python
+import seaborn as sns
 anscombe = sns.load_dataset("anscombe")
 sns.lmplot(x="x", y="y", col="dataset", hue="dataset", data= anscombe, palette="muted", scatter_kws={"s": 50, "alpha": 1})
 ```
@@ -67,7 +68,12 @@ The four subsets, each with 11 data points, have distinct characteristics despit
 
 
 ### OLS from Scratch
-A paired t-test Is just a one-sample t-tests as the difference between paired observations (e.g., before and after) is the 
+The OLS in one variable can be solved in linear algebra, or beginning calculus, or, with a few more steps, even middle school algebra. 
+
+<figure> 
+   <img src="{{"/images/posts/ols_1_feature.png"| relative_url}}"> 
+   <figcaption>One Variable OLS Solution</figcaption>
+</figure>
 
 <div class="code-head"><span>code</span>OLS from Scratch.py</div>
 
