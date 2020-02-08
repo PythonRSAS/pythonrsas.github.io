@@ -172,4 +172,31 @@ To get p-values and other statistical metrics like those from SAS and R, we use 
 >>> result = smod.fit()
 >>> print(result.summary())
 ```
-For plain OLS, we recommend we use <code class="coding">statsmodels.formula.api</code> instead of <code class="coding">statsmodels.api</code>, even though their names sound similar.   The formula api uses the <code class="coding">patsy</code> package to convert data and formula into matrices.  The latter requires adding a column of constants to the array of independent variables commonly denoted as “X”.     
+For plain OLS, we recommend we use <code class="coding">statsmodels.formula.api</code> instead of <code class="coding">statsmodels.api</code>, even though their names sound similar.   The formula api uses the <code class="coding">patsy</code> package to convert data and formula into matrices.  The latter requires adding a column of constants to the array of independent variables commonly denoted as “X”.
+
+### OLS Using SAS
+SAS is the king of statistical analysis.  It outputs tons of information for just a few lines of code.       
+<div class="code-head"><span>code</span>OLS Regression Using SAS.sas</div>
+
+```sas
+>>> PROC REG DATA = df (WHERE=(dataset='I'));
+>>> MODEL y=x;
+>>> RUN;
+```
+<figure> 
+   <img src="{{"/images/posts/sas_ols.png"| relative_url}}"> 
+   <figcaption>OLS via SAS</figcaption>
+</figure>
+Diagnostics are important too!
+<figure> 
+   <img src="{{"/images/posts/sas_ols_diagnostics.png"| relative_url}}"> 
+   <figcaption>OLS via SAS</figcaption>
+</figure>
+If we add just one line of code <code class="coding">BY dataset;</code>, we get the OLS for each of the Anscombe quartet.  There are many other options too.
+
+### More
+OLS is old and fundamental.  Its coefficients can be summarized as a dot product normalized by the vector space of the input features.   
+
+To do it correctly, the assumptions need to be met.  Checking the fit diagnostics is a way to see if the assumptions are met.
+
+If the assumptions are not true, we have many other ways.  
