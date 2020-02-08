@@ -3,7 +3,7 @@ layout: post
 tag: Machine Learning in Practice
 category: "machine learning"
 title: "T Tests - Signal to Noise"
-description: Review of t-tests as a signal to noise test, and its "re-branding" as AB testing
+description: Born as a method to analyze and ensure consistency in beer qualities, t-test is a signal to noise test, and has been "re-branding" as AB testing
 author: Sarah Chen
 image: images/posts/photos/IMG-0646.JPG
 ---
@@ -52,7 +52,7 @@ To determine that the groups are **different**, we need a t-value that is **larg
 
 For details, see [NIST Two-Sample t-Test for Equal Means](https://www.itl.nist.gov/div898/handbook/eda/section3/eda353.htm)
 
-<div class="code-head"><span>code</span>T-statistics.r</div>
+<!-- <div class="code-head"><span>code</span>T-statistics.r</div>
 
 ```r
 ## Read data and save variables. 
@@ -70,7 +70,7 @@ qt(.025,z$parameter)
 > [1] -1.967268 
 
 ```
-
+ -->
 <div class="note"><p>
 <b>Note</b>: T statistics is equivalent to F statistics when there are only two populations/categories. 
 </p></div>
