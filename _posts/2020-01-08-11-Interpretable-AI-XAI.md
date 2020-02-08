@@ -32,7 +32,7 @@ Interpretable AI (XAI) has been a very active area in recent years, motivated by
 
 There are two categories of tools in both the old and latest machine learning interpretability methods and models:
 
-* **tools for helping us to understand ML/AI models** where Linear regression is leveraged either in representation or used locally. 
+* **tools for helping us to understand ML/AI models**: PDP, ICE, Tree Interpreter (linear representation) LIME (Linear regression locally).  
 * **monotonicity as regularizers** to ensure interpretability built into the models.  
 
 Here is a quick summary of some of the old and new XAI methods and algorithms: 
@@ -292,6 +292,11 @@ Recommended resources:
 
 
 ###  Confidence intervals
-
-
 > The same **resampling** techniques that make ensemble models so successful can be used to compile confidence intervals, and generate similar concepts like p-values.  
+
+
+### More
+Back to the start, why we should accept less in powerful machine learning!
+
+If we have insufficient or poor data, or omit important variables, no magic will compensate.  Like in linear regression models, machine learning cannot make something out of nothing, which we should try to ensure via explainability. 
+ 
