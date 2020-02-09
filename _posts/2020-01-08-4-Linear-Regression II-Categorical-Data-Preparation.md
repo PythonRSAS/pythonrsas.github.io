@@ -2,40 +2,50 @@
 layout: post
 tag: Machine Learning in Practice
 category: "machine learning"
-title: "Linear Regression I - OLS"
-description: Review of OLS linear regression
+title: "Linear Regression II Categorical Data Preparation"
+description: Prepare categorical data for linear regression in Python and SAS
 author: Sarah Chen
-image: images/posts/photos/IMG-0647.JPG
+image: images/posts/photos/IMG-0648.JPG
 ---
 
 <figure> 
-   <img src="{{"/images/posts/photos/IMG-0647.jpg"| relative_url}}"> 
+   <img src="{{"/images/posts/photos/IMG-0648.jpg"| relative_url}}"> 
    <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
 </figure> 
 
-In many business contexts, models not only need to be reasonable accurate but also must be interpretable and intuitive.  
+Most datasets outside of image recognition have categorical variables.  In linear regression, they are often converted to dummy variables.
 
-Linear models are sometimes preferred to more complex models, or at the minimum used as benchmark, for its strength in interpretability and reasonable performance.  
+In SAS, <code class="coding">PROC GLM</code>, <code class="coding">PROC GENMOD</code>, <code class="coding">PROC GLMMIX</code> and other regression related procedures handle categorical variables are by the <code class="coding">CLASS</code> statement, which implicitly converts them into dummies.  Only when we use <code class="coding">PRO REG</code> that we would have to explicitly recode them ourselves.   
 
-In fact, linear regression is at the core of machine learning model interpretability. 
+As the mathematics behind linear regression is linear algebra, categorical variables are generally converted to dummy variables.  
 
-There are many variations of linear regression models: ordinary least squares (aka “OLS”) linear regression, weighted least square regression, regularized OLS linear regression fitted by minimizing a penalized version of the least squares cost function, generalized linear model, or are solved by gradient descent, and so on.  
+We can use Python pandas <code class="coding">pd.get_dummies</code>, <code class="coding">sklearn.preprocessing.OneHotEncode</code> for convert categorical variables into dummies.  
 
-It is important to distinguish linear regression and the least squares approach.   Although the terms "least squares" and "linear model" are closely linked, they are not synonymous.   
+One common serious error some beginners make is applying OneHotEncode to their entire dataset including numerical variable or Booleans.  
 
- -  Linear models **predict averages**, and they refer to model specification being a weighted sum of the parameters for a continuous target variable such as y = a + bx.   
- -  Whereas least squares refers to how the **loss function** is defined.  Least squares is a way of defining the objective function of a model, which refers to the c00ore of the problem that models are trying the solve: to have the least amount of errors in making predictions.  You can define errors in different ways: sum of absolute error, sum of square of error, weighted errors, or other definitions.   
+To prepare the data for sklearn LinearRegression, the numerical and categorical should be separately handled.   
+-  Numerical: standardize if your model contains *interactions* or *polynomial* terms
+-  Categorical:  pd.get_dummies is flexible to use.  while sklearn OneHotEncode is both flexible and more consistent in working with sklearn API.
+
 
 ### Simple example
-We will start with the simplest one-feature dataset, the Anscomebe quartet  dataset.  We use the seaborn library to plot the  four stylized subsets of Anscomebe. 
+To illustrate, we will use another simple example in listing below using the toy dataset tips from the seaborn library.  The tips dataset has seven columns, which has both numerical, categorical and ordinal variables.   
 
-<div class="code-head"><span>code</span>Linear Regression on Anscombe Quartet.py</div>
+<div class="code-head"><span>code</span>Linear Regression on Tips Data.py</div>
 
 ```python
-import seaborn as sns
-anscombe = sns.load_dataset("anscombe")
-sns.lmplot(x="x", y="y", col="dataset", hue="dataset", data= anscombe, palette="muted", scatter_kws={"s": 50, "alpha": 1})
+>>> tips = sns.load_dataset("tips")
+>>> print(tips.head())
 ```
+
+|    |   total_bill |   tip | sex    | smoker   | day   | time   |   size |
+|---:|-------------:|------:|:-------|:---------|:------|:-------|-------:|
+|  0 |        16.99 |  1.01 | Female | No       | Sun   | Dinner |      2 |
+|  1 |        10.34 |  1.66 | Male   | No       | Sun   | Dinner |      3 |
+|  2 |        21.01 |  3.5  | Male   | No       | Sun   | Dinner |      3 |
+|  3 |        23.68 |  3.31 | Male   | No       | Sun   | Dinner |      2 |
+|  4 |        24.59 |  3.61 | Female | No       | Sun   | Dinner |      4 |
+
 
 <figure> 
    <img src="{{"/images/posts/linear regression on the anscomebe dataset.png" "width"=20| relative_url}}"> 
