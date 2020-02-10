@@ -8,7 +8,7 @@ author: Sarah Chen
 image: images/posts/equifax_pres.JPG
 ---
 
-This post is a survey on some of the credit scoring platforms and credit scoring in-house solutions out there and what they do.  There are many opportunities for moving forward credit scoring but the competition is fierce: existing proprietary analytic software companies, new analytic analytics-as-a-service companies leveraging open source and cloud computing, old powerhouse credit scoring companies, and new credit scoring platforms. 
+This post is a survey on some of the credit scoring platforms and credit scoring in-house solutions out there and what they do.  There are many opportunities for moving forward credit scoring but the competition is fierce: large banks with lots of resources, existing proprietary analytic software companies, new analytic analytics-as-a-service companies leveraging open source and cloud computing, old powerhouse credit scoring companies, and new credit scoring platforms. 
 
 In less regulated countries like China there has been heavy use of machine learning in credit scoring and social scoring (Ali Pay, Baidu Finance, JD Finance).  
 
@@ -61,9 +61,9 @@ But what caught my eyes are these words:
 
 >Access, transform, standardize and cleanse all relevant data to create a **360-degree** view of the customer.
 
-What if you need to get that 360 view really fast?  
+What if the institution has disjoint databases and in different functions?
 
-Can manual code do that?  
+What if you need to get that 360 view really fast?  
 
 More importantly, can the organization's different departments work together seamlessly so that that view is even possible in the first place? 
 
@@ -73,7 +73,7 @@ And then there is the promise of ["Fast in-house scorecard development"](https:/
 In the [white paper](https://www.sas.com/content/dam/SAS/en_us/doc/whitepaper1/infrastructure-credit-risk-model-development-108925.pdf){:target="_blank"} , SAS acurately summarizes the problems:
 > issues with the activities that occur **before and after modeling**, such as **accessing data, data cleansing, getting business buy-in, recoding models, validating models, creating documentation, producing audit reports, implementing models, and other operational activities**. As a result, the entire analytics and modeling process is slow and difficult.
 
-The **pain is correctly identified**.  
+The **pain has been correctly identified**.  
 
 Unfortunately not everywhere the solution has worked out well .  
 
@@ -87,31 +87,7 @@ In-house solution advantages can be realized only if the **people in-the-house**
 
 Besides SAS, other well-established commerical in-house solutions include [Matlab from mathworks](https://www.mathworks.com/discovery/credit-scoring-model.html){:target="_blank"} and others. 
 
-### underwrite.ai
-
-Despite a name associated with credit and insurance, the [company](http://www.underwrite.ai/){:target="_blank"} does not seem to have a focused goal as the company founder is discussing financial services and cancer at the same time in the same presentation. Let's see its collaboration with [h2o.ai](https://www.h2o.ai/company/news/underwrite-ai-leverages-h2o-ai-to-modernize-credit-with-ai/){:target="_blank"}  will bring. 
-
-Value proposition:
-> Use thousands of data points from credit bureau sources + machine learning + target profitability and customer lifetime value instead of default of individuals and SMEs.
-
-
->"If you have no portfolio data, we have models based upon massive quantities of publicly available datasets covering everything from home mortgage and automobile to peer to peer lending and cash advance."
-
-
-
-### [Lenddo](https://www.lenddo.com/products.html#creditscore){:target="_blank"}
-
-Its [website](https://www.lenddo.com/products.html#creditscore){:target="_blank"} has a popup ad about an event from 2017, which clearly is **outdated**.   Timelines of this company and events seem to have stopped at 2017 despite a lot of funding and publicity in early years.
-
-Value proposition:
-> "Lenddo’s patented score is a powerful predictor of an individual’s character or 'willingness to pay'"
-
-   
-It offers cloud-based alternative credit scoring and identity verification solutions on individual and SMEs, where "alternative" means social media and any digital foot print /online behavior. 
-
-Its product is intended to be complimentary to traditional credit scoring. 
-
-### [zest](https://www.zest.ai/)
+### [ZestFinance](https://www.zest.ai/)
 [zest](https://www.zest.ai/) has a much more sophisticated website that promises business results such as:
 > x% lower charge off rate and y% increase in approval rate
 
@@ -119,7 +95,11 @@ Its product is intended to be complimentary to traditional credit scoring.
 Value proposition:
 > ZAML® (Zest Automated Machine Learning) is a machine learning credit and risk modeling solution with *end-to-end explainability* and **compliant** and allows flexible engagements
 
-Its target industries are: consumer lending (include auto and mortgage), commercial lending, insurance and telecom. 
+Its target industries are across the "credit spectrum": consumer lending (include auto and mortgage), commercial lending, insurance and telecom. 
+
+It was founded initially as an online lending platform in 2009 and after a few years changed to an underwriting software company.  
+
+It has some large and mid-size customers and partners: Discover, Baidu, JD, Ford, Prestige(auto), and is recently working with  Freddie Mac in [testing mortgage underwriting](https://www.wsj.com/articles/freddie-mac-tests-underwriting-software-that-could-boost-mortgage-approvals-11569333848). 
 
 Zest promises that lenders small and large (banks) can originate more loans with greater confidence by assessing borrower risk more accurately—all while remaining compliant with regulatory demands as their models use hundreds of variables and thousands of interaction effects.  
 
@@ -130,62 +110,81 @@ The company is based in Burbank, CA, and seems to promote a great working enviro
   <figcaption>zest timeline</figcaption>
 </figure>
 
+I found two excellent Zest interviews:
+ - [2019 FinTech Ideas Festival Douglas Merrill from ZestFinance](https://www.youtube.com/watch?v=A8_Z5GC25Ho)
+ - [ZestFinance And Discover: LendIt 2019 CEO Keynote Interview](https://www.youtube.com/watch?v=3sT7KcJz7g4)
+
+
+In [2019 Lendit keynote](https://youtu.be/3sT7KcJz7g4) Discover CEO Roger Hochschild talked about the challenges in **personal loans is that many of the credit losses are actually frauds**.  Due to this, **traditional credit scoring would not work well**.
+
+One of the motivations behind the Discover and Zest partnership is *"explainability in fair lending"*.  
+
+Zest CEO [Douglas Merrill](Douglas Merrill) [says](https://youtu.be/3sT7KcJz7g4) "if people finds that it matters to be explainable then they will find a way to explanable.  Neural network is not materially harder to explain than, say, support vector machine."
 
 ### [Scienaptic.ai](https://www.scienaptic.ai/)
 
-Is it just another platform to promise you 1 second credit decision?  [Scienaptic.ai](https://www.scienaptic.ai/) website homepage looks remarkably like [zest](https://www.zest.ai/), with the same color scheme and java-scripted moving network background, likely to be somewhat symbolic of neural network algorithm used.  
+[Scienaptic.ai](https://www.scienaptic.ai/) website homepage looks remarkably like [zest](https://www.zest.ai/), with the same color scheme and java-scripted moving network background, symbolic of neural network algorithm used. 
 
+Its name "Scienaptic" is a combination of "scientifc" and ["synapse"](https://en.wikipedia.org/wiki/Synapse) 
+
+Its desired customers are large banks. 
 
 Value proposition:
-> "Ether platform reduce friction inherent in current credit decisioning processes.
-> Unique AI algorithms that are **fully compliant and explainable proprietary**
+> - Ether platform reduce friction inherent in current credit decisioning processes.
+> - **fully compliant and explainable**
+> - **"Nothing leaves customer's firewall."**
 
-The proposition demonstrates that, like Equifax, they understand in order for banking customers to use it, the tool needs to be interpretable.  Like Equifax, Scienaptic also promises 30-day deployment, and within customer's firewall.
+The proposition demonstrates that, like Equifax and ZestFinance, they understand in order for banking customers to use it, the tool needs to be interpretable.  
 
+The Ether platform has pre-built APIs for both traditional and **alternative** credit data sources to accelerate data ingestion for sharper credit decisioning.  This seems to be a function that Equifax also has. 
 
-The description of a platform and the promise that **"Nothing leaves your firewall. Ever"** seem *contradictory*.  Is it **in-house or platform**? 
+Scienaptic also promises 30-day deployment, and within customer's firewall.
+
+While Scienaptic is a late comer relative to Zest and some larger players, with the right marketing and execution, it can achieve its goal.  If they have a great product that has value to banks, they should understand how each of their potential customer's business work and what their pain points are, and how they can help them save cost and make more money, and get their business by talking to the buying decision maker.  
 
 <figure>
   <img src="{{ "/images/posts/scienaptic.JPG" | relative_url }}">
   <figcaption>scienaptic ether</figcaption>
 </figure>
 
-The Ether platform has pre-built APIs for both traditional and **alternative** credit data sources to accelerate data ingestion for sharper credit decisioning.  This seems to be a function that Equifax also has. 
+
+### underwrite.ai
+
+Despite a name associated with credit and insurance, the [company](http://www.underwrite.ai/){:target="_blank"} does not seem to have a focused goal as the company founder is discussing financial services and cancer at the same time in the same presentation. Let's see its collaboration with [h2o.ai](https://www.h2o.ai/company/news/underwrite-ai-leverages-h2o-ai-to-modernize-credit-with-ai/){:target="_blank"}  will bring. 
+
+Value proposition:
+> Use thousands of data points from credit bureau sources + machine learning + target profitability and customer lifetime value instead of default of individuals and SMEs.
 
 
-### Discover and Zest Partnership
+>"If you have no portfolio data, we have models based upon massive quantities of publicly available datasets covering everything from home mortgage and automobile to peer to peer lending and cash advance."
 
-Discover Financial Services has entered an agreement with ZestFinance, a developer of underwriting software, to create what they call the world’s biggest platform for AI-based credit scoring according to a company release.
+### [Lenddo](https://www.lenddo.com/products.html#creditscore){:target="_blank"}
 
-In [2019 Lendit keynote](https://youtu.be/3sT7KcJz7g4) Discover CEO Roger Hochschild talked about the challenges in personal loans is that many of the credit losses are actually frauds.  Due to this, traditional credit scoring would not work well.
+Its [website](https://www.lenddo.com/products.html#creditscore){:target="_blank"} has a popup ad about an event from 2017, which clearly is **outdated**.   Timelines of this company and events seem to have stopped at 2017 despite a lot of funding and publicity in early years.
 
-One of the motivations behind their partnership is *"explainability in fair lending"*.  
+Value proposition:
+> "Lenddo’s patented score is a powerful predictor of an individual’s character or 'willingness to pay'"
+   
+It offers cloud-based alternative credit scoring and identity verification solutions on individual and SMEs, where "alternative" means social media and any digital foot print /online behavior. 
 
-Zest CEO [Douglas Merrill](Douglas Merrill) [says](https://youtu.be/3sT7KcJz7g4) "if people finds that it matters to be explainable then they will find a way to explanable.  Neural network is not materially harder to explain than, say, support vector machine."
-
+Its product is intended to be complimentary to traditional credit scoring. 
 
 ### Summary
 
-There are a lot of activities in the space of applying new technologies (big data + machine learning) to credit scoring (not limited to financial industry).  The competition is very fierce.   
+There are a lot of activities in the space of applying new technologies (big data + machine learning) to credit scoring.  The competition is very fierce.   
 
 The winners will need: great product + great people to execute + a viable philosophy/idea. Great execution that help customer making/saving lots of money without higher risk will be the key in building trust and opening doors to more customers.  
 
 
 ### After Thoughts
 
-* **Credit scoring team and Fraud team** 
-should work together.  You can score credit and price it appropriately.  
-
-It has been my experience that in large banks teams unfortunately don't distinguish fraud and credit losses when they build commercial lending models.   
-
-But you cannot score credit when it not actually credit. 
-
-So my conclusion is an reiteration of what SAS Credit Scoring had figured out long ago: 
-> **360 view of customer**, with a new touch: **do it fast and explainable** on commercial lending. 
-
-* **Value goes beyond credit scoring**: 
-combining 360 view data of customer + machine learning goes beyond credit scoring.  It can improve dramatically **customer experience** in every touch point. 
-
+* **Credit scoring and Fraud** 
+You cannot score credit and price it appropriately without taking into account fraud, because you cannot score credit when it not actually credit-related and **information provided are false**. Without taking into account fraud, AI models can make poorer predictions than judgement. 
+It has been my experience that some teams in some large banks unfortunately don't distinguish fraud and credit losses when they build commercial lending models. This is an opportunity for improvement internally or a value proposition from outside.   
+* **Customer experience**: 
+combining 360 view data of customer + machine learning goes beyond credit scoring.  It can improve dramatically customer experience in every touch point. 
 However, there is a caveat: it may be hard to get to 360 for personal credit in the US as there is a force or traditional value that goes aginst it: the rights to **privacy**.  This will prevent consolidating alternative data sources into a useful database. 
+* **Winner takes it all** has been the rule of the game in platforms.  It will happen to credit scoring as well.  
+* **Recession-proof**: The best of the time; the worst of the time.  The *worst loans tend to be originated in the best of the time* (often right before recession). In the good time, most customers seem good customer.  But when the hard time hits, many will default.  No AI magic will change that.  
 
-* **Winner takes it all** has been the rule of the game in platforms.  It will happen to credit scoring as well.  If we have a great product that has value to, say, banks, we should understand how their business work and what their pain points are, and how we can help them save cost and make more money.  Talk to the buying decision maker. 
+So, when a company promises lowering risk while increasing credit volume, remember that the associated **loss rate for that underwriting is not a swipe-test**.   The verdict comes months or years later.   
