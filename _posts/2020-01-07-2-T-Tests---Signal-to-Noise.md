@@ -29,7 +29,7 @@ Normal distribution tables and calculus were the best technology at that time.
 The t-test is a type of **signal-to-noise** test. 
 
 ### One-sample t-test of the mean
-Also called the "location test", the one-sample t-test compares one sample mean to a null hypothesized mean.  
+Also called the *"location test"*, the one-sample t-test compares one sample mean to a null hypothesized mean.  
 
 The comparison has to be standardized by something--the standard error the mean (population standard deviation, approximated by sample, devided by square root of sample size)
 
@@ -122,7 +122,7 @@ plt.show()
 ```
 
 <figure> 
-   <img src="{{"/images/posts/Normal_T_Distribution.PNG"| relative_url}}"> 
+   <img src="{{"/images/posts/Normal_T_Distribution.png"| relative_url}}"> 
    <figcaption>Normal_T_Distribution</figcaption>
 </figure> 
 
