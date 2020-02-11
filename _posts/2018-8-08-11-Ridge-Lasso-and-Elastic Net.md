@@ -2,8 +2,8 @@
 layout: post
 tag: Machine Learning in Practice
 category: "machine learning"
-title: "Non occaecat deserunt sed non esse officia dolore"
-description: Eu est laboris consectetur ut consequat do ullamco ut incididunt incididunt velit laboris nostrud exercitation in velit sit.
+title: "Ridge, Lasso and Elastic Net"
+description: In progress
 author: Sarah Chen
 image: images/posts/photos/IMG-0632.jpg
 ---
@@ -14,13 +14,17 @@ image: images/posts/photos/IMG-0632.jpg
    <img src="{{"/images/posts/photos/IMG-0632.JPG"| relative_url}}"> 
    <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
 </figure> 
+When data meets OLS assumptions, such as no-multicollinearity and linear relationship between feature and target, we will do just fine with OLS.   But, in reality, we have many features but often not that many observation , whether in problems such as tumor classifications, signal processing, image analysis, or credit risk management, insurance pricing, telecommunication, healthcare, insurance, retail, education, manufacturing, pharmaceuticals, and so on.   
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, similique minima repudiandae. Voluptate pariatur iusto quo voluptatibus eum? [Keras](https://keras.io/){:target="_blank"} Lorem ipsum dolor sit. [github](https://github.com/fchollet/keras){:target="_blank"} page.
+Real world data almost always has multicollinearity.  With so many features and not quite enough observations, it is easy to overfit while not getting the most accurate model.   
 
-> **Update**: Lorem ipsum dolor. [end of life](https://pythonclock.org/), Aliquip ad magna laborum eu ut aute ut quis in veniam in. **Python3**.
+Ridge, Lasso  (aka ‘least absolute shrinkage and selection operator’) and Elastic Net are enhancements of the OLS.  They are the most common types of linear model selection methods using regularization.  
 
-Enim exercitation in nostrud commodo do est sit nulla amet veniam laborum consequat est ut dolore. Non cillum tempor ea ut pariatur tempor elit sed et magna. Lorem ipsum esse in in minim quis ut occ!
 
+<figure> 
+   <img src="{{"/images/posts/photos/lasso-ridge.png"| relative_url}}"> 
+   <figcaption>Source: Hastie, Tibshirani, & Friedman (2009)/figcaption>
+</figure> 
 
 ### Dolore nulla ut ut sint amet duis cillum.
 

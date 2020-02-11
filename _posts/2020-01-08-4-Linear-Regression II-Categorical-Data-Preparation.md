@@ -144,9 +144,9 @@ print(x.shape)
 ### statsmodels
 Using statsmodels formula interface is convenient for data with categorical features due to the workings of patsy behind the scene: categorical variables will automatically treated as categorical variables and all necessary steps will be taken cared without any explicit encoding.  
 
-The C()notation surrounding the categorical variable names are actually not needed unless the columns are integers rather than strings.  
+The <code class="coding">C()</code> notation surrounding the categorical variable names are actually not needed unless the columns are integers rather than strings.  
 
-For example, if we use ‘size’ in the model and wish to treat it as categorical then we would need to have it as C(size) because the values are integers.      
+For example, if we use ‘size’ in the model and wish to treat it as categorical then we would need to have it as <code class="coding">C(size)</code> because the values are integers.      
 
 <div class="code-head"><span>code</span>OLS Regression with Both Categorical and Numeric Features Using Statsmodels.py</div>
 
