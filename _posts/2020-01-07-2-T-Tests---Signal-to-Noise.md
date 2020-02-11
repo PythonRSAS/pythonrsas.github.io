@@ -14,11 +14,13 @@ image: images/posts/photos/IMG-0646.JPG
    <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
 </figure> 
 
-The t-test was developed in early 1900s as an **economical** way to check for differences in mean quality of batches of Guinness beer that were small in sample sizes.  William Gosset , the Head Brewer of Guinness and pioneer of modern statistics empirically, by trial and error, found a formula for a t-distributed random variable. 
+The t-test was developed in early 1900s as an **economical** (small samples) way to check for differences in mean quality of batches of Guinness beer that were small in sample sizes.  William Gosset , the Head Brewer of Guinness and pioneer of modern statistics empirically, by trial and error, found a formula for a t-distributed random variable. 
 
 Gosset was a friend of both Karl Pearson and Ronald Fisher.
 
 It is called the t-test because the test statistics is from a t distribution, which tends to the z (normal) distribution when n is large (when n>30, they are almost identical).  
+
+As William Gosset noted in his original publication [The Probable Error of a Mean](http://seismo.berkeley.edu/~kirchner/eps_120/Odds_n_ends/Students_original_paper.pdf), while it is applicable to samples from population that are normally distributed, "the deviation from "normality must be very extreme to lead to serious error."
 
 It is a type of **signal-to-noise** test. 
 
