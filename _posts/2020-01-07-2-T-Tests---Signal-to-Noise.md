@@ -22,7 +22,9 @@ It is called the t-test because the test statistics is from a t distribution, wh
 
 As William Gosset noted in his original publication [The Probable Error of a Mean](http://seismo.berkeley.edu/~kirchner/eps_120/Odds_n_ends/Students_original_paper.pdf), while it is applicable to samples from population that are normally distributed, "the deviation from "normality must be very extreme to lead to serious error."
 
-Why did he and others focus on population that are normal distributed as opposed to a different kind of distribution?   I guess that's partially due to computational limitations.  Normal distribution tables were the best technology at that time. 
+Why did he and others focus on population that are normal distributed as opposed to a different kind of distribution?   I guess that's partially due to computational limitations.  
+
+Normal distribution tables and calculus were the best technology at that time.  
 
 The t-test is a type of **signal-to-noise** test. 
 
