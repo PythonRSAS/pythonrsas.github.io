@@ -300,3 +300,4 @@ Back to the start, why we should accept less in powerful machine learning!
 
 If we have insufficient or poor data, or omit important variables, no magic will compensate.  Like in linear regression models, machine learning cannot make something out of nothing, which we should try to ensure via explainability. 
  
+As Rep. Loudermilk questioned in the hearing [02/12/2010 :Task Force on Artificial Intelligence: Equitable Algorithms"](https://www.youtube.com/watch?v=HdfRLDQQ8vw): we, as human, are biased whereas algorithm is mathmatics.  Are we going to focus on algorithm or the appropriateness of the data.  If it is the appropriateness of the data, then have to prove that the data is wrong, not because of the biasness of ourselves"
