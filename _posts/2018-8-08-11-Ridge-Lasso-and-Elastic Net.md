@@ -18,6 +18,8 @@ When data meets OLS assumptions, such as no-multicollinearity and linear relatio
 
 Real world data almost always has multicollinearity.  With so many features and not quite enough observations, it is easy to overfit while not getting the most accurate model.   
 
+One way to reduce overfitting is to penalize the weights (coefficents) by adding a scaled (the scaler is often called alpha or lambda) sum of the weights (or squared weights) to the objective loss function (recall that OLS objective loss function is to minimize the squared errors). 
+
 Ridge, Lasso  (aka ‘least absolute shrinkage and selection operator’) and Elastic Net are the most common types of linear model with regularization.  
 
 <figure> 
