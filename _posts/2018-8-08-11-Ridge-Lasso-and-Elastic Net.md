@@ -19,13 +19,15 @@ real world data almost always has multicollinearity.  With so many features and 
 
 One way to reduce overfitting is to penalize the weights (coefficents) by adding a scaled (the scaler is often called alpha or lambda) sum of the weights (or squared weights) to the objective loss function (recall that OLS objective loss function is to minimize the squared errors).  
 
-The added terms are called regularizers for some reason.   With them, the objective funciton is no longer unbiased.  But the benefit is that we can reduce overfitting and instability of the model 
+For some reason, the added terms are called regularizers.   With the regularizers added, the objective funciton is no longer unbiased.  But the benefit is that we can reduce overfitting and instability of the model 
 
-Ridge, Lasso  (aka ‘least absolute shrinkage and selection operator’) and Elastic Net are the most common types of linear model with regularization.  
+Ridge, Lasso  (aka ‘least absolute shrinkage and selection operator’) and Elastic Net are the most common types of linear model with regularization. 
+
+The image below is from Hastie, Tibshirani, & Friedman's book.  I can still recall from my first years at Columbia: the solution of the Lagrangian is when the two contours are tagent to each other. 
 
 <figure> 
-   <img src="{{"/images/posts/photos/lasso-ridge.png"| relative_url}}"> 
-   <figcaption>Source: Hastie, Tibshirani, & Friedman (2009)/figcaption>
+   <img src="{{"/images/posts/lasso-ridge.png"| relative_url}}"> 
+   <figcaption>Source: Hastie, Tibshirani, & Friedman (2009)</figcaption>
 </figure> 
 
 ### Dolore nulla ut ut sint amet duis cillum.
