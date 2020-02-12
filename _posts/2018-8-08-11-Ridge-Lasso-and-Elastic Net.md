@@ -14,25 +14,41 @@ image: images/posts/photos/IMG-0632.jpg
    <img src="{{"/images/posts/photos/IMG-0632.JPG"| relative_url}}"> 
    <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
 </figure> 
-When data meets OLS assumptions, such as no-multicollinearity and linear relationship between feature and target, we will do just fine with OLS.   But,
-real world data almost always has multicollinearity.  With so many features and not quite enough observations, it is easy to overfit while not getting the most accurate model.   
+When data meets OLS assumptions, such as no-multicollinearity and linear relationship between feature and target, we will do just fine with OLS. But real world data almost always has multicollinearity. With so many features and not quite enough observations, it is easy to overfit while not getting the most accurate model.
 
-One way to reduce overfitting is to penalize the weights (coefficents) by adding a scaled (the scaler is often called alpha or lambda) sum of the weights (or squared weights) to the objective loss function (recall that OLS objective loss function is to minimize the squared errors).  
+One way to reduce overfitting is to penalize the weights (coefficients) by adding a scaled (the scaler is a tuning parameter, called alpha in sklearn or lambda in SAS) sum of the weights (or squared weights) to the objective loss function (recall that OLS objective loss function is to minimize the squared errors).
 
-For some reason, the added terms are called regularizers.   With the regularizers added, the objective funciton is no longer unbiased.  But the benefit is that we can reduce overfitting and instability of the model 
+When lambda/alpha is zero, the algorithm is back to OLS. So, regularized linear regression is a generalized OLS.
+
+For some reason, the added terms are called regularizers. With the regularizers added, the objective function is no longer unbiased.  But the benefit is that we can reduce overfitting and instability of the model
+Ridge, Lasso   (aka ‘least absolute shrinkage and selection operator’) and Elastic Net are the most common types of linear model with regularization.
 
 Ridge, Lasso  (aka ‘least absolute shrinkage and selection operator’) and Elastic Net are the most common types of linear model with regularization. 
+ - Ridge:  multiply the sum of squared (L2) coefficients/ parameters/ weights
+ - Lasso: coefficients/ parameters/ weights are not squared (L1), but taken as absolute values
+ - Elastic net is a combination of ridge and lasso
 
-The image below is from Hastie, Tibshirani, & Friedman's book.  I can still recall from my first years at Columbia: the solution of the Lagrangian is when the two contours are tagent to each other. 
+All three methods aim to capture signal over noise.   The regression coefficients for unimportant variables are shrunk or reduced to zero which effectively removes them from the model and produces a simpler model that selects only the most important predictors.
+
+The image below is from Hastie, Tibshirani, & Friedman's book, which reminded me of my first year calculus at Columbia University: the solution of the Lagrangian is when the two contours are tangent to each other. 
 
 <figure> 
    <img src="{{"/images/posts/lasso-ridge.png"| relative_url}}"> 
    <figcaption>Source: Hastie, Tibshirani, & Friedman (2009)</figcaption>
 </figure> 
 
-### Dolore nulla ut ut sint amet duis cillum.
+### LASSO
 
-Fugiat elit cillum quis occaecat coms magna veniam in, In fugiat ut in do do dolore sint quis et id ea ex. Fugiat voluptate magna consectetur labore duis do sed pariatur. Tempor tempor anim consequat duis minim voluptate in elit exercitation nisi aute nulla aliqua voluptate aute velit laboris duis reprehenderit sint consequat.
+LASSO Regression has various model selection algorithms.  
+
+One way of implementing LASSO is the LAR (aka ‘Least Angle Regression’), which is similar to the **forward** selection method.   It starts with no predictors in the model and sequentially adds one parameter at each step, terminating at the full least squares solution when all parameters have entered the model.  
+
+At each step, it adds a predictor that is most correlated with the response variable and moves it towards least score estimate until there is another predictor to add to the model that is equally correlated with the model residual.   Parameter estimates at any step are shrunk and predictors with coefficients that have shrunk to zero are removed from the model and the process starts all over again. 
+
+According to the sklearn documentation , the object solves the same problem as the LassoCV object, except that, unlike the LassoCV, it finds the relevant alphas values using the Lars algorithm.  Therefore, unlike Ridge or other types of Lasso, we do not need to feed it with a list of alphas.  
+
+Comparing with LassoCV, the advantage of Lars is efficiency when there are fewer observations than features.  The disadvantage is that it is more fragile to strong multicollinear datasets.  
+
 
 Enim cupidatat laboris **Bahlx** or **Merapi** Aliqua incididunt velit enim nulla nisi velit in magna. Lorem ipsum laboris veniam nostrud proident dolor fugiat . (Commodo irure eiusmod quis elit labor reprehenderit.). So, Ad cupidatat dolore esse nostrud duis deserunt veniam enim nostrud.
 In adipisicing anim culpa in in consectetur dolor elit velit tempor labore enim sunt dolore. [here](https://github.com){:target="_blank"}.
