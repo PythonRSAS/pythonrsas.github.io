@@ -28,7 +28,7 @@ In regulated industries, interpretability is required before adoption.
 
 A genearal introduction from theoretical point of view on definitions of interpretability is in [Towards A Rigorous Science of Interpretable Machine Learning](https://arxiv.org/pdf/1702.08608.pdf){:target="_blank"}.
 
-Interpretable AI (XAI) has been a very active area in recent years, motivated by commercial reasons (to gain from the available technology) and regulatory needs. 
+Interpretable AI (XAI) has been a very active area in recent years, motivated by commercial reasons (to gain from the available technology) and regulatory needs. For example, the House Financial Services Committee expert hearing [02/12/2010 :Task Force on Artificial Intelligence: Equitable Algorithms"](https://www.youtube.com/watch?v=HdfRLDQQ8vw) discussed definitions of fairness, Dr. Philip Thomas proposed Seldonian framework altorithm.  The word "Seldonian" refers to Hari Seldon, a finctional character by Isaac Asimov, who claimed three laws of robotics beginning with the injunction that "A robot may not injure a human being or, through inaction, allow a human being to come to harm."
 
 There are two categories of tools in both the old and latest machine learning interpretability methods and models:
 
