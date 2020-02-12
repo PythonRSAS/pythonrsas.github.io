@@ -37,6 +37,91 @@ The image below is from Hastie, Tibshirani, & Friedman's book, which reminded me
    <figcaption>Source: Hastie, Tibshirani, & Friedman (2009)</figcaption>
 </figure> 
 
+### Ridge
+
+Ridge regression is also called L2 regularization.  But if you look it up in wikipedia, you will find it as ["Tikhonov-Phillips regularization"](https://en.wikipedia.org/wiki/Tikhonov_regularization), where Tikhonov is the name of Soviet and Russian mathematician Andrey Tikhonov. Tikhonov proposed this method of regularization of ill-posed problems such as multicollinearity in around 1940's.  
+
+In the simplest case, the problem of a near-singular moment matrix (covariance matrix) is dealt with by adding small positive numbers to the diagnals (which are the variances). 
+
+The OLS least square problem becomes the following:
+<figure>
+  <img src="{{ "/images/posts/ridge.png" "width"= 3| relative_url }}">
+  <figcaption>Ridge Regression Least Squares</figcaption>
+</figure>
+
+In general, the method provides improved efficiency in parameter estimation problems in exchange for a tolerable amount of bias (see bias–variance tradeoff).
+
+Ridge regression will keep all the variables while reducing (shrink) their sizes.  The higher the shrinkage, the higher the bias, and the lower the variance- there is a trade-off.  
+
+As it was the first regularization technique, it is even available in old SAS PROC REG. 
+
+<div class="code-head"><span>code</span>ridge regression.sas</div>
+
+```sas
+ODS GRAPHICS ON;
+PROC REG DATA = train OUTVIF OUTEST = b RIDEGE =0 TO 0.01 BY 0.001;
+MODEL y = x;
+RUN;
+```
+
+Python <code class="coding">sklearn.linear_model</code> provides RidgeCV class. 
+
+<div class="code-head"><span>code</span>ridge regression.py</div>
+
+```python
+>>> from sklearn.linear_model import RidgeCV
+>>> model = RidgeCV()
+```
+
+The default signiture of <code class="coding">RidgeCV</code> object is:
+> RidgeCV(
+    ['alphas=(0.1, 1.0, 10.0)', 'fit_intercept=True', 'normalize=False', 'scoring=None', 'cv=None', 'gcv_mode=None', 'store_cv_values=False'],
+> )
+
+ - alphas is the default list of alphas.  As the list of alphas provided by the default has only 3 values, it may be adviserable to run the default version, ad then supply a longer list of alphas closer to the one that was chosen in the first run.  
+ - The meanings and workings of 'fit_intercept=True', and 'normalize=False', are exactly the same as LassoLarsCV.  
+ - gcv_mode is an optional parameter that allows we to choose a mode to use for Generalized Cross-Validation: {None, 'auto', 'svd', eigen'}
+ - cv : is optional for the cross-validation splitting strategy.  The default is None, to use the efficient Leave-One-Out cross-validation (aka “Generalized Cross-Validation” or, “LOOC”, or the “Jackknife”), which is possibly the reason why the Ridge in sklearn does not have a random_state parameter for pseduo random generator seed.    It can be set to an integer for k-fold or term.  
+
+<div class="code-head"><span>code</span>Ridge Coefficients as a Function of the Regularization.py</div>
+
+```python
+>>> n_alphas = 100
+>>> alphas = np.logspace(5, -3, n_alphas)
+
+>>> model  = RidgeCV(cv=5, normalize=False, alphas=alphas)
+# fit model
+>>> model.fit(X_train,y_train)
+
+>>> print("The best alpha: %.3f" % model.alpha_)
+# [Out]: The best alpha: 9.112
+
+>>> y_train_pred = model.predict(X_train)
+>>> y_test_pred = model.predict(X_test)
+
+>>> # print variable names and regression coefficients
+>>> Interpretation = pd.DataFrame({'X':dataset.feature_names, 'Coef':model.coef_})
+>>> Interpretation.iloc[(-np.abs(Interpretation['Coef'].values)).argsort()] 
+# [Out]:
+#           X      Coef
+# 5        RM  3.453538
+# 12    LSTAT -3.378018
+# 7       DIS -2.543855
+# 10  PTRATIO -1.961803
+# 8       RAD  1.708400
+# 9       TAX -1.595832
+# 4       NOX -1.360119
+# 0      CRIM -0.859517
+# 1        ZN  0.794836
+# 11        B  0.555400
+# 2     INDUS  0.236742
+# 6       AGE -0.231184
+# 3      CHAS  0.100041
+>>> print("Intercept is %.3f" % model.intercept_)
+# [Out]: Intercept is 22.762
+```
+
+
 ### LASSO
 
 LASSO Regression has various model selection algorithms.  
