@@ -14,12 +14,11 @@ image: images/posts/photos/IMG-0632.jpg
    <img src="{{"/images/posts/photos/IMG-0632.JPG"| relative_url}}"> 
    <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
 </figure> 
-When data meets OLS assumptions, such as no-multicollinearity and linear relationship between feature and target, we will do just fine with OLS.   But, in reality, we have many features but often not that many observation , whether in problems such as tumor classifications, signal processing, image analysis, or credit risk management, insurance pricing, telecommunication, healthcare, insurance, retail, education, manufacturing, pharmaceuticals, and so on.   
+When data meets OLS assumptions, such as no-multicollinearity and linear relationship between feature and target, we will do just fine with OLS.   But, in reality, we have many features but often not that many observation across many industries such as credit risk management, telecommunication, healthcare, insurance, retail, education, manufacturing, pharmaceuticals, and so on.   
 
 Real world data almost always has multicollinearity.  With so many features and not quite enough observations, it is easy to overfit while not getting the most accurate model.   
 
-Ridge, Lasso  (aka ‘least absolute shrinkage and selection operator’) and Elastic Net are enhancements of the OLS.  They are the most common types of linear model selection methods using regularization.  
-
+Ridge, Lasso  (aka ‘least absolute shrinkage and selection operator’) and Elastic Net are the most common types of linear model with regularization.  
 
 <figure> 
    <img src="{{"/images/posts/photos/lasso-ridge.png"| relative_url}}"> 
