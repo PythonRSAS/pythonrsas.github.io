@@ -14,11 +14,12 @@ image: images/posts/photos/IMG-0632.jpg
    <img src="{{"/images/posts/photos/IMG-0632.JPG"| relative_url}}"> 
    <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
 </figure> 
-When data meets OLS assumptions, such as no-multicollinearity and linear relationship between feature and target, we will do just fine with OLS.   But, in reality, we have many features but often not that many observation across many industries such as credit risk management, telecommunication, healthcare, insurance, retail, education, manufacturing, pharmaceuticals, and so on.   
+When data meets OLS assumptions, such as no-multicollinearity and linear relationship between feature and target, we will do just fine with OLS.   But,
+real world data almost always has multicollinearity.  With so many features and not quite enough observations, it is easy to overfit while not getting the most accurate model.   
 
-Real world data almost always has multicollinearity.  With so many features and not quite enough observations, it is easy to overfit while not getting the most accurate model.   
+One way to reduce overfitting is to penalize the weights (coefficents) by adding a scaled (the scaler is often called alpha or lambda) sum of the weights (or squared weights) to the objective loss function (recall that OLS objective loss function is to minimize the squared errors).  
 
-One way to reduce overfitting is to penalize the weights (coefficents) by adding a scaled (the scaler is often called alpha or lambda) sum of the weights (or squared weights) to the objective loss function (recall that OLS objective loss function is to minimize the squared errors). 
+The added terms are called regularizers for some reason.   With them, the objective funciton is no longer unbiased.  But the benefit is that we can reduce overfitting and instability of the model 
 
 Ridge, Lasso  (aka ‘least absolute shrinkage and selection operator’) and Elastic Net are the most common types of linear model with regularization.  
 
