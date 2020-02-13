@@ -33,19 +33,19 @@ All three methods aim to capture signal over noise.   The regression coefficient
 The image below is from Hastie, Tibshirani, & Friedman's book, which reminded me of my first year calculus at Columbia University: the solution of the Lagrangian is when the two contours are tangent to each other. 
 
 <figure> 
-   <img src="{{"/images/posts/lasso-ridge.png"| relative_url}}"> 
+   <img src="{{"/images/posts/lasso-ridge.png"| relative_url}}" width="800"> 
    <figcaption>Source: Hastie, Tibshirani, & Friedman (2009)</figcaption>
 </figure> 
 
 ### Ridge
 
-Ridge regression is also called L2 regularization.  But if you look it up in wikipedia, you will find it as ["Tikhonov-Phillips regularization"](https://en.wikipedia.org/wiki/Tikhonov_regularization), where Tikhonov is the name of Soviet and Russian mathematician Andrey Tikhonov. Tikhonov proposed this method of regularization of ill-posed problems such as multicollinearity in around 1940's.  
+Ridge regression is also called L2 regularization.  If you look it up in wikipedia, you will find it as ["Tikhonov-Phillips regularization"](https://en.wikipedia.org/wiki/Tikhonov_regularization), where Tikhonov is the name of Soviet and Russian mathematician Andrey Tikhonov. Tikhonov proposed this method of regularization of ill-posed problems such as multicollinearity in around 1940's.  
 
-In the simplest case, the problem of a near-singular moment matrix (covariance matrix) is dealt with by adding small positive numbers to the diagnals (which are the variances). 
+In the simplest case, the problem of a near-singular moment matrix (covariance matrix) is dealt with by adding small positive numbers to the diagonals (which are the variances). 
 
 The OLS least square problem becomes the following:
 <figure>
-  <img src="{{ "/images/posts/ridge.png" "width"= 3| relative_url }}">
+  <img src="{{ "/images/posts/ridge.png" | relative_url }}" width="800">
   <figcaption>Ridge Regression Least Squares</figcaption>
 </figure>
 
@@ -53,7 +53,9 @@ In general, the method provides improved efficiency in parameter estimation prob
 
 Ridge regression will keep all the variables while reducing (shrink) their sizes.  The higher the shrinkage, the higher the bias, and the lower the variance- there is a trade-off.  
 
-As it was the first regularization technique, it is even available in old SAS PROC REG. 
+As it was the earliest regularization technique among the three, it is available in SAS PROC REG. 
+
+Listing below would have otherwise been an OLS <code class="coding">PROC REG</code> except with <code class='coding'>RIDEGE =0 TO 0.01 BY 0.001</code>.  <code class='co'>RIDEGE</code> here stands for the scaler to be multiplied to the L2 norms.  When it is 0, it is back to original OLS.  We can specify a set of values to try, and in this case, from 0 to 0.01 with increments of 0.001. 
 
 <div class="code-head"><span>code</span>ridge regression.sas</div>
 
@@ -64,11 +66,16 @@ MODEL y = x;
 RUN;
 ```
 
-Python <code class="coding">sklearn.linear_model</code> provides RidgeCV class. 
+Python <code class="coding">sklearn.linear_model</code> provides Ridge and RidgeCV classes, where the latter includes cross validation. 
 
 <div class="code-head"><span>code</span>ridge regression.py</div>
 
 ```python
+>>> from sklearn.linear_model import Ridge
+>>> import numpy as np
+>>> model = Ridge(alpha=1.0)
+>>> model.fit(X, y)
+# or
 >>> from sklearn.linear_model import RidgeCV
 >>> model = RidgeCV()
 ```
@@ -124,7 +131,25 @@ The default signiture of <code class="coding">RidgeCV</code> object is:
 
 ### LASSO
 
-LASSO was proposed by Robert Tibshirani in 1996, about 50 years after ridge. 
+LASSO was proposed by Robert Tibshirani in 1996, about 50 years after ridge. It is also known as L1 regularization as the regularizer is norm 1 of the coefficients, multiplied by a scaler. 
+
+LASSO has been available in SAS <code class="coding">GLMSELECT</code> since version 9.2 in 2008 (or earlier). 
+
+<figure>
+  <img src="{{ "/images/posts/ols_l1_regularizer.png" | relative_url }}" width="400">
+  <figcaption>ols_l1_regularizer</figcaption>
+</figure>
+
+<div class="code-head"><span>code</span>lasso in glmselect.sas</div>
+
+```sas
+>>> PROC GLMSELECT DATA = train_data
+  PLOTS(STEPAXIS=NORMB) = COEFFICIENTS;
+  MODEL y = x/SELECTION=LASSO(STOP=NONE CHOOSE = SBC AIC);
+RUN;
+```
+
+LAR (Least angle regression), related to                         LASSO, was developed by Brad Efron
 
 One way of implementing LASSO is the LAR (aka ‘Least Angle Regression’), which is similar to the **forward** selection method.   It starts with no predictors in the model and sequentially adds one parameter at each step, terminating at the full least squares solution when all parameters have entered the model.  
 
@@ -135,7 +160,7 @@ According to the sklearn documentation , the object solves the same problem as t
 Comparing with LassoCV, the advantage of Lars is efficiency when there are fewer observations than features.  The disadvantage is that it is more fragile to strong multicollinear datasets.  
 
 <figure>
-  <img src="{{ "/images/posts/constraint_shapes.png" "width"=5 | relative_url }}">
+  <img src="{{ "/images/posts/constraint_shapes.png"| relative_url }}" width="600">
   <figcaption>constraint shapes</figcaption>
 </figure>
 
