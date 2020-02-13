@@ -42,9 +42,10 @@ The image below is from Hastie, Tibshirani, & Friedman's book, which reminded me
 
 Before presenting the solutions, let's illustrate the problem with multicollinearity just for fun, even if we understand it theoretically. 
 
-We are making up 3 variables that are *highly correlated relative to the the noise we added*.  
+We are making up 3 variables that are *highly correlated relative to the noise we added*.
 
-Using OLS, we got **negative** coefficients for the first two variables.   
+Using OLS, we got negative coefficients for the first variable.
+   
 <div class="code-head"><span>code</span>multicollinearity problem.py</div>
 
 ```python
@@ -63,7 +64,7 @@ X = np.vstack((x1,x2,x3)).T
 model = LinearRegression()
 model.fit(X,y)
 print(model.coef_)
-# Out: [-0.32057905 -0.020823    3.66359095]
+# [-0.43193674  1.25814033  2.76525919]
 ```
 <figure>
   <img src="{{ "/images/posts/multicollinearity.PNG" | relative_url }}" width="600">
@@ -85,6 +86,19 @@ The OLS least square problem becomes the following:
 In general, the method provides improved efficiency in parameter estimation problems in exchange for a tolerable amount of bias (see bias–variance tradeoff).
 
 Ridge regression will keep all the variables while reducing (shrink) their sizes.  The higher the shrinkage, the higher the bias, and the lower the variance- there is a trade-off.  
+
+As it was the earliest regularization technique among the three, it is available in SAS PROC REG. 
+
+Listing below would have otherwise been an OLS <code class="coding">PROC REG</code> except with <code class='coding'>RIDEGE =0 TO 0.01 BY 0.001</code>.  <code class='co'>RIDEGE</code> here stands for the scaler to be multiplied to the L2 norms.  When it is 0, it is back to original OLS.  We can specify a set of values to try, and in this case, from 0 to 0.01 with increments of 0.001. 
+
+<div class="code-head"><span>code</span>ridge regression.sas</div>
+
+```sas
+ODS GRAPHICS ON;
+PROC REG DATA = train OUTVIF OUTEST = b RIDEGE =0 TO 0.01 BY 0.001;
+MODEL y = x;
+RUN;
+```
 
 Python <code class="coding">sklearn.linear_model</code> provides Ridge and RidgeCV classes, where the latter includes cross validation. 
 
@@ -115,12 +129,11 @@ The default signiture of <code class="coding">RidgeCV</code> object is:
     ['alphas=(0.1, 1.0, 10.0)', 'fit_intercept=True', 'normalize=False', 'scoring=None', 'cv=None', 'gcv_mode=None', 'store_cv_values=False'],
 > )
 
- - alphas is the default list of alphas.  As the list of alphas provided by the default has only 3 values, it may be adviserable to run the default version, ad then supply a longer list of alphas closer to the one that was chosen in the first run.  
- - The meanings and workings of 'fit_intercept=True', and 'normalize=False', are exactly the same as LassoLarsCV.  
+ - alphas is the default list of alphas.  As the list of alphas provided by the default has only 3 values, it may be adviserable to run the default version, and then supply a longer list of alphas closer to the one that was chosen in the first run.  
+ - cv : is optional for the cross-validation splitting strategy.  The default is None, to use the efficient Leave-One-Out cross-validation (aka “Generalized Cross-Validation” or, “LOOC”, or the “Jackknife”).
  - gcv_mode is an optional parameter that allows we to choose a mode to use for Generalized Cross-Validation: {None, 'auto', 'svd', eigen'}
- - cv : is optional for the cross-validation splitting strategy.  The default is None, to use the efficient Leave-One-Out cross-validation (aka “Generalized Cross-Validation” or, “LOOC”, or the “Jackknife”), which is possibly the reason why the Ridge in sklearn does not have a random_state parameter for pseduo random generator seed.    It can be set to an integer for k-fold or term.  
 
-<div class="code-head"><span>code</span>Ridge Coefficients as a Function of the Regularization.py</div>
+<div class="code-head"><span>code</span>Ridge Regression Coefficients.py</div>
 
 ```python
 >>> n_alphas = 100
@@ -137,8 +150,8 @@ The default signiture of <code class="coding">RidgeCV</code> object is:
 >>> y_test_pred = model.predict(X_test)
 
 >>> # print variable names and regression coefficients
->>> Interpretation = pd.DataFrame({'X':dataset.feature_names, 'Coef':model.coef_})
->>> Interpretation.iloc[(-np.abs(Interpretation['Coef'].values)).argsort()] 
+>>> coefficients = pd.DataFrame({'X':dataset.feature_names, 'Coef':model.coef_})
+>>> coefficients.iloc[(-np.abs(coefficients['Coef'].values)).argsort()] 
 # [Out]:
 #           X      Coef
 # 5        RM  3.453538
@@ -157,21 +170,16 @@ The default signiture of <code class="coding">RidgeCV</code> object is:
 >>> print("Intercept is %.3f" % model.intercept_)
 # [Out]: Intercept is 22.762
 ```
-As it was the earliest regularization technique among the three, it is available in SAS PROC REG. 
 
-Listing below would have otherwise been an OLS <code class="coding">PROC REG</code> except with <code class='coding'>RIDEGE =0 TO 0.01 BY 0.001</code>.  <code class='co'>RIDEGE</code> here stands for the scaler to be multiplied to the L2 norms.  When it is 0, it is back to original OLS.  We can specify a set of values to try, and in this case, from 0 to 0.01 with increments of 0.001. 
+We can see the coefficient progression as alpha changes as in plot below (view from right to left)
+<figure>
+  <img src="{{ "/images/posts/Ridge Coefficients as a Function of the Regularization.PNG" | relative_url }}" >
+  <figcaption>Ridge Coefficients as a Function of the Regularization</figcaption>
+</figure>
 
-<div class="code-head"><span>code</span>ridge regression.sas</div>
-
-```sas
-ODS GRAPHICS ON;
-PROC REG DATA = train OUTVIF OUTEST = b RIDEGE =0 TO 0.01 BY 0.001;
-MODEL y = x;
-RUN;
-```
 #### Ridge Regression as Classifier
 
-It is worth mentioning that, like logistic regression, ridge regression (a variant of OLS) can also be used for classifying. 
+It is worth mentioning that ridge regression (a variant of OLS) can also be used for classifying. 
 
 This classifier is sometimes referred to as a [*Least Squares Support Vector Machines with a linear kernel*](https://scikit-learn.org/stable/modules/linear_model.html#ridge-regression).
 
@@ -190,7 +198,7 @@ The <code class="coding">RidgeClassifier</code> can be significantly **faster** 
 
 ### LASSO
 
-LASSO was proposed by Robert Tibshirani in 1996, about 50 years after ridge. It is also known as L1 regularization as the regularizer is norm 1 of the coefficients, multiplied by a scaler. 
+LASSO was proposed by Robert Tibshirani in 1996, about 50 years after ridge regression. It is also known as L1 regularization as the regularizer is L1 norm of the coefficients, multiplied by a scaler. 
 
 LASSO has been available in SAS <code class="coding">GLMSELECT</code> since version 9.2 in 2008 (or earlier). 
 
