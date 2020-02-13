@@ -99,11 +99,10 @@ Using ridge regression with alpha of 0.1, we get the coefficients back to the ri
 >>> model.fit(X, y)
 >>> model.coef_
 # Out: array([0.53831271, 0.3955434 , 2.02971427])
-
-# or
->>> from sklearn.linear_model import RidgeCV
->>> model = RidgeCV()
 ```
+Since there are no p-value related metrics in sklearn for us to assess quality of the estimates, <code class="coding">RidgeCV</code>, the cross validation version is provided. 
+
+Its use is similar to Ridge or other linear models. 
 
 <div class="code-head"><span>code</span>ridge regression with cross validation.py</div>
 
@@ -170,7 +169,24 @@ PROC REG DATA = train OUTVIF OUTEST = b RIDEGE =0 TO 0.01 BY 0.001;
 MODEL y = x;
 RUN;
 ```
+#### Ridge Regression as Classifier
 
+It is worth mentioning that, like logistic regression, ridge regression (a variant of OLS) can also be used for classifying. 
+
+This classifier is sometimes referred to as a [*Least Squares Support Vector Machines with a linear kernel*](https://scikit-learn.org/stable/modules/linear_model.html#ridge-regression).
+
+This classifier first converts binary targets to **{-1, 1}** and then treats the problem as a regression task, optimizing the same objective as above. 
+
+> ["It might seem questionable to use a (penalized) Least Squares loss to fit a classification model instead of the more traditional logistic or hinge losses."](https://scikit-learn.org/stable/modules/linear_model.html#ridge-regression)
+
+> However in practice all those models can lead to similar cross-validation scores in terms of accuracy or precision/recall, while the penalized least squares loss allows for a very different choice of the numerical solvers with distinct computational performance profiles.
+
+The predicted class corresponds to the sign of the regressor’s prediction, meaning that one class corresponding to predicted positive numbers whereas the other class correspond to predicted negative numbers.  
+
+For multiclass classification, the problem is treated as multi-output regression, and the predicted class corresponds to the output with the highest value.
+
+
+The <code class="coding">RidgeClassifier</code> can be significantly **faster** than e.g. LogisticRegression with a high number of classes, because it is able to compute the projection matrix only once.
 
 ### LASSO
 
