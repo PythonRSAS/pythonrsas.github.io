@@ -124,7 +124,7 @@ The default signiture of <code class="coding">RidgeCV</code> object is:
 
 ### LASSO
 
-LASSO Regression has various model selection algorithms.  
+LASSO was proposed by Robert Tibshirani in 1996, about 50 years after ridge. 
 
 One way of implementing LASSO is the LAR (aka ‘Least Angle Regression’), which is similar to the **forward** selection method.   It starts with no predictors in the model and sequentially adds one parameter at each step, terminating at the full least squares solution when all parameters have entered the model.  
 
@@ -134,6 +134,10 @@ According to the sklearn documentation , the object solves the same problem as t
 
 Comparing with LassoCV, the advantage of Lars is efficiency when there are fewer observations than features.  The disadvantage is that it is more fragile to strong multicollinear datasets.  
 
+<figure>
+  <img src="{{ "/images/posts/constraint_shapes.png" "width"=5 | relative_url }}">
+  <figcaption>constraint shapes</figcaption>
+</figure>
 
 Enim cupidatat laboris **Bahlx** or **Merapi** Aliqua incididunt velit enim nulla nisi velit in magna. Lorem ipsum laboris veniam nostrud proident dolor fugiat . (Commodo irure eiusmod quis elit labor reprehenderit.). So, Ad cupidatat dolore esse nostrud duis deserunt veniam enim nostrud.
 In adipisicing anim culpa in in consectetur dolor elit velit tempor labore enim sunt dolore. [here](https://github.com){:target="_blank"}.
@@ -146,6 +150,7 @@ In consequat anim sunt excepteur. [Supervised Learning](https://en.wikipedia.org
   <img src="{{ "/images/posts/laptop.jpg" | relative_url }}">
   <figcaption>Figure 1. Generic Laptop Screen</figcaption>
 </figure>
+
 
 Lorem ipsum deserunt consequat. **java tengh** Ad ex quis dolor oe esse qui. (**random** or **lorem values**). Lorem ipsum dolor sit amet, sicing elit. Error autem dolor dolores, Modi temporibus aitis? (**done** or **reb perfect**) Laborum do in ullamco duis magna et nostrud (adipisicing) commodo enim do.
 
