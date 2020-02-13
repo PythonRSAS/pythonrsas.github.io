@@ -33,7 +33,7 @@ All three methods aim to capture signal over noise.   The regression coefficient
 The image below is from Hastie, Tibshirani, & Friedman's book, which reminded me of my first year calculus at Columbia University: the solution of the Lagrangian is when the two contours are tangent to each other. 
 
 <figure> 
-   <img src="{{"/images/posts/lasso-ridge.png"| relative_url}}" width="800"> 
+   <img src="{{"/images/posts/lasso-ridge.png"| relative_url}}" width="600"> 
    <figcaption>Source: Hastie, Tibshirani, & Friedman (2009)</figcaption>
 </figure> 
 
@@ -45,7 +45,7 @@ In the simplest case, the problem of a near-singular moment matrix (covariance m
 
 The OLS least square problem becomes the following:
 <figure>
-  <img src="{{ "/images/posts/ridge.png" | relative_url }}" width="800">
+  <img src="{{ "/images/posts/ridge.png" | relative_url }}" width="600">
   <figcaption>Ridge Regression Least Squares</figcaption>
 </figure>
 
