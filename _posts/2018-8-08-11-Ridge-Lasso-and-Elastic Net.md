@@ -37,6 +37,36 @@ The image below is from Hastie, Tibshirani, & Friedman's book, which reminded me
    <figcaption>Source: Hastie, Tibshirani, & Friedman (2009)</figcaption>
 </figure> 
 
+
+### Illustration of the Problem
+
+Before presenting the solutions, let's illustrate the problem with multicollinearity just for fun, even if we understand it theoretically. 
+
+We are making up 3 variables that are *highly correlated relative to the the noise we added*.  
+
+Using OLS, we got negative coefficients for the first two variables. 
+<div class="code-head"><span>code</span>multicollinearity problem.py</div>
+
+```python
+import numpy as np
+size = 20
+x1 = np.random.random(size)
+x2 = x1 + np.random.random(size)
+x3 = x1 + np.random.random(size)
+y = x1* 0.5 + x2 * 0.4 + x3 *3 + 2*np.random.random(size)
+print(np.corrcoef(x1,x2))
+# [[1.        0.6526465]
+#  [0.6526465 1.       ]]
+plt.plot(x1,y, x2,y, x3,y, linestyle="", marker="o")
+plt.show()
+X = np.vstack((x1,x2,x3)).T
+model = LinearRegression()
+model.fit(X,y)
+print(model.coef_)
+# Out: [-0.32057905 -0.020823    3.66359095]
+```
+
+
 ### Ridge
 
 Ridge regression is also called L2 regularization.  If you look it up in wikipedia, you will find it as ["Tikhonov-Phillips regularization"](https://en.wikipedia.org/wiki/Tikhonov_regularization), where Tikhonov is the name of Soviet and Russian mathematician Andrey Tikhonov. Tikhonov proposed this method of regularization of ill-posed problems such as multicollinearity in around 1940's.  
@@ -75,11 +105,20 @@ Python <code class="coding">sklearn.linear_model</code> provides Ridge and Ridge
 >>> import numpy as np
 >>> model = Ridge(alpha=1.0)
 >>> model.fit(X, y)
+>>> model.coef_
+# Out: array([0.53831271, 0.3955434 , 2.02971427])
+
 # or
 >>> from sklearn.linear_model import RidgeCV
 >>> model = RidgeCV()
 ```
 
+<div class="code-head"><span>code</span>ridge regression with cross validation.py</div>
+
+```python
+>>> from sklearn.linear_model import RidgeCV
+>>> model = RidgeCV()
+```
 The default signiture of <code class="coding">RidgeCV</code> object is:
 > RidgeCV(
     ['alphas=(0.1, 1.0, 10.0)', 'fit_intercept=True', 'normalize=False', 'scoring=None', 'cv=None', 'gcv_mode=None', 'store_cv_values=False'],
