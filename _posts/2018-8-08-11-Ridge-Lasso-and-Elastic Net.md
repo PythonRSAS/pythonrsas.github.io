@@ -44,7 +44,7 @@ Before presenting the solutions, let's illustrate the problem with multicollinea
 
 We are making up 3 variables that are *highly correlated relative to the the noise we added*.  
 
-Using OLS, we got negative coefficients for the first two variables. 
+Using OLS, we got **negative** coefficients for the first two variables.   
 <div class="code-head"><span>code</span>multicollinearity problem.py</div>
 
 ```python
@@ -65,7 +65,10 @@ model.fit(X,y)
 print(model.coef_)
 # Out: [-0.32057905 -0.020823    3.66359095]
 ```
-
+<figure>
+  <img src="{{ "/images/posts/multicollinearity.PNG" | relative_url }}" width="600">
+  <figcaption>A made-up problem</figcaption>
+</figure>
 
 ### Ridge
 
@@ -83,20 +86,9 @@ In general, the method provides improved efficiency in parameter estimation prob
 
 Ridge regression will keep all the variables while reducing (shrink) their sizes.  The higher the shrinkage, the higher the bias, and the lower the variance- there is a trade-off.  
 
-As it was the earliest regularization technique among the three, it is available in SAS PROC REG. 
-
-Listing below would have otherwise been an OLS <code class="coding">PROC REG</code> except with <code class='coding'>RIDEGE =0 TO 0.01 BY 0.001</code>.  <code class='co'>RIDEGE</code> here stands for the scaler to be multiplied to the L2 norms.  When it is 0, it is back to original OLS.  We can specify a set of values to try, and in this case, from 0 to 0.01 with increments of 0.001. 
-
-<div class="code-head"><span>code</span>ridge regression.sas</div>
-
-```sas
-ODS GRAPHICS ON;
-PROC REG DATA = train OUTVIF OUTEST = b RIDEGE =0 TO 0.01 BY 0.001;
-MODEL y = x;
-RUN;
-```
-
 Python <code class="coding">sklearn.linear_model</code> provides Ridge and RidgeCV classes, where the latter includes cross validation. 
+
+Using ridge regression with alpha of 0.1, we get the coefficients back to the right signs and close to what we expected.  
 
 <div class="code-head"><span>code</span>ridge regression.py</div>
 
@@ -165,6 +157,18 @@ The default signiture of <code class="coding">RidgeCV</code> object is:
 # 3      CHAS  0.100041
 >>> print("Intercept is %.3f" % model.intercept_)
 # [Out]: Intercept is 22.762
+```
+As it was the earliest regularization technique among the three, it is available in SAS PROC REG. 
+
+Listing below would have otherwise been an OLS <code class="coding">PROC REG</code> except with <code class='coding'>RIDEGE =0 TO 0.01 BY 0.001</code>.  <code class='co'>RIDEGE</code> here stands for the scaler to be multiplied to the L2 norms.  When it is 0, it is back to original OLS.  We can specify a set of values to try, and in this case, from 0 to 0.01 with increments of 0.001. 
+
+<div class="code-head"><span>code</span>ridge regression.sas</div>
+
+```sas
+ODS GRAPHICS ON;
+PROC REG DATA = train OUTVIF OUTEST = b RIDEGE =0 TO 0.01 BY 0.001;
+MODEL y = x;
+RUN;
 ```
 
 
