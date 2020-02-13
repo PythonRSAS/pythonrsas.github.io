@@ -33,7 +33,7 @@ All three methods aim to capture signal over noise.   The regression coefficient
 The image below is from Hastie, Tibshirani, & Friedman's book, which reminded me of my first year calculus at Columbia University: the solution of the Lagrangian is when the two contours are tangent to each other. 
 
 <figure> 
-   <img src="{{"/images/posts/lasso-ridge.png"| relative_url}}" width="600"> 
+   <img src="{{"/images/posts/lasso-ridge.PNG"| relative_url}}" width="600"> 
    <figcaption>Source: Hastie, Tibshirani, & Friedman (2009)</figcaption>
 </figure> 
 
@@ -78,7 +78,7 @@ In the simplest case, the problem of a near-singular moment matrix (covariance m
 
 The OLS least square problem becomes the following:
 <figure>
-  <img src="{{ "/images/posts/ridge.png" | relative_url }}" width="600">
+  <img src="{{ "/images/posts/ridge.PNG" | relative_url }}" width="600">
   <figcaption>Ridge Regression Least Squares</figcaption>
 </figure>
 
@@ -179,7 +179,7 @@ LASSO was proposed by Robert Tibshirani in 1996, about 50 years after ridge. It 
 LASSO has been available in SAS <code class="coding">GLMSELECT</code> since version 9.2 in 2008 (or earlier). 
 
 <figure>
-  <img src="{{ "/images/posts/ols_l1_regularizer.png" | relative_url }}" width="400">
+  <img src="{{ "/images/posts/ols_l1_regularizer.PNG" | relative_url }}" width="400">
   <figcaption>ols_l1_regularizer</figcaption>
 </figure>
 
@@ -203,7 +203,7 @@ According to the sklearn documentation , the object solves the same problem as t
 Comparing with LassoCV, the advantage of Lars is efficiency when there are fewer observations than features.  The disadvantage is that it is more fragile to strong multicollinear datasets.  
 
 <figure>
-  <img src="{{ "/images/posts/constraint_shapes.png"| relative_url }}" width="600">
+  <img src="{{ "/images/posts/constraint_shapes.PNG"| relative_url }}" width="600">
   <figcaption>constraint shapes</figcaption>
 </figure>
 
