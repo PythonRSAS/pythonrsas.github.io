@@ -184,6 +184,54 @@ The coefficients shrink gradually to zero once alpha is large enough.  Notice th
   <figcaption>Ridge Coefficients as a Function of the Regularization</figcaption>
 </figure>
 
+<div class="code-head"><span>code</span>ridge regression.sas</div>
+
+```sas
+PROC IMPORT OUT = lib_name.dsn DATAFILE ="/boston.csv DBMS=csv REPLACE;
+RUN;
+
+ODS GRAPHICS ON; 
+PROC REG DATA = boston OUTVIF OUTEST = b RIDEGE =0  0.001 0.01 0.1 1 
+MODEL MEDV = CRIM ZN INDUS CHAS NOX RM AGE DIS RAD TAX PTRATIO B LSTAT; 
+RUN;
+
+ODS GRAPHICS OFF;
+ 
+```
+If we look at the output dataset named B, we will see there are two rows of information for each alpha (ridge): one row for coefficients and the other is VIF for each parameter.  
+The coefficients from the SAS PROC REG corresponds to exactly the above. 
+
+```python
+from sklearn.datasets import load_boston
+dataset =load_boston()
+X =dataset.data
+y=dataset.target
+clf = RidgeCV(normalize=True,alphas=[1e-3, 1e-2, 1e-1, 1]).fit(X, y)
+clf.coef_
+print(clf.alpha_)
+print(clf.score(X,y))
+print(clf.coef_)
+coef =pd.DataFrame(zip(dataset.feature_names,clf.coef_)) #match SAS closely
+# 0.01 (alpha)
+# 0.7403788769476067  (R square)
+```
+
+|    | 0       |             1 |
+|---:|:--------|:--------------|
+|  0 | CRIM    |  -0.103542    |
+|  1 | ZN      |   0.0434058   |
+|  2 | INDUS   |   0.00519961  |
+|  3 | CHAS    |   2.74631     |
+|  4 | NOX     | -16.6256      |
+|  5 | RM      |   3.86519     |
+|  6 | AGE     |  -0.000341086 |
+|  7 | DIS     |  -1.41355     |
+|  8 | RAD     |   0.269159    |
+|  9 | TAX     |  -0.0105767   |
+| 10 | PTRATIO |  -0.934596    |
+| 11 | B       |   0.00928759  |
+| 12 | LSTAT   |  -0.515911    |
+
 #### Ridge Regression as Classifier
 
 It is worth mentioning that ridge regression (a variant of OLS) can also be used for classifying. 
