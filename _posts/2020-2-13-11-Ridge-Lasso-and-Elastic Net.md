@@ -14,9 +14,14 @@ image: images/posts/photos/IMG-0632.jpg
    <img src="{{"/images/posts/photos/IMG-0632.JPG"| relative_url}}"> 
    <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
 </figure> 
-When data meets OLS assumptions, such as no-multicollinearity and linear relationship between feature and target, we will do just fine with OLS. But real world data almost always has multicollinearity. With so many features and not quite enough observations, it is easy to overfit while not getting the most accurate model.
+When data meets OLS assumptions, such as no-multicollinearity and linear relationship between feature and target, we will do just fine with OLS.  When we don't have that many variables, overfitting is not that much a concern either.  
 
-One way to reduce overfitting is to penalize the weights (coefficients) by adding a scaled (the scaler is a tuning parameter, called alpha in sklearn or lambda in SAS) sum of the weights (or squared weights) to the objective loss function (recall that OLS objective loss function is to minimize the squared errors).
+**multicollinearity**: While multicollinearity mathmatically is the matter of the covariance matrix and does not cause predictions to be wrong, severe multicollinearity can cause estimates of coefficients to be unstable, or even change signs.  
+**overfitting**: the more overfitted a model is to the training data, the less capable it becomes for future data.   With so many features and not quite enough observations, it is easy to overfit while not getting the most accurate model.
+
+One way to reduce overfitting and mitigate mutlicollinearlity is to penalize the weights (coefficients) by adding a function of them to the least squares loss function and to minimize the whole thing.  
+
+constaining the weights adding a scaled (the scaler is a tuning parameter, often called alpha or lambda) sum of the weights (lasso), or sum of squared weights (ridge), or a combination of the weights and squared weights (elastic net) or sum of weighted weights (adatpive lasso), to the objective loss function (recall that OLS objective loss function is to minimize the squared errors).
 
 When lambda/alpha is zero, the algorithm is back to OLS. So, regularized linear regression is a generalized OLS.
 
@@ -171,7 +176,9 @@ The default signiture of <code class="coding">RidgeCV</code> object is:
 # [Out]: Intercept is 22.762
 ```
 
-We can see the coefficient progression as alpha changes as in plot below (view from right to left)
+We can see the coefficient progression as alpha changes as in plot below (view from right to left).
+
+The coefficients shrink gradually to zero once alpha is large enough.  Notice that none of the coefficients goes to zero before others.   This is the characteristic of ridge regression: it keeps all variables.  
 <figure>
   <img src="{{ "/images/posts/Ridge Coefficients as a Function of the Regularization.PNG" | relative_url }}" >
   <figcaption>Ridge Coefficients as a Function of the Regularization</figcaption>
@@ -196,40 +203,112 @@ For multiclass classification, the problem is treated as multi-output regression
 
 The <code class="coding">RidgeClassifier</code> can be significantly **faster** than e.g. LogisticRegression with a high number of classes, because it is able to compute the projection matrix only once.
 
-### LASSO
+### Lasso
 
-LASSO was proposed by Robert Tibshirani in 1996, about 50 years after ridge regression. It is also known as L1 regularization as the regularizer is L1 norm of the coefficients, multiplied by a scaler. 
+[Lasso](https://en.wikipedia.org/wiki/Lasso_(statistics)) (“least absolute shrinkage and selection operator” was originally introduced in geophysics literature in 1986, and later independently rediscovered and proposed by Robert Tibshirani in 1996, about 50 years after ridge regression. 
 
-LASSO has been available in SAS <code class="coding">GLMSELECT</code> since version 9.2 in 2008 (or earlier). 
-
+It is also known as L1 regularization as the regularizer is L1-norm of the coefficients, multiplied by a scaler. 
 <figure>
   <img src="{{ "/images/posts/ols_l1_regularizer.PNG" | relative_url }}" width="400">
   <figcaption>ols_l1_regularizer</figcaption>
 </figure>
 
+Unlike ridge regression, which keeps all variables, lasso keeps a subset of them.  
+Because of this, lasso is often used for variable or model selection.
+
+Before lasso, stepwise selection was the most popular method for variable selection while ridge was the most popular method for accuracy.  
+
+The advantage of lasso over ridge is model interpretation as only the more important variables are kept.  
+
+However, if several variables are equally important and are highly correlated, lasso will arbitrarily keep one.   So, this can be seen as a disadvantage as well, depending on the model requirements. 
+
+It is worth noting that as a variant of OLS, lasso regularization can be applied to a wide variety of statistical and machine models including generalized linear models. 
+
+#### SAS GLMSELECT
+ 
+Lasso has been available in SAS <code class="coding">PROC GLMSELECT</code> since version 2008 (or possibly earlier). 
+
+SAS PROC GLMSELECT is a powerful and versatile go-to tool for variable/model selection.   It requires few lines of code and provides comprehensive results in tables and plots, and is very well documented.  
+
+Given the choice, we would prefer to use PROC GLMSELECT on lasso over Python (my non-biased opinion as I have used both in depth)
+
+Below is the summary of the main features from SAS/STAT® 14.3 User’sGuide.  It is very impressive.  
+
+**Model speciﬁcation supports**
+ - different parameterizations for classiﬁcation features
+ - *any degree of interaction* (crossed features) and nested features 
+ - hierarchy among features 
+ - training, validation, and testing split
+ - constructed features including spline and multimember feature 
+
+
+ **Selection Control provides**
+ - multiple feature selection methods 
+ - enables selection from a very large number of features (tens of thousands) 
+ - offers selection of individual levels of classiﬁcation features 
+ - a variety of selection criteria 
+ - stopping rules based on a variety of model evaluation criteria 
+ - LOOV, k-fold cross validation, and k-fold external cross validation 
+ - supports *resampling* and *model averaging* 
+
+
+**Display and Output produces**
+ - plots of selection process 
+ - predicted values and residuals 
+ - the design matrix 
+ - macro variables containing selected models 
+ - supports parallel processing of <code class="coding">BY</code> groups 
+ - supports multiple <code class="coding">SCORE</code> statements
+
+<figure>
+  <img src="{{ "/images/posts/glmselect-selection.PNG" | relative_url }}" width="600">
+  <figcaption>SAS PROC GLMSELECT-selection</figcaption>
+</figure>
+
+<figure>
+  <img src="{{ "/images/posts/glmselect-choose.PNG" | relative_url }}" width="600">
+  <figcaption>SAS PROC GLMSELECT-choose</figcaption>
+</figure>
+
+
+The entire path of Lasso estimates for all values of the shrinkage parameter can be efficiently interpolated through the least angle regression (LARS) algorithm proposed by Efron and others around 2004 as an adoption of the “homotopy method” method from Osborne, Presnell, and Turlach (2000).   LARS is how lasso is implemented in SAS GLMSELECT. 
+
 <div class="code-head"><span>code</span>lasso in glmselect.sas</div>
 
 ```sas
+ODS GRAPHICS ON;
 >>> PROC GLMSELECT DATA = train_data
   PLOTS(STEPAXIS=NORMB) = COEFFICIENTS;
   MODEL y = x/SELECTION=LASSO(STOP=NONE CHOOSE = SBC AIC);
 RUN;
+ODS GRAPHICS OFF;
 ```
 
-LAR (Least angle regression), related to                         LASSO, was developed by Brad Efron
 
-One way of implementing LASSO is the LAR (aka ‘Least Angle Regression’), which is similar to the **forward** selection method.   It starts with no predictors in the model and sequentially adds one parameter at each step, terminating at the full least squares solution when all parameters have entered the model.  
 
-At each step, it adds a predictor that is most correlated with the response variable and moves it towards least score estimate until there is another predictor to add to the model that is equally correlated with the model residual.   Parameter estimates at any step are shrunk and predictors with coefficients that have shrunk to zero are removed from the model and the process starts all over again. 
-
-According to the sklearn documentation , the object solves the same problem as the LassoCV object, except that, unlike the LassoCV, it finds the relevant alphas values using the Lars algorithm.  Therefore, unlike Ridge or other types of Lasso, we do not need to feed it with a list of alphas.  
-
-Comparing with LassoCV, the advantage of Lars is efficiency when there are fewer observations than features.  The disadvantage is that it is more fragile to strong multicollinear datasets.  
 
 <figure>
   <img src="{{ "/images/posts/constraint_shapes.PNG"| relative_url }}" width="600">
   <figcaption>constraint shapes</figcaption>
 </figure>
+
+### Adaptive lasso
+
+
+More precisely, suppose that the response y has mean zero and the regressors x are scaled to have mean zero and common standard deviation. Furthermore, suppose you can ﬁnd a suitable estimator O ˇ of the parameters in the true model and you deﬁne a weight vector by w D 1=jO ˇj
+
+<figure>
+  <img src="{{ "/images/posts/lasso-adaptive.PNG" | relative_url }}" width="400">
+  <figcaption>lasso-adaptive</figcaption>
+</figure>
+
+, where
+ 0. Then the adaptive LASSO regression coefﬁcients ˇ D .ˇ1;ˇ2;:::;ˇm/ are the solution to the constrained optimization problem
+Model-Selection Methods F 4031
+minjjyXˇjj2 subject to
+m X jD1
+jwjˇjj t
+
 
 Enim cupidatat laboris **Bahlx** or **Merapi** Aliqua incididunt velit enim nulla nisi velit in magna. Lorem ipsum laboris veniam nostrud proident dolor fugiat . (Commodo irure eiusmod quis elit labor reprehenderit.). So, Ad cupidatat dolore esse nostrud duis deserunt veniam enim nostrud.
 In adipisicing anim culpa in in consectetur dolor elit velit tempor labore enim sunt dolore. [here](https://github.com){:target="_blank"}.
