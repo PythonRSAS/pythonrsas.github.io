@@ -184,7 +184,21 @@ print(result.summary())
 For plain OLS, we recommend we use <code class="coding">statsmodels.formula.api</code> instead of <code class="coding">statsmodels.api</code>, even though their names sound similar.   The formula api uses the <code class="coding">patsy</code> package to convert data and formula into matrices.  The latter requires adding a column of constants to the array of independent variables commonly denoted as “X”.
 
 ### OLS Using SAS
-SAS is the king of statistical analysis.  It outputs tons of information for just a few lines of code.       
+SAS is the king of statistical analysis without much code.  SAS REG procedure is a general-purpose procedure for regression.  
+
+It provides the following with very little coding. 
+ - multiple model statements 
+ - nine model-selection methods: default (full model), forward, backward, stepwise, maxr (forward selection to ﬁt the best one-variable model, the best two-variable model, and so on), minr, rsquare (ﬁnds a speciﬁed number of models with the highest r square in a ange of model sizes), adjrsq (ﬁnds a speciﬁed number of models with the highest adjusted r square in a range of model sizes), and CP  
+ - interactive changes both in the model and the data used to ﬁt the model 
+ - linear equality restrictions on parameters 
+ - tests of linear hypotheses and multivariate hypotheses 
+ - collinearity diagnostics 
+ - predicted values, residuals, studentized residuals, conﬁdence limits, and inﬂuence statistics 
+ - correlation
+ - requested statistics available for output through output data sets 
+ - plots
+
+It outputs tons of information for just a few lines of code.       
 <div class="code-head"><span>code</span>OLS Regression Using SAS.sas</div>
 
 ```sas
@@ -209,6 +223,8 @@ The outputs show that the model is the right type of model for this data, and th
 </figure>
 
 If we add just one line of code <code class="coding">BY dataset;</code>, we get the OLS for each of the Anscombe quartet.  There are many other options too.
+
+Other SAS/STAT procedures that perform at least one type of regression analysis are the CATMOD, GENMOD, GLM, LOGISTIC, MIXED, NLIN, ORTHOREG, PROBIT, RSREG, and TRANSREG procedures. SAS/ETS procedures are specialized for applications in time series or simultaneous systems. 
 
 ### Less perfect case
 We will apply the same algorithm to the second subset of the Anscombe quartet.   The code is exactly the same.   
