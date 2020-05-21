@@ -57,13 +57,36 @@ The knighted business person will retire or leave when or before the storm comes
 In credit risk modeling, loan vintage, or origination time, matters.  Those loans that were given out just right before financial crisis started had the worst recovery due to the relaxed credit standard, and the stress period that followed.
 
 
-### do you know what you don't know
-
-> In insurance and credit, there is an asymmetry of information.  Insurers and lenders do not know a lot about the insured or borrower other than what have been provided, researched, and possibly some additional alternative data.   
-
 * **Fraud** - Each year, the top 20 retail banks in the US loses $50 Billion to fraud. 
 * **Bankruptcy** - about 50% of total losses of retail loans in financial institutions are from bankruptcy losses.   Why those bankrupcies happened and why they were not detected early on implies that financial institutions still do not know enough about what they don't know.
 
+### the credit industry
+
+The realm of money borrowing is loosely divided into retail (aka “consumer”) and wholesale (aka “commercial”), where retail is smaller loans to individuals or small business loans, whereas wholesale means lending to businesses, high net worth individuals and sovereigns.   The credit industry is very dynamic and complex, interconnected with government policy, geopolitical risk, macroeconomic enviroment, credit cycle, and idiosyncratic risks. 
+
+Below is a summary of the different products or portfolios: 
+### Consumer ###
+•	Credit cards
+•	Deposit/attritions
+•	Auto loans
+•	Student loans
+•	Installment
+•	Residential mortgages
+### Commercial
+•	Commercial and industrial (C&I)
+•	Commercial real estate (CRE)
+•	Land and Construction
+•	Non-bank financial institution (NBFI)
+•	Project finance
+•	Shipping and aircraft
+•	Small business
+•	Banks
+•	Sovereign
+
+
+### do you know what you don't know
+
+> In insurance and credit, there is an asymmetry of information. This is more severe in consumer space than commercial space.  Insurers and lenders do not know a lot about the insured or borrower other than what have been provided, researched, and possibly some additional alternative data.   
 
 ### the Only Thing that is Better than Data is More Data
 
