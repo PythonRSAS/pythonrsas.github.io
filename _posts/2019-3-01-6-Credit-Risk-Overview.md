@@ -8,35 +8,16 @@ author: Sarah Chen
 image: images/posts/worldDebt.jpg
 ---
 
-At any given moment, there are hundreds of trillions of debt or credit.  You can "have a look" at [All of the World’s Money and Markets in One Visualization](https://money.visualcapitalist.com/worlds-money-markets-one-visualization-2017/)
+At any given moment, there are hundreds of trillions of debt or credit.  You can have a look at this fantastic visualization to get a sense: [All of the World’s Money and Markets in One Visualization](https://money.visualcapitalist.com/worlds-money-markets-one-visualization-2017/)
 
 
-> **Credit risk** is the **uncertainty** associated with some event, where the event is specifically about whether the borrower will pay back the money borrowed.  
+> **Credit risk** is the **uncertainty** associated with some event, where the event is specifically about whether the borrower will pay back the money borrowed, and how much. 
 
-In a broader context, credit risk exists in every industry, and concerns every company.  
+In a broader context, credit risk exists in every industry, and concerns every company and individual in every industry even though the term credit is usually associated with money borrowing. Every business that wants to scale succesfully needs to have good management on their credit risk.  
 
-Like every business that wants to scale needs to be a **technology** company, every business that wants to scale succesfully financially needs to be a **financial** company, and in particular, on credit risk.  
-
-
-The uncertainty can be examined in many ways.  One of the common measure is how likely the borrower will not pay back.  This type of question is called "probability of default", often abbreviated as 'PD'.
-
-Credit scoring is used in every industry even though the term credit is usually associated with money borrowing.   
-
-What is in common across different industries are the following two questions:
+The uncertainty can be examined in many ways. What is in common across different industries are the following two questions:
 1.  How likely is something going to happen
 2.  If it happens, what is the impact
-
-
-Some examples for the first question are:
-* **Lending institution** -  how likely will the borrower pay back the money on due date
-* **Auto insurance** -  An auto insurer:  how likely a driver will have an accident and how likely a vehicle will be in an accident during policy period,
-* **Investors** -  how likely will a portfolio have superior returns and beat the market
-* **Trading firm** -  how likely will our counterparty default, whether due to internal or external causes 
-* **Consumer company** -  how likely product X will produce great sales
-* **Utility company** -  how likely will the customer pay bills on time
-* **Everyone** -  how likely will recession happen in the year
-* **Election** -  how likely will a candidate win
-* **Government** -  how likely our allies will be supportive of our actions, etc.
 
 Debt (or credit) can be categorized in 4 groups: government, household, financial sector and non-financial companies. 
 
@@ -47,8 +28,7 @@ Below figure is from Visual Capitalist as of end of 2019, on governament debt.
 </figure>
 
 
-### the Best of the Time, the Worst of Time
-
+### Credit cycles: the best of the Time, the worst of Time; the worst of time, the best of time
 
 What this saying means is that the worst loans are often originated from the best of time.  When economy is good, even those company with strong risk management and disciplined underwriting principles cannot help relaxing their credit risk standards, as a result of tempation of profit and pressure from peers and/or shareholders.  
 
