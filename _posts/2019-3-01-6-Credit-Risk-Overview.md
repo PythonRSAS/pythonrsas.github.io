@@ -63,9 +63,10 @@ In credit risk modeling, loan vintage, or origination time, matters.  Those loan
 
 > I learned this from my friend Professor David Belanger (former chief scientist at AT&T), who might have quoted someone, that "the only thing better than data is more data".  
 
-**Data**:  What I want to add is that data is not limited to those existing in databases or alternative databases or social media databases.  The kind of data that resides in individual's mental databases are the qualitative sides that are difficult or impossible to capture in quantitative databases. 
+**Data**:  
+> What I want to emphasize first is that data is not limited to those existing in databases or alternative databases or social media databases.  The kind of data that resides in individual's **mental databases** are the qualitative sides that are difficult or impossible to capture in quantitative databases. 
 
-If we look at the all the public companies that specializes in managing data and providing insights from their data, we notice that they have all done well in the last ten years, in comparison with the rest.  For example:Google,Facebook,Moody's,S&PGlobal,Verisk,Salesforce,Equifax. If we can extrapolate, whether the computing power + analytics can deliver more incremental value will determine whether these companies will continue to outshine others.  
+If we look at the all the public companies that specializes in managing data and providing insights from their data, we notice that they have all done well in the last ten years, in comparison with the rest.  For example:Google, Facebook, Moody's, S&PGlobal, Verisk, Salesforce, Equifax. If we can extrapolate, whether the computing power + analytics can deliver more incremental value will determine whether these companies will continue to outshine others.  
 
 Collecting more data (wider and longer), knowing how to organize and manage them is the foundation to the growth.   Those who ignore this mantra have been penalized heavily (check out a few on their stock performance if they are still around). 
 
