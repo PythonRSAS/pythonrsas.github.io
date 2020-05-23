@@ -8,7 +8,7 @@ author: Sarah Chen
 image: images/posts/worldDebt.jpg
 ---
 
-At any given moment, there are hundreds of trillions of debt or credit.  You can have a look at this fantastic visualization to get a sense: [All of the World’s Money and Markets in One Visualization](https://money.visualcapitalist.com/worlds-money-markets-one-visualization-2017/)
+At any given moment, there are hundreds of trillions of debt or credit.  This fantastic visualization provides a sense of the scale and the relative scale of credit: [All of the World’s Money and Markets in One Visualization](https://money.visualcapitalist.com/worlds-money-markets-one-visualization-2017/)
 
 
 > **Credit risk** is the **uncertainty** associated with some event, where the event is specifically about whether the borrower will pay back the money borrowed, and how much. 
