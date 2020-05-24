@@ -11,7 +11,7 @@ image: images/posts/worldDebt.jpg
 At any given moment, there are hundreds of trillions of debt or credit.  This fantastic visualization (even though outdated) provides a sense of the scale and the relative scale of credit: [All of the World’s Money and Markets in One Visualization](https://money.visualcapitalist.com/worlds-money-markets-one-visualization-2017/)
 
 
-> **Credit risk** is the **uncertainty** associated with some event, where the event is specifically about whether the borrower will pay back the money borrowed, and how much. 
+> **Credit risk** is the **uncertainty** associated with credit, specifically about whether the borrower will pay back the money borrowed, and how much. 
 
 In a broader context, credit risk exists in every industry, and concerns every company and individual in every industry even though the term credit is usually associated with money borrowing. Every business that wants to scale succesfully needs to have good management on their credit risk.  
 
