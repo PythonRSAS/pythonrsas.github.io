@@ -59,11 +59,11 @@ permalink: /
             </div>
           <p class="about-quote">“Simple can be harder than complex: You have to work hard to get your thinking clean to make it simple. But it’s worth it in the end because once you get there, you can move mountains.”<br>― Steve Jobs</p>
           <h3>Biography</h3>
-          <p style="margin-top: 0px !important;">I'm Sarah Chen. Loving math and using computers to do things, and super passionate about education for youth (Mandarin Chinese, real world practical and beautiful mathematics, computer programming).
+          <p style="margin-top: 0px !important;">I'm Sarah Chen. Analytic expert in banking and insurance.
           </p>
           <ul class="timeline">
-            <li>Domain expert in bank credit and market risk, fraud risk, and insurance pricing and reserving.</li>
-            <li>Analytic lead with twelve years of hands-on experience in development of predictive models and efficient algorithms in banking and insurance.</li>
+            <li>Domain expert in credit, market, operational risk in financial services, and insurance pricing and reserving.</li>
+            <li>Analytic lead with thirteen years of hands-on experience in development of predictive models and efficient algorithms in banking and insurance.</li>
             <li>Fellow of the <a href="https://www.casact.org/" target="_blank">Casualty Actuarial Society</a> (FCAS), Fellow of the <a href=" https://www.soa.org/" target="_blank"> Society of Actuaries</a> (FSA).</li>
             <li>Co-founder of <a href=" https://www.magicmathmandarin.org/"> Magic Math Mandarin </a></li>
             <li>Co-author of <a href="https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001" target="_blank">Python for SAS Users</a></li>

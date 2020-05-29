@@ -3,7 +3,7 @@ layout: page-default
 heading: blog
 title: Category Page
 subheading: Personal Website of Sarah Chen
-description: I'm Sarah Chen. Co-author of “Python for SAS Users”.  Domain expert in banking and insurance (added).  Loving math and using computers to do things, and super passionate about education for youth (Mandarin Chinese, real world practical and beautiful mathematics, computer programming).
+description: I'm Sarah Chen. Domain expert in banking and insurance.  Loving math and using computers to do things, and super passionate about education for youth (Mandarin Chinese, real world practical and beautiful mathematics, computer programming).
 color: grad-blog
 image: /images/icons/logo.png
 permalink: /category
