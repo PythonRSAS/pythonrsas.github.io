@@ -58,9 +58,9 @@ permalink: /
               {% endif %}
             </div>
           <p class="about-quote">“Simple can be harder than complex: You have to work hard to get your thinking clean to make it simple. But it’s worth it in the end because once you get there, you can move mountains.”<br>― Steve Jobs</p>
-          <h3>Biography</h3>
-          <p style="margin-top: 0px !important;">I'm Sarah Chen. Analytic expert in banking and insurance.
-          </p>
+          <h3>Summary</h3>
+          <!-- <p style="margin-top: 0px !important;">I'm Sarah Chen. Analytic expert in banking and insurance.
+          </p> -->
           <ul class="timeline">
             <li>Domain expert in credit, market, operational risk in financial services, and insurance pricing and reserving.</li>
             <li>Analytic lead with thirteen years of hands-on experience in development of predictive models and efficient algorithms in banking and insurance.</li>
@@ -69,7 +69,7 @@ permalink: /
             <li>Co-author of <a href="https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001" target="_blank">Python for SAS Users</a></li>
             <li><a href="https://www.math.columbia.edu/" target="_blank">Columbia University</a> 2007, B.A. Mathematics, summa cum laude</li>
           </ul>
-          <p><strong>Expertise: </strong>analytic lead, credit and marekt/traded risk management, insurance pricing/reserving, data management, time series analysis, algorithm design,statistical, machine learning, and deep learning models , Python, R, SAS and SQL.</p>
+          <p><strong>Expertise: </strong>credit and marekt/traded risk management, insurance pricing/reserving, data management, time series analysis, algorithm design,statistical, machine learning, and deep learning models , Python, R, SAS and SQL.</p>
         </div>
       </div>
       </div>
