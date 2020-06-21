@@ -9,7 +9,7 @@ image: images/posts/paul-gilmor.jpg
 ---
 
 <figure> 
-   <img src="{{"/images/posts/paul-gilmor.JPG"| relative_url}}"> 
+   <img src="{{"/images/posts/paul-gilmor.jpg"| relative_url}}"> 
    <figcaption>Photo by paul-gilmor</figcaption>
 </figure> 
 
