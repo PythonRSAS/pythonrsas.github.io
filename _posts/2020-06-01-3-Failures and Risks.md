@@ -5,7 +5,7 @@ category: "credit risk"
 title: "Failures and Risks"
 description: Notes on failures and risk management
 author: Sarah Chen
-image: images/posts/paul-gilmor.JPG
+image: images/posts/paul-gilmor.jpg
 ---
 
 <figure> 
