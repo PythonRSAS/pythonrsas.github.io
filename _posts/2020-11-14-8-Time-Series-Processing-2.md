@@ -3,335 +3,225 @@ layout: post
 tag : Learning Python and SAS
 category: "python for sas"
 title: "Time Series Processing 2"
-description: Examples of manipulating timeseries
+description: Shifting, percent change and rate of return
 author: Sarah Chen
 image: images/posts/S&P 500 Historical Prices and Returns.png
 
 ---
 
-This post consists of a few timeseries examples from my upcoming book on statistical and machine learning using Python, sequal to my co-authored book [Python for SAS User](https://www.amazon.com/Sarah-Chen/e/B07ZL3Q97B?ref_=dbs_p_pbk_r00_abau_000000)
+This post consists of a few timeseries examples from my upcoming book on statistical and machine learning using Python, also to be published by Apress,as my co-authored book [Python for SAS User](https://www.amazon.com/Sarah-Chen/e/B07ZL3Q97B?ref_=dbs_p_pbk_r00_abau_000000)
 
 ## Shifting Time series
-Shifting timeseries is needed when we process data across time.   For example, when we compute daily percent change, we are comparing each time point with the one from the day before, <span class="coding">diff(1)/shift(1)</span>.  On the other hand, when comparing with something from tomorrow, we would need <span class="coding">diff(-1)/shift(-1)</span>.  
+Shifting timeseries is needed when we process data across time.   For example, when we compute daily percent change, we are comparing each time point with the one from the day before, <span class="coding">diff(1)/shift(1)</span>.  On the other hand, when comparing with something from tomorrow, we would need <span class="coding">diff(-1)/shift(-1)</span>, where -1 means to go forward into the future.  Oh well.   
 
-There are two main shifting methods in pandas: <span class="coding">shift()</span> and <span class="coding">tshift()</span>. The difference between them is that <span class="coding">shift()</span> shifts the data whereas <span class="coding">tshift()</span> shift the index.   Both can take positive or negative integers to specify number of shifting periods, where positive integer results in lagging and negative number results in leading.    Under the hood, <span class="coding">tshift()</span> is reindexing the time index.  If you get error, you should check whether there are duplicates in the datetime index or whether your datetime index has a frequency.  
+There are two main shifting methods in pandas: <span class="coding">shift()</span> and <span class="coding">tshift()</span>. The difference between them is that <span class="coding">shift()</span> shifts the data whereas <span class="coding">tshift()</span> shift the index.   Both can take positive or negative integers to specify number of shifting periods, where positive integer results in lagging and negative number results in leading.    
 
+Under the hood, <span class="coding">tshift()</span> is reindexing the time index.  If you get an error, you should check whether there are *duplicates* in the datetime index or whether your datetime index has a *frequency*.  
+
+We now use a very important timeseries to demonstrate the use.
 ## Example: S&P 500 Historical Prices and Returns
 
+### S&P 500
+The S&P 500 Index is a market-value-weighted index of the 500 largest U.S. publicly traded companies. The index is widely regarded as the best gauge of large-cap U.S. equities.  
+
+Mutual funds and ETFs that track S&P Index are part of most passive investors’ portfolio.  
+
+The snippet below shows steps to import, and find the dates with the extreme values, and perform index slicing on the dates and type of data.   We use the pandas_datareader library (version 0.8.1) to get historical S&P 500 stock index data from Yahoo Finance.  Other libraries such as quandl will work just as well.  
+
+The function <span class="coding">pdr.get_data_yahoo</span> takes three inputs: symbol, start date and end date, with the default end as today's date.   <span class="coding">df.idxmax(axis=0, skipna=True)</span> returns the dates with the highest value in every column, which shows that the highest S&P 500 took place on February 19, 2020, although the highest trading volume occurred on October 10, 2008 during the last Financial crisis.    
+
+On the other hand, the historical lowest occurred in 1974 .    The 1973–74 stock market crash caused a bear market between January 1973 and December 1974, which was one of the worst stock market downturns since the Great Depression.      The partial indexing <span class="coding">df.loc["2000":,'Close'].idxmin()</span> tells us the lowest price since year 2000 happened on September 9, 2009 during the last Financial Crisis.   The timestamp of the lowest historical since 1970, and the timestamp of the lowest value in the Financial Crisis are used in the <span class="coding">ax.axvline</span> to plot the vertical dashed lines.   
+
+<div class="code-head"><span>code</span>S&P Historical Values and Extremes.python</div>
+
+```python
+>>> pd.options.display.float_format = '{:10,.1f}'.format 
+>>> import matplotlib.pyplot as plt
+>>> import datetime
+>>> start = datetime.datetime(1970, 1, 1)
+>>> end=datetime.date.today() # today is 04-18-2020
+>>> import pandas_datareader.data as pdr
+>>> df = pdr.get_data_yahoo('^GSPC', start=start, end=end)
+>>> df.tail()
+[Out]:
+                 High        Low       Open      Close    Volume  Adj Close
+Date
+1970-01-02       93.5       91.8       92.1       93.0   8050000       93.0
+1970-01-05       94.2       92.5       93.0       93.5  11490000       93.5
+1970-01-06       93.8       92.1       93.5       92.8  11460000       92.8
+1970-01-07       93.4       91.9       92.8       92.6  10010000       92.6
+1970-01-08       93.5       92.0       92.6       92.7  10670000       92.7
+
+>>> df.idxmax(axis=0, skipna=True)
+[Out]:
+High        2020-02-19
+Low         2020-02-19
+Open        2020-02-20
+Close       2020-02-19
+Volume      2008-10-10
+Adj Close   2020-02-19
+dtype: datetime64[ns]
+
+>>> df.idxmin(axis=0, skipna=True)
+[Out]:
+High        1974-10-04
+Low         1974-10-04
+Open        1974-10-04
+Close       1974-10-03
+Volume      1970-05-11
+Adj Close   1974-10-03
+dtype: datetime64[ns]
+```
+Let's plot the data and highlight those dates with the lowest prices. 
+```python
+price_min = df.Close.idxmin()
+financial_crisis =df.loc["2000":,'Close'].idxmin(axis=0, skipna=True)
+plt.style.use('default')
+fig, ax = plt.subplots(1,1, figsize=(12,5))
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+df.Close.plot( color='mediumseagreen', ax=ax)
+ax.axvline(price_min, color ='red', alpha=0.7, dashes=(5, 2, 1, 2), linewidth=1.0)
+ax.axvline(financial_crisis, color ='red', alpha=0.7, dashes=(5, 2, 1, 2), linewidth=1.0)
+plt.legend(loc='upper left', frameon=False)
+plt.ylabel("Closing Price $")
+plt.grid(color='lightgrey', linestyle='-.', linewidth=0.7)
+plt.tight_layout()
+```
+
+
+<figure>
+  <img src="{{ "/images/posts/S&P 500.png" | relative_url }}">
+  <figcaption>S&P 500 Historical Prices - Sarah Chen</figcaption>
+</figure>
+
+### Daily returns
+Now we look at daily returns. <span class="coding">df.Close.diff(1)/df.Close.shift(1)</span> is how we would compute daily return. The convenient <span class="coding">pct_change</span> function gives the same results. 
+<div class="code-head"><span>code</span>Rate of daily return.python</div>
+
+```python
+# daily return
+>>> rets = df.Close.pct_change()
+>>> rets_manual = df.Close.diff(1)/df.Close.shift(1)
+np.testing.assert_allclose(rets_manual,rets,rtol=1e-5)
+```
+
+Then we use the <span class="coding">nsmallest()</span> function to get those dates when the largest price decline happened.  The date with the lowest daily return was 1987-10-19, which was the *Black Monday*, one of the worst stock crashes in history.   The two that followed was on March 16 and 12, 2020, due to the Covid-19 pandemic lockdown. The fourth was the  2008-10-15 of the Financial Crisis.   
+
+The <span class="coding">nlargest()</span> function give those dates when the largest price jump happened. The biggest jumps happened right before or after to the largest drop.   It seems that investors changed their minds overnight.  
+
+Anyhow, those are the times with great economic uncertainty and volatility.  
+<div class="code-head"><span>code</span>S&P Largest Daily Falls and Jumps.python</div>
+
+```python
+nsmallest = rets.nsmallest(4)
+print(nsmallest)
+Out:
+Date
+1987-10-19   -0.205
+2020-03-16   -0.120
+2020-03-12   -0.095
+2008-10-15   -0.090
+Name: Close, dtype: float64
+
+>>> nlargest = rets.nlargest(5)
+>>> print(nlargest)
+Out:
+Date
+2008-10-13   0.116
+2008-10-28   0.108
+2020-03-24   0.094
+2020-03-13   0.093
+1987-10-21   0.091
+Name: Close, dtype: float64
+```
+We plot historical prices and with the worst days in S&P history annotated. 
+<div class="code-head"><span>code</span>plot historical prices.python</div>
+
+```python
+# ploting
+style = dict(size=11, color='k')
+plt.style.use('default') 
+title = "S&P 500 Historical Prices and Returns"
+fig, ax1 = plt.subplots(1,1, figsize=(12,8))
+ax2 = ax1.twinx()
+ax1.spines['top'].set_visible(False)
+ax1.plot(df.index, df.Close,color='mediumseagreen',alpha=0.5 )
+ax2.plot(rets.index, rets,color='grey',alpha=0.3)
+ax2.axhline(0, color='grey')
+ax2.text(nsmallest.index[1],nsmallest[1], "Covid-19 ", ha='center', **style)
+ax2.text(nsmallest.index[3], nsmallest[3], "financial crisis ", ha='center', **style)
+ax2.text(Black_Monday, rets.loc[Black_Monday], "Black Monday", ha='center', **style)
+ax2.text(Internet_Bubble, -0.15, "Internet Bubble", ha='center', **style)
+plt.title(title,fontsize=16)
+ax1.spines['bottom'].set_color('grey')
+ax1.spines['left'].set_color('grey')
+ax1.spines['right'].set_color('grey')
+ax2.spines['right'].set_color('grey')
+ax2.spines['bottom'].set_color('grey')
+ax2.spines['left'].set_color('grey')
+ax1.set_ylabel("Closing Price $",color='mediumseagreen',fontsize=12)
+ax2.set_ylabel('Daily Return', color='k',fontsize=12)
+ax2.set_ylim(-0.25,0.25)
+```
 <figure>
   <img src="{{ "/images/posts/S&P 500 Historical Prices and Returns.png" | relative_url }}">
-  <figcaption>CCAR 2019 CREPI by Scenario - Sarah Chen</figcaption>
+  <figcaption>S&P 500 Historical Prices and Returns - Sarah Chen</figcaption>
 </figure>
 
-## Rolling Window Statistics
-Rolling window and resampling statistics are two important time series processing methods.    
+### Monthly returns
+To get monthly return, our first instinct might have been using <span class="coding">freq='M'</span>.    But since the data only occurs on business days, then we need to use the prefix <span class="coding">B</span> for the frequency.  Otherwise the result can be incorrect. 
 
-**1).** Their first key difference is whether **frequency** changes or not.   
-
-In windowing, statistics are calculated from the windowed rows when “expanding” through each row and frequencies are not changed.   
-
-Whereas resampling changes frequencies of the data via up sampling (higher frequency) or down sampling (lower frequency).  In other words, resampling will change the row number count.  For example, when daily observations become monthly, the row count will be reduced by a factor of 1/12. 
-
-**2).** Their second key difference is whether restrict to datetime indices. Resampling is time-based groupby and requires datetime index.  Whereas, rolling window can be applied to any pandas object, not restricted to those with datetime indices. 
-
-
-Rolling in pandas is implemented both as time-window and count-based, which produce different results when the index is irregular. This could be confusing if not understood properly.  
-
-What we mean by time-window is that the operation is faithful to time, not to observation count.   
-
-To avoid getting unexpected result, it is best to be explicit by specifying the parameters given the dual implementations for count-based window and time-based window.   
-
-There are two parameters for determining how the rolling statistics are computed:
-
-**window**:  the size of the window
-**min_periods**:  the minimum number of observations in window required to have a value; For a window that is specified by an offset, <span class="coding">min_periods</span> will default to 1. Otherwise, <span class="coding">min_periods</span> will default to the size of the window.
-
-Below compares count-based window and time-based window for regular (without gaps) date time index.     
-
-In the first example, because an integer is used for the window, <span class="coding">rolling(2).sum()</span> assumes that the <span class="coding">min_periods</span> equals to the window size.  It returns what we expect: the first row is NaN because it has only 1 observation.  The last two rows are NaN because summing with NaN returns NaN.   
-
-In the second example, we see that <span class="coding">rolling(window = '2d').sum()</span> seems to have ignored the NaN.   This behavior is because <span class="coding">min_periods=1</span> is the default setting for offset window.    
-
-The third example gives the same result as Example 2 because of specified <span class="coding">min_periods= 1</span> is specified.   For regular dateimeIndex, to get the same results from count-based and time-based windows, remember to specify the same <span class="coding">min_periods</span>.    
-
-<div class="code-head"><span>code</span>Rolling Count-based Window vs Time-based Window for DatetimeIndex.python</div>
+<div class="code-head"><span>code</span>Rate of monthly return.python</div>
 
 ```python
->>> df = pd.DataFrame({'x': [0, 1, 2, np.nan, 4]},
-                    index=pd.date_range('20210101',
-                    periods=5, freq='d'))
->>> df
-[Out]:
-              x
-2021-01-01  0.0
-2021-01-02  1.0
-2021-01-03  2.0
-2021-01-04  NaN
-2021-01-05  4.0
-# Example 1
->>> df.rolling(window = 2).sum()
-[Out]:
-              x
-2021-01-01  NaN
-2021-01-02  1.0
-2021-01-03  3.0
-2021-01-04  NaN
-2021-01-05  NaN
-# Example 2
->>> df.rolling(window = '2d').sum()
-[Out]:
-              x
-2021-01-01  0.0
-2021-01-02  1.0
-2021-01-03  3.0
-2021-01-04  2.0
-2021-01-05  4.0
-# Example 3
->>> df.rolling(window=2, min_periods=1).sum()
-Out[11]:
-              x
-2021-01-01  0.0
-2021-01-02  1.0
-2020-01-03  3.0
-2020-01-04  2.0
-2020-01-05  4.0
+#monthly return
+>>> df.Close.pct_change(freq='BM').dropna().tail(2)
+Out: 
+Date
+2020-09-30   -0.039
+2020-10-30   -0.028
+Name: Close, dtype: float64
+
+>>> oct = df.loc['2020-10-30','Close']
+>>> sep = df.loc['2020-09-30','Close']
+>>> aug = df.loc['2020-08-31','Close']
+>>> (oct-sep)/sep
+Out: -0.02766578622137972
+>>> (sep-aug)/aug
+Out: -0.03922797017842309
 ```
-The next example makes the comparisons for irregular datetime index.  Contrasting to an integer rolling window, offset window will have variable window length corresponding to the time.  Again, the default for offset window min_periods is 1.   To see why Example 1 and Example 2 have different results, it may be helpful to look at Example 3, which fills all the missing dates using .resample('D') function and makes it easier to see how time-based window works.  
+### Annual returns
+Annual return or percent change year over year is commonly used in all industries.  The easiest is to use pct_change(freq='Y') or pct_change(freq='BY') function.   You need to be careful to use the correct frequency otherwise the results will likely be incorrect. 
 
-<div class="code-head"><span>code</span>Rolling Count-based Window vs Time-based Window for Irregular DatetimeIndex.python</div>
-
-```python
->>> idx = pd.to_datetime(['2021-01-01', '2021-01-03', '2021-01-05', '2021-01-06','2021-01-08'])
->>> df.index = idx
->>> df
-[Out]:
-              x
-2021-01-01  0.0
-2021-01-03  1.0
-2021-01-05  2.0
-2021-01-06  NaN
-2021-01-08  4.0
-
-# Example 1
->>> df.rolling(window=2, min_periods=1).sum()
-[Out]:
-              x
-2021-01-01  0.0
-2021-01-03  1.0
-2021-01-05  3.0
-2021-01-06  2.0
-2021-01-08  4.0
-
-# Example 2
->>> df.rolling(window='2d', min_periods=1).sum()
-[Out]:
-              x
-2021-01-01  0.0
-2021-01-03  1.0
-2021-01-05  2.0
-2021-01-06  2.0
-2021-01-08  4.0
-
-# Example 3
->>> df.resample('D').mean()
-[Out]:
-              x
-2021-01-01  0.0
-2021-01-02  NaN
-2021-01-03  1.0
-2021-01-04  NaN
-2021-01-05  2.0
-2021-01-06  NaN
-2021-01-07  NaN
-2021-01-08  4.0
-```
-## Moving Averages
-Moving average is usually calculated using backward window.  This is intuitive because data usually are historical.   
-
-However, backward looking window calculated statistics has a lagging effect due to all but one of the data points are from the past.   
-
-If we want centered moving averages, we can specify by using the center parameter.  
-
-In the following example, we plot three lines: the grey line is the Bitcoin daily closing price, the green line is the 60-day centered moving average, and the blue line is the 60-day (backward) moving average.   Notice that the centered moving average matches the Close price line without any shifting.  Whereas the moving average line looks like it is shifted to the right, because it is using older data.  You may wonder, how do we compute the backward moving averages for the oldest time points, and how do we compute the center moving averages for the newest time points?   Although the default is min_periods=1 when there are fewer rows than the window size at the two ends, you can change that based on what makes sense in your problem. 
-<div class="code-head"><span>code</span>Moving Average Using Rolling Window Backward and Center.python</div>
+In Listing 1- 40, we compute and plot annual returns of S&P 500 since 1970.   Because pct_change(freq='BY')  is only for full years, it will not work for the latest year to date.   Although there are other ways of handling it, here we will use the year to date as if we had a full year.  Thus, the annual return for 2020 is return_2020 = adj_close[-1]/adj_close.loc['2020-01-02']-1.  
+<div class="code-head"><span>code</span>Annual Returns.python</div>
 
 ```python
- >>> import pandas_datareader.data as pdr
->>> BTC = pdr.get_data_yahoo('BTC-USD', start=datetime(2010, 7, 16), end= datetime(2020, 10, 25)
->>> Close = BTC.loc['2017-07-01':'2020-05-13','Close']
+>>> adj_close = pdr.get_data_yahoo('^GSPC', start=start, end=date.today())['Adj Close']
+>>> title = "Annual Returns"
+>>> Annual_return = adj_close.pct_change(freq='BY').dropna().asfreq('BY')
+>>> return_2020 = adj_close[-1]/adj_close.loc['2020-01-02']-1
+# pretend we had a full year already in 2020
+>>> idx = pd.date_range(date(2020,1,1),date(2020,12,31), freq='BA-DEC' )
+>>> Annual_return = Annual_return.append(pd.Series(return_2020,index=idx))
+# plot
 >>> fig, ax = plt.subplots(1,1, figsize=(12,5))
->>> ax.plot(Close,'grey',label= 'Close' )
->>> ax.plot(Close.rolling(60).mean(),green,alpha=0.5,lw=5, label= 'Center MA 60')
->>> ax.plot(Close.rolling(60,center=True).mean(),blue,alpha=0.5, lw=5,label= 'MA 60')
->>> plt.ylabel('price $')
-``` 
-<figure>
-  <img src="{{ "/images/posts/Figure 1- 1. Moving Average Using Rolling Window Backward and Center.png" | relative_url }}">
-  <figcaption>Moving Average Using Rolling Window Backward and Center - Sarah Chen</figcaption>
-</figure>
-
-
-## Moving Averages and Trending Signals
-Moving averages are often used for identifying trending signals.   For example, real estate investors often use moving averages of real estate prices of metropolitan areas to learn the direction of the market.   Moving averages are routinely used to remove seasonality in timeseries data with strong seasonal effect.   To be able to apply different techniques in moving averages is essential in time series analysis and  feature engineering. 
-
-Example below shows daily closing price, and moving averages in 20, 50, and 200 day rolling window.    The wider the rolling window, the lines are smoother.   
-
-<figure>
-  <img src="{{ "/images/posts/Moving Averages.png" | relative_url }}">
-  <figcaption>S&P 500 Moving Averages - Sarah Chen</figcaption>
-</figure>
-
-<div class="code-head"><span>code</span>Moving Averages.python</div>
-
-```python
->>> SP500_data = pdr.get_data_yahoo('^GSPC', start=start, end=date.today())
->>> SP500 = SP500_data.loc['2005':]
->>> ma20 = SP500.Close.rolling(20).mean()
->>> ma50 = SP500.Close.rolling(50).mean()
->>> ma200= SP500.Close.rolling(200).mean()
->>> ma = pd.DataFrame({
->>>     'price':SP500.Close, 
->>>     'ma20': ma20,
->>>     'ma50': ma50,
->>>     'ma200': ma200
->>> })
-# plotting
->>> title = "Moving Averages"
->>> fig, ax = plt.subplots(1,1, figsize=(12,8))
->>> ax.plot(ma.price, label="price" ,alpha=0.8, linestyle=":")
->>> ax.plot(ma['ma20'], label='20-day',alpha=0.8,linestyle="--")
->>> ax.plot(ma['ma50'], label='50-day moving average',alpha=0.8,lw=2)
->>> ax.plot(ma['ma200'], label='200-day moving average',alpha=0.8, lw=3)
 >>> ax.spines['top'].set_visible(False)
 >>> ax.spines['right'].set_visible(False)
->>> plt.legend(frameon=False)
+>>> ax = plt.bar(Annual_return.index.year, Annual_return,alpha=0.5)
+>>> plt.axhline(Annual_return.mean(), color='r', linestyle='--')
 ```
-## Moving Average Crossovers
-Moving average crossovers are used widely in stock trade.  Despite the efficient market hypothesis that markets are supposed to be rational and efficient, traders use moving averages and crossovers for trading strategies.  Warren Buffet probably would not suggest any of these.    Warren Buffet probably would not suggest any of these.  
-
-For technical analysis traders, when price or a shorter-term average crosses longer-term average, if it rises above then it is a buy signal, otherwise a sell signal.    
-
-On the other hand, another group of traders may argue that when price or a shorter-term average crosses longer-term average and rises above/below, the stock is overvalued/undervalued and should be sold/bought.   
-
-Below figure shows S&P 500 closing price and 20-day moving average in the first five months and eight days of 2020, when the Covid-19 pandemic spread across the world.  
-
-Although the price did not hit the lowest until March 23, various technical analysis indicators might have compelled some to begin selling weeks before.  
-
+Figure shows the annual return from 1970 to 2020.  The horizontal dashed line is the average of annual returns.
 <figure>
-  <img src="{{ "/images/posts/S&P 500 Closing Price Crossover 20-day Moving Average.png" | relative_url }}">
-  <figcaption>S&P 500 Closing Price Crossover 20-day Moving Average - Sarah Chen</figcaption>
+  <img src="{{ "/images/posts/Annual Returns.png" | relative_url }}">
+  <figcaption>S&P Annual Returns - Sarah Chen</figcaption>
 </figure>
-<div class="code-head"><span>code</span>Moving Averages with Crossovers.python</div>
-
-```python
->>> from datetime import timedelta
->>> SP500 = SP500_data.loc['2020':]
->>> ma20 = SP500.Close.rolling(20, center = False).mean()
->>> ma = pd.DataFrame({
->>>     'price':SP500.Close, 
->>>     'ma20': ma20})
-# compute crossover dates
->>> larger = ma20 < ma.price
->>> larger_previous = larger.shift(1)
->>> crossing = np.where(abs(larger-larger_previous)==1)
->>> ma_crossing = ma.iloc[crossing].copy()
->>> print(ma_crossing)
-Out:
-              price     ma20
-Date
-2020-01-30 3283.660 3280.837
-2020-01-31 3225.520 3279.220
-2020-02-04 3297.590 3282.489
-2020-02-24 3225.890 3319.692
-2020-04-06 2663.680 2526.790
-# to prevent 3-day gap, use Friday data instead of Monday
->>> for i in range(ma_crossing.shape[0]):
->>>     if ma_crossing.index[i].weekday()==0:
->>>         ma_crossing.loc[ma_crossing.index[i],'date']= ma_crossing.index[i]-timedelta(days=3)
->>>         ma_crossing.loc[ma_crossing.index[i],'price']= ma.price.loc[ma_crossing.index[i]-timedelta(days=3)]
->>>     else:
->>>         ma_crossing.loc[ma_crossing.index[i],'date']= ma_crossing.index[i]
->>>         ma_crossing.loc[ma_crossing.index[i],'price'] = ma_crossing.loc[ma_crossing.index[i],'price']
-
->>> title = "S&P 500 Closing Price Crossover 20-day Moving Average"
->>> fig, ax = plt.subplots(1,1, figsize=(12,8))
->>> ax.plot(ma.price, label="price" ,alpha=0.8, linestyle=":")
->>> ax.plot(ma['ma20'], label='20-day',alpha=0.8,linestyle="--",marker="o")
->>> ax.vlines(ma_crossing.date,ma_crossing.price-150, ma_crossing.price+150,linestyle='--')
-```
-
-<div class="code-head"><span>code</span>S&P 500 Closing Price Crossover 20-day Moving Average.python</div>
-
-```python
->>> title = "S&P 500 Closing Price Crossover 20-day Moving Average"
->>> fig, ax = plt.subplots(1,1, figsize=(12,8))
->>> ax.plot(ma.price, label="price" ,alpha=0.8, linestyle=":")
->>> ax.plot(ma['ma20'], label='20-day',alpha=0.8,linestyle="--",marker="o")
->>> ax.vlines(ma_crossing.date,ma_crossing.price-50, ma_crossing.price+50,linestyle='--',color="0.5")
->>> ax.annotate("Sell signal", xy=(ma_crossing.date[-2],ma_crossing.price[-2]), xycoords='data', xytext=(datetime(2020,2,10),ma_crossing.price[-3]-200), textcoords='data',color='r', arrowprops=dict(fc='k', arrowstyle="-|>"))
->>> ax.annotate("Buy signal", xy=(ma_crossing.date[-1],ma_crossing.price[-1]+2), xycoords='data',
->>>                   xytext=(datetime(2020,4,6),ma_crossing.price[-1]-200), textcoords='data',color='r',arrowprops=dict(arrowstyle="-|>"))
-
-```
-## Exponentially Smoothing
-Exponentially smoothing, also called “exponential weighted average”, is a commonly used smoothing method.   It is like moving average in that both are window functions.   The only difference is that exponential smoothing assign exponentially decreasing weights over time, where the weight is 1- α.  The formula is: 
+Before 1984, investing in the S&P 500 stock market seem hardly worth it: roller-coaster-like returns with -29.7% in 1974 and 31.1% in 1975 while the safe 10-year Treasury was averaging between 6% and 12.5%.  
+In 1982, the return from S&P500 was 14.8% when average 10-year Treasury yield was 13.0%.   In quite several years the S&P 500 annual return was terribly negative when one could have gotten safe returns from the government bond.   But after the Financial Crisis in 2009, the stock market annual returns have stayed positive except 2018 and 2020.  
 <figure>
-  <img src="{{ "/images/posts/EMA.png" | relative_url }}">
-  <figcaption>Exponential Moving Average</figcaption>
-</figure>
-The relationship between window size and is α=2/(window size+1)
-There are many smoothing methods.   The simplest is exponentially weighted moving average (EWMA). 
-We demonstrate the use of simple moving average and EWMA in two examples.  
-
-<div class="code-head"><span>code</span>Bitcoin 60-day Moving Average and Exponentially Weighted Moving Average.python</div>
-
-```python
->>> import matplotlib.ticker as ticker
->>> import matplotlib.dates as mdates
->>> from matplotlib.ticker import NullFormatter
->>> from matplotlib.dates import MonthLocator, DateFormatter
->>> Close = BTC.loc['2020':'2020-05-13','Close']
->>> ma60 = Close.rolling(60, min_periods=1).mean()
->>> EMA =  Close.ewm(span=60).mean()
->>> title = 'Bitcoin EMA and SMA'
->>> fig, ax = plt.subplots(1,1, figsize=(12,5))
->>> ax.plot(Close,'grey',linestyle=':',label= 'Price')
->>> ax.plot(EMA,green,lw=3,linestyle="--", label= 'EMA 60')
->>> ax.plot(ma60,blue, lw=2,label= 'SMA 60')
->>> ax.xaxis.set_major_locator(MonthLocator())
->>> ax.xaxis.set_minor_locator(MonthLocator(bymonthday=15))
->>> ax.xaxis.set_major_formatter(NullFormatter())
->>> ax.xaxis.set_minor_formatter(DateFormatter('%b'))
-```
-<figure>
-  <img src="{{ "/images/posts/Bitcoin EMA and SMA.png" | relative_url }}">
-  <figcaption>Bitcoin EMA and SMA - Sarah Chen</figcaption>
-</figure>
-
-
-<div class="code-head"><span>code</span>Moving Average and Exponentially Weighted Moving Average.python</div>
-
-```python
-import pandas_datareader.data as pdr
-AAPL = pdr.get_data_yahoo('AAPL', start=pd.Timestamp(2020, 8,14), end=pd.Timestamp(2020, 11,14))
-def processEMA(ts_data):
-    ts_data.sort_values('Date', inplace=True)    
-    # compute moving averages
-    ma_list = [5, 20]  
-    for ma in ma_list:
-        ts_data['MA_' + str(ma)] = ts_data['Adj Close'].rolling(ma).mean()
-    # compute exponential moving averages
-    for ma in ma_list:
-        ts_data['EMA_' + str(ma)] = ts_data['Adj Close'].ewm(span=ma).mean()
-processEMA(AAPL)
-sns.set_style("whitegrid")
-sns.set_context("paper")
-sns.lineplot(data= AAPL.iloc[:,5:])
-```
-Notice that the exponentially smoothed (dash-dot lines) are more responsive to daily price than simple moving average (dash lines), as it places a greater weight and significance on the most recent data points.  
-<figure>
-  <img src="{{ "/images/posts/Figure 1- 4. MA and EWMA.png" | relative_url }}">
-  <figcaption>APPL Moving Average and Exponentially Weighted Moving Average - Sarah Chen</figcaption>
+  <img src="{{ "/images/posts/S&P 500 Annual Return vs Average 10-Year Treasury.png" | relative_url }}">
+  <figcaption>S&P 500 Annual Return vs Average 10-Year Treasury - Sarah Chen</figcaption>
 </figure>
 
 
