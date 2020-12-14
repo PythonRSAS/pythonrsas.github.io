@@ -2,7 +2,7 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "Time Series Processing 2"
+title: "Timeseries processing 2-shifting and rate of return"
 description: Shifting, percent change and rate of return
 author: Sarah Chen
 image: images/posts/S&P 500 Historical Prices and Returns.png
@@ -14,11 +14,13 @@ This post consists of a few timeseries examples from my upcoming book on statist
 ## Shifting Time series
 Shifting timeseries is needed when we process data across time.   For example, when we compute daily percent change, we are comparing each time point with the one from the day before, <span class="coding">diff(1)/shift(1)</span>.  On the other hand, when comparing with something from tomorrow, we would need <span class="coding">diff(-1)/shift(-1)</span>, where -1 means to go forward into the future.  Oh well.   
 
+In working with data with strong seasonality, we may use year over year.  In the case of quarterly data, a common metric for measuring rate of change without seasonality is <span class="coding">diff(4)/shift(4)</span>. 
+
 There are two main shifting methods in pandas: <span class="coding">shift()</span> and <span class="coding">tshift()</span>. The difference between them is that <span class="coding">shift()</span> shifts the data whereas <span class="coding">tshift()</span> shift the index.   Both can take positive or negative integers to specify number of shifting periods, where positive integer results in lagging and negative number results in leading.    
 
 Under the hood, <span class="coding">tshift()</span> is reindexing the time index.  If you get an error, you should check whether there are *duplicates* in the datetime index or whether your datetime index has a *frequency*.  
 
-We now use a very important timeseries to demonstrate the use.
+We use S&P 500 data to show a few real use cases. 
 ## Example: S&P 500 Historical Prices and Returns
 
 ### S&P 500
@@ -192,9 +194,9 @@ Out: -0.02766578622137972
 Out: -0.03922797017842309
 ```
 ### Annual returns
-Annual return or percent change year over year is commonly used in all industries.  The easiest is to use pct_change(freq='Y') or pct_change(freq='BY') function.   You need to be careful to use the correct frequency otherwise the results will likely be incorrect. 
+Annual return or percent change year over year is commonly used in all industries.  The easiest is to use <span class="coding">pct_change(freq='Y')</span> or <span class="coding">pct_change(freq='BY')</span> function.   You need to be careful to use the correct frequency otherwise the results will likely be incorrect. 
 
-In Listing 1- 40, we compute and plot annual returns of S&P 500 since 1970.   Because pct_change(freq='BY')  is only for full years, it will not work for the latest year to date.   Although there are other ways of handling it, here we will use the year to date as if we had a full year.  Thus, the annual return for 2020 is return_2020 = adj_close[-1]/adj_close.loc['2020-01-02']-1.  
+In example below, we compute and plot annual returns of S&P 500 since 1970.   Because <span class="coding">pct_change(freq='BY')</span>  is only for full years, it will not work for the latest year to date.   Although there are other ways of handling it, here we will use the year to date as if we had a full year.  Thus, the annual return for 2020 is <span class="coding">return_2020 = adj_close[-1]/adj_close.loc['2020-01-02']-1</span>.  
 <div class="code-head"><span>code</span>Annual Returns.python</div>
 
 ```python
@@ -218,17 +220,62 @@ Figure shows the annual return from 1970 to 2020.  The horizontal dashed line is
   <figcaption>S&P Annual Returns - Sarah Chen</figcaption>
 </figure>
 Before 1984, investing in the S&P 500 stock market seem hardly worth it: roller-coaster-like returns with -29.7% in 1974 and 31.1% in 1975 while the safe 10-year Treasury was averaging between 6% and 12.5%.  
-In 1982, the return from S&P500 was 14.8% when average 10-year Treasury yield was 13.0%.   In quite several years the S&P 500 annual return was terribly negative when one could have gotten safe returns from the government bond.   But after the Financial Crisis in 2009, the stock market annual returns have stayed positive except 2018 and 2020.  
+In 1982, the return from S&P500 was 14.8% when average 10-year Treasury yield was 13.0%.   
+In quite several years the S&P 500 annual return was terribly negative when one could have gotten safe returns from the government bond.   
+But after the Financial Crisis in 2009, the stock market annual returns have stayed positive except 2018 and 2020.  
 <figure>
   <img src="{{ "/images/posts/S&P 500 Annual Return vs Average 10-Year Treasury.png" | relative_url }}">
   <figcaption>S&P 500 Annual Return vs Average 10-Year Treasury - Sarah Chen</figcaption>
 </figure>
 
+History shows us that even investing in the S&P 500 does not always yield great returns.  If we invested on 2000-03-24, the best day of S&P stock prices before 2001, and hold it for twenty years until 2020-02-19, its peak before the market crash prior to the Financial Crisis, our annual rate of return would have been a not-so-amazing 4%.   When computing returns over a period, we usually use adjusted closing price instead of closing price.  We will compute annualized return and continuous annual return.  
 
+In the next example we compute annualized return and continuous annual return.  History shows us that investing in the S&P 500 does not always yield great returns.  If we invested on 2000-03-24, the best day of S&P stock prices before 2001, and held it for about twenty years until the all-time high on 2020-11-14, the annual rate of return would have been a not-so-amazing 4%.    
 
+If you are curious enough to check what was the S&P on 2020-03-24, the twenty-year anniversary, you will find a disappointing 2447, yielding 2.4% annual return.  
 
+Timing is so important. 
 
+When computing returns over a period, adjusted closing price is used.    For those who are following, the peak before coronas virus pandemic was 3386.150 on Feb 19, 2020.   The index went to 3585, about 200 points higher than the peak before the pandemic. 
 
+<div class="code-head"><span>code</span>Annual Rate of Return and Continuous Return.python</div>
 
+```python
+>>> df = pdr.get_data_yahoo('^GSPC', start=datetime(1970,1,1), end=datetime(2020,11,14)['Adj Close']
+>>> df.nlargest(2)
+Out:
+Date
+2020-11-13   3585.150
+2020-09-02   3580.840
+Name: Adj Close, dtype: float64
+>>> df[:'2001'].nlargest(1)
+Out: 
+Date
+2000-03-24   1527.460
+>>> n = df.idxmax().year-df[:'2001'].idxmax().year #20 years
+>>> Annual_return = (df.max()/df[:'2001'].max())**(1/n)-1
+>>> print("{0:.2%}".format(Annual_return))
+Out: 4.36%
 
+>>> continuous_return = np.log(df.max()/df[:'2001'].max())/n
+>>> print("{0:.2%}".format(continuous_return))
+Out: 4.27%
+```
+
+We run a statistical test to see whether returns are normal. The test result shows that return is far from being normal.  Alternative tests (not shown) will come to the same conclusion.  
+
+<div class="code-head"><span>code</span>S&P 500 Daily Return Normality Test.python</div>
+
+```python
+>>> from scipy.stats import norm
+>>> norm_test =stats.anderson(rets.dropna(), dist='norm')
+>>> stat, p = stats.kstest(rets.dropna(), 'norm')
+>>> print('p-value: {0: .4f}'.format(p))
+Out: 0.0000
+>>> sns.distplot(x, fit=norm, kde=False, rug=True)
+```
+<figure>
+  <img src="{{ "/images/posts/Figure 1- 9. Distribution of Return.png" | relative_url }}">
+  <figcaption>S&P 500 Daily Return Normality Test - Sarah Chen</figcaption>
+</figure>
 

@@ -2,27 +2,31 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "Time Series Processing 3"
-description: Examples of manipulating timeseries
+title: "Timeseries processing 3-Rolling Window Statistics"
+description: Rolling window statistics and moving averages
 author: Sarah Chen
-image: images/posts/S&P 500 Historical Prices and Returns.png
+image: images/posts/Moving Averages.png
 
 ---
 
 This post consists of a few timeseries examples from my upcoming book on statistical and machine learning using Python, sequal to my co-authored book [Python for SAS User](https://www.amazon.com/Sarah-Chen/e/B07ZL3Q97B?ref_=dbs_p_pbk_r00_abau_000000)
 
-## Rolling Window Statistics
-Rolling window and resampling statistics are two important time series processing methods.    
-
-**1).** Their first key difference is whether **frequency** changes or not.   
+### Compare rolling with resampling
+Rolling window and resampling are two important time series processing methods.    
+*The first key difference between them is whether **frequency** changes or not.*   *Their second key difference is whether restrict to **datetime indices**.*
 
 In windowing, statistics are calculated from the windowed rows when “expanding” through each row and frequencies are not changed.   
 
 Whereas resampling changes frequencies of the data via up sampling (higher frequency) or down sampling (lower frequency).  In other words, resampling will change the row number count.  For example, when daily observations become monthly, the row count will be reduced by a factor of 1/12. 
 
-**2).** Their second key difference is whether restrict to datetime indices. Resampling is time-based groupby and requires datetime index.  Whereas, rolling window can be applied to any pandas object, not restricted to those with datetime indices. 
+Resampling is time-based groupby and requires datetime index.  Whereas, rolling window can be applied to any pandas object, not restricted to those with datetime indices. 
 
+Resampling and rolling can be used together.  For example,  the following code first sum data by day and then compute seven-day moving average:
+```python
+>>> df.resample("1d").sum().fillna(0).rolling(window=7, min_periods=1).mean()
+```
 
+### Rolling Window Statistics
 Rolling in pandas is implemented both as time-window and count-based, which produce different results when the index is irregular. This could be confusing if not understood properly.  
 
 What we mean by time-window is that the operation is faithful to time, not to observation count.   
@@ -133,7 +137,7 @@ The next example makes the comparisons for irregular datetime index.  Contrastin
 2021-01-07  NaN
 2021-01-08  4.0
 ```
-## Moving Averages
+### Moving Averages
 Moving average is usually calculated using backward window.  This is intuitive because data usually are historical.   
 
 However, backward looking window calculated statistics has a lagging effect due to all but one of the data points are from the past.   
@@ -159,7 +163,7 @@ In the following example, we plot three lines: the grey line is the Bitcoin dail
 </figure>
 
 
-## Moving Averages and Trending Signals
+### Moving Averages and Trending Signals
 Moving averages are often used for identifying trending signals.   For example, real estate investors often use moving averages of real estate prices of metropolitan areas to learn the direction of the market.   Moving averages are routinely used to remove seasonality in timeseries data with strong seasonal effect.   To be able to apply different techniques in moving averages is essential in time series analysis and  feature engineering. 
 
 Example below shows daily closing price, and moving averages in 20, 50, and 200 day rolling window.    The wider the rolling window, the lines are smoother.   
@@ -194,7 +198,7 @@ Example below shows daily closing price, and moving averages in 20, 50, and 200 
 >>> ax.spines['right'].set_visible(False)
 >>> plt.legend(frameon=False)
 ```
-## Moving Average Crossovers
+### Moving Average Crossovers
 Moving average crossovers are used widely in stock trade.  Despite the efficient market hypothesis that markets are supposed to be rational and efficient, traders use moving averages and crossovers for trading strategies.  Warren Buffet probably would not suggest any of these.    Warren Buffet probably would not suggest any of these.  
 
 For technical analysis traders, when price or a shorter-term average crosses longer-term average, if it rises above then it is a buy signal, otherwise a sell signal.    
@@ -261,7 +265,7 @@ Date
 >>>                   xytext=(datetime(2020,4,6),ma_crossing.price[-1]-200), textcoords='data',color='r',arrowprops=dict(arrowstyle="-|>"))
 
 ```
-## Exponentially Smoothing
+###  Exponentially Smoothing
 Exponentially smoothing, also called “exponential weighted average”, is a commonly used smoothing method.   It is like moving average in that both are window functions.   The only difference is that exponential smoothing assign exponentially decreasing weights over time, where the weight is 1- α.  The formula is: 
 <figure>
   <img src="{{ "/images/posts/EMA.png" | relative_url }}">
@@ -316,17 +320,23 @@ sns.set_style("whitegrid")
 sns.set_context("paper")
 sns.lineplot(data= AAPL.iloc[:,5:])
 ```
+
 Notice that the exponentially smoothed (dash-dot lines) are more responsive to daily price than simple moving average (dash lines) because of greater weights on more recent data points.  
 <figure>
   <img src="{{ "/images/posts/Figure 1- 4. MA and EWMA.png" | relative_url }}">
   <figcaption>APPL Moving Average and Exponentially Weighted Moving Average - Sarah Chen</figcaption>
 </figure>
 
+### A Note for SAS Users
 
+SAS users can use <span class="coding">PROC EXPAND</span>, <span class="coding">PROC TIMEDATA</span> or <span class="coding">PROC TIMESERIES</span>, and even <span class="coding">PROC MEANS</span> to manipulate data to any frequency.   
 
+When the window width is an odd number, then there is no difference between SAS <span class="coding">PROC EXPAND CMOVAVE</span> and Python pandas center moving averages.   But when the width is an even number, then they are different.  One more lead value than lag value is included in the time window in <span class="coding">PROC EXPAND CMOVAVE</span>.   
 
+For example, the result of the CMOVAVE 4 operator is:
 
+SAS:   y_t=(x_(t-1)+x_t+x_(t+1)+ x_(t+2))/4
 
+Whereas pandas rolling(4, center = True) takes one more lag than lead. 
 
-
-
+Python: y_t=(x_(t-2)+x_(t-1)+x_t+ x_(t+1))/4
