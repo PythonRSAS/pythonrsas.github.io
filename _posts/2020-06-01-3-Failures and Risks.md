@@ -3,7 +3,7 @@ layout: post
 tag: Assesing risk factor
 category: "credit risk"
 title: "Failures and Risks"
-description: Notes on failures and risk management
+description: Notes on what some great investors say about risk
 author: Sarah Chen
 image: images/posts/IMG-0663.JPG
 ---
