@@ -8,6 +8,26 @@ author: Sarah Chen
 image: images/posts/mobilePaymentRiskControl.JPG
 ---
 
+Mobile wallet 移动钱包 are digital forms of wallet that people carry (or used to carry) in their pockets.  
+
+As we do not tend to carry large amounts of money in wallets, mobile wallets are convenient for small payments (as opposed to payments in larger businesses).
+
+They hold digital information about payments including credit and/or debit card, bank account, pre-paid card, virtual currency information, coupons and loyalty membership, and wallet holder identifications.
+
+A mobile wallet is a software application (app) that does the following:
+
+* Secure enrollment of the holder (application download, identification)
+* Securely s
+tore user information such as phone number, email address, and mailing address
+
+The flow chart below summarizes the history of technology and events that evolve over the last eighty years.
+
+
+<figure>
+  <img src="{{ "/images/posts/paymentHistory.JPG" | relative_url }}" width="800">
+  <figcaption>Mobile Payment History</figcaption>
+</figure>
+
 Faster mobile payments through messaging, social media apps, payment apps, QR code, and even face scan give users a lot of convinience but also opens more room for fraud risk, which has been on the rise.   
 
 There is a Chinese saying "道高一尺,魔高一丈".  The English translation is "While the priest climbs a post, the devil climbs ten." 
@@ -66,11 +86,48 @@ The fraud risk team invest in learning the latest technologies that can take ant
 
 It should have data engineer/scientists, and people who are knowledgeable in investigations and have the sensitivity for identify and explore emerging risks.  
 
-> **Places to learn more**
+In most sports, such as basketball, it takes both good offense and good defense to win.  Same is in business.  We can analogize the fraud protection as defense. 
 
-<!-- TIPS  ** must be at the start and end and no space in between!!! -->
-<!-- * **[NACHA](https://www.nacha.org/){:target="_blank"}** - an organization on payments.
-* **[Banks Payments 2020](https://www.slideshare.net/mohit11/payments-2020-banks-payments){:target="_blank"}**
-* **Vdfumber of Jsksdfkl** - Exercitation irure dolore ullamco ullam voluptate esse qui.
-* **Klsdlf of slll** - Tgkdfg lfgfgd fgkgdfl.
- -->
+
+<figure>
+  <img src="{{ "/images/posts/Defense-Michael-Jordan.jpg" | relative_url }}" width="400">
+  <figcaption>Michael Jordan</figcaption>
+</figure>
+
+
+Higher business growth and better customer service, lower fraud rates than competitors, and optimal operational overhead.  Balancing the three is the goal of  fraud risk management.  
+
+This can only be achieved by having good partnership with internal and external teams, and by having excellent 360 fraud risk functions.
+
+This takes great effort and hard work.  
+
+> **Fraud risk team**
+
+Like the best sports players, to win, the fraud risk team must be very skillful in technology and strategy. 
+
+> **Processes and procedures**
+
+One of the myths of great defense in sports is that players must be fast and quick to be effective defenders.
+In fact, the best defense is played with anticipation and awareness of what’s going on around you, good body balance and basic fundamentals.
+
+Same is true in fraud prevention.  
+
+The fraud prevention process include the following for knowing what's going on:
+
+* Real-time protections: customer authentication,identification and verification; 
+* Transaction monitoring for all contact channels – internet, telephone, mobile, digital and in-person – to gain a holistic customer view.  
+* One consistent and unified view across checks, debit cards, credit cards, ACH, wire transfers, deposits, merchant transactions and digital/online payments, which can also add value for anti-money laundering (AML), credit risk management, marketing and sales efforts, because ctivities that look normal by themselves can appear suspicious when seen in broader context. 
+* One-time passwords or biometrics for strong customer authentication. Geolocation capability and device ID analysis for mobile and digital banking. 
+* Feedback, investigations and recovery: machine learning analysis, fraud case review, root cause analysis, 
+* Investigations and recovery, Network and link analytics for detecting collusion and for AML analysis and investigations. 
+* Wallet provisioning
+* Data visualization dashboards for identifying potentially suspicious events and connections. Reporting and management information 
+
+> **Implementing the analytic fraud risk function**
+
+Implementation should have openness and flexibility in the technology architecture and an API approach so that functions can be extended rather than having to replace.
+
+
+The fraud technology should span account opening, transaction monitoring and network analysis, with broad data sharing and supported by analytics-driven rules and models.
+
+
