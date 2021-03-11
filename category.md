@@ -3,7 +3,7 @@ layout: page-default
 heading: blog
 title: Category Page
 subheading: Personal Website of Sarah Chen
-description: I'm Sarah Chen. Domain expert in banking and insurance.  Loving math and using computers to do things, and super passionate about education for youth (Mandarin Chinese, real world practical and beautiful mathematics, computer programming).
+description: I'm Sarah Chen.  Analytic expert in banking and insurance.
 color: grad-blog
 image: /images/icons/logo.png
 permalink: /category
@@ -72,10 +72,10 @@ permalink: /category
         </div>
         <div class="commercial-real-estates" onclick="location.href='{{ site.baseurl }}/fraud-and-risk';">
           <img src="{{ "/images/icons/real-estate.svg" | relative_url }}"/>
-          <h4>Fraud and Risk</h4>
-          <p>Fraud, AML, ACH and payments.</p>
+          <h4>Other Risks</h4>
+          <p>Risks that financial institutions encounter day to day</p>
           {% for post in site.posts %}
-            {% if post.categories contains 'fraud and risk' %}
+            {% if post.categories contains 'Other Risks' %}
                 {% capture fraud_and_risk_count %} {{ fraud_and_risk_count | plus: 1 }} {% endcapture %}
             {% endif %}
           {% endfor %}

@@ -2,25 +2,24 @@
 layout: post
 tag: fraud risk
 category: "Other Risks"
-title: "Mobile Payment Risk"
-description: The convenience of mobile payments 移动支付 comes with higher payment and fraud risk 风险. 
+title: "Computing-End-User-Risk"
+description: 
 author: Sarah Chen
 image: images/posts/mobilePaymentRiskControl.JPG
 ---
 
-Mobile wallet 移动钱包 are digital forms of wallet that people carry (or used to carry) in their pockets.  
+Computing end user risks are risks that are related to our digital devices and applications that we use on the daily basis for business processes, such as phone/desktop app,many digital tools,and instances (such as Excel template) we build from those tools that others built and maintain.
 
-As we do not tend to carry large amounts of money in wallets, mobile wallets are convenient for small payments (as opposed to payments in larger businesses).
+The inherent risks are:
 
-They hold digital information about payments including credit and/or debit card, bank account, pre-paid card, virtual currency information, coupons and loyalty membership, and wallet holder identifications.
+* Data integrity
+* Unauthorized access
+* Loss of access
+* Unapproved changes
 
-A mobile wallet is a software application (app) that does the following:
+Whether it is a risk or not depends on the perspective of the stakeholders. An Excel template used by an employee to upload data into the internal systems with downstream users is a computing end user risk to the organization.  An Excel template created by the employee for his personal or team use that do not go beyond that team is probably not a risk. 
 
-* Secure enrollment of the holder (application download, identification)
-* Securely s
-tore user information such as phone number, email address, and mailing address
-
-The flow chart below summarizes the history of technology and events that evolve over the last eighty years.
+Large organizations usually have computing end user governance and standards that help minimiize therisk of operational loss due to unintential or malicious use.   The governance team may be headed by a chief data officer. 
 
 
 <figure>

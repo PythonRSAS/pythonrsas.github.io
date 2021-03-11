@@ -12,8 +12,8 @@ image: images/posts/photos/IMG-0630.jpg
    <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
 </figure> 
 
-- Taken from my post in [Raising Smart and Tough Kids](https://www.magicmathmandarin.org/raising-smart-and-tough-kids/) with permission from <a href=" https://www.magicmathmandarin.org/"> Magic Math Mandarin </a>.
-
+<!-- - Taken from my post in [Raising Smart and Tough Kids](https://www.magicmathmandarin.org/raising-smart-and-tough-kids/) with permission from <a href=" https://www.magicmathmandarin.org/"> Magic Math Mandarin </a>.
+ -->
 Children are smart and tough. They don't need adults driving them to kids' golf, yoga, or ballet all week long.  And they surely know what are the most important things in life: the difference between needs and wants, be thankful, respectful, loving and helpful.
 
 How helpful and capable are they? They can assemble treadmill, computers and furniture.  They enjoy the action more than Lego or computer games because of the usefulness in the accomplishments.   
@@ -21,7 +21,7 @@ How helpful and capable are they? They can assemble treadmill, computers and fur
 The ability to think on one's own and the toughness to try to learn to figure things out is very important because the kids will need to be able to do this for most of their lives.
 
 
-- Taken from my post [Innovation in Education](https://www.magicmathmandarin.org/innovation-in-education/) with permission from <a href=" https://www.magicmathmandarin.org/"> Magic Math Mandarin </a>.
+<!-- - Taken from my post [Innovation in Education](https://www.magicmathmandarin.org/innovation-in-education/) with permission from <a href=" https://www.magicmathmandarin.org/"> Magic Math Mandarin </a>. -->
 
 We don’t hear about startups in education in America as we hear about them in other industries. Why? There are multiple reasons. One is the belief that superior education and profit making are conflicting.  Are they?
 

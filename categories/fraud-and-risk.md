@@ -1,6 +1,6 @@
 ---
 layout: page-doc
-title: Fraud and Risk
+title: Other Risks
 subheading: Fraud, AML, ACH and payments.
 description: Fraud, AML, ACH and payments.
 color: grad-blog
@@ -15,7 +15,7 @@ image: https://drive.google.com/uc?id=1edu-wUoFkrMuoemONmOvsIMpnvkAdFXY
       <div class="page-holder">
         <ul>
         {% for post in site.posts %}
-          {% if post.categories contains "fraud and risk" %}
+          {% if post.categories contains "Other Risks" %}
                 <li>
                   <a class="post-link" href="{{ site.baseurl }}{{ post.url }}">
                     <div class="page-treasure-wrapper">

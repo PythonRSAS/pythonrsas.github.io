@@ -148,7 +148,7 @@ In the following example, we plot three lines: the grey line is the Bitcoin dail
 <div class="code-head"><span>code</span>Moving Average Using Rolling Window Backward and Center.python</div>
 
 ```python
- >>> import pandas_datareader.data as pdr
+>>> import pandas_datareader.data as pdr
 >>> BTC = pdr.get_data_yahoo('BTC-USD', start=datetime(2010, 7, 16), end= datetime(2020, 10, 25)
 >>> Close = BTC.loc['2017-07-01':'2020-05-13','Close']
 >>> fig, ax = plt.subplots(1,1, figsize=(12,5))
@@ -162,6 +162,33 @@ In the following example, we plot three lines: the grey line is the Bitcoin dail
   <figcaption>Moving Average Using Rolling Window Backward and Center - Sarah Chen</figcaption>
 </figure>
 
+For SAS, for the moving average of a few data points, using lag function in the data step is sufficient.  But for much longer time windows, we should use <a href="https://support.sas.com/documentation/onlinedoc/ets/141/expand.pdf">PROC EXPAND</a>, or a SAS <a href="https://support.sas.com/kb/25/027.html" target="_blank"> macro </a> with base SAS. 
+
+We will skip the data preparation step. Note that although PROC SORT is not needed here because the data is already in chronological order, it is used as a reminder that the input to <span class="coding">PROC EXPAND</span> must be sorted. Note that the time column, date, must be listed in the <span class="coding">ID</span> statement.
+
+The <span class="coding">CONVERT</span> statement specifies the names of the input and output variables. The <span class="coding">TRANSMOUT=</span> option specifies the method and parameters that are used to compute the rolling statistics.  The <span class="coding">METHOD=NONE</span> option ensures that actual dataare used to compute the moving averages, rather than interpolated values, because the EXPAND procedure fits cubic spline curves to data by default. 
+```sas
+>>> PROC SORT DATA=btc; OUT=btc_sorted;
+>>>   BY date;
+>>> run;
+>>> PROC EXPAND DATA=btc_sorted OUT=out METHOD=NONE;
+>>> ID date;
+>>> CONVERT close = MA   / TRANSOUT=(MOVAVE 60);
+>>> CONVERT close = MA   / TRANSOUT=(CMOVAVE 60);
+>>> CONVERT close = WMA  / TRANSOUT=(MOVAVE(1 2 3 4)); 
+>>> CONVERT close = EWMA / TRANSOUT=(EWMA 0.3);
+>>> RUN;
+>>> PROC SGPLOT DATA=out CYCLEATTRS;
+>>>    SERIES X=date Y=MA   / NAME='MA'   LEGENDLABEL="MA(60)";
+>>>    SERIES X=date Y=MA   / NAME='CMA'   LEGENDLABEL="CMA(60)";
+>>>    SERIES X=date Y=WMA  / NAME='WMA'  LEGENDLABEL="WMA(1,2,3,4)";
+>>>    SERIES X=date Y=EWMA / NAME='EWMA' LEGENDLABEL="EWMA(0.3)";
+>>>    SCATTER X=date Y=y;
+>>>    keylegend 'MA' 'WMA' 'EWMA';
+>>>    XAXIS DISPLAY=(NOLABEL) GRID;
+>>>    YAXIS LABEL="CLOSING PRICE" GRID;
+>>> RUN;
+``` 
 
 ### Moving Averages and Trending Signals
 Moving averages are often used for identifying trending signals.   For example, real estate investors often use moving averages of real estate prices of metropolitan areas to learn the direction of the market.   Moving averages are routinely used to remove seasonality in timeseries data with strong seasonal effect.   To be able to apply different techniques in moving averages is essential in time series analysis and  feature engineering. 
@@ -199,7 +226,7 @@ Example below shows daily closing price, and moving averages in 20, 50, and 200 
 >>> plt.legend(frameon=False)
 ```
 ### Moving Average Crossovers
-Moving average crossovers are used widely in stock trade.  Despite the efficient market hypothesis that markets are supposed to be rational and efficient, traders use moving averages and crossovers for trading strategies.  Warren Buffet probably would not suggest any of these.    Warren Buffet probably would not suggest any of these.  
+Moving average crossovers are used widely in stock trade.  Despite the efficient market hypothesis that markets are supposed to be rational and efficient, traders use moving averages and crossovers for trading strategies.  Warren Buffet probably would not suggest any of these.    
 
 For technical analysis traders, when price or a shorter-term average crosses longer-term average, if it rises above then it is a buy signal, otherwise a sell signal.    
 
@@ -327,9 +354,35 @@ Notice that the exponentially smoothed (dash-dot lines) are more responsive to d
   <figcaption>APPL Moving Average and Exponentially Weighted Moving Average - Sarah Chen</figcaption>
 </figure>
 
+In SAS, using PROC EXPAND is very simple to create exponential moving average.  But we need to provide the weight muliplier instead of window width. 
+
+Weighted multiplier =2÷(selected time period+1) 
+
+For the 5 days EWMA, weight =2÷(5+1) =0.33
+
+For the 20 days EWMA, weight =2÷(20+1) =0.095	
+```sas
+>>> PROC EXPAND DATA=APPL OUT=out METHOD=NONE;
+>>> ID date;
+>>> CONVERT close = MA5   / TRANSOUT=(MOVAVE 5);
+>>> CONVERT close = MA20   / TRANSOUT=(MOVAVE 20);
+>>> CONVERT close = EWMA5 / TRANSOUT=(EWMA 0.3);
+>>> CONVERT close = EWMA20 / TRANSOUT=(EWMA 0.095);
+>>> RUN;
+>>> PROC SGPLOT DATA=out CYCLEATTRS;
+>>>    SERIES X=date Y=MA5   / NAME='MA5'   LEGENDLABEL="MA(5)";
+>>>    SERIES X=date Y=MA20   / NAME='MA20'   LEGENDLABEL="MA(20)";
+>>>    SERIES X=date Y=EWMA5 / NAME='EWMA5' LEGENDLABEL="EWMA(0.3)";
+>>>    SERIES X=date Y=EWMA20 / NAME='EWMA20' LEGENDLABEL="EWMA(0.095)";
+>>>    SCATTER X=date Y=y;
+>>>    keylegend 'MA5' 'MA20' 'EWMA5' 'EWMA20';
+>>>    XAXIS DISPLAY=(NOLABEL) GRID;
+>>>    YAXIS LABEL="CLOSING PRICE" GRID;
+>>> RUN;
+``` 
 ### A Note for SAS Users
 
-SAS users can use <span class="coding">PROC EXPAND</span>, <span class="coding">PROC TIMEDATA</span> or <span class="coding">PROC TIMESERIES</span>, and even <span class="coding">PROC MEANS</span> to manipulate data to any frequency.   
+SAS users can choose <span class="coding">PROC EXPAND</span>, <span class="coding">PROC TIMEDATA</span> or <span class="coding">PROC TIMESERIES</span>, and even <span class="coding">PROC MEANS</span> to manipulate data to any frequency.   
 
 When the window width is an odd number, then there is no difference between SAS <span class="coding">PROC EXPAND CMOVAVE</span> and Python pandas center moving averages.   But when the width is an even number, then they are different.  One more lead value than lag value is included in the time window in <span class="coding">PROC EXPAND CMOVAVE</span>.   
 
