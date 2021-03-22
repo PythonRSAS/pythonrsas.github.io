@@ -23,7 +23,7 @@ Resampling is time-based groupby and requires datetime index.  Whereas, rolling 
 
 Resampling and rolling can be used together.  For example,  the following code first sum data by day and then compute seven-day moving average:
 ```python
->>> df.resample("1d").sum().fillna(0).rolling(window=7, min_periods=1).mean()
+ df.resample("1d").sum().fillna(0).rolling(window=7, min_periods=1).mean()
 ```
 
 ### Rolling Window Statistics
@@ -49,10 +49,10 @@ The third example gives the same result as Example 2 because of specified <span 
 <div class="code-head"><span>code</span>Rolling Count-based Window vs Time-based Window for DatetimeIndex.python</div>
 
 ```python
->>> df = pd.DataFrame({'x': [0, 1, 2, np.nan, 4]},
+ df = pd.DataFrame({'x': [0, 1, 2, np.nan, 4]},
                     index=pd.date_range('20210101',
                     periods=5, freq='d'))
->>> df
+ df
 [Out]:
               x
 2021-01-01  0.0
@@ -61,7 +61,7 @@ The third example gives the same result as Example 2 because of specified <span 
 2021-01-04  NaN
 2021-01-05  4.0
 # Example 1
->>> df.rolling(window = 2).sum()
+ df.rolling(window = 2).sum()
 [Out]:
               x
 2021-01-01  NaN
@@ -70,7 +70,7 @@ The third example gives the same result as Example 2 because of specified <span 
 2021-01-04  NaN
 2021-01-05  NaN
 # Example 2
->>> df.rolling(window = '2d').sum()
+ df.rolling(window = '2d').sum()
 [Out]:
               x
 2021-01-01  0.0
@@ -79,7 +79,7 @@ The third example gives the same result as Example 2 because of specified <span 
 2021-01-04  2.0
 2021-01-05  4.0
 # Example 3
->>> df.rolling(window=2, min_periods=1).sum()
+ df.rolling(window=2, min_periods=1).sum()
 Out[11]:
               x
 2021-01-01  0.0
@@ -93,9 +93,9 @@ The next example makes the comparisons for irregular datetime index.  Contrastin
 <div class="code-head"><span>code</span>Rolling Count-based Window vs Time-based Window for Irregular DatetimeIndex.python</div>
 
 ```python
->>> idx = pd.to_datetime(['2021-01-01', '2021-01-03', '2021-01-05', '2021-01-06','2021-01-08'])
->>> df.index = idx
->>> df
+ idx = pd.to_datetime(['2021-01-01', '2021-01-03', '2021-01-05', '2021-01-06','2021-01-08'])
+ df.index = idx
+ df
 [Out]:
               x
 2021-01-01  0.0
@@ -105,7 +105,7 @@ The next example makes the comparisons for irregular datetime index.  Contrastin
 2021-01-08  4.0
 
 # Example 1
->>> df.rolling(window=2, min_periods=1).sum()
+ df.rolling(window=2, min_periods=1).sum()
 [Out]:
               x
 2021-01-01  0.0
@@ -115,7 +115,7 @@ The next example makes the comparisons for irregular datetime index.  Contrastin
 2021-01-08  4.0
 
 # Example 2
->>> df.rolling(window='2d', min_periods=1).sum()
+ df.rolling(window='2d', min_periods=1).sum()
 [Out]:
               x
 2021-01-01  0.0
@@ -125,7 +125,7 @@ The next example makes the comparisons for irregular datetime index.  Contrastin
 2021-01-08  4.0
 
 # Example 3
->>> df.resample('D').mean()
+ df.resample('D').mean()
 [Out]:
               x
 2021-01-01  0.0
@@ -148,14 +148,14 @@ In the following example, we plot three lines: the grey line is the Bitcoin dail
 <div class="code-head"><span>code</span>Moving Average Using Rolling Window Backward and Center.python</div>
 
 ```python
->>> import pandas_datareader.data as pdr
->>> BTC = pdr.get_data_yahoo('BTC-USD', start=datetime(2010, 7, 16), end= datetime(2020, 10, 25)
->>> Close = BTC.loc['2017-07-01':'2020-05-13','Close']
->>> fig, ax = plt.subplots(1,1, figsize=(12,5))
->>> ax.plot(Close,'grey',label= 'Close' )
->>> ax.plot(Close.rolling(60).mean(),green,alpha=0.5,lw=5, label= 'Center MA 60')
->>> ax.plot(Close.rolling(60,center=True).mean(),blue,alpha=0.5, lw=5,label= 'MA 60')
->>> plt.ylabel('price $')
+ import pandas_datareader.data as pdr
+ BTC = pdr.get_data_yahoo('BTC-USD', start=datetime(2010, 7, 16), end= datetime(2020, 10, 25)
+ Close = BTC.loc['2017-07-01':'2020-05-13','Close']
+ fig, ax = plt.subplots(1,1, figsize=(12,5))
+ ax.plot(Close,'grey',label= 'Close' )
+ ax.plot(Close.rolling(60).mean(),green,alpha=0.5,lw=5, label= 'Center MA 60')
+ ax.plot(Close.rolling(60,center=True).mean(),blue,alpha=0.5, lw=5,label= 'MA 60')
+ plt.ylabel('price $')
 ``` 
 <figure>
   <img src="{{ "/images/posts/Figure 1- 1. Moving Average Using Rolling Window Backward and Center.png" | relative_url }}">
@@ -168,26 +168,26 @@ We will skip the data preparation step. Note that although PROC SORT is not need
 
 The <span class="coding">CONVERT</span> statement specifies the names of the input and output variables. The <span class="coding">TRANSMOUT=</span> option specifies the method and parameters that are used to compute the rolling statistics.  The <span class="coding">METHOD=NONE</span> option ensures that actual dataare used to compute the moving averages, rather than interpolated values, because the EXPAND procedure fits cubic spline curves to data by default. 
 ```sas
->>> PROC SORT DATA=btc; OUT=btc_sorted;
->>>   BY date;
->>> run;
->>> PROC EXPAND DATA=btc_sorted OUT=out METHOD=NONE;
->>> ID date;
->>> CONVERT close = ma   / TRANSOUT=(MOVAVE 60);
->>> CONVERT close = cma   / TRANSOUT=(CMOVAVE 60);
->>> CONVERT close = wma  / TRANSOUT=(MOVAVE(1 2 3 4)); 
->>> CONVERT close = ewma / TRANSOUT=(EWMA 0.3);
->>> RUN;
->>> PROC SGPLOT DATA=out CYCLEATTRS;
->>>    SERIES X=date Y=ma   / NAME='MA'   LEGENDLABEL="MA(60)";
->>>    SERIES X=date Y=cma   / NAME='CMA'   LEGENDLABEL="CMA(60)";
->>>    SERIES X=date Y=wma  / NAME='WMA'  LEGENDLABEL="WMA(1,2,3,4)";
->>>    SERIES X=date Y=ewma / NAME='EWMA' LEGENDLABEL="EWMA(0.3)";
->>>    SCATTER X=date Y=y;
->>>    keylegend 'MA' 'WMA' 'EWMA';
->>>    XAXIS DISPLAY=(NOLABEL) GRID;
->>>    YAXIS LABEL="CLOSING PRICE" GRID;
->>> RUN;
+ PROC SORT DATA=btc; OUT=btc_sorted;
+   BY date;
+ run;
+ PROC EXPAND DATA=btc_sorted OUT=out METHOD=NONE;
+ ID date;
+ CONVERT close = ma   / TRANSOUT=(MOVAVE 60);
+ CONVERT close = cma   / TRANSOUT=(CMOVAVE 60);
+ CONVERT close = wma  / TRANSOUT=(MOVAVE(1 2 3 4)); 
+ CONVERT close = ewma / TRANSOUT=(EWMA 0.3);
+ RUN;
+ PROC SGPLOT DATA=out CYCLEATTRS;
+    SERIES X=date Y=ma   / NAME='MA'   LEGENDLABEL="MA(60)";
+    SERIES X=date Y=cma   / NAME='CMA'   LEGENDLABEL="CMA(60)";
+    SERIES X=date Y=wma  / NAME='WMA'  LEGENDLABEL="WMA(1,2,3,4)";
+    SERIES X=date Y=ewma / NAME='EWMA' LEGENDLABEL="EWMA(0.3)";
+    SCATTER X=date Y=y;
+    keylegend 'MA' 'WMA' 'EWMA';
+    XAXIS DISPLAY=(NOLABEL) GRID;
+    YAXIS LABEL="CLOSING PRICE" GRID;
+ RUN;
 ``` 
 
 ### Moving Averages and Trending Signals
@@ -203,27 +203,27 @@ Example below shows daily closing price, and moving averages in 20, 50, and 200 
 <div class="code-head"><span>code</span>Moving Averages.python</div>
 
 ```python
->>> SP500_data = pdr.get_data_yahoo('^GSPC', start=start, end=date.today())
->>> SP500 = SP500_data.loc['2005':]
->>> ma20 = SP500.Close.rolling(20).mean()
->>> ma50 = SP500.Close.rolling(50).mean()
->>> ma200= SP500.Close.rolling(200).mean()
->>> ma = pd.DataFrame({
->>>     'price':SP500.Close, 
->>>     'ma20': ma20,
->>>     'ma50': ma50,
->>>     'ma200': ma200
->>> })
+ SP500_data = pdr.get_data_yahoo('^GSPC', start=start, end=date.today())
+ SP500 = SP500_data.loc['2005':]
+ ma20 = SP500.Close.rolling(20).mean()
+ ma50 = SP500.Close.rolling(50).mean()
+ ma200= SP500.Close.rolling(200).mean()
+ ma = pd.DataFrame({
+     'price':SP500.Close, 
+     'ma20': ma20,
+     'ma50': ma50,
+     'ma200': ma200
+ })
 # plotting
->>> title = "Moving Averages"
->>> fig, ax = plt.subplots(1,1, figsize=(12,8))
->>> ax.plot(ma.price, label="price" ,alpha=0.8, linestyle=":")
->>> ax.plot(ma['ma20'], label='20-day',alpha=0.8,linestyle="--")
->>> ax.plot(ma['ma50'], label='50-day moving average',alpha=0.8,lw=2)
->>> ax.plot(ma['ma200'], label='200-day moving average',alpha=0.8, lw=3)
->>> ax.spines['top'].set_visible(False)
->>> ax.spines['right'].set_visible(False)
->>> plt.legend(frameon=False)
+ title = "Moving Averages"
+ fig, ax = plt.subplots(1,1, figsize=(12,8))
+ ax.plot(ma.price, label="price" ,alpha=0.8, linestyle=":")
+ ax.plot(ma['ma20'], label='20-day',alpha=0.8,linestyle="--")
+ ax.plot(ma['ma50'], label='50-day moving average',alpha=0.8,lw=2)
+ ax.plot(ma['ma200'], label='200-day moving average',alpha=0.8, lw=3)
+ ax.spines['top'].set_visible(False)
+ ax.spines['right'].set_visible(False)
+ plt.legend(frameon=False)
 ```
 ### Moving Average Crossovers
 Moving average crossovers are used widely in stock trade.  Despite the efficient market hypothesis that markets are supposed to be rational and efficient, traders use moving averages and crossovers for trading strategies.  Warren Buffet probably would not suggest any of these.    
@@ -243,18 +243,18 @@ Although the price did not hit the lowest until March 23, various technical anal
 <div class="code-head"><span>code</span>Moving Averages with Crossovers.python</div>
 
 ```python
->>> from datetime import timedelta
->>> SP500 = SP500_data.loc['2020':]
->>> ma20 = SP500.Close.rolling(20, center = False).mean()
->>> ma = pd.DataFrame({
->>>     'price':SP500.Close, 
->>>     'ma20': ma20})
+ from datetime import timedelta
+ SP500 = SP500_data.loc['2020':]
+ ma20 = SP500.Close.rolling(20, center = False).mean()
+ ma = pd.DataFrame({
+     'price':SP500.Close, 
+     'ma20': ma20})
 # compute crossover dates
->>> larger = ma20 < ma.price
->>> larger_previous = larger.shift(1)
->>> crossing = np.where(abs(larger-larger_previous)==1)
->>> ma_crossing = ma.iloc[crossing].copy()
->>> print(ma_crossing)
+ larger = ma20 < ma.price
+ larger_previous = larger.shift(1)
+ crossing = np.where(abs(larger-larger_previous)==1)
+ ma_crossing = ma.iloc[crossing].copy()
+ print(ma_crossing)
 Out:
               price     ma20
 Date
@@ -264,32 +264,32 @@ Date
 2020-02-24 3225.890 3319.692
 2020-04-06 2663.680 2526.790
 # to prevent 3-day gap, use Friday data instead of Monday
->>> for i in range(ma_crossing.shape[0]):
->>>     if ma_crossing.index[i].weekday()==0:
->>>         ma_crossing.loc[ma_crossing.index[i],'date']= ma_crossing.index[i]-timedelta(days=3)
->>>         ma_crossing.loc[ma_crossing.index[i],'price']= ma.price.loc[ma_crossing.index[i]-timedelta(days=3)]
->>>     else:
->>>         ma_crossing.loc[ma_crossing.index[i],'date']= ma_crossing.index[i]
->>>         ma_crossing.loc[ma_crossing.index[i],'price'] = ma_crossing.loc[ma_crossing.index[i],'price']
+ for i in range(ma_crossing.shape[0]):
+     if ma_crossing.index[i].weekday()==0:
+         ma_crossing.loc[ma_crossing.index[i],'date']= ma_crossing.index[i]-timedelta(days=3)
+         ma_crossing.loc[ma_crossing.index[i],'price']= ma.price.loc[ma_crossing.index[i]-timedelta(days=3)]
+     else:
+         ma_crossing.loc[ma_crossing.index[i],'date']= ma_crossing.index[i]
+         ma_crossing.loc[ma_crossing.index[i],'price'] = ma_crossing.loc[ma_crossing.index[i],'price']
 
->>> title = "S&P 500 Closing Price Crossover 20-day Moving Average"
->>> fig, ax = plt.subplots(1,1, figsize=(12,8))
->>> ax.plot(ma.price, label="price" ,alpha=0.8, linestyle=":")
->>> ax.plot(ma['ma20'], label='20-day',alpha=0.8,linestyle="--",marker="o")
->>> ax.vlines(ma_crossing.date,ma_crossing.price-150, ma_crossing.price+150,linestyle='--')
+ title = "S&P 500 Closing Price Crossover 20-day Moving Average"
+ fig, ax = plt.subplots(1,1, figsize=(12,8))
+ ax.plot(ma.price, label="price" ,alpha=0.8, linestyle=":")
+ ax.plot(ma['ma20'], label='20-day',alpha=0.8,linestyle="--",marker="o")
+ ax.vlines(ma_crossing.date,ma_crossing.price-150, ma_crossing.price+150,linestyle='--')
 ```
 
 <div class="code-head"><span>code</span>S&P 500 Closing Price Crossover 20-day Moving Average.python</div>
 
 ```python
->>> title = "S&P 500 Closing Price Crossover 20-day Moving Average"
->>> fig, ax = plt.subplots(1,1, figsize=(12,8))
->>> ax.plot(ma.price, label="price" ,alpha=0.8, linestyle=":")
->>> ax.plot(ma['ma20'], label='20-day',alpha=0.8,linestyle="--",marker="o")
->>> ax.vlines(ma_crossing.date,ma_crossing.price-50, ma_crossing.price+50,linestyle='--',color="0.5")
->>> ax.annotate("Sell signal", xy=(ma_crossing.date[-2],ma_crossing.price[-2]), xycoords='data', xytext=(datetime(2020,2,10),ma_crossing.price[-3]-200), textcoords='data',color='r', arrowprops=dict(fc='k', arrowstyle="-|>"))
->>> ax.annotate("Buy signal", xy=(ma_crossing.date[-1],ma_crossing.price[-1]+2), xycoords='data',
->>>                   xytext=(datetime(2020,4,6),ma_crossing.price[-1]-200), textcoords='data',color='r',arrowprops=dict(arrowstyle="-|>"))
+ title = "S&P 500 Closing Price Crossover 20-day Moving Average"
+ fig, ax = plt.subplots(1,1, figsize=(12,8))
+ ax.plot(ma.price, label="price" ,alpha=0.8, linestyle=":")
+ ax.plot(ma['ma20'], label='20-day',alpha=0.8,linestyle="--",marker="o")
+ ax.vlines(ma_crossing.date,ma_crossing.price-50, ma_crossing.price+50,linestyle='--',color="0.5")
+ ax.annotate("Sell signal", xy=(ma_crossing.date[-2],ma_crossing.price[-2]), xycoords='data', xytext=(datetime(2020,2,10),ma_crossing.price[-3]-200), textcoords='data',color='r', arrowprops=dict(fc='k', arrowstyle="-|>"))
+ ax.annotate("Buy signal", xy=(ma_crossing.date[-1],ma_crossing.price[-1]+2), xycoords='data',
+                   xytext=(datetime(2020,4,6),ma_crossing.price[-1]-200), textcoords='data',color='r',arrowprops=dict(arrowstyle="-|>"))
 
 ```
 ###  Exponentially Smoothing
@@ -305,22 +305,22 @@ We demonstrate the use of simple moving average and EWMA in two examples.
 <div class="code-head"><span>code</span>Bitcoin 60-day Moving Average and Exponentially Weighted Moving Average.python</div>
 
 ```python
->>> import matplotlib.ticker as ticker
->>> import matplotlib.dates as mdates
->>> from matplotlib.ticker import NullFormatter
->>> from matplotlib.dates import MonthLocator, DateFormatter
->>> Close = BTC.loc['2020':'2020-05-13','Close']
->>> ma60 = Close.rolling(60, min_periods=1).mean()
->>> EMA =  Close.ewm(span=60).mean()
->>> title = 'Bitcoin EMA and SMA'
->>> fig, ax = plt.subplots(1,1, figsize=(12,5))
->>> ax.plot(Close,'grey',linestyle=':',label= 'Price')
->>> ax.plot(EMA,green,lw=3,linestyle="--", label= 'EMA 60')
->>> ax.plot(ma60,blue, lw=2,label= 'SMA 60')
->>> ax.xaxis.set_major_locator(MonthLocator())
->>> ax.xaxis.set_minor_locator(MonthLocator(bymonthday=15))
->>> ax.xaxis.set_major_formatter(NullFormatter())
->>> ax.xaxis.set_minor_formatter(DateFormatter('%b'))
+ import matplotlib.ticker as ticker
+ import matplotlib.dates as mdates
+ from matplotlib.ticker import NullFormatter
+ from matplotlib.dates import MonthLocator, DateFormatter
+ Close = BTC.loc['2020':'2020-05-13','Close']
+ ma60 = Close.rolling(60, min_periods=1).mean()
+ EMA =  Close.ewm(span=60).mean()
+ title = 'Bitcoin EMA and SMA'
+ fig, ax = plt.subplots(1,1, figsize=(12,5))
+ ax.plot(Close,'grey',linestyle=':',label= 'Price')
+ ax.plot(EMA,green,lw=3,linestyle="--", label= 'EMA 60')
+ ax.plot(ma60,blue, lw=2,label= 'SMA 60')
+ ax.xaxis.set_major_locator(MonthLocator())
+ ax.xaxis.set_minor_locator(MonthLocator(bymonthday=15))
+ ax.xaxis.set_major_formatter(NullFormatter())
+ ax.xaxis.set_minor_formatter(DateFormatter('%b'))
 ```
 <figure>
   <img src="{{ "/images/posts/Bitcoin EMA and SMA.png" | relative_url }}">
@@ -362,23 +362,23 @@ For the 5 days EWMA, weight =2÷(5+1) =0.33
 
 For the 20 days EWMA, weight =2÷(20+1) =0.095	
 ```sas
->>> PROC EXPAND DATA=APPL OUT=out METHOD=NONE;
->>> ID date;
->>> CONVERT close = MA5   / TRANSOUT=(MOVAVE 5);
->>> CONVERT close = MA20   / TRANSOUT=(MOVAVE 20);
->>> CONVERT close = EWMA5 / TRANSOUT=(EWMA 0.3);
->>> CONVERT close = EWMA20 / TRANSOUT=(EWMA 0.095);
->>> RUN;
->>> PROC SGPLOT DATA=out CYCLEATTRS;
->>>    SERIES X=date Y=MA5   / NAME='MA5'   LEGENDLABEL="MA(5)";
->>>    SERIES X=date Y=MA20   / NAME='MA20'   LEGENDLABEL="MA(20)";
->>>    SERIES X=date Y=EWMA5 / NAME='EWMA5' LEGENDLABEL="EWMA(0.3)";
->>>    SERIES X=date Y=EWMA20 / NAME='EWMA20' LEGENDLABEL="EWMA(0.095)";
->>>    SCATTER X=date Y=y;
->>>    keylegend 'MA5' 'MA20' 'EWMA5' 'EWMA20';
->>>    XAXIS DISPLAY=(NOLABEL) GRID;
->>>    YAXIS LABEL="CLOSING PRICE" GRID;
->>> RUN;
+ PROC EXPAND DATA=APPL OUT=out METHOD=NONE;
+ ID date;
+ CONVERT close = MA5   / TRANSOUT=(MOVAVE 5);
+ CONVERT close = MA20   / TRANSOUT=(MOVAVE 20);
+ CONVERT close = EWMA5 / TRANSOUT=(EWMA 0.3);
+ CONVERT close = EWMA20 / TRANSOUT=(EWMA 0.095);
+ RUN;
+ PROC SGPLOT DATA=out CYCLEATTRS;
+    SERIES X=date Y=MA5   / NAME='MA5'   LEGENDLABEL="MA(5)";
+    SERIES X=date Y=MA20   / NAME='MA20'   LEGENDLABEL="MA(20)";
+    SERIES X=date Y=EWMA5 / NAME='EWMA5' LEGENDLABEL="EWMA(0.3)";
+    SERIES X=date Y=EWMA20 / NAME='EWMA20' LEGENDLABEL="EWMA(0.095)";
+    SCATTER X=date Y=y;
+    keylegend 'MA5' 'MA20' 'EWMA5' 'EWMA20';
+    XAXIS DISPLAY=(NOLABEL) GRID;
+    YAXIS LABEL="CLOSING PRICE" GRID;
+ RUN;
 ``` 
 ### A Note for SAS Users
 
