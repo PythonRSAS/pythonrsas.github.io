@@ -95,14 +95,14 @@ Dolor cillum voluptate mollit laborum voluptate anim dolore dolor sunt eiusmod d
 <div class="code-head"><span>code</span>from-doc-site.py</div>
 
 ```python
->>> import math
->>> raw_data = [56.2, float('NaN'), 51.7, 55.3, 52.5, float('NaN'), 47.8]
->>> filtered_data = []
->>> for value in raw_data:
+ import math
+ raw_data = [56.2, float('NaN'), 51.7, 55.3, 52.5, float('NaN'), 47.8]
+ filtered_data = []
+ for value in raw_data:
 ...     if not math.isnan(value):
 ...         filtered_data.append(value)
 ...
->>> filtered_data
+ filtered_data
 [56.2, 51.7, 55.3, 52.5, 47.8]
 ```
 

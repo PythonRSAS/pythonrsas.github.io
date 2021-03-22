@@ -57,10 +57,10 @@ For regular dateimeIndex, to get the same results from count-based and time-base
 <div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
 
 ```python
->>> df = pd.DataFrame({'x': [0, 1, 2, np.nan, 4]},
+ df = pd.DataFrame({'x': [0, 1, 2, np.nan, 4]},
                     index=pd.date_range('20200101',
                     periods=5, freq='d'))
->>> df
+ df
 [Out]:
               x
 2020-01-01  0.0
@@ -70,7 +70,7 @@ For regular dateimeIndex, to get the same results from count-based and time-base
 2020-01-05  4.0
 
 # Example 1
->>> df.rolling(window = 2).sum()
+ df.rolling(window = 2).sum()
 [Out]:
               x
 2020-01-01  NaN
@@ -80,7 +80,7 @@ For regular dateimeIndex, to get the same results from count-based and time-base
 2020-01-05  NaN
 
 # Example 2
->>> df.rolling(window = '2d').sum()
+ df.rolling(window = '2d').sum()
 [Out]:
               x
 2020-01-01  0.0
@@ -90,7 +90,7 @@ For regular dateimeIndex, to get the same results from count-based and time-base
 2020-01-05  4.0
 
 # Example 3
->>> df.rolling(window='2d', min_periods=None).sum()
+ df.rolling(window='2d', min_periods=None).sum()
 [Out]:
               x
 2020-01-01  0.0
@@ -100,7 +100,7 @@ For regular dateimeIndex, to get the same results from count-based and time-base
 2020-01-05  4.0
 
 # Example 4
->>> df.rolling(window='2d', min_periods=2).sum()
+ df.rolling(window='2d', min_periods=2).sum()
 [Out]:
               x
 2020-01-01  NaN
@@ -110,7 +110,7 @@ For regular dateimeIndex, to get the same results from count-based and time-base
 2020-01-05  NaN
 
 # Example 5
->>> df.rolling(window='2d', min_periods=1).sum()
+ df.rolling(window='2d', min_periods=1).sum()
 Out[9]:
               x
 2020-01-01  0.0
@@ -120,7 +120,7 @@ Out[9]:
 2020-01-05  4.0
 
 # Example 6
->>> df.rolling(window=2, min_periods=1).sum()
+ df.rolling(window=2, min_periods=1).sum()
 Out[11]:
               x
 2020-01-01  0.0
@@ -133,9 +133,9 @@ In the example below makes the comparisons for irregular datetime index.  Contra
 <div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Irregular DatetimeIndex.py</div>
 
 ```python
->>> idx = pd.to_datetime(['2020-01-01', '2020-01-03', '2020-01-05', '2020-01-06','2020-01-08'])
->>> df.index = idx
->>> df
+ idx = pd.to_datetime(['2020-01-01', '2020-01-03', '2020-01-05', '2020-01-06','2020-01-08'])
+ df.index = idx
+ df
 [Out]:
               x
 2020-01-01  0.0
@@ -145,7 +145,7 @@ In the example below makes the comparisons for irregular datetime index.  Contra
 2020-01-08  4.0
 
 # Example 1
->>> df.rolling(window=2, min_periods=1).sum()
+ df.rolling(window=2, min_periods=1).sum()
 [Out]:
               x
 2020-01-01  0.0
@@ -155,7 +155,7 @@ In the example below makes the comparisons for irregular datetime index.  Contra
 2020-01-08  4.0
 
 # Example 2
->>> df.rolling(window='2d', min_periods=1).sum()
+ df.rolling(window='2d', min_periods=1).sum()
 [Out]:
               x
 2020-01-01  0.0
@@ -165,7 +165,7 @@ In the example below makes the comparisons for irregular datetime index.  Contra
 2020-01-08  4.0
 
 # Example 3
->>> df.resample('D').mean()
+ df.resample('D').mean()
 [Out]:
               x
 2020-01-01  0.0
@@ -192,11 +192,11 @@ The lagging effect of backward moving window may be undesirable depending on pur
 <div class="code-head"><span>code</span> Moving Average Historical Bitcoin Prices using pandas Rolling.py</div>
 
 ```python
->>> ma60_center = df.High.rolling(60, center = True)
->>> ma60_back = df.High.rolling(60, center = False)
->>> ma = pd.DataFrame({'price':df.High, '60 day moving 
+ ma60_center = df.High.rolling(60, center = True)
+ ma60_back = df.High.rolling(60, center = False)
+ ma = pd.DataFrame({'price':df.High, '60 day moving 
 average': ma60_back.mean(), '60 day center moving average': ma60_center.mean()})
->>> ma.loc['2017':,:].plot(title="daily price, 60-day moving 
+ ma.loc['2017':,:].plot(title="daily price, 60-day moving 
 average and center moving average") 
 ```
 Figure 9-3. Moving Average Using Rolling Window Backward and Center
@@ -221,7 +221,7 @@ In the example below we provide the example in SAS to perform moving average and
 <div class="code-head"><span>code</span> Moving Averages in SAS PROC EXPAND.sas</div>
 
 ```sas
->>> PROC EXPAND DATA=df METHOD=NONE;
+ PROC EXPAND DATA=df METHOD=NONE;
 ID date; 
 CONVERT price = movave60 /  
 TRANSFORMIN=(SETMISS 0) TRANSFORMOUT=(MOVAVE 60);
@@ -241,18 +241,18 @@ The different effects of closed are best understood through an example.  In exam
 <div class="code-head"><span>code</span> Different Kinds of Closed Rolling Windows when Time Index is Evenly Spaced.py</div>
 
 ```python
->>> df = pd.DataFrame({'x': [1,1,1,1,3]}, index =   
+ df = pd.DataFrame({'x': [1,1,1,1,3]}, index =   
     [pd.Timestamp('20200101 09:00:01'),
      pd.Timestamp('20200101 09:00:02'),
      pd.Timestamp('20200101 09:00:03'),
      pd.Timestamp('20200101 09:00:04'),
      pd.Timestamp('20200101 09:00:05')])
->>> df["default"] = df.rolling('4s').x.sum().astype(int)
->>> df["left"] = df.rolling('4s', closed='left').x.sum()
->>> df["both"] = df.rolling('4s', closed='both').x.sum()
->>> df["right"] = df.rolling('4s', closed='right').x.sum()
->>> df["neither"] = df.rolling('4s', closed='neither').x.sum()
->>> df
+ df["default"] = df.rolling('4s').x.sum().astype(int)
+ df["left"] = df.rolling('4s', closed='left').x.sum()
+ df["both"] = df.rolling('4s', closed='both').x.sum()
+ df["right"] = df.rolling('4s', closed='right').x.sum()
+ df["neither"] = df.rolling('4s', closed='neither').x.sum()
+ df
 [Out]:
                      x  default  left  both  right  neither
 2020-01-01 09:00:01  1        1   NaN   1.0    1.0      NaN
@@ -265,17 +265,17 @@ We now change the last example slightly and run all the above code again.  The o
 <div class="code-head"><span>code</span> Different Kinds of Closed Rolling Windows when there is Gap in Time Index.py</div>
 
 ```python
->>> df = pd.DataFrame({'x': [1,1,1,1,3]}, index =   
+ df = pd.DataFrame({'x': [1,1,1,1,3]}, index =   
     [pd.Timestamp('20200101 09:00:01'),
      pd.Timestamp('20200101 09:00:02'),
      pd.Timestamp('20200101 09:00:03'),
      pd.Timestamp('20200101 09:00:04'),
      pd.Timestamp('20200101 09:00:07')])
->>> df["left"] = df.rolling('4s', closed='left').x.sum()
->>> df["both"] = df.rolling('4s', closed='both').x.sum()
->>> df["right"] = df.rolling('4s', closed='right').x.sum()
->>> df["neither"] = df.rolling('4s', closed='neither').x.sum()
->>> df
+ df["left"] = df.rolling('4s', closed='left').x.sum()
+ df["both"] = df.rolling('4s', closed='both').x.sum()
+ df["right"] = df.rolling('4s', closed='right').x.sum()
+ df["neither"] = df.rolling('4s', closed='neither').x.sum()
+ df
 [Out]:
                      x  default  left  both  right  neither
 2020-01-01 09:00:01  1        1   NaN   1.0    1.0      NaN
@@ -292,10 +292,10 @@ In the first example, a triangular window is used by specifying <span class="cod
 <div class="code-head"><span>code</span> Using win_type in Rolling Window.py</div>
 
 ```python
->>> df = pd.DataFrame({'x': [0, 1, 2, np.nan, 4]},
+ df = pd.DataFrame({'x': [0, 1, 2, np.nan, 4]},
     ...:                     index=pd.date_range('20200101',^M
     ...:                     periods=5, freq='d'))
->>> df.rolling(window = 2,min_periods=1, 
+ df.rolling(window = 2,min_periods=1, 
 win_type='triang').sum()
 [Out]:
               x
@@ -305,7 +305,7 @@ win_type='triang').sum()
 2020-01-04  1.0
 2020-01-05  2.0
 
->>> df.rolling(2,min_periods=1, win_type='boxcar').sum()
+ df.rolling(2,min_periods=1, win_type='boxcar').sum()
 [Out]:
               x
 2020-01-01  0.0

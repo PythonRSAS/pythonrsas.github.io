@@ -27,13 +27,13 @@ In the following example below, we use <span class='coding'>df[~df.index.duplica
 <div class="code-head"><span>code</span> Shifting Data and Index.py</div>
 
 ```python
->>> pd.options.mode.chained_assignment = None  #default='warn'
->>> df['shift7'] = df.High.shift(7)
->>> df = df[~df.index.duplicated(keep='first')]
->>> df = df.asfreq('D')  #set freq
->>> df['tshift7'] = df.High.tshift(7)
->>> plt.style.use('fivethirtyeight')
->>> df.loc['2018',['High','shift7',
+ pd.options.mode.chained_assignment = None  #default='warn'
+ df['shift7'] = df.High.shift(7)
+ df = df[~df.index.duplicated(keep='first')]
+ df = df.asfreq('D')  #set freq
+ df['tshift7'] = df.High.tshift(7)
+ plt.style.use('fivethirtyeight')
+ df.loc['2018',['High','shift7',
 'tshift7']].plot(title='Daily price High,
 7 day shift and tshift')
 ```
@@ -46,7 +46,7 @@ However, if we look at the data in detail, we can see the subtle difference as s
 <div class="code-head"><span>code</span> Shifting Data and DatetimeIndex in pandas.py</div>
 
 ```python
->>> df.loc[:,['High','shift7', 'tshift7']].tail(15)
+ df.loc[:,['High','shift7', 'tshift7']].tail(15)
 [Out]:
     High    shift7  tshift7
 Date
@@ -81,23 +81,23 @@ In this example,  <span class="coding">METHOD=NONE</span> and <span class="codin
 <div class="code-head"><span>code</span> Creating Leads and Lags in SAS.sas</div>
 
 ```sas
->>> ODS GRAPHICS ON;
->>> PROC EXPAND DATA =df METHOD=NONE
->>> OUT = df_shifted
->>> PLOTS=ALL;
->>> CONVERT High = lead7/TRANSFORMIN=(SETMISS 0)
->>> TRANSFORMOUT = (LEAD 7);
->>> CONVERT High = shift7/TRANSFORMIN=(SETMISS 0)
->>> TRANSFORMOUT = (LAG 7);
->>> ID date;
->>> RUN;
->>> ODS GRAPHICS OFF;
+ ODS GRAPHICS ON;
+ PROC EXPAND DATA =df METHOD=NONE
+ OUT = df_shifted
+ PLOTS=ALL;
+ CONVERT High = lead7/TRANSFORMIN=(SETMISS 0)
+ TRANSFORMOUT = (LEAD 7);
+ CONVERT High = shift7/TRANSFORMIN=(SETMISS 0)
+ TRANSFORMOUT = (LAG 7);
+ ID date;
+ RUN;
+ ODS GRAPHICS OFF;
 
->>> PROC SORT DATA=df;
->>> BY date;
->>> RUN;
->>> DATA df_shifted;
->>> SET df;
->>> High_lag7 = lag7(High);
->>> RUN;
+ PROC SORT DATA=df;
+ BY date;
+ RUN;
+ DATA df_shifted;
+ SET df;
+ High_lag7 = lag7(High);
+ RUN;
 ```

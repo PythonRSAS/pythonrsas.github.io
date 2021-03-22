@@ -73,9 +73,9 @@ This can be achieved in pandas easily with <span class="coding">groupby</span>. 
 <div class="code-head"><span>code</span>groupyby.py</div>
 
 ```python 
->>> summarized = df.groupby(['com_a','year','result_of_a']).count().
+ summarized = df.groupby(['com_a','year','result_of_a']).count().
   unstack().fillna(0).sort_index(ascending=[False,True])
->>> summarized
+ summarized
 ```
 Although the column names are not exactly the same as the questioner asked for, we have accomplished most of what’s been asked for.
 

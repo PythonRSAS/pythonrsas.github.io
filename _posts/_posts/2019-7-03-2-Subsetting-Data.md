@@ -20,7 +20,7 @@ Recall a tuple is an immutable sequence of items enclosed by parenthesis. As a c
 <div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
 
 ```python
->>> tickets.loc[(slice(None), 3), :]
+ tickets.loc[(slice(None), 3), :]
 Area        City       Rural       Suburbs
 When         Day Night   Day Night     Day Night
 Year Month
@@ -40,7 +40,7 @@ Consider the request for all years and months 2 and 3 as the row slicer in Listi
 <div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
 
 ```python
->>> tickets.loc[(slice(None), slice(2,3)), :]
+ tickets.loc[(slice(None), slice(2,3)), :]
 Area        City       Rural       Suburbs
 When         Day Night   Day Night     Day Night
 Year Month
@@ -65,9 +65,9 @@ Listing 4-39. IndexSlice Object
 <div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
 
 ```python
->>> idx = pd.IndexSlice
->>> tickets.loc[idx[2015:2018, 2:3], :]
->>>
+ idx = pd.IndexSlice
+ tickets.loc[idx[2015:2018, 2:3], :]
+
 Area        City       Rural       Suburbs
 When         Day Night   Day Night     Day Night
 Year Month
@@ -89,8 +89,8 @@ Listing 4-40, Slicing Rows and Columns, Example 1
 <div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
 
 ```python
->>> idx = pd.IndexSlice
->>> tickets.loc[idx[2018:, 2:3 ], 'City' : 'Rural']
+ idx = pd.IndexSlice
+ tickets.loc[idx[2018:, 2:3 ], 'City' : 'Rural']
 Area        City       Rural
 When         Day Night   Day Night
 Year Month
@@ -105,8 +105,8 @@ Listing 4-41. Slicing Rows and Slicing Columns, Example 2
 <div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
 
 ```python
->>> idx = pd.IndexSlice
->>> tickets.loc[idx[2018:, 2:3 ], idx['City', 'Day' : 'Night']]
+ idx = pd.IndexSlice
+ tickets.loc[idx[2018:, 2:3 ], idx['City', 'Day' : 'Night']]
 Area        City
 When         Day Night
 Year Month
@@ -125,8 +125,8 @@ Listing 4-42. Conditional Slicing
 <div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
 
 ```python
->>> mask = tickets[('City' ,'Day' )] > 25
->>> tickets.loc[idx[mask], idx['City', 'Day']]
+ mask = tickets[('City' ,'Day' )] > 25
+ tickets.loc[idx[mask], idx['City', 'Day']]
 Year  Month
 2017  3        31.0
 2018  2        35.0
@@ -140,8 +140,8 @@ Listing 4-43. DataFrame where Attribute
 <div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
 
 ```python
->>> missing = "XXX"
->>> tickets.where(tickets> 30, other = missing)
+ missing = "XXX"
+ tickets.where(tickets> 30, other = missing)
 Area       City       Rural       Suburbs
 When        Day Night   Day Night     Day Night
 Year Month
@@ -168,7 +168,7 @@ Listing 4-44.  xs Cross Section, Example 1
 <div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
 
 ```python
->>> tickets.xs((1), level='Month')
+ tickets.xs((1), level='Month')
 Area  City       Rural       Suburbs
 When   Day Night   Day Night     Day Night
 Year
@@ -209,7 +209,7 @@ Listing 4-46. xs Cross Section, Example 3
 <div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
 
 ```python
->>> tickets.xs(('Day'), level='When', axis = 1).sum()
+ tickets.xs(('Day'), level='When', axis = 1).sum()
 Area
 City       178.0
 Rural      164.0

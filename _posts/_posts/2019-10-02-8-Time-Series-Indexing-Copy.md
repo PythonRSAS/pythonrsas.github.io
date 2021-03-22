@@ -28,8 +28,8 @@ The example below illustrates how a list of objects with mixed formats is automa
 <div class="code-head"><span>code</span>Pandas DatetimeIndex.py</div>
 
 ```python
->>> dates = ['1-02-2020', '4-1-2020','2020-07-04', '4th of July, 2020', '2020-12-31']
->>> pd.to_datetime(dates, dayfirst=False)
+ dates = ['1-02-2020', '4-1-2020','2020-07-04', '4th of July, 2020', '2020-12-31']
+ pd.to_datetime(dates, dayfirst=False)
 [Out]: DatetimeIndex(['2020-01-02', '2020-04-01', 
 '2020-07-04', '2020-07-04', '2020-12-31'],
      dtype='datetime64[ns]', freq=None)
@@ -42,7 +42,7 @@ SAS date or time are stored internally in numbers and represented according to f
 <div class="code-head"><span>code</span>SAS Date Time and Datetime Stamps.sas</div>
 
 ```sas
->>> DATA _NULL_;
+ DATA _NULL_;
     d1=DATE();
     t1=TIME();
     dt1=datetime();
@@ -57,17 +57,17 @@ As mentioned earlier, pandas is built on top of numpy.  Vectorized operations fr
 <div class="code-head"><span>code</span>Vectorized Operation on Timestamp.py</div>
 
 ```python
->>> date1= pd.Timestamp('2020-01-02')
->>> date1 + pd.to_timedelta(np.arange(3),'D')
+ date1= pd.Timestamp('2020-01-02')
+ date1 + pd.to_timedelta(np.arange(3),'D')
 Out:  DatetimeIndex(['2020-01-02', '2020-01-03', '2020-01-04'], dtype='datetime64[ns]', freq=None)
 ```
 Base SAS does not have vectorized operations.  To create similar output, one may write a simple loop such as the one below:
 <div class="code-head"><span>code</span>SAS Date Time Sequence.sas</div>
 
 ```sas
->>> %let start = 02Jan2020;
->>> %let end = 04Jan2020;
->>> DATA _null_;
+ %let start = 02Jan2020;
+ %let end = 04Jan2020;
+ DATA _null_;
   DO date="&start"d  to "&end"d;
     PUT date YYMMDD10.;
   END;
@@ -84,14 +84,14 @@ It is time for a real life example.  We use Python library <span class="coding" 
 <div class="code-head"><span>code</span> Bitcoin Historical Prices using DatetimeIndex.py</div>
 
 ```python
->>> import pandas_datareader.data as pdr
->>> import matplotlib.pyplot as plt
->>> import datetime
->>> df = pdr.get_data_yahoo('BTC-USD', 
+ import pandas_datareader.data as pdr
+ import matplotlib.pyplot as plt
+ import datetime
+ df = pdr.get_data_yahoo('BTC-USD', 
 start=datetime.datetime(2010, 7, 16), 
 end=datetime.date.today())
->>> df.drop('Adj Close', axis=1, inplace=True) 
->>> df.tail()
+ df.drop('Adj Close', axis=1, inplace=True) 
+ df.tail()
 [Out]:
                High      Low     Open    Close     Volume
 Date
@@ -101,11 +101,11 @@ Date
 2019-08-14  10451.6   9497.1  10031.9  10264.7  840141301
 2019-08-17  10381.5  10231.4  10360.4  10256.5   18056754 
 
->>> <span class="coding">df.index.inferred_freq </span>
+ <span class="coding">df.index.inferred_freq </span>
 #retruns nothing because freq is irregular
 
 # the dates when the maximum took place
->>> df.idxmax(axis=0, skipna=True)
+ df.idxmax(axis=0, skipna=True)
 [Out]:
 High        2017-12-17
 Low         2017-12-17
@@ -114,10 +114,10 @@ Close       2017-12-16
 Volume      2017-12-22
 dtype: datetime64[ns]
 
->>> pd.options.display.float_format = '{:20,.1f}'.format 
+ pd.options.display.float_format = '{:20,.1f}'.format 
 
->>> df1 = df.loc["2017-12-17":"2017-12-22",df.columns.isin(['High','Low'])]
->>> df1
+ df1 = df.loc["2017-12-17":"2017-12-22",df.columns.isin(['High','Low'])]
+ df1
 [Out]:
                            High                  Low
 Date
@@ -128,7 +128,7 @@ Date
 2017-12-21               17,302               14,953
 2017-12-22               15,824               10,876
 
->>> df.loc["2018",df.columns.isin(['High','Low'])].
+ df.loc["2018",df.columns.isin(['High','Low'])].
 plot(title="Bitcoin 2018 daily high and low price timeseries")
 ```
 <figure>
@@ -142,19 +142,19 @@ Recall that for pandas, a Period is a bounded time segment, i.e. time span, unif
 <div class="code-head"><span>code</span> Constructing PeriodIndex Object using pd.PeriodIndex() and pd.period_range().py</div>
 
 ```python
->>> dates = ['2020-01-02', '2020-4-1','2020-07-04', '2020-12-31']
->>> periodIndexDay = pd.PeriodIndex(dates, freq='D')
->>> periodIndexDay
+ dates = ['2020-01-02', '2020-4-1','2020-07-04', '2020-12-31']
+ periodIndexDay = pd.PeriodIndex(dates, freq='D')
+ periodIndexDay
 [Out]: PeriodIndex(['2020-01-02', '2020-04-01', '2020-07-04', '2020-12-31'], dtype='period[D]', freq='D')
 
->>> pd.PeriodIndex(dates, freq='M')
+ pd.PeriodIndex(dates, freq='M')
 [Out]: PeriodIndex(['2020-01', '2020-04', '2020-07', '2020-12'], dtype='period[M]', freq='M')
 
->>> pd.PeriodIndex(dates, freq='Q')
+ pd.PeriodIndex(dates, freq='Q')
 [Out]: PeriodIndex(['2020Q1', '2020Q2', '2020Q3', '2020Q4'], dtype='period[Q-DEC]', freq='Q-DEC')
 
->>> idx = pd.period_range('2020','2022', freq='Q')
->>> idx
+ idx = pd.period_range('2020','2022', freq='Q')
+ idx
 [Out]: PeriodIndex(['2020Q1', '2020Q2', '2020Q3', '2020Q4', '2021Q1', '2021Q2',
              '2021Q3', '2021Q4', '2022Q1'],dtype='period[Q-DEC]', freq='Q-DEC')
 ```
@@ -166,18 +166,18 @@ Conversely, <span class='coding'>PeriodIndex</span> can be converted to <span cl
 <div class="code-head"><span>code</span> Converting between Period index and  DatetimeIndex.py</div>
 
 ```python
->>> idx.to_timestamp()
+ idx.to_timestamp()
 [Out]: DatetimeIndex(['2020-01-01', '2020-04-01', '2020-07-01', '2020-10-01', '2021-01-01', '2021-04-01', '2021-07-01', '2021-10-01', '2022-01-01'], dtype='datetime64[ns]', freq='QS-OCT')
->>> idx.astype('datetime64[ns]') # output is the same as above 
->>> idx.to_timestamp().to_period(freq='Q') # gives the orginal PeriodIndex back
+ idx.astype('datetime64[ns]') # output is the same as above 
+ idx.to_timestamp().to_period(freq='Q') # gives the orginal PeriodIndex back
 [Out]: PeriodIndex(['2020Q1', '2020Q2', '2020Q3', '2020Q4', '2021Q1', '2021Q2', '2021Q3', '2021Q4', '2022Q1'], dtype='period[Q-DEC]', freq='Q-DEC')
 ```
 As with <span class="coding">Datetimeindex</span>, we can apply “partial string indexing” to PeriodIndex.   The following example shows how convenient it is to subset data by passing a component of a datetime.  
 <div class="code-head"><span>code</span> Partial String Indexing using PeriodIndex py</div>
 
 ```python
->>> df = pd.DataFrame({'x' :np.random.randint(0, high = 10, size =9)}, index = idx)
->>> df
+ df = pd.DataFrame({'x' :np.random.randint(0, high = 10, size =9)}, index = idx)
+ df
 [Out]: 
         x
 2020Q1  6
@@ -189,7 +189,7 @@ As with <span class="coding">Datetimeindex</span>, we can apply “partial strin
 2021Q3  2
 2021Q4  6
 2022Q1  7
->>> df['2020'].sum()
+ df['2020'].sum()
 [Out]: 
 x    20
 dtype: int64
@@ -206,20 +206,20 @@ The following example below illustrates each of these methods.  While the exampl
 <div class="code-head"><span>code</span> TimedeltaIndex.py</div>
 
 ```python
->>> dateTimeIndex = pd.DatetimeIndex(pd.date_range( start='1/1/2020', periods=4, freq='M')) 
->>> dateTimeIndex - dateTimeIndex[0]
+ dateTimeIndex = pd.DatetimeIndex(pd.date_range( start='1/1/2020', periods=4, freq='M')) 
+ dateTimeIndex - dateTimeIndex[0]
 [Out]: 
 TimedeltaIndex(['0 days', '29 days', '60 days', '90 days'], dtype='timedelta64[ns]', freq=None) 
 
->>> pd.to_timedelta(np.arange(4),'D') *10
+ pd.to_timedelta(np.arange(4),'D') *10
 [Out]: 
 TimedeltaIndex(['0 days', '10 days', '20 days', '30 days'], dtype='timedelta64[ns]', freq=None)
 
->>> pd.timedelta_range(start='0 days', periods=3)
+ pd.timedelta_range(start='0 days', periods=3)
 [Out]: 
 TimedeltaIndex(['0 days', '1 days', '2 days'], dtype='timedelta64[ns]', freq='D') 
 
->>> pd.timedelta_range(start='5 days', periods=3, freq='24H')
+ pd.timedelta_range(start='5 days', periods=3, freq='24H')
 [Out]: 
 TimedeltaIndex(['5 days', '6 days', '7 days'], dtype='timedelta64[ns]', freq='24H')
 ```
@@ -229,14 +229,14 @@ For reference, example below shows differencing in SAS datetime.
 <div class="code-head"><span>code</span> SAS Datetime Differencing.sas</div>
 
 ```sas  
->>> DATA df;
+ DATA df;
 INPUT startdate DATE9- @11 enddate DATE9-;
 Duration=enddate-startdate;
 DATALINES;
 15dec2020 15dec2020
 17oct2020 02nov2020
 22jan2021 11mar2021;
->>> PROC PRINT DATA=df;
+ PROC PRINT DATA=df;
     FORMAT startdate enddate DATE9-;
   RUN; 
 [Out]: 
@@ -262,7 +262,7 @@ Here is an example of using <span class="coding">DataFrame.index.duplicated()</s
 <div class="code-head"><span>code</span> Checking Duplicated Index.py</div>
 
 ```python
->>> df[df.index.duplicated(keep=False)].High
+ df[df.index.duplicated(keep=False)].High
 [Out]:
 Date
 2011-03-27       0.9
@@ -300,7 +300,7 @@ The following example provides an example of <span class="coding">DataFrame.inde
 <div class="code-head"><span>code</span> Checking Duplicated Index.py</div>
 
 ```python
->>> df[df.index.duplicated(keep=False)].High
+ df[df.index.duplicated(keep=False)].High
 [Out]:
 Date
 2011-03-27                      1
@@ -331,7 +331,7 @@ The example below provides an example of <span class="coding">DataFrame.index.du
 <div class="code-head"><span>code</span> Checking Duplicated Index.py</div>
 
 ```python
->>> df[df.index.duplicated(keep=False)].High
+ df[df.index.duplicated(keep=False)].High
 [Out]:
 Date
 2011-03-27                      1
@@ -356,14 +356,14 @@ The following exaple illustrates three simple ways to drop duplicates.  The firs
 <div class="code-head"><span>code</span> Three Methods for Removing Duplicated DatetimeIndex.py</div>
 
 ```python
->>> #Method 1
->>> df = df[~df.index.duplicated(keep='first')] 
+ #Method 1
+ df = df[~df.index.duplicated(keep='first')] 
 
->>> #Method 2
->>> df.groupby(df.index).first()
+ #Method 2
+ df.groupby(df.index).first()
 
->>> #Method 3
->>> df.resample('D').mean()
+ #Method 3
+ df.resample('D').mean()
 ```
 Note:
 Using <span class="coding">groupby</span> or <span class="coding">resample</span>  allows more sophisticated ways of handling duplicates such as keeping the mean or median. 
@@ -372,7 +372,7 @@ In SAS, many options are available readily for removing duplidates.  In the exam
 <div class="code-head"><span>code</span> Removing Duplicated Date using PROC TIMESERIES.sas</div>
 
 ```sas
->>> PROC TIMESERIES DATA = history
+ PROC TIMESERIES DATA = history
 OUT = timeseries;
 ID date 
     INTERVAL = DAY ACCUMULATE = MEDIAN;

@@ -41,16 +41,16 @@ In Listing below, we first load the familiar Iris dataset via sklearn and standa
 <div class="code-head"><span>code</span>Standarize Data Using sklearn. preprocessing.py</div>
 
 ```python
->>> from sklearn.datasets import load_iris
->>> from sklearn import preprocessing
->>> iris = load_iris()
->>> X = iris.data
->>> stdz_X = preprocessing.scale(X)
+ from sklearn.datasets import load_iris
+ from sklearn import preprocessing
+ iris = load_iris()
+ X = iris.data
+ stdz_X = preprocessing.scale(X)
 
 #verify result is as expected with mean of 0 and std of 1
->>> np.mean(stdz_X, axis=0)
+ np.mean(stdz_X, axis=0)
 # [Out]: array([-0.000, -0.000, -0.000, -0.000])
->>> np.std(stdz_X, axis=0)
+ np.std(stdz_X, axis=0)
 # [Out]: array([1.000, 1.000, 1.000, 1.000])
 ```
 
@@ -59,16 +59,16 @@ We can achieve the same result using StandardScaler from sklearn.preprocessing, 
 <div class="code-head"><span>code</span>Standarize Data Using sklearn.preprocessing StandardScaler.py</div>
 
 ```python
->>> from sklearn.preprocessing import StandardScaler
->>> StandardScaler().fit_transform(X)
->>> stdz_X[0,:]
+ from sklearn.preprocessing import StandardScaler
+ StandardScaler().fit_transform(X)
+ stdz_X[0,:]
 # [Out]: array([-0.901, 1.019, -1.340, -1.315])
 # the following does not change the result even though We have tried to replace the standard deviation with the degree of freedom adjusted one. 
->>> sc = StandardScaler()
->>> sc.fit(X)
->>> sc.std_ = np.std(X, axis=0, ddof=1)
->>> stdz_X = sc.fit_transform(X)
->>> stdz_X[0,:]
+ sc = StandardScaler()
+ sc.fit(X)
+ sc.std_ = np.std(X, axis=0, ddof=1)
+ stdz_X = sc.fit_transform(X)
+ stdz_X[0,:]
 # [Out]: array([-0.901, 1.019, -1.340, -1.315])
 
 ```
@@ -80,19 +80,19 @@ The first standardization with ddof =0 gives the same result as in sklearn.   Th
 <div class="code-head"><span>code</span>Calculate zscore Using scipy.stats.py</div>
 
 ```python
->>> from scipy import stats
->>> stdz_X = stats.zscore(X,axis=0, ddof =0)
->>> stdz_X[0,:]
+ from scipy import stats
+ stdz_X = stats.zscore(X,axis=0, ddof =0)
+ stdz_X[0,:]
 # [Out]: array([-0.901, 1.019, -1.340, -1.315])
->>> stdz_X = stats.zscore(X,axis=0, ddof =1)
->>> stdz_X[0,:]
+ stdz_X = stats.zscore(X,axis=0, ddof =1)
+ stdz_X[0,:]
 # [Out]: array([-0.898, 1.016, -1.336, -1.311])
 ```
 For reference, Listing below shows standardization in SAS using <code class="coding">PROC STDIZE</code> and <code class="coding">PROC STANDARD</code>. 
 <div class="code-head"><span>code</span>Standardize Data in SAS PROC STDIZE.sas</div>
 
 ```sas
->>> PROC STDIZE DATA=lib_name.iris 
+ PROC STDIZE DATA=lib_name.iris 
 OUT=iris_stdz 
 METHOD=MEAN;
 RUN;
@@ -100,7 +100,7 @@ RUN;
 <div class="code-head"><span>code</span>Standardize Data in SAS PROC STANDARD.sas</div>
 
 ```sas
->>> PROC STANDARD DATA=lib_name.iris MEAN=0 STD=1 
+ PROC STANDARD DATA=lib_name.iris MEAN=0 STD=1 
 OUT=iris_stdz;
 RUN;
 ```

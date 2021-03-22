@@ -64,8 +64,8 @@ pd.period_range(start=None, end=None, periods=None, freq='D', name=None)
 
 Example:
 ```python
->>> prng = pd.period_range('1/1/2020', '4/1/2020', freq='M')
->>> PeriodIndex(['2020-01', '2020-02', '2020-03', '2020-04'], dtype='period[M]',freq='M')
+ prng = pd.period_range('1/1/2020', '4/1/2020', freq='M')
+ PeriodIndex(['2020-01', '2020-02', '2020-03', '2020-04'], dtype='period[M]',freq='M')
 ```
 
 • To create Timedelta
@@ -84,16 +84,16 @@ In Python you can use <span class="coding">pd.to_datetime()</span> to build date
 <div class="code-head"><span>code</span> Assembling Datetime Object.py</div>
 
 ```python
->>> df = pd.DataFrame({'year': [2020, 2020], 
+ df = pd.DataFrame({'year': [2020, 2020], 
 'month': [1, 1],'day': [1, 2]})
->>> pd.to_datetime(df)
+ pd.to_datetime(df)
 [Out]:
 0   2020-01-01
 1   2020-01-02
 dtype: datetime64[ns]
 
 # Or alternatively,
->>> pd.to_datetime(df[['year','month','day']])
+ pd.to_datetime(df[['year','month','day']])
 [Out]:
 0   2020-01-01
 1   2020-01-02
@@ -108,14 +108,14 @@ Or if you do not like the default datetime format from <span class="coding">pd.t
 <div class="code-head"><span>code</span> to_datetime() Examples.py</div>
 
 ```python
->>> pd.to_datetime('2020/07/04', format='%Y/%m/%d').date()
+ pd.to_datetime('2020/07/04', format='%Y/%m/%d').date()
 [Out]: datetime.date(2020, 7, 4)
 
->>> pd.to_datetime('19/07/04', format='%y/%m/%d')
+ pd.to_datetime('19/07/04', format='%y/%m/%d')
 [Out]: Timestamp('2020-07-04 00:00:00')
 
->>> dates = pd.to_datetime([datetime(2020,1,15), '2020-Aug-10','12-25-2018','20181031','25th of December, 2018'])
->>> dates 
+ dates = pd.to_datetime([datetime(2020,1,15), '2020-Aug-10','12-25-2018','20181031','25th of December, 2018'])
+ dates 
 [Out]: DatetimeIndex(['2020-01-15', '2020-08-10', '2018-12-25', '2018-10-31'], dtype='datetime64[ns]', freq=None)
 ```
 Note: 
@@ -128,19 +128,19 @@ While the default pandas.to_datetime() uses unix epoch origin, which is January 
 <div class="code-head"><span>code</span> Converting Number to Datetime by Specifying Origin and Unit.py</div>
 
 ```python
->>>  pd.to_datetime(18081) #default unit in nanosecond
+  pd.to_datetime(18081) #default unit in nanosecond
 [Out]: Timestamp('1970-01-01 00:00:00.000018081') 
 
->>>  pd.to_datetime(18081, unit='D')
+  pd.to_datetime(18081, unit='D')
 [Out]: Timestamp('2020-07-04 00:00:00')
 
 #SAS default reference date
->>> pd.to_datetime(18081, unit='D',  origin='1960-1-1')
+ pd.to_datetime(18081, unit='D',  origin='1960-1-1')
 [Out]: Timestamp('2009-07-03 00:00:00')
 ```
 For reverse operation, i.e. to get the number of datetime units between two timestamps, we can apply simple arithmetic as followed:
 ```python
->>> (pd.to_datetime(18081, unit='D') - pd.Timestamp("1970-01-01")) // pd.Timedelta('1D')
+ (pd.to_datetime(18081, unit='D') - pd.Timestamp("1970-01-01")) // pd.Timedelta('1D')
 [Out]: 18081
 ```
 <h3 id="Parsing">Parsing</h3>
@@ -149,15 +149,15 @@ If your data is not in any of the formats that pandas can read readily but it ha
 <div class="code-head"><span>code</span> Other Parsing Tools from dateutl.parser.py</div>
 
 ```python
->>> Time = "07/04/2020 19:00"
->>> from dateutil.parser import parse
->>> parse(Time)
+ Time = "07/04/2020 19:00"
+ from dateutil.parser import parse
+ parse(Time)
 [Out]: datetime.datetime(2020, 7, 4, 19, 0)
 ```
 For reference, we show in the example below how a string can be converted to date variable in SAS.  
 <div class="code-head"><span>code</span> SAS from String to Date.sas</div>
 ```sas
->>>DATA _null_; 
+DATA _null_; 
    Time = '04Jul2020';
    date = INPUT(Time, DATE9-);
    PUT date = YYMMDD.;
@@ -175,17 +175,17 @@ An example of how to convert number to datetime in Python is in the example belo
 <div class="code-head"><span>code</span> Pandas from Number to Date.py</div>
 
 ```python
->>> Time = 20200704
->>> pd.to_datetime(str(Time))
+ Time = 20200704
+ pd.to_datetime(str(Time))
 [Out]: Timestamp('2020-10-31 00:00:00')
 ```
 <div class="code-head"><span>code</span> Pandas from String to Date.py</div>
 
 ```python
->>> df = pd.DataFrame({
+ df = pd.DataFrame({
 'TimeStamp': ['2020/07/01 17:14:13', '2020/09/14 17:14:14', '2020/04/27 17:14:15'], 
 'Date': ['01JUL2020','14SEP2020','27APR2020']})
->>> print(df)
+ print(df)
 [Out]:
              TimeStamp       Date
 0  2020/07/01 17:14:13  01JUL2020
@@ -193,14 +193,14 @@ An example of how to convert number to datetime in Python is in the example belo
 2  2020/04/27 17:14:15  27APR2020
 
 # method 1 Using pd.to_datetime
->>> df['TimeStamp'] = pd.to_datetime(df['TimeStamp']).dt.strftime('%Y%m/%d/ %H:%M:%S')
+ df['TimeStamp'] = pd.to_datetime(df['TimeStamp']).dt.strftime('%Y%m/%d/ %H:%M:%S')
 #Note:  df['Date'] = pd.to_datetime(df['Date']).dt.strftime('%d%b%Y') will raise errors !
 
 # method 2using apply
->>> df.Date.apply(lambda x: pd.to_datetime(x, format="%d%b%Y"))
->>> df.TimeStamp.apply(lambda x: pd.to_datetime(x, format="%Y/%m/%d %H:%M:%S"))
+ df.Date.apply(lambda x: pd.to_datetime(x, format="%d%b%Y"))
+ df.TimeStamp.apply(lambda x: pd.to_datetime(x, format="%Y/%m/%d %H:%M:%S"))
 
->>> df
+ df
 [Out]:
              TimeStamp       Date
 0  2020/07/01 17:14:13  01JUL2020
@@ -208,8 +208,8 @@ An example of how to convert number to datetime in Python is in the example belo
 2  2020/04/27 17:14:15  27APR2020
 
 #simply apply to_datetime without supplying format
->>> df.TimeStamp.apply(lambda x: pd.to_datetime(x))
->>> df.Date.apply(lambda x: pd.to_datetime(x))
+ df.TimeStamp.apply(lambda x: pd.to_datetime(x))
+ df.Date.apply(lambda x: pd.to_datetime(x))
 ```
 Note:
 1.  While <span class="coding">pd.to_datetime()</span> can parse some datetime formats, its ability is quite limited.  
@@ -220,7 +220,7 @@ The example below shows how a string can be converted to date variable in SAS.
 <div class="code-head"><span>code</span> SAS from Number to Date.sas</div>
 
 ```sas
->>> DATA _null_; 
+ DATA _null_; 
     Time = 20200704;
     date = INPUT(PUT(Time, 8.),YYMMDD8.);
     PUT date = YYMMDD10.;

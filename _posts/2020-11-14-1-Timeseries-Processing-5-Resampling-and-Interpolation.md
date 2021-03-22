@@ -22,9 +22,9 @@ In the following example, we show that expanding returns statistics that are the
 <div class="code-head"><span>code</span>Expanding Window Statistics Comparing with cumsum().python</div>
 
 ```python
->>> idx=pd.date_range('1/1/2020', periods=5)
->>> s = pd.Series([2,3, np.nan, 10,20], index=idx)
->>> s
+ idx=pd.date_range('1/1/2020', periods=5)
+ s = pd.Series([2,3, np.nan, 10,20], index=idx)
+ s
 [Out]:
 2020-01-01     2.0
 2020-01-02     3.0
@@ -33,7 +33,7 @@ In the following example, we show that expanding returns statistics that are the
 2020-01-05    20.0
 Freq: D, dtype: float64
 
->>> s.expanding(min_periods=1).sum()
+ s.expanding(min_periods=1).sum()
 [Out]:
 
 2020-01-01     2.0
@@ -43,7 +43,7 @@ Freq: D, dtype: float64
 2020-01-05    35.0
 Freq: D, dtype: float64
 
->>> s.cumsum()
+ s.cumsum()
 2020-01-01     2.0
 2020-01-02     5.0
 2020-01-03     NaN
@@ -56,11 +56,11 @@ It may be of interest sometimes to keep tract of the total number of non-null va
 <div class="code-head"><span>code</span>Expanding Window Count .python</div>
 
 ```python
->>> idx = pd.to_datetime(['2021-01-01', '2021-01-03', '2021-01-05', '2021-01-06','2021-01-08'])
->>> df.index = idx
->>> df
+ idx = pd.to_datetime(['2021-01-01', '2021-01-03', '2021-01-05', '2021-01-06','2021-01-08'])
+ df.index = idx
+ df
 [Out]:
->>> s.expanding(min_periods=1 ).count()
+ s.expanding(min_periods=1 ).count()
 [Out]:
 2020-01-01    1.0
 2020-01-02    2.0
@@ -73,13 +73,13 @@ Freq: D, dtype: float64
 Conceptually, rolling statistics should be the same as expanding ones when the window width is set to be the length of the timeseries, because both include all historical data.  
 For examples: 
 ```python
->>> s.rolling(window=len(s), min_periods=1).mean()
->>> s.expanding(min_periods=1).mean()
+ s.rolling(window=len(s), min_periods=1).mean()
+ s.expanding(min_periods=1).mean()
 ``` 
 And the following two calls are also equivalent: 
 ```python
->>> s.rolling(window=len(s), min_periods=1,center=True).mean()
->>> s.expanding(min_periods=1, center=True).mean()
+ s.rolling(window=len(s), min_periods=1,center=True).mean()
+ s.expanding(min_periods=1, center=True).mean()
 ``` 
 
 As one can expect, when window width is less than time series data, expanding moving average is much more stable and much less sensitive to current data than rolling window average.   In Figure 1- 5, using the same Bitcoin data, we plot the expanding window average from year 2017 overlay with daily closing price. 

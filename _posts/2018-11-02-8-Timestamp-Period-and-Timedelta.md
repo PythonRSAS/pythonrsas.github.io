@@ -35,21 +35,21 @@ Pandas <span class="coding">Timestamp</span> is pandas' equivalent to the Python
 <div class="code-head"><span>code</span>Timestamp Object and Attributes.py</div>
 
 ```python
->>> import pandas as pd
->>> date1= pd.Timestamp('2020-01-02 8:30:00')
+ import pandas as pd
+ date1= pd.Timestamp('2020-01-02 8:30:00')
 Out: Timestamp('2020-01-02 08:30:00')
 
->>> date1.time()
+ date1.time()
 Out: datetime.time(8, 30)
->>> date1.date()
+ date1.date()
 Out: datetime.date(2020, 1, 2)
->>> date1.year
+ date1.year
 Out: 2020
->>> date1.month
+ date1.month
 Out: 1
->>> date1.day
+ date1.day
 Out: 2
->>> date1.dayofweek
+ date1.dayofweek
 Out: 3
 
 ```
@@ -61,7 +61,7 @@ SAS date or time are stored internally in numbers and represented according to f
 <div class="code-head"><span>code</span>SAS Date Time and Datetime Stamps.sas</div>
 
 ```sas
->>> DATA _NULL_;
+ DATA _NULL_;
     d1=DATE();
     t1=TIME();
     dt1=datetime();
@@ -76,17 +76,17 @@ As mentioned earlier, pandas is built on top of numpy.  Vectorized operations fr
 <div class="code-head"><span>code</span>Vectorized Operation on Timestamp.py</div>
 
 ```python
->>> date1= pd.Timestamp('2020-01-02')
->>> date1 + pd.to_timedelta(np.arange(3),'D')
+ date1= pd.Timestamp('2020-01-02')
+ date1 + pd.to_timedelta(np.arange(3),'D')
 Out:  DatetimeIndex(['2020-01-02', '2020-01-03', '2020-01-04'], dtype='datetime64[ns]', freq=None)
 ```
 Base SAS does not have vectorized operations.  To create similar output, one may write a simple loop such as the one below:
 <div class="code-head"><span>code</span>SAS Date Time Sequence.sas</div>
 
 ```sas
->>> %let start = 02Jan2020;
->>> %let end = 04Jan2020;
->>> DATA _null_;
+ %let start = 02Jan2020;
+ %let end = 04Jan2020;
+ DATA _null_;
   DO date="&start"d  to "&end"d;
     PUT date YYMMDD10.;
   END;
@@ -103,30 +103,30 @@ The next example shows an instance of Period object and illustrates its attribut
 <div class="code-head"><span>code</span>Period Object and its Special Attributes.py</div>
 
 ```py
->>> period1=pd.Period('2020-01-02', freq='D')
->>> period1
+ period1=pd.Period('2020-01-02', freq='D')
+ period1
 [Out]: Period('2020-01-02', 'D')
 
->>> period1.ordinal
+ period1.ordinal
 [Out]: 18263
 
->>> period1.start_time
+ period1.start_time
 [Out]: Timestamp('2020-01-02 00:00:00')
 	
->>> period1.end_time
+ period1.end_time
 [Out]: Timestamp('2020-01-02 23:59:59-999999999')
 
->>> period1.to_timestamp()
+ period1.to_timestamp()
 [Out]: Timestamp('2020-01-02 00:00:00')
 
->>> period2=pd.Period('2020-01-02', freq='m')
->>> period2
+ period2=pd.Period('2020-01-02', freq='m')
+ period2
 [Out]: Period('2020-01', 'M')
 
->>> period2.start_time
+ period2.start_time
 [Out]: Timestamp('2020-01-01 00:00:00')
 
->>> period2.end_time
+ period2.end_time
 [Out]: Timestamp('2020-01-31 23:59:59-999999999')
 ```
 Most financial reports are on quarterly data.  Many companies have fiscal years that are different from calendar years.  For example, Microsoft's fiscal year starts from July and ends in June.  WalMart's fiscal year starts in February and ends in January. 
@@ -138,14 +138,14 @@ For example, you can convert a column of datetime sequence to quarter end datati
 <div class="code-head"><span>code</span>Period freq='Q' and Options for Month Ending.py</div>
 
 ```python
->>> date1.to_period('Q').end_time
+ date1.to_period('Q').end_time
 Out: Timestamp('2020-03-31 23:59:59.999999999')
->>> period1=pd.Period('2020-01', freq='Q')
+ period1=pd.Period('2020-01', freq='Q')
 Out: Period('2020Q1', 'Q-DEC')
->>> period1=pd.Period('2020-01', freq='Q-Jan')
->>> period1
+ period1=pd.Period('2020-01', freq='Q-Jan')
+ period1
 Out: Period('2020Q4', 'Q-JAN')
->>> period1.end_time
+ period1.end_time
 Out: Timestamp('2020-01-31 23:59:59-999999999')
 ```
 
@@ -156,21 +156,21 @@ are the same.     Finally, you can also convert Period to different frequencies.
 <div class="code-head"><span>code</span>Arithmetic Operations on Period Object.py</div>
 
 ```py
->>> period3 = period2 + 12
->>> period3
+ period3 = period2 + 12
+ period3
 [Out]: Period('2021-01', 'M')
 
->>> period3 - period2
+ period3 - period2
 [Out]:<12 * MonthEnds>
 
->>> q = pd.Period('2020Q4')
->>> q + 1
+ q = pd.Period('2020Q4')
+ q + 1
 [Out]: Period('2020Q1', 'Q-DEC')
 
->>> q.asfreq('m', how='start')
+ q.asfreq('m', how='start')
 [Out]: Period('2020-10', 'M')
 
->>> q.asfreq('m', how='end')
+ q.asfreq('m', how='end')
 [Out]: Period('2020-12', 'M')
 ```
 
@@ -182,13 +182,13 @@ Pandas Timedelta is differences in times, expressed in difference units, e.g. da
 <div class="code-head"><span>code</span>Pandas Timedelta and Age Calculation.py</div>
 
 ```py
->>> pd_ts     = pd.Timestamp('2020-02-14 00:00:00')
->>> pd_td     = pd.Timedelta(days=1, hours=1, minutes=1, 
+ pd_ts     = pd.Timestamp('2020-02-14 00:00:00')
+ pd_td     = pd.Timedelta(days=1, hours=1, minutes=1, 
 	seconds=1)
->>> pd_ts - pd_td
+ pd_ts - pd_td
 [Out]: Timestamp('2020-02-12 22:58:59')
->>> DoB = pd.Timestamp('2000-02-14 07:00:00')
->>> age = (pd.Timestamp.now() - DoB).days/365
+ DoB = pd.Timestamp('2000-02-14 07:00:00')
+ age = (pd.Timestamp.now() - DoB).days/365
 
 ```
 

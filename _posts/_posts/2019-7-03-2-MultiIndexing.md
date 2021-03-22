@@ -24,14 +24,14 @@ In a DataFrame, rows and columns may have multiple levels of indices defined wit
 <div class="code-head"><span>code</span> MultiIndex Details.py</div>
 
 ```python
->>> import pandas as pd
->>> import numpy as np
->>> pd.options.display.float_format = '{:,.2f}'.format
->>> cols = pd.MultiIndex.from_tuples([ (x,y) for x in ['Test1','Test2','Test3'] for y in ['Pre','Post']])
->>> nl = '\n'
->>> np.random.seed(98765)
->>> df = pd.DataFrame(np.random.randn(2,6),index = ['Row 1','Row 2'],columns = cols)
->>> print(nl,
+ import pandas as pd
+ import numpy as np
+ pd.options.display.float_format = '{:,.2f}'.format
+ cols = pd.MultiIndex.from_tuples([ (x,y) for x in ['Test1','Test2','Test3'] for y in ['Pre','Post']])
+ nl = '\n'
+ np.random.seed(98765)
+ df = pd.DataFrame(np.random.randn(2,6),index = ['Row 1','Row 2'],columns = cols)
+ print(nl,
 ...       df)
 
        Test1      Test2       Test3
@@ -58,7 +58,7 @@ With the df DataFrame constructed along with its hierarchical columns and row la
 <div class="code-head"><span>code</span>Multi-Indexed Details.py</div>
 
 ```python
->>> print(nl,
+ print(nl,
 ...       'Index:      '  , df.index,
 ...   nl              ,
 ...       'Columns:    '  , df.columns,
@@ -86,21 +86,21 @@ The following example, Create tickets DataFrame, illustrates a hierarchical inde
 <div class="code-head"><span>code</span> Create tickets DataFrame.py</div>
 
 ```python
->>> import pandas as pd
->>> import numpy as np
->>> np.random.seed(654321)
->>> idx = pd.MultiIndex.from_product([[2015, 2016, 2017, 2018],
+ import pandas as pd
+ import numpy as np
+ np.random.seed(654321)
+ idx = pd.MultiIndex.from_product([[2015, 2016, 2017, 2018],
 ...                          [1, 2, 3]],
 ...                  names = ['Year', 'Month'])
->>> columns=pd.MultiIndex.from_product([['City' , 'Suburbs', 'Rural'],
+ columns=pd.MultiIndex.from_product([['City' , 'Suburbs', 'Rural'],
 ...                          ['Day' , 'Night']],
 ...                  names = ['Area', 'When'])
->>> data = np.round(np.random.randn(12, 6),2)
->>> data = abs(np.floor_divide(data[:] * 100, 5))
+ data = np.round(np.random.randn(12, 6),2)
+ data = abs(np.floor_divide(data[:] * 100, 5))
 
->>> tickets = pd.DataFrame(data, index=idx, columns = columns).
+ tickets = pd.DataFrame(data, index=idx, columns = columns).
     sort_index().sort_index(axis=1)
->>> print(tickets)
+ print(tickets)
 Out:
 Area        City       Rural       Suburbs
 When         Day Night   Day Night     Day Night
@@ -174,7 +174,7 @@ An important feature of hierarchical indexing is the ability to select data by a
 <div class="code-head"><span>code</span> Identify Subgroups with MultiIndexing.py</div>
 
 ```python
->>> tickets['Rural']
+ tickets['Rural']
 Out:
 When         Day  Night
 Year Month
@@ -198,7 +198,7 @@ In the following example, Identify Subgroups with MultiIndexing, answers the que
 <div class="code-head"><span>code</span>Identify Subgroups with MultiIndexing.py</div>
 
 ```python
->>> tickets['City', 'Night']
+ tickets['City', 'Night']
 Out:
 Year  Month
 2015  1        18.0
@@ -222,8 +222,8 @@ Recall that most subsetting and slicing operations return a DataFrame.  The foll
 <div class="code-head"><span>code</span>Sum Tickets to New DataFrame.py</div>
 
 ```python
->>> sum_tickets = tickets.sum(level = 'Year')
->>> print(sum_tickets)
+ sum_tickets = tickets.sum(level = 'Year')
+ print(sum_tickets)
 Out:
 Area   City        Rural      Suburbs
 When   Day  Night  Day  Night Day  Night
@@ -304,12 +304,12 @@ The <span class="coding">.loc</span> indexer enables partial slicing using hiera
 <div class="code-head"><span>code</span>Return Ticket Index and Column Levels.py</div>
 
 ```python
->>> print(tickets.index)
+ print(tickets.index)
 Out:
 MultiIndex(levels=[[2015, 2016, 2017, 2018], [1, 2, 3]],
            codes=[[0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3], [0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2]],
            names=['Year', 'Month'])
->>> print(tickets.columns)
+ print(tickets.columns)
 Out:
 MultiIndex(levels=[['City', 'Rural', 'Suburbs'], ['Day', 'Night']],
            codes=[[0, 0, 1, 1, 2, 2], [0, 1, 0, 1, 0, 1]],
@@ -321,7 +321,7 @@ The <span class="coding">.loc</span> indexer takes as arguments, slicers to dete
 <div class="code-head"><span>code</span>Year Slice 2018.py</div>
 
 ```python
->>> tickets.loc[2018]
+ tickets.loc[2018]
 Out:
 Area   City       Rural       Suburbs
 When    Day Night   Day Night     Day Night
@@ -336,7 +336,7 @@ We can slice Year level for 2018 and Month level for 3 illustrated in the follow
 <div class="code-head"><span>code</span>Slice Year 2018 and Month 3.py</div>
 
 ```python
->>> tickets.loc[2018, 3, :]
+ tickets.loc[2018, 3, :]
 Out:
 Area       City       Rural       Suburbs
 When        Day Night   Day Night     Day Night

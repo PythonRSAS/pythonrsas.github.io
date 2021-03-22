@@ -37,14 +37,14 @@ On the other hand, the historical lowest occurred in 1974 .    The 1973–74 sto
 <div class="code-head"><span>code</span>S&P Historical Values and Extremes.python</div>
 
 ```python
->>> pd.options.display.float_format = '{:10,.1f}'.format 
->>> import matplotlib.pyplot as plt
->>> import datetime
->>> start = datetime.datetime(1970, 1, 1)
->>> end=datetime.date.today() # today is 04-18-2020
->>> import pandas_datareader.data as pdr
->>> df = pdr.get_data_yahoo('^GSPC', start=start, end=end)
->>> df.tail()
+ pd.options.display.float_format = '{:10,.1f}'.format 
+ import matplotlib.pyplot as plt
+ import datetime
+ start = datetime.datetime(1970, 1, 1)
+ end=datetime.date.today() # today is 04-18-2020
+ import pandas_datareader.data as pdr
+ df = pdr.get_data_yahoo('^GSPC', start=start, end=end)
+ df.tail()
 [Out]:
                  High        Low       Open      Close    Volume  Adj Close
 Date
@@ -54,7 +54,7 @@ Date
 1970-01-07       93.4       91.9       92.8       92.6  10010000       92.6
 1970-01-08       93.5       92.0       92.6       92.7  10670000       92.7
 
->>> df.idxmax(axis=0, skipna=True)
+ df.idxmax(axis=0, skipna=True)
 [Out]:
 High        2020-02-19
 Low         2020-02-19
@@ -64,7 +64,7 @@ Volume      2008-10-10
 Adj Close   2020-02-19
 dtype: datetime64[ns]
 
->>> df.idxmin(axis=0, skipna=True)
+ df.idxmin(axis=0, skipna=True)
 [Out]:
 High        1974-10-04
 Low         1974-10-04
@@ -103,8 +103,8 @@ Now we look at daily returns. <span class="coding">df.Close.diff(1)/df.Close.shi
 
 ```python
 # daily return
->>> rets = df.Close.pct_change()
->>> rets_manual = df.Close.diff(1)/df.Close.shift(1)
+ rets = df.Close.pct_change()
+ rets_manual = df.Close.diff(1)/df.Close.shift(1)
 np.testing.assert_allclose(rets_manual,rets,rtol=1e-5)
 ```
 
@@ -126,8 +126,8 @@ Date
 2008-10-15   -0.090
 Name: Close, dtype: float64
 
->>> nlargest = rets.nlargest(5)
->>> print(nlargest)
+ nlargest = rets.nlargest(5)
+ print(nlargest)
 Out:
 Date
 2008-10-13   0.116
@@ -178,19 +178,19 @@ To get monthly return, our first instinct might have been using <span class="cod
 
 ```python
 #monthly return
->>> df.Close.pct_change(freq='BM').dropna().tail(2)
+ df.Close.pct_change(freq='BM').dropna().tail(2)
 Out: 
 Date
 2020-09-30   -0.039
 2020-10-30   -0.028
 Name: Close, dtype: float64
 
->>> oct = df.loc['2020-10-30','Close']
->>> sep = df.loc['2020-09-30','Close']
->>> aug = df.loc['2020-08-31','Close']
->>> (oct-sep)/sep
+ oct = df.loc['2020-10-30','Close']
+ sep = df.loc['2020-09-30','Close']
+ aug = df.loc['2020-08-31','Close']
+ (oct-sep)/sep
 Out: -0.02766578622137972
->>> (sep-aug)/aug
+ (sep-aug)/aug
 Out: -0.03922797017842309
 ```
 ### Annual returns
@@ -200,19 +200,19 @@ In example below, we compute and plot annual returns of S&P 500 since 1970.   Be
 <div class="code-head"><span>code</span>Annual Returns.python</div>
 
 ```python
->>> adj_close = pdr.get_data_yahoo('^GSPC', start=start, end=date.today())['Adj Close']
->>> title = "Annual Returns"
->>> Annual_return = adj_close.pct_change(freq='BY').dropna().asfreq('BY')
->>> return_2020 = adj_close[-1]/adj_close.loc['2020-01-02']-1
+ adj_close = pdr.get_data_yahoo('^GSPC', start=start, end=date.today())['Adj Close']
+ title = "Annual Returns"
+ Annual_return = adj_close.pct_change(freq='BY').dropna().asfreq('BY')
+ return_2020 = adj_close[-1]/adj_close.loc['2020-01-02']-1
 # pretend we had a full year already in 2020
->>> idx = pd.date_range(date(2020,1,1),date(2020,12,31), freq='BA-DEC' )
->>> Annual_return = Annual_return.append(pd.Series(return_2020,index=idx))
+ idx = pd.date_range(date(2020,1,1),date(2020,12,31), freq='BA-DEC' )
+ Annual_return = Annual_return.append(pd.Series(return_2020,index=idx))
 # plot
->>> fig, ax = plt.subplots(1,1, figsize=(12,5))
->>> ax.spines['top'].set_visible(False)
->>> ax.spines['right'].set_visible(False)
->>> ax = plt.bar(Annual_return.index.year, Annual_return,alpha=0.5)
->>> plt.axhline(Annual_return.mean(), color='r', linestyle='--')
+ fig, ax = plt.subplots(1,1, figsize=(12,5))
+ ax.spines['top'].set_visible(False)
+ ax.spines['right'].set_visible(False)
+ ax = plt.bar(Annual_return.index.year, Annual_return,alpha=0.5)
+ plt.axhline(Annual_return.mean(), color='r', linestyle='--')
 ```
 Figure shows the annual return from 1970 to 2020.  The horizontal dashed line is the average of annual returns.
 <figure>
@@ -241,24 +241,24 @@ When computing returns over a period, adjusted closing price is used.    For tho
 <div class="code-head"><span>code</span>Annual Rate of Return and Continuous Return.python</div>
 
 ```python
->>> df = pdr.get_data_yahoo('^GSPC', start=datetime(1970,1,1), end=datetime(2020,11,14)['Adj Close']
->>> df.nlargest(2)
+ df = pdr.get_data_yahoo('^GSPC', start=datetime(1970,1,1), end=datetime(2020,11,14)['Adj Close']
+ df.nlargest(2)
 Out:
 Date
 2020-11-13   3585.150
 2020-09-02   3580.840
 Name: Adj Close, dtype: float64
->>> df[:'2001'].nlargest(1)
+ df[:'2001'].nlargest(1)
 Out: 
 Date
 2000-03-24   1527.460
->>> n = df.idxmax().year-df[:'2001'].idxmax().year #20 years
->>> Annual_return = (df.max()/df[:'2001'].max())**(1/n)-1
->>> print("{0:.2%}".format(Annual_return))
+ n = df.idxmax().year-df[:'2001'].idxmax().year #20 years
+ Annual_return = (df.max()/df[:'2001'].max())**(1/n)-1
+ print("{0:.2%}".format(Annual_return))
 Out: 4.36%
 
->>> continuous_return = np.log(df.max()/df[:'2001'].max())/n
->>> print("{0:.2%}".format(continuous_return))
+ continuous_return = np.log(df.max()/df[:'2001'].max())/n
+ print("{0:.2%}".format(continuous_return))
 Out: 4.27%
 ```
 
@@ -267,12 +267,12 @@ We run a statistical test to see whether returns are normal. The test result sho
 <div class="code-head"><span>code</span>S&P 500 Daily Return Normality Test.python</div>
 
 ```python
->>> from scipy.stats import norm
->>> norm_test =stats.anderson(rets.dropna(), dist='norm')
->>> stat, p = stats.kstest(rets.dropna(), 'norm')
->>> print('p-value: {0: .4f}'.format(p))
+ from scipy.stats import norm
+ norm_test =stats.anderson(rets.dropna(), dist='norm')
+ stat, p = stats.kstest(rets.dropna(), 'norm')
+ print('p-value: {0: .4f}'.format(p))
 Out: 0.0000
->>> sns.distplot(x, fit=norm, kde=False, rug=True)
+ sns.distplot(x, fit=norm, kde=False, rug=True)
 ```
 <figure>
   <img src="{{ "/images/posts/Figure 1- 9. Distribution of Return.png" | relative_url }}">

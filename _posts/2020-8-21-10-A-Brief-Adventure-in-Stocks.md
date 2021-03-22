@@ -14,14 +14,14 @@ We often need to compare stock performances within and across sectors.  In the f
 <div class="code-head"><span>code</span>Compare Multiple Stocks in Two Sectors.py</div>
 
 ```python
->>> tickers = ["XOM","BP", "CVX","AAPL","AMZN","GOOG"]
->>> stocks = [pdr.get_data_yahoo(i, start=start, end=date.today())['Adj Close'].rename(i) for i in tickers]
->>> stocks_df = pd.DataFrame(stocks).T
->>> tickers= np.array(tickers).reshape(2,3)
->>> fig, ax = plt.subplots(2,3, figsize=(12,6))
->>> for i in range(2):
->>>     for j in range(3):
->>>         stocks_df[tickers[i,j]].plot(ax=ax[i, j],color="skyblue").set_title(tickers[i,j])
+ tickers = ["XOM","BP", "CVX","AAPL","AMZN","GOOG"]
+ stocks = [pdr.get_data_yahoo(i, start=start, end=date.today())['Adj Close'].rename(i) for i in tickers]
+ stocks_df = pd.DataFrame(stocks).T
+ tickers= np.array(tickers).reshape(2,3)
+ fig, ax = plt.subplots(2,3, figsize=(12,6))
+ for i in range(2):
+     for j in range(3):
+         stocks_df[tickers[i,j]].plot(ax=ax[i, j],color="skyblue").set_title(tickers[i,j])
 ```
 Although the energy stocks have much more turbulences in the last twenty years,  figure  shows they are all great performers over their lifespan.   They are all winners.
 <figure>
@@ -41,7 +41,7 @@ Although we expect Chevron stocks are highly correlated with Exxon, it may come 
 <div class="code-head"><span>code</span>Stock Price Correlations.py</div>
 
 ```python
->>> print( stocks_df.dropna(axis=0,how='any').corr())
+ print( stocks_df.dropna(axis=0,how='any').corr())
 Out:
        XOM    BP   CVX  AAPL  MSFT  GOOG
 XOM  1.000 0.265 0.891 0.607 0.439 0.654
@@ -58,18 +58,18 @@ We could download daily price data from Yahoo! Finance for one stock and the mar
 <div class="code-head"><span>code</span>S&P 500 and Berkshire Stock Returns.py</div>
 
 ```python
->>> def stock_return(ticker):
->>>     daily_return = pdr.get_data_yahoo(ticker, start=start, end=end)['Adj Close'].pct_change().rename(ticker)
->>>     return daily_return
->>> retSP500 = stock_return('^GSPC')
->>> ret = stock_return('BRK-A')
->>> ret_df = pd.merge(ret,retSP500,how='inner', left_index=True,right_index=True)
+ def stock_return(ticker):
+     daily_return = pdr.get_data_yahoo(ticker, start=start, end=end)['Adj Close'].pct_change().rename(ticker)
+     return daily_return
+ retSP500 = stock_return('^GSPC')
+ ret = stock_return('BRK-A')
+ ret_df = pd.merge(ret,retSP500,how='inner', left_index=True,right_index=True)
 
->>> from scipy import stats
->>> title ="S&P 500 and Berkshire Stock Returns"
->>> joint_kws = {'scatter_kws':dict(alpha=0.2),'line_kws':dict(color='r')}
->>> g=sns.jointplot(x='BRK-A', y="S&P", data= ret_df .loc['1990':], kind='reg',color=green, joint_kws=joint_kws, xlim=[-.2,.2],ylim=[-.2,.2])
->>> g.annotate(stats.pearsonr)
+ from scipy import stats
+ title ="S&P 500 and Berkshire Stock Returns"
+ joint_kws = {'scatter_kws':dict(alpha=0.2),'line_kws':dict(color='r')}
+ g=sns.jointplot(x='BRK-A', y="S&P", data= ret_df .loc['1990':], kind='reg',color=green, joint_kws=joint_kws, xlim=[-.2,.2],ylim=[-.2,.2])
+ g.annotate(stats.pearsonr)
 ```
 
 <figure>
@@ -83,15 +83,15 @@ Theoretically price is independent of volume, but only by risk, as indicated by 
 <div class="code-head"><span>code</span>Apple Price and Volume in 2000-2001.py</div>
 
 ```python
->>> def plot_price_volume(ticker, ticker_df):
->>>     ax1 = ticker_df.Close.plot(color=blue, grid=True, label='Price')
->>>     ax2 = ticker_df.Volume.plot(color=green,grid=True, secondary_y=True, label='Trading volume')
->>>     h1, l1 = ax1.get_legend_handles_labels()
->>>     h2, l2 = ax2.get_legend_handles_labels()
->>>     plt.title("%s Closing price and Trading Volume"%ticker, fontdict={'fontsize': 20, 'fontweight': 'bold'})
->>>     plt.legend(h1+h2, l1+l2, loc=2)
->>>     plt.show()
->>> plot_price_volume('AAPL', AAPL)
+ def plot_price_volume(ticker, ticker_df):
+     ax1 = ticker_df.Close.plot(color=blue, grid=True, label='Price')
+     ax2 = ticker_df.Volume.plot(color=green,grid=True, secondary_y=True, label='Trading volume')
+     h1, l1 = ax1.get_legend_handles_labels()
+     h2, l2 = ax2.get_legend_handles_labels()
+     plt.title("%s Closing price and Trading Volume"%ticker, fontdict={'fontsize': 20, 'fontweight': 'bold'})
+     plt.legend(h1+h2, l1+l2, loc=2)
+     plt.show()
+ plot_price_volume('AAPL', AAPL)
 ```
 <figure>
   <img src="{{ "/images/posts/Closing price and Trading Volume.png" | relative_url }}">
@@ -101,13 +101,13 @@ This price and volume relationship seem to persist overtime for some companies. 
 <div class="code-head"><span>code</span>Royal Dutch Shell Price and Volume.py</div>
 
 ```python
->>> RDSA = pdr.get_data_yahoo('RDS-A', start=datetime(2005,1,1), end=date.today())
->>> RDSA['qtr'] =RDSA.index.quarter
->>> RDSA['year'] = RDSA.index.year
->>> RDSA['QoQ'] =RDSA.Close.pct_change()
->>> RDSA= RDSA.loc['2010':,['Close','Volume' ,'year','qtr']]
->>> palette = sns.cubehelix_palette(18, start=2, rot=0, dark=0, light = 0.95, reverse = False)
->>> sns.pairplot(RDSA,palette=palette, hue='year' )
+ RDSA = pdr.get_data_yahoo('RDS-A', start=datetime(2005,1,1), end=date.today())
+ RDSA['qtr'] =RDSA.index.quarter
+ RDSA['year'] = RDSA.index.year
+ RDSA['QoQ'] =RDSA.Close.pct_change()
+ RDSA= RDSA.loc['2010':,['Close','Volume' ,'year','qtr']]
+ palette = sns.cubehelix_palette(18, start=2, rot=0, dark=0, light = 0.95, reverse = False)
+ sns.pairplot(RDSA,palette=palette, hue='year' )
 ```
 <figure>
   <img src="{{ "/images/posts/Royal Dutch Shell Price and Volume.png" | relative_url }}">
@@ -117,10 +117,10 @@ The relationship for this particular company is strong enough to show a R square
 <div class="code-head"><span>code</span>Linear Regression of Price and Volume – Shell Stock.py</div>
 
 ```python
->>> from scipy import stats as scs
->>> slope, intercept, r_value, p_value, std_err =scs.linregress(RDSA.Close,RDSA.Volume)
->>> print("Slope: {0:.1}".format(slope))
->>> print("R square: {0:.3}".format(r_value))
+ from scipy import stats as scs
+ slope, intercept, r_value, p_value, std_err =scs.linregress(RDSA.Close,RDSA.Volume)
+ print("Slope: {0:.1}".format(slope))
+ print("R square: {0:.3}".format(r_value))
 Out:
 Slope: -1e+05
 R square: -0.489
@@ -130,11 +130,11 @@ Interesting enough, the similar pattern is observed for the top performing stock
 <div class="code-head"><span>code</span> Linear Regression of Price and Volume – Netflix.py</div>
 
 ```python
->>> netflix = pdr.get_data_yahoo("NFLX",start=start,end=end)
->>> plot_price_volume("NFLX", netflix)
->>> slope, intercept, r_value, p_value, std_err =scs.linregress(netflix.loc['2010':].Close,netflix.loc['2010':].Volume) 
->>> print("Slope: {0:.1}".format(slope))
->>> print("R square: {0:.3}".format(r_value))
+ netflix = pdr.get_data_yahoo("NFLX",start=start,end=end)
+ plot_price_volume("NFLX", netflix)
+ slope, intercept, r_value, p_value, std_err =scs.linregress(netflix.loc['2010':].Close,netflix.loc['2010':].Volume) 
+ print("Slope: {0:.1}".format(slope))
+ print("R square: {0:.3}".format(r_value))
 Out:
 Slope: -8e+04
 R square: -0.428
@@ -148,17 +148,17 @@ Example below shows candlestick plot with 3-day and 9-day moving average overlay
 <div class="code-head"><span>code</span> Candlestick Plot.py</div>
 
 ```python
->>> import matplotlib.pyplot as plt 
->>> import mplfinance as mpf
->>> import datetime
->>> start = datetime.datetime(2000, 1, 1)
->>> end=datetime.date.today() # today is 04-18-2020
->>> import pandas_datareader.data as pdr
->>> AAPL = pdr.get_data_yahoo('AAPL', start=start, end=end)
->>> daily = AAPL.loc['2020':]
->>> mpf.plot(daily, type='candle', style='charles',title='AAPL',
->>>          ylabel='OHLC',
->>>          ylabel_lower='volume',volume=True, mav=(3,9),savefig='AAPL_2020.png')         
+ import matplotlib.pyplot as plt 
+ import mplfinance as mpf
+ import datetime
+ start = datetime.datetime(2000, 1, 1)
+ end=datetime.date.today() # today is 04-18-2020
+ import pandas_datareader.data as pdr
+ AAPL = pdr.get_data_yahoo('AAPL', start=start, end=end)
+ daily = AAPL.loc['2020':]
+ mpf.plot(daily, type='candle', style='charles',title='AAPL',
+          ylabel='OHLC',
+          ylabel_lower='volume',volume=True, mav=(3,9),savefig='AAPL_2020.png')         
 ```
 <figure>
   <img src="{{ "/images/posts/AAPL candlestick.png" | relative_url }}">
