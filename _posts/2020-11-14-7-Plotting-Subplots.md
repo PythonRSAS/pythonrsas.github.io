@@ -5,7 +5,7 @@ category: "python for sas"
 title: "Plotting Subplots"
 description: plotting subplots tricks and uses
 author: Sarah Chen
-image: images/posts/which model is better.png
+image: images/posts/IMG-0664.png
 
 ---
 Often we need to plot a few things in subplots for comparison.   An example of subplots. 
