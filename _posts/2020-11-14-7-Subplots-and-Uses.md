@@ -159,16 +159,15 @@ plt.subplots_adjust(top=0.9)
 
 ## Multiple Plots with Seaborn
 Somehow, using ax0=, ax1= just don’t work.  We actually have to put the ax[0] within the sns call itself.  
+<div class="code-head"><span>code</span>polynomial linear regression.python</div>
+
+```python
 fig, axs = plt.subplots(ncols=3)
 sns.regplot(x='value', y='wage', data=df_melt, ax=axs[0])
 sns.regplot(x='value', y='wage', data=df_melt, ax=axs[1])
 sns.boxplot(x='education',y='wage', data=df_melt, ax=axs[2])
 
-<figure>
-  <img src="{{"/images/posts/polynomial linear regression.png" | relative_url }}">
-  <figcaption>polynomial linear regression</figcaption>
-</figure>
-
+```
 
 ## Actual use
 
@@ -180,6 +179,32 @@ In EDA, we routinely use linear regression on scatterplots.  Here is an example 
 </figure>
 
 ### Example 2
+In feature selection, we look at various transformation of a feature:
+<div class="code-head"><span>code</span>polynomial linear regression.python</div>
+
+```python
+title = 'polynomial linear regression'
+fig, axs = plt.subplots(3,3,sharex='col', sharey='row')
+sns.regplot(x=df.x,y=df.y,data=df,ax=axs[0,0],order=1, ci=None)
+sns.regplot(x=df.x,y=df.y,data=df,ax=axs[0,1],order=2, ci=None)
+sns.regplot(x=df.x,y=df.y,data=df,ax=axs[0,2],order=3, ci=None)
+sns.regplot(x=df.x,y=df.y,data=df,ax=axs[1,0],order=4, ci=None)
+sns.regplot(x=df.x,y=df.y,data=df,ax=axs[1,1],order=5, ci=None)
+sns.regplot(x=df.x,y=df.y,data=df,ax=axs[1,2],order=6, ci=None)
+sns.regplot(x=df.x,y=df.y,data=df,ax=axs[2,0],order=7, ci=None)
+sns.regplot(x=df.x,y=df.y,data=df,ax=axs[2,1],order=8, ci=None)
+sns.regplot(x=df.x,y=df.y,data=df,ax=axs[2,2],order=9, ci=None)
+plt.ylim(3,11)
+save_fig("%s"%title)
+plt.show()
+plt.close()
+```
+<figure>
+  <img src="{{"/images/posts/polynomial linear regression.png" | relative_url }}">
+  <figcaption>polynomial transformations</figcaption>
+</figure>
+
+### Example 3
 An example of using subplots in comparing models. Which Model is Superior?
 It all depends on the data.  And gradient boosting is not always the best.
 
