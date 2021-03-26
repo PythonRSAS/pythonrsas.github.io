@@ -2,8 +2,8 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "Python SAS Basic Data Analysis Lookup"
-description: comparing essential data analysis functions
+title: "Python R SAS Basic Data Analysis Lookup"
+description: comparing Python, R and SAS essential data analysis functions
 author: Sarah Chen
 image: images/posts/IMG-0669.JPG
 
@@ -44,3 +44,180 @@ Work in Progress.  Check back later.
 |                   | PROC SQL;                              |                                                              |
 | filter join       | DATA + in;                             | df1[df1.x.isin(df2.x)]                                       |
 |                   | PROC SQL                               | df1[~df1.x.isin(df2.x)]                                      |
+
+<div class="code-head"><span>code</span>import data.r</div>
+
+```r
+dim(df)
+head(df)
+tail(df)
+```
+<div class="code-head"><span>code</span>import data.sas</div>
+
+```sas
+PROC IMPORT 
+```
+### Summary Statistics:
+1.  Simulations or shuffling
+2.  Non-parametric tests, like the Mann-Whitney rank test  can work with non-normal distributions and ordered-level data.  On the other hand, these tests are also less powerful. 
+A quick review of t-test and critical values is in example below.  The ppf function scipy.stats gives the the 'quantile', which is the critical value for the probability and degree of freedom we specify.
+
+<div class="code-head"><span>code</span>import data.py</div>
+
+```python
+df.mean()
+```
+To roughly explain the differences in the critical values in the example above for various degrees of  
+
+<div class="code-head"><span>code</span>import data.r</div>
+
+```r
+library(purrr)
+library(dplyr)
+nba %>%
+  select_if(is.numeric) %>%
+  map_dbl(mean, na.rm = TRUE)
+```
+<div class="code-head"><span>code</span>import data.sas</div>
+
+```sas
+PROC IMPORT 
+```
+
+### Visual Analysis
+Does mathematics need *new clothes*?  
+
+A quick review of t-test and critical values is in example below.  The ppf function scipy.stats gives the the 'quantile', which is the critical value for the probability and degree of freedom we specify.
+
+<div class="code-head"><span>code</span>import data.py</div>
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+sns.pairplot(nba[["ast", "fg", "trb"]])
+plt.show()
+```
+To roughly explain the differences in the critical values in the example above for various degrees of  
+
+<div class="code-head"><span>code</span>import data.r</div>
+
+```r
+library(GGally)
+nba %>%
+select(ast, fg, trb) %>%
+ggpairs()
+```
+<div class="code-head"><span>code</span>import data.sas</div>
+
+```sas
+PROC IMPORT 
+```
+### Linear Regression
+Does mathematics need *new clothes*?  
+
+A quick review of t-test and critical values is in example below.  The ppf function scipy.stats gives the the 'quantile', which is the critical value for the probability and degree of freedom we specify.
+
+<div class="code-head"><span>code</span>import data.py</div>
+
+```python
+from sklearn.linear_model import LinearRegression
+lr = LinearRegression()
+lr.fit(train[["fg"]], train["ast"])
+predictions = lr.predict(test[["fg"]])
+
+import statsmodels.formula.api as sm
+model = sm.ols(formula='ast ~ fga', data=train)
+fitted = model.fit()
+fitted.summary()
+```
+To roughly explain the differences in the critical values in the example above for various degrees of  
+
+<div class="code-head"><span>code</span>import data.r</div>
+
+```r
+fit <- lm(ast ~ fg, data=train)
+predictions <- predict(fit, test)
+summary(fit)
+```
+<div class="code-head"><span>code</span>import data.sas</div>
+
+```sas
+PROC IMPORT 
+```
+### Random Forest
+Does mathematics need *new clothes*?  
+
+A quick review of t-test and critical values is in example below.  The ppf function scipy.stats gives the the 'quantile', which is the critical value for the probability and degree of freedom we specify.
+
+<div class="code-head"><span>code</span>import data.py</div>
+
+```python
+from sklearn.ensemble import RandomForestRegressor
+predictor_columns = ["age", "mp", "fg", "trb", "stl", "blk"]
+rf = RandomForestRegressor(n_estimators=100, min_samples_leaf=3)
+rf.fit(train[predictor_columns], train["ast"])
+predictions = rf.predict(test[predictor_columns])
+
+from sklearn.metrics import mean_squared_error
+mean_squared_error(test["ast"], predictions)
+```
+To roughly explain the differences in the critical values in the example above for various degrees of  
+
+<div class="code-head"><span>code</span>import data.r</div>
+
+```r
+library(randomForest)
+predictorColumns <- c("age", "mp", "fg", "trb", "stl", "blk")
+rf <- randomForest(train[predictorColumns], train$ast, ntree=100)
+predictions <- predict(rf, test[predictorColumns])
+
+mean((test["ast"] - predictions)^2)
+```
+<div class="code-head"><span>code</span>import data.sas</div>
+
+```sas
+PROC IMPORT 
+```
+### Kmeans Clustering
+Does mathematics need *new clothes*?  
+
+A quick review of t-test and critical values is in example below.  The ppf function scipy.stats gives the the 'quantile', which is the critical value for the probability and degree of freedom we specify.
+
+<div class="code-head"><span>code</span>import data.py</div>
+
+```python
+from sklearn.cluster import KMeans
+kmeans_model = KMeans(n_clusters=5, random_state=1)
+good_columns = nba._get_numeric_data().dropna(axis=1)
+kmeans_model.fit(good_columns)
+labels = kmeans_model.labels_
+# plotting
+from sklearn.decomposition import PCA
+pca_2 = PCA(2)
+plot_columns = pca_2.fit_transform(good_columns)
+plt.scatter(x=plot_columns[:,0], y=plot_columns[:,1], c=labels)
+plt.show()
+```
+To roughly explain the differences in the critical values in the example above for various degrees of  
+
+<div class="code-head"><span>code</span>import data.r</div>
+
+```r
+library(cluster)
+set.seed(1)
+isGoodCol <- function(col){
+  sum(is.na(col)) == 0 && is.numeric(col)
+}
+goodCols <- sapply(nba, isGoodCol)
+clusters <- kmeans(nba[,goodCols], centers=5)
+labels <- clusters$cluster
+# plotting
+nba2d <- prcomp(nba[,goodCols], center=TRUE)
+twoColumns <- nba2d$x[,1:2]
+clusplot(twoColumns, labels)
+```
+<div class="code-head"><span>code</span>import data.sas</div>
+
+```sas
+PROC IMPORT 
+```
