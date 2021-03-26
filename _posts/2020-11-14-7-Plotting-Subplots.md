@@ -5,7 +5,7 @@ category: "python for sas"
 title: "Plotting Subplots"
 description: plotting subplots tricks and uses
 author: Sarah Chen
-image: images/posts/IMG-0664.JPG
+image: images/posts/IMG-0664.jpg
 
 ---
 Often we need to plot a few things in subplots for comparison.   An example of subplots. 
@@ -334,7 +334,7 @@ Feature discretization (making continuous variables discrete) is to make continu
 Learn to recognize data type and algorithm decision boundary. This will help deciding which model to use based on data type. 
 
 <figure>
-  <img src="{{ "/images/posts/which model is better.PNG" | relative_url }}">
+  <img src="{{ "/images/posts/which model is better.png" | relative_url }}">
   <figcaption>which model is better</figcaption>
 </figure>
 
