@@ -8,14 +8,14 @@ author: Sarah Chen
 image: images/posts/IMG-0664.JPG
 
 ---
-Often we need to plot a few things in subplots for comparison.   An example of subplots. 
+Often we need to plot a few things in subplots for comparison.   An simple example of subplots. 
 <figure>
   <img src="{{ "/images/posts/Compare Stocks in Two Sectors.png" | relative_url }}">
   <figcaption>Compare Stocks in Two Sectors - Sarah Chen</figcaption>
 </figure>
 
 ## Rows and Columns
-Let's automate the number of rows and column once and for all.
+Let's automate the number of rows and column once and for all.  The key is to use quotient <span class="coding">i//width</span> and remainder <span class="coding">i%width</span>.
 
 <div class="code-head"><span>code</span>automate rows and columns for subplots.python</div>
 
