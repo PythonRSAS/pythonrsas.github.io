@@ -157,6 +157,12 @@ plt.suptitle('Main title')
 plt.subplots_adjust(top=0.9)
 ```
 ## Actual use
+In EDA, we routinely use linear regression on scatterplots.  Here is an example of putting them together:
+<figure>
+  <img src="{{ "/images/posts/Top 6 Features Scatter Plots.png" | relative_url }}">
+  <figcaption>Scatterplot of the Same Six Features with Actual Price</figcaption>
+</figure>
+
 
 An example of using subplots in comparing models. Which Model is Superior?
 It all depends on the data.  And gradient boosting is not always the best.
