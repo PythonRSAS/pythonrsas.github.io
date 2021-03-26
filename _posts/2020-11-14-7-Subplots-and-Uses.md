@@ -2,10 +2,10 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "Plotting Subplots"
+title: "Subplots and Uses"
 description: plotting subplots tricks and uses
 author: Sarah Chen
-image: images/posts/IMG-0664.jpg
+image: images/posts/IMG-0664.JPG
 
 ---
 Often we need to plot a few things in subplots for comparison.   An example of subplots. 
