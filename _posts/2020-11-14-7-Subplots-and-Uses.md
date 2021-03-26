@@ -326,7 +326,8 @@ save_fig("plot_discretization_classification", tight_layout=False)
 plt.show()
 ```
 I don't mean to side track.  But it is important to note since it is related to the plots below. 
-GBM is a tree-based model.  Decision trees are best for boxy type of data that you can cut up in boxes. 
+
+*GBM is a tree-based model.  Decision trees are best for **boxy** type of data that you can cut up in boxes.* 
 As shown in plot below, gradient boosting is not as good for the linearly separable data on the third row (bottom left). 
 
 -	Decision tree (not in plot) has hierarchical boxes
