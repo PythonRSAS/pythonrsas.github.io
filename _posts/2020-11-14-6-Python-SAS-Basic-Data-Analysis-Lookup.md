@@ -9,50 +9,48 @@ image: images/posts/IMG-0669.JPG
 
 ---
 Often we need to plot a few things in subplots for comparison.   An simple example of subplots. 
-<figure>
-  <img src="{{ "/images/posts/Compare Stocks in Two Sectors.png" | relative_url }}">
-  <figcaption>Compare Stocks in Two Sectors - Sarah Chen</figcaption>
-</figure>
+
+
 |    | Purpose           | SAS                                    | Python                                                       |
 |---:|:------------------|:---------------------------------------|:-------------------------------------------------------------|
 |  0 | content           | PROC CONTENT                           | df.info()                                                    |
-|  1 | nan               | nan                                    | df.dtypes                                                    |
-|  2 | nan               | nan                                    | nan                                                          |
+|  1 |                   |                                        | df.dtypes                                                    |
+|  2 |                   |                                        |                                                              |
 |  3 | summary           | PROC MEANS                             | df.describe()                                                |
-|  4 | nan               | nan                                    | df.x.describe()                                              |
-|  5 | nan               | PROC SUMMARY                           | nan                                                          |
-|  6 | nan               | nan                                    | df.groupby(by=’x’).sum()                                     |
-|  7 | nan               | PROC SQL                               | df.groupby(by=’x’).count()                                   |
-|  8 | nan               | nan                                    | df.groupby(by=’x’).quantile([0.25,0.75])                     |
-|  9 | nan               | nan                                    | df.groupby(level=’ind1’)                                     |
+|  4 |                   |                                        | df.x.describe()                                              |
+|  5 |                   | PROC SUMMARY                           |                                                              |
+|  6 |                   |                                        | df.groupby(by=’x’).sum()                                     |
+|  7 |                   | PROC SQL                               | df.groupby(by=’x’).count()                                   |
+|  8 |                   |                                        | df.groupby(by=’x’).quantile([0.25,0.75])                     |
+|  9 |                   |                                        | df.groupby(level=’ind1’)                                     |
 | 10 | missing count     | PROC MEANS N NMISS MISSING;            | df.count()                                                   |
-| 11 | nan               | nan                                    | df.isnull().sum()                                            |
-| 12 | nan               | PROC FREQ TABLE /MISSING;              | nan                                                          |
+| 11 |                   |                                        | df.isnull().sum()                                            |
+| 12 |                   | PROC FREQ TABLE /MISSING;              |                                                              |
 | 13 | frequency         | PROC FREQ                              | df.describe()                                                |
-| 14 | nan               | nan                                    | nan                                                          |
-| 15 | nan               | PROC SQL                               | df.value.counts()                                            |
-| 16 | nan               | nan                                    | nan                                                          |
-| 17 | nan               | nan                                    | pd.crosstab(df.A, df.B).apply(lambda x: x/x.sum(), axis = 1) |
+| 14 |                   |                                        |                                                              |
+| 15 |                   | PROC SQL                               | df.value.counts()                                            |
+| 16 |                   |                                        |                                                              |
+| 17 |                   |                                        | pd.crosstab(df.A, df.B).apply(lambda x: x/x.sum(), axis = 1) |
 | 18 | distribution      | PROC UNIVARIATE                        | df.describe(include=[np.number])                             |
 | 19 | drop/keep columns | DATA df (drop = col_name);             | df.drop(['x1', 'x2', 'x3'], axis = 1                         |
-| 20 | nan               | nan                                    | nan                                                          |
-| 21 | nan               | DATA df (keep = col_name);             | df.loc[:, ['x1', 'x2'])                                      |
+| 20 |                   |                                        |                                                              |
+| 21 |                   | DATA df (keep = col_name);             | df.loc[:, ['x1', 'x2'])                                      |
 | 22 | rename            | DATA df (RENAME = (old=new col_name)); | df.columns = ['name1', 'name2', 'name3']                     |
 | 23 | sort              | PROC SORT; BY x1 DESCENDING x2;        | df.sort(['x1', 'x2'], ascending = [True, False])             |
 | 24 | binning           | PROC RANK;                             | pd.cut(x, [min, cut1, …, cutk, max])                         |
-| 25 | nan               | nan                                    | nan                                                          |
-| 26 | nan               | nan                                    | np.digitize(x, [cut1, cut2, …, cutk])                        |
-| 27 | nan               | nan                                    | nan                                                          |
-| 28 | nan               | nan                                    | pd.qcut(df.x, n, labels=False)                               |
+| 25 |                   |                                        |                                                              |
+| 26 |                   |                                        | np.digitize(x, [cut1, cut2, …, cutk])                        |
+| 27 |                   |                                        |                                                              |
+| 28 |                   |                                        | pd.qcut(df.x, n, labels=False)                               |
 | 29 | bapping/          | DATA df;                               | df.x.replace(zip(old, new))                                  |
-| 30 | replace value     | IF THEN;                               | nan                                                          |
-| 31 | nan               | nan                                    | nan                                                          |
-| 32 | nan               | nan                                    | nan                                                          |
+| 30 | replace value     | IF THEN;                               |                                                              |
+| 31 |                   |                                        |                                                              |
+| 32 |                   |                                        |                                                              |
 | 33 | combine datasets  | DATA + MERGE;                          | pd.merge(df1, df2, how=’left’,on=’x’)                        |
-| 34 | nan               | PROC SQL;                              | nan                                                          |
-| 35 | nan               | nan                                    | nan                                                          |
+| 34 |                   | PROC SQL;                              |                                                              |
+| 35 |                   |                                        |                                                              |
 | 36 | filter join       | DATA + in;                             | df1[df1.x.isin(df2.x)]                                       |
-| 37 | nan               | PROC SQL                               | df1[~df1.x.isin(df2.x)]                                      |
+| 37 |                   | PROC SQL                               | df1[~df1.x.isin(df2.x)]                                      |
 ## Rows and Columns
 Let's automate the number of rows and column once and for all.  The key is to use quotient <span class="coding">i//width</span> and remainder <span class="coding">i%width</span>.
 
