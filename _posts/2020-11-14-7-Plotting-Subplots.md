@@ -5,7 +5,7 @@ category: "python for sas"
 title: "Plotting Subplots"
 description: plotting subplots tricks and uses
 author: Sarah Chen
-image: images/posts/IMG-0664.png
+image: images/posts/IMG-0664.JPG
 
 ---
 Often we need to plot a few things in subplots for comparison.   An example of subplots. 
@@ -159,7 +159,7 @@ plt.subplots_adjust(top=0.9)
 ## Actual use
 In EDA, we routinely use linear regression on scatterplots.  Here is an example of putting them together:
 <figure>
-  <img src="{{ "/images/posts/Top 6 Features Scatter Plots.png" | relative_url }}">
+  <img src="{{ "/images/posts/Top 6 Features Scatter Plots.PNG" | relative_url }}">
   <figcaption>Scatterplot of the Same Six Features with Actual Price</figcaption>
 </figure>
 
@@ -334,7 +334,7 @@ Feature discretization (making continuous variables discrete) is to make continu
 Learn to recognize data type and algorithm decision boundary. This will help deciding which model to use based on data type. 
 
 <figure>
-  <img src="{{ "/images/posts/which model is better.png" | relative_url }}">
+  <img src="{{ "/images/posts/which model is better.PNG" | relative_url }}">
   <figcaption>which model is better</figcaption>
 </figure>
 
