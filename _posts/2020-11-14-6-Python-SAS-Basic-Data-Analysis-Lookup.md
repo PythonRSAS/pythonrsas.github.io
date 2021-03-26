@@ -13,13 +13,10 @@ Often we need to plot a few things in subplots for comparison.   An simple examp
 
 |    | Purpose           | SAS                                    | Python                                                       |
 |---:|:------------------|:---------------------------------------|:-------------------------------------------------------------|
-|  0 | content           | PROC CONTENT                           | df.info()                                                    |
-|  1 |                   |                                        | df.dtypes                                                    |
-|  2 |                   |                                        |                                                              |
-|  3 | summary           | PROC MEANS                             | df.describe()                                                |
-|  4 |                   |                                        | df.x.describe()                                              |
-|  5 |                   | PROC SUMMARY                           |                                                              |
-|  6 |                   |                                        | df.groupby(by=’x’).sum()                                     |
+|  0 | content           | PROC CONTENT                           | df.info(), df.dtypes                                         |
+|  1 | summary           | PROC MEANS                             | df.describe()                                                |
+|  2 |                   | PROC SUMMARY                           | df.x.describe()                                              |
+|  3 |                   |                                        | df.groupby(by=’x’).sum()                                     |
 |  7 |                   | PROC SQL                               | df.groupby(by=’x’).count()                                   |
 |  8 |                   |                                        | df.groupby(by=’x’).quantile([0.25,0.75])                     |
 |  9 |                   |                                        | df.groupby(level=’ind1’)                                     |
@@ -29,7 +26,6 @@ Often we need to plot a few things in subplots for comparison.   An simple examp
 | 13 | frequency         | PROC FREQ                              | df.describe()                                                |
 | 14 |                   |                                        |                                                              |
 | 15 |                   | PROC SQL                               | df.value.counts()                                            |
-| 16 |                   |                                        |                                                              |
 | 17 |                   |                                        | pd.crosstab(df.A, df.B).apply(lambda x: x/x.sum(), axis = 1) |
 | 18 | distribution      | PROC UNIVARIATE                        | df.describe(include=[np.number])                             |
 | 19 | drop/keep columns | DATA df (drop = col_name);             | df.drop(['x1', 'x2', 'x3'], axis = 1                         |
@@ -44,11 +40,8 @@ Often we need to plot a few things in subplots for comparison.   An simple examp
 | 28 |                   |                                        | pd.qcut(df.x, n, labels=False)                               |
 | 29 | bapping/          | DATA df;                               | df.x.replace(zip(old, new))                                  |
 | 30 | replace value     | IF THEN;                               |                                                              |
-| 31 |                   |                                        |                                                              |
-| 32 |                   |                                        |                                                              |
 | 33 | combine datasets  | DATA + MERGE;                          | pd.merge(df1, df2, how=’left’,on=’x’)                        |
 | 34 |                   | PROC SQL;                              |                                                              |
-| 35 |                   |                                        |                                                              |
 | 36 | filter join       | DATA + in;                             | df1[df1.x.isin(df2.x)]                                       |
 | 37 |                   | PROC SQL                               | df1[~df1.x.isin(df2.x)]                                      |
 ## Rows and Columns
