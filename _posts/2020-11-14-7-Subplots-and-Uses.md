@@ -161,7 +161,7 @@ plt.subplots_adjust(top=0.9)
 ### Example 1
 In EDA, we routinely use linear regression on scatterplots.  Here is an example of putting them together:
 <figure>
-  <img src="{{ "/images/posts/Top 6 Features Scatter Plots.png" | relative_url }}">
+  <img src="{{"/images/posts/Top 6 Features Scatter Plots.png" | relative_url }}">
   <figcaption>Scatterplot of the Same Six Features with Actual Price</figcaption>
 </figure>
 
