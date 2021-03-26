@@ -2,7 +2,7 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "Plotting Subplots.md"
+title: "Plotting Subplots"
 description: plotting subplots tricks and uses
 author: Sarah Chen
 image: images/posts/which model is better.png
