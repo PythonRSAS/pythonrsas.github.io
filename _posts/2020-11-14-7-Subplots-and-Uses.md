@@ -156,6 +156,20 @@ for i in range(1,5):
 plt.suptitle('Main title')
 plt.subplots_adjust(top=0.9)
 ```
+
+## Multiple Plots with Seaborn
+Somehow, using ax0=, ax1= just don’t work.  We actually have to put the ax[0] within the sns call itself.  
+fig, axs = plt.subplots(ncols=3)
+sns.regplot(x='value', y='wage', data=df_melt, ax=axs[0])
+sns.regplot(x='value', y='wage', data=df_melt, ax=axs[1])
+sns.boxplot(x='education',y='wage', data=df_melt, ax=axs[2])
+
+<figure>
+  <img src="{{"/images/posts/polynomial linear regression.png" | relative_url }}">
+  <figcaption>polynomial linear regression</figcaption>
+</figure>
+
+
 ## Actual use
 
 ### Example 1
