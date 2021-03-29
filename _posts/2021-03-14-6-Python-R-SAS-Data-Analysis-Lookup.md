@@ -9,6 +9,14 @@ image: images/posts/IMG-0669.JPG
 
 ---
 Work in Progress.  Check back later. 
+## install libraries
+<div class="code-head"><span>code</span>install.r</div>
+
+```r
+install.packages('zoo', dependencies = TRUE)
+```
+
+## basics
 
 
 | Purpose           | SAS                                    | Python                                                       |
