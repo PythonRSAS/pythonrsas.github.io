@@ -9,13 +9,33 @@ image: images/posts/IMG-0669.JPG
 
 ---
 Work in Progress.  Check back later. 
-## install libraries
-<div class="code-head"><span>code</span>install.r</div>
+## install libraries and data
+<div class="code-head"><span>code</span>import libraries.r</div>
 
 ```r
 install.packages('zoo', dependencies = TRUE)
+library(zoo)
 ```
 
+<div class="code-head"><span>code</span>import data.r</div>
+
+```r
+dim(df)
+head(df)
+tail(df)
+```
+<div class="code-head"><span>code</span>import data.py</div>
+
+```python
+df.mean()
+```
+
+
+<div class="code-head"><span>code</span>import data.sas</div>
+
+```sas
+PROC IMPORT 
+```
 ## basics
 
 
@@ -105,44 +125,11 @@ s = sum(1, 2, c=10, d=15)
 ```
 
 
-<div class="code-head"><span>code</span>import data.r</div>
-
-```r
-dim(df)
-head(df)
-tail(df)
-```
-<div class="code-head"><span>code</span>import data.sas</div>
-
-```sas
-PROC IMPORT 
-```
 ### Summary Statistics:
 1.  Simulations or shuffling
 2.  Non-parametric tests, like the Mann-Whitney rank test  can work with non-normal distributions and ordered-level data.  On the other hand, these tests are also less powerful. 
 A quick review of t-test and critical values is in example below.  The ppf function scipy.stats gives the the 'quantile', which is the critical value for the probability and degree of freedom we specify.
 
-<div class="code-head"><span>code</span>import data.py</div>
-
-```python
-df.mean()
-```
-To roughly explain the differences in the critical values in the example above for various degrees of  
-
-<div class="code-head"><span>code</span>import data.r</div>
-
-```r
-library(purrr)
-library(dplyr)
-nba %>%
-  select_if(is.numeric) %>%
-  map_dbl(mean, na.rm = TRUE)
-```
-<div class="code-head"><span>code</span>import data.sas</div>
-
-```sas
-PROC IMPORT 
-```
 
 ### Visual Analysis
 Does mathematics need *new clothes*?  
