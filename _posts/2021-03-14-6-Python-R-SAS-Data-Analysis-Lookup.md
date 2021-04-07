@@ -118,7 +118,8 @@ PROC IMPORT
 | filter join       | DATA + in;                             | df1[df1.x.isin(df2.x)]                                       |
 |                   | PROC SQL                               | df1[~df1.x.isin(df2.x)]                                      |
 
-   ...:
+
+
 | Purpose           | SAS                                                                          | Python                                                       | R                                    |
 |:------------------|:-----------------------------------------------------------------------------|:-------------------------------------------------------------|:-------------------------------------|
 | input             | PROC IMPORT DATAFILE = " " OUT=df DBMS=CSV REPLACE; GUESSINGROWS=10000; RUN; | pd.read_csv("") # encoding=”cp1252”,encoding=”ISO-8859-1”    | read.table(file, as.is=TRUE)         |
