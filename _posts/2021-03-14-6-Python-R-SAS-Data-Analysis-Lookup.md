@@ -9,29 +9,36 @@ image: images/posts/IMG-0669.JPG
 
 ---
 Work in Progress.  Check back later. 
+
+The first step in any analytic process is import libraries and data. 
+
 ## install libraries and data
 <div class="code-head"><span>code</span>import libraries.r</div>
 
 ```r
+install.packages('data.table') #data.table has no dependencies
+library(data.table)
+
 install.packages('zoo', dependencies = TRUE)
 library(zoo)
 ```
 
-<div class="code-head"><span>code</span>import data.r</div>
+<div class="code-head"><span>code</span>import data and first look.r</div>
 
 ```r
+str(df) # similar to Python df.info() and SAS proc contents
 dim(df)
 head(df)
 tail(df)
 ```
-<div class="code-head"><span>code</span>import data.py</div>
+<div class="code-head"><span>code</span>import data and first look.py</div>
 
 ```python
 df.mean()
 ```
 
 
-<div class="code-head"><span>code</span>import data.sas</div>
+<div class="code-head"><span>code</span>import data and first look.sas</div>
 
 ```sas
 PROC IMPORT 
