@@ -52,9 +52,8 @@ plt.show()
   <figcaption>energy,meat and all food CPI YoY - Sarah Chen</figcaption>
 </figure>
 
--*1900 - 1914*    The Gold standard and stability
-
--  *1915 - 1924*    Inflation - World War I
+1. *1900 - 1914*    The Gold standard and stability
+2. *1915 - 1924*    Inflation - World War I
 
 -  *1925 - 1939*    Deflation - Interwar instability
 
