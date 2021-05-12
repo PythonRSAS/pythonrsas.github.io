@@ -23,7 +23,7 @@ Under the hood, <span class="coding">tshift()</span> is reindexing the time inde
 
 ## Economic data year over year (Yoy) example: Food and energy CPI
 Looking at economic activity data year over year (or sometimes quarter over quarter) is a routine exercise for analysts who work with macroeconomic data, and business performance data.  
-Food and energy (along with housing) are the most important factors in daily life. We use CPI data from FRED for our first example, using <span class="coding">.to_frame().join([meat,energy])</span> to combine the three time series: urban meat prices, all food prices, and energy prices. 
+Food and energy (along with housing) are the most important factors in daily life. We use CPI data from FRED for our first example, using <span class="coding">.to_frame().join([meat,energy])</span> to combine the three time series together: urban meat prices, all food prices, and energy prices. 
 
 To avoid seeing too much volatility, we first convert the monthly data to quarterly by using <span class="coding">.resample('Q').mean()</span>, then chain it with <span class="coding">.pct_change(4)</span>.
 
@@ -54,14 +54,17 @@ plt.show()
   <figcaption>energy,meat and all food CPI YoY - Sarah Chen</figcaption>
 </figure>
 
-1. *1900 - 1914*    The Gold standard and stability
-2. *1915 - 1924*    Inflation - World War I
-3. *1925 - 1939*    Deflation - Interwar instability
-4. *1949 - 1970*    Moderate inflation - Bretton Woods and the Dollar standard
-5. *1971 - 1979*    Highly variable inflation - Floating exchange rates, OPEC
-6. *1980 - 2000*    Disinflation - Greater central bank independence
+1. 1900 - 1914    The Gold standard and stability
+2. 1915 - 1924    Inflation - World War I
+3. 1925 - 1939    Deflation - Interwar instability
+4. 1949 - 1970    Moderate inflation - Bretton Woods and the Dollar standard
+5. 1971 - 1979    Highly variable inflation - Floating exchange rates, OPEC
+6. 1980 - 2000    *Disinflation* - Greater central bank independence
 
-We use S&P 500 data to show a few real use cases. 
+Note that deflation is a decrease in general price levels throughout an economy. Deflation, which is the opposite of inflation, is mainly caused by shifts in supply and demand. 
+Whereas disinflation is what happens when price inflation slows down temporarily.  Disinflation shows the rate of change of inflation over time.
+
+We use S&P 500 data to show a few more examples. 
 ## Example: S&P 500 Historical Prices and Returns
 
 ### S&P 500
