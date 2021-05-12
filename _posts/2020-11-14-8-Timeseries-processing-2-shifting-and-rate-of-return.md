@@ -20,10 +20,12 @@ There are two main shifting methods in pandas: <span class="coding">shift()</spa
 
 Under the hood, <span class="coding">tshift()</span> is reindexing the time index.  If you get an error, you should check whether there are *duplicates* in the datetime index or whether your datetime index has a *frequency*.  
 
-We first use CPI data. 
-## Example: Food and energy CPI
-<!--  -->
-Food and energy (along with housing) are the most important factors in daily life.  
+
+## Economic data year over year (Yoy) example: Food and energy CPI
+Looking at economic activity data year over year (or sometimes quarter over quarter) is a routine exercise for analysts who work with macroeconomic data, and business performance data.  
+Food and energy (along with housing) are the most important factors in daily life. We use CPI data from FRED for our first example, using <span class="coding">.to_frame().join([meat,energy])</span> to combine the three time series: urban meat prices, all food prices, and energy prices. 
+
+To avoid seeing too much volatility, we first convert the monthly data to quarterly by using <span class="coding">.resample('Q').mean()</span>, then chain it with <span class="coding">.pct_change(4)</span>.
 
 <div class="code-head"><span>code</span>S&P Historical Values and Extremes.python</div>
 
