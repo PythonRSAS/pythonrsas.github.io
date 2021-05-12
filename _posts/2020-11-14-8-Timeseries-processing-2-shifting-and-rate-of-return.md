@@ -25,9 +25,9 @@ Under the hood, <span class="coding">tshift()</span> is reindexing the time inde
 Looking at economic activity data year over year (or sometimes quarter over quarter) is a routine exercise for analysts who work with macroeconomic data, and business performance data.  
 Food and energy (along with housing) are the most important factors in daily life. We use CPI data from FRED for our first example, using <span class="coding">.to_frame().join([meat,energy])</span> to combine the three time series together: urban meat prices, all food prices, and energy prices. 
 
-To avoid seeing too much volatility, we first convert the monthly data to quarterly by using <span class="coding">.resample('Q').mean()</span>, then chain it with <span class="coding">.pct_change(4)</span>.
+To avoid seeing too much volatility, we first convert the monthly data to quarterly by using <span class="coding">.resample('Q').mean()</span>, then chain it with <span class="coding">.pct_change(4)</span>.  This gives us a quick way to compare a few time series in year over year change. 
 
-<div class="code-head"><span>code</span>S&P Historical Values and Extremes.python</div>
+<div class="code-head"><span>code</span>CPI YoY.python</div>
 
 ```python
 pd.options.display.float_format = '{:10,.1f}'.format 
@@ -54,6 +54,21 @@ plt.show()
   <figcaption>energy,meat and all food CPI YoY - Sarah Chen</figcaption>
 </figure>
 
+A variation of YoY transformation is moving average YoY, which first takes moving average before computing year over year. 
+Only one line of code is need to accomplish this. Again, <span class="coding">.resample('Q').mean()</span> changes frequency of the data from monthly to quarterly.  <span class="coding">.rolling(4).mean()</span> takes four-quarter moving average, followed by <span class="coding">.pct_change(4)</span> to make it year over year change. 
+
+<div class="code-head"><span>code</span>CPI moving average YoY.python</div>
+
+```python
+title = "CPI moving average YoY"
+food.to_frame().join([meat,energy]).resample('Q').mean().rolling(4).mean().pct_change(4).plot(figsize=(15,5),linewidth=2, color=[blue, green,'grey'])
+plt.title(title,fontdict={'fontsize': 20, 'fontweight': 'bold'})
+```
+<figure>
+  <img src="{{ "/images/posts/CPI moving average YoY.png" | relative_url }}">
+  <figcaption>CPI moving average YoY - Sarah Chen</figcaption>
+</figure>
+
 1. 1900 - 1914    The Gold standard and stability
 2. 1915 - 1924    Inflation - World War I
 3. 1925 - 1939    Deflation - Interwar instability
@@ -61,10 +76,10 @@ plt.show()
 5. 1971 - 1979    Highly variable inflation - Floating exchange rates, OPEC
 6. 1980 - 2000    *Disinflation* - Greater central bank independence
 
-Note that deflation is a decrease in general price levels throughout an economy. Deflation, which is the opposite of inflation, is mainly caused by shifts in supply and demand. 
-Whereas disinflation is what happens when price inflation slows down temporarily.  Disinflation shows the rate of change of inflation over time.
+**deflation** is a decrease in general price levels throughout an economy. Deflation, which is the opposite of inflation, is mainly caused by shifts in supply and demand. 
+**disinflation** is what happens when price inflation slows down temporarily.  Disinflation shows the rate of change of inflation over time.
 
-We use S&P 500 data to show a few more examples. 
+We now use S&P 500 data to show a few more examples. 
 ## Example: S&P 500 Historical Prices and Returns
 
 ### S&P 500
