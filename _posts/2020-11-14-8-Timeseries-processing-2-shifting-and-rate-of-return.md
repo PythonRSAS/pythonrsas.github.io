@@ -52,7 +52,12 @@ plt.show()
   <figcaption>energy,meat and all food CPI YoY - Sarah Chen</figcaption>
 </figure>
 
-![20th Century Inflation](https://globalfinancialdata.com/images/wp-content/uploads/white-papers/century-of-inflation-fig1.jpg "20th century inflation")
+*1900 - 1914*    The Gold standard and stability
+*1915 - 1924*    Inflation - World War I
+*1925 - 1939*    Deflation - Interwar instability
+*1949 - 1970*    Moderate inflation - Bretton Woods and the Dollar standard
+*1971 - 1979*    Highly variable inflation - Floating exchange rates, OPEC
+*1980 - 2000*    Disinflation - Greater central bank independence
 
 We use S&P 500 data to show a few real use cases. 
 ## Example: S&P 500 Historical Prices and Returns
