@@ -20,6 +20,38 @@ There are two main shifting methods in pandas: <span class="coding">shift()</spa
 
 Under the hood, <span class="coding">tshift()</span> is reindexing the time index.  If you get an error, you should check whether there are *duplicates* in the datetime index or whether your datetime index has a *frequency*.  
 
+We first use CPI data. 
+## Example: Food and energy CPI
+
+Food and energy (along with housing) are the most important factors in daily life.  
+
+<div class="code-head"><span>code</span>S&P Historical Values and Extremes.python</div>
+
+```python
+pd.options.display.float_format = '{:10,.1f}'.format 
+fred = fred(api_key='your key')
+from fredapi import Fred as fred
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set()
+meat=fred.get_series('CWSR0000SAF112')
+meat.name ='meat'
+food=fred.get_series('CPIUFDNS')
+food.name = 'food'
+energy=fred.get_series('CUSR0000SEHF')
+energy.name = 'energy'
+title = "energy,meat and all food CPI"
+df = food.to_frame().join([meat,energy]).resample('Q').mean().pct_change(4)
+df.plot(figsize=(15,5), alpha=0.8, linewidth=3)
+plt.title(title)
+# plt.savefig(r".\TimeSeries\images\food_cpi.png")
+plt.show()
+```
+<figure>
+  <img src="{{ "/images/posts/energy,meat and all food CPI.png" | relative_url }}">
+  <figcaption>energy,meat and all food CPI YoY - Sarah Chen</figcaption>
+</figure>
+
 We use S&P 500 data to show a few real use cases. 
 ## Example: S&P 500 Historical Prices and Returns
 
