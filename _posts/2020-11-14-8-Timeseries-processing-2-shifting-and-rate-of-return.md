@@ -22,7 +22,7 @@ Under the hood, <span class="coding">tshift()</span> is reindexing the time inde
 
 We first use CPI data. 
 ## Example: Food and energy CPI
-
+<!--  -->
 Food and energy (along with housing) are the most important factors in daily life.  
 
 <div class="code-head"><span>code</span>S&P Historical Values and Extremes.python</div>
@@ -51,6 +51,8 @@ plt.show()
   <img src="{{ "/images/posts/energy,meat and all food CPI.png" | relative_url }}">
   <figcaption>energy,meat and all food CPI YoY - Sarah Chen</figcaption>
 </figure>
+
+![20th Century Inflation](https://globalfinancialdata.com/images/wp-content/uploads/white-papers/century-of-inflation-fig1.jpg "20th century inflation")
 
 We use S&P 500 data to show a few real use cases. 
 ## Example: S&P 500 Historical Prices and Returns
