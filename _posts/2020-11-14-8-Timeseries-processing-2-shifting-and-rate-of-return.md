@@ -79,6 +79,29 @@ plt.title(title,fontdict={'fontsize': 20, 'fontweight': 'bold'})
 **deflation** is a decrease in general price levels throughout an economy. Deflation, which is the opposite of inflation, is mainly caused by shifts in supply and demand. 
 **disinflation** is what happens when price inflation slows down temporarily.  Disinflation shows the rate of change of inflation over time.
 
+Because time series transformation is often used in feature engineering in models, we may need to merge the transformed data with the level data. 
+<div class="note"><p>
+<b>Note</b> When merging data back, it is important to check by looking at the data, and reading the numbers.   Python is easy to use, and is also very easy to make mistake with.    For example, when using <span class="coding">.join</span>, default method is on index, if the series have different frequency, then nothing will be merged. 
+</p></div>
+
+<div class="code-head"><span>code</span>YoY and moving average YoY.python</div>
+
+```python
+df = food.to_frame().join([meat,energy]).resample('Q').mean()
+yoy_df = df.pct_change(4)
+ma_yoy_df = df.rolling(4).mean().pct_change(4)
+df = df.join(yoy_df, rsuffix='_yoy')
+df = df.join(ma_yoy_df, rsuffix='_ma_yoy')
+title = "YoY and moving average YoY"
+df[['meat_yoy','meat_ma_yoy']].dropna(how='all',axis=0).plot(figsize=(15,5),linewidth=2, color=[blue, green])
+plt.title(title,fontdict={'fontsize': 20, 'fontweight': 'bold'})
+```
+<figure>
+  <img src="{{ "/images/posts/YoY and moving average YoY.png" | relative_url }}">
+  <figcaption>YoY and moving average YoY - Sarah Chen</figcaption>
+</figure>
+
+
 We now use S&P 500 data to show a few more examples. 
 ## Example: S&P 500 Historical Prices and Returns
 
