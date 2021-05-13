@@ -137,10 +137,58 @@ def regplots(x, y, data):
     plt.subplots_adjust(top=0.925, hspace=0.25)
     plt.savefig(r".\Volume2\TimeSeries\images\%s.png"%title)
 regplots(x='meat_yoy',y='food_yoy',data=df)
+Out:
+correlation is:
+meat_yoy   0.690
+lead1      0.530
+lead2      0.350
+lead3      0.190
+lead4      0.060
+lag1       0.690
+lag2       0.630
+lag3       0.530
+lag4       0.420
 ```
 <figure>
   <img src="{{ "/images/posts/regplot food_yoy and meat_yoy.png" | relative_url }}">
   <figcaption>regplot food_yoy and meat_yoy</figcaption>
+</figure>
+
+<div class="code-head"><span>code</span>comparing 2 time series with different axis.python</div>
+
+```python
+def plot_2_ts(data, x, y, year):
+    '''
+    plot 2 time series using secondary axis
+    y is plotted with solid blue line
+    x is in dotted green line
+    annotated with correlation
+    year is the beginning year
+    '''
+    temp = data.loc[str(year):, [x]+[y]].dropna(how='any', axis=0).copy()
+    corr = np.round(temp.corr().iloc[0,1],2)
+    print("corr \n",corr)
+    title = x + " and " + y
+    fig, ax1 = plt.subplots(1,1,figsize=(15,5))
+    ax2 = ax1.twinx()
+    ax1.plot(temp.index, temp[x], color=green, label=x,linestyle=":", lw=3)
+    ax2.plot(temp.index, temp[y], color=blue, label=y, lw=3)
+    ax1.set_ylabel(x, color=green)
+    ax2.set_ylabel(y, color=blue)
+    ax2.xaxis.set_major_locator(YearLocator()) #frequency
+    ax2.xaxis.set_major_formatter(DateFormatter('%Y'))
+    ax2.text(temp.index[2],temp[x].min(), "correlation = %s"%str(corr))
+    ax1.tick_params(axis='x', labelrotation = 90)
+    ax2.tick_params(axis='x', labelrotation = 90)
+    ax1.legend(frameon=False, loc=2)
+    ax2.legend(frameon=False, loc=1)
+    plt.xticks(fontsize=5)
+    plt.title(title,fontsize=20, fontweight ='bold')
+plot_2_ts(df, x= "food_ma_yoy", y = "energy_ma_yoy", year=1970)
+```
+<figure>
+  <img src="{{ "/images/posts/food_ma_yoy and energy_ma_yoy.png" | relative_url }}">
+  <figcaption>food_ma_yoy and energy_ma_yoy</figcaption>
 </figure>
 
 We now use S&P 500 data to show a few more examples. 
