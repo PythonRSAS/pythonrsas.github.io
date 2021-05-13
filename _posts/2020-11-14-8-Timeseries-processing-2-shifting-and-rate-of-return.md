@@ -101,6 +101,47 @@ plt.title(title,fontdict={'fontsize': 20, 'fontweight': 'bold'})
   <figcaption>YoY and moving average YoY - Sarah Chen</figcaption>
 </figure>
 
+## regression analysis
+After preparing the data, we may want to do some simple regression analysis.   Below is an example  
+<div class="code-head"><span>code</span>regression analysis.python</div>
+
+```python
+def regplots(x, y, data):
+    df = data[[y,x]].dropna(how='all', axis=0).copy()
+    df.rename({y:'y'}, inplace=True, axis=1)
+    df['lead1'] = df[x].shift(-1)
+    df['lead2'] = df[x].shift(-2)
+    df['lead3'] = df[x].shift(-3)
+    df['lead4'] = df[x].shift(-4)
+    df['lag1'] = df[x].shift(1)
+    df['lag2'] = df[x].shift(2)
+    df['lag3'] = df[x].shift(3)
+    df['lag4'] = df[x].shift(4)
+    corrs = np.round(df.corr()['y'][1:],2)
+    print("correlation is:/n", corrs)
+    cols = [x,'lead4','lead3','lead2','lead1','lag1','lag2','lag3','lag4']
+    lwargs = {'color':'grey', 'alpha':0.6}
+    lwargs2 = {'color':'k', 'alpha':0.6}
+    fig, ax = plt.subplots(3,3, figsize=(15,15))
+    sns.regplot(x=df[cols[0]], y=df.y, data=df, ax=ax[0,0],line_kws=lwargs).set_title("%s, corr %s"%(cols[0],str(corrs[cols[0]])))
+    sns.regplot(x=df[cols[1]], y=df.y, data=df, ax=ax[0,1],line_kws=lwargs).set_title("%s, corr %s"%(cols[1],str(corrs[cols[1]])))
+    sns.regplot(x=df[cols[2]], y=df.y, data=df, ax=ax[0,2],line_kws=lwargs).set_title("%s, corr %s"%(cols[2],str(corrs[cols[2]])))
+    sns.regplot(x=df[cols[3]], y=df.y, data=df, ax=ax[1,0],line_kws=lwargs).set_title("%s, corr %s"%(cols[3],str(corrs[cols[3]])))
+    sns.regplot(x=df[cols[4]], y=df.y, data=df, ax=ax[1,1],line_kws=lwargs).set_title("%s, corr %s"%(cols[4],str(corrs[cols[4]])))
+    sns.regplot(x=df[cols[5]], y=df.y, data=df, ax=ax[1,2],line_kws=lwargs).set_title("%s, corr %s"%(cols[5],str(corrs[cols[5]])))
+    sns.regplot(x=df[cols[6]], y=df.y, data=df, ax=ax[2,0],line_kws=lwargs).set_title("%s, corr %s"%(cols[6],str(corrs[cols[6]])))
+    sns.regplot(x=df[cols[7]], y=df.y, data=df, ax=ax[2,1],line_kws=lwargs).set_title("%s, corr %s"%(cols[7],str(corrs[cols[7]])))
+    sns.regplot(x=df[cols[8]], y=df.y, data=df, ax=ax[2,2],line_kws=lwargs).set_title("%s, corr %s"%(cols[8],str(corrs[cols[8]])))
+    title ="regplot %s and %s"%(y,x)
+    plt.suptitle(title,fontsize=20, fontweight ='bold')
+    plt.subplots_adjust(top=0.925, hspace=0.25)
+    plt.savefig(r".\Volume2\TimeSeries\images\%s.png"%title)
+regplots(x='meat_yoy',y='food_yoy',data=df)
+```
+<figure>
+  <img src="{{ "/images/posts/regplot meat_yoy and food_yoy.png" | relative_url }}">
+  <figcaption>regplot meat_yoy and food_yoy </figcaption>
+</figure>
 
 We now use S&P 500 data to show a few more examples. 
 ## Example: S&P 500 Historical Prices and Returns
