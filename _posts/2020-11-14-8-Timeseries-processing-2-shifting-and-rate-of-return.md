@@ -139,8 +139,8 @@ def regplots(x, y, data):
 regplots(x='meat_yoy',y='food_yoy',data=df)
 ```
 <figure>
-  <img src="{{ "/images/posts/regplot meat_yoy and food_yoy.png" | relative_url }}">
-  <figcaption>regplot meat_yoy and food_yoy </figcaption>
+  <img src="{{ "/images/posts/regplot food_yoy and meat_yoy.png" | relative_url }}">
+  <figcaption>regplot food_yoy and meat_yoy</figcaption>
 </figure>
 
 We now use S&P 500 data to show a few more examples. 
