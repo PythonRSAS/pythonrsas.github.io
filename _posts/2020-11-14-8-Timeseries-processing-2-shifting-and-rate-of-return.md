@@ -187,7 +187,7 @@ def plot_2_ts(data, x, y, year):
 plot_2_ts(df, x= "food_ma_yoy", y = "energy_ma_yoy", year=1970)
 ```
 <figure>
-  <img src="{{ "/images/posts/food_ma_yoy and energy_ma_yoy.png" | relative_url }}">
+  <img src="{{ "/images/posts/food_ma_yoy and energy_ma_yoy.png" | relative_url }}" width ="900">
   <figcaption>food_ma_yoy and energy_ma_yoy</figcaption>
 </figure>
 
