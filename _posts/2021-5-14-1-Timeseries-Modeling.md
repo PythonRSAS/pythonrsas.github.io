@@ -49,6 +49,22 @@ plt.show()
   <figcaption>energy,meat and all food CPI YoY - Sarah Chen</figcaption>
 </figure>
 
+## Data Transform
+A variation of YoY transformation is moving average YoY, which first takes moving average before computing year over year. 
+Only one line of code is need to accomplish this. Again, <span class="coding">.resample('Q').mean()</span> changes frequency of the data from monthly to quarterly.  <span class="coding">.rolling(4).mean()</span> takes four-quarter moving average, followed by <span class="coding">.pct_change(4)</span> to make it year over year change. 
+
+<div class="code-head"><span>code</span>CPI moving average YoY.python</div>
+
+```python
+title = "CPI moving average YoY"
+food.to_frame().join([meat,energy]).resample('Q').mean().rolling(4).mean().pct_change(4).plot(figsize=(15,5),linewidth=2, color=[blue, green,'grey'])
+plt.title(title,fontdict={'fontsize': 20, 'fontweight': 'bold'})
+```
+<figure>
+  <img src="{{ "/images/posts/CPI moving average YoY.png" | relative_url }}">
+  <figcaption>CPI moving average YoY - Sarah Chen</figcaption>
+</figure>
+
 If we have many series and cannot plots them in one chart, we may want to use the following code.  To make the plots more informative, we can annotate them with statistics such as historical mean. 
 </span> takes four-quarter moving average, followed by <span class="coding">.pct_change(4)</span> to make it year over year change. 
 
@@ -90,28 +106,15 @@ for i in fred_series:
 </figure>
 
 
-## Data Transform
-A variation of YoY transformation is moving average YoY, which first takes moving average before computing year over year. 
-Only one line of code is need to accomplish this. Again, <span class="coding">.resample('Q').mean()</span> changes frequency of the data from monthly to quarterly.  <span class="coding">.rolling(4).mean()</span> takes four-quarter moving average, followed by <span class="coding">.pct_change(4)</span> to make it year over year change. 
-
-<div class="code-head"><span>code</span>CPI moving average YoY.python</div>
-
-```python
-title = "CPI moving average YoY"
-food.to_frame().join([meat,energy]).resample('Q').mean().rolling(4).mean().pct_change(4).plot(figsize=(15,5),linewidth=2, color=[blue, green,'grey'])
-plt.title(title,fontdict={'fontsize': 20, 'fontweight': 'bold'})
-```
-<figure>
-  <img src="{{ "/images/posts/CPI moving average YoY.png" | relative_url }}">
-  <figcaption>CPI moving average YoY - Sarah Chen</figcaption>
-</figure>
-
+<div class="note"><p>
+<b>Note</b> ## Inflation and Deflation Periods in the 20th Century
 1. 1900 - 1914    The Gold standard and stability
 2. 1915 - 1924    Inflation - World War I
 3. 1925 - 1939    Deflation - Interwar instability
 4. 1949 - 1970    Moderate inflation - Bretton Woods and the Dollar standard
 5. 1971 - 1979    Highly variable inflation - Floating exchange rates, OPEC
 6. 1980 - 2000    *Disinflation* - Greater central bank independence
+</p></div>
 
 **deflation** is a decrease in general price levels throughout an economy. Deflation, which is the opposite of inflation, is mainly caused by shifts in supply and demand. 
 **disinflation** is what happens when price inflation slows down temporarily.  Disinflation shows the rate of change of inflation over time.
