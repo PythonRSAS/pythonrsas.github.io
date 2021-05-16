@@ -257,6 +257,8 @@ x2 = 'energy_yoy'
 y =  'food_yoy'
 ts = df[[x1,x2,y]].copy()
 ts.dropna(how='any', axis =0, inplace=True)
+X = ts[[x1,x2]].copy()
+X = sm.add_constant(X)
 model = sm.OLS(ts[y],ts[[x1,x2]]).fit()
 model.summary()
 [Out]:
