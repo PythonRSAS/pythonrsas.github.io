@@ -106,8 +106,9 @@ for i in fred_series:
 </figure>
 
 
-<div class="note"><p>
-<b>Note</b> ## Inflation and Deflation Periods in the 20th Century
+<div class="Inflation and Deflation Periods in the 20th Century"><p>
+<b>Note</b> 
+
 1. 1900 - 1914    The Gold standard and stability
 2. 1915 - 1924    Inflation - World War I
 3. 1925 - 1939    Deflation - Interwar instability
@@ -120,7 +121,7 @@ for i in fred_series:
 **disinflation** is what happens when price inflation slows down temporarily.  Disinflation shows the rate of change of inflation over time.
 
 Because time series transformation is often used in feature engineering in models, we may need to merge the transformed data with the level data. 
-<div class="note"><p>
+<div class="Python notes"><p>
 <b>Note</b> When merging data back, it is important to check by looking at the data, and reading the numbers.   Python is easy to use, and is also very easy to make mistake with.    For example, when using <span class="coding">.join</span>, default method is on index, if the series have different frequency, then nothing will be merged. 
 </p></div>
 
@@ -140,6 +141,8 @@ plt.title(title,fontdict={'fontsize': 20, 'fontweight': 'bold'})
   <img src="{{ "/images/posts/YoY and moving average YoY.png" | relative_url }}">
   <figcaption>YoY and moving average YoY - Sarah Chen</figcaption>
 </figure>
+
+## Bi-variate Plots Check for Economic Intuition
 
 <div class="code-head"><span>code</span>comparing 2 time series with different axis.python</div>
 
