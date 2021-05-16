@@ -183,8 +183,7 @@ plot_2_ts(df, x= "food_ma_yoy", y = "energy_ma_yoy", year=1970)
 
 ## regression analysis
 After preparing the data, we may want to do some simple regression analysis for feature selection.   Below is an example that looks at various lags and leads to find which is the most correlated one with the target.  
-- When the target variable leads a input variable, the predicted will lag behind the actual. 
-- When target leads a input, we cannot no longer call the input as a "driver", as it implies causality. 
+
 <div class="code-head"><span>code</span>regression analysis.python</div>
 
 ```python
@@ -236,8 +235,53 @@ From the correlation and regression analysis, we see that without lead or lag th
   <img src="{{ "/images/posts/regplot food_yoy and meat_yoy.png" | relative_url }}">
   <!-- <figcaption>regplot food_yoy and meat_yoy</figcaption> -->
 </figure>
+Below plots show that food price change is more often a leading indicator for energy price change.  However,
+- When the target variable leads a input variable, **the predicted will lag behind the actual**. 
+- When target leads a input, we cannot no longer call the input as a "driver", as it implies causality. 
+
 <figure>
   <img src="{{ "/images/posts/regplot food_yoy and energy_yoy.png" | relative_url }}">
   <!-- <figcaption>regplot food_yoy and meat_yoy</figcaption> -->
 </figure>
+
+## OLS Regression
+We run a simple OLS regression using meat_yoy and energy_yoy to predict food_yoy.   From the regression results, we see that DW is 0.222.  Ideally DW should be close to 2.  Close to 0 DW means the residual is positively auto-correlated. 
+
+<div class="code-head"><span>code</span>OLS regression.python</div>
+
+```python
+import statsmodels.api as sm
+from statsmodels.stats.stattools import durbin_watson
+x1 = 'meat_yoy'
+x2 = 'energy_yoy'
+y =  'food_yoy'
+ts = df[[x1,x2,y]].copy()
+ts.dropna(how='any', axis =0, inplace=True)
+model = sm.OLS(ts[y],ts[[x1,x2]]).fit()
+model.summary()
+[Out]:
+                            OLS Regression Results
+==============================================================================
+Dep. Variable:               food_yoy   R-squared:                       0.628
+Model:                            OLS   Adj. R-squared:                  0.625
+Method:                 Least Squares   F-statistic:                     178.5
+Date:                Sun, 16 May 2021   Prob (F-statistic):           4.28e-46
+Time:                        17:44:34   Log-Likelihood:                 536.07
+No. Observations:                 214   AIC:                            -1066.
+Df Residuals:                     211   BIC:                            -1056.
+Df Model:                           2
+Covariance Type:            nonrobust
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0168      0.002      9.058      0.000       0.013       0.020
+meat_yoy       0.3547      0.024     15.009      0.000       0.308       0.401
+energy_yoy     0.2186      0.023      9.472      0.000       0.173       0.264
+==============================================================================
+Omnibus:                       82.989   Durbin-Watson:                   0.222
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              390.244
+Skew:                           1.458   Prob(JB):                     1.82e-85
+Kurtosis:                       8.939   Cond. No.                         18.3
+==============================================================================
+```
 
