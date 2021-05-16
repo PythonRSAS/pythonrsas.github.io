@@ -15,8 +15,9 @@ This post consists of a few timeseries regression examples from my upcoming book
 
 We will begin with some data analysis and then get into modeling. 
 
-## Economic data year over year (YoY) example: Food and energy CPI
-Looking at economic activity data year over year (or sometimes quarter over quarter) is a routine exercise for analysts who work with macroeconomic data, and business performance data.  
+## Data: Food and energy CPI
+Looking at economic activity data year over year (or sometimes quarter over quarter) is a routine exercise for analysts who work with macroeconomic data, and business performance data.  Tranformating the target variable using YoY often makes the time series stationary and non-serial correlated.  Stationary target variable makes modeling easier because it is reduces chances of spurious regression and it is easier to isolate problems.  Why?  Let's make an analogy, when you have two objects, it is easier to see what is happening if you keep one object relatively fixed (stationary) instead of both are moving. 
+
 Food and energy (along with housing) are the most important factors in daily life. We use CPI data from FRED for our first example, using <span class="coding">.to_frame().join([meat,energy])</span> to combine the three time series together: urban meat prices, all food prices, and energy prices. 
 
 To avoid seeing too much volatility, we first convert the monthly data to quarterly by using <span class="coding">.resample('Q').mean()</span>, then chain it with <span class="coding">.pct_change(4)</span>.  This gives us a quick way to compare a few time series in year over year change. 
@@ -48,6 +49,7 @@ plt.show()
   <figcaption>energy,meat and all food CPI YoY - Sarah Chen</figcaption>
 </figure>
 
+## Data Transform
 A variation of YoY transformation is moving average YoY, which first takes moving average before computing year over year. 
 Only one line of code is need to accomplish this. Again, <span class="coding">.resample('Q').mean()</span> changes frequency of the data from monthly to quarterly.  <span class="coding">.rolling(4).mean()</span> takes four-quarter moving average, followed by <span class="coding">.pct_change(4)</span> to make it year over year change. 
 
@@ -95,8 +97,45 @@ plt.title(title,fontdict={'fontsize': 20, 'fontweight': 'bold'})
   <figcaption>YoY and moving average YoY - Sarah Chen</figcaption>
 </figure>
 
+<div class="code-head"><span>code</span>comparing 2 time series with different axis.python</div>
+
+```python
+def plot_2_ts(data, x, y, year):
+    '''
+    plot 2 time series using secondary axis
+    y is plotted with solid blue line
+    x is in dotted green line
+    annotated with correlation
+    year is the beginning year
+    '''
+    temp = data.loc[str(year):, [x]+[y]].dropna(how='any', axis=0).copy()
+    corr = np.round(temp.corr().iloc[0,1],2)
+    print("corr \n",corr)
+    title = x + " and " + y
+    fig, ax1 = plt.subplots(1,1,figsize=(15,5))
+    ax2 = ax1.twinx()
+    ax1.plot(temp.index, temp[x], color=green, label=x,linestyle=":", lw=3)
+    ax2.plot(temp.index, temp[y], color=blue, label=y, lw=3)
+    ax1.set_ylabel(x, color=green)
+    ax2.set_ylabel(y, color=blue)
+    ax2.xaxis.set_major_locator(YearLocator()) #frequency
+    ax2.xaxis.set_major_formatter(DateFormatter('%Y'))
+    ax2.text(temp.index[2],temp[x].min(), "correlation = %s"%str(corr))
+    ax1.tick_params(axis='x', labelrotation = 90)
+    ax2.tick_params(axis='x', labelrotation = 90)
+    ax1.legend(frameon=False, loc=2)
+    ax2.legend(frameon=False, loc=1)
+    plt.xticks(fontsize=5)
+    plt.title(title,fontsize=20, fontweight ='bold')
+plot_2_ts(df, x= "food_ma_yoy", y = "energy_ma_yoy", year=1970)
+```
+<figure>
+  <img src="{{ "/images/posts/food_ma_yoy and energy_ma_yoy.png" | relative_url }}" width ="1500">
+  <figcaption>food_ma_yoy and energy_ma_yoy</figcaption>
+</figure>
+
 ## regression analysis
-After preparing the data, we may want to do some simple regression analysis.   Below is an example  
+After preparing the data, we may want to do some simple regression analysis for feature selection.   Below is an example that looks at various lags and leads to find which is the most correlated one with the target. 
 <div class="code-head"><span>code</span>regression analysis.python</div>
 
 ```python
@@ -148,39 +187,3 @@ lag4       0.420
   <figcaption>regplot food_yoy and meat_yoy</figcaption>
 </figure>
 
-<div class="code-head"><span>code</span>comparing 2 time series with different axis.python</div>
-
-```python
-def plot_2_ts(data, x, y, year):
-    '''
-    plot 2 time series using secondary axis
-    y is plotted with solid blue line
-    x is in dotted green line
-    annotated with correlation
-    year is the beginning year
-    '''
-    temp = data.loc[str(year):, [x]+[y]].dropna(how='any', axis=0).copy()
-    corr = np.round(temp.corr().iloc[0,1],2)
-    print("corr \n",corr)
-    title = x + " and " + y
-    fig, ax1 = plt.subplots(1,1,figsize=(15,5))
-    ax2 = ax1.twinx()
-    ax1.plot(temp.index, temp[x], color=green, label=x,linestyle=":", lw=3)
-    ax2.plot(temp.index, temp[y], color=blue, label=y, lw=3)
-    ax1.set_ylabel(x, color=green)
-    ax2.set_ylabel(y, color=blue)
-    ax2.xaxis.set_major_locator(YearLocator()) #frequency
-    ax2.xaxis.set_major_formatter(DateFormatter('%Y'))
-    ax2.text(temp.index[2],temp[x].min(), "correlation = %s"%str(corr))
-    ax1.tick_params(axis='x', labelrotation = 90)
-    ax2.tick_params(axis='x', labelrotation = 90)
-    ax1.legend(frameon=False, loc=2)
-    ax2.legend(frameon=False, loc=1)
-    plt.xticks(fontsize=5)
-    plt.title(title,fontsize=20, fontweight ='bold')
-plot_2_ts(df, x= "food_ma_yoy", y = "energy_ma_yoy", year=1970)
-```
-<figure>
-  <img src="{{ "/images/posts/food_ma_yoy and energy_ma_yoy.png" | relative_url }}" width ="1500">
-  <figcaption>food_ma_yoy and energy_ma_yoy</figcaption>
-</figure>
