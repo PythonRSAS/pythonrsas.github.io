@@ -182,7 +182,9 @@ plot_2_ts(df, x= "food_ma_yoy", y = "energy_ma_yoy", year=1970)
 </figure>
 
 ## regression analysis
-After preparing the data, we may want to do some simple regression analysis for feature selection.   Below is an example that looks at various lags and leads to find which is the most correlated one with the target. 
+After preparing the data, we may want to do some simple regression analysis for feature selection.   Below is an example that looks at various lags and leads to find which is the most correlated one with the target.  
+- When the target variable leads a input variable, the predicted will lag behind the actual. 
+- When target leads a input, we cannot no longer call the input as a "driver", as it implies causality. 
 <div class="code-head"><span>code</span>regression analysis.python</div>
 
 ```python
@@ -236,6 +238,6 @@ From the correlation and regression analysis, we see that without lead or lag th
 </figure>
 <figure>
   <img src="{{ "/images/posts/regplot food_yoy and energy_yoy.png" | relative_url }}">
-  <figcaption>regplot food_yoy and meat_yoy</figcaption>
+  <!-- <figcaption>regplot food_yoy and meat_yoy</figcaption> -->
 </figure>
 
