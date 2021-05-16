@@ -49,6 +49,47 @@ plt.show()
   <figcaption>energy,meat and all food CPI YoY - Sarah Chen</figcaption>
 </figure>
 
+If we have many series and cannot plots them in one chart, we may want to use the following code.  To make the plots more informative, we can annotate them with statistics such as historical mean. 
+</span> takes four-quarter moving average, followed by <span class="coding">.pct_change(4)</span> to make it year over year change. 
+
+<div class="code-head"><span>code</span>CPI moving average YoY.python</div>
+
+```python
+fred_series = ['CWSR0000SAF112','CPIUFDNS','CUSR0000SEHF' ] 
+series_names = ['meat','food','energy']
+series_dict = dict(zip(fred_series,series_names))
+# get series together and save them in a dataframe
+s_list =[]
+for i in fred_series:
+    s = fred.get_series(i)
+    s_list.append(s)
+s_df = pd.concat(s_list, axis=1) #convert a list of series to dataframe
+s_df.columns=series_names
+# transform the entire dataframe
+s_yoy =s_df.resample('Q').mean().pct_change(4) 
+MEAN = s_yoy.mean()
+
+for i in fred_series:
+    NAME = series_dict[i]
+    title = "CPI " +  NAME + ' '+ i
+    fig, ax = plt.subplots(1,1)
+    s_yoy[NAME].dropna(axis=0).plot(label=NAME,color=blue, ax=ax)
+    left_pos = s_yoy[NAME].first_valid_index()
+    right_pos = s_yoy[NAME].last_valid_index() 
+    plt.hlines(MEAN[NAME], xmin=left_pos,xmax=right_pos, linestyles=":", alpha=0.3)
+    # annotate with historical mean
+    ax.text(s_yoy[NAME].first_valid_index(),MEAN[NAME], '$mean: {:.1f}$%'.format(100*MEAN[NAME]))
+    plt.hlines(0, xmin=left_pos,xmax=right_pos, lw=4, alpha=0.5, color='white')
+    plt.legend(frameon=False)
+    plt.title(title)
+    plt.show()
+```
+<figure>
+  <img src="{{ "/images/posts/CPI meat CWSR0000SAF112.png" | relative_url }}">
+  <figcaption>CPI meat CWSR0000SAF112</figcaption>
+</figure>
+
+
 ## Data Transform
 A variation of YoY transformation is moving average YoY, which first takes moving average before computing year over year. 
 Only one line of code is need to accomplish this. Again, <span class="coding">.resample('Q').mean()</span> changes frequency of the data from monthly to quarterly.  <span class="coding">.rolling(4).mean()</span> takes four-quarter moving average, followed by <span class="coding">.pct_change(4)</span> to make it year over year change. 
@@ -182,6 +223,7 @@ lag2       0.630
 lag3       0.530
 lag4       0.420
 ```
+From the correlation and regression analysis, we see that without lead or lag the correlation is the highest.  
 <figure>
   <img src="{{ "/images/posts/regplot food_yoy and meat_yoy.png" | relative_url }}">
   <figcaption>regplot food_yoy and meat_yoy</figcaption>
