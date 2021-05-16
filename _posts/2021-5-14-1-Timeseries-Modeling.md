@@ -9,7 +9,11 @@ image: images/posts/regplot food_yoy and meat_yoy.png
 
 ---
 
-This post consists of a few timeseries regression examples from my upcoming book on statistical and machine learning using Python, also to be published by Apress,as my co-authored book [Python for SAS User](https://www.amazon.com/Sarah-Chen/e/B07ZL3Q97B?ref_=dbs_p_pbk_r00_abau_000000)
+This post consists of a few timeseries regression examples from my upcoming book on statistical and machine learning using Python, also to be published by Apress,as my co-authored book [Python for SAS User](https://www.amazon.com/Sarah-Chen/e/B07ZL3Q97B?ref_=dbs_p_pbk_r00_abau_000000).  There are two main categories of models for time series data: 
+1. Various variations of OLS type of regression y = a + b*x.  To account for residual serial correlation, Newey-West standard errors may be used. 
+2. Time series model, such as ARIMAX, SARIMAX
+
+We will begin with some data analysis and then get into modeling. 
 
 ## Economic data year over year (YoY) example: Food and energy CPI
 Looking at economic activity data year over year (or sometimes quarter over quarter) is a routine exercise for analysts who work with macroeconomic data, and business performance data.  
