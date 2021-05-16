@@ -229,9 +229,13 @@ lag2       0.630
 lag3       0.530
 lag4       0.420
 ```
-From the correlation and regression analysis, we see that without lead or lag the correlation is the highest.  
+From the correlation and regression analysis, we see that without lead or lag the correlation between food and meat is the highest.  
 <figure>
   <img src="{{ "/images/posts/regplot food_yoy and meat_yoy.png" | relative_url }}">
+  <!-- <figcaption>regplot food_yoy and meat_yoy</figcaption> -->
+</figure>
+<figure>
+  <img src="{{ "/images/posts/regplot food_yoy and energy_yoy.png" | relative_url }}">
   <figcaption>regplot food_yoy and meat_yoy</figcaption>
 </figure>
 
