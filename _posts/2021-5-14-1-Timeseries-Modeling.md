@@ -475,9 +475,33 @@ ADF Statistic: -1.780230
 p-value: 0.390320
 ```
 
-The YoY transformed autocorrelation plot is below. We see that even the YoY transformed price has strong autocorrelation in the first few lags.  This is understandable because price increase/decrease don't just last a quarter, and has momemtem effect.  After the first difference, the data looks stationary but still has a little positive serial correlation at lag 1, but not severa.  We will go with AR 1 as well.   
+The YoY transformed autocorrelation plot is below. We see that even the YoY transformed price has strong autocorrelation in the first few lags.  This is understandable because price increase/decrease don't just last a quarter, and has momemtem effect.  After the first difference, the data looks stationary but still has a little positive serial correlation at lag 1, but not severa.  We will go with AR 1 as well.   Besides visual examination, we can run some statistical tests as well on the number of differences needed to achieve stationarity. 
 <figure>
   <img src="{{ "/images/posts/YoY_stationary_visual_test.png" | relative_url }}">
 </figure>
+
+<div class="code-head"><span>code</span>stationary testing.python</div>
+
+```python
+from pmdarima.arima.utils import ndiffs
+y = df.food
+print("ndiff by Adf Test:", ndiffs(y, test='adf'))
+print("ndiff by KPSS:", ndiffs(y, test='kpss'))
+print("ndiff by PP:",ndiffs(y, test='pp'))
+[Out]:
+ndiff by Adf Test: 1
+ndiff by KPSS: 1
+ndiff by PP: 1
+
+y = df.food_yoy
+print("ndiff by Adf Test:", ndiffs(y, test='adf'))
+print("ndiff by KPSS:", ndiffs(y, test='kpss'))
+print("ndiff by PP:",ndiffs(y, test='pp'))
+[Out]:
+ndiff by Adf Test: 0
+ndiff by KPSS: 1
+ndiff by PP: 0
+```
+
 
 ## Model Validation (Out of Sample Testings)
