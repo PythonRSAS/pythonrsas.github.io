@@ -428,7 +428,7 @@ for i in range(2):
   <img src="{{ "/images/posts/performance_testing.png" | relative_url }}">
 </figure>
 
-## ARIMAX Models
+## ARIMA Models
 Non-seasonal and non-stationary time series can be modeled using ARIMA. An ARIMA model is characterized by 3 terms:
 where,
 1. d: the number of differencing required to make the time series stationary; use **acf** plot
@@ -513,7 +513,8 @@ ndiff by KPSS: 1
 ndiff by PP: 0
 ```
 
-We begin with a ARIMA(1,1,1) model.  The ma term ma.L1.D.food is not signficant, which is dropped in the second try in an ARIMA(1,1,0) model.  AIC slightly dropped. 
+We begin with a ARIMA(1,1,1) model.  The ma term ma.L1.D.food is not signficant, which is dropped in the second try in an ARIMA(1,1,0) model. We notice that AIC and BIC dropped, and the p-value for ar.L1.D.food is smaller, which means the ARIMA(1,1,0) is a simpler and more robust model than ARIMA(1,1,1).
+
 <div class="code-head"><span>code</span>ARIMA model.python</div>
 
 ```python
@@ -553,7 +554,7 @@ model.summary()
 Dep. Variable:                 D.food   No. Observations:                  213
 Model:                 ARIMA(1, 1, 0)   Log Likelihood                -273.749
 Method:                       css-mle   S.D. of innovations              0.875
-Date:                Sun 16 May 2021   AIC                            553.497
+Date:                Sun 16 May 2021    AIC                            553.497
 Time:                        15:21:19   BIC                            563.581
 Sample:                    06-30-1968   HQIC                           557.572
                          - 06-30-2021
@@ -570,6 +571,35 @@ AR.1            2.8419           +0.0000j            2.8419            0.0000
 -----------------------------------------------------------------------------
 ```
 You can find out the required number of AR terms by inspecting the Partial Autocorrelation (PACF) plot.
+
+
+<div class="code-head"><span>code</span>residual test.python</div>
+
+```python
+# residual
+residuals =model.resid
+from scipy import stats
+from scipy.stats import norm
+norm_test =stats.anderson(residuals, dist='norm')
+stat, p = stats.kstest(residuals, 'norm')
+print('p-value: {0: .4f}'.format(p))
+[Out]:
+p-value:  0.0958
+
+fig, ax = plt.subplots(1,2, figsize=(15,4))
+residuals.plot(title="Residuals", ax=ax[0])
+sns.distplot(residuals, fit=norm, kde=False, rug=True, ax=ax[1])
+plt.title("Distribution")
+plt.savefig(r"C:\Users\sache\OneDrive\Documents\python_SAS\Python-for-SAS-Users\Volume2\TimeSeries\images\ARIMA_residual.png",dpi=400)
+plt.savefig(r"C:\Users\sache\OneDrive\Documents\pythonrsas101619\Pythonrsas\images\posts\ARIMA_residual.png",dpi=400)
+plt.show()
+```
+
+<figure>
+  <img src="{{ "/images/posts/ARIMA_residual.png" | relative_url }}">
+</figure>
+
+
 
 ## Model Validation (Out of Sample Testings)
 We have so far worked without any validation, which is certainly wrong.  But we did that to focus on illustrating the individual pieces.  Now, we will incorpate out of sampel validation in model building. 
