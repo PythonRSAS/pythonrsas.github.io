@@ -572,3 +572,4 @@ AR.1            2.8419           +0.0000j            2.8419            0.0000
 You can find out the required number of AR terms by inspecting the Partial Autocorrelation (PACF) plot.
 
 ## Model Validation (Out of Sample Testings)
+We have so far worked without any validation, which is certainly wrong.  But we did that to focus on illustrating the individual pieces.  Now, we will incorpate out of sampel validation in model building. 
