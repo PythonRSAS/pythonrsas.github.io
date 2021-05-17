@@ -443,8 +443,6 @@ p-value: 0.390320
 
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 from statsmodels.tsa.stattools import adfuller
-# df = pd.read_csv(r"C:\Users\sache\OneDrive\Documents\python_SAS\Python-for-SAS-Users\data\arima_df.csv")
-# from numpy import log
 stationary_result = adfuller(df.food_yoy)
 print('ADF Statistic: %f' % stationary_result[0])
 print('p-value: %f' % stationary_result[1])
