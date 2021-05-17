@@ -444,7 +444,7 @@ print('p-value: %f' % stationary_result[1])
 ADF Statistic: -1.780230
 p-value: 0.390320
 # Original Series
-fig, axes = plt.subplots(3, 2, sharex=True, figsize=(15,10))
+fig, axes = plt.subplots(3, 2,figsize=(15,10) #sharex=False
 axes[0, 0].plot(df.food); axes[0, 0].set_title('Level')
 plot_acf(df.food, ax=axes[0, 1])
 
