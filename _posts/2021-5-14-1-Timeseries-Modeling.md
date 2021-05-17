@@ -245,8 +245,7 @@ Below plots show that food price change is more often a leading indicator for en
 </figure>
 
 ## OLS Regression
-We run a simple OLS regression using meat_yoy and energy_yoy to predict food_yoy.   From the regression results, we see that DW is 0.222.  Ideally DW should be close to 2.  Close to 0 DW means the residual is positively auto-correlated. 
-
+We run a simple OLS regression using meat_yoy and energy_yoy to predict food_yoy.   
 <div class="code-head"><span>code</span>OLS regression.python</div>
 
 ```python
@@ -286,4 +285,37 @@ Skew:                           1.458   Prob(JB):                     1.82e-85
 Kurtosis:                       8.939   Cond. No.                         18.3
 ==============================================================================
 ```
+From the regression results, we see that DW is 0.222.  Ideally DW should be close to 2.  Close to 0 DW means the residual is positively auto-correlated.  Autoregressive relationships are very common in time series.  When prices are increasing, it is likely to increase for a few years.  This is what some may call "momemtum".  
 
+Autocorrelation does not impact the coefficients from OLS.  It impacts the estimate of the errors in significance testing.  Because one of the assumptions for OLS parameter testing is independence of errors, violating this assumption makes the the standard errors smaller than they actuarlly are.  One of the methods to correct the problem is to use heteroskedasticity and autocorrelation consistent (HAC) standard errors such as Newey-West standard errors. By adding <span class="coding">cov_type='HAC'</span> to the fit method.  The new model summary shows that the standard errors now are larger.  For example, for meat_yoy the std err went from 0.024 to 0.054.  As a result, the coefficient estimate confidence intervals are wider.  
+
+<div class="code-head"><span>code</span>OLS regression with Newey-West standard errors.python</div>
+
+```python
+model = sm.OLS(ts[y],X).fit(cov_type='HAC',cov_kwds={'maxlags':2})
+model.summary()
+[Out]:
+
+                            OLS Regression Results
+==============================================================================
+Dep. Variable:               food_yoy   R-squared:                       0.628
+Model:                            OLS   Adj. R-squared:                  0.625
+Method:                 Least Squares   F-statistic:                     43.12
+Date:                Sun, 16 May 2021   Prob (F-statistic):           1.98e-16
+Time:                        19:24:59   Log-Likelihood:                 536.07
+No. Observations:                 214   AIC:                            -1066.
+Df Residuals:                     211   BIC:                            -1056.
+Df Model:                           2
+Covariance Type:                  HAC
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0168      0.002      8.954      0.000       0.013       0.021
+meat_yoy       0.3547      0.054      6.629      0.000       0.250       0.460
+energy_yoy     0.2186      0.058      3.751      0.000       0.104       0.333
+==============================================================================
+Omnibus:                       82.989   Durbin-Watson:                   0.222
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              390.244
+Skew:                           1.458   Prob(JB):                     1.82e-85
+Kurtosis:                       8.939   Cond. No.                         18.3
+==============================================================================
