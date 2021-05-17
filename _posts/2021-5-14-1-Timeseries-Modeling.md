@@ -430,16 +430,17 @@ for i in range(2):
 
 ## ARIMA Models for the Level Taget
 Non-seasonal and non-stationary time series can be modeled using ARIMA. An ARIMA model is characterized by 3 terms:
-where,
-1. d: the number of differencing required to make the time series stationary; use **acf** plot
-2. p: the order of the AR term (how many lags), 
+1. p: the order of the AR term (how many lags)
+2. d: the number of differencing required to make the time series stationary; use **acf** plot
 3. q: the order of the MA term
+
+The statsmodels <span class="coding">statsmodels.tsa.arima_model.ARIMA</span> has the order of <span class="coding">(p,d,q)</span>. So the first term in this ARIMA class is order of AR term, then differencing, and finally MA. 
 
 **PACF** (Partial Autocorrelation) plot: used for identify number of AR terms, i.e. number of lags
  The right order of differencing is the minimum differencing required to get a near-stationary series which roams around a defined mean and the ACF plot reaches to zero fairly quick.
 Adjusted Box-Tiao (ABT). In ABT, ARIMAX models with AR terms using the Box-Tiao method.
 First of all, since P-value is greater than the significance level, we take difference of the series and plot autocorrelation plot.
-Note that because our data has datetime index, we should not use span class="coding">sharex=True</span>, because datetime index and range index cannot be shared. 
+Note that because our data has datetime index, we should not use <span class="coding">sharex=True</span>, because datetime index and range index cannot be shared. 
 <div class="code-head"><span>code</span>stationary testing.python</div>
 
 ```python
@@ -484,7 +485,7 @@ ADF Statistic: -1.780230
 p-value: 0.390320
 ```
 
-The YoY transformed autocorrelation plot is below. We see that even the YoY transformed price has strong autocorrelation in the first few lags.  This is understandable because price increase/decrease don't just last a quarter, and has momemtem effect.  After the first difference, the data looks stationary but still has a little positive serial correlation at lag 1, but not severa.  We will go with AR 1 as well.   Besides visual examination, we can run some statistical tests as well on the number of differences needed to achieve stationarity. 
+The YoY transformed autocorrelation plot is below. We see that even the YoY transformed price has strong autocorrelation in the first few lags.  This is understandable because price increase/decrease don't just last a quarter, and has momemtum effect.  After the first difference, the data looks stationary but still has a little positive serial correlation at lag 1, but not severa.  We will go with AR 1 as well.   Besides visual examination, we can run some statistical tests as well on the number of differences needed to achieve stationarity. 
 <figure>
   <img src="{{ "/images/posts/YoY_stationary_visual_test.png" | relative_url }}">
 </figure>
@@ -513,7 +514,7 @@ ndiff by KPSS: 1
 ndiff by PP: 0
 ```
 
-We begin with a ARIMA(1,1,1) model.  The ma term ma.L1.D.food is not signficant, which is dropped in the second try in an ARIMA(1,1,0) model. We notice that AIC and BIC dropped, and the p-value for ar.L1.D.food is smaller, which means the ARIMA(1,1,0) is a simpler and more robust model than ARIMA(1,1,1).
+We begin with an ARIMA(1,1,1) model.  The ma term ma.L1.D.food is not signficant, which is dropped in the second try in an ARIMA(1,1,0) model. We notice that AIC and BIC dropped, and the p-value for ar.L1.D.food is smaller, which means the ARIMA(1,1,0) is a simpler and more robust model than ARIMA(1,1,1).
 
 <div class="code-head"><span>code</span>ARIMA model.python</div>
 
@@ -607,5 +608,79 @@ model.plot_predict(dynamic=False)
   <img src="{{ "/images/posts/ARIMA(1,1,0) non-dynamic level actual vs predicted.png" | relative_url }}">
 </figure>
 
+## YoY ARIMA Models
+
+Both the AR and MA terms are significant.  
+When we have AR 3, AIC and HQIC increased but BIC dropped slightly.   We will go with AR 2 and see how the residual looks like.   
+<div class="code-head"><span>code</span>actual vs non-dynamic predicted.python</div>
+
+```python
+from statsmodels.tsa.arima_model import ARIMA
+train = df.food_yoy
+model = ARIMA(train, order=(2, 1, 0)).fit()  
+model.summary()
+[Out]:
+                            ARIMA Model Results
+==============================================================================
+Dep. Variable:             D.food_yoy   No. Observations:                  213
+Model:                 ARIMA(2, 1, 1)   Log Likelihood                 693.187
+Method:                       css-mle   S.D. of innovations              0.009
+Date:                Mon, 17 May 2021   AIC                          -1376.375
+Time:                        18:32:01   BIC                          -1359.569
+Sample:                    06-30-1968   HQIC                         -1369.583
+                         - 06-30-2021
+====================================================================================
+                       coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------------
+const            -1.347e-05      0.001     -0.012      0.990      -0.002       0.002
+ar.L1.D.food_yoy    -0.3167      0.071     -4.456      0.000      -0.456      -0.177
+ar.L2.D.food_yoy     0.1866      0.071      2.635      0.008       0.048       0.325
+ma.L1.D.food_yoy     0.9554      0.019     49.319      0.000       0.917       0.993
+                                    Roots
+=============================================================================
+                  Real          Imaginary           Modulus         Frequency
+-----------------------------------------------------------------------------
+AR.1           -1.6171           +0.0000j            1.6171            0.5000
+AR.2            3.3147           +0.0000j            3.3147            0.0000
+MA.1           -1.0467           +0.0000j            1.0467            0.5000
+-----------------------------------------------------------------------------
+
+model = ARIMA(train, order=(3, 1, 0)).fit()  
+model.summary()
+[Out]:
+                             ARIMA Model Results
+==============================================================================
+Dep. Variable:             D.food_yoy   No. Observations:                  213
+Model:                 ARIMA(3, 1, 1)   Log Likelihood                 695.807
+Method:                       css-mle   S.D. of innovations              0.009
+Date:                Mon, 17 May 2021   AIC                          -1379.613
+Time:                        18:40:16   BIC                          -1359.445
+Sample:                    06-30-1968   HQIC                         -1371.463
+                         - 06-30-2021
+====================================================================================
+                       coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------------
+const            -1.242e-05      0.001     -0.010      0.992      -0.003       0.003
+ar.L1.D.food_yoy    -0.3342      0.071     -4.697      0.000      -0.474      -0.195
+ar.L2.D.food_yoy     0.2238      0.072      3.108      0.002       0.083       0.365
+ar.L3.D.food_yoy     0.1624      0.070      2.311      0.021       0.025       0.300
+ma.L1.D.food_yoy     0.9442      0.024     38.951      0.000       0.897       0.992
+                                    Roots
+=============================================================================
+                  Real          Imaginary           Modulus         Frequency
+-----------------------------------------------------------------------------
+AR.1            1.7650           -0.0000j            1.7650           -0.0000
+AR.2           -1.5717           -1.0096j            1.8680           -0.4091
+AR.3           -1.5717           +1.0096j            1.8680            0.4091
+MA.1           -1.0591           +0.0000j            1.0591            0.5000
+
+title = "ARIMA(2,1,0) YoY actual vs predicted"
+model.plot_predict(dynamic=False)
+```
+<figure>
+  <img src="{{ "/images/posts/ARIMA(2,1,0) YoY actual vs predicted.png" | relative_url }}">
+</figure>
+
 ## Model Validation (Out of Sample Testings)
-We have so far worked without any validation, which is certainly wrong.  But we did that to focus on illustrating the individual pieces.  Now, we will incorpate out of sampel validation in model building. 
+We have so far worked without any validation, which is certainly wrong.  But we did that to focus on illustrating the individual pieces.  
+Now, we will incorpate out of sampel validation in model building. 
