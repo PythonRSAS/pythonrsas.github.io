@@ -573,7 +573,6 @@ AR.1            2.8419           +0.0000j            2.8419            0.0000
 ```
 You can find out the required number of AR terms by inspecting the Partial Autocorrelation (PACF) plot.
 
-
 <div class="code-head"><span>code</span>residual test.python</div>
 
 ```python
@@ -604,6 +603,8 @@ plt.show()
 title = "ARIMA(1,1,0) non-dynamic level actual vs predicted"
 model.plot_predict(dynamic=False)
 ```
+The <span class="coding">dynamic=False</span> specification in <span class="coding">.plot_predict</span> uses the in-sample lagged values for prediction, which can make the predicted look better than they actually are. We will get to **out-of-sample testing** in the next section. 
+
 <figure>
   <img src="{{ "/images/posts/ARIMA(1,1,0) non-dynamic level actual vs predicted.png" | relative_url }}">
 </figure>
