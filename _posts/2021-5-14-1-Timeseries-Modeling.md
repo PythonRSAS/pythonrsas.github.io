@@ -434,18 +434,15 @@ First of all, since P-value is greater than the significance level, we take diff
 <div class="code-head"><span>code</span>stationary testing.python</div>
 
 ```python
-stationary_result = adfuller(df.food_yoy)
-print('ADF Statistic: %f' % stationary_result[0])
-print('p-value: %f' % stationary_result[1])
-[Out]:
-ADF Statistic: -1.780230
-p-value: 0.390320
 
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 from statsmodels.tsa.stattools import adfuller
 stationary_result = adfuller(df.food_yoy)
 print('ADF Statistic: %f' % stationary_result[0])
 print('p-value: %f' % stationary_result[1])
+[Out]:
+ADF Statistic: -1.780230
+p-value: 0.390320
 # Original Series
 fig, axes = plt.subplots(3, 2, sharex=True, figsize=(15,10))
 axes[0, 0].plot(df.food); axes[0, 0].set_title('Level')
@@ -463,6 +460,9 @@ plot_acf(df.food.diff().diff().dropna(), ax=axes[2, 1])
   <img src="{{ "/images/posts/stationary_visual_test.png" | relative_url }}">
 </figure>
 
-
+The YoY transformed autocorrelation plot is below. 
+<figure>
+  <img src="{{ "/images/posts/YoY_stationary_visual_test.png" | relative_url }}">
+</figure>
 
 ## Model Validation (Out of Sample Testings)
