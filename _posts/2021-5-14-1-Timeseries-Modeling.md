@@ -590,8 +590,6 @@ fig, ax = plt.subplots(1,2, figsize=(15,4))
 residuals.plot(title="Residuals", ax=ax[0])
 sns.distplot(residuals, fit=norm, kde=False, rug=True, ax=ax[1])
 plt.title("Distribution")
-plt.savefig(r"C:\Users\sache\OneDrive\Documents\python_SAS\Python-for-SAS-Users\Volume2\TimeSeries\images\ARIMA_residual.png",dpi=400)
-plt.savefig(r"C:\Users\sache\OneDrive\Documents\pythonrsas101619\Pythonrsas\images\posts\ARIMA_residual.png",dpi=400)
 plt.show()
 ```
 
