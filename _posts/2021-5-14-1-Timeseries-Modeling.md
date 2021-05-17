@@ -429,8 +429,17 @@ for i in range(2):
 </figure>
 
 ## ARIMAX Models
+Non-seasonal and non-stationary time series can be modeled using ARIMA. An ARIMA model is characterized by 3 terms:
+where,
+1. d: the number of differencing required to make the time series stationary; use **acf** plot
+2. p: the order of the AR term (how many lags), 
+3. q: the order of the MA term
+
+**PACF** (Partial Autocorrelation) plot: used for identify number of AR terms, i.e. number of lags
+ The right order of differencing is the minimum differencing required to get a near-stationary series which roams around a defined mean and the ACF plot reaches to zero fairly quick.
 Adjusted Box-Tiao (ABT). In ABT, ARIMAX models with AR terms using the Box-Tiao method.
 First of all, since P-value is greater than the significance level, we take difference of the series and plot autocorrelation plot.
+Note that because our data has datetime index, we should not use span class="coding">sharex=True</span>, because datetime index and range index cannot be shared. 
 <div class="code-head"><span>code</span>stationary testing.python</div>
 
 ```python
@@ -480,6 +489,7 @@ The YoY transformed autocorrelation plot is below. We see that even the YoY tran
   <img src="{{ "/images/posts/YoY_stationary_visual_test.png" | relative_url }}">
 </figure>
 
+The pmdarima package provides many convenient methods.  Using the ndiffs from pmdarima.arima.utils we see the all three different tests agree on differencing once for food.  For the YoY transformation, ADF and KPSS method concludes 1 differencing, but the PP method says no differencing is needed. 
 <div class="code-head"><span>code</span>stationary testing.python</div>
 
 ```python
@@ -503,5 +513,62 @@ ndiff by KPSS: 1
 ndiff by PP: 0
 ```
 
+We begin with a ARIMA(1,1,1) model.  The ma term ma.L1.D.food is not signficant, which is dropped in the second try in an ARIMA(1,1,0) model.  AIC slightly dropped. 
+<div class="code-head"><span>code</span>ARIMA model.python</div>
+
+```python
+from statsmodels.tsa.arima_model import ARIMA
+train = df.food
+model = ARIMA(train, order=(1, 1, 0)).fit()  
+model.summary()
+[Out]:
+                            ARIMA Model Results
+==============================================================================
+Dep. Variable:                 D.food   No. Observations:                  213
+Model:                 ARIMA(1, 1, 1)   Log Likelihood                -273.430
+Method:                       css-mle   S.D. of innovations              0.873
+Date:                Sun, 16 May 2021   AIC                            554.860
+Time:                        15:14:31   BIC                            568.305
+Sample:                    06-30-1968   HQIC                           560.294
+                         - 06-30-2021
+================================================================================
+                   coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------
+const            1.1184      0.100     11.197      0.000       0.923       1.314
+ar.L1.D.food     0.5186      0.204      2.538      0.011       0.118       0.919
+ma.L1.D.food    -0.1932      0.241     -0.802      0.422      -0.665       0.279
+                                    Roots
+=============================================================================
+                  Real          Imaginary           Modulus         Frequency
+-----------------------------------------------------------------------------
+AR.1            1.9283           +0.0000j            1.9283            0.0000
+MA.1            5.1752           +0.0000j            5.1752            0.0000
+-----------------------------------------------------------------------------
+
+model = ARIMA(train, order=(1, 1, 0)).fit()  
+model.summary()
+[Out]:
+                             ARIMA Model Results
+==============================================================================
+Dep. Variable:                 D.food   No. Observations:                  213
+Model:                 ARIMA(1, 1, 0)   Log Likelihood                -273.749
+Method:                       css-mle   S.D. of innovations              0.875
+Date:                Sun 16 May 2021   AIC                            553.497
+Time:                        15:21:19   BIC                            563.581
+Sample:                    06-30-1968   HQIC                           557.572
+                         - 06-30-2021
+================================================================================
+                   coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------
+const            1.1187      0.092     12.130      0.000       0.938       1.299
+ar.L1.D.food     0.3519      0.064      5.491      0.000       0.226       0.477
+                                    Roots
+=============================================================================
+                  Real          Imaginary           Modulus         Frequency
+-----------------------------------------------------------------------------
+AR.1            2.8419           +0.0000j            2.8419            0.0000
+-----------------------------------------------------------------------------
+```
+You can find out the required number of AR terms by inspecting the Partial Autocorrelation (PACF) plot.
 
 ## Model Validation (Out of Sample Testings)
