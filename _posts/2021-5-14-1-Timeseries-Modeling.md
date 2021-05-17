@@ -428,7 +428,7 @@ for i in range(2):
   <img src="{{ "/images/posts/performance_testing.png" | relative_url }}">
 </figure>
 
-## ARIMA Models
+## ARIMA Models for the Level Taget
 Non-seasonal and non-stationary time series can be modeled using ARIMA. An ARIMA model is characterized by 3 terms:
 where,
 1. d: the number of differencing required to make the time series stationary; use **acf** plot
@@ -597,7 +597,15 @@ plt.show()
   <img src="{{ "/images/posts/ARIMA_residual.png" | relative_url }}">
 </figure>
 
+<div class="code-head"><span>code</span>actual vs non-dynamic predicted.python</div>
 
+```python
+title = "ARIMA(1,1,0) non-dynamic level actual vs predicted"
+model.plot_predict(dynamic=False)
+```
+<figure>
+  <img src="{{ "/images/posts/ARIMA(1,1,0) non-dynamic level actual vs predicted.png" | relative_url }}">
+</figure>
 
 ## Model Validation (Out of Sample Testings)
 We have so far worked without any validation, which is certainly wrong.  But we did that to focus on illustrating the individual pieces.  Now, we will incorpate out of sampel validation in model building. 
