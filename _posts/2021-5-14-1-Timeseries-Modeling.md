@@ -430,6 +430,41 @@ for i in range(2):
 
 ## ARIMAX Models
 Adjusted Box-Tiao (ABT). In ABT, ARIMAX models with AR terms using the Box-Tiao method.
+First of all, since P-value is greater than the significance level, we take difference of the series and plot autocorrelation plot.
+<div class="code-head"><span>code</span>stationary testing.python</div>
+
+```python
+stationary_result = adfuller(df.food_yoy)
+print('ADF Statistic: %f' % stationary_result[0])
+print('p-value: %f' % stationary_result[1])
+[Out]:
+ADF Statistic: -1.780230
+p-value: 0.390320
+
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+from statsmodels.tsa.stattools import adfuller
+# df = pd.read_csv(r"C:\Users\sache\OneDrive\Documents\python_SAS\Python-for-SAS-Users\data\arima_df.csv")
+# from numpy import log
+stationary_result = adfuller(df.food_yoy)
+print('ADF Statistic: %f' % stationary_result[0])
+print('p-value: %f' % stationary_result[1])
+# Original Series
+fig, axes = plt.subplots(3, 2, sharex=True, figsize=(15,10))
+axes[0, 0].plot(df.food); axes[0, 0].set_title('Level')
+plot_acf(df.food, ax=axes[0, 1])
+
+# 1st Differencing
+axes[1, 0].plot(df.food.diff()); axes[1, 0].set_title('1st Order Differencing')
+plot_acf(df.food.diff().dropna(), ax=axes[1, 1])
+
+# 2nd Differencing
+axes[2, 0].plot(df.food.diff().diff()); axes[2, 0].set_title('2nd Order Differencing')
+plot_acf(df.food.diff().diff().dropna(), ax=axes[2, 1])
+```
+<figure>
+  <img src="{{ "/images/posts/stationary_visual_test.png" | relative_url }}">
+</figure>
+
 
 
 ## Model Validation (Out of Sample Testings)
