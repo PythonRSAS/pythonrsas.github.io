@@ -423,9 +423,6 @@ for i in range(2):
     ax[1].set_xlabel("")
     ax[i].text(.1,.9, textstr_lt[i], fontsize=9, transform=ax[i].transAxes, va='top',bbox=props)
     ax[i].legend(loc='lower center',ncol=2, frameon=False)
-plt.savefig(r"C:\Users\sache\OneDrive\Documents\python_SAS\Python-for-SAS-Users\Volume2\TimeSeries\images\performance_testing.png")
-plt.savefig(r"C:\Users\sache\OneDrive\Documents\pythonrsas101619\Pythonrsas\images\posts\performance_testing.png")
-plt.show()
 ```
 <figure>
   <img src="{{ "/images/posts/performance_testing.png" | relative_url }}">
