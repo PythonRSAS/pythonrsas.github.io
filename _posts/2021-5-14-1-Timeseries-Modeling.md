@@ -456,11 +456,26 @@ plot_acf(df.food.diff().dropna(), ax=axes[1, 1])
 axes[2, 0].plot(df.food.diff().diff()); axes[2, 0].set_title('2nd Order Differencing')
 plot_acf(df.food.diff().diff().dropna(), ax=axes[2, 1])
 ```
+The acf plots show that after the first difference, the autocorrelation has dropped a lot.  Although there is still a bit of autocorrelation at lag 1, the first difference is better than the second difference, which went to negative correlation on the first lag.  Therefore we will go with AR 1. 
 <figure>
   <img src="{{ "/images/posts/stationary_visual_test.png" | relative_url }}">
 </figure>
 
-The YoY transformed autocorrelation plot is below. 
+<div class="code-head"><span>code</span>stationary testing.python</div>
+
+```python
+
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+from statsmodels.tsa.stattools import adfuller
+stationary_result = adfuller(df.food_yoy)
+print('ADF Statistic: %f' % stationary_result[0])
+print('p-value: %f' % stationary_result[1])
+[Out]:
+ADF Statistic: -1.780230
+p-value: 0.390320
+```
+
+The YoY transformed autocorrelation plot is below. We see that even the YoY transformed price has strong autocorrelation in the first few lags.  This is understandable because price increase/decrease don't just last a quarter, and has momemtem effect.  After the first difference, the data looks stationary but still has a little positive serial correlation at lag 1, but not severa.  We will go with AR 1 as well.   
 <figure>
   <img src="{{ "/images/posts/YoY_stationary_visual_test.png" | relative_url }}">
 </figure>
