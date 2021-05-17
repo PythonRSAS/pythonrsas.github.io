@@ -244,7 +244,7 @@ Below plots show that food price change is more often a leading indicator for en
   <!-- <figcaption>regplot food_yoy and meat_yoy</figcaption> -->
 </figure>
 
-## OLS Regression
+## OLS Regression and Autocorrelation
 We run a simple OLS regression using meat_yoy and energy_yoy to predict food_yoy.   
 <div class="code-head"><span>code</span>OLS regression.python</div>
 
@@ -285,7 +285,9 @@ Skew:                           1.458   Prob(JB):                     1.82e-85
 Kurtosis:                       8.939   Cond. No.                         18.3
 ==============================================================================
 ```
-From the regression results, we see that DW is 0.222.  Ideally DW should be close to 2.  Close to 0 DW means the residual is positively auto-correlated.  Autoregressive relationships are very common in time series.  When prices are increasing, it is likely to increase for a few years.  This is what some may call "momemtum".  
+From the regression results, we see that DW is 0.222.  Ideally DW should be close to 2. A rule of thumb is that test statistic values in the range of 1.5 to 2.5 are relatively normal.  Close to 0 DW means the residual is positively auto-correlated. Close to 4 implies negative autocorrelation. 
+
+Autoregressive relationships are very common in time series.  For example, when prices are increasing, it is likely to increase for a few years.  This is what some may call "momemtum".  
 
 Autocorrelation does not impact the coefficients from OLS.  It impacts the estimate of the errors in significance testing.  Because one of the assumptions for OLS parameter testing is independence of errors, violating this assumption makes the the standard errors smaller than they actuarlly are.  One of the methods to correct the problem is to use heteroskedasticity and autocorrelation consistent (HAC) standard errors such as Newey-West standard errors. By adding <span class="coding">cov_type='HAC'</span> to the fit method.  The new model summary shows that the standard errors now are larger.  For example, for meat_yoy the std err went from 0.024 to 0.054.  As a result, the coefficient estimate confidence intervals are wider.  
 
@@ -320,3 +322,4 @@ Skew:                           1.458   Prob(JB):                     1.82e-85
 Kurtosis:                       8.939   Cond. No.                         18.3
 ==============================================================================
 ```
+Our goal is here is to get the right standard error for the coefficients.   In other context such as stock trading, strong autocorrelation shows if there is a momentum factor associated with a stock and a suitable trading strategy may be used to explore the autocorrelation.  
