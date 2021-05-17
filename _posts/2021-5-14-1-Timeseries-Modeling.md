@@ -244,7 +244,7 @@ Below plots show that food price change is more often a leading indicator for en
   <!-- <figcaption>regplot food_yoy and meat_yoy</figcaption> -->
 </figure>
 
-## OLS Regression and Autocorrelation
+## OLS Regression
 We run a simple OLS regression using meat_yoy and energy_yoy to predict food_yoy.   
 <div class="code-head"><span>code</span>OLS regression.python</div>
 
@@ -285,15 +285,32 @@ Skew:                           1.458   Prob(JB):                     1.82e-85
 Kurtosis:                       8.939   Cond. No.                         18.3
 ==============================================================================
 ```
+
+## Residual Autocorrelation and Stationarity
 From the regression results, we see that DW is 0.222.  Ideally DW should be close to 2. A rule of thumb is that test statistic values in the range of 1.5 to 2.5 are relatively normal.  Close to 0 DW means the residual is positively auto-correlated. Close to 4 implies negative autocorrelation. 
 
 Autoregressive relationships are very common in time series.  For example, when prices are increasing, it is likely to increase for a few years.  This is what some may call "momemtum".  
 In context such as stock trading, strong autocorrelation shows if there is a momentum factor associated with a stock and a suitable trading strategy may be used to explore the autocorrelation. 
 
-Autocorrelation does not impact the coefficients from OLS.  It impacts the estimate of the errors in significance testing.  Because one of the assumptions for OLS parameter testing is independence of errors, violating this assumption makes the the standard errors smaller than they actuarlly are.  
+Autocorrelation does not impact coefficient values from OLS.  It impacts the estimate of the errors in significance testing.  Because one of the assumptions for OLS parameter testing is independence of errors, violating this assumption makes the the standard errors smaller than they actuarlly are.  
 
-One of the methods to correct the problem is to use heteroskedasticity and autocorrelation consistent (HAC) standard errors such as Newey-West ( Newey, Whitney K., and Kenneth D. West. “A Simple, Positive Semi-definite, Heteroskedasticity and Autocorrelation Consistent Covariance Matrix”. 
-Econometrica 55.3 (1987): 703–708.) standard errors. By adding <span class="coding">cov_type='HAC'</span> to the fit method.  The new model summary shows that the standard errors now are larger.  For example, for meat_yoy the std err went from 0.024 to 0.054.  As a result, the coefficient estimate confidence intervals are wider.  
+Similarly, non-stationary residual can make us underestimate standard errors of the coefficent estimates.  We use augmented Dicky-Fuller test to test resdual stationarity.  
+
+<div class="code-head"><span>code</span>OLS regression with Newey-West standard errors.python</div>
+
+```python
+from statsmodels.tsa.stattools import adfuller
+stationary_test_result = adfuller(model.resid)
+print('ADF Statistic: %f' % stationary_test_result[0])
+print('p-value: %f' % stationary_test_result[1])
+[Out]:
+ADF Statistic: -2.178328
+p-value: 0.214205
+```
+There are mainly three methods to correct these problems.  
+One of the methods to correct the problem is to use heteroskedasticity and autocorrelation consistent (HAC) standard errors such as Newey-West ( Newey, Whitney K., and Kenneth D. West. “A Simple, Positive Semi-definite, Heteroskedasticity and Autocorrelation Consistent Covariance Matrix”. Econometrica 55.3 (1987): 703–708.) standard errors. By adding <span class="coding">cov_type='HAC'</span> to the fit method.  
+
+In the code below, to add the intercept term, <span class="coding">sm.tools.add_constant(X)</span> is used, which is equivalent to <span class="coding">X = sm.add_constant(X)</span>  The new model summary shows that the standard errors now are larger.  For example, for meat_yoy the std err went from 0.024 to 0.054.  As a result, the coefficient estimate confidence intervals are wider.  
 
 <div class="code-head"><span>code</span>OLS regression with Newey-West standard errors.python</div>
 
@@ -331,5 +348,91 @@ Our goal is here is to get the right standard error for the coefficients.    Sin
 
 Newey-West standard errors is the simplest serial correlation corrections to implement for a simple OLS because it does not change the model if the parameters are significant.  Depending on model purpose, OLS may be the preferred model, or sometimes we may prefer using a time series ARMA model to correct for autocorrelation. 
 
+## Performance Testing
+Before we move on to ARIMAX model, we will conduct performance testings on the OLS model.  
+
+<div class="code-head"><span>code</span>performance testing.python</div>
+
+```python
+from statsmodels.tsa.stattools import acf
+def accuracy_dict_function(pred, actual):
+    resid =pred - actual
+    mape = np.mean(np.abs(resid)/np.abs(actual))  # MAPE
+    me = np.mean(resid)             # ME
+    mae = np.mean(np.abs(resid))    # MAE
+    mpe = np.mean((resid)/actual)   # MPE
+    rmse = np.mean((resid)**2)**.5  # RMSE
+    corr = np.corrcoef(pred, actual)[0,1]   # corr
+    acf1 = acf(resid)[1]   # ACF1
+    adf_pvalue = adfuller(resid)[1] #STATIONARY
+    accuracy_dict = {'mape':mape, 'me':me, 'mae': mae, 
+            'mpe': mpe, 'rmse':rmse, 'acf1':acf1, 
+            'corr':corr} 
+    accuracy_dict = {key: round(accuracy_dict[key],2) for key in accuracy_dict}  # dictionary comprehension to round the values
+    return accuracy_dict
+
+# measure model performance
+# measure model performance
+aic = np.round(model.aic)
+dw = np.round(durbin_watson(model.resid),2) # 0.262
+r2 = np.round(model.rsquared,2)
+ts['p_yoy'] = model.predict()
+ts = ts.join(df.food)
+df = df.join(ts.p_yoy)
+# get predicted level
+df['pred'] = df['food'].shift(4)*(1+df['p_yoy'])
+df.dropna(subset=['pred','food'], axis=0,inplace=True)
+# performance for the backed out level variable
+accuracy_dict = accuracy_dict_function(df.pred,df.food)
+accuracy_dict
+[Out]:
+{'mape': 0.01,
+ 'me': 0.51,
+ 'mae': 1.77,
+ 'mpe': 0.0,
+ 'rmse': 2.44,
+ 'acf1': 0.87,
+ 'adf_pvalue': 0.34,
+ 'corr': 1.0}
+# plot
+fig, ax = plt.subplots(1,2, figsize=(14,6))
+df[[y,'p_yoy']].plot(ax=ax[0], title='YoY',alpha=.8)
+df[['food','pred']].plot(ax=ax[1], title='level', alpha=.8)
+w1 = df.index[2] #where to put text
+h1 = np.min(df[y]) +0.01
+# for YoY performance
+textstr0 = '\n'.join((
+    r'$R^2: %.2f$'%(model.rsquared),
+    r'$Durbin-Watson: %.2f$'%(dw),
+    r'$AIC: %.2f$'%(aic),
+    r'$%s: %.2f$'%(model.params.index[0],model.params[0]),
+    r'$%s: %.2f$'%(model.params.index[1],model.params[1])
+))
+# for the level performance
+textstr1 = '\n'.join((
+    r'$mape: %.2f$'%(accuracy_dict['mape']),
+    r'$mae: %.2f$'%(accuracy_dict['mae']),
+    r'$rmse: %.2f$'%(accuracy_dict['rmse']),
+    r'$acf1: %.2f$'%(accuracy_dict['acf1']),
+    r'$adf_pvalue: %.2f$'%(accuracy_dict['adf_pvalue']),
+    r'$corr: %.2f$'%(accuracy_dict['corr']),
+))
+textstr_lt = [textstr0, textstr1]
+props = dict(boxstyle='round', facecolor='white',alpha=0.4)
+for i in range(2):
+    ax[1].set_xlabel("")
+    ax[i].text(.1,.9, textstr_lt[i], fontsize=9, transform=ax[i].transAxes, va='top',bbox=props)
+    ax[i].legend(loc='lower center',ncol=2, frameon=False)
+plt.savefig(r"C:\Users\sache\OneDrive\Documents\python_SAS\Python-for-SAS-Users\Volume2\TimeSeries\images\performance_testing.png")
+plt.savefig(r"C:\Users\sache\OneDrive\Documents\pythonrsas101619\Pythonrsas\images\posts\performance_testing.png")
+plt.show()
+```
+<figure>
+  <img src="{{ "/images/posts/performance_testing.png" | relative_url }}">
+</figure>
+
 ## ARIMAX Models
 Adjusted Box-Tiao (ABT). In ABT, ARIMAX models with AR terms using the Box-Tiao method.
+
+
+## Model Validation (Out of Sample Testings)
