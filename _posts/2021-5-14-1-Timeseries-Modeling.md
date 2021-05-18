@@ -702,10 +702,23 @@ yhat_conf_int = forecast.conf_int(alpha=0.05)
 test_pred = test.to_frame().join([fc,yhat_conf_int])
 title = "ARIMA Forecast (level)"
 test_pred.plot()
+plt.plot(train, label='training')
 plt.fill_between(test.index, test_pred['lower food'], test_pred['upper food'], 
                  color='k', alpha=.15)
 plt.legend(frameon=False, loc='lower center', ncol=4)
+
+# plot test data and forecast together with training data
+title ="ARIMA Forecast and Training Data"
+plt.plot(test_pred)
+plt.fill_between(test.index, test_pred['lower food'], test_pred['upper food'], 
+                 color='k', alpha=.15)
+plt.plot(train,label='actual')
 ```
+Using out-of-sample testing, we see that the forecast result is not good as it did not actually capture the upward trend.  The actual food price is close to the 95% upper bound.
 <figure>
   <img src="{{ "/images/posts/ARIMA Forecast (level).png" | relative_url }}">
 </figure>
+<figure>
+  <img src="{{ "/images/posts/ARIMA Forecast and Training Data.png" | relative_url }}">
+</figure>
+
