@@ -718,6 +718,7 @@ Using out-of-sample testing, we see that the forecast result is not good as it d
 <figure>
   <img src="{{ "/images/posts/ARIMA Forecast (level).png" | relative_url }}">
 </figure>
+The forecast quality is poor. 
 <figure>
   <img src="{{ "/images/posts/ARIMA Forecast and Training Data.png" | relative_url }}">
 </figure>
