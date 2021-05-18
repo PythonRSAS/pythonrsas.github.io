@@ -597,6 +597,16 @@ plt.show()
   <img src="{{ "/images/posts/ARIMA_residual.png" | relative_url }}">
 </figure>
 
+A more convenient way is to use the model.plot_diagnostics() method from statsmodels.
+```python
+# better way for residual diagnostics
+model.plot_diagnostics(figsize=(15,8))
+plt.subplots_adjust(hspace=0.25)
+```
+<figure>
+  <img src="{{ "/images/posts/residual_diagnostics.png" | relative_url }}">
+</figure>
+
 <div class="code-head"><span>code</span>actual vs non-dynamic predicted.python</div>
 
 ```python
