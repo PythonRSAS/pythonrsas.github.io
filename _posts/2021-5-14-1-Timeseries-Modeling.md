@@ -718,8 +718,39 @@ Using out-of-sample testing, we see that the forecast result is not good as it d
 <figure>
   <img src="{{ "/images/posts/ARIMA Forecast (level).png" | relative_url }}">
 </figure>
-The forecast quality is poor. 
+The forecast quality is bad. 
 <figure>
   <img src="{{ "/images/posts/ARIMA Forecast and Training Data.png" | relative_url }}">
 </figure>
 
+## YoY Model Validation (Out of Sample Testings)
+
+<div class="code-head"><span>code</span>out of sample test.python</div>
+
+```python
+# yoy
+title = "ARIMA Forecast (yoy)"
+train = df.food_yoy[:200]
+test = df.food_yoy[200:] 
+model = ARIMA(train, order=(2, 1, 0)).fit()
+# Forecast
+fc= model.forecast(14, alpha=0.05)  # 95% conf
+forecast = model.get_forecast(14)
+yhat = forecast.predicted_mean
+yhat_conf_int = forecast.conf_int(alpha=0.05)
+test_pred = test.to_frame().join([fc,yhat_conf_int])
+test_pred.plot()
+# plot test data and forecast together with training data
+title ="ARIMA Forecast and Training Data YoY"
+plt.plot(test_pred)
+plt.fill_between(test.index, test_pred['lower food_yoy'], test_pred['upper food_yoy'], 
+                 color='k', alpha=.15)
+plt.plot(train,label='actual')
+plt.legend(frameon=False, loc='lower center', ncol=4)
+```
+We skip the first plot and look at the second plot with training data.  The same problem with the level forecast shows in the YoY forecast as well.  The forecasts completely misses the rising trend in the last few quarters.  This is understandable, because our world just got shocked by Covid-19, which is completely an unexpected systematic stress that is not related to lags. 
+
+**ARMA model is not suitable for stress testing.** 
+<figure>
+  <img src="{{ "/images/posts/ARIMA Forecast and Training Data YoY.png" | relative_url }}">
+</figure>
