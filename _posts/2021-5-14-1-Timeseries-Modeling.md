@@ -663,6 +663,8 @@ plt.subplots_adjust(hspace=0.25)
 **standardized residual** (top left): The residuals seem to fluctuate around a mean of zero but the variance does not look constant. 
 In the period before 1080, the model tends to underpredict, resulting in larger residuals than later period.  The residuals in 1990s and the period around and after 2012 are smaller than other time periods.  This means that there may be structural changes in the data, and there are external factors should be accounted for, if possible. 
 
+Because of the patterns we see in the residual plot, we should run structural break tests on the data. But visually we can already tell there are structural breaks.  
+
 **Histogram plus estimated density** (top right): The standarized residual density is more concentrated in the middle, and does not look standard normal.  But it is not too far deviated from it. 
 
 **Normal Q-Q** (bottom left): All the dots should fall perfectly in line with the red line. Any significant deviations would imply the distribution is skewed.
@@ -757,6 +759,11 @@ We skip the first plot and look at the second plot with training data.  The same
 <figure>
   <img src="{{ "/images/posts/ARIMA Forecast and Training Data YoY.png" | relative_url }}">
 </figure>
+
+## Test for Structural Breaks
+
+
+## Test for Causality
 
 ## ARMAX Model
 In ARIMAX models, the inputs include additional features.  
