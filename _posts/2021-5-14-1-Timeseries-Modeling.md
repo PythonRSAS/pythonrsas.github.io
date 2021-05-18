@@ -685,3 +685,27 @@ model.plot_predict(dynamic=False)
 ## Model Validation (Out of Sample Testings)
 We have so far worked without any validation, which is certainly wrong.  But we did that to focus on illustrating the individual pieces.  
 Now, we will incorpate out of sampel validation in model building. 
+
+<div class="code-head"><span>code</span>out of sample test.python</div>
+
+```python
+from statsmodels.tsa.arima.model import ARIMA
+# train/test
+train = df.food[:200]
+test = df.food[200:] # 14 records
+model = ARIMA(train, order=(1, 1, 0)).fit()
+# Forecast
+fc= model.forecast(14, alpha=0.05)  # 95% conf
+forecast = model.get_forecast(14)
+yhat = forecast.predicted_mean
+yhat_conf_int = forecast.conf_int(alpha=0.05)
+test_pred = test.to_frame().join([fc,yhat_conf_int])
+title = "ARIMA Forecast (level)"
+test_pred.plot()
+plt.fill_between(test.index, test_pred['lower food'], test_pred['upper food'], 
+                 color='k', alpha=.15)
+plt.legend(frameon=False, loc='lower center', ncol=4)
+```
+<figure>
+  <img src="{{ "/images/posts/ARIMA Forecast (level).png" | relative_url }}">
+</figure>
