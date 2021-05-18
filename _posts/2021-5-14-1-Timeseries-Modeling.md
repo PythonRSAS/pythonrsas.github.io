@@ -747,10 +747,25 @@ plt.fill_between(test.index, test_pred['lower food_yoy'], test_pred['upper food_
                  color='k', alpha=.15)
 plt.plot(train,label='actual')
 plt.legend(frameon=False, loc='lower center', ncol=4)
+
+accuracy_dict = accuracy_dict_function(test_pred.predicted_mean,test_pred.food_yoy)
+accuracy_dict
+[Out]:
+{'mape': 0.26,
+ 'me': -0.01,
+ 'mae': 0.01,
+ 'mpe': -0.19,
+ 'rmse': 0.01,
+ 'acf1': 0.67,
+ 'adf_pvalue': 0.08,
+ 'corr': 0.34}
 ```
-We skip the first plot and look at the second plot with training data.  The same problem with the level forecast shows in the YoY forecast as well.  The forecasts completely misses the rising trend in the last few quarters.  This is understandable, because our world just got shocked by Covid-19, which is completely an unexpected systematic stress that is not related to lags. 
+We skip the first plot and look at the second plot with training data.  The same problem with the level forecast shows in the YoY forecast as well.  The forecasts completely misses the rising trend in the last few quarters.  This is understandable, because our world just got shocked by *Covid-19*, which is completely an unexpected systematic stress that is not related to lags. 
 
 **ARMA model is not suitable for stress testing.** 
 <figure>
   <img src="{{ "/images/posts/ARIMA Forecast and Training Data YoY.png" | relative_url }}">
 </figure>
+
+## ARMAX Model
+In ARIMAX models, the inputs include additional features.  
