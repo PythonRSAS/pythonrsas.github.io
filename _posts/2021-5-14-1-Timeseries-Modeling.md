@@ -597,16 +597,6 @@ plt.show()
   <img src="{{ "/images/posts/ARIMA_residual.png" | relative_url }}">
 </figure>
 
-A more convenient way is to use the model.plot_diagnostics() method from statsmodels.
-```python
-# better way for residual diagnostics
-model.plot_diagnostics(figsize=(15,8))
-plt.subplots_adjust(hspace=0.25)
-```
-<figure>
-  <img src="{{ "/images/posts/residual_diagnostics.png" | relative_url }}">
-</figure>
-
 <div class="code-head"><span>code</span>actual vs non-dynamic predicted.python</div>
 
 ```python
@@ -656,40 +646,31 @@ AR.2            3.3147           +0.0000j            3.3147            0.0000
 MA.1           -1.0467           +0.0000j            1.0467            0.5000
 -----------------------------------------------------------------------------
 
-model = ARIMA(train, order=(3, 1, 0)).fit()  
-model.summary()
-[Out]:
-                             ARIMA Model Results
-==============================================================================
-Dep. Variable:             D.food_yoy   No. Observations:                  213
-Model:                 ARIMA(3, 1, 1)   Log Likelihood                 695.807
-Method:                       css-mle   S.D. of innovations              0.009
-Date:                Mon, 17 May 2021   AIC                          -1379.613
-Time:                        18:40:16   BIC                          -1359.445
-Sample:                    06-30-1968   HQIC                         -1371.463
-                         - 06-30-2021
-====================================================================================
-                       coef    std err          z      P>|z|      [0.025      0.975]
-------------------------------------------------------------------------------------
-const            -1.242e-05      0.001     -0.010      0.992      -0.003       0.003
-ar.L1.D.food_yoy    -0.3342      0.071     -4.697      0.000      -0.474      -0.195
-ar.L2.D.food_yoy     0.2238      0.072      3.108      0.002       0.083       0.365
-ar.L3.D.food_yoy     0.1624      0.070      2.311      0.021       0.025       0.300
-ma.L1.D.food_yoy     0.9442      0.024     38.951      0.000       0.897       0.992
-                                    Roots
-=============================================================================
-                  Real          Imaginary           Modulus         Frequency
------------------------------------------------------------------------------
-AR.1            1.7650           -0.0000j            1.7650           -0.0000
-AR.2           -1.5717           -1.0096j            1.8680           -0.4091
-AR.3           -1.5717           +1.0096j            1.8680            0.4091
-MA.1           -1.0591           +0.0000j            1.0591            0.5000
-
 title = "ARIMA(2,1,0) YoY actual vs predicted"
 model.plot_predict(dynamic=False)
 ```
 <figure>
   <img src="{{ "/images/posts/ARIMA(2,1,0) YoY actual vs predicted.png" | relative_url }}">
+</figure>
+
+A more convenient way is to use the model.plot_diagnostics() method from statsmodels.
+```python
+# better way to plot residual diagnostics
+model.plot_diagnostics(figsize=(15,8))
+plt.subplots_adjust(hspace=0.25)
+```
+
+**standardized residual** (top left): The residuals seem to fluctuate around a mean of zero but the variance does not look constant. 
+In the period before 1080, the model tends to underpredict, resulting in larger residuals than later period.  The residuals in 1990s and the period around and after 2012 are smaller than other time periods.  This means that there may be structural changes in the data, and there are external factors should be accounted for, if possible. 
+
+**Histogram plus estimated density** (top right): The standarized residual density is more concentrated in the middle, and does not look standard normal.  But it is not too far deviated from it. 
+
+**Normal Q-Q** (bottom left): All the dots should fall perfectly in line with the red line. Any significant deviations would imply the distribution is skewed.
+
+**Correlogram** (bottom right): The Correlogram, aka, ACF plot shows the residuals are autocorrelated at the 3rd lag (positive) and the 4th lag (negative). Any residual autocorrelation implies that there is some pattern in the data that are not explained by the model. We will need to find out if we can add more inputs and/or explain the discrepancy if we accept the limitation. 
+
+<figure>
+  <img src="{{ "/images/posts/residual_diagnostics.png" | relative_url }}">
 </figure>
 
 ## Model Validation (Out of Sample Testings)
