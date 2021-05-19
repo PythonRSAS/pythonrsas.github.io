@@ -775,6 +775,95 @@ The models in each of the models (pooled, 1, 2) must have normally distributed e
 
 One of the problems of Chow's test is that our model may detect too many breaks.  In situations like this, we have to go back to the history of the data and its context, and apply judgement in combination with test results.  To use Chow's test most effecitvely, we probably should have an idea the ballpark where we want to test.  
 
+## Automatic ARIMA
+
+It is not feasible for us to manually check each iteration for every model.   So we will need an automated process for selecting the best model.  See 
+<a href="https://alkaline-ml.com/pmdarima/tips_and_tricks.html" target="_blank">Tips to using auto_arima </a> for the nuances for the hypter parameters. 
+
+There are two ways to run the automated procedure: stepwise and parallelized. 
+The parallel approach is a naive, brute force grid search over all combinations of hyper parameters as specified.  Because of its grid search nature, it can take longer time. 
+
+Here is from the documentation:
+
+The auto-ARIMA process seeks to identify the most optimal parameters for an ``ARIMA`` model, settling on a single fitted ARIMA model. This process is based on the commonly-used R function,``forecast::auto.arima``.
+
+Auto-ARIMA works by conducting differencing tests (i.e.,Kwiatkowski–Phillips–Schmidt–Shin, Augmented Dickey-Fuller orPhillips–Perron) to determine the order of differencing, ``d``, and thenfitting models within ranges of defined ``start_p``, ``max_p``,``start_q``, ``max_q`` ranges. If the ``seasonal`` optional is enabled,auto-ARIMA also seeks to identify the optimal ``P`` and ``Q`` hyper-parameters after conducting the Canova-Hansen to determine the optimal
+order of seasonal differencing, ``D``.
+
+In order to find the best model, auto-ARIMA optimizes for a given``information_criterion``, one of ('aic', 'aicc', 'bic', 'hqic', 'oob')(Akaike Information Criterion, Corrected Akaike Information Criterion,Bayesian Information Criterion, Hannan-Quinn Information Criterion, or"out of bag"--for validation scoring--respectively) and returns the ARIMAwhich minimizes the value.
+
+Note that due to stationarity issues, auto-ARIMA might not find a suitable model that will converge. If this is the case, a ``ValueError``will be thrown suggesting stationarity-inducing measures be taken priorto re-fitting or that a new range of ``order`` values be selected. Non-stepwise (i.e., essentially a grid search) selection can be slow,especially for seasonal data. Stepwise algorithm is outlined in Hyndman and
+Khandakar (2008).
+
+Parameters
+----------
+
+<div class="code-head"><span>code</span>out of sample test.python</div>
+
+```python
+model = pm.auto_arima(train.values, start_p=1, start_q=1,
+                      test='adf',       # use adftest to find optimal 'd'
+                      max_p=3, max_q=3, # p=AR order, q = MA order)
+                      m=1,              # frequency of series
+                      d=None,           # let model determine number of differencing
+                      seasonal=False,   # No Seasonality
+                      start_P=0, 
+                      D=0, 
+                      trace=True,
+                      error_action='ignore',  
+                      suppress_warnings=True, 
+                      stepwise=True)
+
+model.summary()
+```
+Performing stepwise search to minimize aic
+ ARIMA(1,0,1)(0,0,0)[0]             : AIC=-1272.709, Time=0.21 sec
+ ARIMA(0,0,0)(0,0,0)[0]             : AIC=-606.610, Time=0.02 sec
+ ARIMA(1,0,0)(0,0,0)[0]             : AIC=-1221.578, Time=0.02 sec
+ ARIMA(0,0,1)(0,0,0)[0]             : AIC=-867.145, Time=0.08 sec
+ ARIMA(2,0,1)(0,0,0)[0]             : AIC=-1264.990, Time=0.07 sec
+ ARIMA(1,0,2)(0,0,0)[0]             : AIC=-1278.801, Time=0.25 sec
+ ARIMA(0,0,2)(0,0,0)[0]             : AIC=-1021.603, Time=0.18 sec
+ ARIMA(2,0,2)(0,0,0)[0]             : AIC=-1263.891, Time=0.12 sec
+ ARIMA(1,0,3)(0,0,0)[0]             : AIC=-1337.314, Time=0.38 sec
+ ARIMA(0,0,3)(0,0,0)[0]             : AIC=-1115.481, Time=0.23 sec
+ ARIMA(2,0,3)(0,0,0)[0]             : AIC=-1327.319, Time=0.48 sec
+ ARIMA(1,0,3)(0,0,0)[0] intercept   : AIC=-1348.572, Time=0.52 sec
+ ARIMA(0,0,3)(0,0,0)[0] intercept   : AIC=inf, Time=0.60 sec
+ ARIMA(1,0,2)(0,0,0)[0] intercept   : AIC=-1283.426, Time=0.43 sec
+ ARIMA(2,0,3)(0,0,0)[0] intercept   : AIC=-1343.695, Time=0.58 sec
+ ARIMA(0,0,2)(0,0,0)[0] intercept   : AIC=-1145.968, Time=0.38 sec
+ ARIMA(2,0,2)(0,0,0)[0] intercept   : AIC=-1274.859, Time=0.53 sec
+
+Best model:  ARIMA(1,0,3)(0,0,0)[0] intercept
+Total fit time: 5.116 seconds
+                               SARIMAX Results
+==============================================================================
+Dep. Variable:                      y   No. Observations:                  200
+Model:               SARIMAX(1, 0, 3)   Log Likelihood                 680.286
+Date:                Wed, 19 May 2021   AIC                          -1348.572
+Time:                        10:25:43   BIC                          -1328.782
+Sample:                             0   HQIC                         -1340.563
+                                - 200
+Covariance Type:                  opg
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+intercept      0.0148      0.004      3.630      0.000       0.007       0.023
+ar.L1          0.6647      0.047     14.212      0.000       0.573       0.756
+ma.L1          0.8489      0.053     16.156      0.000       0.746       0.952
+ma.L2          0.8115      0.049     16.617      0.000       0.716       0.907
+ma.L3          0.8911      0.054     16.511      0.000       0.785       0.997
+sigma2      6.738e-05    5.7e-06     11.817      0.000    5.62e-05    7.86e-05
+===================================================================================
+Ljung-Box (L1) (Q):                   0.26   Jarque-Bera (JB):               108.74
+Prob(Q):                              0.61   Prob(JB):                         0.00
+Heteroskedasticity (H):               0.14   Skew:                             1.06
+Prob(H) (two-sided):                  0.00   Kurtosis:                         5.92
+===================================================================================
+```
+The automated procedure shows that ARIMA(1,0,3) is the best model, with 1 lag and 3 MA terms.  
+
 ## Test for Causality
 
 
