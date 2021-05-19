@@ -3,7 +3,7 @@ layout: post
 tag : Learning Python and SAS
 category: "python for sas"
 title: "Timeseries Modeling"
-description: OLS regression, serial correlation correction, robust regression
+description: OLS regression, serial correlation correction, robust regression, structural break, automated time series modeling
 author: Sarah Chen
 image: images/posts/regplot food_yoy and meat_yoy.png
 
@@ -778,14 +778,14 @@ One of the problems of Chow's test is that our model may detect too many breaks.
 ## Automatic ARIMA
 
 It is not feasible for us to manually check each iteration for every model.   So we will need an automated process for selecting the best model.  See 
-<a href="https://alkaline-ml.com/pmdarima/tips_and_tricks.html" target="_blank">Tips to using auto_arima </a> for the nuances for the hypter parameters. 
+<a href="https://alkaline-ml.com/pmdarima/tips_and_tricks.html" target="_blank">Tips to using auto_arima </a> for the nuances for the hyper parameters. 
 
 There are two ways to run the automated procedure: stepwise and parallelized. 
 The parallel approach is a naive, brute force grid search over all combinations of hyper parameters as specified.  Because of its grid search nature, it can take longer time. 
 
-Here is from the documentation:
+`Here is from the documentation:`
 
-The auto-ARIMA process seeks to identify the most optimal parameters for an ``ARIMA`` model, settling on a single fitted ARIMA model. This process is based on the commonly-used R function,``forecast::auto.arima``.
+The auto-ARIMA process seeks to identify the most optimal parameters for an `ARIMA` model, settling on a single fitted ARIMA model. This process is based on the commonly-used R function,``forecast::auto.arima``.
 
 Auto-ARIMA works by conducting differencing tests (i.e.,Kwiatkowski–Phillips–Schmidt–Shin, Augmented Dickey-Fuller orPhillips–Perron) to determine the order of differencing, ``d``, and thenfitting models within ranges of defined ``start_p``, ``max_p``,``start_q``, ``max_q`` ranges. If the ``seasonal`` optional is enabled,auto-ARIMA also seeks to identify the optimal ``P`` and ``Q`` hyper-parameters after conducting the Canova-Hansen to determine the optimal
 order of seasonal differencing, ``D``.
