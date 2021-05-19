@@ -784,17 +784,13 @@ There are two ways to run the automated procedure: stepwise and parallelized.
 The parallel approach is a naive, brute force grid search over all combinations of hyper parameters as specified.  Because of its grid search nature, it can take longer time. 
 
 Here is from the documentation:
+The auto-ARIMA process seeks to identify the most optimal parameters for an `ARIMA` model, settling on a single fitted ARIMA model. This process is based on the commonly-used R function,forecast::auto.arima.
 
-The auto-ARIMA process seeks to identify the most optimal parameters for an `ARIMA` model, settling on a single fitted ARIMA model. This process is based on the commonly-used R function,*forecast::auto.arima*.
-
-Auto-ARIMA works by conducting differencing tests (i.e.,Kwiatkowski–Phillips–Schmidt–Shin, Augmented Dickey-Fuller orPhillips–Perron) to determine the order of differencing, *d*, and thenfitting models within ranges of defined *start_p*, *max_p*,*start_q*, *max_q* ranges. If the *seasonal* optional is enabled,auto-ARIMA also seeks to identify the optimal *P* and *Q* hyper-parameters after conducting the Canova-Hansen to determine the optimal order of seasonal differencing, *D*.
+Auto-ARIMA works by conducting differencing tests (i.e.,Kwiatkowski–Phillips–Schmidt–Shin, Augmented Dickey-Fuller orPhillips–Perron) to determine the order of differencing, d, and thenfitting models within ranges of defined start_p, max_p,start_q, max_q ranges. If the seasonal optional is enabled,auto-ARIMA also seeks to identify the optimal P and Q hyper-parameters after conducting the Canova-Hansen to determine the optimal order of seasonal differencing, D.
 
 In order to find the best model, auto-ARIMA optimizes for a given*information_criterion*, one of ('aic', 'aicc', 'bic', 'hqic', 'oob')(Akaike Information Criterion, Corrected Akaike Information Criterion,Bayesian Information Criterion, Hannan-Quinn Information Criterion, or"out of bag"--for validation scoring--respectively) and returns the ARIMAwhich minimizes the value.
 
 Note that due to stationarity issues, auto-ARIMA might not find a suitable model that will converge. If this is the case, a *ValueError* will be thrown suggesting stationarity-inducing measures be taken priorto re-fitting or that a new range of *order* values be selected. Non-stepwise (i.e., essentially a grid search) selection can be slow,especially for seasonal data. Stepwise algorithm is outlined in Hyndman and Khandakar (2008)
-
-Parameters
-----------
 
 <div class="code-head"><span>code</span>out of sample test.python</div>
 
@@ -872,7 +868,7 @@ Parameters
 ----------
 **y** : The time-series to which to fit the ``ARIMA`` estimator. This mayeither be a Pandas ``Series`` object  or a numpy array. This should be a one-dimensional array of floats, and should not contain any``np.nan`` or ``np.inf`` values.
 
-**X** :  An optional 2-d array of exogenous variables. If provided, these variables are used as additional features in the regression operation. This should not include a constant or trend. Note that if an ``ARIMA`` is fit on exogenous features, it must be provided exogenous features for making predictions.
+**X** :  An optional 2-d array of exogenous variables. If provided, these variables are used as additional features in the regression operation. This should not include a constant or trend. 
 
 **n_periods** : (default=10) The number of periods in the future to forecast.
 
@@ -903,8 +899,6 @@ pred = model.fit_predict(train, n_periods=len(test))
 pred_s = pd.Series(pred, index=test.index)
 pred_s.name='pred'
 test.to_frame().join(pred_s).plot()
-
-
 # Forecast
 title = "Automated ARIMA Forecast"
 n_periods = len(test)
@@ -925,7 +919,7 @@ plt.fill_between(low.index,
                  low, 
                  high, 
                  color='grey', alpha=.15)
-                 
+
 ```
 The result looks better than the one manually created. 
 
