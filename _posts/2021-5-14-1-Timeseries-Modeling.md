@@ -761,7 +761,7 @@ We skip the first plot and look at the second plot with training data.  The same
 </figure>
 
 ## Test for Structural Breaks
-Perhaps the most important assumption of any time series model is that the underlying process is the same across all observations in the sample. It is, therefore, necessary to analyze carefully time series data that include periods of violent change. A tool that is particularly useful in this regard is the Chow test.
+It could be argued that the most important assumption of any time series model is that the underlying process is the same across all observations in the sample. Because of this, we should analyze carefully time series data with abrupt change. Researching the history of the data and its context should go hand in hand with statistical analysis. 
 
 The Chow test is commonly used to test for structural change in some or all of the parameters of a model in cases where the disturbance term is assumed to be the same in both periods.
 
@@ -773,7 +773,7 @@ It formally tests this by performing an F-test on the Chow Statistic which is (R
 
 The models in each of the models (pooled, 1, 2) must have normally distributed error with mean 0, as well as independent and identically distributed errors, to satisfy the Gauss-Markov assumptions.
 
-To use Chow's test, we have to know the ballpark we want to test. 
+One of the problems of Chow's test is that our model may detect too many breaks.  In situations like this, we have to go back to the history of the data and its context, and apply judgement in combination with test results.  To use Chow's test most effecitvely, we probably should have an idea the ballpark where we want to test.  
 
 ## Test for Causality
 
