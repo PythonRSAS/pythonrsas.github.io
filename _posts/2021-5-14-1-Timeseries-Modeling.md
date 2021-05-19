@@ -783,17 +783,15 @@ It is not feasible for us to manually check each iteration for every model.   So
 There are two ways to run the automated procedure: stepwise and parallelized. 
 The parallel approach is a naive, brute force grid search over all combinations of hyper parameters as specified.  Because of its grid search nature, it can take longer time. 
 
-`Here is from the documentation:`
+Here is from the documentation:
 
-The auto-ARIMA process seeks to identify the most optimal parameters for an `ARIMA` model, settling on a single fitted ARIMA model. This process is based on the commonly-used R function,``forecast::auto.arima``.
+The auto-ARIMA process seeks to identify the most optimal parameters for an `ARIMA` model, settling on a single fitted ARIMA model. This process is based on the commonly-used R function,*forecast::auto.arima*.
 
-Auto-ARIMA works by conducting differencing tests (i.e.,Kwiatkowski–Phillips–Schmidt–Shin, Augmented Dickey-Fuller orPhillips–Perron) to determine the order of differencing, ``d``, and thenfitting models within ranges of defined ``start_p``, ``max_p``,``start_q``, ``max_q`` ranges. If the ``seasonal`` optional is enabled,auto-ARIMA also seeks to identify the optimal ``P`` and ``Q`` hyper-parameters after conducting the Canova-Hansen to determine the optimal
-order of seasonal differencing, ``D``.
+Auto-ARIMA works by conducting differencing tests (i.e.,Kwiatkowski–Phillips–Schmidt–Shin, Augmented Dickey-Fuller orPhillips–Perron) to determine the order of differencing, *d*, and thenfitting models within ranges of defined *start_p*, *max_p*,*start_q*, *max_q* ranges. If the *seasonal* optional is enabled,auto-ARIMA also seeks to identify the optimal *P* and *Q* hyper-parameters after conducting the Canova-Hansen to determine the optimal order of seasonal differencing, *D*.
 
-In order to find the best model, auto-ARIMA optimizes for a given``information_criterion``, one of ('aic', 'aicc', 'bic', 'hqic', 'oob')(Akaike Information Criterion, Corrected Akaike Information Criterion,Bayesian Information Criterion, Hannan-Quinn Information Criterion, or"out of bag"--for validation scoring--respectively) and returns the ARIMAwhich minimizes the value.
+In order to find the best model, auto-ARIMA optimizes for a given*information_criterion*, one of ('aic', 'aicc', 'bic', 'hqic', 'oob')(Akaike Information Criterion, Corrected Akaike Information Criterion,Bayesian Information Criterion, Hannan-Quinn Information Criterion, or"out of bag"--for validation scoring--respectively) and returns the ARIMAwhich minimizes the value.
 
-Note that due to stationarity issues, auto-ARIMA might not find a suitable model that will converge. If this is the case, a ``ValueError``will be thrown suggesting stationarity-inducing measures be taken priorto re-fitting or that a new range of ``order`` values be selected. Non-stepwise (i.e., essentially a grid search) selection can be slow,especially for seasonal data. Stepwise algorithm is outlined in Hyndman and
-Khandakar (2008).
+Note that due to stationarity issues, auto-ARIMA might not find a suitable model that will converge. If this is the case, a *ValueError* will be thrown suggesting stationarity-inducing measures be taken priorto re-fitting or that a new range of *order* values be selected. Non-stepwise (i.e., essentially a grid search) selection can be slow,especially for seasonal data. Stepwise algorithm is outlined in Hyndman and Khandakar (2008)
 
 Parameters
 ----------
@@ -815,7 +813,7 @@ model = pm.auto_arima(train.values, start_p=1, start_q=1,
                       stepwise=True)
 
 model.summary()
-```
+
 Performing stepwise search to minimize aic
  ARIMA(1,0,1)(0,0,0)[0]             : AIC=-1272.709, Time=0.21 sec
  ARIMA(0,0,0)(0,0,0)[0]             : AIC=-606.610, Time=0.02 sec
@@ -861,8 +859,79 @@ Prob(Q):                              0.61   Prob(JB):                         0
 Heteroskedasticity (H):               0.14   Skew:                             1.06
 Prob(H) (two-sided):                  0.00   Kurtosis:                         5.92
 ===================================================================================
+
 ```
 The automated procedure shows that ARIMA(1,0,3) is the best model, with 1 lag and 3 MA terms.  
+
+## Using Auto-ARIMA to Forecast
+<span class="coding">model.fit_predict(y, X=None, n_periods=10)</span>
+
+Fit an ARIMA to a vector, <span class="coding">y</span>, of observations with an optional matrix of ``exogenous`` variables, and then generate predictions.
+
+Parameters
+----------
+**y** : The time-series to which to fit the ``ARIMA`` estimator. This mayeither be a Pandas ``Series`` object  or a numpy array. This should be a one-dimensional array of floats, and should not contain any``np.nan`` or ``np.inf`` values.
+
+**X** :  An optional 2-d array of exogenous variables. If provided, these variables are used as additional features in the regression operation. This should not include a constant or trend. Note that if an ``ARIMA`` is fit on exogenous features, it must be provided exogenous features for making predictions.
+
+**n_periods** : (default=10) The number of periods in the future to forecast.
+
+
+# automated ARIMA
+
+<div class="code-head"><span>code</span>out of sample test.python</div>
+
+```python
+import pmdarima as pm
+
+model = pm.auto_arima(train.values, start_p=1, start_q=1,
+                      test='adf',       # use adftest to find optimal 'd'
+                      max_p=3, max_q=3, # maximum p and q
+                      m=4,              # frequency of series, period for seasonal differencing
+                      d=None,           # let model determine 'd'
+                      seasonal=False,   # No Seasonality
+                      start_P=0, 
+                      D=0, 
+                      trace=True,
+                      error_action='ignore',  
+                      suppress_warnings=True, 
+                      stepwise=True)
+
+model.summary()
+
+pred = model.fit_predict(train, n_periods=len(test))
+pred_s = pd.Series(pred, index=test.index)
+pred_s.name='pred'
+test.to_frame().join(pred_s).plot()
+
+
+# Forecast
+title = "Automated ARIMA Forecast"
+n_periods = len(test)
+fc, confint = model.fit_predict(train, n_periods=n_periods, return_conf_int=True) # train is 1 dim
+fc_idx = test.index
+
+# for plotting
+fc_series = pd.Series(fc, index=fc_idx)
+low = pd.Series(confint[:, 0], index=fc_idx)
+high = pd.Series(confint[:, 1], index=fc_idx)
+
+# Plot
+sns.set_style('white')
+plt.plot(train, color=blue)
+plt.plot(fc_series, color='orange', label='forecast')
+plt.plot(test, color=blue, label='actual test')
+plt.fill_between(low.index, 
+                 low, 
+                 high, 
+                 color='grey', alpha=.15)
+                 
+```
+The result looks better than the one manually created. 
+
+<figure>
+  <img src="{{ "/images/posts/Automated ARIMA Forecast.png" | relative_url }}">
+</figure>
 
 ## Test for Causality
 
