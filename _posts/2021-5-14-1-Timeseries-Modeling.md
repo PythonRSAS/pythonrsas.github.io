@@ -872,8 +872,7 @@ Parameters
 
 **n_periods** : (default=10) The number of periods in the future to forecast.
 
-
-# automated ARIMA
+## automated ARIMA
 
 <div class="code-head"><span>code</span>out of sample test.python</div>
 
