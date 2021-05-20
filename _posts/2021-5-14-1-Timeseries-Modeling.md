@@ -1026,7 +1026,6 @@ plt.fill_between(low.index,
                  color='grey', alpha=.15)
 
 ```
-
 <figure>
   <img src="{{ "/images/posts/Automated ARIMAX Forecast.png" | relative_url }}">
 </figure>
