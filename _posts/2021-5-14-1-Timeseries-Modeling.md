@@ -874,7 +874,7 @@ Parameters
 
 ## automated ARIMA
 
-<div class="code-head"><span>code</span>out of sample test.python</div>
+<div class="code-head"><span>code</span>automated ARIMA.python</div>
 
 ```python
 import pmdarima as pm
@@ -926,8 +926,109 @@ The result looks better than the one manually created.
   <img src="{{ "/images/posts/Automated ARIMA Forecast.png" | relative_url }}">
 </figure>
 
+## ARIMAX
+
+Let's pretend that meat prices drive food prices.  The downside is that in order to make predictions for food_yoy, we will need the forecast for meat_yoy.  
+
+<div class="code-head"><span>code</span>automated ARIMAX.python</div>
+
+```python
+import pmdarima as pm
+# train, X=df.meat_yoy[:200].to_frame() will also work, as long as they have the same index
+model = pm.auto_arima(train.values, X=df.meat_yoy[:200].values.reshape(-1,1) ,start_p=1, start_q=1,
+                      test='adf',       # use adftest to find optimal 'd'
+                      max_p=3, max_q=3, # maximum p and q
+                      m=4,              # frequency of series, period for seasonal differencing
+                      d=None,           # let model determine 'd'
+                      seasonal=False,   # No Seasonality
+                      start_P=0, 
+                      D=0, 
+                      trace=True,
+                      error_action='ignore',  
+                      suppress_warnings=True, 
+                      stepwise=True)
+[Out]:
+Performing stepwise search to minimize aic
+ ARIMA(1,0,1)(0,0,0)[0]             : AIC=-1406.458, Time=0.42 sec
+ ARIMA(0,0,0)(0,0,0)[0]             : AIC=-799.668, Time=0.05 sec
+ ARIMA(1,0,0)(0,0,0)[0]             : AIC=-1365.289, Time=0.16 sec
+ ARIMA(0,0,1)(0,0,0)[0]             : AIC=-1032.365, Time=0.11 sec
+ ARIMA(2,0,1)(0,0,0)[0]             : AIC=-1422.762, Time=0.37 sec
+ ARIMA(2,0,0)(0,0,0)[0]             : AIC=-1420.931, Time=0.29 sec
+ ARIMA(3,0,1)(0,0,0)[0]             : AIC=-1427.298, Time=0.48 sec
+ ARIMA(3,0,0)(0,0,0)[0]             : AIC=-1422.412, Time=0.39 sec
+ ARIMA(3,0,2)(0,0,0)[0]             : AIC=-1409.680, Time=0.73 sec
+ ARIMA(2,0,2)(0,0,0)[0]             : AIC=-1425.466, Time=0.37 sec
+ ARIMA(3,0,1)(0,0,0)[0] intercept   : AIC=-1424.524, Time=0.57 sec
+
+Best model:  ARIMA(3,0,1)(0,0,0)[0]
+model.summary()
+[Out]:
+                               SARIMAX Results
+==============================================================================
+Dep. Variable:                      y   No. Observations:                  200
+Model:               SARIMAX(3, 0, 1)   Log Likelihood                 719.649
+Date:                Wed, 19 May 2021   AIC                          -1427.298
+Time:                        17:59:28   BIC                          -1407.508
+Sample:                             0   HQIC                         -1419.289
+                                - 200
+Covariance Type:                  opg
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+x1             0.2302      0.011     21.677      0.000       0.209       0.251
+ar.L1          0.6662      0.085      7.817      0.000       0.499       0.833
+ar.L2          0.5983      0.126      4.732      0.000       0.350       0.846
+ar.L3         -0.2915      0.066     -4.398      0.000      -0.421      -0.162
+ma.L1          0.9110      0.055     16.435      0.000       0.802       1.020
+sigma2      4.259e-05   3.55e-06     12.005      0.000    3.56e-05    4.95e-05
+===================================================================================
+Ljung-Box (L1) (Q):                   1.26   Jarque-Bera (JB):                32.33
+Prob(Q):                              0.26   Prob(JB):                         0.00
+Heteroskedasticity (H):               0.17   Skew:                            -0.01
+Prob(H) (two-sided):                  0.00   Kurtosis:                         4.97
+
+# model.predict(n_periods=10, X=None, return_conf_int=False, alpha=0.05, **kwargs)
+pred = model.predict(n_periods=14, X=df.meat_yoy[200:].to_frame())
+pred_s = pd.Series(pred, index=test.index)
+pred_s.name='pred'
+title = "Out of Sample Forecast vs Actual"
+test.to_frame().join(pred_s).plot()
+```
+
+We see that the result is a lot better.  This is because we have the actual meat data for the forecast period.  This is in fact **"cheating"**.  Because in reality, we do not know what meat prices are in the future.  We will need to develope a model to forecast meat prices before using the ARIMAX model. 
+
+<figure>
+  <img src="{{ "/images/posts/Out of Sample Forecast vs Actual.png" | relative_url }}">
+</figure>
+
+
+<div class="code-head"><span>code</span>automated ARIMAX forecast.python</div>
+
+```python
+title = "Automated ARIMAX Forecast"
+n_periods = len(test)
+fc, confint = fc, confint = model.predict(n_periods=n_periods, 
+                                  exogenous=df.meat_yoy[200:].to_frame(), 
+                                  return_conf_int=True)
+fc_idx = test.index
+fc_series = pd.Series(fc, index=fc_idx)
+low = pd.Series(confint[:, 0], index=fc_idx)
+high = pd.Series(confint[:, 1], index=fc_idx)
+# Plot
+sns.set_style('whitegrid')
+plt.plot(train, color=blue)
+plt.plot(fc_series, color='orange', label='forecast')
+plt.plot(test, color=blue, label='actual test')
+plt.fill_between(low.index, 
+                 low, 
+                 high, 
+                 color='grey', alpha=.15)
+
+```
+
+<figure>
+  <img src="{{ "/images/posts/Automated ARIMAX Forecast.png" | relative_url }}">
+</figure>
+
 ## Test for Causality
-
-
-## ARMAX Model
-In ARIMAX models, the inputs include additional features.  
