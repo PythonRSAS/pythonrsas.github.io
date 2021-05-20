@@ -926,7 +926,7 @@ The result looks better than the one manually created.
   <img src="{{ "/images/posts/Automated ARIMA Forecast.png" | relative_url }}">
 </figure>
 
-## ARIMAX
+## ARIMAX with X
 
 Let's pretend that meat prices drive food prices.  The downside is that in order to make predictions for food_yoy, we will need the forecast for meat_yoy.  
 
