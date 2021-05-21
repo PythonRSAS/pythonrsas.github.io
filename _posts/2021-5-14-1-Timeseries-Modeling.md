@@ -15,6 +15,28 @@ This post consists of a few timeseries regression examples from my upcoming book
 
 We will begin with some data analysis and then get into modeling. 
 
+# Data Visualization
+When we look at the timeseries data in various types of plots, we should take note of the following:
+1. Is mean-reverting or has explosive behavior
+2. Does it have a time trend
+3. Seasonality
+4. Structrural breaks
+
+## Test for Structural Breaks
+It could be argued that the most important assumption of any time series model is that the underlying process is the same across all observations in the sample. Because of this, we should analyze carefully time series data with abrupt changes visually. Researching the history of the data and its context should go hand in hand with statistical analysis. 
+
+The Chow test is commonly used to test for structural change in some or all of the parameters of a model in cases where the disturbance term is assumed to be the same in both periods.
+
+The Chow Test tests if the weights in two different regression models are the same. In other words, it tests if the model before the possible break point is the same as the model after the possible break point. The alternative hypothesis is the model fitting each periods are different.
+
+It formally tests this by performing an F-test on the Chow Statistic which is (RSS_pooled - (RSS1 + RSS2))/(number of independent variables plus 1 for the constant) divided by (RSS1 + RSS2)/(Number of observations in subsample 1 + Number of observations in subsample 2 - 2*(number of independent variables plus 1 for the constant).
+
+<img src="{{ "/images/posts/chowTest.gif" | relative_url }}" />
+
+The models in each of the models (pooled, 1, 2) must have normally distributed error with mean 0, as well as independent and identically distributed errors, to satisfy the Gauss-Markov assumptions.
+
+One of the problems of Chow's test is that our model may detect too many breaks.  In situations like this, we have to go back to the history of the data and its context, and apply judgement in combination with test results.  To use Chow's test most effecitvely, we probably should have an idea the ballpark where we want to test. 
+
 ## Data: Food and energy CPI
 Looking at economic activity data year over year (or sometimes quarter over quarter) is a routine exercise for analysts who work with macroeconomic data, and business performance data.  Tranformating the target variable using YoY often makes the time series stationary and non-serial correlated.  Stationary target variable makes modeling easier because it is reduces chances of spurious regression and it is easier to isolate problems.  Why?  Let's make an analogy, when you have two objects, it is easier to see what is happening if you keep one object relatively fixed (stationary) instead of both are moving. 
 
@@ -286,7 +308,8 @@ Kurtosis:                       8.939   Cond. No.                         18.3
 ==============================================================================
 ```
 
-## Residual Autocorrelation and Stationarity
+# Model Evalulation 1: Residual Autocorrelation and Stationarity
+
 From the regression results, we see that DW is 0.222.  Ideally DW should be close to 2. A rule of thumb is that test statistic values in the range of 1.5 to 2.5 are relatively normal.  Close to 0 DW means the residual is positively auto-correlated. Close to 4 implies negative autocorrelation. 
 
 Autoregressive relationships are very common in time series.  For example, when prices are increasing, it is likely to increase for a few years.  This is what some may call "momemtum".  
@@ -348,7 +371,7 @@ Our goal is here is to get the right standard error for the coefficients.    Sin
 
 Newey-West standard errors is the simplest serial correlation corrections to implement for a simple OLS because it does not change the model if the parameters are significant.  Depending on model purpose, OLS may be the preferred model, or sometimes we may prefer using a time series ARMA model to correct for autocorrelation. 
 
-## Performance Testing
+# Model Evaludation 2: Training Performance Testing
 Before we move on to ARIMAX model, we will conduct performance testings on the OLS model.  
 
 <div class="code-head"><span>code</span>performance testing.python</div>
@@ -427,6 +450,8 @@ for i in range(2):
 <figure>
   <img src="{{ "/images/posts/performance_testing.png" | relative_url }}">
 </figure>
+
+# ARIMA Models
 
 ## ARIMA Models for the Level Taget
 Non-seasonal and non-stationary time series can be modeled using ARIMA. An ARIMA model is characterized by 3 terms:
@@ -678,9 +703,11 @@ Because of the patterns we see in the residual plot, we should run structural br
   <img src="{{ "/images/posts/residual_diagnostics.png" | relative_url }}">
 </figure>
 
-## Model Validation (Out of Sample Testings)
-We have so far worked without any validation, which is certainly wrong.  But we did that to focus on illustrating the individual pieces.  
-Now, we will incorpate out of sampel validation in model building. 
+# Model Evaluation 3: Out of Sample Testings
+We have so far worked without any validation, which is certainly wrong.  But we did that to focus on illustrating the individual pieces.  When prediction/forecast is the goal, out of sample testing is essential for model performance evaluation. 
+
+## One-Time Train/Test Split
+Now, we will incorpate out of sample validation in model building. 
 
 <div class="code-head"><span>code</span>out of sample test.python</div>
 
@@ -719,8 +746,7 @@ The forecast quality is bad.
   <img src="{{ "/images/posts/ARIMA Forecast and Training Data.png" | relative_url }}">
 </figure>
 
-## Model Validation 1 (Out of Sample Testing Using Train Test Split)
-An example on expanding window test is shown near the end. 
+Below is the snippet for the YoY out of sample testing. 
 
 <div class="code-head"><span>code</span>out of sample test.python</div>
 
@@ -763,21 +789,6 @@ We skip the first plot and look at the second plot with training data.  The same
 <figure>
   <img src="{{ "/images/posts/ARIMA Forecast and Training Data YoY.png" | relative_url }}">
 </figure>
-
-## Test for Structural Breaks
-It could be argued that the most important assumption of any time series model is that the underlying process is the same across all observations in the sample. Because of this, we should analyze carefully time series data with abrupt change. Researching the history of the data and its context should go hand in hand with statistical analysis. 
-
-The Chow test is commonly used to test for structural change in some or all of the parameters of a model in cases where the disturbance term is assumed to be the same in both periods.
-
-The Chow Test tests if the weights in two different regression models are the same. In other words, it tests if the model before the possible break point is the same as the model after the possible break point. The alternative hypothesis is the model fitting each periods are different.
-
-It formally tests this by performing an F-test on the Chow Statistic which is (RSS_pooled - (RSS1 + RSS2))/(number of independent variables plus 1 for the constant) divided by (RSS1 + RSS2)/(Number of observations in subsample 1 + Number of observations in subsample 2 - 2*(number of independent variables plus 1 for the constant).
-
-<img src="{{ "/images/posts/chowTest.gif" | relative_url }}" />
-
-The models in each of the models (pooled, 1, 2) must have normally distributed error with mean 0, as well as independent and identically distributed errors, to satisfy the Gauss-Markov assumptions.
-
-One of the problems of Chow's test is that our model may detect too many breaks.  In situations like this, we have to go back to the history of the data and its context, and apply judgement in combination with test results.  To use Chow's test most effecitvely, we probably should have an idea the ballpark where we want to test.  
 
 ## Automatic ARIMA
 
@@ -1034,10 +1045,12 @@ plt.fill_between(low.index,
 </figure>
 
 ## Walk Forward Expanding Window Train Test
+
+The purpose of out of sample test/validation is to evaluate model specification and the robustness in predictions.  There are different schemes for splitting up the time-indexed data for train and test.  
+
 <div class="code-head"><span>code</span>Expanding Window Train Test.python</div>
 
 ```python
-
 n_train = 195
 n_records = df.shape[0]
 accuracy_lt =[]
