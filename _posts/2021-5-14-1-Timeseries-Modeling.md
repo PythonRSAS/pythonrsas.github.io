@@ -434,11 +434,14 @@ Non-seasonal and non-stationary time series can be modeled using ARIMA. An ARIMA
 2. d: the number of differencing required to make the time series stationary; use **acf** plot
 3. q: the order of the MA term
 
+Note that ARIMA model coefficients AR(p) and MA(q) terms are bounded between (−1,1) or else the process is not stationary.
+
 The statsmodels <span class="coding">statsmodels.tsa.arima_model.ARIMA</span> has the order of <span class="coding">(p,d,q)</span>. So the first term in this ARIMA class is order of AR term, then differencing, and finally MA. 
 
 **PACF** (Partial Autocorrelation) plot: used for identify number of AR terms, i.e. number of lags
- The right order of differencing is the minimum differencing required to get a near-stationary series which roams around a defined mean and the ACF plot reaches to zero fairly quick.
+The right order of differencing is the minimum differencing required to get a near-stationary series which roams around a defined mean and the ACF plot reaches to zero fairly quick.
 Adjusted Box-Tiao (ABT). In ABT, ARIMAX models with AR terms using the Box-Tiao method.
+
 First of all, since P-value is greater than the significance level, we take difference of the series and plot autocorrelation plot.
 Note that because our data has datetime index, we should not use <span class="coding">sharex=True</span>, because datetime index and range index cannot be shared. 
 <div class="code-head"><span>code</span>stationary testing.python</div>
@@ -716,7 +719,8 @@ The forecast quality is bad.
   <img src="{{ "/images/posts/ARIMA Forecast and Training Data.png" | relative_url }}">
 </figure>
 
-## YoY Model Validation (Out of Sample Testings)
+## Model Validation 1 (Out of Sample Testing Using Train Test Split)
+An example on expanding window test is shown near the end. 
 
 <div class="code-head"><span>code</span>out of sample test.python</div>
 
@@ -860,7 +864,6 @@ Prob(H) (two-sided):                  0.00   Kurtosis:                         5
 The automated procedure shows that ARIMA(1,0,3) is the best model, with 1 lag and 3 MA terms.  
 
 ## Using Auto-ARIMA to Forecast
-<span class="coding">model.fit_predict(y, X=None, n_periods=10)</span>
 
 Fit an ARIMA to a vector, <span class="coding">y</span>, of observations with an optional matrix of ``exogenous`` variables, and then generate predictions.
 
@@ -926,7 +929,7 @@ The result looks better than the one manually created.
   <img src="{{ "/images/posts/Automated ARIMA Forecast.png" | relative_url }}">
 </figure>
 
-## ARIMAX with X
+## ARIMAX with X (exogenous)
 
 Let's pretend that meat prices drive food prices.  The downside is that in order to make predictions for food_yoy, we will need the forecast for meat_yoy.  
 
@@ -1029,5 +1032,56 @@ plt.fill_between(low.index,
 <figure>
   <img src="{{ "/images/posts/Automated ARIMAX Forecast.png" | relative_url }}">
 </figure>
+
+## Walk Forward Expanding Window Train Test
+<div class="code-head"><span>code</span>Expanding Window Train Test.python</div>
+
+```python
+
+n_train = 195
+n_records = df.shape[0]
+accuracy_lt =[]
+for i in range(n_train, n_records-14):
+	train, test = df.food_yoy[0:i], df.food_yoy[i:i+14]
+	# print('train=%d, test=%d' % (len(train), len(test)))
+    exogenous_train  = df.meat_yoy[0:i].to_frame()
+    exogenous_test = df.meat_yoy[i:i+14].to_frame()
+    # print("test", test.shape)
+    # print("exogenous_train",exogenous_train.shape)
+    # print("exogenous_test",exogenous_test.shape)
+    # print("train", train.shape)
+    axmodel = pm.auto_arima(train, exogenous=exogenous_train,
+                           start_p=1, start_q=1,
+                           test='adf',
+                           max_p=3, max_q=3, m=12,
+                           start_P=0, seasonal=False,
+                           d=None, D=1, trace=True,
+                           error_action='ignore',  
+                           suppress_warnings=True, 
+                           stepwise=True)
+    print("i = ", i)
+    print(axmodel.summary())
+    fc, conf_int = model.predict(n_periods=14, X = exogenous_test, return_conf_int=True, alpha=0.05)
+    fc_s = pd.Series(fc, index=test.index)
+    fc_s.name='fc'
+    conf_int_df = pd.DataFrame(conf_int, index=test.index, columns=['lower food_yoy','upper food_yoy' ])
+    test_pred = test.to_frame().join([fc_s,conf_int_df])
+    accuracy_dict = accuracy_dict_function(test_pred.fc,test_pred.food_yoy)
+    # test_pred.plot()
+    # plt.fill_between(test.index, test_pred['lower food_yoy'], test_pred['upper food_yoy'], 
+    #                  color='k', alpha=.15)
+    # plt.legend(frameon=False, loc='lower center', ncol=4)
+    # plt.show()
+    accuracy_lt.append(accuracy_dict)
+accuracy_df = pd.DataFrame(accuracy_lt)
+accuracy_df
+[Out]:
+#    mape     me   mae    mpe  rmse  acf1  adf_pvalue  corr
+# 0 0.350 -0.000 0.000 -0.220 0.010 0.810       0.990 0.740
+# 1 0.400 -0.010 0.010 -0.180 0.010 0.700       1.000 0.840
+# 2 0.310 -0.010 0.010 -0.300 0.010 0.670       0.940 0.850
+# 3 0.310 -0.010 0.010 -0.300 0.010 0.710       0.130 0.830
+# 4 0.340 -0.010 0.010 -0.320 0.010 0.750       0.000 0.830
+```
 
 ## Test for Causality
