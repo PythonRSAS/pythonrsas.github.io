@@ -1051,7 +1051,7 @@ The purpose of out of sample test/validation is to evaluate model specification 
   <img src="{{ "/images/posts/Figure 1-10 Rolling and Expanding Validation Design.png" | relative_url }}">
 </figure>
 
-<div class="code-head"><span>code</span>Expanding Window Train Test.python</div>
+<div class="code-head"><span>code</span>Expanding Window Train Test on ARIMAX.python</div>
 
 ```python
 n_train = 195
