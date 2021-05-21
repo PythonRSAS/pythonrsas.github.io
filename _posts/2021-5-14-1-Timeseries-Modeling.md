@@ -203,7 +203,7 @@ plot_2_ts(df, x= "food_ma_yoy", y = "energy_ma_yoy", year=1970)
   <figcaption>food_ma_yoy and energy_ma_yoy</figcaption>
 </figure>
 
-## regression analysis
+## Regression Analysis
 After preparing the data, we may want to do some simple regression analysis for feature selection.   Below is an example that looks at various lags and leads to find which is the most correlated one with the target.  
 
 <div class="code-head"><span>code</span>regression analysis.python</div>
@@ -394,7 +394,6 @@ def accuracy_dict_function(pred, actual):
     accuracy_dict = {key: round(accuracy_dict[key],2) for key in accuracy_dict}  # dictionary comprehension to round the values
     return accuracy_dict
 
-# measure model performance
 # measure model performance
 aic = np.round(model.aic)
 dw = np.round(durbin_watson(model.resid),2) # 0.262
@@ -746,7 +745,7 @@ The forecast quality is bad.
   <img src="{{ "/images/posts/ARIMA Forecast and Training Data.png" | relative_url }}">
 </figure>
 
-Below is the snippet for the YoY out of sample testing. 
+Below is a snippet for the YoY out of sample testing. 
 
 <div class="code-head"><span>code</span>out of sample test.python</div>
 
@@ -886,7 +885,7 @@ Parameters
 
 **n_periods** : (default=10) The number of periods in the future to forecast.
 
-## automated ARIMA
+## Automated ARIMA
 
 <div class="code-head"><span>code</span>automated ARIMA.python</div>
 
@@ -1044,9 +1043,13 @@ plt.fill_between(low.index,
   <img src="{{ "/images/posts/Automated ARIMAX Forecast.png" | relative_url }}">
 </figure>
 
-## Walk Forward Expanding Window Train Test
+# Model Evaluation: Walk Forward Expanding Window Train Test
 
 The purpose of out of sample test/validation is to evaluate model specification and the robustness in predictions.  There are different schemes for splitting up the time-indexed data for train and test.  
+
+<figure>
+  <img src="{{ "/images/posts/Figure 1-10 Rolling and Expanding Validation Design.png" | relative_url }}">
+</figure>
 
 <div class="code-head"><span>code</span>Expanding Window Train Test.python</div>
 
