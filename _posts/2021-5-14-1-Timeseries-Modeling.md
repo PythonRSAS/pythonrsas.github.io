@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : Learning Python and SAS
-category: "python for sas"
+category: "credit risk"
 title: "Timeseries Modeling"
 description: OLS regression, serial correlation correction, robust regression, structural break, automated time series modeling
 author: Sarah Chen
@@ -189,7 +189,7 @@ def plot_2_ts(data, x, y, year):
     ax2.set_ylabel(y, color=blue)
     ax2.xaxis.set_major_locator(YearLocator()) #frequency
     ax2.xaxis.set_major_formatter(DateFormatter('%Y'))
-    ax2.text(temp.index[2],temp[x].min(), "correlation = %s"%str(corr))
+    ax2.text(temp.index[2],temp[y].min(), "correlation = %s"%str(corr))
     ax1.tick_params(axis='x', labelrotation = 90)
     ax2.tick_params(axis='x', labelrotation = 90)
     ax1.legend(frameon=False, loc=2)
