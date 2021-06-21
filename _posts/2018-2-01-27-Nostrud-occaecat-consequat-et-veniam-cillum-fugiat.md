@@ -2,7 +2,7 @@
 layout: post
 tag: State of Deep Learning
 category: "deep learning"
-title: "Nostrud occaecat consequat et veniam cillum fugiat"
+title: "Work in Progress"
 description: Amet qui in qui eu deserunt nostrud quis amet ut ea dolore culpa consectetur sit deserunt.
 author: Sarah Chen
 image: https://drive.google.com/uc?id=1541eWZkwlPctAlVmVCPZ36NIGTD_QbEU
