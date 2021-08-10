@@ -20,7 +20,7 @@ Let's keep them in the back of the mind when we think about market risk.
 A commonly measure  **VaR** or [**Value at Risk**](https://en.wikipedia.org/wiki/Value_at_risk#cite_note-Jorion-1){:target="_blank"}.
  is informally defined as:
 
-For a given portfolio, time horizon, and probability p, the p VaR can be defined informally as the maximum possible loss during that time after we exclude all worse outcomes whose combined probability is at most p. 
+For a given portfolio, time horizon, and probability p, VaR can be defined informally as the maximum possible loss during that time horizon after we exclude all worse outcomes whose combined probability is at most p. 
 
 A 1-day 99% Var is the 1-day maximum possible loss at >=99% probability. Informally, it is a hypothetical number that we are very sure that our 1-day loss won't go above.  Our guess would have to be higher if we wanted to be even more sure.  
 

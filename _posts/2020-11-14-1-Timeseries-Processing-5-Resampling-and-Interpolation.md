@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : Learning Python and SAS
-category: "credit risk"
+category: "python for sas"
 title: "Timeseries Processing 5-Resampling and Interpolation"
 description: Resampling and interpolation
 author: Sarah Chen

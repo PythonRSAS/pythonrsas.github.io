@@ -12,7 +12,20 @@ Work in Progress.  Check back later.
 
 The first step in any analytic process is import libraries and data. 
 
-## install libraries and data
+## install libraries, run external code
+
+* **Python** - 2 ways depending on which enviroment I am using.  I often use both Jupyter Notebook and the command line simultaneously. 
+- <span class="coding">%run</span> magic command in Jupyter Notebook.  E.g. <span class="coding">%run C:/.../myCode.py</span>
+- <span class="coding">python C:/.../myCode.py</span> in command prompt. 
+
+
+```
+<div class="code-head"><span>code</span>import libraries.py</div>
+
+```python
+import pandas as pd
+```
+
 <div class="code-head"><span>code</span>import libraries.r</div>
 
 ```r
@@ -39,12 +52,7 @@ data(x) # loads specific dataset
 read_feather(path, columns=NULL)
 write_feather(x, path)
 
-```
-<div class="code-head"><span>code</span>input and output.py</div>
 
-```python
-df.mean()
-```
 
 
 <div class="code-head"><span>code</span>input and output.sas</div>
