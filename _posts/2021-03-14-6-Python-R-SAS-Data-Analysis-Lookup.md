@@ -10,7 +10,7 @@ image: images/posts/IMG-0669.JPG
 ---
 Work in Progress.  Check back later. 
 
-The first step in any analytic process is import libraries and data. 
+First, import libraries and data. And how to make code reusable. 
 
 ## install libraries, run external code
 
@@ -19,7 +19,7 @@ The first step in any analytic process is import libraries and data.
 </p></div>
 
 <div class="note"><p>
-<b>Note</b>: NEVER NEVER span class="coding">from libraryName import *</span> It can cause name clashes and all kinds of mysterious bad stuff.
+<b>Note</b>: NEVER NEVER <span class="coding">from libraryName import *</span> It can cause name clashes and all kinds of mysterious bad stuff.
 </p></div>
 
 **Python** - 2 ways depending on which enviroment I am using.  I often use both Jupyter Notebook and the command line simultaneously. 
