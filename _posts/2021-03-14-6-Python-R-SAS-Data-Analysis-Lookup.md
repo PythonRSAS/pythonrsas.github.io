@@ -18,8 +18,6 @@ The first step in any analytic process is import libraries and data.
 - <span class="coding">%run</span> magic command in Jupyter Notebook.  E.g. <span class="coding">%run C:/.../myCode.py</span>
 - <span class="coding">python C:/.../myCode.py</span> in command prompt. 
 
-
-
 ```
 <div class="code-head"><span>code</span>import libraries.py</div>
 
