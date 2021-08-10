@@ -18,6 +18,10 @@ The first step in any analytic process is import libraries and data.
 <b>Note</b>: Imported libraries are cached.  So you import an updated version of the library, it will still be the old one showing up, unless you start a new session.
 </p></div>
 
+<div class="note"><p>
+<b>Note</b>: NEVER NEVER span class="coding">from libraryName import *</span> It can cause name clashes and all kinds of mysterious bad stuff.
+</p></div>
+
 **Python** - 2 ways depending on which enviroment I am using.  I often use both Jupyter Notebook and the command line simultaneously. 
 - <span class="coding">%run</span> magic command in Jupyter Notebook.  E.g. <span class="coding">%run C:/.../myCode.py</span>
 - <span class="coding">python C:/.../myCode.py</span> in command prompt. 
