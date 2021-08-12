@@ -10,9 +10,14 @@ image: images/posts/IMG-0669.JPG
 ---
 Work in Progress.  Check back later. 
 
-First, import libraries and data. And how to make code reusable. 
+First, we should know the basics such as how to import libraries and data in each of the languages. Second, soon after working with the basics, we should know how to make code reusable. 
 
-## install libraries, run external code
+## Run external code
+If we have code that we use again and again, let us keep it in a separate piece of code (Calling it a piece of code is a genearal way of saying it, which may have other names such as "module", "function", or "macro" in SAS).  Try not to copy and paste even if "Ctrl C" and "Ctrl V" may be our favorite technology. Copying and pasting code all over the place can make our code much longer (and dreadful sometimes) than needed, and messy. 
+
+**Python** - 2 ways depending on which enviroment I am using.  I often use both Jupyter Notebook and the command line simultaneously. 
+- <span class="coding">%run</span> magic command in Jupyter Notebook.  E.g. <span class="coding">%run C:/.../myCode.py</span>
+- <span class="coding">python C:/.../myCode.py</span> in command prompt. 
 
 <div class="note"><p>
 <b>Note</b>: Imported libraries are cached.  So you import an updated version of the library, it will still be the old one showing up, unless you start a new session.
@@ -22,9 +27,24 @@ First, import libraries and data. And how to make code reusable.
 <b>Note</b>: NEVER NEVER <span class="coding">from libraryName import *</span> It can cause name clashes and all kinds of mysterious bad stuff.
 </p></div>
 
-**Python** - 2 ways depending on which enviroment I am using.  I often use both Jupyter Notebook and the command line simultaneously. 
-- <span class="coding">%run</span> magic command in Jupyter Notebook.  E.g. <span class="coding">%run C:/.../myCode.py</span>
-- <span class="coding">python C:/.../myCode.py</span> in command prompt. 
+**SAS**  
+
+Import and run a piece of external code in SAS is easy.  Say we have a few lines of code contained in "step0_libnames_options.sas" that specifies options, directories and a few macro variables for our project.  We can call it to task by using the <span class="coding">%include </span> statement.
+
+<div class="code-head"><span>code</span>step0_libnames_options.sas</div>
+
+```sas
+options mprint mlogic symbolgen compress=binary;
+options varlidvarname=any;
+libname newdata "c:\users\sc\newdata";
+%let outpath = A:\sc\output;
+```
+
+<div class="code-head"><span>code</span>import external code.sas</div>
+
+```sas
+%include step0_libnames_options.sas;
+```
 
 
 <div class="code-head"><span>code</span>import libraries.py</div>
