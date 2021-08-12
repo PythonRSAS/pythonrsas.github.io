@@ -39,11 +39,12 @@ options varlidvarname=any;
 libname newdata "c:\users\sc\newdata";
 %let outpath = A:\sc\output;
 ```
-
+There are many ways to use the <span class="coding">%include </span> statement. Below is a simple example.  Remember that what we are calling needs to be in quotes. 
 <div class="code-head"><span>code</span>import external code.sas</div>
 
 ```sas
-%include step0_libnames_options.sas;
+%let code_dir = "c:\users\sc\code";
+%include "&code_dir.\step0_libnames_options.sas";
 ```
 
 
