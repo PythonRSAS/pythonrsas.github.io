@@ -8,7 +8,7 @@ author: Sarah Chen
 image: images/posts/counterparty.JPG
 ---
 <figure>
-  <img src="{{ "/images/posts/counterparty.JPG" | relative_url }}">
+  <img src="{{ "/images/posts/counterparty.jpg" | relative_url }}">
   <figcaption></figcaption>
 </figure>
 
