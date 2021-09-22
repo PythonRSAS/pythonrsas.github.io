@@ -1,7 +1,7 @@
 ---
 layout: post
 tag: Assesing risk factor
-category: "market risk"
+category: "credit risk"
 title: "Counterparty Credit Risk"
 description: Counterparty credit risk basics
 author: Sarah Chen
@@ -27,13 +27,9 @@ There are two key factors that distinguishes it from traditional credit risk fro
 
 In traditional insurance contract, policy coverage limit caps how much an insurer will indemnify the insured in the event of covered loss.  In bank term loan contract, the amount the bank has lent to the borrower is the exposure at risk.    
 
-Whereas the credit exposure under derivative contracts is a *function* of market conditions and other underlying risk factors.  It is much more stochastic (aka random) in nature. 
+Whereas the credit exposure under derivative contracts is a *function* of market conditions and other underlying risk factors.  It is much more stochastic (aka random) in nature.  
 
-This uncertainty has two steps:
-1.	Whether there is credit exposure, and 
-2.	How much
-
-In plain language, for a particular derivative contract, a bank has counterparty credit risk **if it has something to lose** if the other side does not fulfill the contract.   
+In plain words, for a particular derivative contract, a bank has counterparty credit risk **if it has something to lose** if the other side does not fulfill the contract.   
 
 Bank has credit exposure to its counterparty only if it is in the money, i.e., if the contract value is positive from the bank’s perspective.   Because the bank has to pay new counterparty money to assume the position of the defaulted old counterparty. 
 
@@ -63,15 +59,25 @@ From the quantitative perspective, as credit risk in general, CCR has the follow
 
 In most financial institutions, for a large customer, the credit officers approving counterparty limits is also responsible for approving limits for all other credit exposures relating to the customer, including loans, bonds, trade transactions and derivatives.   Credit officers monitor these limits to control maximum potential loss in case of default. 
 
-Losses due to counterparty default are quantified using *replacement cost* (RC) of defaulted derivative, which can be severe in case of large and illiquid positions. 
+# Exposure
 
-Using credit risk terminology, it is about risk that LGD>0. 
+In lending, exposures in revolver loans are not fixed.  Customer may borrow up to what has been contractually committed. In EAD modeling, we measure the change in exposure by credit conversion factor (CCF) for defaults and facility incremental use (FIU) for performing loans.  Lending is one sided and the risk is one-sided.  
 
-Terminologies:
+For counterparty credit risk, the exposure depends on market factors and the credit exposure (CE) = maximum (market value, 0) = maximum (f(market factors), 0).  
+
+* **Potential future exposure (PFE)**: A high percentile market value of exposure, conditional on positive exposures.  It is similar to value at risk (VaR) for estimating market risk,
+* **Expected exposure (EE)**: Mean market value on future target date, conditional on positive exposures
+
+
+# Collateral
+
+Margin agreement: if there is a margin agreement, then one or both parties need to post(pay) margin (aka: deposits or collateral)
+Haircut: decrease or discounted valuation apply to noncash collateral. 
+
+# Loss
+
 1. Replacement cost (RC)
-2. Potential future exposure: this is very similar in concept to some of those in EAD modeling (credit conversion factor for defaults and incremental use for performing)
-3. Margin agreement: if there is a margin agreement, then one or both parties need to post(pay) margin (aka: deposits or collateral)
-4. Haircut: decrease or discounted valuation apply to noncash collateral. 
+Losses due to counterparty default are quantified using *replacement cost* (RC) of defaulted derivative, which can be severe in case of large and illiquid positions. 
 
 For trades without margin, the RC tries to capture the loss that would occur if the other party were to default and drop out of the transactions **immediately**.  The PFE represents a potential conservative increase in expsoure over a one-year time horizon from the calculation date. 
 
