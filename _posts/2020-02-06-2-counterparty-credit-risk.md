@@ -2,8 +2,8 @@
 layout: post
 tag: Assesing risk factor
 category: "market risk"
-title: "Counterparty Risk"
-description: Counterparty risk analytics
+title: "Counterparty Credit Risk"
+description: Counterparty credit risk basics
 author: Sarah Chen
 image: images/posts/counterparty.jpeg
 ---
