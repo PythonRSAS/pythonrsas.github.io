@@ -9,7 +9,7 @@ image: images/posts/counterparty.jpeg
 ---
 <figure>
   <img src="{{ "/images/posts/counterparty.jpeg" | relative_url }}">
-  <figcaption>$200 Trillion of LIBOR-based contracts </figcaption>
+  <figcaption></figcaption>
 </figure>
 For the two sides (parties) in OTC derivative contracts, counterparty credit risk is the risk that one may default on its obligations under the contracts prior to settlement and therefore causing losses to the other.  This is sometimes also referred to as "pre-settlement risk".   Note that exchange-traded contracts usually are not exposed to settlement risk.  
 
