@@ -5,7 +5,7 @@ category: "credit risk"
 title: "Counterparty Credit Risk"
 description: Counterparty credit risk basics
 author: Sarah Chen
-image: images/posts/counterparty.JPG
+image: images/posts/counterparty.jpg
 ---
 <figure>
   <img src="{{ "/images/posts/counterparty.jpg" | relative_url }}">
@@ -15,9 +15,9 @@ image: images/posts/counterparty.JPG
 # What is counterparty credit risk
 Counterparty credit risk is a subset of credit risk.  
 
-Specifically, for the two sides (parties) in OTC derivative contracts, counterparty credit risk is the risk that one may default on its obligations under the contracts prior to settlement and therefore causing losses to the other.  This is sometimes also referred to as "pre-settlement risk".   Note that exchange-traded contracts usually are not exposed to settlement risk.  
+Specifically, for the two sides (parties) in OTC derivative contracts, counterparty credit risk is the risk that one may default on its obligations under the contracts prior to settlement and therefore causing losses to the other.  This is sometimes also referred to as "pre-settlement risk".   Note that exchange-traded contracts usually are not exposed to settlement risk.  The Dodd-Frank act authorized centralized exchanges for clearing swaps. 
 
-Counterparty credit risk is important due to the huge increase in derivatives and that counterparty credit risk can trigger severe losses, such as the 2008 Financial Crisis. 
+Counterparty credit risk is important due to the huge increase in derivatives and that counterparty credit risk can trigger severe losses, such as credit default swaps to the 2008 Financial Crisis. 
 
 # Difference between counterparty credit risk and credit risk from lending
 
@@ -67,6 +67,15 @@ For counterparty credit risk, the exposure depends on market factors and the cre
 
 * **Potential future exposure (PFE)**: A high percentile market value of exposure, conditional on positive exposures.  It is similar to value at risk (VaR) for estimating market risk,
 * **Expected exposure (EE)**: Mean market value on future target date, conditional on positive exposures
+
+PFE, EE and other measures are calculated using Monte Carlo simulations.  
+
+The required inputs to a simulation are: 
+1. assumed distribution for the interest rates or an interest rate model.  
+2. model the interest rates for future dates
+3. compute future swap values based on future interest rates
+4. run step 2 and 3 thousands of times
+5. at each time point, we get a distribution of simulated exposure, from which we can calculate PEF and EE. 
 
 
 # Collateral
