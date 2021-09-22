@@ -5,10 +5,10 @@ category: "market risk"
 title: "Counterparty Credit Risk"
 description: Counterparty credit risk basics
 author: Sarah Chen
-image: images/posts/counterparty.jpeg
+image: images/posts/counterparty.JPG
 ---
 <figure>
-  <img src="{{ "/images/posts/counterparty.JPEG" | relative_url }}">
+  <img src="{{ "/images/posts/counterparty.JPG" | relative_url }}">
   <figcaption></figcaption>
 </figure>
 
