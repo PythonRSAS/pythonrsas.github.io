@@ -69,6 +69,10 @@ For counterparty credit risk, the exposure depends on market factors and the cre
 * **Expected exposure (EE)**: Mean market value on future target date, conditional on positive exposures
 
 PFE, EE and other measures are calculated using Monte Carlo simulations.  
+<figure>
+  <img src="{{ "/images/posts/counterparty_exposure_simulation.PNG" | relative_url }}">
+  <figcaption> exposure calculation based on Monte Carlo Simulation</figcaption>
+</figure>
 
 The required inputs to a simulation are: 
 1. assumed distribution for the interest rates or an interest rate model.  
