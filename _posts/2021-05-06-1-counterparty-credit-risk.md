@@ -51,20 +51,21 @@ The aggregation process involves:
 
 CCR management requires combination of systems integration, efficient simulation capacities, and good pricing functionalities that are fast and accurate.  
 
-From the quantitative perspective, as credit risk in general, CCR has the following components:
+In most financial institutions, for a large customer, the credit officers approving counterparty limits is also responsible for approving limits for all other credit exposures relating to the customer, including loans, bonds, trade transactions and derivatives.   Credit officers monitor these limits to control maximum potential loss in case of default. 
+
+# CVA
+
+From the quantitative perspective, as credit risk in general, counterparty credit risk has the following components:
 *	**Exposure estimation**
 *	**Probability of default and credit migration estimation**
 *	**Recovery rate** (or 1 – LGD)
 *	**Correlation between credit events**
 
-In most financial institutions, for a large customer, the credit officers approving counterparty limits is also responsible for approving limits for all other credit exposures relating to the customer, including loans, bonds, trade transactions and derivatives.   Credit officers monitor these limits to control maximum potential loss in case of default. 
-
-# CVA
 Credit valuation adjustment (CVA) is the difference between the risk-free portfolio value and the market value of portfolio.    In other words, CVA = market value of counterparty credit risk.
 
 On the high level, CVA = LGD * Exposure * PD
 
-This formula looks identical to the one from credit risk loss.  However, adue to the domain differences, each of the components will have different calculations.  
+This formula looks identical to the one from credit risk loss.  However, adue to the domain differences (loans vs derivatives), each of the components will have different calculations.  
 
 # Exposure
 
@@ -111,6 +112,9 @@ The causes of wrong way risks are either self-inflicted  or due to external fact
 
 Applying haircut, decrease or discounted valuation apply to noncash collateral, is one of the methods to mitigate wrong way risk. 
 
+## variation margin
+
+
 ## initial margin (IM)
 
 <figure>
@@ -118,9 +122,9 @@ Applying haircut, decrease or discounted valuation apply to noncash collateral, 
   <figcaption> calculation of initial margin - photo from Tokyo Stock Exchange</figcaption>
 </figure>
 
-To explain what initial margin is, we need to know what is called the "**Margin period of risk**".  It is the time period from the last exchange of collateral covering a netting set of transactions with a defaulting counterparty until that counterparty is closed out and the resulting market risk is re-hedged.
+To explain what initial margin is, we need to know what is called the "**Margin period of risk**" (MPR).  It is the time period from the last exchange of collateral covering a netting set of transactions with a defaulting counterparty until that counterparty is closed out and the resulting market risk is re-hedged.
 
-
+The MPR is the primary driver of the need for initial margin. Assuming only variation margin, the best-case reduction of counterparty risk can be shown to be approximately half the square root of the ratio of the maturity of the underlying portfolio to the MPR. For a five-year OTC derivatives portfolio, with a MPR of ten business days, this would lead to an approximate reduction of 0.5 × SQRT (5* 250  days /10 days) ≈ 5.6 times." (Source: Jon Gregory, The xVA Challenge: Counterparty Credit Risk, Funding, Collateral, and Capital, 3rd edition (West Sussex, UK: John Wiley & Sons, 2015))
 
 
 
