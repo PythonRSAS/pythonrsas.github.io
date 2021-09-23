@@ -93,7 +93,7 @@ The required inputs to a simulation are:
 # collateral
 
 The purpose of collateral is to reduce CCP.  If there is a margin agreement, then one or both parties need to post(pay) margin (aka: deposits or collateral).
-Margin is akin to deposits you pay when buying something such as a home.  The use of margin is like why people borrow mortgage when buying a real estate: leverage.  You can buy a lot more than what you have cash for. 
+Collateral is akin to the deposit you pay when buying something such as a home.  The use of margin is like why people borrow mortgage when buying a real estate: leverage.  You can buy a lot more than what you have cash for. 
 
 ## netting
 Netting is with respect to multiple contracts to the same counterparty.  For a specific counterparty, multiple contracts may have positive or negative market values at the same time. Netting agreement allows offsetting the postive values with the negative ones.  
@@ -114,6 +114,7 @@ Applying haircut, decrease or discounted valuation apply to noncash collateral, 
 
 ## variation margin
 
+Variation margin is the daily margin payment (can be more frequent) to cover any additional risks. Margin payments must be liquid funds.  As a result of these daily variation margins, the counterparty risks are mitigated. 
 
 ## initial margin (IM)
 
