@@ -116,6 +116,8 @@ The causes of wrong way risks are either self-inflicted  or due to external fact
   <figcaption> calculation of initial margin - photo from Tokyo Stock Exchange</figcaption>
 </figure>
 
+To explain what initial margin is, we need to know what is called the "**Margin period of risk**".  It is the time period from the last exchange of collateral covering a netting set of transactions with a defaulting counterparty until that counterparty is closed out and the resulting market risk is re-hedged.
+
 Haircut: decrease or discounted valuation apply to noncash collateral. 
 
 # Loss
