@@ -89,12 +89,12 @@ The required inputs to a simulation are:
 5. at each time point, we get a distribution of simulated exposure, from which we can calculate PEF and EE. 
 
 
-# Collateral
+# collateral
 
 The purpose of collateral is to reduce CCP.  If there is a margin agreement, then one or both parties need to post(pay) margin (aka: deposits or collateral).
 Margin is akin to deposits you pay when buying something such as a home.  The use of margin is like why people borrow mortgage when buying a real estate: leverage.  You can buy a lot more than what you have cash for. 
 
-## Netting
+## netting
 Netting is with respect to multiple contracts to the same counterparty.  For a specific counterparty, multiple contracts may have positive or negative market values at the same time. Netting agreement allows offsetting the postive values with the negative ones.  
 
 For example, at time 1, contract a has value 100, contract b has value -90.   With netting, the exposure is 100- 90 = 10.  Without netting, the exposure is 100 + max(0, -90) = 100. 
@@ -103,13 +103,15 @@ Therefore, netting can reduce counterparty credit risk.
 
 We can think of it as a "diversification" benefit with some twists and turns.  Netting not only depends on linear correlation of the vectors of values at future time points, but also size of the values. 
 
-## Wrong Way Risk
+## wrong way risk
 
 The situations that exposure is positively correlated with credit quality of the counterparty, i.e., both PD and LGD are increasing at the same time.  we call them "wrong way risk".  
 
 The causes of wrong way risks are either self-inflicted  or due to external factors such as macroeconomic factors. 
 
-## Initial margin (IM)
+Applying haircut, decrease or discounted valuation apply to noncash collateral, is one of the methods to mitigate wrong way risk. 
+
+## initial margin (IM)
 
 <figure>
   <img src="{{ "/images/posts/ccr_initial_margin.PNG" | relative_url }}">
@@ -118,11 +120,11 @@ The causes of wrong way risks are either self-inflicted  or due to external fact
 
 To explain what initial margin is, we need to know what is called the "**Margin period of risk**".  It is the time period from the last exchange of collateral covering a netting set of transactions with a defaulting counterparty until that counterparty is closed out and the resulting market risk is re-hedged.
 
-Haircut: decrease or discounted valuation apply to noncash collateral. 
 
-# Loss
 
-1. Replacement cost (RC)
+
+
+Replacement cost (RC)
 Losses due to counterparty default are quantified using *replacement cost* (RC) of defaulted derivative, which can be severe in case of large and illiquid positions. 
 
 For trades without margin, the RC tries to capture the loss that would occur if the other party were to default and drop out of the transactions **immediately**.  The PFE represents a potential conservative increase in expsoure over a one-year time horizon from the calculation date. 
@@ -131,5 +133,4 @@ For margined trades, the RC is about the loss that would occur now or in the fut
 
 RC is calculated at the netting set level (higher level).  
 
-PFE add-ons are at each asset class level within a given netting set and then aggregated (lower level). 
 
