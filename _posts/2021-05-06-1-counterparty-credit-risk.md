@@ -151,13 +151,13 @@ based on transaction sensitivities (Greeks).
 Around 2016, the ISDA proposed a standarized model "standard initial margin model". 
 
 
-Replacement cost (RC)
+<!-- Replacement cost (RC)
 Losses due to counterparty default are quantified using *replacement cost* (RC) of defaulted derivative, which can be severe in case of large and illiquid positions. 
 
 For trades without margin, the RC tries to capture the loss that would occur if the other party were to default and drop out of the transactions **immediately**.  The PFE represents a potential conservative increase in expsoure over a one-year time horizon from the calculation date. 
 
 For margined trades, the RC is about the loss that would occur now or in the future, assuming the closeout and replacement of transactions occur instantaneously, which is not necessarily the case.  The PFE add-on is the potential change in value of the trades. 
 
-RC is calculated at the netting set level (higher level).  
+RC is calculated at the netting set level (higher level).   -->
 
 
