@@ -112,9 +112,11 @@ The causes of wrong way risks are either self-inflicted  or due to external fact
 
 Applying haircut, decrease or discounted valuation apply to noncash collateral, is one of the methods to mitigate wrong way risk. 
 
-## variation margin
+## variation margin (VM)
 
 Variation margin is the daily margin payment (can be more frequent) to keep exposure (market value - collateral, i.e. the unsecured portion) below certain thresholds. Margin payments must be liquid funds.  As a result of these daily variation margins, the counterparty risks are mitigated.  
+
+The side that is in the money on the bilateral netting set receives VM.
 
 
 ## initial margin (IM)
