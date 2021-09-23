@@ -139,19 +139,17 @@ In contrast to VM, IM is posted two-way. Whether in-the-money or out-the-money, 
 
 Assuming only variation margin, the best-case reduction of counterparty risk can be shown to be approximately half the square root of the ratio of the maturity of the underlying portfolio to the MPR. For a five-year OTC derivatives portfolio, with a MPR of ten business days, this would lead to an approximate reduction of 0.5 × SQRT (5* 250  days /10 days) ≈ 5.6 times." (Source: Jon Gregory, The xVA Challenge: Counterparty Credit Risk, Funding, Collateral, and Capital, 3rd edition (West Sussex, UK: John Wiley & Sons, 2015))
 
-Regulators allow for three ways to calculate IM at t0:
+Regulators allow for three ways to calculate IM at t 0:
 
 *** the Standardized Approach (SA)**, which is an add-on based model.
 
 *** an initial margin model**, developed by one or both counterparties, or by a third party. The requirements for the own-developed model is that the IM should be calculated as a 99% VaR of netting
 set value movements over an MPOR of minimally 10 business days.
 
-*** The Standard Initial Margin Model (SIMM)**, which is an initiative by ISDA to standardize IM calculation
-based on transaction sensitivities (Greeks).
-
-### Simm
+*** The Standard Initial Margin Model (SIMM)**, which is an initiative by ISDA to standardize IM calculation based on transaction sensitivities (Greeks).
 Around 2016, the ISDA proposed a standarized model "standard initial margin model".  
 
+To forecast future IM is more challenging. 
 
 <!-- Replacement cost (RC)
 Losses due to counterparty default are quantified using *replacement cost* (RC) of defaulted derivative, which can be severe in case of large and illiquid positions. 
