@@ -59,9 +59,16 @@ From the quantitative perspective, as credit risk in general, CCR has the follow
 
 In most financial institutions, for a large customer, the credit officers approving counterparty limits is also responsible for approving limits for all other credit exposures relating to the customer, including loans, bonds, trade transactions and derivatives.   Credit officers monitor these limits to control maximum potential loss in case of default. 
 
+# CVA
+Credit valuation adjustment (CVA) is the difference between the risk-free portfolio value and the market value of portfolio.    In other words, CVA = market value of counterparty credit risk.
+
+On the high level, CVA = LGD * Exposure * PD
+
+This formula looks identical to the one from credit risk loss.  However, adue to the domain differences, each of the components will have different calculations.  
+
 # Exposure
 
-In lending, exposures in revolver loans are not fixed.  Customer may borrow up to what has been contractually committed. In EAD modeling, we measure the change in exposure by credit conversion factor (CCF) for defaults and facility incremental use (FIU) for performing loans.  Lending is one sided and the risk is one-sided.  
+In lending, exposures in revolver loans are not exactly fixed.  Customer may borrow up to what has been contractually committed. In EAD modeling, we measure the change in exposure by credit conversion factor (CCF) for defaults and facility incremental use (FIU) for performing loans.  Lending is one sided and the risk is one-sided.  
 
 For counterparty credit risk, the exposure depends on market factors and the credit exposure (CE) = maximum (market value, 0) = maximum (f(market factors), 0).  
 
