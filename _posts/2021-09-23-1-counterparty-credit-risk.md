@@ -149,7 +149,7 @@ set value movements over an MPOR of minimally 10 business days.
 *** The Standard Initial Margin Model (SIMM)**, which is an initiative by ISDA to standardize IM calculation based on transaction sensitivities (Greeks).
 Around 2016, the ISDA proposed a standarized model "standard initial margin model".  
 
-To forecast future IM is more challenging. 
+To forecast future IM is more challenging. Simulation based methods are computationally costly and are suitable for large intitutions.  Approximation methods can be used for those with smaller resources. 
 
 <!-- Replacement cost (RC)
 Losses due to counterparty default are quantified using *replacement cost* (RC) of defaulted derivative, which can be severe in case of large and illiquid positions. 
