@@ -135,6 +135,8 @@ Formally, it is the time period from the last exchange of collateral covering a 
 
 Because of this "exposed" period, we need something called "*initial margin*". 
 
+In contrast to VM, IM is posted two-way. Whether in-the-money or out-the-money, the non-defaulting party (parties) receives IM. 
+
 Assuming only variation margin, the best-case reduction of counterparty risk can be shown to be approximately half the square root of the ratio of the maturity of the underlying portfolio to the MPR. For a five-year OTC derivatives portfolio, with a MPR of ten business days, this would lead to an approximate reduction of 0.5 × SQRT (5* 250  days /10 days) ≈ 5.6 times." (Source: Jon Gregory, The xVA Challenge: Counterparty Credit Risk, Funding, Collateral, and Capital, 3rd edition (West Sussex, UK: John Wiley & Sons, 2015))
 
 Regulators allow for three ways to calculate IM at t0:
@@ -148,7 +150,7 @@ set value movements over an MPOR of minimally 10 business days.
 based on transaction sensitivities (Greeks).
 
 ### Simm
-Around 2016, the ISDA proposed a standarized model "standard initial margin model". 
+Around 2016, the ISDA proposed a standarized model "standard initial margin model".  
 
 
 <!-- Replacement cost (RC)
