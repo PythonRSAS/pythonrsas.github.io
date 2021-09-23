@@ -95,11 +95,11 @@ The purpose of collateral is to reduce CCP.  If there is a margin agreement, the
 Margin is akin to deposits you pay when buying something such as a home.  The use of margin is like why people borrow mortgage when buying a real estate: leverage.  You can buy a lot more than what you have cash for. 
 
 ## Netting
-Netting is with respect to multiple contracts to the same counterparty.  For a specific counterparty, multiple contracts may have positive or negative market values at the same time. Netting agreement allows offsetting the postive values with the negative ones.  
+Netting is with respect to multiple contracts to the same counterparty.  For a specific counterparty, multiple contracts may have positive or negative market values at the same time. Netting agreement allows offsetting the postive values with the negative ones.  We can think of it as a "diversification" benefit. 
 
 For example, at time 1, contract a has value 100, contract b has value -90.   With netting, the exposure is 100- 90 = 10.  Without netting, the exposure is 100 + max(0, -90) = 100. 
 
-Therefore, netting can signficantly reduce counterparty credit risk. 
+Therefore, netting can reduce counterparty credit risk. 
 
 ## Wrong Way Risk
 
