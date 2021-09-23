@@ -65,10 +65,10 @@ In lending, exposures in revolver loans are not fixed.  Customer may borrow up t
 
 For counterparty credit risk, the exposure depends on market factors and the credit exposure (CE) = maximum (market value, 0) = maximum (f(market factors), 0).  
 
-* **Potential future exposure (PFE)**: A high percentile market value of exposure, conditional on positive exposures.  It is similar to value at risk (VaR) for estimating market risk,
 * **Expected exposure (EE)**: Mean market value on future target date, conditional on positive exposures
+* **Potential future exposure (PFE)**: A high percentile market value of exposure, conditional on positive exposures.  It is similar to value at risk (VaR) for estimating market risk,
 
-PFE, EE and other measures are calculated using Monte Carlo simulations.  
+For example, PFE, EE and other measures are calculated using Monte Carlo simulations as illustrated.  
 <figure>
   <img src="{{ "/images/posts/counterparty_exposure_simulation.PNG" | relative_url }}">
   <figcaption> exposure calculation based on Monte Carlo Simulation</figcaption>
@@ -84,7 +84,27 @@ The required inputs to a simulation are:
 
 # Collateral
 
-Margin agreement: if there is a margin agreement, then one or both parties need to post(pay) margin (aka: deposits or collateral)
+The purpose of collateral is to reduce CCP.  If there is a margin agreement, then one or both parties need to post(pay) margin (aka: deposits or collateral).
+Margin is akin to deposits you pay when buying something such as a home.  The use of margin is like why people borrow mortgage when buying a real estate: leverage.  You can buy a lot more than what you have cash for. 
+
+## Netting
+Netting is with respect to multiple contracts to the same counterparty.  For a specific counterparty, multiple contracts may have positive or negative market values at the same time. Netting agreement allows offsetting the postive values with the negative ones.  
+
+For example, at time 1, contract a has value 100, contract b has value -90.   With netting, the exposure is 100- 90 = 10.  Without netting, the exposure is 100 + max(0, -90) = 100. 
+
+Therefore, netting can signficantly reduce counterparty credit risk. 
+
+## Wrong Way Risk
+
+The situations that exposure is positively correlated with credit quality of the counterparty, we call them "wrong way risk".  It is wrong way because both PD and LGD are increasing at the same time. 
+
+## Initial margin (IM)
+
+<figure>
+  <img src="{{ "/images/posts/ccr_initial_margin.PNG" | relative_url }}">
+  <figcaption> calculation of initial margin - photo from Tokyo Stock Exchange</figcaption>
+</figure>
+
 Haircut: decrease or discounted valuation apply to noncash collateral. 
 
 # Loss
