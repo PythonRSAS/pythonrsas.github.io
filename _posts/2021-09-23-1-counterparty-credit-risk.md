@@ -15,7 +15,7 @@ image: images/posts/counterparty.jpg
 # What is counterparty credit risk
 Counterparty credit risk is a subset of credit risk.  
 
-Specifically, for the two sides (parties) in OTC derivative contracts, counterparty credit risk is the risk that one may default on its obligations under the contracts prior to settlement and therefore causing losses to the other.  This is sometimes also referred to as "pre-settlement risk".   Note that exchange-traded contracts usually are not exposed to settlement risk.  The Dodd-Frank act authorized centralized exchanges for clearing swaps. 
+Specifically, for the two sides (parties) in derivative contracts, counterparty credit risk is the risk that one may default on its obligations under the contracts prior to settlement and therefore causing losses to the other.  This is sometimes also referred to as "pre-settlement risk".   Note that exchange-traded contracts usually are not exposed to settlement risk.  The Dodd-Frank act authorized centralized exchanges for clearing swaps. 
 
 Counterparty credit risk is important due to the huge increase in derivatives and that counterparty credit risk can trigger severe losses, such as credit default swaps to the 2008 Financial Crisis. 
 
@@ -41,9 +41,7 @@ At least in theory, CCR is a subset of aggregate credit risk to any customer.  I
 
 ## Counterparty credit risk management
 
-Counterparty credit risks are aggregated to the customer level.  
-
-The aggregation process involves:
+Counterparty credit risks are aggregated to the customer level before further combining.  The aggregation process involves:
 
 -	netting
 -	applying credit mitigation agreements
