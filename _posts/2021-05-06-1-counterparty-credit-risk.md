@@ -105,7 +105,9 @@ We can think of it as a "diversification" benefit with some twists and turns.  N
 
 ## Wrong Way Risk
 
-The situations that exposure is positively correlated with credit quality of the counterparty, we call them "wrong way risk".  It is wrong way because both PD and LGD are increasing at the same time. 
+The situations that exposure is positively correlated with credit quality of the counterparty, i.e., both PD and LGD are increasing at the same time.  we call them "wrong way risk".  
+
+The causes of wrong way risks are either self-inflicted  or due to external factors such as macroeconomic factors. 
 
 ## Initial margin (IM)
 
