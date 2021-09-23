@@ -119,7 +119,7 @@ Variation margin is the daily margin payment (can be more frequent) to keep expo
 
 ## initial margin (IM)
 
-However, even when variation margin payments + existing collateral cover the entire exposure such that the net exposure is zero, there is still risk.
+Even when variation margin payments + existing collateral cover the entire exposure such that the net exposure is zero, there is still risk.  
 
 The risk is somewhat opposite in concept to "float".  The "float" is the time value of money that you earn by using the time that money is in your hand.  Oppositely, things can go wrong from the last variation margin payment time and (potential) default, during which we may suddendly have a large exposure.   This time period is what is called the "**margin period of risk**" (MPR).  
 
@@ -131,7 +131,9 @@ Formally, it is the time period from the last exchange of collateral covering a 
 </figure>
 
 
-The MPR is the primary driver of the need for initial margin. Assuming only variation margin, the best-case reduction of counterparty risk can be shown to be approximately half the square root of the ratio of the maturity of the underlying portfolio to the MPR. For a five-year OTC derivatives portfolio, with a MPR of ten business days, this would lead to an approximate reduction of 0.5 × SQRT (5* 250  days /10 days) ≈ 5.6 times." (Source: Jon Gregory, The xVA Challenge: Counterparty Credit Risk, Funding, Collateral, and Capital, 3rd edition (West Sussex, UK: John Wiley & Sons, 2015))
+Because of this "exposed" period, we need something called "*initial margin*". 
+
+Assuming only variation margin, the best-case reduction of counterparty risk can be shown to be approximately half the square root of the ratio of the maturity of the underlying portfolio to the MPR. For a five-year OTC derivatives portfolio, with a MPR of ten business days, this would lead to an approximate reduction of 0.5 × SQRT (5* 250  days /10 days) ≈ 5.6 times." (Source: Jon Gregory, The xVA Challenge: Counterparty Credit Risk, Funding, Collateral, and Capital, 3rd edition (West Sussex, UK: John Wiley & Sons, 2015))
 
 
 Replacement cost (RC)
