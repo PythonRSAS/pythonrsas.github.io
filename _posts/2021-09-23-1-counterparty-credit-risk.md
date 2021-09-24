@@ -51,7 +51,7 @@ CCR management requires combination of systems integration, efficient simulation
 
 In most financial institutions, for a large customer, the credit officers approving counterparty limits is also responsible for approving limits for all other credit exposures relating to the customer, including loans, bonds, trade transactions and derivatives.   Credit officers monitor these limits to control maximum potential loss in case of default. 
 
-# CVA
+# Credit Valuation Adjustment (CVA)
 
 From the quantitative perspective, as credit risk in general, counterparty credit risk has the following components:
 *	**Exposure estimation**
@@ -61,9 +61,9 @@ From the quantitative perspective, as credit risk in general, counterparty credi
 
 Credit valuation adjustment (CVA) is the difference between the risk-free portfolio value and the market value of portfolio.    In other words, CVA = market value of counterparty credit risk.
 
-On the high level, CVA = LGD * Exposure * PD
+On the high level, conceptually, CVA = LGD * Exposure * PD.  
 
-This formula looks identical to the one from credit risk loss.  However, adue to the domain differences (loans vs derivatives), each of the components will have different calculations.  
+This high level formula looks identical to the one from credit risk loss.  However, adue to the domain differences (loans vs derivatives), each of the components will have different calculations.  
 
 # Exposure
 
