@@ -26,7 +26,7 @@ Only in a Python class did I see clearly that the thinking process is different 
 The most intuitive way for me to see (or visualize) how a class roughly works is what I read from the "Python for Kids" book years ago.  
 
 Examples:
-[* **turtle** library](https://github.com/python/cpython/blob/main/Lib/turtle.py#:~:text=class-,Turtle,-(RawTurtle)%3A), which is one of the first libraries I used, the [<span class="coding">RawTurtle</span> class](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2513), takes two parameters, TPen and TNavigator:moving forward/backward, left/right are functions of the class. 
+[* **turtle** library](https://github.com/python/cpython/blob/main/Lib/turtle.py#:~:text=class-,Turtle,-(RawTurtle)%3A), which is one of the first libraries I used, the [<span class="coding">RawTurtle</span> class](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2513), inherites two classes, [TPen](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2022) and [TNavigator](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L1511).  The TPen class has the drawing part: a drawing pen with size, colors, and how to draw.  The TNavigator class groups navigation and movements: position, set X and set Y, forward, backward, degree, radius, and goto, etc. 
  
 <figure>
   <img src="{{ "/images/posts/classes_cats1.PNG" | relative_url }}">
