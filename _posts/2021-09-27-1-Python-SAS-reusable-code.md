@@ -20,21 +20,21 @@ If we stay at the function level (the <span class="coding">def</span> level), th
 
 # jargons
 
+* **attribute** for any name following a dot. Such as df.shape.   Attributes may be read-only or writable.  This is not available in SAS. 
 * **namespace** is a mapping from names to objects.  SAS has namespace too, even though it may have a different name. 
 
 The important thing to know about namespaces is that there is absolutely no relation between names in different namespaces; for instance, two different modules may both define a function <span class="coding">deepnn<span>  — we must prefix it with its module name.
 
 Examples: 
-1. the set of built-in names (including functions, and built-in exception names); 
-2. the global names in a module; and the local names in a function invocation. 
+1. the set of built-in names (including functions, and built-in exception names)
+2. the global names in a module; and the local names in a function invocation
 3. the set of attributes of an object. 
 
 
 
 * **scope** of namespace: 
-* **attribute** for any name following a dot. Such as df.shape.   Attributes may be read-only or writable.  This is not available in SAS. 
 # a class in Python
-A class is indeed a class,literally.  A class is a group of things and things associated with that group of things. Using jargon, a class groups objects such as attributes and functions/methods that belong together. ["Classes provide a means of bundling data and functionality together."](https://docs.python.org/3/tutorial/classes.html)  The closest thing from SAS to Python class is a SAS procedure specifically those that do very specific things.  For example, PROC LOGISTIC, which contains almost all the reusable code that one needs for doing logistic regression in a statical-focused context. 
+A class is a class,literally.  It is a group of things and things associated with that group of things. Using jargon, a class groups objects such as attributes and functions/methods that belong together. ["Classes provide a means of bundling data and functionality together."](https://docs.python.org/3/tutorial/classes.html)  The closest thing from SAS to Python class is a SAS procedure specifically those that do very specific things.  For example, PROC LOGISTIC, which contains almost all the reusable code that one needs for doing logistic regression in a statical-focused context. 
 
 Only in a Python class did I see clearly that the thinking process is different from SAS.  The design of a class is the essence of object programming and the essence of what makes Python thought process different from SAS.   It is when writing a class that I finally say to myself "Aha, that's something that SAS does not provide, at least not in open scene, and that's kind of new to me!" 
 
@@ -43,8 +43,7 @@ Examples:
 
 The [<span class="coding">RawTurtle</span> class](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2513), inherites from two parent classes, [TPen](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2022) and [TNavigator](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L1511).  The TPen class has the drawing part: a drawing [Pen](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2337) with size, colors, and how to draw.  The TNavigator class groups navigation and movements: position, set X and set Y, forward, backward, degree, radius, and goto, etc. 
 
-RawPen = RawTurtle
-Even though this seems like a very elementary program for kids, the module turtle is actually quite complex.   This is an example of reusable code because anyone can import the module, 
+Even though the following snippet seems like a very elementary program written by elementary school kids (and yes it was), the module turtle is actually quite complex.   This is an example of reusable code because a child can import the module, start an instance of the class, and do those things that she normally does with drawing, using the language and a computer. 
 <div class="code-head"><span>code</span>Turtle.python</div>
 
 ```python
