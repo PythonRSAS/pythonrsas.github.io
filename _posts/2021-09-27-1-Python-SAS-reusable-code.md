@@ -24,7 +24,7 @@ A class is indeed a class,literally.  A class is a group of things and things as
 Only in a Python class did I see clearly that the thinking process is different from SAS.  The design of a class is the essence of object programming and the essence of what makes Python thought process different from SAS.   It is when writing a class that I finally say to myself "Aha, that's something that SAS does not provide, at least not in open scene, and that's kind of new to me!" 
 
 Examples:
-[* **turtle** library](https://docs.python.org/3/library/turtle.html) is one of the first libraries I used.  
+[**turtle** library](https://docs.python.org/3/library/turtle.html):  
 
 The [<span class="coding">RawTurtle</span> class](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2513), inherites from two parent classes, [TPen](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2022) and [TNavigator](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L1511).  The TPen class has the drawing part: a drawing pen with size, colors, and how to draw.  The TNavigator class groups navigation and movements: position, set X and set Y, forward, backward, degree, radius, and goto, etc. 
  
