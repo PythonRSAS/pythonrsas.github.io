@@ -68,7 +68,7 @@ for i in range(0,3):
 ```
 
 # step by step examples
-The following are notes from watching [Corey Shafer](https://www.youtube.com/watch?v=ZDa-Z5JzLYM&t=7s).  
+The following are my notes from watching [Corey Shafer](https://www.youtube.com/watch?v=ZDa-Z5JzLYM&t=7s).  
 
 ## version 0
 Nothing is defined for the class Employee.  It is still a valid class.  
@@ -100,7 +100,11 @@ In [6]:  myRaise = emp_1.pay*(emp_1.raise_amount-1)^M
    ...:
 Out[6]: 25000.000000000022
 ```
-# version 1
+## version 1
+
+<div class="code-head"><span>code</span>Employee version 1.python</div>
+
+```python
 class Employee: # 第一个 input总是self。即， 一个instance. self = instance.  Can call "self" any name you want
     def __init__(self, first, last, pay): # 类似其他语言的constructor # can call "self" or anything we want.  'self' is because of convention
         self.first = first  # could have written self.fname = first, or self.fn = first, but it is easier to keep track of if keep the same names
@@ -112,9 +116,58 @@ emp_1 = Employee('sarah', 'chen', 500000)
 print(emp_1.email)
 print('{} {}'.format(emp_1.first, emp_1.last))
 # 所以，我门给它个method
+sarah.chen@company.com
+sarah chen
+```
+## version 2
 
+<div class="code-head"><span>code</span>Employee version 2.python</div>
 
+```python
+class Employee:
+    def __init__(self, first, last, pay): # 类似其他语言的constructor # can call "self" or anything we want.  'self' is because of convention
+        self.first = first  # could have written self.fname = first, or self.fn = first, but it is easier to keep track of if keep the same names
+        self.last = last
+        self.email = first + '.' + last +'@company.com'
+    def fullname(self):
+        # return ('{} {}'.format(emp_1.first, emp_1.last))
+        return ('{} {}'.format(self.first, self.last))
+# 现在
+print(emp_1.fullname()) # 注意fullname 是method，不是attribute，所以必须加括号
+```
+<div class="code-head"><span>code</span>dir.python</div>
 
+```python
+In [11]: dir(Employee)
+Out[11]:
+['__class__',
+ '__delattr__',
+ '__dict__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '__weakref__',
+ 'fullname']
+ ```
 
 
 One of the most intuitive way writings about how a class roughly works is the "Python for Kids" book I read years ago but still review from time to time. 
