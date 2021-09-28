@@ -8,7 +8,7 @@ author: Sarah Chen
 image: images/posts/photos/IMG-0667.JPG
 
 ---
-We often hear some people saying that the reason why we need to switch from SAS to Python is because only in Python we can write reusable code.  That is totally wrong!  You can and should write reusable code in just about any language.
+I often hear some people saying that the reason why we need to switch from SAS to Python is because only in Python we can write reusable code.  That is totally wrong!  You can and should write reusable code in just about any language.
 
 In SAS, besides the numerous PROCs (procedures) that are by definition reusable, writing macros (or macro functions) is the defacto method. 
 
@@ -137,9 +137,4 @@ labels <- clusters$cluster
 nba2d <- prcomp(nba[,goodCols], center=TRUE)
 twoColumns <- nba2d$x[,1:2]
 clusplot(twoColumns, labels)
-```
-<div class="code-head"><span>code</span>import data.sas</div>
-
-```sas
-PROC IMPORT 
 ```
