@@ -2,15 +2,15 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "Python SAS Reusable Code"
-description: discuss ways to make reusable code in Python and SAS
+title: "Reusable Code - Python class"
+description: discuss ways to make reusable code in Python and SAS, specifically on Python class
 author: Sarah Chen
 image: images/posts/photos/IMG-0667.JPG
 
 ---
 I often hear some people saying that the reason why we need to switch from SAS to Python is because only in Python we can write reusable code.  That is totally wrong!  You can and should write reusable code in just about any language.
 
-In SAS, besides the numerous PROCs (procedures) that are by definition reusable, writing macros (or macro functions) is the defacto method. 
+In SAS, besides the numerous PROCs (procedures) that are reusable, writing macros (or macro functions) is the de facto method. 
 
 The analogy to SAS macro in Python is functions.  Both SAS macros and Python function take inputs, do something with them, and then either exit after job is done, or return something. 
 
@@ -18,45 +18,54 @@ The real difference, in my opinion, between the two languages from the reusable 
 
 If we stay at the function level (the <span class="coding">def</span> level), there is not a whole lot different between SAS and Python.  What you write with a Python <span class="coding">def</span> I can pretty much accomplish the same using a SAS macro. 
 
+# jargons
+
+* **namespace** is a mapping from names to objects.  SAS has namespace too, even though it may have a different name. 
+
+The important thing to know about namespaces is that there is absolutely no relation between names in different namespaces; for instance, two different modules may both define a function <span class="coding">deepnn<span>  — we must prefix it with its module name.
+
+Examples: 
+1. the set of built-in names (including functions, and built-in exception names); 
+2. the global names in a module; and the local names in a function invocation. 
+3. the set of attributes of an object. 
+
+
+
+* **scope** of namespace: 
+* **attribute** for any name following a dot. Such as df.shape.   Attributes may be read-only or writable.  This is not available in SAS. 
 # a class in Python
-A class is indeed a class,literally.  A class is a group of things and things associated with that group of things. Using jargon, a class groups objects such as attributes and functions/methods that belong together.  The closest thing from SAS to Python class is a SAS procedure specifically those that do very specific things.  For example, PROC LOGISTIC, which contains almost all the reusable code that one needs for doing logistic regression in a statical-focused context. 
+A class is indeed a class,literally.  A class is a group of things and things associated with that group of things. Using jargon, a class groups objects such as attributes and functions/methods that belong together. ["Classes provide a means of bundling data and functionality together."](https://docs.python.org/3/tutorial/classes.html)  The closest thing from SAS to Python class is a SAS procedure specifically those that do very specific things.  For example, PROC LOGISTIC, which contains almost all the reusable code that one needs for doing logistic regression in a statical-focused context. 
 
 Only in a Python class did I see clearly that the thinking process is different from SAS.  The design of a class is the essence of object programming and the essence of what makes Python thought process different from SAS.   It is when writing a class that I finally say to myself "Aha, that's something that SAS does not provide, at least not in open scene, and that's kind of new to me!" 
 
 Examples:
 [**turtle** library](https://docs.python.org/3/library/turtle.html):  
 
-The [<span class="coding">RawTurtle</span> class](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2513), inherites from two parent classes, [TPen](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2022) and [TNavigator](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L1511).  The TPen class has the drawing part: a drawing pen with size, colors, and how to draw.  The TNavigator class groups navigation and movements: position, set X and set Y, forward, backward, degree, radius, and goto, etc. 
- 
+The [<span class="coding">RawTurtle</span> class](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2513), inherites from two parent classes, [TPen](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2022) and [TNavigator](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L1511).  The TPen class has the drawing part: a drawing [Pen](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2337) with size, colors, and how to draw.  The TNavigator class groups navigation and movements: position, set X and set Y, forward, backward, degree, radius, and goto, etc. 
+
+RawPen = RawTurtle
+Even though this seems like a very elementary program for kids, the module turtle is actually quite complex.   This is an example of reusable code because anyone can import the module, 
 <div class="code-head"><span>code</span>Turtle.python</div>
 
 ```python
+""""
+reference
 # https://github.com/magicmathmandarin/Turtle/blob/master/shapes.py
 # https://docs.python.org/3/library/turtle.html
+""""
 import turtle
 v=turtle.Pen()
+v.color("blue")
 
 for i in range(0,3):
 	v.forward(30)
 	v.left(120)
-
-v.up()
-v.forward(40)
-v.left(120)
-v.down()
-v.color("red")
-for i in range(0,4):
-	v.forward(40)
-	v.left(90)
-v.up()
-v.forward(50)
-v.left(120)
-v.down()
-v.color("blue")
-for i in range(0,5):
-	v.forward(60)
-	v.left(72)
 ```
+
+# simpler examples
+
+
+
 
 
 One of the most intuitive way writings about how a class roughly works is the "Python for Kids" book I read years ago but still review from time to time. 
