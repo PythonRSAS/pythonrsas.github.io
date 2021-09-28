@@ -30,9 +30,15 @@ Examples:
 2. the global names in a module; and the local names in a function invocation
 3. the set of attributes of an object. 
 
-
-
 * **scope** of namespace: 
+As in SAS, we have global, local and built-in in Python.  At run time, the order that a name is accessed has the following hierchy: 
+1. local
+2. any enclosing functions, which are searched starting with the nearest enclosing scope, contains non-local, but also non-global names
+3. module’s global names
+Local -> lib (typical vanilla installation modules are in lib) -> site packages (3rd party packages are generally in site-packages)
+
+
+the outermost scope (searched last) is the namespace containing built-in names
 # a class in Python
 A class is a class,literally.  It is a group of things and things associated with that group of things. Using jargon, a class groups objects such as attributes and functions/methods that belong together. ["Classes provide a means of bundling data and functionality together."](https://docs.python.org/3/tutorial/classes.html)  The closest thing from SAS to Python class is a SAS procedure specifically those that do very specific things.  For example, PROC LOGISTIC, which contains almost all the reusable code that one needs for doing logistic regression in a statical-focused context. 
 
@@ -61,7 +67,51 @@ for i in range(0,3):
 	v.left(120)
 ```
 
-# simpler examples
+# step by step examples
+The following are notes from watching [Corey Shafer](https://www.youtube.com/watch?v=ZDa-Z5JzLYM&t=7s).  
+
+## version 0
+Nothing is defined for the class Employee.  It is still a valid class.  
+
+The purpose of this example is about the point of **reusable code**.   
+
+Notice that we can define various attributes anyway we want: we can perfectly define .first, .last, .pay, and .X, .Y, .Z, and write a program that does something.  But this will **not be reusable**. 
+
+<div class="code-head"><span>code</span>Employee version 0.python</div>
+
+```python
+class Employee:
+    pass
+# a class is a blueprint for creating instances
+emp_1 = Employee()
+emp_1.first = 'sarah'
+emp_1.last = 'chen'
+emp_1.pay = 500000 # I would like to make this much 
+In [3]: emp_1
+Out[3]: <__main__.Employee at 0x1698e004588>
+
+In [4]: emp_1.first
+Out[4]: 'sarah'
+
+In [5]: emp_1.raise_amount = 1.05
+
+In [6]:  myRaise = emp_1.pay*(emp_1.raise_amount-1)^M
+   ...: myRaise
+   ...:
+Out[6]: 25000.000000000022
+```
+# version 1
+class Employee: # 第一个 input总是self。即， 一个instance. self = instance.  Can call "self" any name you want
+    def __init__(self, first, last, pay): # 类似其他语言的constructor # can call "self" or anything we want.  'self' is because of convention
+        self.first = first  # could have written self.fname = first, or self.fn = first, but it is easier to keep track of if keep the same names
+        self.last = last
+        self.email = first + '.' + last +'@company.com'
+
+emp_1 = Employee('sarah', 'chen', 500000)
+#  这麻烦得很。每次要type这么多
+print(emp_1.email)
+print('{} {}'.format(emp_1.first, emp_1.last))
+# 所以，我门给它个method
 
 
 
