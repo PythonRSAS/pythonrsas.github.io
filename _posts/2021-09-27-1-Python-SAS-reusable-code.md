@@ -23,11 +23,43 @@ A class is indeed a class,literally.  A class is a group of things and things as
 
 Only in a Python class did I see clearly that the thinking process is different from SAS.  The design of a class is the essence of object programming and the essence of what makes Python thought process different from SAS.   It is when writing a class that I finally say to myself "Aha, that's something that SAS does not provide, at least not in open scene, and that's kind of new to me!" 
 
-The most intuitive way for me to see (or visualize) how a class roughly works is what I read from the "Python for Kids" book years ago.  
-
 Examples:
-[* **turtle** library](https://github.com/python/cpython/blob/main/Lib/turtle.py#:~:text=class-,Turtle,-(RawTurtle)%3A), which is one of the first libraries I used, the [<span class="coding">RawTurtle</span> class](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2513), inherites two classes, [TPen](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2022) and [TNavigator](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L1511).  The TPen class has the drawing part: a drawing pen with size, colors, and how to draw.  The TNavigator class groups navigation and movements: position, set X and set Y, forward, backward, degree, radius, and goto, etc. 
+[* **turtle** library](https://docs.python.org/3/library/turtle.html) is one of the first libraries I used.  
+
+The [<span class="coding">RawTurtle</span> class](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2513), inherites from two parent classes, [TPen](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2022) and [TNavigator](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L1511).  The TPen class has the drawing part: a drawing pen with size, colors, and how to draw.  The TNavigator class groups navigation and movements: position, set X and set Y, forward, backward, degree, radius, and goto, etc. 
  
+<div class="code-head"><span>code</span>Turtle.python</div>
+
+```python
+# https://github.com/magicmathmandarin/Turtle/blob/master/shapes.py
+# https://docs.python.org/3/library/turtle.html
+import turtle
+v=turtle.Pen()
+
+for i in range(0,3):
+	v.forward(30)
+	v.left(120)
+
+v.up()
+v.forward(40)
+v.left(120)
+v.down()
+v.color("red")
+for i in range(0,4):
+	v.forward(40)
+	v.left(90)
+v.up()
+v.forward(50)
+v.left(120)
+v.down()
+v.color("blue")
+for i in range(0,5):
+	v.forward(60)
+	v.left(72)
+```
+
+
+One of the most intuitive way writings about how a class roughly works is the "Python for Kids" book I read years ago but still review from time to time. 
 <figure>
   <img src="{{ "/images/posts/classes_cats1.PNG" | relative_url }}">
   <figcaption> classes</figcaption>
