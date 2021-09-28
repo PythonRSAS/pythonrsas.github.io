@@ -5,7 +5,7 @@ category: "python for sas"
 title: "Python SAS Reusable Code"
 description: discuss ways to make reusable code in Python and SAS
 author: Sarah Chen
-image: images/posts/IMG-0669.JPG
+image: images/posts/photos/IMG-0667.JPG
 
 ---
 We often hear some people saying that the reason why we need to switch from SAS to Python is because only in Python we can write reusable code.  That is totally wrong!  You can and should write reusable code in just about any language.
