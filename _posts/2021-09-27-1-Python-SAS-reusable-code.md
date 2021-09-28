@@ -19,12 +19,15 @@ The real difference, in my opinion, between the two languages from the reusable 
 If we stay at the function level (the <span class="coding">def</span> level), there is not a whole lot different between SAS and Python.  What you write with a Python <span class="coding">def</span> I can pretty much accomplish the same using a SAS macro. 
 
 # a class in Python
-A class is indeed a class, please do take it literally.  A class is a group of things and things associated with that group of things. Classes are groupings of attributes and functions/methods that belong together.  Looking at it this way, then the closest thing from SAS is a SAS procedure specifically those that do very specific things.  For example, PROC LOGISTIC, which contains almost all the reusable code that one needs for doing logistic regression in a statical-focused context. 
+A class is indeed a class,literally.  A class is a group of things and things associated with that group of things. Using jargon, a class groups objects such as attributes and functions/methods that belong together.  The closest thing from SAS to Python class is a SAS procedure specifically those that do very specific things.  For example, PROC LOGISTIC, which contains almost all the reusable code that one needs for doing logistic regression in a statical-focused context. 
 
-Only in a Python class we see clearly that the thinking process is different from SAS.  The design of a class is the essense of object programming and the essense of what makes Python thought process different from SAS.   It is when writing a class that I finally say to myself "Aha, that's something that SAS does not provide, at lease not in open scene, and that's kind of new to me!" 
+Only in a Python class did I see clearly that the thinking process is different from SAS.  The design of a class is the essence of object programming and the essence of what makes Python thought process different from SAS.   It is when writing a class that I finally say to myself "Aha, that's something that SAS does not provide, at least not in open scene, and that's kind of new to me!" 
 
+The most intuitive way for me to see (or visualize) how a class roughly works is what I read from the "Python for Kids" book years ago.  
 
-The most intuitive way for me to remember (or visualize) how class roughly works is what I read from the "Python for Kids" book. 
+Examples:
+[* **turtle** library](https://github.com/python/cpython/blob/main/Lib/turtle.py#:~:text=class-,Turtle,-(RawTurtle)%3A), which is one of the first libraries I used, the [<span class="coding">RawTurtle</span> class](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2513), takes two parameters, TPen and TNavigator:moving forward/backward, left/right are functions of the class. 
+ 
 <figure>
   <img src="{{ "/images/posts/classes_cats1.PNG" | relative_url }}">
   <figcaption> classes</figcaption>
