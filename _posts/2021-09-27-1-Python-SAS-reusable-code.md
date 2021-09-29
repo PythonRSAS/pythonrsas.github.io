@@ -170,6 +170,7 @@ Out[11]:
  ```
 
  ## version 3
+ 
 <div class="code-head"><span>code</span>Employee version 3.python</div>
 
 ```python
@@ -189,7 +190,6 @@ class Employee:
 emp_1 = Employee('sarah', 'chen', 500000)
 emp_1.apply_raise()
 print(emp_1.pay) 
-
 ```
 ## version 4
 
@@ -224,7 +224,6 @@ print(emp_2.raise_amount)
 # 1.1  # !!! 注意！！！
 # 1.04  emp_2 还是class 的raise_amount
 ```
-
 
 
 One of the most intuitive way writings about how a class roughly works is the "Python for Kids" book I read years ago but still review from time to time. 
