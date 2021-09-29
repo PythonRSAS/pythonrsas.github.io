@@ -169,6 +169,63 @@ Out[11]:
  'fullname']
  ```
 
+ ## version 3
+<div class="code-head"><span>code</span>Employee version 3.python</div>
+
+```python
+ 
+# version 3
+class Employee:
+    def __init__(self, first, last, pay): # 类似其他语言的constructor # can call "self" or anything we want.  'self' is because of convention
+        self.first = first  # could have written self.fname = first, or self.fn = first, but it is easier to keep track of if keep the same names
+        self.last = last
+        self.email = first + '.' + last +'@company.com'
+        self.pay = pay
+    def fullname(self):
+        # return ('{} {}'.format(emp_1.first, emp_1.last))
+        return ('{} {}'.format(self.first, self.last))
+    def apply_raise(self):
+        self.pay = int(self.pay* 1.04)
+emp_1 = Employee('sarah', 'chen', 500000)
+emp_1.apply_raise()
+print(emp_1.pay) 
+
+```
+## version 4
+
+<div class="code-head"><span>code</span>Employee version 3.python</div>
+
+```python
+# 现在我们想把raise percent 作为一个 class variable
+# version 4 method 用 class variable 以 self. 的形式， 而非 className. 的形式
+class Employee:
+    raise_amount = 1.04 # raise percent 作为一个 class variable
+    def __init__(self, first, last, pay): # 类似其他语言的constructor # can call "self" or anything we want.  'self' is because of convention
+        self.first = first  # could have written self.fname = first, or self.fn = first, but it is easier to keep track of if keep the same names
+        self.last = last
+        self.email = first + '.' + last +'@company.com'
+        self.pay = pay
+    def fullname(self):
+        # return ('{} {}'.format(emp_1.first, emp_1.last))
+        return ('{} {}'.format(self.first, self.last))
+    def apply_raise(self):
+        self.pay = int(self.pay* self.raise_amount)  # ！！！ 必须用 self.raise_amount 或 Employee.raise_amount 
+emp_1 = Employee('sarah', 'chen', 500000)
+emp_2 = Employee('sam', 'Poola', 500000)
+
+print(emp_1.__dict__)
+# In [25]: print(emp_1.__dict__)
+# {'first': 'sarah', 'last': 'chen', 'email': 'sarah.chen@company.com', 'pay': 500000}
+emp_1.raise_amount = 1.10
+print(Employee.raise_amount)
+print(emp_1.raise_amount)
+print(emp_2.raise_amount)
+# 1.04
+# 1.1  # !!! 注意！！！
+# 1.04  emp_2 还是class 的raise_amount
+```
+
+
 
 One of the most intuitive way writings about how a class roughly works is the "Python for Kids" book I read years ago but still review from time to time. 
 <figure>
