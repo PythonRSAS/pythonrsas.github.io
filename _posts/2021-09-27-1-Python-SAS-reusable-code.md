@@ -23,22 +23,21 @@ If we stay at the function level (the <span class="coding">def</span> level), th
 * **attribute** for any name following a dot. Such as df.shape.   Attributes may be read-only or writable.  This is not available in SAS. 
 * **namespace** is a mapping from names to objects.  SAS has namespace too, even though it may have a different name. 
 
-The important thing to know about namespaces is that there is absolutely no relation between names in different namespaces; for instance, two different modules may both define a function <span class="coding">deepnn<span>  — we must prefix it with its module name.
-
 Examples: 
 1. the set of built-in names (including functions, and built-in exception names)
 2. the global names in a module; and the local names in a function invocation
 3. the set of attributes of an object. 
 
+Note that there is absolutely no relation between names in different namespaces; for instance, two different modules may both define a function <span class="coding">deepnn<span>  — we must prefix it with its module name.
 * **scope** of namespace: 
 As in SAS, we have global, local and built-in in Python.  At run time, the order that a name is accessed has the following hierchy: 
-1. local
+1. local, if not found, then search the one that it inherits from
 2. any enclosing functions, which are searched starting with the nearest enclosing scope, contains non-local, but also non-global names
-3. module’s global names
-Local -> lib (typical vanilla installation modules are in lib) -> site packages (3rd party packages are generally in site-packages)
+3. module's global names
+4. the outermost scope (searched last) is the namespace containing built-in names
 
+Furthermore, the order Python looks for names at run time: local -> lib (typical vanilla installation modules are in lib) -> site packages (3rd party packages are generally in site-packages).  
 
-the outermost scope (searched last) is the namespace containing built-in names
 # a class in Python
 A class is a class,literally.  It is a group of things and things associated with that group of things. Using jargon, a class groups objects such as attributes and functions/methods that belong together. ["Classes provide a means of bundling data and functionality together."](https://docs.python.org/3/tutorial/classes.html)  The closest thing from SAS to Python class is a SAS procedure specifically those that do very specific things.  For example, PROC LOGISTIC, which contains almost all the reusable code that one needs for doing logistic regression in a statical-focused context. 
 
@@ -170,7 +169,7 @@ Out[11]:
  ```
 
  ## version 3
- 
+
 <div class="code-head"><span>code</span>Employee version 3.python</div>
 
 ```python
