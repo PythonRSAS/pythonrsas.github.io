@@ -5,9 +5,12 @@ category: "python for sas"
 title: "configparser"
 description: discuss configuration files 
 author: Sarah Chen
-image: images/posts/photos/IMG-0667.JPG
+image: images/posts/photos/IMG-0669.JPG
 
 ---
+<figure> 
+   <img src="{{"/images/posts/photos/IMG-0669.jpg"| relative_url}}"> 
+</figure> 
 When we work on a project in SAS, we often like to have a separate program for defining libnames, path, constant parameters, some macro variables, and filenames.  In Python, we like to do the same, except that we call it "configuration" or "config".  Of course, these concepts are not unique to Python or SAS. 
 
 In Python, configuration is often done via .ini, .json, or a .py file.  Here I discuss the .ini approach using configparser library. 
