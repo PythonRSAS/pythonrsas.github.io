@@ -143,8 +143,6 @@ The following code uses extended interpolation from the key "output" of the sect
 
 To read the extended interpolation, we need to set the interpolation of the config file to ExtendedInterpolation() for dynamic substitution. 
 
-The end result is in the comment section at the end of the code. 
-
 <div class="code-head"><span>code</span>extended interpolation.python</div>
 
 ```python
@@ -160,27 +158,27 @@ with open(filename, 'w') as configfile:
 config._interpolation = configparser.ExtendedInterpolation()
 config.read('test_config.ini')
 print(config["results"]['customer'])
-
-# [files]
-# new_data = 2021data.csv
-
-# [constants]
-# min_expense = 10
-
-# [path]
-# output = c:\analysis
-# images = %(output)s\images
-
-# [goals]
-# revenue = 200
-# customer count = 30
-# profit = 15
-
-# [results]
-# customer = ${path:output}\customer
-# revenue = ${path:output}s\revenue
-# profit = ${path:output}s\profit
 ```
+The end result, after all these updates, is as followed:
+```python
+[files]
+new_data = 2021data.csv
 
+[constants]
+min_expense = 10
 
+[path]
+output = c:\analysis
+images = %(output)s\images
+
+[goals]
+revenue = 200
+customer count = 30
+profit = 15
+
+[results]
+customer = ${path:output}\customer
+revenue = ${path:output}s\revenue
+profit = ${path:output}s\profit
+```
 
