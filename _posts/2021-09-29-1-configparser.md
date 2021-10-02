@@ -16,6 +16,7 @@ We can read, update, add entry, create new sections using interpolation and exte
 
 The beginning .ini file is as followed:
 
+```python
 [files]
 data1 = data1.csv
 data2 = data2.csv
@@ -27,32 +28,32 @@ min_expense = 10
 
 [path]
 output = c:\analysis
-
+```
 
 We first import the configparser, tell it to read the .ini file.   
-<div class="code-head"><span>code</span>Turtle.python</div>
+<div class="code-head"><span>code</span>read.python</div>
 
 ```python
-In [1]: import configparser^M
-   ...: # In Python 3, configParser has been renamed to configparser ^M
-   ...: config = configparser.ConfigParser()^M
-   ...: # config^M
-   ...: # <configParser.configParser instance at 0x00BA9B20>^M
+In [1]: import configparser'
+   ...: # In Python 3, configParser has been renamed to configparser '
+   ...: config = configparser.ConfigParser()'
+   ...: # config'
+   ...: # <configParser.configParser instance at 0x00BA9B20>'
    ...: config.read(r"C:\Users\sache\OneDrive\Documents\python_SAS\Code_only\learn_ini.ini")
 
 In [2]: config
 Out[2]: <configparser.ConfigParser at 0x25391622a88>
 
-In [3]: print(list(config['files'].keys()))^M
+In [3]: print(list(config['files'].keys()))'
    ...:
 ['data1', 'data2', 'data3', 'new_data']
 
 In [4]: print(list(config['files'].values()))
 ['data1.csv', 'data2.csv', 'data3.csv', '2021data.csv']
 
-In [5]: for sect in config.sections():^M
-   ...:     print("\nSection: ",sect)^M
-   ...:     for i,j in config.items(sect):^M
+In [5]: for sect in config.sections():'
+   ...:     print("\nSection: ",sect)'
+   ...:     for i,j in config.items(sect):'
    ...:         print("Key: ",i," Value: ",j)
    ...:
 # Section:  files
@@ -77,12 +78,12 @@ The following will overwrite a section of the .ini file.  It only overwrites the
 <div class="code-head"><span>code</span>updateConfig.python</div>
 
 ```python
-In [6]: filename = r"C:\Users\sache\OneDrive\Documents\python_SAS\Code_only\learn_ini.ini"^M
-   ...: config = configparser.ConfigParser()^M
-   ...: config.read(filename)^M
-   ...: # uppdates the entire 'files' section^M
-   ...: config['files']={'new_data' :'2021data.csv'}^M
-   ...: with open(filename, 'w') as configfile:^M
+In [6]: filename = r"C:\Users\sache\OneDrive\Documents\python_SAS\Code_only\learn_ini.ini"'
+   ...: config = configparser.ConfigParser()'
+   ...: config.read(filename)'
+   ...: # uppdates the entire 'files' section'
+   ...: config['files']={'new_data' :'2021data.csv'}'
+   ...: with open(filename, 'w') as configfile:'
    ...:     config.write(configfile)
 # [files]
 # data1 = data1.csv
@@ -99,18 +100,18 @@ In [6]: filename = r"C:\Users\sache\OneDrive\Documents\python_SAS\Code_only\lear
 
 # update or add entries
 If the section already exist, then it will be updated.  If it does not already exist, then a new section will be added. 
-<div class="code-head"><span>code</span>Turtle.python</div>
+<div class="code-head"><span>code</span>update.python</div>
 
 ```python
 
-In [8]: # creating the dictionary for section and key-value pairs^M
-   ...: config['goals']={^M
-   ...:     'revenue':200,^M
-   ...:     'customer count':30,^M
-   ...:     'profit':15^M
-   ...: }^M
-   ...: # writing to configuration file^M
-   ...: with open(filename, 'w') as configfile:^M
+In [8]: # creating the dictionary for section and key-value pairs'
+   ...: config['goals']={'
+   ...:     'revenue':200,'
+   ...:     'customer count':30,'
+   ...:     'profit':15'
+   ...: }'
+   ...: # writing to configuration file'
+   ...: with open(filename, 'w') as configfile:'
    ...:     config.write(configfile)
 ```
 
