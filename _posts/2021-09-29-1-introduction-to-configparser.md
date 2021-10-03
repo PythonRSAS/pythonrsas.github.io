@@ -2,7 +2,7 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "configparser"
+title: "introduction to configparser"
 description: discuss configuration files 
 author: Sarah Chen
 image: images/posts/photos/IMG-0670.JPG
@@ -11,11 +11,11 @@ image: images/posts/photos/IMG-0670.JPG
 <figure> 
    <img src="{{"/images/posts/photos/IMG-0670.JPG"| relative_url}}"> 
 </figure> 
-When we work on a project in SAS, we often like to have a separate program for defining libnames, path, constant parameters, some macro variables, and filenames.  In Python, we like to do the same, except that we call it "configuration" or "config".  Of course, these concepts are not unique to Python or SAS. 
+When we work on a project in SAS, we often like to have a separate program for defining libnames, path, constant parameters, some macro variables, and filenames.  In Python, we like to do the same, except that we call it "configuration" or "config".  Of course, these concepts are not unique to Python or SAS.  Configuration files can be used for storing applications settings or even operating system's settings. 
 
-In Python, configuration is often done via .ini, .json, or a .py file.  Here I discuss the .ini approach using configparser library. 
+The Python configparser library can be used for creating and interacting with configuration files, which are often done via .ini, .json, or a .py file. 
 
-We can read, update, add entry, create new sections using interpolation and extended interpolation. 
+The followig are examples that read, update, add entry and create new sections using interpolation and extended interpolation. 
 
 The beginning .ini file is as followed:
 
