@@ -74,19 +74,13 @@ read.table(file,header=TRUE) # default separator is sep=" " is any white space
 read.table(file, as.is=TRUE) # as.is=TRUE prevents string values from being converted to factors
 read.csv("file", ,header=TRUE) # specifically for .csv files
 
-load() # load the dataset written with save
+load("myData.rdata") # load the dataset written with save
+write.table(myData, file= "c:/documents/data/myData.csv", sep=',', row.names=F)
+
 data(x) # loads specific dataset
 
 read_feather(path, columns=NULL)
 write_feather(x, path)
-
-
-
-
-<div class="code-head"><span>code</span>input and output.sas</div>
-
-```sas
-PROC IMPORT 
 ```
 
 After having loaded the data, we can use the following to take a quick look before further processings.
