@@ -14,14 +14,15 @@ Say we are doing some data analysis.  And we have the following folder structure
  --lib/
  --data/
 ```
-Input folder | Output folder
- code/| images, analysis
- lib/|  
- data/|
+|  Type of files        | Input folder                                  | Output folder                                                      |
+|:------------------|:---------------------------------------|:-------------------------------------------------------------|
+| code          | code                          | images, analysis
+| input data          | data                          | images, analysis
+
 
 We want to read data from the data folder, run code from the code folder, access files in the lib folder, and output our analysis results with plots in .png and analysis in .txt files.
 
-# Window backslashes (\) vs Linux and Ipython forward slash (/) 
+# Window backslashes ("\") vs Linux and Ipython forward slash ("/") 
 <!-- When running SAS programs in SAS EG, we never ran into any problem directly pasting the address from Windows directory.  But for running Python and R programs, we need to deal with this small inconvinience.  -->
 
 On Windows, paths are written using backslashes (\, the key with "|") as the separator between folder names. 
@@ -36,7 +37,7 @@ Two wrongs make it right.  Just double it up. Use it with full path name.
 #### Solution 2. Add 'r'
 Ask Python to do the job and read it. Use it with full path name. 
 
-#### Solution 3. <span class="coding">os.path.join()</span>
+#### Solution 3. os.path.join()
 Use it with (full path name - relative directory). 
 
 Paying the price of some extra typing, the <span class="coding">os.path.join()</span> function helps solving this problem. os.path.join() glues the steps of path together using the correct path separators.  
@@ -58,7 +59,7 @@ SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes in positio
 ```
 
 # Get directory and change directory
-When we run a lot of analysis, we can automate creating the directories. 
+When we need to know where we are, use os.getcwd().   To change that, use os.chdir() with full path as the parameter or use "./" with relative path. 
 <div class="code-head"><span>code</span>learn_path.py</div>
 ```python
 >>> os.getcwd()
