@@ -5,7 +5,7 @@ category: "python for sas"
 title: "mastering directories"
 description: Understanding use of path in a Python program
 author: Sarah Chen
-image: images/posts/photos/IMG-0685.jpg
+image: images/posts/photos/IMG-0685.JPG
 
 ---
 Say we are doing some data analysis. Our code outputs plots in .png and analysis in .txt files. And we have the following folder structure:
