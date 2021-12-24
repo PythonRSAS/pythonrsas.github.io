@@ -2,10 +2,10 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "relative path"
+title: "mastering directories"
 description: Understanding use of path in a Python program
 author: Sarah Chen
-image: images/posts/photos/IMG-0672.jpg
+image: images/posts/IMG-0675.jpg
 
 ---
 # Create directory
