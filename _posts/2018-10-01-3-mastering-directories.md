@@ -30,7 +30,8 @@ On Windows, paths are written using backslashes (\, the key with "|") as the sep
 
 OS X and Linux, however, use the forward slash (/, the key with "?") as their path separator.
 
-I really hate having to remember these confusing details.  They are not my loved ones' birthdays. 
+I really hate having to remember these confusing details.  And I don't like
+`path=dir + '/' + subdir + '/'+filename`, although it is equivalent to `path=os.path.join(dir,subdir,filename)`
 
 #### Solution 1. Double \\
 Two wrongs make it right.  Just double it up. Use it with full path name. 
@@ -59,10 +60,14 @@ SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes in positio
 >>> df = pd.read_csv(os.path.join('.','OneDrive\Documents\python_SAS\data\df4.csv'))
 ```
 
-# Get directory and change directory
+# Get directory, content and change directory
 When we need to know where we are, use os.getcwd().   To change that, use os.chdir() with full path as the parameter or use "./" with relative path. 
+os.path.getsize
+
 <div class="code-head"><span>code</span>learn_path.py</div>
+
 ```python
+
 >>> os.getcwd()
 'C:\\Users\\sache'
 >>> os.listdir()
@@ -76,6 +81,8 @@ Out[17]:
  '.gem',
 >>> os.chdir('./OneDrive')
 Out[19]: 'C:\\Users\\sache\\OneDrive'
+In [30]: os.path.getsize(path)
+Out[30]: 65536
 ```
 
 # Create directory
@@ -88,8 +95,34 @@ if not os.path.exists("images"):
 
 # Absolute path
 Asolute path is the full path that we get from the address bar in Windows. <span class="coding">os.path.abspath</span>
-
+<span class="coding">os.path.relpath</span> gives the difference between two input paths. 
 <div class="code-head"><span>code</span>learn_path.py</div>
+
+```python
+In [1]: import os
+        os.path.abspath('.')
+Out[1]: 'C:\\Users\\sarahchen'
+
+In [2]: os.path.abspath('.\\onedrive')
+Out[2]: 'C:\\Users\\sarahchen\\onedrive'
+
+In [3]: os.path.isabs(os.path.abspath('.'))
+Out[3]: True
+
+In [4]: os.path.relpath('C:\\Windows', 'C:\\')
+Out[4]: 'Windows'
+
+In [5]: os.path.relpath('C:\\Windows', 'C:\\windows')
+Out[5]: '.'
+
+In [6]: os.path.relpath('C:\Windows', 'C:\windows')
+Out[6]: '.'
+
+In [7]: os.path.relpath('C:/Windows', 'C:/windows')
+Out[7]: '.'
+```
+
+<div class="code-head"><span>code</span>run_result_of_learn_path.py</div>
 
 ```python
 In [1]: import os
@@ -117,19 +150,52 @@ Out[7]: '.'
 
 # Partitioning a path
 
+### folder name and file name
 We can partition a full path name into parent and child: 
-- os.path.==dirname==(path), the parent directory:  *before* the last slash in the path argument. 
+- <span class="coding">os.path.==dirname==(path)</span>, the parent directory:  *before* the last slash in the path argument. 
 
-- os.path.==basename==(path), the child: *after* the last slash in the path argument. 
+- <span class="coding">os.path.==basename==(path)</sapn>, the child: *after* the last slash in the path argument. 
 
-When a script is executed through the commandline, <span class="coding">\__file__'</span> refers to the script file that is being run. os.path.abspath(__file__) gives the complete path, which means the folder path + the file name.  
+When a script is executed through the commandline, <span class="coding">\__file__'</span> refers to the script file that is being run. <span class="coding">os.path.abspath(\__file__)</span> gives the complete path, which means the folder path + the file name.  
 In this case, the parent is the folder path, while the child is the file name. 
+
+<div class="code-head"><span>code</span>learn_path1.py</div>
+
+```python
+import os
+ABS_PATH = os.path.abspath(__file__)
+print("\n ABS_PATH ", ABS_PATH)
+PARENT_PATH = os.path.dirname(ABS_PATH)
+print("\n PARENT_PATH ",PARENT_PATH)
+CHILD_PATH = os.path.basename(ABS_PATH)
+print("\n CHILD_PATH ",CHILD_PATH)
+```
+The result of running the above code is as followed:
+```
+{(base) C:\Users\sache\OneDrive\Documents\python_SAS\Code_only>python learn_path2.py
+
+ ABS_PATH  C:\Users\sache\OneDrive\Documents\python_SAS\Code_only\learn_path2.py
+
+ PARENT_PATH  C:\Users\sache\OneDrive\Documents\python_SAS\Code_only
+
+ CHILD_PATH  learn_path2.py}
+```
+
+# split folder path
+```python
+
+{In [28]: path
+Out[28]: 'C:\\Users\\sache\\OneDrive'
+
+In [29]: os.path.split(path)
+Out[29]: ('C:\\Users\\sache', 'OneDrive')}
+```
 
 # Grandparent and great grandparents
 
 Using the same logic of getting the parent, we can access the grandparent directory using <span class="coding">os.path.dirname</span>. 
 
-<div class="code-head"><span>code</span>parents.py</div>
+<div class="code-head"><span>code</span>parent.py</div>
 
 ```python
 In [19]: os.getcwd()
@@ -162,8 +228,6 @@ print("BASE_DIR is",BASE_DIR)
 # PROJECT_ROOT is  C:\python_SAS\Code_only
 # BASE_DIR is C:\python_SAS
 ```
-
-
 
 
 The <span class="coding">os.path.dirname()</span> function removes the last segment of a path.
