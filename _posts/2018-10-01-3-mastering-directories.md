@@ -117,31 +117,31 @@ Out[7]: '.'
 
 # Relative path
 
-There is a partition of a full path name into parent and child: 
-- os.path.==dirname==(path) gives the parent directory.   comes *before* the last slash in the path argument. 
+We can partition a full path name into parent and child: 
+- os.path.==dirname==(path), the parent directory:  *before* the last slash in the path argument. 
 
-- os.path.==basename==(path) will return a string of everything that comes *after* the last slash in the path argument. 
+- os.path.==basename==(path), the child: *after* the last slash in the path argument. 
 
-Relative file paths in SAS are relative to the '**current directory**'. 
-In SAS we can easily use relative path from the command line. Elsewhere we need to tell SAS what directory we want as the base path.
-
-<div class="code-head"><span>code</span>learn_path.sas</div>
-
-```sas
-%let rundir = /root/test/test1/test2;
-
-%include "&rundir/../../path.sas"; 
-```
-# Path of the program/module
-
+When a script is executed through the commandline, <span class="coding">\__file__'</span> refers to the script file that is being run. os.path.abspath(__file__) gives the complete path, which means the folder path + the file name.  
+In this case, the parent is the folder path, while the child is the file name. 
 
 <div class="code-head"><span>code</span>learn_path.py</div>
 
+```python
+import os
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+print("PROJECT_ROOT is ",PROJECT_ROOT)
+BASE_DIR = os.path.dirname(PROJECT_ROOT)
+print("BASE_DIR is",BASE_DIR)
+# PROJECT_ROOT is  C:\python_SAS\Code_only
+# BASE_DIR is C:\python_SAS
+```
+
+# Path of the program/module
 
 
-In SAS, there are special variables, such as <span class="coding">\__n__</span>, <span class="coding">\_type_</span>, Python has special variables as well.    When the Python interpreter reads a source file, it first defines some special variables such as <span class="coding">\__builtin__</span> and <span class="coding">\__doc__</span>. <span class="coding">\__name__ == '\__main__'</span> is another one of them.
 
-The purpose of <span class="coding">\__name__ == '\__main__'</span> is to allow us to check if the scipt is being run directly.  The actions following <span class="coding">\__name__ == '\__main__'</span> is to happen only if the script is being run directly.  
+
 
 
 The <span class="coding">os.path.dirname()</span> function removes the last segment of a path.
@@ -168,6 +168,21 @@ This neat trick helps us reuse code more flexibly.
 # SAS
 If you want a path that is relative to the path of the current program, you have to build it yourself. 
 To get the path of the current program, use <span class="coding">SYSGET("SAS_EXECFILEPATH")</span> in a data step or <span class="coding">%qsysfunc(sysget(SAS_EXECFILEPATH))</span> in macro code.
+
+Relative file paths in SAS are relative to the '**current directory**'. 
+In SAS we can easily use relative path from the command line. Elsewhere we need to tell SAS what directory we want as the base path.
+
+<div class="code-head"><span>code</span>learn_path.sas</div>
+
+```sas
+%let rundir = /root/test/test1/test2;
+
+%include "&rundir/../../path.sas"; 
+```
+In SAS, there are special variables, such as <span class="coding">\__n__</span>, <span class="coding">\_type_</span>, Python has special variables as well.    When the Python interpreter reads a source file, it first defines some special variables such as <span class="coding">\__builtin__</span> and <span class="coding">\__doc__</span>. <span class="coding">\__name__ == '\__main__'</span> is another one of them.
+
+The purpose of <span class="coding">\__name__ == '\__main__'</span> is to allow us to check if the scipt is being run directly.  The actions following <span class="coding">\__name__ == '\__main__'</span> is to happen only if the script is being run directly.  
+
 
 # References
 [Chapter 8 – Reading and Writing Files](http://automatetheboringstuff.com/chapter8/)
