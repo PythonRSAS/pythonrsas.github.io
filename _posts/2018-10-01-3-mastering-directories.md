@@ -9,11 +9,11 @@ image: images/posts/photos/IMG-0685.JPG
 
 ---
 Say we are doing some data analysis.  And we have the following folder structure:
-```
- --code/
- --lib/
- --data/
-```
+
+- code
+- lib
+- data
+
 
 |  Type of files     | Input folder       | Output folder |
 |:-------------------|:-------------------|:-------------------|
@@ -23,7 +23,7 @@ Say we are doing some data analysis.  And we have the following folder structure
 
 We want to read data from the data folder, run code from the code folder, and output our analysis results with plots in .png and analysis in .txt files.
 
-# "\"  vs "/"
+# "\\"  vs "/"
 <!-- When running SAS programs in SAS EG, we never ran into any problem directly pasting the address from Windows directory.  But for running Python and R programs, we need to deal with this small inconvinience.  -->
 
 On Windows, paths are written using backslashes (\, the key with "|") as the separator between folder names. 
@@ -41,7 +41,7 @@ Ask Python to do the job and read it. Use it with full path name.
 #### Solution 3. os.path.join()
 Use it with (full path name - relative directory). 
 
-Paying the price of some extra typing, the <span class="coding">os.path.join()</span> function helps solving this problem. os.path.join() glues the steps of path together using the correct path separators.  
+With some extra typing, the <span class="coding">os.path.join()</span> function helps solving this problem. os.path.join() glues the  path pieces together using the correct path separators.  
 <div class="code-head">slashes.py</div>
 
 ```python
@@ -115,7 +115,7 @@ In [7]: os.path.relpath('C:/Windows', 'C:/windows')
 Out[7]: '.'
 ```
 
-# Relative path
+# Partitioning a path
 
 We can partition a full path name into parent and child: 
 - os.path.==dirname==(path), the parent directory:  *before* the last slash in the path argument. 
@@ -125,6 +125,32 @@ We can partition a full path name into parent and child:
 When a script is executed through the commandline, <span class="coding">\__file__'</span> refers to the script file that is being run. os.path.abspath(__file__) gives the complete path, which means the folder path + the file name.  
 In this case, the parent is the folder path, while the child is the file name. 
 
+# Grandparent and great grandparents
+
+Using the same logic of getting the parent, we can access the grandparent directory using <span class="coding">os.path.dirname</span>. 
+
+<div class="code-head"><span>code</span>parents.py</div>
+
+```python
+In [19]: os.getcwd()
+Out[19]: 'C:\\Users\\sache\\OneDrive'
+In [21]: os.path.dirname(path)
+Out[21]: 'C:\\Users\\sache'
+In [23]: os.path.dirname(os.path.dirname(path))
+Out[23]: 'C:\\Users'
+```
+
+However, you cannot get grandchildren.
+```python
+
+{In [24]: os.path.basename(path)
+Out[24]: 'OneDrive'
+
+In [25]: os.path.basename(os.path.basename(path))
+Out[25]: 'OneDrive'}
+```
+
+# Relative path and absolute path
 <div class="code-head"><span>code</span>learn_path.py</div>
 
 ```python
@@ -136,10 +162,6 @@ print("BASE_DIR is",BASE_DIR)
 # PROJECT_ROOT is  C:\python_SAS\Code_only
 # BASE_DIR is C:\python_SAS
 ```
-
-# Path of the program/module
-
-
 
 
 
