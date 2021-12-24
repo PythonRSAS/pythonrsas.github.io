@@ -5,12 +5,21 @@ category: "python for sas"
 title: "mastering directories"
 description: Understanding use of path in a Python program
 author: Sarah Chen
-image: images/posts/IMG-0685.jpg
+image: images/posts/photos/IMG-0685.jpg
 
 ---
+Say we are doing some data analysis. Our code outputs plots in .png and analysis in .txt files. And we have the following folder structure:
+```
+ --code/
+ --lib/
+ --data/
+```python
+```
 # Create directory
+
 >>> import os
 >>> os.makedirs('C:\\pythonrsas\\')
+```
 
 # Absolute path
 <span class="coding">os.path.abspath</span>
@@ -18,9 +27,9 @@ image: images/posts/IMG-0685.jpg
 ```python
 In [1]: import os
         os.path.abspath('.')
-Out[1]: 'C:\\Users\\sache'
+Out[1]: 'C:\\Users\\sarahchen'
 In [2]: os.path.abspath('.\\onedrive')
-Out[2]: 'C:\\Users\\sache\\onedrive'
+Out[2]: 'C:\\Users\\sarahchen\\onedrive'
 ```
 
 # Relative path
