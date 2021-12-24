@@ -5,12 +5,12 @@ category: "python for sas"
 title: "mastering directories"
 description: Understanding use of path in a Python program
 author: Sarah Chen
-image: images/posts/IMG-0675.jpg
+image: images/posts/IMG-0685.jpg
 
 ---
 # Create directory
 >>> import os
->>> os.makedirs('C:\\delicious\\walnut\\waffles')
+>>> os.makedirs('C:\\pythonrsas\\')
 
 # Absolute path
 <span class="coding">os.path.abspath</span>
