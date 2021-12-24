@@ -77,11 +77,13 @@ Out[19]: 'C:\\Users\\sache\\OneDrive'
 In [30]: os.path.getsize(path)
 Out[30]: 65536
 ```
-
 # Create directory
 When we run a lot of analysis, we can automate creating the directories. 
+<span class="coding">os.path.exists</span> returns True/False given whether the folder in question exists or not.  <span class="coding">os.path.exists</span> goes ahead with making the folder if it is not there. 
+<div class="code-head"><span>code</span>create directory.py</div>
 
-```
+```python
+In [1]: import os
 if not os.path.exists("images"):
     os.makedirs("images")
 ```
