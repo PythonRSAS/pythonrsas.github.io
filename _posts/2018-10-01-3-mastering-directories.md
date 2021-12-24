@@ -8,52 +8,87 @@ author: Sarah Chen
 image: images/posts/photos/IMG-0685.JPG
 
 ---
-Say we are doing some data analysis. Our code outputs plots in .png and analysis in .txt files. And we have the following folder structure:
+Say we are doing some data analysis.  And we have the following folder structure:
 ```
  --code/
  --lib/
  --data/
 ```
+Input folder | Output folder
+ code/| images, analysis
+ lib/|  
+ data/|
+
+We want to read data from the data folder, run code from the code folder, access files in the lib folder, and output our analysis results with plots in .png and analysis in .txt files.
 
 # Window backslashes (\) vs Linux and Ipython forward slash (/) 
 <!-- When running SAS programs in SAS EG, we never ran into any problem directly pasting the address from Windows directory.  But for running Python and R programs, we need to deal with this small inconvinience.  -->
 
-On Windows, paths are written using backslashes (\, the key with |) as the separator between folder names. 
+On Windows, paths are written using backslashes (\, the key with "|") as the separator between folder names. 
 
-OS X and Linux, however, use the forward slash (/, the key with ?) as their path separator.
+OS X and Linux, however, use the forward slash (/, the key with "?") as their path separator.
 
-I really hate having to remember these confusing details.  They are not my parents' birthdays. 
+I really hate having to remember these confusing details.  They are not my loved ones' birthdays. 
+
 #### Solution 1. Double \\
-Two wrongs make it right.  Just double it up. 
+Two wrongs make it right.  Just double it up. Use it with full path name. 
 
-#### Solution 2. <span class="coding">os.path.join()</span>
-Paying the price of some extra typing, the <span class="coding">os.path.join()</span> function helps solving this problem. os.path.join() glues the steps of path together using the correct path separators.
+#### Solution 2. Add 'r'
+Ask Python to do the job and read it. Use it with full path name. 
 
-<span class="coding">slashes.py</span>
-In [8]: df = pd.read_csv("C:\Users\sache\OneDrive\Documents\python_SAS\BasicStats\df4.csv")
+#### Solution 3. <span class="coding">os.path.join()</span>
+Use it with (full path name - relative directory). 
+
+Paying the price of some extra typing, the <span class="coding">os.path.join()</span> function helps solving this problem. os.path.join() glues the steps of path together using the correct path separators.  
+<div class="code-head">slashes.py</div>
+
+```python
+>>> df = pd.read_csv("C:\Users\sache\OneDrive\Documents\python_SAS\df4.csv")
   File "<ipython-input-8-24f5fb082f1d>", line 2
-    df = pd.read_csv("C:\Users\sache\OneDrive\Documents\python_SAS\BasicStats\df4.csv")
+    df = pd.read_csv("C:\Users\sache\OneDrive\Documents\python_SAS\df4.csv")
                     ^
 SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes in position 2-3: truncated \UXXXXXXXX escape
 
-In [9]: df = pd.read_csv(r"C:\Users\sache\OneDrive\Documents\python_SAS\BasicStats\df4.csv")
+# Solution 1. Double \\
+>>> df = pd.read_csv(r"C:\Users\sache\OneDrive\Documents\python_SAS\data\df4.csv")
+# Solution 2. Add 'r'
+>>> df = pd.read_csv("C:\\Users\\sache\\OneDrive\\Documents\\python_SAS\\data\\df4.csv")
+# Solution 3. os.path.join
+>>> df = pd.read_csv(os.path.join('.','OneDrive\Documents\python_SAS\data\df4.csv'))
+```
 
-In [10]: df = pd.read_csv("C:\\Users\\sache\\OneDrive\\Documents\\python_SAS\\BasicStats\\df4.csv")
-
+# Get directory and change directory
+When we run a lot of analysis, we can automate creating the directories. 
+<div class="code-head"><span>code</span>learn_path.py</div>
+```python
+>>> os.getcwd()
+'C:\\Users\\sache'
+>>> os.listdir()
+Out[17]:
+['.anaconda',
+ '.bash_history',
+ '.bundle',
+ '.cache',
+ '.conda',
+ '.condarc',
+ '.gem',
+>>> os.chdir('./OneDrive')
+Out[19]: 'C:\\Users\\sache\\OneDrive'
 ```
 
 # Create directory
+When we run a lot of analysis, we can automate creating the directories. 
 
 ```
->>> import os
->>> os.makedirs('C:\\pythonrsas\\')
+if not os.path.exists("images"):
+    os.makedirs("images")
 ```
 
 # Absolute path
 
 <span class="coding">os.path.abspath</span>
 
-<div class="code-head"><span>code</span>learn_path.sas</div>
+<div class="code-head"><span>code</span>learn_path.py</div>
 ```python
 In [1]: import os
         os.path.abspath('.')
