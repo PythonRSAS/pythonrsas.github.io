@@ -5,7 +5,7 @@ category: "python for sas"
 title: "mastering directories"
 description: Understanding use of path in a Python program
 author: Sarah Chen
-image: images/posts/photos/IMG-0685.JPG
+image: images/posts/photos/IMG-0684.JPG
 
 ---
 Say we are doing some data analysis.  And our project directory has two folders that contains code and inputs: code and data. 
@@ -20,12 +20,11 @@ We want to read data from the data folder, run code from the code folder, and ou
 # "\\"  or "/"
 <!-- When running SAS programs in SAS EG, we never ran into any problem directly pasting the address from Windows directory.  But for running Python and R programs, we need to deal with this small inconvinience.  -->
 
-On Windows, paths are written using backslashes (\, the key with "|") as the separator between folder names. 
+On Windows, paths are written using backslashes (\\, the key with "\|") as the separator between folder names. 
 
 OS X and Linux, however, use the forward slash (/, the key with "?") as their path separator.
 
-I really hate having to remember these confusing details.  And I don't like
-`path=dir + '/' + subdir + '/'+filename`, although it is equivalent to `path=os.path.join(dir,subdir,filename)`
+I cannot remember these confusing details.  </span class='coding'>path=os.path.join(dir,subdir,filename)</span> is easier than </span class='coding'>path=dir + '/' + subdir + '/'+filename`</span>, although they equivalent.
 
 #### Solution 1. Double \\
 Two wrongs make it right.  Just double it up. Use it with full path name. 
