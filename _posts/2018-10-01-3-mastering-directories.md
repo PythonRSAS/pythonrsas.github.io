@@ -14,15 +14,16 @@ Say we are doing some data analysis.  And we have the following folder structure
  --lib/
  --data/
 ```
-|  Type of files        | Input folder                                  | Output folder                                                      |
-|:------------------|:---------------------------------------|:-------------------------------------------------------------|
-| code          | code                          | images, analysis
-| input data          | data                          | images, analysis
+
+|  Type of files     | Input folder       | Output folder |
+|:-------------------|:-------------------|:-------------------|
+| code | code| images, analysis|
+| input data | data| images, analysis|
 
 
-We want to read data from the data folder, run code from the code folder, access files in the lib folder, and output our analysis results with plots in .png and analysis in .txt files.
+We want to read data from the data folder, run code from the code folder, and output our analysis results with plots in .png and analysis in .txt files.
 
-# Window backslashes ("\") vs Linux and Ipython forward slash ("/") 
+# "\"  vs "/"
 <!-- When running SAS programs in SAS EG, we never ran into any problem directly pasting the address from Windows directory.  But for running Python and R programs, we need to deal with this small inconvinience.  -->
 
 On Windows, paths are written using backslashes (\, the key with "|") as the separator between folder names. 
@@ -86,10 +87,10 @@ if not os.path.exists("images"):
 ```
 
 # Absolute path
-
-<span class="coding">os.path.abspath</span>
+Asolute path is the full path that we get from the address bar in Windows. <span class="coding">os.path.abspath</span>
 
 <div class="code-head"><span>code</span>learn_path.py</div>
+
 ```python
 In [1]: import os
         os.path.abspath('.')
@@ -116,7 +117,10 @@ Out[7]: '.'
 
 # Relative path
 
-Calling os.path.dirname(path) will return a string of everything that comes before the last slash in the path argument. Calling os.path.basename(path) will return a string of everything that comes after the last slash in the path argument. 
+There is a partition of a full path name into parent and child: 
+- os.path.==dirname==(path) gives the parent directory.   comes *before* the last slash in the path argument. 
+
+- os.path.==basename==(path) will return a string of everything that comes *after* the last slash in the path argument. 
 
 Relative file paths in SAS are relative to the '**current directory**'. 
 In SAS we can easily use relative path from the command line. Elsewhere we need to tell SAS what directory we want as the base path.
@@ -129,8 +133,7 @@ In SAS we can easily use relative path from the command line. Elsewhere we need 
 %include "&rundir/../../path.sas"; 
 ```
 # Path of the program/module
-If you want a path that is relative to the path of the current program, you have to build it yourself. 
-To get the path of the current program, use <span class="coding">SYSGET("SAS_EXECFILEPATH")</span> in a data step or <span class="coding">%qsysfunc(sysget(SAS_EXECFILEPATH))</span> in macro code.
+
 
 <div class="code-head"><span>code</span>learn_path.py</div>
 
@@ -161,5 +164,10 @@ Now, open the command prompt, or Anaconda Prompt, type "python learn_path.py", a
 On the other hand, if a module is not the main program but is imported by another one, then <span class="coding">\__name__</span> attribute will be the name of the scirpt, in this case it is "learn_main", not <span class="coding">\__main__</span>.  Since the <span class="coding">\__name__</span> is not \__main__, then whatever \__main__ does will be ignored. 
 
 This neat trick helps us reuse code more flexibly.  
+
+# SAS
+If you want a path that is relative to the path of the current program, you have to build it yourself. 
+To get the path of the current program, use <span class="coding">SYSGET("SAS_EXECFILEPATH")</span> in a data step or <span class="coding">%qsysfunc(sysget(SAS_EXECFILEPATH))</span> in macro code.
+
 # References
 [Chapter 8 – Reading and Writing Files](http://automatetheboringstuff.com/chapter8/)
