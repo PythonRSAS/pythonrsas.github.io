@@ -8,14 +8,14 @@ author: Sarah Chen
 image: images/posts/photos/IMG-0685.JPG
 
 ---
-Say we are doing some data analysis.  And we have the following folder structure: code, data. 
+Say we are doing some data analysis.  And our project directory has two folders that contains code and inputs: code and data. 
+
+We want to read data from the data folder, run code from the code folder, and output our analysis results with plots in .png and analysis in .txt files.
 
 |  Type of files     | Input folder       | Output folder |
 |:-------------------|:-------------------|:-------------------|
 | code | code| images, analysis|
 | input data | data| images, analysis|
-
-We want to read data from the data folder, run code from the code folder, and output our analysis results with plots in .png and analysis in .txt files.
 
 # "\\"  or "/"
 <!-- When running SAS programs in SAS EG, we never ran into any problem directly pasting the address from Windows directory.  But for running Python and R programs, we need to deal with this small inconvinience.  -->
