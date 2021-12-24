@@ -8,22 +8,16 @@ author: Sarah Chen
 image: images/posts/photos/IMG-0685.JPG
 
 ---
-Say we are doing some data analysis.  And we have the following folder structure:
-
-- code
-- lib
-- data
-
+Say we are doing some data analysis.  And we have the following folder structure: code, data. 
 
 |  Type of files     | Input folder       | Output folder |
 |:-------------------|:-------------------|:-------------------|
 | code | code| images, analysis|
 | input data | data| images, analysis|
 
-
 We want to read data from the data folder, run code from the code folder, and output our analysis results with plots in .png and analysis in .txt files.
 
-# "\\"  vs "/"
+# "\\"  or "/"
 <!-- When running SAS programs in SAS EG, we never ran into any problem directly pasting the address from Windows directory.  But for running Python and R programs, we need to deal with this small inconvinience.  -->
 
 On Windows, paths are written using backslashes (\, the key with "|") as the separator between folder names. 
@@ -152,9 +146,9 @@ Out[7]: '.'
 
 ### folder name and file name
 We can partition a full path name into parent and child: 
-- <span class="coding">os.path.==dirname==(path)</span>, the parent directory:  *before* the last slash in the path argument. 
+<span class="coding">os.path.==dirname==(path)</span>, the parent directory:  *before* the last slash in the path argument. 
 
-- <span class="coding">os.path.==basename==(path)</sapn>, the child: *after* the last slash in the path argument. 
+<span class="coding">os.path.==basename==(path)</sapn>, the child: *after* the last slash in the path argument. 
 
 When a script is executed through the commandline, <span class="coding">\__file__'</span> refers to the script file that is being run. <span class="coding">os.path.abspath(\__file__)</span> gives the complete path, which means the folder path + the file name.  
 In this case, the parent is the folder path, while the child is the file name. 
@@ -169,16 +163,16 @@ PARENT_PATH = os.path.dirname(ABS_PATH)
 print("\n PARENT_PATH ",PARENT_PATH)
 CHILD_PATH = os.path.basename(ABS_PATH)
 print("\n CHILD_PATH ",CHILD_PATH)
-```
-The result of running the above code is as followed:
-```
-{(base) C:\Users\sache\OneDrive\Documents\python_SAS\Code_only>python learn_path2.py
 
- ABS_PATH  C:\Users\sache\OneDrive\Documents\python_SAS\Code_only\learn_path2.py
+# The result of running the above code is as followed:
 
- PARENT_PATH  C:\Users\sache\OneDrive\Documents\python_SAS\Code_only
+#(base) C:\Users\sache\OneDrive\Documents\python_SAS\Code_only>python learn_path2.py
 
- CHILD_PATH  learn_path2.py}
+# ABS_PATH  C:\Users\sache\OneDrive\Documents\python_SAS\Code_only\learn_path2.py
+
+# PARENT_PATH  C:\Users\sache\OneDrive\Documents\python_SAS\Code_only
+
+# CHILD_PATH  learn_path2.py
 ```
 
 # split folder path
@@ -252,23 +246,19 @@ On the other hand, if a module is not the main program but is imported by anothe
 This neat trick helps us reuse code more flexibly.  
 
 # SAS
-If you want a path that is relative to the path of the current program, you have to build it yourself. 
-To get the path of the current program, use <span class="coding">SYSGET("SAS_EXECFILEPATH")</span> in a data step or <span class="coding">%qsysfunc(sysget(SAS_EXECFILEPATH))</span> in macro code.
 
-Relative file paths in SAS are relative to the '**current directory**'. 
-In SAS we can easily use relative path from the command line. Elsewhere we need to tell SAS what directory we want as the base path.
+In aside from the command line, elsewhere we need to tell SAS what directory we want as the base path.
 
 <div class="code-head"><span>code</span>learn_path.sas</div>
 
 ```sas
-%let rundir = /root/test/test1/test2;
+%let rundir = C:/Users/sache/onedrive/;
 
-%include "&rundir/../../path.sas"; 
+%include "&rundir/../codeonly/path.sas"; 
 ```
-In SAS, there are special variables, such as <span class="coding">\__n__</span>, <span class="coding">\_type_</span>, Python has special variables as well.    When the Python interpreter reads a source file, it first defines some special variables such as <span class="coding">\__builtin__</span> and <span class="coding">\__doc__</span>. <span class="coding">\__name__ == '\__main__'</span> is another one of them.
+Relative file paths in SAS are relative to the '**current directory**'. 
+If you want a path that is relative to the path of the current program, you have to build it yourself. 
+To get the path of the current program, use <span class="coding">SYSGET("SAS_EXECFILEPATH")</span> in a data step or <span class="coding">%qsysfunc(sysget(SAS_EXECFILEPATH))</span> in macro code.
 
-The purpose of <span class="coding">\__name__ == '\__main__'</span> is to allow us to check if the scipt is being run directly.  The actions following <span class="coding">\__name__ == '\__main__'</span> is to happen only if the script is being run directly.  
 
 
-# References
-[Chapter 8 – Reading and Writing Files](http://automatetheboringstuff.com/chapter8/)
