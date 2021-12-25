@@ -3,7 +3,7 @@ layout: post
 tag : Learning Python and SAS
 category: "python for sas"
 title: "Mastering directories"
-description: Understanding use of path in a Python program
+description: Mastering paths allows us to make our code portable and less error prone. 
 author: Sarah Chen
 image: images/posts/photos/IMG-0682.JPG
 
@@ -18,6 +18,10 @@ We want to read data from the data folder, run code from the code folder, and ou
 | data    | input    | 
 | images  | output   | 
 | analysis| output   |
+
+Mastering paths allows us to make our code portable and less error prone. 
+
+What portable means that whoever receives our code and files can run it on their computer without running into errors.  They do not have to update folder path names in the code. 
 
 # 1. Create directory
 When we run a lot of analysis, we can automate creating the directories. 
@@ -44,7 +48,6 @@ If we happen to have an old folder with the same name, we need to remove it firs
 ```python
 import shutil
 shutil.rmtree('demo', ignore_errors=True)
-
 ```
 
 # 2. Access directory, content and change directory
