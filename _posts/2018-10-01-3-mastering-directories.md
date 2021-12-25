@@ -171,7 +171,7 @@ summary.to_excel(os.path.join(output_path,'iris_summary.xlsx'))
 ```
 Some of the result of running the program is in the screenshot below. 
 <figure>
-  <img src="{{ "/images/posts/mastering_path.png" | relative_url }}">
+  <img src="{{ "/images/posts/master_path.png" | relative_url }}">
   <figcaption></figcaption>
 </figure>
 
