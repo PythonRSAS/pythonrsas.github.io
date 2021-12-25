@@ -24,16 +24,16 @@ On Windows, paths are written using backslashes (\\, the key with "\|") as the s
 
 OS X and Linux, however, use the forward slash (/, the key with "?") as their path separator.
 
-I cannot remember these confusing details.  </span class='coding'>path=os.path.join(dir,subdir,filename)</span> is easier than </span class='coding'>path=dir + '/' + subdir + '/'+filename`</span>, although they equivalent.
+I cannot remember these confusing details.  <span class="coding">path=os.path.join(dir,subdir,filename)</span> is easier than <span class='coding'>path=dir + '/' + subdir + '/'+filename`</span>, although they equivalent.
 
-#### Solution 1. Double \\
-Two wrongs make it right.  Just double it up. Use it with full path name. 
+#### Solution 1. Double \\\
+Two wrongs make it right.  Just double it up. 
 
 #### Solution 2. Add 'r'
-Ask Python to do the job and read it. Use it with full path name. 
+Ask Python to do the job and read it. 
 
 #### Solution 3. os.path.join()
-Use it with (full path name - relative directory). 
+Use it with (full path name *minus* relative directory). 
 
 With some extra typing, the <span class="coding">os.path.join()</span> function helps solving this problem. os.path.join() glues the  path pieces together using the correct path separators.  
 <div class="code-head">slashes.py</div>
@@ -54,8 +54,9 @@ SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes in positio
 ```
 
 # Get directory, content and change directory
-When we need to know where we are, use os.getcwd().   To change that, use os.chdir() with full path as the parameter or use "./" with relative path. 
-os.path.getsize
+When we need to know where we are, use <span class="coding">os.getcwd()</span>.   To change that, use <span class="coding">os.chdir()</span> with full path as the parameter or use "./" with relative path. 
+
+<span class="coding">os.path.getsize</span> gives the size of foler.
 
 <div class="code-head"><span>code</span>learn_path.py</div>
 
@@ -188,7 +189,11 @@ Out[29]: ('C:\\Users\\sache', 'OneDrive')}
 
 # Grandparent and great grandparents
 
-Using the same logic of getting the parent, we can access the grandparent directory using <span class="coding">os.path.dirname</span>. 
+Using the same logic of getting the parent, we can access the grandparent directory using <span class="coding">os.path.dirname</span> repeatedly.
+
+A better way to do this is <span class="coding">os.path.abspath(os.path.join(path,"../../.."))</span>.
+
+Note that <span class="coding">os.path.join(path, "../../..")</span> just glues the steps together.  It does not know "../../.." is to go back 2 steps. <span class="coding">os.path.abspath</span> applies the step calculations. 
 
 <div class="code-head"><span>code</span>parent.py</div>
 
@@ -199,6 +204,10 @@ In [21]: os.path.dirname(path)
 Out[21]: 'C:\\Users\\sache'
 In [23]: os.path.dirname(os.path.dirname(path))
 Out[23]: 'C:\\Users'
+
+# better way
+In [33]: os.path.abspath(os.path.join(path,"../../.."))
+Out[33]: 'C:\\'
 ```
 
 However, you cannot get grandchildren.
