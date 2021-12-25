@@ -47,6 +47,30 @@ shutil.rmtree('demo', ignore_errors=True)
 
 ```
 
+# Get directory, content and change directory
+When we need to know where we are, use <span class="coding">os.getcwd()</span>.   To change that, use <span class="coding">os.chdir()</span> with full path as the parameter or use "./" with relative path. 
+
+<span class="coding">os.path.getsize</span> gives the size of foler.
+
+<div class="code-head"><span>code</span>learn_path.py</div>
+
+```python
+
+In [2]: os.getcwd()
+Out[2]: 'C:\\Users\\sache'
+
+In [3]: os.chdir('demo')
+
+In [4]: os.getcwd()
+Out[4]: 'C:\\Users\\sache\\demo'
+
+In [5]: os.listdir()
+Out[5]: ['analysis', 'code', 'data', 'images']
+
+In [7]: os.path.getsize('.')
+Out[7]: 0
+```
+
 # "\\"  or "/"
 <!-- When running SAS programs in SAS EG, we never ran into any problem directly pasting the address from Windows directory.  But for running Python and R programs, we need to deal with this small inconvinience.  -->
 
@@ -81,32 +105,6 @@ SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes in positio
 >>> df = pd.read_csv("C:\\Users\\sache\\OneDrive\\Documents\\python_SAS\\data\\df4.csv")
 # Solution 3. os.path.join
 >>> df = pd.read_csv(os.path.join('.','OneDrive\Documents\python_SAS\data\df4.csv'))
-```
-
-# Get directory, content and change directory
-When we need to know where we are, use <span class="coding">os.getcwd()</span>.   To change that, use <span class="coding">os.chdir()</span> with full path as the parameter or use "./" with relative path. 
-
-<span class="coding">os.path.getsize</span> gives the size of foler.
-
-<div class="code-head"><span>code</span>learn_path.py</div>
-
-```python
-
->>> os.getcwd()
-'C:\\Users\\sache'
->>> os.listdir()
-Out[17]:
-['.anaconda',
- '.bash_history',
- '.bundle',
- '.cache',
- '.conda',
- '.condarc',
- '.gem',
->>> os.chdir('./OneDrive')
-Out[19]: 'C:\\Users\\sache\\OneDrive'
-In [30]: os.path.getsize(path)
-Out[30]: 65536
 ```
 
 # Absolute path
