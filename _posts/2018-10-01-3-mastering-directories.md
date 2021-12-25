@@ -12,12 +12,12 @@ Say we are doing some data analysis.  And our project directory has two folders 
 
 We want to read data from the data folder, run code from the code folder, and output our analysis results with plots in .png and analysis in .txt files.  
 
-|  Type of files     | Input/output      |
-|:-------------------|:-------------------|
-| code | the file |
-| data | input | 
-| images | output |
-| analysis| output |
+|  Name   | In/Out   |
+|:------- |:-------- |
+| code    | the file |
+| data    | input    | 
+| images  | output   | 
+| analysis| output   |
 
 # Create directory
 When we run a lot of analysis, we can automate creating the directories. 
@@ -50,7 +50,9 @@ shutil.rmtree('demo', ignore_errors=True)
 # Get directory, content and change directory
 When we need to know where we are, use <span class="coding">os.getcwd()</span>.   To change that, use <span class="coding">os.chdir()</span> with full path as the parameter or use "./" with relative path. 
 
-<span class="coding">os.path.getsize</span> gives the size of foler.
+<span class="coding">os.path.getsize</span> gives the size of a file (not folder).  
+
+
 
 <div class="code-head"><span>code</span>learn_path.py</div>
 
@@ -67,8 +69,55 @@ Out[4]: 'C:\\Users\\sache\\demo'
 In [5]: os.listdir()
 Out[5]: ['analysis', 'code', 'data', 'images']
 
-In [7]: os.path.getsize('.')
-Out[7]: 0
+```
+
+# Move files to where we want
+Now we have set up the folder structure, we need to get the input files, some of which may come from another folder.   <span class="coding">os.getcwd()</span>.   To change that, use <span class="coding">os.chdir()</span> with full path as the parameter or use "./" with relative path. 
+
+<span class="coding">os.path.getsize</span> gives the size of foler.  Because we just created the folder, it has size 0. 
+
+<div class="code-head"><span>code</span>move_files.py</div>
+
+```python
+
+In [9]: import os, shutil, pathlib, fnmatch^M
+   ...: ^M
+   ...: def move_dir(src: str, dst: str, pattern: str = '*'):^M
+   ...:     if not os.path.isdir(dst):^M
+   ...:         pathlib.Path(dst).mkdir(parents=True, exist_ok=True)^M
+   ...:     for f in fnmatch.filter(os.listdir(src), pattern):^M
+   ...:         shutil.move(os.path.join(src, f), os.path.join(dst, f))^M
+   ...: source =r"C:\Users\sache\OneDrive\Documents\python_SAS\BasicStats\data\for demo"^M
+   ...: destination = 'C:\\Users\\sache\\demo\\data'^M
+   ...: move_dir(source, destination, Pattern='.csv')^M
+
+In [16]: os.listdir('./data')
+Out[16]: ['df4.csv', 'df5.csv', 'Iris.csv']
+
+In [19]: os.path.getsize('./data/Iris.csv')
+Out[19]: 3867
+```
+
+The following snippet of summing file sizes in folder is from [stackoverflow](https://stackoverflow.com/questions/1392413/calculating-a-directorys-size-using-python)
+
+<div class="code-head"><span>code</span>file_folder_sizes.py</div>
+
+```python
+
+In [6]: def get_size(start_path = '.'):
+    ...:     total_size = 0
+    ...:     for dirpath, dirnames, filenames in os.walk(start_path):
+    ...:         for f in filenames:
+    ...:             fp = os.path.join(dirpath, f)
+    ...:             # skip if it is symbolic link
+    ...:             if not os.path.islink(fp):
+    ...:                 total_size += os.path.getsize(fp)
+    ...:
+    ...:     return total_size
+    ...:
+    ...: print(get_size(), 'bytes')
+    ...:
+5655 bytes
 ```
 
 # "\\"  or "/"
@@ -78,7 +127,7 @@ On Windows, paths are written using backslashes (\\, the key with "\|") as the s
 
 OS X and Linux, however, use the forward slash (/, the key with "?") as their path separator.
 
-I cannot remember these confusing details.  <span class="coding">path=os.path.join(dir,subdir,filename)</span> is easier than <span class='coding'>path=dir + '/' + subdir + '/'+filename`</span>, although they equivalent.
+<span class="coding">path=os.path.join(dir,subdir,filename)</span> is easier than <span class='coding'>path=dir + '/' + subdir + '/'+filename`</span>, although they equivalent.  <span class="coding">path=os.path.join(dir,subdir,filename)</span> is better than string concatenation because it prevents cross-platform issues.
 
 #### Solution 1. Double \\\
 Two wrongs make it right.  Just double it up. 
@@ -113,8 +162,9 @@ SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes in positio
 |:--------------------|:-------------|
 | <span class="coding">os.path.abspath</span> | Asolute path is the full path from the address bar |
 | <span class="coding">os.path.relpath</span> | Relative path gives the difference between two input paths |
-| '.' | denotes current working directory | 
 | <span class="coding">os.path.abspath('.')</span> | equivalent to os.getcwd() |
+|<span class="coding">.</span>| denotes current working directory | 
+|<span class="coding">..</span>| denotes backward a step, i.e.subtract a step in path | 
 
 
 <div class="code-head"><span>code</span>learn_path.py</div>
