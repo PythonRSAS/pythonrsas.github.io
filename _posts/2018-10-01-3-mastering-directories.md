@@ -19,7 +19,7 @@ We want to read data from the data folder, run code from the code folder, and ou
 | images  | output   | 
 | analysis| output   |
 
-# Create directory
+# 1. Create directory
 When we run a lot of analysis, we can automate creating the directories. 
 <span class="coding">os.path.exists</span> returns True/False given whether the folder in question exists or not.  <span class="coding">os.path.exists</span> goes ahead with making the folder if it is not there. 
 <div class="code-head"><span>code</span>create directory.py</div>
@@ -47,12 +47,10 @@ shutil.rmtree('demo', ignore_errors=True)
 
 ```
 
-# Get directory, content and change directory
+# 2. Access directory, content and change directory
 When we need to know where we are, use <span class="coding">os.getcwd()</span>.   To change that, use <span class="coding">os.chdir()</span> with full path as the parameter or use "./" with relative path. 
 
 <span class="coding">os.path.getsize</span> gives the size of a file (not folder).  
-
-
 
 <div class="code-head"><span>code</span>learn_path.py</div>
 
@@ -71,7 +69,7 @@ Out[5]: ['analysis', 'code', 'data', 'images']
 
 ```
 
-# Move files to where we want
+# 3. Move files to where we want
 Now we have set up the folder structure, we need to get the input files, some of which may come from another folder.   <span class="coding">os.getcwd()</span>.   To change that, use <span class="coding">os.chdir()</span> with full path as the parameter or use "./" with relative path. 
 
 <span class="coding">os.path.getsize</span> gives the size of foler.  Because we just created the folder, it has size 0. 
@@ -103,8 +101,7 @@ The following snippet of summing file sizes in folder is from [stackoverflow](ht
 <div class="code-head"><span>code</span>file_folder_sizes.py</div>
 
 ```python
-
-In [6]: def get_size(start_path = '.'):
+In [20]: def get_size(start_path = '.'):
     ...:     total_size = 0
     ...:     for dirpath, dirnames, filenames in os.walk(start_path):
     ...:         for f in filenames:
@@ -119,6 +116,65 @@ In [6]: def get_size(start_path = '.'):
     ...:
 5655 bytes
 ```
+#  4. Write some data analysis program to run
+We write two simple scripts for demo.  
+1. basic_stats.py: it defines a DataDescription class that has two methods: summary statistics for all the columns, and Pearson correlation for the numeric columns. 
+
+2. iris_analysis.py: it imports the data from the data folder, and performs the analysis using basic_stats.  This is the program we call on the command line.
+
+> Notice that in these two programs, we *have not coded any full path name*. That's because the full path name was given in <span class="coding">\__file__</span>. 
+
+<div class="code-head"><span>code</span>basic_stats.py</div>
+
+```python
+
+import os
+import pandas as pd
+import warnings
+warnings.filterwarnings('ignore')
+class DataDescription(object):
+    def __init__(self, data,cate):
+        self.data = data
+        self.cate = cate
+    def summary(self):
+        summary = self.data.groupby(self.cate).describe().unstack().unstack().round(2)
+        print(summary)
+        return summary
+    def cal_corr(self):
+        pearson_corr = self.data.groupby(self.cate).corr(method='pearson').round(2)
+        # spearman_corr = self.data.groupby(self.cate).corr(method='spearman').round(2)
+        print("\n PEARSON",pearson_corr)
+        # print("\n SPEARMAN",spearman_corr)
+        return pearson_corr
+```
+
+<div class="code-head"><span>code</span>iris_analysis.py</div>
+
+```python
+import os
+import pandas as pd
+import warnings
+from basic_stats import DataDescription
+warnings.filterwarnings('ignore')
+base_path = os.path.abspath(os.path.join(__file__, "../.."))
+input_path = os.path.join(base_path,'data')
+output_path = os.path.join(base_path,'analysis')
+print("\n input_path",input_path)
+df = pd.read_csv(os.path.join(input_path,"Iris.csv"))
+print(df.shape)
+print(df.info())
+summary = DataDescription(df,'species').summary()
+corr = DataDescription(df,'species').cal_corr()
+corr.to_excel(os.path.join(output_path,'iris_corr.xlsx'))
+summary.to_excel(os.path.join(output_path,'iris_summary.xlsx'))
+
+```
+Some of the result of running the program is in the screenshot below. 
+<figure>
+  <img src="{{ "/images/posts/mastering_path.png" | relative_url }}">
+  <figcaption></figcaption>
+</figure>
+
 
 # "\\"  or "/"
 <!-- When running SAS programs in SAS EG, we never ran into any problem directly pasting the address from Windows directory.  But for running Python and R programs, we need to deal with this small inconvinience.  -->
@@ -172,10 +228,10 @@ SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes in positio
 ```python
 In [1]: import os
         os.path.abspath('.')
-Out[1]: 'C:\\Users\\sarahchen'
+Out[1]: 'C:\\Users\\sache'
 
 In [2]: os.path.abspath('.\\onedrive')
-Out[2]: 'C:\\Users\\sarahchen\\onedrive'
+Out[2]: 'C:\\Users\\sache\\onedrive'
 
 In [3]: os.path.isabs(os.path.abspath('.'))
 Out[3]: True
@@ -198,10 +254,10 @@ Out[7]: '.'
 ```python
 In [1]: import os
         os.path.abspath('.')
-Out[1]: 'C:\\Users\\sarahchen'
+Out[1]: 'C:\\Users\\sache'
 
 In [2]: os.path.abspath('.\\onedrive')
-Out[2]: 'C:\\Users\\sarahchen\\onedrive'
+Out[2]: 'C:\\Users\\sache\\onedrive'
 
 In [3]: os.path.isabs(os.path.abspath('.'))
 Out[3]: True
@@ -280,19 +336,9 @@ Out[21]: 'C:\\Users\\sache'
 In [23]: os.path.dirname(os.path.dirname(path))
 Out[23]: 'C:\\Users'
 
-# better way
+# alternatively
 In [33]: os.path.abspath(os.path.join(path,"../../.."))
 Out[33]: 'C:\\'
-```
-
-However, you cannot get grandchildren.
-```python
-
-{In [24]: os.path.basename(path)
-Out[24]: 'OneDrive'
-
-In [25]: os.path.basename(os.path.basename(path))
-Out[25]: 'OneDrive'}
 ```
 
 # Relative path and absolute path
