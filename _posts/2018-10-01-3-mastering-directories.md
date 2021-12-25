@@ -19,6 +19,34 @@ We want to read data from the data folder, run code from the code folder, and ou
 | images | output |
 | analysis| output |
 
+# Create directory
+When we run a lot of analysis, we can automate creating the directories. 
+<span class="coding">os.path.exists</span> returns True/False given whether the folder in question exists or not.  <span class="coding">os.path.exists</span> goes ahead with making the folder if it is not there. 
+<div class="code-head"><span>code</span>create directory.py</div>
+
+```python
+In [1]: import os
+   ...: os.mkdir('demo')
+   ...: folder_list=['code','data','images','analysis']
+   ...: def makedir(folder):
+   ...:     if not os.path.exists(folder):
+   ...:         os.mkdir(folder)
+   ...: for folder in folder_list:
+   ...:     makedir('demo/'+folder)
+   ...: os.listdir('demo/')
+   ...:
+Out[1]: ['analysis', 'code', 'data', 'images']
+
+```
+If we happen to have an old folder with the same name, we need to remove it first. Otherwise the above will run into errors.  
+<div class="code-head"><span>code</span>remove directory.py</div>
+
+```python
+import shutil
+shutil.rmtree('demo', ignore_errors=True)
+
+```
+
 # "\\"  or "/"
 <!-- When running SAS programs in SAS EG, we never ran into any problem directly pasting the address from Windows directory.  But for running Python and R programs, we need to deal with this small inconvinience.  -->
 
@@ -80,22 +108,13 @@ Out[19]: 'C:\\Users\\sache\\OneDrive'
 In [30]: os.path.getsize(path)
 Out[30]: 65536
 ```
-# Create directory
-When we run a lot of analysis, we can automate creating the directories. 
-<span class="coding">os.path.exists</span> returns True/False given whether the folder in question exists or not.  <span class="coding">os.path.exists</span> goes ahead with making the folder if it is not there. 
-<div class="code-head"><span>code</span>create directory.py</div>
-
-```python
-In [1]: import os
-if not os.path.exists("images"):
-    os.makedirs("images")
-```
 
 # Absolute path
+
 |  function, notation | usage        |
 |:--------------------|:-------------|
 | <span class="coding">os.path.abspath</span> | Asolute path is the full path from the address bar |
-| <span class="coding">os.path.relpath</span> | Relative path gives the difference between two input paths. |
+| <span class="coding">os.path.relpath</span> | Relative path gives the difference between two input paths |
 | '.' | denotes current working directory | 
 | <span class="coding">os.path.abspath('.')</span> | equivalent to os.getcwd() |
 
