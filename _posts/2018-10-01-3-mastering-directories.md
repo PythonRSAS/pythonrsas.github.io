@@ -2,7 +2,7 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "mastering directories"
+title: "Mastering directories"
 description: Understanding use of path in a Python program
 author: Sarah Chen
 image: images/posts/photos/IMG-0682.JPG
@@ -92,8 +92,8 @@ if not os.path.exists("images"):
 ```
 
 # Absolute path
-|  function, notation    | usage      |
-|:-------------------|:-------------------|
+|  function, notation | usage        |
+|:--------------------|:-------------|
 | <span class="coding">os.path.abspath</span> | Asolute path is the full path from the address bar |
 | <span class="coding">os.path.relpath</span> | Relative path gives the difference between two input paths. |
 | '.' | denotes current working directory | 
