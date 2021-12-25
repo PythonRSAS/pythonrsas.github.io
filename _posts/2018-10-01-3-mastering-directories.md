@@ -5,17 +5,19 @@ category: "python for sas"
 title: "mastering directories"
 description: Understanding use of path in a Python program
 author: Sarah Chen
-image: images/posts/photos/IMG-0685.JPG
+image: images/posts/photos/IMG-0682.JPG
 
 ---
 Say we are doing some data analysis.  And our project directory has two folders that contains code and inputs: code and data. 
 
-We want to read data from the data folder, run code from the code folder, and output our analysis results with plots in .png and analysis in .txt files.
+We want to read data from the data folder, run code from the code folder, and output our analysis results with plots in .png and analysis in .txt files.  
 
-|  Type of files     | Input folder       | Output folder |
-|:-------------------|:-------------------|:-------------------|
-| code | code| images, analysis|
-| input data | data| images, analysis|
+|  Type of files     | Input/output      |
+|:-------------------|:-------------------|
+| code | the file |
+| data | input | 
+| images | output |
+| analysis| output |
 
 # "\\"  or "/"
 <!-- When running SAS programs in SAS EG, we never ran into any problem directly pasting the address from Windows directory.  But for running Python and R programs, we need to deal with this small inconvinience.  -->
@@ -90,8 +92,14 @@ if not os.path.exists("images"):
 ```
 
 # Absolute path
-Asolute path is the full path that we get from the address bar in Windows. <span class="coding">os.path.abspath</span>
-<span class="coding">os.path.relpath</span> gives the difference between two input paths. 
+|  function, notation    | usage      |
+|:-------------------|:-------------------|
+| <span class="coding">os.path.abspath</span> | Asolute path is the full path from the address bar |
+| <span class="coding">os.path.relpath</span> | Relative path gives the difference between two input paths. |
+| '.' | denotes current working directory | 
+| <span class="coding">os.path.abspath('.')</span> | equivalent to os.getcwd() |
+
+
 <div class="code-head"><span>code</span>learn_path.py</div>
 
 ```python
