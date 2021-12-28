@@ -221,58 +221,6 @@ PROC IMPORT
 |                   |  Input filename $100.;                                                       |                                                              |                                      |
 |                   | Put filename=;Run;                                                           |                                                              |                                      |
 
-## SAS Macro variable like in Python
-There are three ways to enter arguments, which are similar to SAS macro variable. 
-<div class="code-head"><span>code</span>arguments.py</div>
-
-```py
-def foo(x,y,z):
-    print("x=" + str(x))
-    print("y=" + str(y))
-    print("z=" + str(z))
-# 3 ways to enter argument (like SAS macrovariable)
-# Method: List
-mylist = [1,2,3]
-foo(*mylist)
-
-Method: tuple
-myTuple = (1,2,3)
-foo(*myTuple)
-# Out
-# x=1
-# y=2
-# z=3
-# Method: dictionary
-Two **
-If we supply two **, it tells Python to use the values in the dictionary and plug into the function.   Whereas if we supply one *, we tell Python to use the keys in the dictionary for the function. 
-mydict = {'x':1,'y':2,'z':3}
-foo(**mydict)
-# same output as the above
-One *
-def sum(a,b):
-    return a+b
-
-values= (1,2)
-sum(*values)
-# Out 3
-
-values = {'a':1,'b':2}
-sum(*values)
-#  'ab'
-sum(**values)
-
-def sum(a, b, c, d):
-    return a + b + c + d
-
-values1 = (1, 2)
-values2 = { 'c': 10, 'd': 15 }
-s = sum(*values1, **values2)
-# will execute as:
-s = sum(1, 2, c=10, d=15)
-
-```
-
-
 ### Summary Statistics:
 1.  Simulations or shuffling
 2.  Non-parametric tests, like the Mann-Whitney rank test  can work with non-normal distributions and ordered-level data.  On the other hand, these tests are also less powerful. 
