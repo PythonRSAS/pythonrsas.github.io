@@ -5,7 +5,7 @@ category: "python for sas"
 title: "SAS macro like in Python"
 description: drawing analogies between Python and SAS
 author: Sarah Chen
-image: images/posts/IMG-0669.JPG
+image: images/posts/photos/IMG-0683.JPG
 
 ---
 We have a lot of code in SAS at work.  I often need to work in Python, R and SAS all together between projects in the same day. 
