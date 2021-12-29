@@ -12,31 +12,40 @@ We have a lot of code in SAS at work.  I often need to work in Python, R and SAS
 
 
 ## SAS Macro variable like in Python
-There are three ways to enter arguments, which are similar to SAS macro variable. 
+There are three ways to enter arguments to a Python function, which are similar to SAS macro variable for SAS functions. 
+
+In SAS, a macro variable is prefixed with <span class="coding">&</span>. Whereas in Python, the name that holds the arguments is prefixed with <span class="coding">*</span>. 
+
+The object that holds that arguments can be:
+- list
+- tuple
+- dictionary
+With one *, we tell Python to use the keys in the dictionary for the function. 
+If we supply two **, it tells Python to use the values in the dictionary and plug into the function.   
+
 <div class="code-head"><span>code</span>arguments.py</div>
 
 ```py
-def foo(x,y,z):
-    print("x=" + str(x))
-    print("y=" + str(y))
-    print("z=" + str(z))
-# 3 ways to enter argument (like SAS macrovariable)
-# Method: List
-mylist = [1,2,3]
-foo(*mylist)
-
-Method: tuple
-myTuple = (1,2,3)
-foo(*myTuple)
-# Out
-# x=1
-# y=2
-# z=3
+>>> # 3 ways to enter argument (like SAS macrovariable)
+>>> def sas(x,y,z):
+>>>     print("x=" + str(x))
+>>>     print("y=" + str(y))
+>>>     print("z=" + str(z))
+>>> # Method: List
+>>> mylist = [1,2,3]
+>>> sas(*mylist)
+x=1
+y=2
+z=3
+>>> #### Method: tuple
+>>> myTuple = (1,2,3)
+>>> sas(*myTuple)
+```
 # Method: dictionary
 Two **
-If we supply two **, it tells Python to use the values in the dictionary and plug into the function.   Whereas if we supply one *, we tell Python to use the keys in the dictionary for the function. 
+
 mydict = {'x':1,'y':2,'z':3}
-foo(**mydict)
+sas(**mydict)
 # same output as the above
 One *
 def sum(a,b):
