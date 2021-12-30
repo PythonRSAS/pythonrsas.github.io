@@ -189,12 +189,13 @@ barplot(table(df$x),horiz=True)
 
 | Purpose           | SAS                                                                          | Python                                                       | R                                    |
 |:------------------|:-----------------------------------------------------------------------------|:-------------------------------------------------------------|:-------------------------------------|
-| input             | PROC IMPORT DATAFILE = " " OUT=df DBMS=CSV REPLACE; GUESSINGROWS=10000; RUN; | pd.read_csv("") # encoding=”cp1252”,encoding=”ISO-8859-1”   
-pd.read_sas("",encoding=”latin-1” )  | read.table(file, as.is=TRUE)   read.csv("", header=TRUE)    load() # load data written with save   |
-
+| input             | PROC IMPORT DATAFILE = " " OUT=df DBMS=CSV REPLACE; GUESSINGROWS=10000; RUN; | pd.read_csv("") # encoding=”cp1252”,encoding=”ISO-8859-1”    | read.table(file, as.is=TRUE)         |
+|                   |                                                                              | pd.read_sas("",encoding=”latin-1” )                          | read.csv("", header=TRUE)            |
+|                   |                                                                              |                                                              | load() # load data written with save |
 | output            | PROC EXPORT DATA= df OUTFILE= ""  DBMS=csv REPLACE; RUN;                     | df.to_csv(index=False)                                       | save()                               |
-| content           | proc contents data = df   out = dsList (keep=memname memlabel name label nobs varnum) noprint;run;                                                    | array.ndim, .shape, .size, .dtype, .itemsize, .nbytes        | str(df)                              |
-|                    |  | df.info(), df.dtypes    ****                                     |                                      |
+| content           | proc contents data = df                                                      | array.ndim, .shape, .size, .dtype, .itemsize, .nbytes        | str(df)                              |
+|                   | out = dsList (keep=memname memlabel name label nobs varnum) noprint;run;     |                                                              |                                      |
+|                   |                                                                              | df.info(), df.dtypes                                         |                                      |
 | summary           | PROC MEANS DATA=df NWAY; CLASS species; VAR x1-x6; RUN;                      | df.describe()                                                | summary(dt)                          |
 |                   | PROC SUMMARY                                                                 | df.x.describe()                                              |                                      |
 |                   | PROC SQL                                                                     | pd.pivot_table()                                             |                                      |
