@@ -3,12 +3,14 @@ layout: post
 tag : Learning Python and SAS
 category: "python for sas"
 title: "SAS macro variable like in Python"
-description: drawing analogies between Python and SAS
+description: drawing analogies between Python function arguments and SAS macro variables
 author: Sarah Chen
 image: images/posts/photos/IMG-0683.JPG
 
 ---
 We have a lot of code in SAS at work.  I often need to work in Python, R and SAS all together between projects in the same day. 
+
+Python functions are a lot like SAS macros.  What is the analogy to SAS macro variable in Python?
 
 ## SAS Macro variable like in Python
 There are three ways to enter arguments to a Python function, which are similar to SAS macro variable for SAS functions. 
@@ -19,6 +21,7 @@ The object that holds that arguments can be:
 - list
 - tuple
 - dictionary
+
 When the argument is given in the format of a dictionary, <span class="coding">*</span> tells Python to use the keys in the dictionary for the function,  two <span class="coding">**</span>, tells Python to use the values in the dictionary and plug into the function.  We can think of it as if the first <span class="coding">*</span> locates the key, and then the second <span class="coding">*</span> locates the value associated with the key. 
 
 <div class="code-head"><span>code</span>arguments.py</div>

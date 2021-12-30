@@ -12,7 +12,7 @@ Work in Progress.  Check back later.
 
 1. Keyboard shortcuts
 2. Import libraries,modules, and import data 
-3. Working with the basics
+3. Working with the basics,frequency and plots
  
 # Keyboard shortcuts
 When we are used to writing in a language, switching to another one can make use feel slow and dumb.  Having the keyboard shortcuts in hand will allow us to pick up speed easier. 
@@ -47,7 +47,7 @@ If we have code that we use again and again, let us keep it in a separate piece 
 </p></div>
 
 <div class="note"><p>
-<b>Note</b>: NEVER NEVER <span class="coding">from libraryName import *</span> It can cause name clashes and all kinds of mysterious bad stuff.
+<b>Note</b>: NEVER <span class="coding">from libraryName import *</span> It can cause name clashes and all kinds of mysterious bad stuff.
 </p></div>
 
 **SAS**  
@@ -134,9 +134,23 @@ df.mean()
 ```sas
 PROC IMPORT 
 ```
-## basics
+# basics
+## freqency and frequency plot
+<div class="code-head"><span>code</span>frequency.py</div>
 
+```py
+df.x.value_counts()
+df.x.value_counts().plot(kind='bar)
+```
+<div class="code-head"><span>code</span>frequency.r</div>
 
+```r
+table(df$x)
+barplot(table(df$x))
+barplot(table(df$x),horiz=True)
+```
+
+# summary
 | Purpose           | SAS                                    | Python                                                       |
 |:------------------|:---------------------------------------|:-------------------------------------------------------------|
 | content           | PROC CONTENT                           | df.info(), df.dtypes                                         |
@@ -175,13 +189,11 @@ PROC IMPORT
 
 | Purpose           | SAS                                                                          | Python                                                       | R                                    |
 |:------------------|:-----------------------------------------------------------------------------|:-------------------------------------------------------------|:-------------------------------------|
-| input             | PROC IMPORT DATAFILE = " " OUT=df DBMS=CSV REPLACE; GUESSINGROWS=10000; RUN; | pd.read_csv("") # encoding=”cp1252”,encoding=”ISO-8859-1”    | read.table(file, as.is=TRUE)         |
-|                   |                                                                              | pd.read_sas("",encoding=”latin-1” )                          | read.csv("", header=TRUE)            |
-|                   |                                                                              |                                                              | load() # load data written with save |
+| input             | PROC IMPORT DATAFILE = " " OUT=df DBMS=CSV REPLACE; GUESSINGROWS=10000; RUN; | pd.read_csv("") # encoding=”cp1252”,encoding=”ISO-8859-1”   pd.read_sas("",encoding=”latin-1” )  | read.table(file, as.is=TRUE)   read.csv("", header=TRUE)    load() # load data written with save   |
+
 | output            | PROC EXPORT DATA= df OUTFILE= ""  DBMS=csv REPLACE; RUN;                     | df.to_csv(index=False)                                       | save()                               |
-| content           | proc contents data = df                                                      | array.ndim, .shape, .size, .dtype, .itemsize, .nbytes        | str(df)                              |
-|                   | out = dsList (keep=memname memlabel name label nobs varnum) noprint;run;     |                                                              |                                      |
-|                   |                                                                              | df.info(), df.dtypes                                         |                                      |
+| content           | proc contents data = df   out = dsList (keep=memname memlabel name label nobs varnum) noprint;run;                                                    | array.ndim, .shape, .size, .dtype, .itemsize, .nbytes        | str(df)                              |
+|                    |  | df.info(), df.dtypes                                         |                                      |
 | summary           | PROC MEANS DATA=df NWAY; CLASS species; VAR x1-x6; RUN;                      | df.describe()                                                | summary(dt)                          |
 |                   | PROC SUMMARY                                                                 | df.x.describe()                                              |                                      |
 |                   | PROC SQL                                                                     | pd.pivot_table()                                             |                                      |
