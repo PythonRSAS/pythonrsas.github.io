@@ -10,18 +10,22 @@ image: images/posts/IMG-0669.JPG
 ---
 Work in Progress.  Check back later. 
 
-1. Keyboard shortcuts
-2. Import libraries,modules, and import data 
-3. Working with the basics,frequency and plots
- 
+- [Keyboard shortcuts](#Keyboard-shortcuts)
+- [Import libraries,modules, and import data](#frequency-barplots) data)
+- [Working with the basics](#Working-with-the-basics)
+- [frequency and plots](#frequency-and-plots)
+
+# Version
+####  RStudio
+What's the version number: Tools -> Global Options
 # Keyboard shortcuts
 When we are used to writing in a language, switching to another one can make use feel slow and dumb.  Having the keyboard shortcuts in hand will allow us to pick up speed easier. 
 #### RStudio 
-- The pipe operator `%>%` is `Ctrl+Shift+M` (Windows) or `Cmd+Shift+M` (Mac).
+- The pipe operator <span class="coding"> </span>%>%<span class="coding"> </span> is <span class="coding"> </span>Ctrl+Shift+M<span class="coding"> </span> (Windows) or `Cmd+Shift+M` (Mac).
 - The assignment operator `<-` is `Alt + -` (Windows) or Option + - (Mac).
 - `Ctrl+L` to clear all the code from your console.
 - `Ctrl+2` and `Ctrl+1` to move the curser back and forth the source editor.
-- `Ctrl+Enter` (Windows)To run a line of code from the source editor use  or Cmd+Enter (Mac).
+- <span class="coding"> </span>Ctrl+Enter<span class="coding"> </span> (Windows)To run a line of code from the source editor use  or Cmd+Enter (Mac).
 - `Ctrl + ↑` (Windows) to scroll through your command history by clicking  or Cmd + ↑ (Mac). 
 - Search a matching subset of the history: type the first few characters and then press `Ctrl/Cmd + ↑`
 - Rename all instances of a variable name: highlight one instance of the variable name and then using Code > *Rename in Scope*. This is better than using Edit > Replace and Find because it only looks for whole word matches.
