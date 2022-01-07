@@ -16,8 +16,98 @@ Work in Progress.  Check back later.
 - [Working with the basics](#Working-with-the-basics)
 - [frequency](#frequency)
 
+# Inputting data
+R has different dialets.  It is more versatile and fragmented than SAS and Python.  Its different "dialets" can be confusing for someone who does not use it often.  
 
-<div class="code-head"><span>code</span>input and output.r</div>
+In SAS, <span class="coding">PROC IMPORT</span> imports external data.  Inline data can be created using <span class="coding">DATA</span> step.  That is about 99% of the cases already.  
+
+In Python, we generally use the pandas library to bring in data. 
+
+## Load data that comes with IDE or libraries
+Loading data that comes with IDE or libraries allows me to test code and fast prototype. 
+
+Working with Python, I use Ipython shell and VSCode.  Neither of them come with any datasets. To load some well-known datasets quickly, first need to import one of those libraries that packaged with them. 
+```python
+# variable and target together
+In [1]: import seaborn as sns
+   ...: iris = sns.load_dataset("iris")
+   ...: iris.head()
+      sepal_length  sepal_width  petal_length  petal_width species
+0         5.100        3.500         1.400        0.200  setosa
+1         4.900        3.000         1.400        0.200  setosa
+2         4.700        3.200         1.300        0.200  setosa
+3         4.600        3.100         1.500        0.200  setosa
+4         5.000        3.600         1.400        0.200  setosa
+# as an array
+In [2]: from sklearn.datasets import load_iris
+   ...: data = load_iris()
+   ...: data.target[[10, 25, 50]]
+   ...:
+   ...: list(data.target_names)
+   ...:
+Out[2]: ['setosa', 'versicolor', 'virginica']
+# as a pandas DataFrame
+In [5]: X,y=load_iris(return_X_y=True, as_frame=True)
+
+In [6]: type(X)
+Out[6]: pandas.core.frame.DataFrame
+
+In [7]: X.head()
+Out[7]:
+   sepal length (cm)  sepal width (cm)  petal length (cm)  petal width (cm)
+0              5.100             3.500              1.400             0.200
+1              4.900             3.000              1.400             0.200
+2              4.700             3.200              1.300             0.200
+3              4.600             3.100              1.500             0.200
+4              5.000             3.600              1.400             0.200
+```
+<span class="coding">data(mtcars)</span> can be used to load any dataset that comes with RStudio.  This makes testing code fast and easy.  For example, <span class="coding">data("mtcars")</span> loads the cars dataset, and <span class="coding">data("iris")</span> loads the iris dataset. 
+
+### SAS
+There are many famous datasets that comes with the sas. See [Sashelp Data Sets - SAS Support]https://support.sas.com/documentation/tools/sashelpug.pdf).  <span class="coding">data=sashelp.iris </span> will automatically load the data. 
+<div class="code-head"><span>code</span>existing data.sas</div>
+
+```sas
+proc contents data=sashelp.iris varnum;
+ods select position;
+run;
+title "The First Five Observations";
+proc print data=sashelp.iris(obs=5) noobs;
+run;
+
+```
+
+## External data
+### r
+<span class="coding">read.table</span>is the principal means of reading tabular data into R. For details, please see [read.table](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/read.table)
+
+<div class="code-head"><span>code</span>input.r</div>
+
+```r
+read.table(file, header = FALSE, sep = "", quote = "\"'",
+           dec = ".", numerals = c("allow.loss", "warn.loss", "no.loss"),
+           row.names, col.names, as.is = !stringsAsFactors,
+           na.strings = "NA", colClasses = NA, nrows = -1,
+           skip = 0, check.names = TRUE, fill = !blank.lines.skip,
+           strip.white = FALSE, blank.lines.skip = TRUE,
+           comment.char = "#",
+           allowEscapes = FALSE, flush = FALSE,
+           stringsAsFactors = default.stringsAsFactors(),
+           fileEncoding = "", encoding = "unknown", text, skipNul = FALSE)
+read.csv(file, header = TRUE, sep = ",", quote = "\"",
+         dec = ".", fill = TRUE, comment.char = "", …)
+
+read.csv2(file, header = TRUE, sep = ";", quote = "\"",
+          dec = ",", fill = TRUE, comment.char = "", …)
+
+read.delim(file, header = TRUE, sep = "\t", quote = "\"",
+           dec = ".", fill = TRUE, comment.char = "", …)
+
+read.delim2(file, header = TRUE, sep = "\t", quote = "\"",
+            dec = ",", fill = TRUE, comment.char = "", …)
+```
+
+<div class="code-head"><span>code</span>input.r</div>
 
 ```r
 read.table(file,header=TRUE) # default separator is sep=" " is any white space
@@ -315,8 +405,19 @@ nba2d <- prcomp(nba[,goodCols], center=TRUE)
 twoColumns <- nba2d$x[,1:2]
 clusplot(twoColumns, labels)
 ```
+In SAS, use the [Tree procedure](https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.4/statug/statug_tree_examples02.htm)
 <div class="code-head"><span>code</span>import data.sas</div>
 
 ```sas
-PROC IMPORT 
+title 'Fisher (1936) Iris Data';
+ods graphics on;
+
+proc cluster data=sashelp.iris method=twostage print=10
+             outtree=tree k=8 noeigen;
+   var SepalLength SepalWidth PetalLength PetalWidth;
+   copy Species;
+run;
+proc tree data=tree horizontal lineprinter pages=1 maxh=10;
+   id species;
+run; 
 ```
