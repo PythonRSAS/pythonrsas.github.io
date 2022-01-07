@@ -10,91 +10,12 @@ image: images/posts/IMG-0669.JPG
 ---
 Work in Progress.  Check back later. 
 
-- [Keyboard shortcuts](#Keyboard-shortcuts)
-- [Import libraries,modules, and import data](#frequency-barplots) data)
+- [input and output](#input-and-output) data)
+- [quick summary](#quick-summary)
+- [barplots](#barplots)
 - [Working with the basics](#Working-with-the-basics)
-- [frequency and plots](#frequency-and-plots)
+- [frequency](#frequency)
 
-# Version
-####  RStudio
-What's the version number: Tools -> Global Options
-# Keyboard shortcuts
-I put keyboard shortcuts first because:
-When we are used to writing in a language, switching to another one can make use feel slow and dumb. Using keyboard shortcuts will allow us to pick up speed and feel at home. 
-
-#### VSCode
-VSCode is especially useful when we are writing packages or modules
-[keyboard shortcuts pdf](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
-
-##### Add custom snippets
-Using custom snippets helps save time.  Using 3 languages has a lot of syntax and libraries to remember.  
-[how to add a snippet](https://code.visualstudio.com/docs/editor/userdefinedsnippets).
-> `shift + command + p` and type snippets => Select `Preferences`: Open User Snippets 
-[snippet generator](https://snippet-generator.app/)
-
-#### RStudio 
-- The pipe operator <span class="coding">>%>%</span<span class="coding"> </span> is <span class="coding">Ctrl+Shift+M </span>(Windows) or <span class="coding">Cmd+Shift+M</span> (Mac).
-- The assignment operator `<-` is `Alt + -` (Windows) or Option + - (Mac).
-- <span class="coding">Ctrl+L</span> to clear all the code from your console.
-- <span class="coding">Ctrl+2 </span> and `Ctrl+1` to move the curser back and forth the source editor.
-- <span class="coding">Ctrl+Enter </span>  (Windows)To run a line of code from the source editor.
-- `Ctrl + ↑` (Windows) to scroll through your command history by clicking  or Cmd + ↑ (Mac). 
-- Search a matching subset of the history: type the first few characters and then press `Ctrl/Cmd + ↑`
-- Rename all instances of a variable name: highlight one instance of the variable name and then using Code > *Rename in Scope*. This is better than using Edit > Replace and Find because it only looks for whole word matches.
-## Run external code
-If we have code that we use again and again, let us keep it in a separate piece of code (Calling it a piece of code is a genearal way of saying it, which may have other names such as "module", "function", or "macro" in SAS).  Try not to copy and paste even if "Ctrl C" and "Ctrl V" may be our favorite technology. Copying and pasting code all over the place can make our code much longer (and dreadful sometimes) than needed, and messy. 
-
-**Python** - 2 ways depending on which enviroment I am using.  I often use both Jupyter Notebook and the command line simultaneously. 
-- <span class="coding">%run</span> magic command in Jupyter Notebook.  E.g. <span class="coding">%run C:/.../myCode.py</span>
-- <span class="coding">python C:/.../myCode.py</span> in command prompt. 
-
-<div class="note"><p>
-<b>Note</b>: Imported libraries are cached.  So you import an updated version of the library, it will still be the old one showing up, unless you start a new session.
-</p></div>
-
-<div class="note"><p>
-<b>Note</b>: NEVER <span class="coding">from libraryName import *</span> It can cause name clashes and all kinds of mysterious bad stuff.
-</p></div>
-
-**SAS**  
-
-Import and run a piece of external code in SAS is easy.  Say we have a few lines of code contained in "step0_libnames_options.sas" that specifies options, directories and a few macro variables for our project.  We can call it to task by using the <span class="coding">%include </span> statement.
-
-<div class="code-head"><span>code</span>step0_libnames_options.sas</div>
-
-```sas
-options mprint mlogic symbolgen compress=binary;
-options varlidvarname=any;
-libname newdata "c:\users\sc\newdata";
-%let outpath = A:\sc\output;
-```
-There are many ways to use the <span class="coding">%include </span> statement. Below is a simple example.  Remember that what we are calling needs to be in quotes. 
-<div class="code-head"><span>code</span>import external code.sas</div>
-
-```sas
-%let code_dir = "c:\users\sc\code";
-%include "&code_dir.\step0_libnames_options.sas";
-```
-
-
-<div class="code-head"><span>code</span>import libraries.py</div>
-
-```python
-import pandas as pd
-```
-
-<div class="code-head"><span>code</span>import libraries.r</div>
-
-```r
-install.packages('data.table') #data.table has no dependencies
-library(data.table)
-
-install.packages('feather')
-library(feather)
-
-install.packages('zoo', dependencies = TRUE)
-library(zoo)
-```
 
 <div class="code-head"><span>code</span>input and output.r</div>
 
