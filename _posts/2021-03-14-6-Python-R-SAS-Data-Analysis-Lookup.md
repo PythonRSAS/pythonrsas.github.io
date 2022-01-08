@@ -10,11 +10,28 @@ image: images/posts/IMG-0669.JPG
 ---
 Work in Progress.  Check back later. 
 
-- [input and output](#input-and-output) data)
-- [quick summary](#quick-summary)
-- [barplots](#barplots)
-- [Working with the basics](#Working-with-the-basics)
-- [frequency](#frequency)
+- [Inputting data](#inputting-data)
+  - [Load data that comes with IDE or libraries](#load-data-that-comes-with-ide-or-libraries)
+    - [Python](#python)
+    - [R](#r)
+    - [SAS](#sas)
+  - [External data](#external-data)
+    - [Python](#python-1)
+    - [R](#r-1)
+- [First look at the data](#first-look-at-the-data)
+  - [Python](#python-2)
+- [basics](#basics)
+  - [freqency and frequency plot](#freqency-and-frequency-plot)
+- [summary](#summary)
+    - [Summary Statistics:](#summary-statistics)
+- [Visual Analysis](#visual-analysis)
+    - [frequency barplots](#frequency-barplots)
+      - [simple barplots](#simple-barplots)
+      - [stacked or grouped barplots for > 1 groups](#stacked-or-grouped-barplots-for--1-groups)
+    - [relationship between numeric data](#relationship-between-numeric-data)
+    - [Linear Regression](#linear-regression)
+    - [Random Forest](#random-forest)
+    - [Kmeans Clustering](#kmeans-clustering)
 
 # Inputting data
 R has different dialets.  It is more versatile and fragmented than SAS and Python.  Its different "dialets" can be confusing for someone who does not use it often.  
@@ -26,6 +43,7 @@ In Python, we generally use the pandas library to bring in data.
 ## Load data that comes with IDE or libraries
 Loading data that comes with IDE or libraries allows me to test code and fast prototype. 
 
+### Python
 Working with Python, I use Ipython shell and VSCode.  Neither of them come with any datasets. To load some well-known datasets quickly, first need to import one of those libraries that packaged with them. 
 ```python
 # variable and target together
@@ -61,6 +79,7 @@ Out[7]:
 3              4.600             3.100              1.500             0.200
 4              5.000             3.600              1.400             0.200
 ```
+### R
 <span class="coding">data(mtcars)</span> can be used to load any dataset that comes with RStudio.  This makes testing code fast and easy.  For example, <span class="coding">data("mtcars")</span> loads the cars dataset, and <span class="coding">data("iris")</span> loads the iris dataset. 
 
 ### SAS
@@ -78,7 +97,19 @@ run;
 ```
 
 ## External data
-### r
+### Python
+Most of the time, I use the pandas library to import data.  See [Input/output](https://pandas.pydata.org/docs/reference/io.html) for a comprehensive list of functions for a wide variety of formats of data. 
+
+<div class="code-head"><span>code</span>input.py</div>
+
+```python
+pandas.read_csv(filepath_or_buffer, index_col=None, usecols=None, dtype=None, engine=None, converters=None, true_values=None, skipinitialspace=False, skiprows=None, skipfooter=0, nrows=None, na_values=None, keep_default_na=True, skip_blank_lines=True, parse_dates=False, infer_datetime_format=False, keep_date_col=False, date_parser=None, dayfirst=False,  thousands=None, decimal='.',  encoding=None,  low_memory=True, float_precision=None)
+
+pandas.read_excel(io, sheet_name=0, header=0, names=None, index_col=None, usecols=None, dtype=None,  true_values=None, false_values=None, skiprows=None, nrows=None, na_values=None, keep_default_na=True, na_filter=True, verbose=False, parse_dates=False, date_parser=None, thousands=None, comment=None, skipfooter=0, convert_float=None, mangle_dupe_cols=True, storage_options=None)
+
+pandas.read_sas(filepath_or_buffer, format=None, index=None, encoding=None, chunksize=None, iterator=False)
+```
+### R
 <span class="coding">read.table</span>is the principal means of reading tabular data into R. For details, please see [read.table](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/read.table)
 
 <div class="code-head"><span>code</span>input.r</div>
@@ -122,29 +153,31 @@ data(x) # loads specific dataset
 read_feather(path, columns=NULL)
 write_feather(x, path)
 ```
+# First look at the data
 
 After having loaded the data, we can use the following to take a quick look before further processings.
+
+## Python
+
+<div class="code-head"><span>code</span>firstLook.py</div>
+
+```python
+df.info()
+df.dtypes()
+df.shape
+df.head()
+df.columns.tolist()
+```
+
 <div class="code-head"><span>code</span>firstLook.r</div>
 
 ```r
-read.table(file,header=TRUE) # default separator is sep=" " is any white space
-read.table(file, as.is=TRUE) # as.is=TRUE prevents string values from being converted to factors
-read.csv("file", ,header=TRUE) # specifically for .csv files
-
-load() # load the dataset written with save
-data(x) # loads specific dataset
 
 str(df) # similar to Python df.info() and SAS proc contents
 dim(df)
 head(df)
 tail(df)
 ```
-<div class="code-head"><span>code</span>firstLook.py</div>
-
-```python
-df.mean()
-```
-
 
 <div class="code-head"><span>code</span>firstLook.sas</div>
 
@@ -170,51 +203,51 @@ barplot(table(df$x),horiz=True)
 # summary
 
 
-| Purpose           | SAS                                                                          | Python                                                       | R                                    |
-|:------------------|:-----------------------------------------------------------------------------|:-------------------------------------------------------------|:-------------------------------------|
-| **input**            | PROC IMPORT DATAFILE = " " OUT=df DBMS=CSV REPLACE; GUESSINGROWS=10000; RUN; | pd.read_csv("") # encoding=”cp1252”,encoding=”ISO-8859-1”    | read.table(file, as.is=TRUE)         |
-|                   |                                                                              | pd.read_sas("",encoding=”latin-1” )                          | read.csv("", header=TRUE)            |
-|                   |                                                                              |                                                              | load() # load data written with save |
+| Purpose               | SAS                                                                          | Python                                                       | R                                    |
+| :-------------------- | :--------------------------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------- |
+| **input**             | PROC IMPORT DATAFILE = " " OUT=df DBMS=CSV REPLACE; GUESSINGROWS=10000; RUN; | pd.read_csv("") # encoding=”cp1252”,encoding=”ISO-8859-1”    | read.table(file, as.is=TRUE)         |
+|                       |                                                                              | pd.read_sas("",encoding=”latin-1” )                          | read.csv("", header=TRUE)            |
+|                       |                                                                              |                                                              | load() # load data written with save |
 | **output**            | PROC EXPORT DATA= df OUTFILE= ""  DBMS=csv REPLACE; RUN;                     | df.to_csv(index=False)                                       | save()                               |
 | **content**           | proc contents data = df                                                      | array.ndim, .shape, .size, .dtype, .itemsize, .nbytes        | str(df)                              |
-|                   | out = dsList (keep=memname memlabel name label nobs varnum) noprint;run;     |                                                              |                                      |
-|                   |                                                                              | df.info(), df.dtypes                                         |                                      |
+|                       | out = dsList (keep=memname memlabel name label nobs varnum) noprint;run;     |                                                              |                                      |
+|                       |                                                                              | df.info(), df.dtypes                                         |                                      |
 | **summary**           | PROC MEANS DATA=df NWAY; CLASS species; VAR x1-x6; RUN;                      | df.describe()                                                | summary(dt)                          |
-|                   | PROC SUMMARY                                                                 | df.x.describe()                                              |                                      |
-|                   | PROC SQL                                                                     | pd.pivot_table()                                             |                                      |
-|                   |                                                                              | df.groupby(by=’x’).sum()                                     |                                      |
-|                   |                                                                              | df.groupby(by=’x’).count()                                   |                                      |
-|                   |                                                                              | df.groupby(by=’x’).quantile([0.25,0.75])                     |                                      |
-|                   |                                                                              | df.groupby(level=’ind1’)                                     |                                      |
-| **missing count** | PROC MEANS N NMISS MISSING;                                                  | df.count()                                                   |                                      |
-|                   |                                                                              | df.isnull().sum()                                            |                                      |
-|                   | PROC FREQ TABLE /MISSING;                                                    |                                                              |                                      |
-| **frequency**     | PROC FREQ                                                                    | df.describe()                                                |                                      |
-|                   | PROC SQL                                                                     |                                                              |                                      |
-|                   |                                                                              | df.value.counts()                                            |                                      |
-|                   |                                                                              |                                                              |                                      |
-|                   |                                                                              | pd.crosstab(df.A, df.B).apply(lambda x: x/x.sum(), axis = 1) |                                      |
-| **distribution**  | PROC UNIVARIATE                                                              | df.describe(include=[np.number])                             |                                      |
+|                       | PROC SUMMARY                                                                 | df.x.describe()                                              |                                      |
+|                       | PROC SQL                                                                     | pd.pivot_table()                                             |                                      |
+|                       |                                                                              | df.groupby(by=’x’).sum()                                     |                                      |
+|                       |                                                                              | df.groupby(by=’x’).count()                                   |                                      |
+|                       |                                                                              | df.groupby(by=’x’).quantile([0.25,0.75])                     |                                      |
+|                       |                                                                              | df.groupby(level=’ind1’)                                     |                                      |
+| **missing count**     | PROC MEANS N NMISS MISSING;                                                  | df.count()                                                   |                                      |
+|                       |                                                                              | df.isnull().sum()                                            |                                      |
+|                       | PROC FREQ TABLE /MISSING;                                                    |                                                              |                                      |
+| **frequency**         | PROC FREQ                                                                    | df.describe()                                                |                                      |
+|                       | PROC SQL                                                                     |                                                              |                                      |
+|                       |                                                                              | df.value.counts()                                            |                                      |
+|                       |                                                                              |                                                              |                                      |
+|                       |                                                                              | pd.crosstab(df.A, df.B).apply(lambda x: x/x.sum(), axis = 1) |                                      |
+| **distribution**      | PROC UNIVARIATE                                                              | df.describe(include=[np.number])                             |                                      |
 | **drop/keep columns** | DATA df (drop = col_name);                                                   | df.drop(['x1', 'x2', 'x3'], axis = 1                         |                                      |
-|                   | DATA df (keep = col_name);                                                   | df.loc[:, ['x1', 'x2'])                                      |                                      |
+|                       | DATA df (keep = col_name);                                                   | df.loc[:, ['x1', 'x2'])                                      |                                      |
 | **rename**            | DATA df (RENAME = (old=new col_name));                                       | df.columns = ['name1', 'name2', 'name3']                     |                                      |
 | **sort**              | PROC SORT; BY x1 DESCENDING x2;                                              | df.sort(['x1', 'x2'], ascending = [True, False])             |                                      |
 | **binning**           | PROC RANK;                                                                   | pd.cut(x, [min, cut1, …, cutk, max])                         |                                      |
-|                   |                                                                              | np.digitize(x, [cut1, cut2, …, cutk])                        |                                      |
-|                   |                                                                              | pd.qcut(df.x, n, labels=False)                               |                                      |
-| **replace value**     | IF THEN;                                                                     |    df.x.replace(zip(old,new))                                            |                                      |
+|                       |                                                                              | np.digitize(x, [cut1, cut2, …, cutk])                        |                                      |
+|                       |                                                                              | pd.qcut(df.x, n, labels=False)                               |                                      |
+| **replace value**     | IF THEN;                                                                     | df.x.replace(zip(old,new))                                   |                                      |
 | **combine datasets**  | DATA + MERGE;                                                                | pd.merge(df1, df2, how=’left’,on=’x’)                        |                                      |
-|                   | PROC SQL;                                                                    |                                                              |                                      |
+|                       | PROC SQL;                                                                    |                                                              |                                      |
 | **filter join**       | DATA + in;                                                                   | df1[df1.x.isin(df2.x)]                                       |                                      |
-|                   | PROC SQL                                                                     | df1[~df1.x.isin(df2.x)]                                      |                                      |
+|                       | PROC SQL                                                                     | df1[~df1.x.isin(df2.x)]                                      |                                      |
 | **get help**          |                                                                              | object ?                                                     | ?object                              |
 | **upgrade library**   |                                                                              | pip3 install --upgrade packageName --user                    |                                      |
 | **directory**         | Filename filelist pipe "dir /b /s c:\temp\*.sas";                            | import os                                                    | dir()                                |
-|                   | Data _null_; Infile filelist truncover;                                      | os.listdir("")                                               |                                      |
-|                   |  Input filename $100.;                                                       |                                                              |                                      |
-|                   | Put filename=;Run;                                                           |                                                              |                                      |
-| **working directory**  |       |getcwd()       | getwd()                             |
-| **change directory**  |       |chdir())       | setwd()                             |
+|                       | Data _null_; Infile filelist truncover;                                      | os.listdir("")                                               |                                      |
+|                       | Input filename $100.;                                                        |                                                              |                                      |
+|                       | Put filename=;Run;                                                           |                                                              |                                      |
+| **working directory** |                                                                              | getcwd()                                                     | getwd()                              |
+| **change directory**  |                                                                              | chdir())                                                     | setwd()                              |
 
 ### Summary Statistics:
 
