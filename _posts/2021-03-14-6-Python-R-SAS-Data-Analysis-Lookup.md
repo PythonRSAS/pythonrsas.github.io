@@ -22,6 +22,9 @@ Work in Progress.  Check back later.
   - [Python](#python-2)
 - [basics](#basics)
   - [freqency and frequency plot](#freqency-and-frequency-plot)
+    - [Python](#python-3)
+    - [R](#r-2)
+    - [SAS](#sas-1)
 - [summary](#summary)
     - [Summary Statistics:](#summary-statistics)
 - [Visual Analysis](#visual-analysis)
@@ -153,6 +156,13 @@ data(x) # loads specific dataset
 read_feather(path, columns=NULL)
 write_feather(x, path)
 ```
+
+<div class="code-head"><span>code</span>firstLook.sas</div>
+
+```sas
+PROC IMPORT 
+```
+
 # First look at the data
 
 After having loaded the data, we can use the following to take a quick look before further processings.
@@ -178,26 +188,29 @@ dim(df)
 head(df)
 tail(df)
 ```
-
-<div class="code-head"><span>code</span>firstLook.sas</div>
-
-```sas
-PROC IMPORT 
-```
 # basics
 ## freqency and frequency plot
+### Python
 <div class="code-head"><span>code</span>frequency.py</div>
 
 ```py
 df.x.value_counts()
 df.x.value_counts().plot(kind='bar)
 ```
+### R
 <div class="code-head"><span>code</span>frequency.r</div>
 
 ```r
 table(df$x)
 barplot(table(df$x))
 barplot(table(df$x),horiz=True)
+```
+### SAS
+<div class="code-head"><span>code</span>frequency.sas</div>
+
+```sas
+proc freq data=df;
+run;
 ```
 
 # summary
