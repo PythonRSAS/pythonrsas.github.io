@@ -22,8 +22,9 @@ When we are used to writing in a language, switching to another one can make use
 
 #### VSCode
 Although Spyder and Ipython (notebook and shell) both are great, VSCode is especially useful when we are writing packages or modules.  I use VSCode for all three languages.  There are suggested add-ons for each of the languages. 
-See [keyboard shortcuts pdf](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf) for a comprehensive list.  
+See [keyboard shortcuts pdf](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf) for the comprehensive list.  
 
+![vscode_shortcuts](images\posts\vscode_shortcuts.PNG)
 You can also define your own keyboard shortcut. 
 
 ##### Add custom snippets
