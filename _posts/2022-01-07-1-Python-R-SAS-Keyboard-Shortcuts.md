@@ -27,10 +27,6 @@ See [keyboard shortcuts pdf](https://code.visualstudio.com/shortcuts/keyboard-sh
   <figcaption>VSCode Keyboard Shortcuts</figcaption>
 </figure>
 
-<figure>
-  <img src="{{ "/images/posts/Compare Stocks in Two Sectors.png" | relative_url }}">
-  <figcaption> </figcaption>
-</figure>
 
 ![VSCode Keyboard Shortcuts](/images/posts/vscode_shortcuts.png)
 You can also define your own keyboard shortcut. 
