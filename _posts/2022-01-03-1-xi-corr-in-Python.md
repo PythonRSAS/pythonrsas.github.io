@@ -72,7 +72,7 @@ title="Negative Slope"
 corrs1 = corrs(x,y,title)
 ```
 ![positive slope](\images\posts\positive slope.png)
-![negative slope](\images\posts\negative slope.png)
+![negative slope](\images\posts\Negative Slope.png)
 
 <div class="code-head"><span>code</span>correlations for non-straight-lines.py</div> 
 

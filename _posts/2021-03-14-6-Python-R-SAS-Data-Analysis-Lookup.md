@@ -10,6 +10,7 @@ image: images/posts/IMG-0669.JPG
 ---
 Work in Progress.  
 
+![](/images/posts/IMG-0669.JPG)
 # summary
 
 
