@@ -45,6 +45,9 @@ def corrs(x,y, title):
     plt.show()
     corrs['function'] = title
     return corrs
+Out:
+Saving figure Positive Slope
+Saving figure Negative Slope
 ```
 
 The following illustrates the comparisons of 4 correlations amongst various functions, where <span class="coding">x</span> is uniformly distributed random variables from 0 to 1. 
@@ -69,7 +72,7 @@ title="Negative Slope"
 corrs1 = corrs(x,y,title)
 ```
 ![positive slope](\images\posts\positive slope.png)
-![negative slope](\images\posts\positive slope.png)
+![negative slope](\images\posts\negative slope.png)
 
 <div class="code-head"><span>code</span>correlations for non-straight-lines.py</div> 
 
@@ -110,14 +113,42 @@ title="Noise"
 y=np.random.normal(0,0.1,N)
 corrs8 = corrs(x,y,title)
 
+Out:
+Saving figure Quadratic Parabola
+Saving figure Sine
+Saving figure Cosine
+Saving figure Exponential
+Saving figure Cubic Parabola
+C:\ProgramData\Anaconda3\Scripts\ipython:69: RuntimeWarning: invalid value encountered in power
+Saving figure Cubic Root
+Saving figure Noise
+```
+![Quadratic Parabola](\images\posts\Quadratic Parabola.png)
+![Quadratic Parabola](\images\posts\Quadratic Parabola.png)
+![Sine](\images\posts\Sine.png)
+![Cosine](\images\posts\Cosine.png)
+![Exponential](\images\posts\Exponential.png)
+![Cubic Parabola](\images\posts\Exponential.png)
+![Cubic Root](\images\posts\Cubic Root.png)
+![Noise](\images\posts\Noise.png)
+
+After collecting all the results together, the maximum correlation for each function is identified using <span class="coding">.abs().idxmax(axis=1)</span>.  
+> The Xi correlation is best at the quadratic parabola, sine, cosine,which makes sense.  
+> Unfortunately, it is also very good at picking up noises. 
+<div class="code-head"><span>code</span>summary.py</div> 
+
+```python
 summary = pd.concat([corrs1, corrs2, corrs3, corrs4, corrs5, corrs6,corrs7, corrs8], axis=1).T
-#   pearson spearman kendall  xicor            function
-# 0  -0.981   -0.981  -0.882  0.806      Negative Slope
-# 1  -0.037    0.057   0.064   0.59  Quadratic Parabola
-# 2  -0.337   -0.267  -0.169  0.767                Sine
-# 3  -0.087    -0.11  -0.083   0.78              Cosine
-# 4   0.676    0.986    0.93  0.874         Exponential
-# 5   0.892    0.861   0.709  0.588      Cubic Parabola
-# 6   0.884    0.918   0.762  0.892          Cubic Root
-# 7  -0.003      0.0  -0.001 -0.054               Noise
+summary.__dict__.update(summary.astype({'pearson':np.float32,'spearman': np.float32, 'kendall': np.float32,'xicor':np.float32}).__dict__)
+summary['max'] = summary.iloc[:,:-1].abs().idxmax(axis=1)
+#    pearson  spearman  kendall  xicor            function       max
+# 0    0.984     0.984    0.897  0.819      Positive Slope   pearson
+# 1   -0.986    -0.983   -0.893  0.815      Negative Slope   pearson
+# 2   -0.096     0.024    0.055  0.612  Quadratic Parabola     xicor
+# 3   -0.358    -0.293   -0.178  0.795                Sine     xicor
+# 4   -0.113    -0.153   -0.108  0.781              Cosine     xicor
+# 5    0.675     0.982    0.923  0.882         Exponential  spearman
+# 6    0.892     0.875    0.724  0.613      Cubic Parabola   pearson
+# 7    0.884     0.918    0.762  0.892          Cubic Root  spearman
+# 8   -0.003     0.000   -0.001 -0.054               Noise     xicor
 ```
