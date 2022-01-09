@@ -23,7 +23,7 @@ Keyboard shortcuts are essential because: when we are used to writing in a langu
 Although Spyder and Ipython (notebook and shell) both are great, VSCode is especially useful when we are writing packages or modules.  I use VSCode for all three languages.  There are suggested add-ons for each of the languages. 
 See [keyboard shortcuts pdf](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf) for the comprehensive list.  
 <figure>
-  <img src="{{ "/images/posts/vscode_shortcuts.PNG" | relative_url }}">
+  <img src="{{ "/images/posts/vscode_shortcuts.png" | relative_url }}">
   <figcaption> </figcaption>
 </figure>
 
@@ -34,7 +34,8 @@ Using custom snippets helps save time.  Using 3 languages has a lot of syntax an
 See [how to add a snippet](https://code.visualstudio.com/docs/editor/userdefinedsnippets) for details.
 
 1. Use [snippet generator](https://snippet-generator.app/) to easily create the snippet json code.
-2. <span class="coding">shift + command + p</span> and type <span class="coding">snippets</span>, and then  <span class="coding">Preferences: Open User Snippets</span>. 
+2. <span class="coding">shift + command + p</span> and type <span class="coding">snippets</span>, and then  <span class="coding">Preferences: Configure User Snippets</span>. 
+3. Hit <span class="coding">New snippets</span>, then choose language, and follow the directions.  Note, while the snippet is in json, you don't choose json.  Choose Python if the snippet is for Python code, choose markdown if it is for markdown. 
 
 #### RStudio 
 - <span class="coding">Ctrl+Enter </span>  To run a line of code from the source editor.
