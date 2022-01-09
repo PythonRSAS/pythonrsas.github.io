@@ -23,12 +23,12 @@ Although Spyder and Ipython (notebook and shell) both are great, VSCode is espec
 See [keyboard shortcuts pdf](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf) for the comprehensive list.  
 
 <figure>
-  <img src="{{ "/images/posts/vscode_shortcuts.png" | relative_url }}">
+  <img src="{{ "/images/posts/vscode_shortcuts.PNG" | relative_url }}">
   <figcaption>VSCode Keyboard Shortcuts</figcaption>
 </figure>
 
 
-![VSCode Keyboard Shortcuts](/images/posts/vscode_shortcuts.png)
+![VSCode Keyboard Shortcuts](/images/posts/vscode_shortcuts.PNG)
 You can also define your own keyboard shortcut. 
 
 
