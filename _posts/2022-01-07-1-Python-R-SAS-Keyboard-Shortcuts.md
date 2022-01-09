@@ -21,16 +21,6 @@ Keyboard shortcuts are essential because: when we are used to writing in a langu
 Although Spyder and Ipython (notebook and shell) both are great, VSCode is especially useful when we are writing packages or modules.  I use VSCode for all three languages.  There are suggested add-ons for each of the languages. 
 See [keyboard shortcuts pdf](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf) for the comprehensive list.  
 
-<figure>
-  <img src="{{ "/images/posts/vscode_shortcuts.PNG" | relative_url }}">
-  <figcaption>VSCode Keyboard Shortcuts</figcaption>
-</figure>
-<figure>
-  <img src="{{ "/images/posts/vscode_shortcuts.png" | relative_url }}">
-  <figcaption>VSCode Keyboard Shortcuts</figcaption>
-</figure>
-
-
 ![VSCode Keyboard Shortcuts](/images/posts/vscode_shortcuts.PNG)
 You can also define your own keyboard shortcut. 
 
