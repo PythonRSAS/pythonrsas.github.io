@@ -8,38 +8,35 @@ author: Sarah Chen
 image: images/posts/IMG-0669.JPG
 
 ---
-Work in Progress.  Check back later. 
 
 - [Keyboard shortcuts](#keyboard-shortcuts)
-      - [VSCode](#vscode)
-        - [Add custom snippets](#add-custom-snippets)
-      - [RStudio](#rstudio)
+  - [VSCode](#vscode)
+  - [RStudio](#rstudio)
+- [Add custom snippets](#add-custom-snippets)
 
 
 # Keyboard shortcuts
 Keyboard shortcuts are essential because: when we are used to writing in a language, switching to another one can make use feel slow and dumb. Using keyboard shortcuts will allow us to pick up speed and feel at home. 
 
-#### VSCode
+## VSCode
 Although Spyder and Ipython (notebook and shell) both are great, VSCode is especially useful when we are writing packages or modules.  I use VSCode for all three languages.  There are suggested add-ons for each of the languages. 
 See [keyboard shortcuts pdf](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf) for the comprehensive list.  
 
 <figure>
-  <img src="{{ "/images/posts/vscode_shortcuts.PNG" | relative_url }}">
+  <img src="{{ "/images/posts/vscode_shortcuts.png" | relative_url }}">
   <figcaption>VSCode Keyboard Shortcuts</figcaption>
+</figure>
+
+<figure>
+  <img src="{{ "/images/posts/Compare Stocks in Two Sectors.png" | relative_url }}">
+  <figcaption> </figcaption>
 </figure>
 
 ![VSCode Keyboard Shortcuts](/images/posts/vscode_shortcuts.png)
 You can also define your own keyboard shortcut. 
 
-##### Add custom snippets
-Using custom snippets helps save time.  Using 3 languages has a lot of syntax and libraries to remember.  
-See [how to add a snippet](https://code.visualstudio.com/docs/editor/userdefinedsnippets) for details.
 
-1. Use [snippet generator](https://snippet-generator.app/) to easily create the snippet json code.
-2. <span class="coding">shift + command + p</span> and type <span class="coding">snippets</span>, and then  <span class="coding">Preferences: Configure User Snippets</span>. 
-3. Hit <span class="coding">New snippets</span>, then choose language, and follow the directions.  Note, while the snippet is in json, you don't choose json.  Choose Python if the snippet is for Python code, choose markdown if it is for markdown. 
-
-#### RStudio 
+## RStudio 
 - <span class="coding">Ctrl+Enter </span>  To run a line of code from the source editor.
 - <span class="coding">Ctrl+Shift+M </span> is the pipe operator <span class="coding"> %>%</span> is or <span class="coding">Cmd+Shift+M</span> (Mac).
 - <span class="coding">Alt + - </span> is the assignment operator <span class="coding"><-</span>, or Option + - (Mac).
@@ -48,3 +45,11 @@ See [how to add a snippet](https://code.visualstudio.com/docs/editor/userdefined
 - <span class="coding">Ctrl + ↑</span>  to scroll through your command history by clicking  or Cmd + ↑ (Mac). 
 - Search a matching subset of the history: type the first few characters and then press `Ctrl/Cmd + ↑`
 - Rename all instances of a variable name: highlight one instance of the variable name and then using Code > *Rename in Scope*. This is better than using Edit > Replace and Find because it only looks for whole word matches.
+  
+# Add custom snippets
+Using custom snippets helps save time.  Using 3 languages has a lot of syntax and libraries to remember.  
+See [how to add a snippet](https://code.visualstudio.com/docs/editor/userdefinedsnippets) for details.
+
+1. Use [snippet generator](https://snippet-generator.app/) to easily create the snippet json code.
+2. <span class="coding">shift + command + p</span> and type <span class="coding">snippets</span>, and then  <span class="coding">Preferences: Configure User Snippets</span>. 
+3. Hit <span class="coding">New snippets</span>, then choose language, and follow the directions.  Note, while the snippet is in json, you don't choose json.  Choose Python if the snippet is for Python code, choose markdown if it is for markdown. 
