@@ -12,10 +12,15 @@ Work in Progress.  Check back later.
 
 -
 - [frequency barplots](#frequency-barplots)
-  - [simple barplots](#simple-barplots)
-  - [stacked or grouped barplots for > 1 groups](#stacked-or-grouped-barplots-for--1-groups)
-- [relationship between numeric data](#relationship-between-numeric-data)
-### frequency barplots
+      - [simple barplots](#simple-barplots)
+      - [stacked or grouped barplots for > 1 groups](#stacked-or-grouped-barplots-for--1-groups)
+- [comparing numeric data by categories](#comparing-numeric-data-by-categories)
+    - [boxplots and variations](#boxplots-and-variations)
+- [plotting relationship between numeric data](#plotting-relationship-between-numeric-data)
+    - [pair plots](#pair-plots)
+- [timeseries](#timeseries)
+    - [timeseries in Python](#timeseries-in-python)
+# frequency barplots
 
 #### simple barplots 
 <div class="code-head"><span>code</span>simple bar plot.py</div>
@@ -84,7 +89,11 @@ counts <- table(mtcars$gear)
 barplot(counts, main="Car Distribution", horiz=TRUE, names.arg=c("3 Gears", "4 Gears", "5   Gears"), cex.names=0.8)
 ```
 
-### relationship between numeric data
+# comparing numeric data by categories
+### boxplots and variations
+
+# plotting relationship between numeric data
+### pair plots
 <div class="code-head"><span>code</span>relationship between numeric data.py</div>
 
 ```python
@@ -93,3 +102,6 @@ import matplotlib.pyplot as plt
 sns.pairplot(nba[["ast", "fg", "trb"]])
 plt.show()
 ```
+# timeseries
+### timeseries in Python
+I use pandas for timeseries plotting. 

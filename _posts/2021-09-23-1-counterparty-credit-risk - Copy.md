@@ -15,7 +15,7 @@ image: images/posts/counterparty.jpg
 # What is counterparty credit risk
 Counterparty credit risk is a subset of credit risk.  
 
-Specifically, for the two sides (parties) in derivative contracts, counterparty credit risk is the risk that one may default on its obligations under the contracts prior to settlement and therefore causing losses to the other.  This is sometimes also referred to as "pre-settlement risk".   Note that exchange-traded contracts usually are not exposed to settlement risk.  The Dodd-Frank act authorized centralized exchanges for clearing swaps. 
+Specifically, for the two sides (parties) in derivative contracts, counterparty credit risk is the risk that one may default on its obligations under the contracts prior to settlement and therefore causing losses to the other.  This is sometimes also referred to as "pre-settlement risk" (PSE).   Note that exchange-traded contracts usually are not exposed to settlement risk.  The Dodd-Frank act authorized centralized exchanges for clearing swaps. 
 
 Counterparty credit risk is important due to the huge increase in derivatives and that counterparty credit risk can trigger severe losses, such as credit default swaps to the 2008 Financial Crisis. 
 
@@ -112,18 +112,29 @@ Applying haircut, decrease or discounted valuation apply to noncash collateral, 
 
 ## variation margin (VM)
 
-Variation margin is the daily margin payment (can be more frequent) to keep exposure (market value - collateral, i.e. the unsecured portion) below certain thresholds. Margin payments must be liquid funds.  As a result of these daily variation margins, the counterparty risks are mitigated.  
+Variation margin is the daily margin payment (can be more frequent) to keep exposure (market value - collateral, i.e. the unsecured portion) below certain thresholds (thresholds are the amount up to which we are willing to be unsecured). Margin payments must be liquid funds.  As a result of these daily variation margins, the counterparty risks are mitigated.  
 
 The side that is in the money on the bilateral netting set receives VM.
-
 
 ## initial margin (IM)
 
 Even when variation margin payments + existing collateral cover the entire exposure such that the net exposure is zero, there is still risk.  
 
-The risk is somewhat opposite in concept to "float".  The "float" is the time value of money that you earn the time that money is in your hand.  Oppositely, things can go wrong from the last variation margin payment time and (potential) default, during which we may suddendly have a large exposure.   This time period is what is called the "**margin period of risk**" (MPR).  
+The risk is somewhat opposite in concept to "float".  The "float" is the time value of money that you earn the time that money is in your hand.  Oppositely, things can go wrong from the last variation margin payment time and (potential) default, during which we may suddendly have a large exposure.   This time period is what is called the "**margin period of risk**" (MPR or MPOR).  In practice, the margin period of risk is usually 5 days or more to account for the time to verify if the other party is going to pay or not.   
 
 Formally, it is the time period from the last exchange of collateral covering a netting set of transactions with a defaulting counterparty until that counterparty is closed out and the resulting market risk is re-hedged.
+
+Example: 
+Assume client signs CSA and agrees to:
+- daily margining
+- zero initial margin
+- threshold of $5MM
+- MTA of $250,000
+- Rounding of $25,000
+Today client is holding $7.5MM cash collateral from Bank
+FMV of position today is calculated to be $22MM in Bank's favor
+What is the amount of collateral paid to or received by Bank?
+
 
 <figure>
   <img src="{{ "/images/posts/ccr_initial_margin.PNG" | relative_url }}">
@@ -145,9 +156,58 @@ Regulators allow for three ways to calculate IM at t 0:
 set value movements over an MPOR of minimally 10 business days.
 
 *** The Standard Initial Margin Model (SIMM)**, which is an initiative by ISDA to standardize IM calculation based on transaction sensitivities (Greeks).
-Around 2016, the ISDA proposed a standarized model "standard initial margin model".  
+Around 2016, the ISDA proposed a standarized model "standard initial margin model".   ISDA standard initial margin model for non-cleared derivatives is 99% confidence over 10 days.
+
+Marin Period of Risk
+- cleared otc derivatives: 5 days
+- uncleared: 10 days
+
+Confidence level: 99%
+
+Six risk factors:
+- interest rate
+- credit (qualifyingL soverign and corp)
+- credit (non-qualifying: MBS)
+- equity
+- commodity
+- FX
+
+Four product classes
+- interest rates and FX (rates FX)
+- credit
+- equity
+- commodity
+
+Concentration adjusted
+- high/low vol currencies
+- sover, corp, or MBS credit
+- emerging/develped/ETF equity (ETFs by definition are concentrated)
+- commodities
+
+Correlation based
+- imposed on risk factors
+- prescribed by ISDA
 
 To forecast future IM is more challenging. Simulation based methods are computationally costly and are suitable for large intitutions.  Approximation methods can be used for those with smaller resources. 
+
+
+<!-- 
+Initial margins are protections for unpaid variation margin.  
+
+ 
+
+are overwhelmingly government securities. 
+
+ATE: alternative termination events
+Early termination rights = covernance
+For corporates, who often cannot afford to post margin, early termination rights provide the banks a way to reduce risk. 
+
+Some banks use derivative business as a first step to lending relationship. 
+
+A credit support annex (CSA) is a document that defines the terms for the provision of collateral by the parties in derivatives transactions. It is one of four parts of a standard contract or master agreement developed by the International Swaps and Derivatives Association (ISDA).
+
+Re-couponing allows trades to be periodically rebooked at current fair market value.  Cash is paid to settle FMV with the counterparty.   You don't need a CSA in place when you sign a re-couponing agreement. 
+ -->
 
 <!-- Replacement cost (RC)
 Losses due to counterparty default are quantified using *replacement cost* (RC) of defaulted derivative, which can be severe in case of large and illiquid positions. 
