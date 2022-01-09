@@ -68,8 +68,8 @@ y=1- x+noise
 title="Negative Slope"
 corrs1 = corrs(x,y,title)
 ```
-![positive slope](\images\_post\positive slope.png)
-![negative slope](\images\_post\positive slope.png)
+![positive slope](\images\posts\positive slope.png)
+![negative slope](\images\posts\positive slope.png)
 
 <div class="code-head"><span>code</span>correlations for non-straight-lines.py</div> 
 
@@ -120,15 +120,4 @@ summary = pd.concat([corrs1, corrs2, corrs3, corrs4, corrs5, corrs6,corrs7, corr
 # 5   0.892    0.861   0.709  0.588      Cubic Parabola
 # 6   0.884    0.918   0.762  0.892          Cubic Root
 # 7  -0.003      0.0  -0.001 -0.054               Noise
-
-#   pearson spearman kendall  xicor            function
-# 0  -0.981   -0.981  -0.882  0.806      Negative Slope
-# 1  -0.037    0.057   0.064   0.59  Quadratic Parabola
-# 2  -0.337   -0.267  -0.169  0.767                Sine
-# 3  -0.087    -0.11  -0.083   0.78              Cosine
-# 4   0.676    0.986    0.93  0.874         Exponential
-# 5   0.892    0.861   0.709  0.588      Cubic Parabola
-# 6   0.884    0.918   0.762  0.892          Cubic Root
-# 7  -0.003      0.0  -0.001 -0.054               Noise
-
 ```
