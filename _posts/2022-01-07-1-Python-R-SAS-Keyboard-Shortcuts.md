@@ -14,7 +14,6 @@ image: images/posts/IMG-0669.JPG
   - [RStudio](#rstudio)
 - [Add custom snippets](#add-custom-snippets)
 
-
 # Keyboard shortcuts
 Keyboard shortcuts are essential because: when we are used to writing in a language, switching to another one can make use feel slow and dumb. Using keyboard shortcuts will allow us to pick up speed and feel at home. 
 
@@ -26,11 +25,14 @@ See [keyboard shortcuts pdf](https://code.visualstudio.com/shortcuts/keyboard-sh
   <img src="{{ "/images/posts/vscode_shortcuts.PNG" | relative_url }}">
   <figcaption>VSCode Keyboard Shortcuts</figcaption>
 </figure>
+<figure>
+  <img src="{{ "/images/posts/vscode_shortcuts.png" | relative_url }}">
+  <figcaption>VSCode Keyboard Shortcuts</figcaption>
+</figure>
 
 
 ![VSCode Keyboard Shortcuts](/images/posts/vscode_shortcuts.PNG)
 You can also define your own keyboard shortcut. 
-
 
 ## RStudio 
 - <span class="coding">Ctrl+Enter </span>  To run a line of code from the source editor.
