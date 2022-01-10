@@ -18,8 +18,6 @@ Work in Progress.  Check back later.
     - [boxplots and variations](#boxplots-and-variations)
 - [plotting relationship between numeric data](#plotting-relationship-between-numeric-data)
     - [pair plots](#pair-plots)
-- [timeseries](#timeseries)
-    - [timeseries in Python](#timeseries-in-python)
 # frequency barplots
 
 #### simple barplots 
@@ -102,6 +100,3 @@ import matplotlib.pyplot as plt
 sns.pairplot(nba[["ast", "fg", "trb"]])
 plt.show()
 ```
-# timeseries
-### timeseries in Python
-I use pandas for timeseries plotting. 
