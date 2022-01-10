@@ -5,22 +5,22 @@ category: "python for sas"
 title: "Python R SAS Visual Analysis"
 description: most basic plottings in Python, R and SAS
 author: Sarah Chen
-image: images/posts/photos/IMG-0680.JPG
+image: images/posts/photos/IMG-0680.jpg
 
 ---
 Work in Progress.  Check back later. 
+![](/images/posts/photos/IMG-0680.jpg)
 
--
 - [frequency barplots](#frequency-barplots)
-      - [simple barplots](#simple-barplots)
-      - [stacked or grouped barplots for > 1 groups](#stacked-or-grouped-barplots-for--1-groups)
+  - [simple barplots](#simple-barplots)
+  - [stacked or grouped barplots for > 1 groups](#stacked-or-grouped-barplots-for--1-groups)
 - [comparing numeric data by categories](#comparing-numeric-data-by-categories)
     - [boxplots and variations](#boxplots-and-variations)
 - [plotting relationship between numeric data](#plotting-relationship-between-numeric-data)
     - [pair plots](#pair-plots)
 # frequency barplots
 
-#### simple barplots 
+## simple barplots 
 <div class="code-head"><span>code</span>simple bar plot.py</div>
 
 ```python
@@ -49,7 +49,7 @@ barplot(counts, main="Car Distribution", horiz=TRUE,
 ```sas
 
 ```
-#### stacked or grouped barplots for > 1 groups
+## stacked or grouped barplots for > 1 groups
 <div class="code-head"><span>code</span>stacked and grouped barplots.py</div>
 
 ```pythn
