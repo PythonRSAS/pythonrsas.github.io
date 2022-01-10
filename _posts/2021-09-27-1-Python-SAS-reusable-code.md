@@ -5,10 +5,10 @@ category: "python for sas"
 title: "Reusable Code - Python class"
 description: discuss ways to make reusable code in Python and SAS, specifically on Python class
 author: Sarah Chen
-image: images/posts/photos/IMG-0667.jpg
+image: images/posts/photos/IMG-0667.JPG
 
 ---
-![](images/posts/photos/IMG-0687.jpg)
+![](images/posts/photos/IMG-0687.JPG)
 I often hear some people saying that the reason why we need to switch from SAS to Python is because only in Python we can write reusable code.  That is totally wrong!  You can and should write reusable code in just about any language.  People switch to SAS for other reasons, expenses being one of them. 
 
 In SAS, besides the numerous PROCs (procedures) that are reusable, writing macros (or macro functions) is the de facto method. 
@@ -265,43 +265,4 @@ There are many ways to use the <span class="coding">%include </span> statement. 
 ```sas
 %let code_dir = "c:\users\sc\code";
 %include "&code_dir.\step0_libnames_options.sas";
-```
-
-
-<div class="code-head"><span>code</span>import libraries.py</div>
-
-```python
-import pandas as pd
-```
-
-<div class="code-head"><span>code</span>import libraries.r</div>
-
-```r
-install.packages('data.table') #data.table has no dependencies
-library(data.table)
-
-install.packages('feather')
-library(feather)
-
-install.packages('zoo', dependencies = TRUE)
-library(zoo)
-```
-
-To roughly explain the differences in the critical values in the example above for various degrees of  
-
-<div class="code-head"><span>code</span>import data.r</div>
-
-```r
-library(cluster)
-set.seed(1)
-isGoodCol <- function(col){
-  sum(is.na(col)) == 0 && is.numeric(col)
-}
-goodCols <- sapply(nba, isGoodCol)
-clusters <- kmeans(nba[,goodCols], centers=5)
-labels <- clusters$cluster
-# plotting
-nba2d <- prcomp(nba[,goodCols], center=TRUE)
-twoColumns <- nba2d$x[,1:2]
-clusplot(twoColumns, labels)
 ```

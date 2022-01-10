@@ -8,7 +8,7 @@ author: Sarah Chen
 image: images/posts/photos/IMG-0683.jpg
 
 ---
-![reu](/images/posts/photos/IMG-0683.jpg)
+![](/images/posts/photos/IMG-0683.jpg)
 We have a lot of SAS code at work from former colleagues.  We often need to work in Python, R and SAS simultaneously between projects in the same day. 
 
 Python functions are a lot like SAS macros.  What is the analogy to SAS macro variable in Python?
