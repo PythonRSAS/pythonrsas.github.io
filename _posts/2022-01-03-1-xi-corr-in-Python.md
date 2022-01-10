@@ -5,10 +5,10 @@ category: "python for sas"
 title: "Xi Correlation in Python"
 description: Chatterjee's Xi correlation in Python
 author: Sarah Chen
-image: images/posts/photos/IMG-0684.jpg
+image: images/posts/photos/IMG-0688.jpg
 
 ---
-![](/images/posts/photos/IMG-0684.jpg)
+![](/images/posts/photos/IMG-0688.jpg)
 We want to know relationships between two things. By "things" we mean numerical variables.  Pearson, Spearman, Kendall are commonly used correlation measures.  Gini, and Gini variations also studying the relationship between 2 things.  
 
 The "Xi" correlation is a candidate for detecting whether one thing is a function of the other, i.e. whether one is dependent on the other.  It does the job especially well when the function is not monotonic, such as a sine or cosine. 
