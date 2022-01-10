@@ -5,9 +5,9 @@ category: "Other Risks"
 title: "Enterprise Risk Management"
 description: ERM enterprise risk analysis/analytics introduction
 author: Sarah Chen
-image: images/posts/mobilePaymentRiskControl.JPG
+image: images/posts/photos/IMG-0681.jpg
 ---
-
+![](/images/posts/photos/IMG-0682.jpg)
 Enterprise Risk Management was a key part of actuarial fellowship exam years ago when I took my fellowship exams.  
 
 What differentiate enterprise risk management from non-ERM is the following:

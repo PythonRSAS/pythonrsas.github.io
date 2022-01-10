@@ -5,9 +5,10 @@ category: "python for sas"
 title: "Mastering directories"
 description: Mastering paths allows us to make our code portable and less error prone. 
 author: Sarah Chen
-image: images/posts/photos/IMG-0682.JPG
+image: images/posts/photos/IMG-0682.jpg
 
 ---
+![](images/posts/photos/IMG-0682.jpg)
 Say we are doing some data analysis.  And our project directory has two folders that contains code and inputs: code and data. 
 
 We want to read data from the data folder, run code from the code folder, and output our analysis results with plots in .png and analysis in .txt files.  
