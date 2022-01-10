@@ -5,10 +5,10 @@ category: "python for sas"
 title: "Python R SAS Keyboard Shortcuts"
 description: comparing Python, R and SAS everyday keyboard shortcuts
 author: Sarah Chen
-image: images/posts/IMG-0669.JPG
+image: images/posts/photos/IMG-0685.jpg
 
 ---
-
+![](/images/posts/photos/IMG-0685.jpg)
 - [Keyboard shortcuts](#keyboard-shortcuts)
   - [VSCode](#vscode)
   - [RStudio](#rstudio)

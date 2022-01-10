@@ -5,9 +5,10 @@ category: "python for sas"
 title: "Python R SAS Data Input and Output"
 description: comparing Python, R and SAS input and output, including quick loading of prepackaged data
 author: Sarah Chen
-image: images/posts/IMG-0669.JPG
+image: images/posts/photos/IMG-0686.jpg
 
 ---
+![](/images/posts/photos/IMG-0683.jpg)
 Work in Progress.  Check back later. 
 - [Inputting data](#inputting-data)
   - [Load data that comes with IDE or libraries](#load-data-that-comes-with-ide-or-libraries)
