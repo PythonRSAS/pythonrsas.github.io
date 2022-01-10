@@ -5,10 +5,11 @@ category: "python for sas"
 title: "Reusable Code - Python class"
 description: discuss ways to make reusable code in Python and SAS, specifically on Python class
 author: Sarah Chen
-image: images/posts/photos/IMG-0667.JPG
+image: images/posts/photos/IMG-0667.jpg
 
 ---
-I often hear some people saying that the reason why we need to switch from SAS to Python is because only in Python we can write reusable code.  That is totally wrong!  You can and should write reusable code in just about any language.
+![](images/posts/photos/IMG-0687.jpg)
+I often hear some people saying that the reason why we need to switch from SAS to Python is because only in Python we can write reusable code.  That is totally wrong!  You can and should write reusable code in just about any language.  People switch to SAS for other reasons, expenses being one of them. 
 
 In SAS, besides the numerous PROCs (procedures) that are reusable, writing macros (or macro functions) is the de facto method. 
 
