@@ -10,11 +10,10 @@ image: images/posts/photos/IMG-0686.jpg
 ---
 ![](/images/posts/photos/IMG-0683.jpg)
 Work in Progress.  Check back later. 
-- [Inputting data](#inputting-data)
-  - [Load data that comes with IDE or libraries](#load-data-that-comes-with-ide-or-libraries)
-    - [Loading pre-packaged data into Python](#loading-pre-packaged-data-into-python)
-    - [R](#r)
-    - [Load SASHelp data](#load-sashelp-data)
+- [Load data that comes with IDE or libraries](#load-data-that-comes-with-ide-or-libraries)
+  - [Loading pre-packaged data into Python](#loading-pre-packaged-data-into-python)
+- [Load prepackaged data to R](#load-prepackaged-data-to-r)
+- [Load SASHelp data](#load-sashelp-data)
   - [External data](#external-data)
     - [Import external data to Python](#import-external-data-to-python)
     - [Import external data to R](#import-external-data-to-r)
@@ -22,17 +21,11 @@ Work in Progress.  Check back later.
 - [First glance](#first-glance)
   - [Python](#python)
 
-# Inputting data
-R has different dialets.  It is more versatile and fragmented than SAS and Python.  Its different "dialets" can be confusing for someone who does not use it often.  
 
-In SAS, <span class="coding">PROC IMPORT</span> imports external data.  Inline data can be created using <span class="coding">DATA</span> step.  That is about 99% of the cases already.  
-
-In Python, we generally use the pandas library to bring in data. 
-
-## Load data that comes with IDE or libraries
+# Load data that comes with IDE or libraries
 Loading data that comes with IDE or libraries allows me to test code and fast prototype. 
 
-### Loading pre-packaged data into Python
+## Loading pre-packaged data into Python
 Working with Python, I use Ipython shell and VSCode.  Neither of them come with any datasets. To load some well-known datasets quickly, first need to import one of those libraries that packaged with them. 
 ```python
 # variable and target together
@@ -68,10 +61,10 @@ Out[7]:
 3              4.600             3.100              1.500             0.200
 4              5.000             3.600              1.400             0.200
 ```
-### R
-<span class="coding">data(mtcars)</span> can be used to load any dataset that comes with RStudio.  This makes testing code fast and easy.  For example, <span class="coding">data("mtcars")</span> loads the cars dataset, and <span class="coding">data("iris")</span> loads the iris dataset. 
+# Load prepackaged data to R
+<span class="coding">data()</span> can be used to load any dataset that comes with RStudio.  This makes testing code fast and easy.  For example, <span class="coding">data("mtcars")</span> loads the cars dataset, and <span class="coding">data("iris")</span> loads the iris dataset. 
 
-### Load SASHelp data
+# Load SASHelp data
 There are many famous datasets that comes with the sas. See [Sashelp Data Sets - SAS Support]https://support.sas.com/documentation/tools/sashelpug.pdf).  <span class="coding">data=sashelp.iris </span> will automatically load the data. 
 <div class="code-head"><span>code</span>existing data.sas</div>
 
@@ -86,6 +79,11 @@ run;
 ```
 
 ## External data
+R has different dialets.  It is more versatile and fragmented than SAS and Python.  Its different "dialets" can be confusing for someone who does not use it often.  
+
+In SAS, <span class="coding">PROC IMPORT</span> imports external data.  Inline data can be created using <span class="coding">DATA</span> step.  That is about 99% of the cases already.  
+
+In Python, we generally use the pandas library to bring in data. 
 ### Import external data to Python
 Most of the time, I use the pandas library to import data.  See [Input/output](https://pandas.pydata.org/docs/reference/io.html) for a comprehensive list of functions for a wide variety of formats of data. 
 
