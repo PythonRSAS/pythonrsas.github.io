@@ -17,7 +17,7 @@ The "Xi" correlation is actually very simple. In my view, is a variation of the 
 
 The $\xi$ correlation (xicor) is a robust association measure that does not presuppose linearity.  It is based on cross correlation between ranked increments. 
 
-## Algorithem
+# Algorithem
 
 1. Take $X$ and $Y$ as n-vectors of observations
 2. Compute the ranks $r_i$ of the $Y$ observations
@@ -27,7 +27,7 @@ $$\xi=1-3\sum_{i=1}^{n-1}\frac{| r_{i+1}-r_i}{n^2-1}$$
 
 Ties are broken at random.
 
-
+# XICOR in Python
 <div class="code-head"><span>code</span>xicor_implmented.py</div>
 
 ```py
@@ -165,11 +165,16 @@ summary['max'] = summary.iloc[:,:-1].abs().idxmax(axis=1)
 # 8   -0.003     0.000   -0.001 -0.054               Noise     xicor
 ```
 
-#XICOR in R
+# XICOR in R
+
+This set of code is not a direct translation of the Python code. It does the same thing, achieve the same goals, but is written very differently. 
+
+<div class="code-head"><span>code</span>xicorr.r</div> 
+
+```r
 if (!require('XICOR')){install.packages('XICOR');require('XICOR')}
 
 ## Examples
-```{r linear, echo=TRUE}
 xicor<- function(x,y)
 {
     d=data.frame(x,y)
@@ -179,6 +184,7 @@ xicor<- function(x,y)
 }
 n=100
 x=2*runif(n)-1
+# positive slope
 y=x+rnorm(n,0,0.1)
 Correlation = c(method="pearson","spearman",'chatterjee','xicor')
 Value =c( cor(x,y,method='pearson')
@@ -190,65 +196,59 @@ bars=data.frame(Correlation, Value)
 par(mfrow=c(1,2))
 plot(x,y,pch=16, main="positive slope")
 barplot(Value,names.arg=Correlation,ylim=c(-1,1),las=2)
-```
 
-```{r ushape}
+# ushape
 y=4*(x^2) = rnorm(n,0,0.1)
 Value = c(cor(x,y),cor(x,y, method='spearman'),xicor(x,y),calculateXI(x,y))
 bars=data.frame(Correlation,value)
 par(mfrow=c(1,1))
 plot(x,y,pch=16,main="quadratic parabola")
 barplot(Value,names.arg=Correlation, ylim=c(-1,1),las=2)
-```
-```{r sine}
+# sine
 y=sin(2*3.14*x)+rnorm(n,0,0.1)
 Value = c(cor(x,y),cor(x,y, method='spearman'),xicor(x,y),calculateXI(x,y))
 bars=data.frame(Correlation,value)
 par(mfrow=c(1,1))
 plot(x,y,pch=16,main="Sine")
 barplot(Value,names.arg=Correlation, ylim=c(-1,1),las=2)
-```
-```{r cos}
+# cos
 y=cos(2*3.14*x)+rnorm(n,0,0.1)
 Value = c(cor(x,y),cor(x,y, method='spearman'),xicor(x,y),calculateXI(x,y))
 bars=data.frame(Correlation,value)
 par(mfrow=c(1,1))
 plot(x,y,pch=16,main="Cosine")
 barplot(Value,names.arg=Correlation, ylim=c(-1,1),las=2)
-```
-```{r backwards}
+
+# backwards
 y= 1 - x+rnorm(n,0, 0.1)
 Value = c(cor(x,y),cor(x,y, method='spearman'),xicor(x,y),calculateXI(x,y))
 bars=data.frame(Correlation,value)
 par(mfrow=c(1,1))
 plot(x,y,pch=16,main="Negative Slope")
 barplot(Value,names.arg=Correlation, ylim=c(-1,1),las=2)
-```
-```{r noise}
+# noise
 y= rnorm(n,0,0.1)
 Value = c(cor(x,y),cor(x,y, method='spearman'),xicor(x,y),calculateXI(x,y))
 bars=data.frame(Correlation,value)
 par(mfrow=c(1,1))
 plot(x,y,pch=16,main="Negative Slope")
 barplot(Value,names.arg=Correlation, ylim=c(-1,1),las=2)
-```
-```{r exp}
+# exp
 y= exp(10*x) + rnorm(n,0,0.1)
 Value = c(cor(x,y),cor(x,y, method='spearman'),xicor(x,y),calculateXI(x,y))
 bars=data.frame(Correlation,value)
 par(mfrow=c(1,1))
 plot(x,y,pch=16,main="Exponent")
 barplot(Value,names.arg=Correlation, ylim=c(-1,1),las=2)
-```
-```{r cube}
+
+# cube
 y= x**3 + rnorm(n,0,0.1)
 Value = c(cor(x,y),cor(x,y, method='spearman'),xicor(x,y),calculateXI(x,y))
 bars=data.frame(Correlation,value)
 par(mfrow=c(1,1))
 plot(x,y,pch=16,main="Cubic")
 barplot(Value,names.arg=Correlation, ylim=c(-1,1),las=2)
-```
-```{r rbrt}
+# rbrt
 y= sign(x)*(abs(x)**(1/3)) + rnorm(n,0,0.1)
 Value = c(cor(x,y),cor(x,y, method='spearman'),xicor(x,y),calculateXI(x,y))
 bars=data.frame(Correlation,value)
