@@ -15,6 +15,18 @@ The "Xi" correlation is a candidate for detecting whether one thing is a functio
 
 The "Xi" correlation is actually very simple. In my view, is a variation of the Gini score, where one thing is used for ranking and the other thing is used for sorting. 
 
+The $\xi$ correlation (xicor) is a robust association measure that does not presuppose linearity.  It is based on cross correlation between ranked increments. 
+
+## Algorithem
+
+1. Take $X$ and $Y$ as n-vectors of observations
+2. Compute the ranks $r_i$ of the $Y$ observations
+3. Sort the data tuples $(x_1,y_1,r_1), ..., (x_n,y_n,r_n)$ by $X$ so that $x_1 \le x_2 \le x_n$.  Then
+
+$$\xi=1-3\sum_{i=1}^{n-1}\frac{| r_{i+1}-r_i}{n^2-1}$$
+
+Ties are broken at random.
+
 
 <div class="code-head"><span>code</span>xicor_implmented.py</div>
 
@@ -152,3 +164,96 @@ summary['max'] = summary.iloc[:,:-1].abs().idxmax(axis=1)
 # 7    0.884     0.918    0.762  0.892          Cubic Root  spearman
 # 8   -0.003     0.000   -0.001 -0.054               Noise     xicor
 ```
+
+#XICOR in R
+if (!require('XICOR')){install.packages('XICOR');require('XICOR')}
+
+## Examples
+```{r linear, echo=TRUE}
+xicor<- function(x,y)
+{
+    d=data.frame(x,y)
+    d$r=rank(d$y)
+    d=d[order(d$x),]
+    1-3*sum(abs(diff(d$r)))/(nrow(d)^2-1)
+}
+n=100
+x=2*runif(n)-1
+y=x+rnorm(n,0,0.1)
+Correlation = c(method="pearson","spearman",'chatterjee','xicor')
+Value =c( cor(x,y,method='pearson')
+        , cor(x,y,method='spearman')
+        , xicor(x,y) # implemented above
+        , XICOR::calculateXI(x,y)
+        )
+bars=data.frame(Correlation, Value)
+par(mfrow=c(1,2))
+plot(x,y,pch=16, main="positive slope")
+barplot(Value,names.arg=Correlation,ylim=c(-1,1),las=2)
+```
+
+```{r ushape}
+y=4*(x^2) = rnorm(n,0,0.1)
+Value = c(cor(x,y),cor(x,y, method='spearman'),xicor(x,y),calculateXI(x,y))
+bars=data.frame(Correlation,value)
+par(mfrow=c(1,1))
+plot(x,y,pch=16,main="quadratic parabola")
+barplot(Value,names.arg=Correlation, ylim=c(-1,1),las=2)
+```
+```{r sine}
+y=sin(2*3.14*x)+rnorm(n,0,0.1)
+Value = c(cor(x,y),cor(x,y, method='spearman'),xicor(x,y),calculateXI(x,y))
+bars=data.frame(Correlation,value)
+par(mfrow=c(1,1))
+plot(x,y,pch=16,main="Sine")
+barplot(Value,names.arg=Correlation, ylim=c(-1,1),las=2)
+```
+```{r cos}
+y=cos(2*3.14*x)+rnorm(n,0,0.1)
+Value = c(cor(x,y),cor(x,y, method='spearman'),xicor(x,y),calculateXI(x,y))
+bars=data.frame(Correlation,value)
+par(mfrow=c(1,1))
+plot(x,y,pch=16,main="Cosine")
+barplot(Value,names.arg=Correlation, ylim=c(-1,1),las=2)
+```
+```{r backwards}
+y= 1 - x+rnorm(n,0, 0.1)
+Value = c(cor(x,y),cor(x,y, method='spearman'),xicor(x,y),calculateXI(x,y))
+bars=data.frame(Correlation,value)
+par(mfrow=c(1,1))
+plot(x,y,pch=16,main="Negative Slope")
+barplot(Value,names.arg=Correlation, ylim=c(-1,1),las=2)
+```
+```{r noise}
+y= rnorm(n,0,0.1)
+Value = c(cor(x,y),cor(x,y, method='spearman'),xicor(x,y),calculateXI(x,y))
+bars=data.frame(Correlation,value)
+par(mfrow=c(1,1))
+plot(x,y,pch=16,main="Negative Slope")
+barplot(Value,names.arg=Correlation, ylim=c(-1,1),las=2)
+```
+```{r exp}
+y= exp(10*x) + rnorm(n,0,0.1)
+Value = c(cor(x,y),cor(x,y, method='spearman'),xicor(x,y),calculateXI(x,y))
+bars=data.frame(Correlation,value)
+par(mfrow=c(1,1))
+plot(x,y,pch=16,main="Exponent")
+barplot(Value,names.arg=Correlation, ylim=c(-1,1),las=2)
+```
+```{r cube}
+y= x**3 + rnorm(n,0,0.1)
+Value = c(cor(x,y),cor(x,y, method='spearman'),xicor(x,y),calculateXI(x,y))
+bars=data.frame(Correlation,value)
+par(mfrow=c(1,1))
+plot(x,y,pch=16,main="Cubic")
+barplot(Value,names.arg=Correlation, ylim=c(-1,1),las=2)
+```
+```{r rbrt}
+y= sign(x)*(abs(x)**(1/3)) + rnorm(n,0,0.1)
+Value = c(cor(x,y),cor(x,y, method='spearman'),xicor(x,y),calculateXI(x,y))
+bars=data.frame(Correlation,value)
+par(mfrow=c(1,1))
+plot(x,y,pch=16,main="Cubic Root")
+barplot(Value,names.arg=Correlation, ylim=c(-1,1),las=2)
+```
+
