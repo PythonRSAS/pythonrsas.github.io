@@ -7,10 +7,8 @@ description: review of z-score and standardization, and how to do them in python
 author: Sarah Chen
 image: images/posts/photos/IMG-0649.jpg
 ---
-<figure> 
-   <img src="{{"/images/posts/photos/IMG-0649.JPG"| relative_url}}"> 
-   <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
-</figure> 
+[](/images/posts/photos/IMG-0649.JPG)
+
 Z-scores are linearly transformed data values having a **mean of zero and a standard deviation of 1**.  
 
 Their names are related to the **standard normal tables**.  Remember, less than 60 years ago, that's all the technology that 99.9% of mathematicians, scientists and statisticians had.  
