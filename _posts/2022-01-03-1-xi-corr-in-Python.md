@@ -8,7 +8,8 @@ author: Sarah Chen
 image: images/posts/photos/IMG-0688.jpg
 
 ---
-![](images/posts/photos/IMG-0688.jpg)
+
+![](/images/posts/photos/IMG-0688.jpg)
 We want to know relationships between two things. By "things" we mean numerical variables.  Pearson, Spearman, Kendall are commonly used correlation measures.  Gini, and Gini variations also studying the relationship between 2 things.  
 
 The "Xi" correlation is a candidate for detecting whether one thing is a function of the other, i.e. whether one is dependent on the other.  It does the job especially well when the function is not monotonic, such as a sine or cosine. 
@@ -19,9 +20,9 @@ The $$\xi$$ correlation (xicor) is a robust association measure that does not pr
 
 # Algorithem
 
-1. Take $X$ and $Y$ as n-vectors of observations
-2. Compute the ranks $r_i$ of the $Y$ observations
-3. Sort the data tuples $(x_1,y_1,r_1), ..., (x_n,y_n,r_n)$ by $X$ so that $x_1 \le x_2 \le x_n$.  Then
+1. Take $$X$$ and $$Y$$ as n-vectors of observations
+2. Compute the ranks $$r_i$$ of the $$Y$$ observations
+3. Sort the data tuples $$(x_1,y_1,r_1), ..., (x_n,y_n,r_n)$$ by $$X$$ so that $$x_1 \le x_2 \le x_n$$.  Then
 
 $$\xi=1-3\sum_{i=1}^{n-1}\frac{| r_{i+1}-r_i}{n^2-1}$$
 
