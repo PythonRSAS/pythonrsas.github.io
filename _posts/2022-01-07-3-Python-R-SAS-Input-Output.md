@@ -15,9 +15,9 @@ Work in Progress.
   - [Load prepackaged data to R](#load-prepackaged-data-to-r)
   - [Load SASHelp data](#load-sashelp-data)
 - [External data](#external-data)
-  - [Import external data to](#import-external-data-to)
+  - [Import external data to Python](#import-external-data-to-python)
   - [Import external data to R](#import-external-data-to-r)
-- [time it](#time-it)
+  - [Import data in SAS](#import-data-in-sas)
 - [First glance](#first-glance)
   - [Python](#python)
 
@@ -80,20 +80,44 @@ run;
 
 # External data
 
+## Import external data to Python
+1. Python build-in functions <span class="coding">read()</span>, <span class="coding">readline()</span>, and <span class="coding">readlines()</span>.  This is feasible only for small files. 
+2. The <span class="coding">csv </span> library, which I have never used. 
+3. The <span class="coding">pandas </span> library, which I use all the time. 
+4. Specifically for very large datasets,<span class="coding">dask.dataframe()</span> large parallel DataFrame composed of many smaller Pandas DataFrames, split along the index. Most functions used with pandas can also be used with dask. 
+5. Also for very large files, [datatable](https://datatable.readthedocs.io/en/latest/) for  big 2D data frames, up to 100GB). It supports out-of-memory datasets. 
 
-In SAS, <span class="coding">PROC IMPORT</span> imports external data.  Inline data can be created using <span class="coding">DATA</span> step.  That is about 99% of the cases already.  
+To use the <span class="coding">read()</span> function, the file first needs to be open by calling the <span class="coding">open()</span>built-in function, which has two parameters: the path to the file and an optional argument to indicate whether <span class="coding">'r'</span> (for reading) or <span class="coding">'w'</span> (for writing).
+```python
+In [6]: with open('df4.csv', 'r') as reader:
+   ...:     # Read & print the entire file
+   ...:     print(reader.read())
+   ...:
+,event,trial,freq
+0,no,control,0
+0,no,control,0
 
-In Python, we generally use the pandas library to bring in data. 
-## Import external data to 
-1. Python build-in functions <span class="coding">read()</span>, <span class="coding">readline()</span>, and <span class="coding">readlines()</span>.
+In [10]: with open('df4.csv', 'r') as reader:
+    ...:     # Read & print the first line
+    ...:     print(reader.readline())
+    ...:
+,event,trial,
+In [12]: reader.close() # close after read to prevent unexpected errors
 
-Most of the time, I use the pandas library to import data.  See [Input/output](https://pandas.pydata.org/docs/reference/io.html) for a comprehensive list of functions for a wide variety of formats of data. 
+In [13]: file = open("df4.csv")
+    ...: data = file.read()
+    ...: print(data)
+    ...: file.close()
+```
 
+Most of the time, I use the pandas library to import data.  See [Input/output](https://pandas.pydata.org/docs/reference/io.html) for a comprehensive list of functions for a wide variety of formats of data.  The read_csv, and other pandas read functions take many parameters.  Those that I have used are listed below: 
+```python
 pandas.read_csv(filepath_or_buffer, index_col=None, usecols=None, dtype=None, engine=None, converters=None, true_values=None, skipinitialspace=False, skiprows=None, skipfooter=0, nrows=None, na_values=None, keep_default_na=True, skip_blank_lines=True, parse_dates=False, infer_datetime_format=False, keep_date_col=False, date_parser=None, dayfirst=False,  thousands=None, decimal='.',  encoding=None,  low_memory=True, float_precision=None)
 
 pandas.read_excel(io, sheet_name=0, header=0, names=None, index_col=None, usecols=None, dtype=None,  true_values=None, false_values=None, skiprows=None, nrows=None, na_values=None, keep_default_na=True, na_filter=True, verbose=False, parse_dates=False, date_parser=None, thousands=None, comment=None, skipfooter=0, convert_float=None, mangle_dupe_cols=True, storage_options=None)
 
 pandas.read_sas(filepath_or_buffer, format=None, index=None, encoding=None, chunksize=None, iterator=False)
+```
 
 <div class="code-head"><span>code</span>input.py</div>
 
@@ -158,13 +182,15 @@ write_feather(x, path)
 ```
 <span class="coding">fread</span> stands for "fast read".  The speed efficiency gain becomes more obvious as the data size gets larger. 
 
-<div class="code-head"><span>code</span>fread_speed.r</div> 
+<div class="code-head"><span>code</span>fread_speed.r</div>
+
+```r
 set.seed(1)
 N <-1000000
 df<- data.frame(matrix(runif(N), nrow=N))
 write.csv(df, 'df.csv', row.names=F)
-# time it
-system.time({df<-read.csv('df.csv)})
+
+system.time({df<-read.csv('df.csv)}) # time it
 system.time({df<-fread('df.csv)})
 ```r
 
@@ -175,16 +201,20 @@ Conversely, a <span class="coding">data.frame</span> object can be converted to 
 2. <span class="coding">setDT(df)</span> converts in place. 
 
 > <span class="coding">data.table</span> does not store rownames.  We need to separately preserve the row names.    
-<div class="code-head"><span>code</span>data frame to data.table.r</div> 
+<div class="code-head"><span>code</span>data frame to data.table.r</div>
+
+```r
 data("mtcars")
 mtcars$carname <- rownames(mtcars)
 mtcars_dt <- as.data.table(mtcars)
 class(mtcars_dt) 
 "data.table" "data.frame"
-```r   
+```
 
 
 ## Import data in SAS
+
+For data already in SAS format, all you have to is use libname statement to reference it. For other formats, the <span class="coding">PROC IMPORT</span> imports external data.  Inline data can be created using <span class="coding">DATA</span> step.  That is about 99% of the cases already.  
 <div class="code-head"><span>code</span>firstLook.sas</div>
 
 ```sas
