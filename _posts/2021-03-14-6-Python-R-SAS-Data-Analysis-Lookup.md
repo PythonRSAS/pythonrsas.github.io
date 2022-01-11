@@ -34,9 +34,9 @@ Work in Progress.
 |                       |                                                                              | df.groupby(level=’ind1’)                                     |                                      |
 | **missing count**     | PROC MEANS N NMISS MISSING;                                                  | df.count()                                                   |                                      |
 |                       |                                                                              | df.isnull().sum()                                            |                                      |
-|                       | PROC FREQ TABLE /MISSING;                                                    |                                                              |                                      |
-| **frequency**         | PROC FREQ                                                                    | df.describe()                                                |                                      |
-|                       |                                                                              | df.value.counts()                                            |                                      |
+|                       | PROC FREQ; TABLE /MISSING;                                                    |                                                              |                                      |
+| **frequency**         | PROC FREQ;TABLE value;                                                      | df.describe()                                                |                                      |
+|                       |                                                                              | df.value.counts            ()                                            | PROC SQL; SELECT COUNT(X) AS CT GROUPBY value;         |
 |                       |                                                                              | pd.crosstab(df.A, df.B).apply(lambda x: x/x.sum(), axis = 1) |                                      |
 | **distribution**      | PROC UNIVARIATE                                                              | df.describe(include=[np.number])                             |                                      |
 | **drop/keep columns** | DATA df (drop = col_name);                                                   | df.drop(['x1', 'x2', 'x3'], axis = 1                         |                                      |
