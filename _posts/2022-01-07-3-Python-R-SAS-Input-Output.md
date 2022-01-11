@@ -9,7 +9,7 @@ image: images/posts/photos/IMG-0686.jpg
 
 ---
 ![](/images/posts/photos/IMG-0683.jpg)
-Work in Progress.  Check back later. 
+Work in Progress.  
 - [Load data that comes with IDE or libraries](#load-data-that-comes-with-ide-or-libraries)
   - [Loading pre-packaged data into Python](#loading-pre-packaged-data-into-python)
   - [Load prepackaged data to R](#load-prepackaged-data-to-r)
@@ -17,7 +17,7 @@ Work in Progress.  Check back later.
 - [External data](#external-data)
   - [Import external data to](#import-external-data-to)
   - [Import external data to R](#import-external-data-to-r)
-  - [Import data in SAS](#import-data-in-sas)
+- [time it](#time-it)
 - [First glance](#first-glance)
   - [Python](#python)
 
@@ -79,7 +79,7 @@ run;
 ```
 
 # External data
-R has different dialets.  It is more versatile and fragmented than SAS and Python.  Its different "dialets" can be confusing for someone who does not use it often.  
+
 
 In SAS, <span class="coding">PROC IMPORT</span> imports external data.  Inline data can be created using <span class="coding">DATA</span> step.  That is about 99% of the cases already.  
 
@@ -111,7 +111,9 @@ df0 = pd.read_sas(inputFolder+'/filename.sas7bdat', encoding='latin-1')
 
 ```
 ## Import external data to R
-<span class="coding">read.table</span>is the principal means of reading tabular data into R. For details, please see [read.table](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/read.table)
+R has different dialets.  It is more versatile and fragmented than SAS and Python. Besides [read.table](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/read.table), the library <span class="coding">data.table</span> is popular.
+
+<span class="coding">read.table</span>is the principal means of reading tabular data into R. 
 
 <div class="code-head"><span>code</span>input.r</div>
 
@@ -154,6 +156,24 @@ data(x) # loads specific dataset
 read_feather(path, columns=NULL)
 write_feather(x, path)
 ```
+<span class="coding">fread</span> stands for "fast read".  The speed efficiency gain becomes more obvious as the data size gets larger. 
+
+The imported data is stored as a <span class="coding">data.table</span>object, which is, by inheritance, a <span class="coding">data.frame</span> object as well. 
+
+Conversely, a <span class="coding">data.frame</span> object can be converted to <span class="coding">data.table</span> by:
+1. <span class="coding">data.table(df)</span>, or <span class="coding">as.data.table(df)</span>
+2. <span class="coding">setDT(df)</span>
+
+<div class="code-head"><span>code</span>fread_speed.r</div> 
+set.seed(1)
+N <-1000000
+df<- data.frame(matrix(runif(N), nrow=N))
+write.csv(df, 'df.csv', row.names=F)
+# time it
+system.time({df<-read.csv('df.csv)})
+system.time({df<-fread('df.csv)})
+```r
+
 ## Import data in SAS
 <div class="code-head"><span>code</span>firstLook.sas</div>
 
