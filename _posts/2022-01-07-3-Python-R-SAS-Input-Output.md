@@ -12,12 +12,12 @@ image: images/posts/photos/IMG-0686.jpg
 Work in Progress.  Check back later. 
 - [Load data that comes with IDE or libraries](#load-data-that-comes-with-ide-or-libraries)
   - [Loading pre-packaged data into Python](#loading-pre-packaged-data-into-python)
-- [Load prepackaged data to R](#load-prepackaged-data-to-r)
-- [Load SASHelp data](#load-sashelp-data)
-  - [External data](#external-data)
-    - [Import external data to Python](#import-external-data-to-python)
-    - [Import external data to R](#import-external-data-to-r)
-    - [Import data in SAS](#import-data-in-sas)
+  - [Load prepackaged data to R](#load-prepackaged-data-to-r)
+  - [Load SASHelp data](#load-sashelp-data)
+- [External data](#external-data)
+  - [Import external data to](#import-external-data-to)
+  - [Import external data to R](#import-external-data-to-r)
+  - [Import data in SAS](#import-data-in-sas)
 - [First glance](#first-glance)
   - [Python](#python)
 
@@ -61,10 +61,10 @@ Out[7]:
 3              4.600             3.100              1.500             0.200
 4              5.000             3.600              1.400             0.200
 ```
-# Load prepackaged data to R
+## Load prepackaged data to R
 <span class="coding">data()</span> can be used to load any dataset that comes with RStudio.  This makes testing code fast and easy.  For example, <span class="coding">data("mtcars")</span> loads the cars dataset, and <span class="coding">data("iris")</span> loads the iris dataset. 
 
-# Load SASHelp data
+## Load SASHelp data
 There are many famous datasets that comes with the sas. See [Sashelp Data Sets - SAS Support]https://support.sas.com/documentation/tools/sashelpug.pdf).  <span class="coding">data=sashelp.iris </span> will automatically load the data. 
 <div class="code-head"><span>code</span>existing data.sas</div>
 
@@ -78,25 +78,39 @@ run;
 
 ```
 
-## External data
+# External data
 R has different dialets.  It is more versatile and fragmented than SAS and Python.  Its different "dialets" can be confusing for someone who does not use it often.  
 
 In SAS, <span class="coding">PROC IMPORT</span> imports external data.  Inline data can be created using <span class="coding">DATA</span> step.  That is about 99% of the cases already.  
 
 In Python, we generally use the pandas library to bring in data. 
-### Import external data to Python
+## Import external data to 
+1. Python build-in functions <span class="coding">read()</span>, <span class="coding">readline()</span>, and <span class="coding">readlines()</span>.
+
 Most of the time, I use the pandas library to import data.  See [Input/output](https://pandas.pydata.org/docs/reference/io.html) for a comprehensive list of functions for a wide variety of formats of data. 
 
-<div class="code-head"><span>code</span>input.py</div>
-
-```python
 pandas.read_csv(filepath_or_buffer, index_col=None, usecols=None, dtype=None, engine=None, converters=None, true_values=None, skipinitialspace=False, skiprows=None, skipfooter=0, nrows=None, na_values=None, keep_default_na=True, skip_blank_lines=True, parse_dates=False, infer_datetime_format=False, keep_date_col=False, date_parser=None, dayfirst=False,  thousands=None, decimal='.',  encoding=None,  low_memory=True, float_precision=None)
 
 pandas.read_excel(io, sheet_name=0, header=0, names=None, index_col=None, usecols=None, dtype=None,  true_values=None, false_values=None, skiprows=None, nrows=None, na_values=None, keep_default_na=True, na_filter=True, verbose=False, parse_dates=False, date_parser=None, thousands=None, comment=None, skipfooter=0, convert_float=None, mangle_dupe_cols=True, storage_options=None)
 
 pandas.read_sas(filepath_or_buffer, format=None, index=None, encoding=None, chunksize=None, iterator=False)
+
+<div class="code-head"><span>code</span>input.py</div>
+
+```python
+#  Large file sample of every 100 rows
+keep = ['CUST_ID', 'ZIP_CODE', 'CUST_NAME', 'Country','Segment1','Segment2','DATE','LGD']
+n=100
+p=0.005
+per_raw_head = pd.read_csv(inputFolder+'/filename.csv', header=0, skiprows=lambda i:i%n!=0, engine='python').rename(columns=lambda x: x.strip())
+list(per_raw_head)
+# full data
+df = pd.read_csv('./data/filename.csv', low_memory=False, usecols=keep, encoding='lating-1').rename(columns=lambda x:x.strip())
+# SAS file 
+df0 = pd.read_sas(inputFolder+'/filename.sas7bdat', encoding='latin-1')
+
 ```
-### Import external data to R
+## Import external data to R
 <span class="coding">read.table</span>is the principal means of reading tabular data into R. For details, please see [read.table](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/read.table)
 
 <div class="code-head"><span>code</span>input.r</div>
@@ -140,11 +154,16 @@ data(x) # loads specific dataset
 read_feather(path, columns=NULL)
 write_feather(x, path)
 ```
-### Import data in SAS
+## Import data in SAS
 <div class="code-head"><span>code</span>firstLook.sas</div>
 
 ```sas
-PROC IMPORT 
+PROC IMPORT DATAFILE='/folders/myfolders/DATA/LoanStats3a.csv'
+OUT=df
+     	DBMS=CSV
+     	REPLACE;
+	GUESSINGROWS=50000;
+RUN;
 ```
 # First glance
 ## Python
