@@ -19,7 +19,7 @@ Work in Progress.  Check back later.
     - [Import external data to Python](#import-external-data-to-python)
     - [Import external data to R](#import-external-data-to-r)
     - [Import data in SAS](#import-data-in-sas)
-- [Take a first look at the data](#take-a-first-look-at-the-data)
+- [First glance](#first-glance)
   - [Python](#python)
 
 # Inputting data
@@ -148,21 +148,7 @@ write_feather(x, path)
 ```sas
 PROC IMPORT 
 ```
-
-# Take a first look at the data
-
-After having loaded the data, we can use the following to take a quick look before further processings.
-- [Inputting data](#inputting-data)
-  - [Load data that comes with IDE or libraries](#load-data-that-comes-with-ide-or-libraries)
-    - [Loading pre-packaged data into Python](#loading-pre-packaged-data-into-python)
-    - [R](#r)
-    - [Load SASHelp data](#load-sashelp-data)
-  - [External data](#external-data)
-    - [Import external data to Python](#import-external-data-to-python)
-    - [Import external data to R](#import-external-data-to-r)
-    - [Import data in SAS](#import-data-in-sas)
-- [Take a first look at the data](#take-a-first-look-at-the-data)
-  - [Python](#python)
+# First glance
 ## Python
 
 <div class="code-head"><span>code</span>firstLook.py</div>
