@@ -8,10 +8,7 @@ author: Sarah Chen
 image: images/posts/photos/IMG-0647.JPG
 ---
 
-<figure> 
-   <img src="{{"/images/posts/photos/IMG-0647.jpg"| relative_url}}"> 
-   <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
-</figure> 
+[](/images/posts/photos/IMG-0647.jpg)
 
 In many business contexts, models not only need to be reasonable accurate but also must be interpretable and intuitive.  
 
@@ -71,7 +68,7 @@ The four subsets, each with 11 data points, have distinct characteristics despit
 The OLS in one variable can be solved in linear algebra, or beginning calculus, or, with a few more steps, even middle school algebra. 
 
 <figure> 
-   <img src="{{"/images/posts/ols_1_feature.png"| relative_url}}"> 
+   <img src="{{"/images/posts/ols_1_feature.PNG"| relative_url}}"> 
    <figcaption>One Variable OLS Solution</figcaption>
 </figure>
 
@@ -162,7 +159,7 @@ plt.close()
 # R square: 0.67
 ```
 <figure> 
-   <img src="{{"/images/posts/OLS Regression for Anscomebe Dataset 1.png"| relative_url}}"> 
+   <img src="{{"/images/posts/OLS Regression for Anscomebe Dataset 1.PNG"| relative_url}}"> 
    <figcaption>OLS linear regression on Anscomebe</figcaption>
 </figure>
 
@@ -207,18 +204,18 @@ MODEL y=x;
 RUN;
 ```
 <figure> 
-   <img src="{{"/images/posts/sas_ols.png"| relative_url}}"> 
+   <img src="{{"/images/posts/sas_ols.PNG"| relative_url}}"> 
    <figcaption>OLS via SAS</figcaption>
 </figure>
 Diagnostics are important too!  
 
 The outputs show that the model is the right type of model for this data, and that the parameter coeffcient is trustworthy.  For new data coming from the same population, we can apply this model with confidence. 
 <figure> 
-   <img src="{{"/images/posts/sas_ols_diagnostics.png"| relative_url}}"> 
+   <img src="{{"/images/posts/sas_ols_diagnostics.PNG"| relative_url}}"> 
    <figcaption>OLS via SAS</figcaption>
 </figure>
 <figure> 
-   <img src="{{"/images/posts/ols_1_feature_fit.png"| relative_url}}"> 
+   <img src="{{"/images/posts/ols_1_feature_fit.PNG"| relative_url}}"> 
    <figcaption>SAS OLS Fit Plot</figcaption>
 </figure>
 
@@ -239,7 +236,7 @@ Without diagnostics or visual analysis of the data, it would have been hard to t
 
 We should probably transform the variable, for example, using power transform (note that y = a + bx^2 is still linear regression)
 <figure> 
-   <img src="{{"/images/posts/ols_1_feature_fit_poor.png"| relative_url}}"> 
+   <img src="{{"/images/posts/ols_1_feature_fit_poor.PNG"| relative_url}}"> 
    <figcaption>Not a Good Fit</figcaption>
 </figure>
 
