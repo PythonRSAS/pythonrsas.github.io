@@ -2,8 +2,8 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "Xi Correlation in Python and R"
-description: Chatterjee's Xi correlation in Python and R
+title: "Xi Correlation in Python"
+description: Chatterjee's Xi correlation in Python
 author: Sarah Chen
 image: images/posts/photos/IMG-0688.jpg
 
@@ -15,7 +15,7 @@ The "Xi" correlation is a candidate for detecting whether one thing is a functio
 
 The "Xi" correlation is actually very simple. In my view, is a variation of the Gini score, where one thing is used for ranking and the other thing is used for sorting. 
 
-The $$\xi$$ correlation (xicor) is a robust association measure that does not presuppose linearity.  It is based on cross correlation between ranked increments. 
+The $\xi$ correlation (xicor) is a robust association measure that does not presuppose linearity.  It is based on cross correlation between ranked increments. 
 
 # Algorithem
 
