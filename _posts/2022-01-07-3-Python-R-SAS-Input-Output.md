@@ -158,12 +158,6 @@ write_feather(x, path)
 ```
 <span class="coding">fread</span> stands for "fast read".  The speed efficiency gain becomes more obvious as the data size gets larger. 
 
-The imported data is stored as a <span class="coding">data.table</span>object, which is, by inheritance, a <span class="coding">data.frame</span> object as well. 
-
-Conversely, a <span class="coding">data.frame</span> object can be converted to <span class="coding">data.table</span> by:
-1. <span class="coding">data.table(df)</span>, or <span class="coding">as.data.table(df)</span>
-2. <span class="coding">setDT(df)</span>
-
 <div class="code-head"><span>code</span>fread_speed.r</div> 
 set.seed(1)
 N <-1000000
@@ -173,6 +167,22 @@ write.csv(df, 'df.csv', row.names=F)
 system.time({df<-read.csv('df.csv)})
 system.time({df<-fread('df.csv)})
 ```r
+
+The imported data is stored as a <span class="coding">data.table</span>object, which is, by inheritance, a <span class="coding">data.frame</span> object as well. 
+
+Conversely, a <span class="coding">data.frame</span> object can be converted to <span class="coding">data.table</span> by:
+1. <span class="coding">data.table(df)</span>, or <span class="coding">as.data.table(df)</span>
+2. <span class="coding">setDT(df)</span> converts in place. 
+
+> <span class="coding">data.table</span> does not store rownames.  We need to separately preserve the row names.    
+<div class="code-head"><span>code</span>data frame to data.table.r</div> 
+data("mtcars")
+mtcars$carname <- rownames(mtcars)
+mtcars_dt <- as.data.table(mtcars)
+class(mtcars_dt) 
+"data.table" "data.frame"
+```r   
+
 
 ## Import data in SAS
 <div class="code-head"><span>code</span>firstLook.sas</div>
