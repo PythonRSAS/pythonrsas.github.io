@@ -16,6 +16,10 @@ Work in Progress.
   - [Load SASHelp data](#load-sashelp-data)
 - [External data](#external-data)
   - [Import external data to Python](#import-external-data-to-python)
+    - [Overview](#overview)
+    - [read() used with open()](#read-used-with-open)
+    - [pandas.read_](#pandasread_)
+    - [Reading larger files in Python](#reading-larger-files-in-python)
   - [Import external data to R](#import-external-data-to-r)
   - [Import data in SAS](#import-data-in-sas)
 - [First glance](#first-glance)
@@ -81,12 +85,14 @@ run;
 # External data
 
 ## Import external data to Python
+### Overview
+There are many ways to import data into Python.  Below is an overview, and is by no means exhaustive:
 1. Python build-in functions <span class="coding">read()</span>, <span class="coding">readline()</span>, and <span class="coding">readlines()</span>.  This is feasible only for small files. 
 2. The <span class="coding">csv </span> library, which I have never used. 
 3. The <span class="coding">pandas </span> library, which I use all the time. 
-4. Specifically for very large datasets,<span class="coding">dask.dataframe()</span> large parallel DataFrame composed of many smaller Pandas DataFrames, split along the index. Most functions used with pandas can also be used with dask. 
-5. Also for very large files, [datatable](https://datatable.readthedocs.io/en/latest/) for  big 2D data frames, up to 100GB). It supports out-of-memory datasets. 
-
+4. <span class="coding">dask.dataframe()</span> splits big pandas DataFrame into many along index.
+5. [datatable](https://datatable.readthedocs.io/en/latest/) for  big 2D data frames. 
+### read() used with open()
 To use the <span class="coding">read()</span> function, the file first needs to be open by calling the <span class="coding">open()</span>built-in function, which has two parameters: the path to the file and an optional argument to indicate whether <span class="coding">'r'</span> (for reading) or <span class="coding">'w'</span> (for writing).
 ```python
 In [6]: with open('df4.csv', 'r') as reader:
@@ -109,7 +115,7 @@ In [13]: file = open("df4.csv")
     ...: print(data)
     ...: file.close()
 ```
-
+### pandas.read_
 Most of the time, I use the pandas library to import data.  See [Input/output](https://pandas.pydata.org/docs/reference/io.html) for a comprehensive list of functions for a wide variety of formats of data.  The read_csv, and other pandas read functions take many parameters.  Those that I have used are listed below: 
 ```python
 pandas.read_csv(filepath_or_buffer, index_col=None, usecols=None, dtype=None, engine=None, converters=None, true_values=None, skipinitialspace=False, skiprows=None, skipfooter=0, nrows=None, na_values=None, keep_default_na=True, skip_blank_lines=True, parse_dates=False, infer_datetime_format=False, keep_date_col=False, date_parser=None, dayfirst=False,  thousands=None, decimal='.',  encoding=None,  low_memory=True, float_precision=None)
@@ -118,7 +124,7 @@ pandas.read_excel(io, sheet_name=0, header=0, names=None, index_col=None, usecol
 
 pandas.read_sas(filepath_or_buffer, format=None, index=None, encoding=None, chunksize=None, iterator=False)
 ```
-
+Here are some examples:
 <div class="code-head"><span>code</span>input.py</div>
 
 ```python
@@ -132,8 +138,31 @@ list(per_raw_head)
 df = pd.read_csv('./data/filename.csv', low_memory=False, usecols=keep, encoding='lating-1').rename(columns=lambda x:x.strip())
 # SAS file 
 df0 = pd.read_sas(inputFolder+'/filename.sas7bdat', encoding='latin-1')
-
 ```
+
+### Reading larger files in Python
+Most of Python runs on memory.  To work with large files, we need to split the files one way or another, divide and conquer.
+
+Using <span class="coding">chunksize</span> option, we can somewhat reunite the pieces after they are imported into Python. I guess there has to be some memory saving mechanism in this process.  
+```python
+chunks = pd.read_csv(input_file, chunksize=100000)
+data = pd.concat(chunks)
+```
+<span class="coding">dask.dataframe()</span>: A [Dask DataFrame](https://docs.dask.org/en/stable/dataframe.html) is a large parallel DataFrame composed of many smaller pandas DataFrames, split along the index. These pandas DataFrames may live on disk for larger-than-memory computing on a single machine, or on many different machines in a cluster. One Dask DataFrame operation triggers many operations on the constituent pandas DataFrames. 
+
+See some examples [here](https://examples.dask.org/dataframe.html).
+
+> Most functions used with pandas can also be used with dask. 
+
+[datatable](https://datatable.readthedocs.io/en/latest/) is made for  big 2D data frames, up to 100GB). It supports out-of-memory datasets.  The Python <span class="coding">datatable</span> tries to mimic R's <span class="coding">data.table</span>, but does not have all the functions associated with R's <span class="coding">data.table</span> yet.   
+
+The <span class="coding">fread()</span> method reads exactly like its counterpart in R. 
+
+```python
+import datatable as dt
+data = datatable.fread(input_file)
+```
+
 ## Import external data to R
 R has different dialets.  It is more versatile and fragmented than SAS and Python. Besides [read.table](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/read.table), the library <span class="coding">data.table</span> is popular.
 
