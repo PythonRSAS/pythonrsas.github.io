@@ -22,10 +22,12 @@ The $\xi$ correlation (xicor) is a robust association measure that does not pres
 1. Take $X$ and $Y$ as n-vectors of observations
 2. Compute the ranks $r_i$ of the $Y$ observations
 3. Sort the data tuples $(x_1,y_1,r_1), ..., (x_n,y_n,r_n)$ by $X$ so that $x_1 \le x_2 \le x_n$.  Then
+4. Ties are broken at random.
 
 $$\xi=1-3\sum_{i=1}^{n-1}\frac{| r_{i+1}-r_i}{n^2-1}$$
 
-Ties are broken at random.
+This formula is very simple, but requires some explanation that are not so simple to see:
+Multiply by 3
 
 # XICOR in Python
 <div class="code-head"><span>code</span>xicor_implmented.py</div>

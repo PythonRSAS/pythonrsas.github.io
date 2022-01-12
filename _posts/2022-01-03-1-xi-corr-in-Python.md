@@ -25,11 +25,16 @@ The $$\xi$$ correlation (xicor) is a robust association measure that does not pr
 
 1. Take $$X$$ and $$Y$$ as n-vectors of observations
 2. Compute the ranks $$r_i$$ of the $$Y$$ observations
-3. Sort the data tuples $$(x_1,y_1,r_1), ..., (x_n,y_n,r_n)$$ by $$X$$ so that $$x_1 \le x_2 \le x_n$$.  Then
+3. Sort the data tuples $$(x_1,y_1,r_1), ..., (x_n,y_n,r_n)$$ by $$X$$ so that $$x_1 \le x_2 \le x_n$$.  
+4. Ties are broken at random (not shown in formula).
 
-$$\xi=1-3\sum_{i=1}^{n-1}\frac{| r_{i+1}-r_i}{n^2-1}$$
+$$\xi=1-3\sum_{i=1}^{n-1}\frac{| r_{i+1}-r_i |}{n^2-1}$$
 
-Ties are broken at random.
+This formula is very simple, but requires some explanation that are not so simple to see:
+**Multiply by 3**: this is to normalize the expected value of the difference between 2 random variables from the standard uniform distribution, which is 1/3. 
+**Divide by $$n^2-1$$**: this should be factored into $$n -1$$ and $$n + 1$$. 
+- divide by $$n -1$$: this is to take the average.  We have $$n -1$$ pairs of differences of adjacent rows of $$r_{i+1}-r_i$$. 
+- divide by $$n + 1$$: this is to normalize differences of adjacent rows of $$r_{i+1}-r_i$$, which can be large. The maximum difference is $$n -1$$.  $$n + 1$$ is likely because of avoiding the situation of $$1 -1$$, when $$n$$ is one. 
 
 # XICOR in Python
 <div class="code-head"><span>code</span>xicor_implmented.py</div>
