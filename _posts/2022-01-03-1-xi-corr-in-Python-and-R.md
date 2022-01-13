@@ -31,6 +31,7 @@ $$\xi=1-3\sum_{i=1}^{n-1}\frac{| r_{i+1}-r_i |}{n^2-1}$$
 
 This formula is very simple, but requires some explanation that are not so simple to see:
 **Multiply by 3**: this is to normalize the expected value of the difference between 2 random variables from the standard uniform distribution, which is 1/3. 
+
 **Divide by $$n^2-1$$**: this should be factored into $$n -1$$ and $$n + 1$$. 
 - divide by $$n -1$$: this is to take the average.  We have $$n -1$$ pairs of differences of adjacent rows of $$r_{i+1}-r_i$$. 
 - divide by $$n + 1$$: this is to normalize differences of adjacent rows of $$r_{i+1}-r_i$$, which can be large. The maximum difference is $$n -1$$.  $$n + 1$$ is likely because of avoiding the situation of $$1 -1$$, when $$n$$ is one. 
@@ -264,4 +265,41 @@ par(mfrow=c(1,1))
 plot(x,y,pch=16,main="Cubic Root")
 barplot(Value,names.arg=Correlation, ylim=c(-1,1),las=2)
 ```
+# Verify $$1/3$$ is the Expected Value of Difference of 2 uniformly distributed r.v.
 
+We can verify algebraically using probability.  We can also use Python to show the "expected" result. 
+
+<div class="code-head"><span>code</span>uniform rv diff and sum.py</div> 
+
+```python
+def sum_uniform(n):
+    x=np.random.uniform(size = n)
+    y=np.random.uniform(size = n)
+    return sum(abs(x+y))/n
+def diff_uniform(n):
+    x=np.random.uniform(size = n)
+    y=np.random.uniform(size = n)
+    return sum(abs(x-y))/n
+
+N = np.arange(1,1000)
+s=[]
+for i in N:
+    s.append(sum_uniform(i))  
+d=[]
+for i in N:
+    d.append(diff_uniform(i))
+
+fig, ax = plt.subplots(1,2,figsize=(8,4))
+ax[0].plot(N, d,color=blue, alpha=0.5)
+ax[0].hlines(1/3,1,999)
+ax[0].set_title("difference of 2 uniformly distributed r.v.")
+ax[1].plot(N, s,color=blue, alpha=0.5)
+ax[1].hlines(1,1,999)
+ax[0].set_ylim([-0.2,1.2])
+ax[1].set_ylim([-0.2,1.2])
+ax[0].set_title("difference of 2 uniformly distributed r.v.")
+ax[1].set_title("sum of 2 uniformly distributed r.v.")
+save_fig("sum and difference of 2 uniformly distributed")
+plt.show()
+```
+[sum and difference of uniform rv](/images/post/sum and difference of 2 uniformly distributed.PNG)
