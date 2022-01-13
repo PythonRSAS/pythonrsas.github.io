@@ -265,9 +265,11 @@ par(mfrow=c(1,1))
 plot(x,y,pch=16,main="Cubic Root")
 barplot(Value,names.arg=Correlation, ylim=c(-1,1),las=2)
 ```
-# Verify $$1/3$$ is the Expected Value of Difference of 2 uniformly distributed r.v.
+# Expected Value of Difference of uniformly distributed r.v.is $$1/3$$
 
-We can verify algebraically using probability.  We can also use Python to show the "expected" result. 
+We can verify algebraically using probability.  We can also use Python to show the "expected" result. Here we take the visual rounte.  
+
+We not only show that the expected value of difference is $$1/3$$, but also the expected value of sum is $$1$$. 
 
 <div class="code-head"><span>code</span>uniform rv diff and sum.py</div> 
 
@@ -302,4 +304,4 @@ ax[1].set_title("sum of 2 uniformly distributed r.v.")
 save_fig("sum and difference of 2 uniformly distributed")
 plt.show()
 ```
-[sum and difference of uniform rv](/images/post/sum and difference of 2 uniformly distributed.PNG)
+![sum and difference of uniform rv](/images/post/sum and difference of 2 uniformly distributed.PNG)
