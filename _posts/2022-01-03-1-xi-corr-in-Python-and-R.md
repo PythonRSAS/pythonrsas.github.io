@@ -304,4 +304,4 @@ ax[1].set_title("sum of 2 uniformly distributed r.v.")
 save_fig("sum and difference of 2 uniformly distributed")
 plt.show()
 ```
-![sum and difference of uniform rv](/images/post/sum and difference of 2 uniformly distributed.PNG)
+![sum and difference of uniform rv](/images/post/sum and difference of 2 uniformly distributed.png)
