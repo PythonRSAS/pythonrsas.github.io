@@ -21,6 +21,7 @@ Work in Progress.
     - [pandas.read_](#pandasread_)
     - [Reading larger files in Python](#reading-larger-files-in-python)
   - [Import external data to R](#import-external-data-to-r)
+    - [read.table](#readtable)
   - [Import data in SAS](#import-data-in-sas)
 - [First glance](#first-glance)
   - [Python](#python)
@@ -120,6 +121,15 @@ f.close()
 f=open('new.txt','r')
 f.read()
 Out: 'hello'
+f=open("new.txt", "a+")^M
+for i in range(2):^M
+     f.write("\nAppended line %d" % (i+1))
+f.close()
+f=open("new.txt","r")
+print(f.read())
+# hello
+# Appended line 1
+# Appended line 2
 ```
 ### pandas.read_
 Most of the time, I use the pandas library to import data.  See [Input/output](https://pandas.pydata.org/docs/reference/io.html) for a comprehensive list of functions for a wide variety of formats of data.  The read_csv, and other pandas read functions take many parameters.  Those that I have used are listed below: 
@@ -130,14 +140,13 @@ pandas.read_excel(io, sheet_name=0, header=0, names=None, index_col=None, usecol
 
 pandas.read_sas(filepath_or_buffer, format=None, index=None, encoding=None, chunksize=None, iterator=False)
 ```
-An example:
+The first example below reads a record every 100 rows. We can change n for higher or lower frequencies.  <span class="coding">columns=lambda x: x.strip()</span> removes proceeding and trailing blanks. 
 <div class="code-head"><span>code</span>input.py</div>
 
 ```python
 #  Large file sample of every 100 rows
 keep = ['CUST_ID', 'ZIP_CODE', 'CUST_NAME', 'Country','Segment1','Segment2','DATE','LGD']
 n=100
-p=0.005
 per_raw_head = pd.read_csv(inputFolder+'/filename.csv', header=0, skiprows=lambda i:i%n!=0, engine='python').rename(columns=lambda x: x.strip())
 list(per_raw_head)
 # full data
@@ -169,9 +178,13 @@ data = datatable.fread(input_file)
 ```
 
 ## Import external data to R
-R has different dialets.  It is more versatile and fragmented than SAS and Python. Besides [read.table](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/read.table), the library <span class="coding">data.table</span> is popular.
+R has different dialets.  It is versatile and but also fragmented. I mainly use two methods:
+ 1. [read.table](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/read.table)
+ 2. <span class="coding">data.table</span> 
 
-<span class="coding">read.table</span>is the principal means of reading tabular data into R. 
+
+### read.table
+<span class="coding">read.table</span> is the principal means of reading tabular data into R. 
 
 <div class="code-head"><span>code</span>input.r</div>
 
@@ -186,17 +199,6 @@ read.table(file, header = FALSE, sep = "", quote = "\"'",
            allowEscapes = FALSE, flush = FALSE,
            stringsAsFactors = default.stringsAsFactors(),
            fileEncoding = "", encoding = "unknown", text, skipNul = FALSE)
-read.csv(file, header = TRUE, sep = ",", quote = "\"",
-         dec = ".", fill = TRUE, comment.char = "", …)
-
-read.csv2(file, header = TRUE, sep = ";", quote = "\"",
-          dec = ",", fill = TRUE, comment.char = "", …)
-
-read.delim(file, header = TRUE, sep = "\t", quote = "\"",
-           dec = ".", fill = TRUE, comment.char = "", …)
-
-read.delim2(file, header = TRUE, sep = "\t", quote = "\"",
-            dec = ",", fill = TRUE, comment.char = "", …)
 ```
 
 <div class="code-head"><span>code</span>input.r</div>
