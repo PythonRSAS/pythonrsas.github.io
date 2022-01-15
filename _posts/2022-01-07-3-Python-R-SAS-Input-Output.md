@@ -156,9 +156,8 @@ data = pd.concat(chunks)
 ```
 <span class="coding">dask.dataframe()</span>: A [Dask DataFrame](https://docs.dask.org/en/stable/dataframe.html) is a large parallel DataFrame composed of many smaller pandas DataFrames, split along the index. These pandas DataFrames may live on disk for larger-than-memory computing on a single machine, or on many different machines in a cluster. One Dask DataFrame operation triggers many operations on the constituent pandas DataFrames. 
 
+> Advantage: most functions used with pandas can also be used with dask. 
 See some examples [here](https://examples.dask.org/dataframe.html).
-
-> Most functions used with pandas can also be used with dask. 
 
 [datatable](https://datatable.readthedocs.io/en/latest/) is made for  big 2D data frames, up to 100GB). It supports out-of-memory datasets.  The Python <span class="coding">datatable</span> tries to mimic R's <span class="coding">data.table</span>, but does not have all the functions associated with R's <span class="coding">data.table</span> yet.   
 
