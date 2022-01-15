@@ -175,7 +175,9 @@ The <span class="coding">datatable.fread()</span> method reads exactly like its 
 - file extension such as ".csv"
 - .iloc,.loc
 But because it is an extra work to remember these, for now I prefer stay with pandas unless I have to. 
+
 ```python
+
 import datatable as dt
 In [10]: df = dt.fread('iris') # don't include file extension
 
