@@ -20,8 +20,9 @@ Work in Progress.
     - [read() with open()](#read-with-open)
     - [pandas.read_](#pandasread_)
     - [Reading larger files in Python](#reading-larger-files-in-python)
-  - [Import external data to R](#import-external-data-to-r)
+  - [Import external file to R](#import-external-file-to-r)
     - [read.table](#readtable)
+    - [data.table](#datatable)
   - [Import data in SAS](#import-data-in-sas)
 - [First glance](#first-glance)
   - [Python](#python)
@@ -168,20 +169,48 @@ data = pd.concat(chunks)
 > Advantage: most functions used with pandas can also be used with dask. 
 See some examples [here](https://examples.dask.org/dataframe.html).
 
-[datatable](https://datatable.readthedocs.io/en/latest/) is made for  big 2D data frames, up to 100GB). It supports out-of-memory datasets.  The Python <span class="coding">datatable</span> tries to mimic R's <span class="coding">data.table</span>, but does not have all the functions associated with R's <span class="coding">data.table</span> yet.   
+[datatable](https://datatable.readthedocs.io/en/latest/) is made for  big 2D data frames, up to 100GB). It supports out-of-memory datasets.  The Python <span class="coding">datatable</span> tries to mimic R's <span class="coding">data.table</span>, but does not have all the functions associated with its R sister yet.   
 
-The <span class="coding">fread()</span> method reads exactly like its counterpart in R. 
-
+The <span class="coding">datatable.fread()</span> method reads exactly like its counterpart in R.  It has a consice and cleaner syntax than pandas.  There is no need to type:
+- file extension such as ".csv"
+- .iloc,.loc
+But because it is an extra work to remember these, for now I prefer stay with pandas unless I have to. 
 ```python
 import datatable as dt
-data = datatable.fread(input_file)
+In [10]: df = dt.fread('iris') # don't include file extension
+
+In [11]: df
+Out[11]:
+    | sepal_length  sepal_width  petal_length  petal_width  species
+    |      float64      float64       float64      float64  str32
+--- + ------------  -----------  ------------  -----------  ---------
+  0 |          5.1          3.5           1.4          0.2  setosa
+  … |            …            …             …            …  …
+149 |          5.9          3             5.1          1.8  virginica
+[150 rows x 5 columns]
+
+In [12]: df[:2,:]
+Out[12]:
+   | sepal_length  sepal_width  petal_length  petal_width  species
+   |      float64      float64       float64      float64  str32
+-- + ------------  -----------  ------------  -----------  -------
+ 0 |          5.1          3.5           1.4          0.2  setosa
+ 1 |          4.9          3             1.4          0.2  setosa
+[2 rows x 5 columns]
+In [14]: from datatable import f
+In [18]: df[f.sepal_length>7.5,:] # cannot omit ":"
+Out[18]:
+   | sepal_length  sepal_width  petal_length  petal_width  species
+   |      float64      float64       float64      float64  str32
+-- + ------------  -----------  ------------  -----------  ---------
+ 0 |          7.6          3             6.6          2.1  virginica
+ 1 |          7.7          3.8           6.7          2.2  virginica
 ```
 
-## Import external data to R
+## Import external file to R
 R has different dialets.  It is versatile and but also fragmented. I mainly use two methods:
  1. [read.table](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/read.table)
- 2. <span class="coding">data.table</span> 
-
+ 2. [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html)
 
 ### read.table
 <span class="coding">read.table</span> is the principal means of reading tabular data into R. 
@@ -216,6 +245,8 @@ data(x) # loads specific dataset
 read_feather(path, columns=NULL)
 write_feather(x, path)
 ```
+### data.table
+
 <span class="coding">fread</span> stands for "fast read".  The speed efficiency gain becomes more obvious as the data size gets larger. 
 
 <div class="code-head"><span>code</span>fread_speed.r</div>
@@ -228,7 +259,7 @@ write.csv(df, 'df.csv', row.names=F)
 
 system.time({df<-read.csv('df.csv)}) # time it
 system.time({df<-fread('df.csv)})
-```r
+```
 
 The imported data is stored as a <span class="coding">data.table</span>object, which is, by inheritance, a <span class="coding">data.frame</span> object as well. 
 
