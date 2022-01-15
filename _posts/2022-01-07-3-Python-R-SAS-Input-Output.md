@@ -24,8 +24,8 @@ Work in Progress.
     - [read.table](#readtable)
     - [data.table](#datatable)
   - [Import data in SAS](#import-data-in-sas)
-- [First glance](#first-glance)
-  - [Python](#python)
+- [Data from SQL Servers](#data-from-sql-servers)
+  - [Pyodbc](#pyodbc)
 
 
 # Load data that comes with IDE or libraries
@@ -171,9 +171,7 @@ See some examples [here](https://examples.dask.org/dataframe.html).
 
 [datatable](https://datatable.readthedocs.io/en/latest/) is made for  big 2D data frames, up to 100GB). It supports out-of-memory datasets.  The Python <span class="coding">datatable</span> tries to mimic R's <span class="coding">data.table</span>, but does not have all the functions associated with its R sister yet.   
 
-The <span class="coding">datatable.fread()</span> method reads exactly like its counterpart in R.  It has a consice and cleaner syntax than pandas.  There is no need to type:
-- file extension such as ".csv"
-- .iloc,.loc
+The <span class="coding">datatable.fread()</span> method reads exactly like its counterpart in R.  It has a consice and cleaner syntax than pandas.  There is no need to type file extension such as ".csv", .iloc,.loc. 
 But because it is an extra work to remember these, for now I prefer stay with pandas unless I have to. 
 
 ```python
@@ -294,25 +292,52 @@ OUT=df
 	GUESSINGROWS=50000;
 RUN;
 ```
-# First glance
-## Python
+# Data from SQL Servers
+## Pyodbc
+pyodbc is an open source Python module that is participated by Microsoft.  
+Both [Microsoft site](https://docs.microsoft.com/en-us/sql/connect/python/pyodbc/python-sql-driver-pyodbc?view=sql-server-ver15) and [Github](https://github.com/mkleehammer/pyodbc/wiki/Getting-started) have user guides. 
 
-<div class="code-head"><span>code</span>firstLook.py</div>
+
+<div class="code-head"><span>code</span>pyodbc.py</div>
 
 ```python
-df.info()
-df.dtypes()
-df.shape
-df.head()
-df.columns.tolist()
-```
+import pyodbc 
+# Some example server values are
+# server = 'localhost\sqlexpress' # for a named instance
+# server = 'myserver,port' # to specify an alternate port
+server = 'tcp:myserver.database.windows.net' 
+database = 'mydb' 
+username = 'myusername' 
+password = 'mypassword' 
+mytablename ='mytable'
+cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};
+                        SERVER='+server+';
+                        DATABASE='+database+';
+                        UID='+username+';
+                        PWD='+ password
+                        'Trusted_Connection=yes;')
+cursor = cnxn.cursor()
+# print columns of table, if desired
+for row in cursor.columns(table=mytablename):
+  print(row.column_name)
+sql_command = 'SELECT' + ','.JOIN(mycolumns) + 'FROM' + mytablename
+extract = pd.read_sql(sql_command, cnxn)
 
-<div class="code-head"><span>code</span>firstLook.r</div>
+```
+There are multiple ways to get data from a SQL server in R.  [RODBC] is one of them. 
+
+ ---:|:------------------------------------------------------------|:---------------------------------------------------------------------------|\n|  0 | odbcConnect(dsn, uid="", pwd="")                            | Open a connection to an ODBC database                                      |\n|  1 | sqlFetch(channel,\xa0sqtable)                                  | Read a table from an ODBC database into a data frame                       |\n|  2 | sqlQuery(channel,\xa0query)                                    | Submit a query to an ODBC database and return the results                  |\n|  3 | sqlSave(channel,\xa0mydf, tablename =\xa0sqtable, append =\xa0FALSE) | Write or update (append=True) a data frame to a table in the ODBC database |\n|  4 | sqlDrop(channel,\xa0sqtable)                                   | Remove a table from the ODBC database                                      |\n|  5 | close(channel)                                              | Close the connection                                                       |'
+<div class="code-head"><span>code</span>RODBC.r</div>
 
 ```r
-
-str(df) # similar to Python df.info() and SAS proc contents
-dim(df)
-head(df)
-tail(df)
+library(RODBC)
+cnxn = odbcConnect('')
+extract = sqlQuery(cnxn, )
+# RODBC Example
+# import 2 tables into R data frames 
+library(RODBC)
+cnxn <-odbcConnect("mydatabase", uid="myusername", pwd="mypassword")
+mytable1 <- sqlFetch(cnxn, "mytablename1")
+mytable2 <- sqlQuery(cnxn, "select * from mytablename2")
+close(cnxn)
 ```
