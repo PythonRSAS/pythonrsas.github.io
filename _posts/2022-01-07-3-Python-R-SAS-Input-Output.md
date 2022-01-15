@@ -8,7 +8,7 @@ author: Sarah Chen
 image: images/posts/photos/IMG-0686.jpg
 
 ---
-![](/images/posts/photos/IMG-0683.jpg)
+![](/images/posts/photos/IMG-0686.jpg)
 Work in Progress.  
 - [Load data that comes with IDE or libraries](#load-data-that-comes-with-ide-or-libraries)
   - [Loading pre-packaged data into Python](#loading-pre-packaged-data-into-python)
@@ -17,7 +17,7 @@ Work in Progress.
 - [External data](#external-data)
   - [Import external data to Python](#import-external-data-to-python)
     - [Overview](#overview)
-    - [read() used with open()](#read-used-with-open)
+    - [read() with open()](#read-with-open)
     - [pandas.read_](#pandasread_)
     - [Reading larger files in Python](#reading-larger-files-in-python)
   - [Import external data to R](#import-external-data-to-r)
@@ -92,28 +92,33 @@ There are many ways to import data into Python.  Below is an overview, and is by
 3. The <span class="coding">pandas </span> library, which I use all the time. 
 4. <span class="coding">dask.dataframe()</span> splits big pandas DataFrame into many along index.
 5. [datatable](https://datatable.readthedocs.io/en/latest/) for  big 2D data frames. 
-### read() used with open()
+### read() with open()
 To use the <span class="coding">read()</span> function, the file first needs to be open by calling the <span class="coding">open()</span>built-in function, which has two parameters: the path to the file and an optional argument to indicate whether <span class="coding">'r'</span> (for reading) or <span class="coding">'w'</span> (for writing).
+
+<div class="code-head"><span>code</span>read_open.py</div> 
+
 ```python
 In [6]: with open('df4.csv', 'r') as reader:
    ...:     # Read & print the entire file
-   ...:     print(reader.read())
+   ...:     print(reader.read()) # print the entire file
    ...:
-,event,trial,freq
-0,no,control,0
-0,no,control,0
+# ,event,trial,freq
+# 0,no,control,0
+# 0,no,control,0
+# ...
+# 0,no,control,0
+with open('df4.csv', 'r') as reader:
+    # Read & print the first line
+    print(reader.readline())
+Out:,event,trial,
+reader.close() # close after read to prevent unexpected errors
 
-In [10]: with open('df4.csv', 'r') as reader:
-    ...:     # Read & print the first line
-    ...:     print(reader.readline())
-    ...:
-,event,trial,
-In [12]: reader.close() # close after read to prevent unexpected errors
-
-In [13]: file = open("df4.csv")
-    ...: data = file.read()
-    ...: print(data)
-    ...: file.close()
+f=open('new.txt','w') # write to file. Creates file if not existed
+f.write('hello')
+f.close()
+f=open('new.txt','r')
+f.read()
+Out: 'hello'
 ```
 ### pandas.read_
 Most of the time, I use the pandas library to import data.  See [Input/output](https://pandas.pydata.org/docs/reference/io.html) for a comprehensive list of functions for a wide variety of formats of data.  The read_csv, and other pandas read functions take many parameters.  Those that I have used are listed below: 
