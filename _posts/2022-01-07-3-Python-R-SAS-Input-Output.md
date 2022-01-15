@@ -14,8 +14,8 @@ Work in Progress.
   - [Loading pre-packaged data into Python](#loading-pre-packaged-data-into-python)
   - [Load prepackaged data to R](#load-prepackaged-data-to-r)
   - [Load SASHelp data](#load-sashelp-data)
-- [External data](#external-data)
-  - [Import external data to Python](#import-external-data-to-python)
+- [External file](#external-file)
+  - [Import external file to Python](#import-external-file-to-python)
     - [Overview](#overview)
     - [read() with open()](#read-with-open)
     - [pandas.read_](#pandasread_)
@@ -82,26 +82,27 @@ run;
 
 ```
 
-# External data
+# External file
 
-## Import external data to Python
+## Import external file to Python
 ### Overview
 There are many ways to import data into Python.  Below is an overview, and is by no means exhaustive:
-1. Python build-in functions <span class="coding">read()</span>, <span class="coding">readline()</span>, and <span class="coding">readlines()</span>.  This is feasible only for small files. 
+1. Python build-in functions <span class="coding">read()</span>, <span class="coding">readline()</span>, and <span class="coding">readlines()</span> for small files. 
 2. The <span class="coding">csv </span> library, which I have never used. 
 3. The <span class="coding">pandas </span> library, which I use all the time. 
 4. <span class="coding">dask.dataframe()</span> splits big pandas DataFrame into many along index.
 5. [datatable](https://datatable.readthedocs.io/en/latest/) for  big 2D data frames. 
 ### read() with open()
+The basic syntax of is:
+<span class="coding">open('file','mode')</span>. 
 To use the <span class="coding">read()</span> function, the file first needs to be open by calling the <span class="coding">open()</span>built-in function, which has two parameters: the path to the file and an optional argument to indicate whether <span class="coding">'r'</span> (for reading) or <span class="coding">'w'</span> (for writing).
 
 <div class="code-head"><span>code</span>read_open.py</div> 
 
 ```python
-In [6]: with open('df4.csv', 'r') as reader:
-   ...:     # Read & print the entire file
-   ...:     print(reader.read()) # print the entire file
-   ...:
+with open('df4.csv', 'r') as reader:
+    # Read & print the entire file
+    print(reader.read()) # print the entire file
 # ,event,trial,freq
 # 0,no,control,0
 # 0,no,control,0
@@ -123,13 +124,13 @@ Out: 'hello'
 ### pandas.read_
 Most of the time, I use the pandas library to import data.  See [Input/output](https://pandas.pydata.org/docs/reference/io.html) for a comprehensive list of functions for a wide variety of formats of data.  The read_csv, and other pandas read functions take many parameters.  Those that I have used are listed below: 
 ```python
-pandas.read_csv(filepath_or_buffer, index_col=None, usecols=None, dtype=None, engine=None, converters=None, true_values=None, skipinitialspace=False, skiprows=None, skipfooter=0, nrows=None, na_values=None, keep_default_na=True, skip_blank_lines=True, parse_dates=False, infer_datetime_format=False, keep_date_col=False, date_parser=None, dayfirst=False,  thousands=None, decimal='.',  encoding=None,  low_memory=True, float_precision=None)
+pandas.read_csv(filepath, index_col=None, usecols=None, dtype=None, engine=None, skipinitialspace=False, skiprows=None, skipfooter=0, nrows=None, na_values=None, keep_default_na=True, skip_blank_lines=True, parse_dates=False, infer_datetime_format=False, keep_date_col=False, date_parser=None, dayfirst=False,  thousands=None, decimal='.',  encoding=None,  low_memory=True, float_precision=None)
 
 pandas.read_excel(io, sheet_name=0, header=0, names=None, index_col=None, usecols=None, dtype=None,  true_values=None, false_values=None, skiprows=None, nrows=None, na_values=None, keep_default_na=True, na_filter=True, verbose=False, parse_dates=False, date_parser=None, thousands=None, comment=None, skipfooter=0, convert_float=None, mangle_dupe_cols=True, storage_options=None)
 
 pandas.read_sas(filepath_or_buffer, format=None, index=None, encoding=None, chunksize=None, iterator=False)
 ```
-Here are some examples:
+An example:
 <div class="code-head"><span>code</span>input.py</div>
 
 ```python
