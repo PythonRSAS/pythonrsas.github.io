@@ -26,6 +26,7 @@ Work in Progress.
   - [Import data in SAS](#import-data-in-sas)
 - [Data from SQL Servers](#data-from-sql-servers)
   - [Pyodbc](#pyodbc)
+  - [RODBC](#rodbc)
 
 
 # Load data that comes with IDE or libraries
@@ -324,10 +325,40 @@ sql_command = 'SELECT' + ','.JOIN(mycolumns) + 'FROM' + mytablename
 extract = pd.read_sql(sql_command, cnxn)
 
 ```
+Below snippet loops through a list of database names, get their corresponding table names, column names, and meta data, and outputs the information to Excel files. 
+
+<div class="code-head"><span>code</span>db_table_column_meta.py</div> 
+
+```python
+import pyodbc
+import pandas as pd
+dblist = ['db1',...,'dbn']
+for dbdata in dblist:
+  print("database: %s" %dbdata)
+  print("pulling info from DB...")
+  cursor = connection1.cursor()
+  tblist= []
+  for row in cursor.table():
+    tblist.append(row.table_name)
+  clmnlist=[]
+  for tb in tblist:
+    for row in cursor.columns(table=tb):
+      clmnlist.append(row)
+  pd.DataFrame(clmnlist).to_excel("sql_server_%s_table_column.xlsx"%dbdata, index=False)
+```
+
+
+## RODBC
 There are multiple ways to get data from a SQL server in R.  RODBC is one of them. 
 
-
-Function                                                    | Description                                                                |\n|---:|:------------------------------------------------------------|:---------------------------------------------------------------------------|\n|  0 | odbcConnect(dsn, uid="", pwd="")                            | Open a connection to an ODBC database                                      |\n|  1 | sqlFetch(channel,\xa0sqtable)                                  | Read a table from an ODBC database into a data frame                       |\n|  2 | sqlQuery(channel,\xa0query)                                    | Submit a query to an ODBC database and return the results                  |\n|  3 | sqlSave(channel,\xa0mydf, tablename =\xa0sqtable, append =\xa0FALSE) | Write or update (append=True) a data frame to a table in the ODBC database |\n|  4 | sqlDrop(channel,\xa0sqtable)                                   | Remove a table from the ODBC database                                      |\n|  5 | close(channel)                                              | Close the connection                                                       
+|    | Function                                                    | Description                                                                |
+|---:|:------------------------------------------------------------|:---------------------------------------------------------------------------|
+|  0 | odbcConnect(dsn, uid="", pwd="")                            | Open a connection to an ODBC database                                      |
+|  1 | sqlFetch(channel, sqtable)                                  | Read a table from an ODBC database into a data frame                       |
+|  2 | sqlQuery(channel, query)                                    | Submit a query to an ODBC database and return the results                  |
+|  3 | sqlSave(channel, mydf, tablename = sqtable, append = FALSE) | Write or update (append=True) a data frame to a table in the ODBC database |
+|  4 | sqlDrop(channel, sqtable)                                   | Remove a table from the ODBC database                                      |
+|  5 | close(channel)                                              | Close the connection                                                       |
 
 <div class="code-head"><span>code</span>RODBC.r</div>
 
