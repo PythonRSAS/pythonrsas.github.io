@@ -336,7 +336,7 @@ dblist = ['db1',...,'dbn']
 for dbdata in dblist:
   print("database: %s" %dbdata)
   print("pulling info from DB...")
-  cursor = connection1.cursor()
+  cursor = cnxn.cursor()
   tblist= []
   for row in cursor.table():
     tblist.append(row.table_name)
@@ -349,16 +349,16 @@ for dbdata in dblist:
 
 
 ## RODBC
-There are multiple ways to get data from a SQL server in R.  RODBC is one of them. 
+There are multiple ways to get data from a SQL server in R.  RODBC is one of them.  Its functons are listed below:
 
-|    | Function                                                    | Description                                                                |
-|---:|:------------------------------------------------------------|:---------------------------------------------------------------------------|
-|  0 | odbcConnect(dsn, uid="", pwd="")                            | Open a connection to an ODBC database                                      |
-|  1 | sqlFetch(channel, sqtable)                                  | Read a table from an ODBC database into a data frame                       |
-|  2 | sqlQuery(channel, query)                                    | Submit a query to an ODBC database and return the results                  |
-|  3 | sqlSave(channel, mydf, tablename = sqtable, append = FALSE) | Write or update (append=True) a data frame to a table in the ODBC database |
-|  4 | sqlDrop(channel, sqtable)                                   | Remove a table from the ODBC database                                      |
-|  5 | close(channel)                                              | Close the connection                                                       |
+| Function                                                    | Description                                                                |
+|:------------------------------------------------------------|:---------------------------------------------------------------------------|
+| odbcConnect(dsn, uid="", pwd="")                            | Open a connection to an ODBC database                                      |
+| sqlFetch(channel, sqtable)                                  | Read a table from an ODBC database into a data frame                       |
+| sqlQuery(channel, query)                                    | Submit a query to an ODBC database and return the results                  |
+| sqlSave(channel, mydf, tablename = sqtable, append = FALSE) | Write or update (append=True) a data frame to a table in the ODBC database |
+| sqlDrop(channel, sqtable)                                   | Remove a table from the ODBC database                                      |
+| close(channel)                                              | Close the connection                                                       |
 
 <div class="code-head"><span>code</span>RODBC.r</div>
 
