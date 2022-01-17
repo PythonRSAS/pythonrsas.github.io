@@ -155,10 +155,7 @@ When the argument is given in the format of a dictionary, <span class="coding">*
 'keyword', i.e.use the key * | &
 use the value: ** | && 
 
-The object that holds that arguments in Python in this case can be:
-- list
-- tuple
-- dictionary
+The object that holds that arguments in Python can be any iterable: list, tuple, and dictionary.
 
 <div class="code-head"><span>code</span>arguments_mixed.py</div>
 
