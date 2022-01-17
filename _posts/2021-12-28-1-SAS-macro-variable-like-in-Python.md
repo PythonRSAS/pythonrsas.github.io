@@ -12,18 +12,94 @@ image: images/posts/photos/IMG-0683.jpg
 We have a lot of SAS code at work from former colleagues.  We often need to work in Python, R and SAS simultaneously between projects in the same day. 
 
 Python functions are a lot like SAS macros.  What is the analogy to SAS macro variable in Python?
+- [Similarity 1: unpacking](#similarity-1-unpacking)
+  - [When defining a function](#when-defining-a-function)
+    - [Positional arguments](#positional-arguments)
+- [Similarity 2: any number of arguments](#similarity-2-any-number-of-arguments)
+- [One *](#one-)
+- [Two **](#two-)
+The general idea of entering arguments to a Python function is similar to SAS macro variable for SAS functions, although the details are different. 
 
-## SAS Macro variable like in Python
-There are three ways to enter arguments to a Python function, which are similar to SAS macro variable for SAS functions. 
+The SAS the macro language can be confusing. 
 
-In SAS, a macro variable is prefixed with <span class="coding">&</span>, the ampersand sign. Whereas in Python, the name that holds the arguments is prefixed with <span class="coding">*</span>, the asterisk (not be mistakened as "asteroid"). 
+Whereas in Python, things can be confusing in a different sense.  So I will begin with what is similar to SAS, and then explains a more complete picture. 
 
-The object that holds that arguments can be:
+# Similarity 1: unpacking
+In Python, the * and ** can be used in two different context of a function:
+1. when defining a function inputs
+2. when calling the function
+
+## When defining a function
+
+In Python, 
+**\***: mean that the argument can be any length of positional arguments (represented by <span class="coding">*arg</span>) and keyword arguments (represented by **).  
+**\***: mean that the argument can be any length of keyword arguments (represented by <span class="coding">*arg</span>) and keyword arguments (represented by **).  
+
+### Positional arguments
+
+Positional arguments are explanatory.  For a refresher in SAS, here is an example from Russ Tyndall's [SAS Blog](https://blogs.sas.com/content/sgf/2017/06/16/using-parameters-within-macro-facility/).  
+<div class="code-head"><span>code</span>positional argument.sas</div> 
+
+```sas
+%macro test(var1,var2,var3);                                                                                                            
+ %put &=var1;                                                                                                                           
+ %put &=var2;                                                                                                                           
+ %put &=var3;                                                                                                                           
+%mend test;                                                                                                                             
+ 
+/** Each value corresponds to the position of each variable in the definition. **/ 
+/** Here, I am passing numeric values.                                         **/                                                            
+%test(1,2,3)                                                                                                                            
+/** The first position matches with var1 and is given a null value.            **/                                                             
+%test(,2,3)                                                                                                                             
+/** I pass no values, so var1-var3 are created with null values.               **/                                                             
+%test()                                                                                                                                 
+/** The first value contains a comma, so I use %STR to mask the comma.         **/                                                             
+/** Otherwise, I would receive an error similar to this: ERROR: More           **/
+/** positional parameters found than defined.                                  **/                                                             
+%test(%str(1,1.1),2,3)                                                                                                                  
+/** Each value corresponds to the position of each variable in the definition. **/ 
+/** Here, I am passing character values.                                       **/                                                            
+%test(a,b,c) 
+/** I gave the first (var1) and second (var2) positions a value of             **/
+/** b and c, so var3 is left with a null value.                                **/                                                             
+%test(b,c)
+```
+
+For comparison, here is an example in Python.  
+<div class="code-head"><span>code</span>positional argument.py</div> 
+
+```python
+def test(a,b,c):
+    print('var1 =',a, 'var1 =', b,'var1 =',c)
+test(1,2,3)
+# var1 = 1 var1 = 2 var1 = 3
+test( ,2,3)
+#   File "<ipython-input-40-977619a1b726>", line 1
+#     test( ,2,3)
+#           ^
+# SyntaxError: invalid synta
+test("(1,1,1)",2,3)
+# var1 = (1,1,1) var1 = 2 var1 = 3
+```
+# Similarity 2: any number of arguments
+
+the name that holds the arguments is prefixed with <span class="coding">*</span>, the asterisk (not be mistakened as "asteroid"). 
+
+When the argument is given in the format of a dictionary, <span class="coding">*</span> tells Python to use the keys in the dictionary for the function,  two <span class="coding">**</span>, tells Python to use the values in the dictionary and plug into the function.  We can think of it as if the first <span class="coding">*</span> locates the key, and then the second <span class="coding">*</span> locates the value associated with the key.
+
+
+ Python | SAS
+----------|---------
+'keyword', i.e.use the key * | &
+use the value: ** | && 
+
+# One *
+
+The object that holds that arguments in Python can be:
 - list
 - tuple
 - dictionary
-
-When the argument is given in the format of a dictionary, <span class="coding">*</span> tells Python to use the keys in the dictionary for the function,  two <span class="coding">**</span>, tells Python to use the values in the dictionary and plug into the function.  We can think of it as if the first <span class="coding">*</span> locates the key, and then the second <span class="coding">*</span> locates the value associated with the key. 
 
 <div class="code-head"><span>code</span>arguments.py</div>
 
