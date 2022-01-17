@@ -32,8 +32,9 @@ In Python, the * and ** can be used in two different context of a function:
 
 In Python, 
 **\***: mean that the argument can be any length of positional arguments (conventionally written as
- <span class="coding">*arg</span>)
-**\**: mean that the argument can be any length of keyword arguments (conventionally epresented by <span class="coding">**arg</span>).
+*arg).
+
+\**: means that the argument can be any length of keyword arguments (conventionally epresented by <span class="coding">**arg</span>.
 
 ## Positional arguments
 ### fixed number of positional arguments
