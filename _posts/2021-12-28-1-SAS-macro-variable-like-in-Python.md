@@ -12,15 +12,15 @@ image: images/posts/photos/IMG-0683.jpg
 We have a lot of SAS code at work from former colleagues.  We often need to work in Python, R and SAS simultaneously between projects in the same day. 
 
 Python functions are a lot like SAS macros.  What is the analogy to SAS macro variable in Python?
-- [1: When defining a function](#1-when-defining-a-function)
+- [1. When defining a function](#1-when-defining-a-function)
   - [Positional arguments](#positional-arguments)
     - [fixed number of positional arguments](#fixed-number-of-positional-arguments)
     - [Unlimited positional arguments](#unlimited-positional-arguments)
     - [Keyword arguments](#keyword-arguments)
-- [2: When calling a function](#2-when-calling-a-function)
-  - [Can only supply it with exactly the same number of parameters as in function](#can-only-supply-it-with-exactly-the-same-number-of-parameters-as-in-function)
-- [Scan or loop through](#scan-or-loop-through)
+- [2. When calling a function](#2-when-calling-a-function)
+- [3. Scan or loop through](#3-scan-or-loop-through)
 - [Summary](#summary)
+
 The general idea of entering arguments to a Python function is similar to SAS macro variable for SAS functions, although the details are different. 
 We see "args" and "kwargs" a lot in Python code.  They are naming convention representing <span class="coding">*</span> and <span class="coding">**</span> bring us: 
 - positional arguments, and 
@@ -34,7 +34,7 @@ When they are used in defining functions, they allow us to use unlimited number 
 
 When used in calling a function, they allow unpacking an iterable (list, tuple, or dictionary).  When used with a dictionary, * represents the key, whereas ** represents the value. 
    
-# 1: When defining a function
+# 1. When defining a function
 
 In Python, 
 **\***: mean that the argument can be any length of positional arguments (conventionally written as
@@ -130,9 +130,9 @@ sns.boxplot(x=tips["total_bill"],
 ### Keyword arguments
 They are defined with an "=" sign.  This is common in both Python and SAS. 
 
-# 2: When calling a function
+# 2. When calling a function
+> Can only supply it with exactly the same number of parameters as in function, and the same type
 I think this is unique to Python. And it can be confusing without an example. 
-## Can only supply it with exactly the same number of parameters as in function 
 
 <div class="code-head"><span>code</span>calling function.py</div> 
 
@@ -215,7 +215,7 @@ Whereas in Python, the <span class="coding">**</span> means the values associate
 In a sense it is like in SAS where it is kind of like composite function in math g(f(x)), you plug in f(x) first and then get g(x)).  The first <span class="coding">*</span> gets the keys, 
 and the second <span class="coding">**</span> use the keys to get the values. 
 
-# Scan or loop through
+# 3. Scan or loop through
 Of course, in SAS, we can also use the <span class="coding">%scan</span> method to process an unlimited number of parameters that are held by one macro variables. 
 <div class="code-head"><span>code</span>macro to transform time series.sas</div> 
 
