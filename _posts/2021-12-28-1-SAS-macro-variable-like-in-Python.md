@@ -15,6 +15,7 @@ Python functions are a lot like SAS macros.  What is the analogy to SAS macro va
 - [Similarity 1: unpacking](#similarity-1-unpacking)
   - [When defining a function](#when-defining-a-function)
     - [Positional arguments](#positional-arguments)
+      - [Unlimited positional arguments](#unlimited-positional-arguments)
 - [Similarity 2: any number of arguments](#similarity-2-any-number-of-arguments)
 - [One *](#one-)
 - [Two **](#two-)
@@ -66,7 +67,7 @@ Positional arguments are explanatory.  For a refresher in SAS, here is an exampl
 %test(b,c)
 ```
 
-For comparison, here is an example in Python.  
+For comparison, here is an example in Python. Except the null value case that raises an error instead of being ignored, Python results are similar to SAS. 
 <div class="code-head"><span>code</span>positional argument.py</div> 
 
 ```python
@@ -82,6 +83,25 @@ test( ,2,3)
 test("(1,1,1)",2,3)
 # var1 = (1,1,1) var1 = 2 var1 = 3
 ```
+The above comparisons were done using a fixed number of arguments. 
+#### Unlimited positional arguments
+For unlimited number of positional arguments, in Python we just add <span class="coding">*</span>. 
+<div class="code-head"><span>code</span>unlimited positional argument.py</div> 
+
+```python
+
+def test2(*args
+    for n, i in enumerate(args):
+        print('var%d='%n,i)
+test2(1,2,3,4,5,6)
+# var0= 1
+# var1= 2
+# var2= 3
+# var3= 4
+# var4= 5
+# var5= 6
+```
+
 # Similarity 2: any number of arguments
 
 the name that holds the arguments is prefixed with <span class="coding">*</span>, the asterisk (not be mistakened as "asteroid"). 
