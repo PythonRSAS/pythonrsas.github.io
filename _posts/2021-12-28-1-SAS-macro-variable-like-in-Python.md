@@ -12,11 +12,13 @@ image: images/posts/photos/IMG-0683.jpg
 We have a lot of SAS code at work from former colleagues.  We often need to work in Python, R and SAS simultaneously between projects in the same day. 
 
 Python functions are a lot like SAS macros.  What is the analogy to SAS macro variable in Python?
-- [Similarity 1: When defining a function](#similarity-1-when-defining-a-function)
+- [1: When defining a function](#1-when-defining-a-function)
   - [Positional arguments](#positional-arguments)
     - [fixed number of positional arguments](#fixed-number-of-positional-arguments)
     - [Unlimited positional arguments](#unlimited-positional-arguments)
-- [Similarity 2: any number of arguments](#similarity-2-any-number-of-arguments)
+    - [Keyword arguments](#keyword-arguments)
+- [2: When calling a function](#2-when-calling-a-function)
+  - [Can only supply it with exactly the same number of parameters as in function](#can-only-supply-it-with-exactly-the-same-number-of-parameters-as-in-function)
 - [One *](#one-)
 - [Two **](#two-)
 The general idea of entering arguments to a Python function is similar to SAS macro variable for SAS functions, although the details are different. 
@@ -28,7 +30,7 @@ In Python, the * and ** can be used in two different context of a function:
 1. when defining a function inputs
 2. when calling the function
    
-# Similarity 1: When defining a function
+# 1: When defining a function
 
 In Python, 
 **\***: mean that the argument can be any length of positional arguments (conventionally written as
@@ -150,11 +152,33 @@ QUIT;
 /* run the macro */
 %ts_transform(SC.my_data);
 ```
-# Similarity 2: any number of arguments
+
+### Keyword arguments
+They are defined with an "=" sign.  This is common in both Python and SAS. 
+
+# 2: When calling a function
+I think this is unique to Python. And it can be confusing without an example. 
+## Can only supply it with exactly the same number of parameters as in function 
+
+<div class="code-head"><span>code</span>calling function.py</div> 
+
+```python
+def test3(a,b):
+    print(a,b)
+test3(1,2)
+# 1 2
+
+test3(*{'a':1,'b':2})
+# a b
+
+test3(**{'a':1,'b':2})
+# 1 2
+```
+When the argument is given in the format of a dictionary, <span class="coding">*</span> tells Python to use the keys in the dictionary for the function,  two <span class="coding">**</span>, tells Python to use the values in the dictionary and plug into the function.  We can think of it as if the first <span class="coding">*</span> locates the key, and then the second <span class="coding">*</span> locates the value associated with the key.
 
 the name that holds the arguments is prefixed with <span class="coding">*</span>, the asterisk (not be mistakened as "asteroid"). 
 
-When the argument is given in the format of a dictionary, <span class="coding">*</span> tells Python to use the keys in the dictionary for the function,  two <span class="coding">**</span>, tells Python to use the values in the dictionary and plug into the function.  We can think of it as if the first <span class="coding">*</span> locates the key, and then the second <span class="coding">*</span> locates the value associated with the key.
+
 
 
  Python | SAS
