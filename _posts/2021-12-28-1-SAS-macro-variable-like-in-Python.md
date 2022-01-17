@@ -19,15 +19,20 @@ Python functions are a lot like SAS macros.  What is the analogy to SAS macro va
     - [Keyword arguments](#keyword-arguments)
 - [2: When calling a function](#2-when-calling-a-function)
   - [Can only supply it with exactly the same number of parameters as in function](#can-only-supply-it-with-exactly-the-same-number-of-parameters-as-in-function)
-- [Scan through](#scan-through)
+- [Scan or loop through](#scan-or-loop-through)
+- [Summary](#summary)
 The general idea of entering arguments to a Python function is similar to SAS macro variable for SAS functions, although the details are different. 
-
-The SAS the macro language can be confusing. 
-
-Whereas in Python, things can be confusing in a different sense.  So I will begin with what is similar to SAS, and then explains a more complete picture. 
-In Python, the *, the asterisk (not be mistakened as "asteroid") and ** can be used in two different context of a function:
+We see "args" and "kwargs" a lot in Python code.  They are naming convention representing <span class="coding">*</span> and <span class="coding">**</span> bring us: 
+- positional arguments, and 
+- keyword arguments.  
+ 
+ In Python, the *, the asterisk (not be mistakened as "asteroid") and ** can be used in two different context of a function:
 1. when defining a function inputs
 2. when calling the function
+   
+When they are used in defining functions, they allow us to use unlimited number of arguments of their respective type.
+
+When used in calling a function, they allow unpacking an iterable (list, tuple, or dictionary).  When used with a dictionary, * represents the key, whereas ** represents the value. 
    
 # 1: When defining a function
 
@@ -155,39 +160,6 @@ The object that holds that arguments in Python in this case can be:
 - tuple
 - dictionary
 
-<div class="code-head"><span>code</span>arguments.py</div>
-
-```py
->>> # 3 ways to enter argument (like SAS macrovariable)
->>> def sas(x,y,z):
->>>     print("x=" + str(x))
->>>     print("y=" + str(y))
->>>     print("z=" + str(z))
->>> # Method: List
->>> mylist = [1,2,3]
->>> sas(*mylist)
-x=1
-y=2
-z=3
->>> #### Method: tuple
->>> myTuple = (1,2,3)
->>> sas(*myTuple)
-```
-
-In SAS the <span class="coding">&&</span> is used on composite macro variable.
-
-Whereas in Python, the <span class="coding">**</span> means the values associated with the keys.  
-
-In a sense it is like in SAS where it is kind of like composite function in math g(f(x)), you plug in f(x) first and then get g(x)).  The first <span class="coding">*</span> gets the keys, 
-and the second <span class="coding">**</span> use the keys to get the values. 
-
-The following example illustrates what we talk about. 
-```py
-mydict = {'x':1,'y':2,'z':3}
-sas(**mydict)
-# same output as the above
-```
-
 <div class="code-head"><span>code</span>arguments_mixed.py</div>
 
 ```py
@@ -236,10 +208,14 @@ Out[13]: 28
 ```
 The last two examples are identical,except that the names of the inputs changed from "value1" and "value2" to "args" and "kwargs", respectively. 
 
-We see "args" and "kwargs" a lot in Python code.  Now that you know they are nothing but some naming convention representing <span class="coding">*</span> and <span class="coding">**</span> bring us: argument, and keyword arguments.  It is completely legal to use any name you want.  But just keep in mind what they commonly represent. 
+In SAS the <span class="coding">&&</span> is used on composite macro variable.
 
+Whereas in Python, the <span class="coding">**</span> means the values associated with the keys.  
 
-# Scan through
+In a sense it is like in SAS where it is kind of like composite function in math g(f(x)), you plug in f(x) first and then get g(x)).  The first <span class="coding">*</span> gets the keys, 
+and the second <span class="coding">**</span> use the keys to get the values. 
+
+# Scan or loop through
 Of course, in SAS, we can also use the <span class="coding">%scan</span> method to process an unlimited number of parameters that are held by one macro variables. 
 <div class="code-head"><span>code</span>macro to transform time series.sas</div> 
 
@@ -286,3 +262,20 @@ QUIT;
 /* run the macro */
 %ts_transform(SC.my_data);
 ```
+In Python similar logic that are commonly used.  For example,
+```python
+countries = ['usa','china',...,'moon']
+def country_func(some_list):
+    for i in some_list:
+        ...
+```
+# Summary
+We see "args" and "kwargs" a lot in Python code.  They are naming convention representing <span class="coding">*</span> and <span class="coding">**</span> bring us: 
+- positional arguments, and 
+- keyword arguments.  
+ 
+When they are used in defining functions, they allow us to use unlimited number of arguments of their respective type.
+
+When used in calling a function, they allow unpacking an iterable (list, tuple, or dictionary).  When used with a dictionary, * represents the key, whereas ** represents the value. 
+
+Lastly, the most common ways of using macro variable that holds a flexible number of inputs in SAS is to use <span class="coding">%scan</span>.
