@@ -9,7 +9,6 @@ image: images/posts/photos/IMG-0683.jpg
 
 ---
 ![](/images/posts/photos/IMG-0683.jpg)
-We have a lot of SAS code at work from former colleagues.  We often need to work in Python, R and SAS simultaneously between projects in the same day. 
 
 Python functions are a lot like SAS macros.  What is the analogy to SAS macro variable in Python?
 - [1. When defining a function](#1-when-defining-a-function)
@@ -132,6 +131,7 @@ They are defined with an "=" sign.  This is common in both Python and SAS.
 
 # 2. When calling a function
 > Can only supply it with exactly the same number of parameters as in function, and the same type
+
 I think this is unique to Python. And it can be confusing without an example. 
 
 <div class="code-head"><span>code</span>calling function.py</div> 
