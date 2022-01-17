@@ -19,6 +19,7 @@ Python functions are a lot like SAS macros.  What is the analogy to SAS macro va
     - [Keyword arguments](#keyword-arguments)
 - [2: When calling a function](#2-when-calling-a-function)
   - [Can only supply it with exactly the same number of parameters as in function](#can-only-supply-it-with-exactly-the-same-number-of-parameters-as-in-function)
+- [Scan through](#scan-through)
 The general idea of entering arguments to a Python function is similar to SAS macro variable for SAS functions, although the details are different. 
 
 The SAS the macro language can be confusing. 
@@ -104,51 +105,21 @@ test2(1,2,3,4,5,6)
 ```
 In comparison, for unlimited positional arguments in SAS, the <span class="coding">PARMBUFF</span> option creates a macro variable called <span class="coding">&SYSPBUFF</span> that contains the entire list of parameter values.  This let us pass in a varying number of parameter values. 
 
-Of course, in SAS, we can also use the <span class="coding">%scan</span> method to process an unlimited number of parameters that are held by one macro variables. 
-<div class="code-head"><span>code</span>macro to transform time series.sas</div> 
+Some practical examples are many of the functions in matplotlib.  
+```python
+plt.subplots(nrows=1, ncols=1, *, sharex=False, sharey=False, squeeze=True, subplot_kw=None, gridspec_kw=None, **fig_kw)
+```
+Here, the <span class="coding">* </span> and <span class="coding">**fig_kw </span> allow us to give unlimited positional and keyword arguments, for example, like this one, where <span class="coding">dict()</span> converts an assignment statement into a dictionary.  Using <span class="coding">dict()</span> is easier than typing {}. 
+```python
+# as in ax.annotate()
+textprops=dict(color="w")
+# plotting style as in plt.plot()
+style = dict(color='k', alpha=0.6)
 
-```sas
-%macro ts_transform(dsn);
-%do i =2 to &n;
-%let var = %scan(%quote(%var_list), &i, " ");
-%put &var;
-PROC EXPAND DATA = &dsn OUT = transformed METHOD= NONE;
-D date;
-CONVERT &var. = &var._ma4/TRANSOUT = (MOVAVE 4);  #moving average
-CONVERT &var. = &var._cma4/TRANSOUT = (CMOVAVE 4); #center moving average
-CONVERT &var. = &var._wma4/TRANSOUT = (MOVAVE 1 2 3 4); #weighted moving average
-CONVERT &var. = &var._log/TRANSOUT = (LOG);
-CONVERT &var. = &var._1/TRANSOUT = (LAG);
-CONVERT &var. = &var._2/TRANSOUT = (LAG, 2);
-CONVERT &var. = &var._3/TRANSOUT = (LAG, 3);
-CONVERT &var. = &var.1_/TRANSOUT = (LEAD);
-CONVERT &var. = &var.2_/TRANSOUT = (LEAD, 2);
-CONVERT &var. = &var.3_/TRANSOUT = (LEAD, 3);
-RUN;
+sns.boxplot(x=tips["total_bill"],
+                medianprops={'color':'white'},
+                boxprops = dict(linestyle='--', linewidth=3, color='darkgoldenrod'))
 
-DATA transformed;
-SET transformed;
-&var._yoy = DIF4(&var)/&var._4*100;
-&var._yoy1 = LAG1(&var._yoy);
-&var._qoq = DIF1(&var)/&var._1*100;
-&var._qoq1 = LAG1(&var._qoq);
-&var._myoy = DIF4(&var._ma4)/&var._ma4*100;
-%END;
-%MEND;
-
-PROC SQL;
-SELECT NAME INTO: v_lt SEPARATED BY " "
-FROM DICTIONARY.COLUMNS
-WHERE LIBNAME = LOWCASE("sc") AND MEMNAME =  LOWCASE("my_data") AND LOWCASE(NAME) NOT LIKE "%date";
-QUIT;
-%PUT &v_lt;
-PROC SQL;
-SELECT NVAR INTO: n 
-FROM DICTIONARY.TABLES
-WHERE LIBNAME = LOWCASE("sc") AND MEMNAME =  LOWCASE("my_data");
-QUIT;
-/* run the macro */
-%ts_transform(SC.my_data);
 ```
 
 ### Keyword arguments
@@ -266,3 +237,52 @@ Out[13]: 28
 The last two examples are identical,except that the names of the inputs changed from "value1" and "value2" to "args" and "kwargs", respectively. 
 
 We see "args" and "kwargs" a lot in Python code.  Now that you know they are nothing but some naming convention representing <span class="coding">*</span> and <span class="coding">**</span> bring us: argument, and keyword arguments.  It is completely legal to use any name you want.  But just keep in mind what they commonly represent. 
+
+
+# Scan through
+Of course, in SAS, we can also use the <span class="coding">%scan</span> method to process an unlimited number of parameters that are held by one macro variables. 
+<div class="code-head"><span>code</span>macro to transform time series.sas</div> 
+
+```sas
+%macro ts_transform(dsn);
+%do i =2 to &n;
+%let var = %scan(%quote(%var_list), &i, " ");
+%put &var;
+PROC EXPAND DATA = &dsn OUT = transformed METHOD= NONE;
+D date;
+CONVERT &var. = &var._ma4/TRANSOUT = (MOVAVE 4);  #moving average
+CONVERT &var. = &var._cma4/TRANSOUT = (CMOVAVE 4); #center moving average
+CONVERT &var. = &var._wma4/TRANSOUT = (MOVAVE 1 2 3 4); #weighted moving average
+CONVERT &var. = &var._log/TRANSOUT = (LOG);
+CONVERT &var. = &var._1/TRANSOUT = (LAG);
+CONVERT &var. = &var._2/TRANSOUT = (LAG, 2);
+CONVERT &var. = &var._3/TRANSOUT = (LAG, 3);
+CONVERT &var. = &var.1_/TRANSOUT = (LEAD);
+CONVERT &var. = &var.2_/TRANSOUT = (LEAD, 2);
+CONVERT &var. = &var.3_/TRANSOUT = (LEAD, 3);
+RUN;
+
+DATA transformed;
+SET transformed;
+&var._yoy = DIF4(&var)/&var._4*100;
+&var._yoy1 = LAG1(&var._yoy);
+&var._qoq = DIF1(&var)/&var._1*100;
+&var._qoq1 = LAG1(&var._qoq);
+&var._myoy = DIF4(&var._ma4)/&var._ma4*100;
+%END;
+%MEND;
+
+PROC SQL;
+SELECT NAME INTO: v_lt SEPARATED BY " "
+FROM DICTIONARY.COLUMNS
+WHERE LIBNAME = LOWCASE("sc") AND MEMNAME =  LOWCASE("my_data") AND LOWCASE(NAME) NOT LIKE "%date";
+QUIT;
+%PUT &v_lt;
+PROC SQL;
+SELECT NVAR INTO: n 
+FROM DICTIONARY.TABLES
+WHERE LIBNAME = LOWCASE("sc") AND MEMNAME =  LOWCASE("my_data");
+QUIT;
+/* run the macro */
+%ts_transform(SC.my_data);
+```
