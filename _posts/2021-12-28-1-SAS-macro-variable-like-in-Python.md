@@ -19,14 +19,12 @@ Python functions are a lot like SAS macros.  What is the analogy to SAS macro va
     - [Keyword arguments](#keyword-arguments)
 - [2: When calling a function](#2-when-calling-a-function)
   - [Can only supply it with exactly the same number of parameters as in function](#can-only-supply-it-with-exactly-the-same-number-of-parameters-as-in-function)
-- [One *](#one-)
-- [Two **](#two-)
 The general idea of entering arguments to a Python function is similar to SAS macro variable for SAS functions, although the details are different. 
 
 The SAS the macro language can be confusing. 
 
 Whereas in Python, things can be confusing in a different sense.  So I will begin with what is similar to SAS, and then explains a more complete picture. 
-In Python, the * and ** can be used in two different context of a function:
+In Python, the *, the asterisk (not be mistakened as "asteroid") and ** can be used in two different context of a function:
 1. when defining a function inputs
 2. when calling the function
    
@@ -176,19 +174,12 @@ test3(**{'a':1,'b':2})
 ```
 When the argument is given in the format of a dictionary, <span class="coding">*</span> tells Python to use the keys in the dictionary for the function,  two <span class="coding">**</span>, tells Python to use the values in the dictionary and plug into the function.  We can think of it as if the first <span class="coding">*</span> locates the key, and then the second <span class="coding">*</span> locates the value associated with the key.
 
-the name that holds the arguments is prefixed with <span class="coding">*</span>, the asterisk (not be mistakened as "asteroid"). 
-
-
-
-
  Python | SAS
 ----------|---------
 'keyword', i.e.use the key * | &
 use the value: ** | && 
 
-# One *
-
-The object that holds that arguments in Python can be:
+The object that holds that arguments in Python in this case can be:
 - list
 - tuple
 - dictionary
@@ -212,7 +203,6 @@ z=3
 >>> sas(*myTuple)
 ```
 
-# Two **
 In SAS the <span class="coding">&&</span> is used on composite macro variable.
 
 Whereas in Python, the <span class="coding">**</span> means the values associated with the keys.  
