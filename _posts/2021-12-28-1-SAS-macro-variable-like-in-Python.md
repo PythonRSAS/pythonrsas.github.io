@@ -12,10 +12,10 @@ image: images/posts/photos/IMG-0683.jpg
 We have a lot of SAS code at work from former colleagues.  We often need to work in Python, R and SAS simultaneously between projects in the same day. 
 
 Python functions are a lot like SAS macros.  What is the analogy to SAS macro variable in Python?
-- [Similarity 1: unpacking](#similarity-1-unpacking)
-  - [When defining a function](#when-defining-a-function)
-    - [Positional arguments](#positional-arguments)
-      - [Unlimited positional arguments](#unlimited-positional-arguments)
+- [Similarity 1: When defining a function](#similarity-1-when-defining-a-function)
+  - [Positional arguments](#positional-arguments)
+    - [fixed number of positional arguments](#fixed-number-of-positional-arguments)
+    - [Unlimited positional arguments](#unlimited-positional-arguments)
 - [Similarity 2: any number of arguments](#similarity-2-any-number-of-arguments)
 - [One *](#one-)
 - [Two **](#two-)
@@ -24,19 +24,19 @@ The general idea of entering arguments to a Python function is similar to SAS ma
 The SAS the macro language can be confusing. 
 
 Whereas in Python, things can be confusing in a different sense.  So I will begin with what is similar to SAS, and then explains a more complete picture. 
-
-# Similarity 1: unpacking
 In Python, the * and ** can be used in two different context of a function:
 1. when defining a function inputs
 2. when calling the function
-
-## When defining a function
+   
+# Similarity 1: When defining a function
 
 In Python, 
-**\***: mean that the argument can be any length of positional arguments (represented by <span class="coding">*arg</span>) and keyword arguments (represented by **).  
-**\***: mean that the argument can be any length of keyword arguments (represented by <span class="coding">*arg</span>) and keyword arguments (represented by **).  
+**\***: mean that the argument can be any length of positional arguments (conventionally written as
+ <span class="coding">*arg</span>)
+**\**: mean that the argument can be any length of keyword arguments (conventionally epresented by <span class="coding">**arg</span>).
 
-### Positional arguments
+## Positional arguments
+### fixed number of positional arguments
 
 Positional arguments are explanatory.  For a refresher in SAS, here is an example from Russ Tyndall's [SAS Blog](https://blogs.sas.com/content/sgf/2017/06/16/using-parameters-within-macro-facility/).  
 <div class="code-head"><span>code</span>positional argument.sas</div> 
@@ -84,7 +84,7 @@ test("(1,1,1)",2,3)
 # var1 = (1,1,1) var1 = 2 var1 = 3
 ```
 The above comparisons were done using a fixed number of arguments. 
-#### Unlimited positional arguments
+### Unlimited positional arguments
 For unlimited number of positional arguments, in Python we just add <span class="coding">*</span>. 
 <div class="code-head"><span>code</span>unlimited positional argument.py</div> 
 
@@ -101,7 +101,54 @@ test2(1,2,3,4,5,6)
 # var4= 5
 # var5= 6
 ```
+In comparison, for unlimited positional arguments in SAS, the <span class="coding">PARMBUFF</span> option creates a macro variable called <span class="coding">&SYSPBUFF</span> that contains the entire list of parameter values.  This let us pass in a varying number of parameter values. 
 
+Of course, in SAS, we can also use the <span class="coding">%scan</span> method to process an unlimited number of parameters that are held by one macro variables. 
+<div class="code-head"><span>code</span>macro to transform time series.sas</div> 
+
+```sas
+%macro ts_transform(dsn);
+%do i =2 to &n;
+%let var = %scan(%quote(%var_list), &i, " ");
+%put &var;
+PROC EXPAND DATA = &dsn OUT = transformed METHOD= NONE;
+D date;
+CONVERT &var. = &var._ma4/TRANSOUT = (MOVAVE 4);  #moving average
+CONVERT &var. = &var._cma4/TRANSOUT = (CMOVAVE 4); #center moving average
+CONVERT &var. = &var._wma4/TRANSOUT = (MOVAVE 1 2 3 4); #weighted moving average
+CONVERT &var. = &var._log/TRANSOUT = (LOG);
+CONVERT &var. = &var._1/TRANSOUT = (LAG);
+CONVERT &var. = &var._2/TRANSOUT = (LAG, 2);
+CONVERT &var. = &var._3/TRANSOUT = (LAG, 3);
+CONVERT &var. = &var.1_/TRANSOUT = (LEAD);
+CONVERT &var. = &var.2_/TRANSOUT = (LEAD, 2);
+CONVERT &var. = &var.3_/TRANSOUT = (LEAD, 3);
+RUN;
+
+DATA transformed;
+SET transformed;
+&var._yoy = DIF4(&var)/&var._4*100;
+&var._yoy1 = LAG1(&var._yoy);
+&var._qoq = DIF1(&var)/&var._1*100;
+&var._qoq1 = LAG1(&var._qoq);
+&var._myoy = DIF4(&var._ma4)/&var._ma4*100;
+%END;
+%MEND;
+
+PROC SQL;
+SELECT NAME INTO: v_lt SEPARATED BY " "
+FROM DICTIONARY.COLUMNS
+WHERE LIBNAME = LOWCASE("sc") AND MEMNAME =  LOWCASE("my_data") AND LOWCASE(NAME) NOT LIKE "%date";
+QUIT;
+%PUT &v_lt;
+PROC SQL;
+SELECT NVAR INTO: n 
+FROM DICTIONARY.TABLES
+WHERE LIBNAME = LOWCASE("sc") AND MEMNAME =  LOWCASE("my_data");
+QUIT;
+/* run the macro */
+%ts_transform(SC.my_data);
+```
 # Similarity 2: any number of arguments
 
 the name that holds the arguments is prefixed with <span class="coding">*</span>, the asterisk (not be mistakened as "asteroid"). 
