@@ -2,7 +2,7 @@
 layout: post
 tag : Learning Python and SAS
 category: "python for sas"
-title: "Xi Correlation in Python and R"
+title: "Xi Correlation in Python"
 description: Chatterjee's Xi correlation in Python and R
 author: Sarah Chen
 image: images/posts/photos/IMG-0688.jpg

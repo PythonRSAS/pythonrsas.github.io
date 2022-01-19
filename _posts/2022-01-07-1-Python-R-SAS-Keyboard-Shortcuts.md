@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : Learning Python and SAS
+tag : Make switching between languages easier
 category: "python for sas"
 title: "Python R SAS Keyboard Shortcuts"
 description: comparing Python, R and SAS everyday keyboard shortcuts

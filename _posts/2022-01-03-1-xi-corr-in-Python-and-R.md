@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : Learning Python and SAS
+tag : Chatterjee's Xi correlation
 category: "machine learning"
 title: "Xi Correlation in Python and R"
 description: Chatterjee's Xi correlation in Python and R
