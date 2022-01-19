@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : Learning Python and SAS
+tag : configuring parameters for a project
 category: "python for sas"
 title: "introduction to configparser"
 description: discuss configuration files 
