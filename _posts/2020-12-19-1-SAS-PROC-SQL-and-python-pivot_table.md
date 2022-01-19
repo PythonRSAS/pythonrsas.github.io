@@ -66,14 +66,18 @@ proc sql ;
   ;                                                                  
 quit ;    
 ```
+> Note: PROC SQL treats missing as a group unless you specify it with "where 1 is not missing".
+
 **Python**
 
 This can be achieved in pandas easily with <span class="coding">groupby</span>. The difference is that in pandas we initially include the column that is to be summarized in the <span class="coding">groupby</span>, and then <span class="coding">unstack</span> it to the columns. 
 
+> To keep missings in a group, use <span class="coding">dropna=False</span>.
+
 <div class="code-head"><span>code</span>groupyby.py</div>
 
 ```python 
- summarized = df.groupby(['com_a','year','result_of_a']).count().
+ summarized = df.groupby(['com_a','year','result_of_a'], dropna=False).count().
   unstack().fillna(0).sort_index(ascending=[False,True])
  summarized
 ```

@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : Learning Python and SAS
+tag : * function arguments and SAS macro variables
 category: "python for sas"
 title: "SAS macro variable like in Python"
 description: drawing analogies between Python function arguments and SAS macro variables
@@ -19,6 +19,7 @@ Python functions are a lot like SAS macros.  What is the analogy to SAS macro va
 - [2. When calling a function](#2-when-calling-a-function)
 - [3. Scan or loop through](#3-scan-or-loop-through)
 - [Summary](#summary)
+- [Appendix: SAS macro review](#appendix-sas-macro-review)
 
 The general idea of entering arguments to a Python function is similar to SAS macro variable for SAS functions, although the details are different. 
 We see "args" and "kwargs" a lot in Python code.  They are naming convention representing <span class="coding">*</span> and <span class="coding">**</span> bring us: 
@@ -275,4 +276,49 @@ When they are used in defining functions, they allow us to use unlimited number 
 
 When used in calling a function, they allow unpacking an iterable (list, tuple, or dictionary).  When used with a dictionary, * represents the key, whereas ** represents the value. 
 
-Lastly, the most common ways of using macro variable that holds a flexible number of inputs in SAS is to use <span class="coding">%scan</span>.
+# Appendix: SAS macro review
+Lastly, the two common ways of using macro variable that holds a flexible number of inputs in SAS is to use 
+1. <span class="coding">DATA _NULL_</span> 
+2. <span class="coding">PROC SQL</span>
+After creating the list, we loop through the list to process operations, and this is often accomplished using a combination of the <span class="coding">%scan</span> function and the <span class="coding">%DO</span>
+statements.  
+
+<span class="coding">%scan</span>, and in various combination with <span class="coding">PROC SQL</span>, <span class="coding">INTO</span>, <span class="coding">CALL SYMPUT</span>, <span class="coding">%DO</span>,<span class="coding">&&VAR&I</span> type of syntax. 
+
+The following are from Arthur L. Carpenter [Storing and Using a List of Values in a Macro Variable](https://support.sas.com/resources/papers/proceedings/proceedings/sugi30/028-30.pdf).  To build a macro list:
+1. <span class="coding">DATA _NULL_</span>: the character variable <span class="coding"> ALLVAR</span> is used to accumulate the list of variable names, and it is only after all the values are stored in ALLVAR is the macro variable (<span class="coding">&VARLIST</span>) created.
+
+In the example, the list comes from meta data "metaclass" extracted using <span class="coding">PROC CONTENTS</span>. 
+<div class="code-head"><span>code</span>macro list using data _null_.sas</div> 
+
+```sas
+proc contents data=sashelp.class noprint out=metaclass;
+ run;
+
+data _null_;
+ length allvars $1000;
+ retain allvars ' ';
+ set metaclass end=eof;
+ allvars = trim(left(allvars))||' '||left(name);
+ if eof then call symput('varlist', allvars);
+ run;
+%put &varlist;
+```
+2. <span class="coding">PROC SQL</span>.  In this example, we are extracting each kind of the meta data information into a separate macro variable, each holding its respective list of information: name, type and length. 
+
+<div class="code-head"><span>code</span>macro list using proc sql.sas</div> 
+
+```sas
+proc sql noprint;
+ select name ,type, length
+ into :varlist separated by ' ',
+ :typlist separated by ' ',
+ :lenlist separated by ' '
+ from metaclass;
+ quit;
+%let cntlist = &sqlobs;
+%put &varlist;
+%put &typlist;
+%put &lenlist;
+%put &cntlist;
+```
