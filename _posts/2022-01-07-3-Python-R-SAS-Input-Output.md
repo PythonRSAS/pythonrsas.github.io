@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : Input and Out in Python, R and SAS
+tag : Input and Out
 category: "Python for SAS"
 title: "Python R SAS Data Input and Output"
 description: comparing Python, R and SAS input and output, including quick loading of prepackaged data
