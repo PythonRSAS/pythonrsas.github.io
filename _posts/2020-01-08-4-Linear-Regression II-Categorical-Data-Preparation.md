@@ -10,7 +10,7 @@ image: images/posts/photos/IMG-0648.JPG
 
 <figure> 
    <img src="{{"/images/posts/photos/IMG-0648.jpg"| relative_url}}"> 
-   <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
+   <figcaption></figcaption>
 </figure> 
 
 Most datasets outside of image recognition have categorical variables.  In linear regression, they are often converted to dummy variables.

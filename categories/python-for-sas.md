@@ -14,7 +14,7 @@ permalink: /python-for-sas
       <div class="page-holder">
         <ul>
         {% for post in site.posts %}
-          {% if post.categories contains 'python for sas' %}
+          {% if post.categories contains 'Python for SAS' %}
                 <li>
                   <a class="post-link" href="{{ site.baseurl }}{{ post.url }}">
                     <div class="page-treasure-wrapper">

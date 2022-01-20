@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : Learning Python and SAS
-category: "python for sas"
+category: "Python for SAS"
 title: "Python R SAS Data Analysis Lookup"
 description: comparing Python, R and SAS essential data analysis functions
 author: Sarah Chen

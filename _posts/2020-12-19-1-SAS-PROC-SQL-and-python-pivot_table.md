@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : Learning Python and SAS
-category: "python for sas"
+category: "Python for SAS"
 title: "SAS PROC SQL and python df.groupby and pivot_table."
 description:  On python groupby and pivot_table methods beyond SQL
 author: Sarah Chen

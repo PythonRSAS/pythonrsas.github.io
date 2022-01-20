@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : Learning Python and SAS
-category: "python for sas"
+category: "Python for SAS"
 title: "Timeseries processing 2-shifting and rate of return"
 description: Shifting, percent change and rate of return
 author: Sarah Chen

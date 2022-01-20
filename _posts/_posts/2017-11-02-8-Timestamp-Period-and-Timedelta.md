@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : Learning Python and SAS
-category: "python for sas"
+category: "Python for SAS"
 title: "Timestamp, Period and Timedelta"
 description: Time series data processing using Python and SAS.
 author: Sarah Chen

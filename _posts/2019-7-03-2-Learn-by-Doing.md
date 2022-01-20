@@ -9,7 +9,7 @@ image: images/posts/photos/IMG-0630.jpg
 ---
 <figure> 
    <img src="{{"/images/posts/photos/IMG-0630.JPG"| relative_url}}"> 
-   <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
+   <figcaption></figcaption>
 </figure> 
 
 <!-- - Taken from my post in [Raising Smart and Tough Kids](https://www.magicmathmandarin.org/raising-smart-and-tough-kids/) with permission from <a href=" https://www.magicmathmandarin.org/"> Magic Math Mandarin </a>.

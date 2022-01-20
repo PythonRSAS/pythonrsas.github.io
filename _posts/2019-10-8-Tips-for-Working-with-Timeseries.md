@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : Learning Python and SAS
-category: "python for sas"
+category: "Python for SAS"
 title: "Working with Timeseries in Python and SAS"
 description: Comparing and assembling dates, and parsing timeseries in Python and SAS.
 author: Sarah Chen

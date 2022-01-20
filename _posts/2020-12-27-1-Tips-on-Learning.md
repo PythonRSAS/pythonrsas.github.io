@@ -9,7 +9,7 @@ image: images/posts/photos/IMG-0631.jpg
 ---
 <figure> 
    <img src="{{"/images/posts/photos/IMG-0631.JPG"| relative_url}}"> 
-   <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
+   <figcaption></figcaption>
 </figure> 
 
 It is year end of 2020, time to reflect. 

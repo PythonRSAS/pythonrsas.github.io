@@ -11,7 +11,7 @@ image: images/posts/photos/IMG-0646.JPG
 
 <figure> 
    <img src="{{"/images/posts/photos/IMG-0646.JPG"| relative_url}}"> 
-   <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
+   <figcaption></figcaption>
 </figure> 
 
 The t-test was developed in early 1900s as an **economical** (small samples) way to check for differences in mean quality of batches of Guinness beer that were small in sample sizes.  William Gosset , the Head Brewer of Guinness and pioneer of modern statistics empirically, by trial and error, found a formula for a t-distributed random variable. 

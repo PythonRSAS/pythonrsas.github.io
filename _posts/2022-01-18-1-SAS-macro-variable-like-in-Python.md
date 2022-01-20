@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : * function arguments and SAS macro variables
-category: "python for sas"
+category: "Python for SAS"
 title: "SAS macro variable like in Python"
 description: drawing analogies between Python function arguments and SAS macro variables
 author: Sarah Chen

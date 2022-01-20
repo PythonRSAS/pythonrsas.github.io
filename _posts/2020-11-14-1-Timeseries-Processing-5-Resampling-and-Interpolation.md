@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : Learning Python and SAS
-category: "python for sas"
+category: "Python for SAS"
 title: "Timeseries Processing 5-Resampling and Interpolation"
 description: Resampling and interpolation
 author: Sarah Chen

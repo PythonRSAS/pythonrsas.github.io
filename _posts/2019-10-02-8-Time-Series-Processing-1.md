@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : Learning Python and SAS
-category: "python for sas"
+category: "Python for SAS"
 title: "Time Series Processing 1"
 description: Examples of manipulating timeseries
 author: Sarah Chen

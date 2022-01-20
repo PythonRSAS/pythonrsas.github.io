@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : Learning Python and SAS
-category: "python for sas"
+category: "Python for SAS"
 title: "Timeseries Processing 4-Expanding Windows"
 description: Expanding window statistics and comparison to rolling
 author: Sarah Chen

@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : configuring parameters for a project
-category: "python for sas"
+category: "Python for SAS"
 title: "introduction to configparser"
 description: discuss configuration files 
 author: Sarah Chen

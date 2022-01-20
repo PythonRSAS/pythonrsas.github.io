@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : Learning Python and SAS
-category: "python for sas"
+category: "Python for SAS"
 title: "Reusable Code - Python class"
 description: discuss ways to make reusable code in Python and SAS, specifically on Python class
 author: Sarah Chen

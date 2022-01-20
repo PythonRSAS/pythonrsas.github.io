@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : Learning Python and SAS
-category: "python for sas"
+category: "Python for SAS"
 title: "Mastering directories"
 description: Mastering paths allows us to make our code portable and less error prone. 
 author: Sarah Chen

@@ -20,7 +20,7 @@ permalink: /category
           <h4>Python for SAS Users</h4>
           <p>Extension of the book "Python for SAS Users".</p>
           {% for post in site.posts %}
-            {% if post.categories contains 'python for sas' %}
+            {% if post.categories contains 'Python for SAS' %}
                 {% capture python_for_sas_count %} {{ python_for_sas_count | plus: 1 }} {% endcapture %}
               {% endif %}
           {% endfor %}

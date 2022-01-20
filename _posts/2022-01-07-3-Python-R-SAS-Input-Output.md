@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : Learning Python and SAS
-category: "python for sas"
+category: "Python for SAS"
 title: "Python R SAS Data Input and Output"
 description: comparing Python, R and SAS input and output, including quick loading of prepackaged data
 author: Sarah Chen

@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : Make switching between languages easier
-category: "python for sas"
+category: "Python for SAS"
 title: "Python R SAS Keyboard Shortcuts"
 description: comparing Python, R and SAS everyday keyboard shortcuts
 author: Sarah Chen

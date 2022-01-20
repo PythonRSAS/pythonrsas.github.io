@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : Learning Python and SAS
-category: "python for sas"
+category: "Python for SAS"
 title: "Timeseries processing 3-Rolling Window Statistics"
 description: Rolling window statistics and moving averages
 author: Sarah Chen

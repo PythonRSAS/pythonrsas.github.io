@@ -11,7 +11,7 @@ image: images/posts/photos/IMG-0631.JPG
 
 <figure> 
    <img src="{{"/images/posts/photos/IMG-0631.JPG"| relative_url}}"> 
-   <figcaption>Photo by Biduan Ji 纪碧端</figcaption>
+   <figcaption></figcaption>
 </figure> 
 
 In linear regression, there has been well-established theory and diagnostics on how a model works, such as the model statement y = a + bX, confidence interval, p-value (assuming x is not relevant what's the chance of having this kind of relationship to y) and etc.  

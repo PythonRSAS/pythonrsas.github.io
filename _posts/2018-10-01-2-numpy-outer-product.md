@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : Learning Python and SAS
-category: "python for sas"
+category: "Python for SAS"
 title: "numpy outer product"
 description: a few ways to do outer product using numpy
 author: Sarah Chen
