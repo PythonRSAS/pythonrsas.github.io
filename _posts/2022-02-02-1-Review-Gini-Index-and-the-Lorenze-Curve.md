@@ -76,10 +76,16 @@ The ROC curve was first used during World War II for the analysis of radar signa
 The ROC and AUC are commonly used in evaluating PD models in banks. They are also widely used in the the machine learning community as summary statistic for model comparison.  
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Roc_curve.svg/330px-Roc_curve.svg.png)
-
+<figure>
+  <img src="{{ "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Roc_curve.svg/330px-Roc_curve.svg.png" }}">
+  <figcaption>ROC Curve</figcaption>
+</figure>
 Note that the ROC curve plots the true-positive rate against the false-positive rate as the ***cut-off threshold increases***.  If a model is perfect, then the smallest threshold would make the true-positive rate shoot up to 100%. 
 
-![](https://en.wikipedia.org/wiki/File:ROC_curves.svg)
+<figure>
+  <img src="{{ "https://en.wikipedia.org/wiki/File:ROC_curves.svg" }}">
+  <figcaption>ROC Curve</figcaption>
+</figure>
 
 The AUC means area under the ROC curve.  In this context, the Gini index has a very different meaning from the Lorenz curve or CAP.  The Gini index is:
 
