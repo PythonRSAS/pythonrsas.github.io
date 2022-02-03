@@ -1,13 +1,15 @@
 ---
 layout: post
-tag: gini index, Lorenze curve, insurance,gini coefficient, ROC, AUC,  banks, PD model
+tag: gini index, Lorenze curve, insurance,gini coefficient, ROC, AUC,  banks PD model
 category: insurance
 title: "Reviewing Gini Index and the Lorenz Curve"
 description: Understanding the Gini index in different context and its connections to other metrics
 author: Sarah Chen
-image: images/posts/Lorenze_Curve.png
+image: images/posts/Lorenze_Curve.PNG
 ---
 In my first job at Verisk Analytics, we used the Gini index as a metric for the GLM insurance models.  In my later jobs in banking, I saw similar terms but they are used differently.  This post first review the Lorenz curve amd the associated Gini index and then how it compares Gini index in the CAP ("cumulative accuaracy profile"), and the Gini index used along with ROC and AUC in binary target models such as probability of default (PD) models in banking. 
+
+The Gini index is model-agnostic.  The Gini index takes on differenct forms in different context, varying by whether target is continuous or binary, sorting, and area definitions in formulas. 
 
 **1. Gini index and the Lorenz curve**
 
@@ -25,7 +27,7 @@ Hence, the perfect inequality (the perfect non-random) line goes horizontally to
 Conversely, if each household posesses exactly 1/n of the income, then we have the perfect equality (the random line), which is the 45 degree diagonal line. 
 
 Real world situations are in between these two extremes. 
-![The Lorenze Curve]("/images/posts/Lorenze_Curve.png")
+![Lorenz curve](/images/posts/Lorenze_Curve.png)
 
 The Gini index is $$2*(the\:area\:between\:the\:curve\:and\:the\:diagnoal)$$
 
@@ -47,10 +49,10 @@ There are three differences:
 
 In this context, the "Gini coefficient" is the area between the model and the diagnonal (the random model) and the area between the perfect model and the diagnonal. 
 
-$$/frac{area between the model and the diagnona}{area between the perfect model and the diagnonal}$$
+$$\frac{area between the model and the diagnona}{area between the perfect model and the diagnonal}$$
 
 This Gini coefficient or index in the CAP context is a little different from the one in the Lorenz curve context.  But these two are very similar.   
-![Cumulative Accuracy Profile]("/images/posts/Gini_coefficient.PNG")
+![Cumulative Accuracy Profile](/images/posts/Gini_coefficient.PNG)
 <div class="code-head"><span>code</span>plotting_CAP.py</div> 
 
 ```python
