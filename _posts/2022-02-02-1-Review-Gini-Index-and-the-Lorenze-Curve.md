@@ -27,7 +27,7 @@ Hence, the perfect inequality (the perfect non-random) line goes horizontally to
 Conversely, if each household posesses exactly 1/n of the income, then we have the perfect equality (the random line), which is the 45 degree diagonal line. 
 
 Real world situations are in between these two extremes. 
-![Lorenz curve](/images/posts/Lorenze_Curve.png)
+![Lorenz curve](/images/posts/Lorenze_Curve.PNG)
 
 The Gini index is $$2*(the\:area\:between\:the\:curve\:and\:the\:diagnoal)$$
 
@@ -71,9 +71,15 @@ plt.show()
 
 **4. Gini index, AUC and ROC in banking PD models**
 
-The ROC and AUC are commonly used in evaluating PD models in banks.   
+The ROC curve was first used during World War II for the analysis of radar signals. The purpose was to increase the prediction of correctly detected enemy aircrafts from their radar signals.  The curves are formulated such that they measured the ability of a radar receiver operator to make these important distinctions, which was called the "Receiver Operating Characteristic". 
+
+The ROC and AUC are commonly used in evaluating PD models in banks. They are also widely used in the the machine learning community as summary statistic for model comparison.  
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Roc_curve.svg/330px-Roc_curve.svg.png)
 
 Note that the ROC curve plots the true-positive rate against the false-positive rate as the ***cut-off threshold increases***.  If a model is perfect, then the smallest threshold would make the true-positive rate shoot up to 100%. 
+
+![](https://en.wikipedia.org/wiki/File:ROC_curves.svg)
 
 The AUC means area under the ROC curve.  In this context, the Gini index has a very different meaning from the Lorenz curve or CAP.  The Gini index is:
 
@@ -83,7 +89,7 @@ Furthermore,
 
 $$AUC - \frac{G}{2} = \frac{1}{2}  $$
 
-And it is identical to the Sommer's D metric, which measures how two correlated two sets of ordinal (the actual vs. model predicted) are. 
+And it is identical to the Sommer's D metric, which measures how correlated two sets of ordinal (the actual vs. model predicted) are. 
 
 **Sumnmary**
 
