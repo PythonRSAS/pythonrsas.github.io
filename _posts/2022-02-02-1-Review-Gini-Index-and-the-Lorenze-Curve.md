@@ -7,11 +7,11 @@ description: Understanding the Gini index in different context and its connectio
 author: Sarah Chen
 image: images/posts/Lorenze_Curve.png
 ---
-In my first job at Verisk Analytics, we used the Gini index as a metric for the GLM insurance models.  In my later jobs in banking, I have come across similar terms but used differently.  This post is first to review the Lorenz curve amd the associated Gini index and then how it compares Gini index in the CAP ("cumulative accuaracy profile"), and the Gini index used along with ROC and AUC in binary target models such as probability of default (PD) models in banking. 
+In my first job at Verisk Analytics, we used the Gini index as a metric for the GLM insurance models.  In my later jobs in banking, I saw similar terms but they are used differently.  This post first review the Lorenz curve amd the associated Gini index and then how it compares Gini index in the CAP ("cumulative accuaracy profile"), and the Gini index used along with ROC and AUC in binary target models such as probability of default (PD) models in banking. 
 
 **1. Gini index and the Lorenz curve**
 
-The Gini index is a number that summarizes what the Lorenz curve tries to capture.  Lorenz was an Italian mathematician and economist.  His idea was to compare the two distributions, population and income, using the X and Y axis.  These two are different subjects and have different scales.  But their distributions (cumulative distributions, aka "CDF" or "quantiles") are comparable.  
+The Gini index is a number that summarizes what the Lorenz curve tries to capture.  Lorenz was an Italian economist.  His idea was to compare the two distributions, population and income, using the X and Y axis.  These two are different subjects and have different scales.  But their distributions (cumulative distributions, aka "CDF" or "quantiles") are comparable.  
 
 The key in my opinion is in the ***sorting***: 
 - each household only counts as 1, therefore, the order does not matter. 
@@ -25,7 +25,7 @@ Hence, the perfect inequality (the perfect non-random) line goes horizontally to
 Conversely, if each household posesses exactly 1/n of the income, then we have the perfect equality (the random line), which is the 45 degree diagonal line. 
 
 Real world situations are in between these two extremes. 
-[The Lorenze Curve]("/images/posts/Lorenze_Curve.png")
+![The Lorenze Curve]("/images/posts/Lorenze_Curve.png")
 
 The Gini index is $$2*(the\:area\:between\:the\:curve\:and\:the\:diagnoal)$$
 
@@ -50,7 +50,7 @@ In this context, the "Gini coefficient" is the area between the model and the di
 $$frac{area between the model and the diagnona}{area between the perfect model and the diagnonal}$$
 
 This Gini coefficient or index in the CAP context is a little different from the one in the Lorenz curve context.  But these two are very similar.   
-[cumulative accuracy profile]("/images/posts/Gini_coefficient.png")
+![cumulative accuracy profile]("/images/posts/Gini_coefficient.png")
 <div class="code-head"><span>code</span>corr.py</div> 
 
 ```python
