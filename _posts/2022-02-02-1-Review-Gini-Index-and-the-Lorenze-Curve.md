@@ -5,7 +5,7 @@ category: insurance
 title: "Reviewing Gini Index and the Lorenz Curve"
 description: Understanding the Gini index in different context and its connections to other metrics
 author: Sarah Chen
-image: images/posts/Lorenze_Curve.PNG
+image: images/posts/Lorenze_Curve.png
 ---
 In my first job at Verisk Analytics, we used the Gini index as a metric for the GLM insurance models.  In my later jobs in banking, I have come across similar terms but used differently.  This post is first to review the Lorenz curve amd the associated Gini index and then how it compares Gini index in the CAP ("cumulative accuaracy profile"), and the Gini index used along with ROC and AUC in binary target models such as probability of default (PD) models in banking. 
 
@@ -25,9 +25,9 @@ Hence, the perfect inequality (the perfect non-random) line goes horizontally to
 Conversely, if each household posesses exactly 1/n of the income, then we have the perfect equality (the random line), which is the 45 degree diagonal line. 
 
 Real world situations are in between these two extremes. 
-[The Lorenze Curve]("/images/posts/Lorenze_Curve.PNG")
+[The Lorenze Curve]("/images/posts/Lorenze_Curve.png")
 
-The Gini index is $$2*(the area between the curve and the diagnoal)$$
+The Gini index is $$2*(the\:area\:between\:the\:curve\:and\:the\:diagnoal)$$
 
 > Sorting is relevant because households have different incomes. 
 
@@ -50,7 +50,7 @@ In this context, the "Gini coefficient" is the area between the model and the di
 $$frac{area between the model and the diagnona}{area between the perfect model and the diagnonal}$$
 
 This Gini coefficient or index in the CAP context is a little different from the one in the Lorenz curve context.  But these two are very similar.   
-[cumulative accuracy profile]("/images/posts/Gini_coefficient.PNG")
+[cumulative accuracy profile]("/images/posts/Gini_coefficient.png")
 <div class="code-head"><span>code</span>corr.py</div> 
 
 ```python
@@ -73,13 +73,16 @@ Note that the ROC curve plots the true-positive rate against the false-positive 
 
 The AUC means area under the ROC curve.  In this context, the Gini index has a very different meaning from the Lorenz curve or CAP.  The Gini index is:
 
-$$G = 2*(area between the ROC and the diagonal)$$
+$$G = 2*(area\:between\:the\:ROC\:and\:the\:diagonal)$$
 
-Furthermore, $$AUC - frac{G}{2} = frac{1}{2}  $$
+Furthermore, 
+
+$$AUC - \frac{G}{2} = \frac{1}{2}  $$
 
 And it is identical to the Sommer's D metric, which measures how two correlated two sets of ordinal (the actual vs. model predicted) are. 
 
 **Sumnmary**
+
 We have reviewed the Lorenz curve, Gini index, CAP, ROC and AUC.   What they have in common is they all compare one cumulative rate vs the other.  
 
 The Gini index takes on differenct meaning in different context, from the original Lorenz curve, CAP and then to the classification model. The Gini index is model-agnostic.  It can be used for any types of models. 
