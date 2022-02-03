@@ -47,11 +47,11 @@ There are three differences:
 
 In this context, the "Gini coefficient" is the area between the model and the diagnonal (the random model) and the area between the perfect model and the diagnonal. 
 
-$$frac{area between the model and the diagnona}{area between the perfect model and the diagnonal}$$
+$$/frac{area between the model and the diagnona}{area between the perfect model and the diagnonal}$$
 
 This Gini coefficient or index in the CAP context is a little different from the one in the Lorenz curve context.  But these two are very similar.   
-![cumulative accuracy profile]("/images/posts/Gini_coefficient.png")
-<div class="code-head"><span>code</span>corr.py</div> 
+![Cumulative Accuracy Profile]("/images/posts/Gini_coefficient.PNG")
+<div class="code-head"><span>code</span>plotting_CAP.py</div> 
 
 ```python
 x=np.arange(0,101)
@@ -68,7 +68,9 @@ plt.show()
 ```
 
 **4. Gini index, AUC and ROC in banking PD models**
+
 The ROC and AUC are commonly used in evaluating PD models in banks.   
+
 Note that the ROC curve plots the true-positive rate against the false-positive rate as the ***cut-off threshold increases***.  If a model is perfect, then the smallest threshold would make the true-positive rate shoot up to 100%. 
 
 The AUC means area under the ROC curve.  In this context, the Gini index has a very different meaning from the Lorenz curve or CAP.  The Gini index is:
