@@ -71,20 +71,20 @@ plt.show()
 
 **4. Gini index, AUC and ROC in banking PD models**
 
-The ROC curve was first used during World War II for the analysis of radar signals. The purpose was to increase the prediction of correctly detected enemy aircrafts from their radar signals.  The curves are formulated such that they measured the ability of a radar receiver operator to make these important distinctions, which was called the "Receiver Operating Characteristic". 
+The ![ROC curve](https://en.wikipedia.org/wiki/Receiver_operating_characteristic) was first used during World War II for the analysis of radar signals. The purpose was to increase the prediction of correctly detected enemy aircrafts from their radar signals.  The curves are formulated such that they measured the ability of a radar receiver operator to make these important distinctions, which was called the "Receiver Operating Characteristic". 
 
 The ROC and AUC are commonly used in evaluating PD models in banks. They are also widely used in the the machine learning community as summary statistic for model comparison.  
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Roc_curve.svg/330px-Roc_curve.svg.png)
-<figure>
+<!-- <figure>  this works as well
   <img src="{{ "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Roc_curve.svg/330px-Roc_curve.svg.png" }}">
   <figcaption>ROC Curve</figcaption>
-</figure>
+</figure> -->
 Note that the ROC curve plots the true-positive rate against the false-positive rate as the ***cut-off threshold increases***.  If a model is perfect, then the smallest threshold would make the true-positive rate shoot up to 100%. 
 
 <figure>
   <img src="{{ "https://en.wikipedia.org/wiki/File:ROC_curves.svg" }}">
-  <figcaption>ROC Curve</figcaption>
+  <figcaption></figcaption>
 </figure>
 
 The AUC means area under the ROC curve.  In this context, the Gini index has a very different meaning from the Lorenz curve or CAP.  The Gini index is:
