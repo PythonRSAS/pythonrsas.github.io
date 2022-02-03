@@ -76,10 +76,7 @@ The ![ROC curve](https://en.wikipedia.org/wiki/Receiver_operating_characteristic
 The ROC and AUC are commonly used in evaluating PD models in banks. They are also widely used in the the machine learning community as summary statistic for model comparison.  
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Roc_curve.svg/330px-Roc_curve.svg.png)
-<!-- <figure>  this works as well
-  <img src="{{ "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Roc_curve.svg/330px-Roc_curve.svg.png" }}">
-  <figcaption>ROC Curve</figcaption>
-</figure> -->
+
 Note that the ROC curve plots the true-positive rate against the false-positive rate as the ***cut-off threshold increases***.  If a model is perfect, then the smallest threshold would make the true-positive rate shoot up to 100%. 
 
 <figure>

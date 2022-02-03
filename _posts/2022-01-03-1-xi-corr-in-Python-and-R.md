@@ -20,7 +20,7 @@ The $$\xi$$ correlation is actually very simple. In my view, is a variation of t
 
 The $$\xi$$ correlation (xicor) is a robust association measure that does not presuppose linearity.  It is based on cross correlation between ranked increments. 
 
-# Algorithem
+# Algorithm
 
 1. Take $$X$$ and $$Y$$ as n-vectors of observations
 2. Compute the ranks $$r_i$$ of the $$Y$$ observations
