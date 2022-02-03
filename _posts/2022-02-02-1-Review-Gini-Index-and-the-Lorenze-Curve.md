@@ -3,11 +3,11 @@ layout: post
 tag: gini index, Lorenze curve, insurance,gini coefficient, ROC, AUC,  banks, PD model
 category: insurance
 title: "Reviewing Gini Index and the Lorenz Curve"
-description: Understanding the Gini index and its connections to other metrics
+description: Understanding the Gini index in different context and its connections to other metrics
 author: Sarah Chen
-image: images/posts/einstein_money.png
+image: images/posts/Lorenze_Curve.PNG
 ---
-In my first job at Verisk Analytics, we used the Gini index as a metric for the GLM insurance models.  In my later jobs in banking, I have come across similar terms but used differently.  This post is first to review the Lorenz curve amd the associated Gini index and then how it compares to the CAP ("cumulative accuaracy profile"), Gini coefficient or index, and ROC and AUC in binary target models such as probability of default (PD) models in banking. 
+In my first job at Verisk Analytics, we used the Gini index as a metric for the GLM insurance models.  In my later jobs in banking, I have come across similar terms but used differently.  This post is first to review the Lorenz curve amd the associated Gini index and then how it compares Gini index in the CAP ("cumulative accuaracy profile"), and the Gini index used along with ROC and AUC in binary target models such as probability of default (PD) models in banking. 
 
 **1. Gini index and the Lorenz curve**
 
