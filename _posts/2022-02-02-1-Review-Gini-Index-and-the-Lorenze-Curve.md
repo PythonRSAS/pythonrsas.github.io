@@ -33,7 +33,7 @@ The Gini index is $$2*(the area between the curve and the diagnoal)$$
 
 **2. How it is used in insurance modeling**
 
-In insurance GLM (can be any type of model) modeling of loss ratio or pure premium, the policy holders are *sorted by their loss ratios* or sorted by pure premium in ascending order. The more accurate model will have a more superior/accurate sort, and the curve will be more curvy/convex than a less accurate model.  
+In insurance GLM (can be any type of model) modeling of loss ratio, relativity or pure premium, the policy holders are *sorted by their loss ratios* or sorted by pure premium in ascending order. The more accurate model will have a more superior/accurate sort, and the curve will be more curvy/convex than a less accurate model.  
 
 The target variable is numeric/cardinal. 
 
@@ -82,8 +82,10 @@ And it is identical to the Sommer's D metric, which measures how two correlated 
 **Sumnmary**
 We have reviewed the Lorenz curve, Gini index, CAP, ROC and AUC.   What they have in common is they all compare one cumulative rate vs the other.  
 
-The Gini index takes on differenct meaning in different context, from the original Lorenz curve, CAP and then to the classification model. 
+The Gini index takes on differenct meaning in different context, from the original Lorenz curve, CAP and then to the classification model. The Gini index is model-agnostic.  It can be used for any types of models. 
 The meanings differ in the following:
 1. model target is continuous or binary
 2. sorting direction (the ROC curve has no sorting involved in terms of X-axis and the Y-axis;the CAP is sorted by modeled defaults first, descendingly, whereas the Lorenz curve sorts the population ascendingly by their income or loss dollar,or loss severity)
 3. area definitions
+
+
