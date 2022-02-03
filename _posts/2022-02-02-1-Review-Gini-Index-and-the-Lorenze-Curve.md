@@ -99,7 +99,7 @@ And it is identical to the Sommer's D metric, which measures how correlated two 
 
 **Sumnmary**
 
-We have reviewed the Lorenz curve, Gini index, CAP, ROC and AUC.   What they have in common is they all compare one cumulative rate vs the other.  
+We have reviewed the Lorenz curve, Gini index, CAP, ROC and AUC.   What they have in common is they all compare one cumulative rate vs the other.  Sometimes the goal is to gauge equality (Lorenz curve) whereas sometimes the goal is to be as discriminatory as possible (CAP, ROC).  
 
 The Gini index takes on differenct meaning in different context, from the original Lorenz curve, CAP and then to the classification model. The Gini index is model-agnostic.  It can be used for any types of models. 
 The meanings differ in the following:
