@@ -5,10 +5,10 @@ category: "Python for SAS"
 title: "Sending Work Email Using Python"
 description: Sending individual email to many people Using Python at work
 author: Sarah Chen
-image: images/posts/photos/IMG-0688.jpg
+image: images/posts/photos/IMG-0867.jpg
 
 ---
-![](images/posts/photos/IMG-0687.jpg)
+![](images/posts/photos/IMG-0867.jpg)
 
 Sometimes at work you want to send many people emails but you want to appear to be personal.  Sending them one by one manually is very tedious. 
 
@@ -44,7 +44,7 @@ def email(EMAIL, FIRSTN):
     """ 
     mail.Send()
 
-df = pd.read_excel(r"myContactDirect8ory.xlsx")
+df = pd.read_excel(r"myContactDirectory.xlsx")
 df1 = df[df['manager name']=='Sarah Chen'].copy()
 df1.reset_index(inplace=True)
 df2= df1[['Name','ID']]
