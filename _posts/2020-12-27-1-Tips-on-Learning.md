@@ -15,7 +15,8 @@ image: images/posts/photos/IMG-0631.jpg
 It is year end of 2020, time to reflect. 
 
 Simple tips on how to be accomplished:
-**1. Hard work**
+
+**1. Focus on priorities**
 **2. Self descipline**
 **3. Persistence**
 
@@ -33,11 +34,10 @@ For a specific subject, I like to use *Word* for taking notes.  I have some keyb
 - insert image: alt, n, p, d
 
 
-For random notes that are not organized, I use OneNote (sounds kind of ironic).
 
-> **Organizing**
-Organizing is a science.  So far it is a struggle. But I have some notes on it as well.
-My go-to tool is PowerShell. 
+**Shortcuts**
+![](\images\posts\outlook_shortcuts.PNG)
+
 
 
 
