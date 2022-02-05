@@ -18,7 +18,7 @@ Say if you are sending each of your direct reports an email to let them know you
 
 Note:
 1. Do not put any code comments within the HTML body <span class="coding">mail.HTMLBody</span> because otherwise they will appear in the email.  
-2. The HTML <br> tag means new line. 
+2. The HTML "<br>" tag means new line. 
 
 <div class="code-head"><span>code</span>outlook.py</div>
 
