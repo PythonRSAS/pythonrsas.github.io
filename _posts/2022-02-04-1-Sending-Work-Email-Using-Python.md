@@ -14,6 +14,12 @@ Sometimes at work you want to send many people emails but you want to appear to 
 
 If you like to use the mouse, you can use Mail Merge.  Otherwise if you are like me who tries not to use the mouse you can send email one by one to as many people as you like and each would appear personal. 
 
+Say if you are sending each of your direct reports an email to let them know you are going to check on how they are doing, here is an example. It uses the <span class="coding">win32com.client</span> method from the <span class="coding">win32com</span> library, and specifically the <span class="coding">win32.Dispatch('outlook.application')</span> is for Outlook. 
+
+> Note:
+1. Do not put any code comments within the HTML body <span class="coding">r""" """</span> because they will appear in the email.  
+2. The HTML <span class="coding"><br></span> means new line. 
+
 <div class="code-head"><span>code</span>outlook.py</div>
 
 ```py
@@ -27,7 +33,7 @@ def email(EMAIL, FIRSTN):
     """
     outlook = win32.Dispatch('outlook.application')
     mail = outlook.CreateItem(0)
-    mail.Subject = 'My Subject ' + datetime.now()+strftime('%#d %b %Y %H:%M')
+    mail.Subject = 'My Subject ' + datetime.now()+strftime('%#d %b %Y %H:%M') # can remove the datetime if you don't want to have it in the subject
     mail.To = EMAIL
     mail.HTMLBody = r"""
     Dear """ + FIRSTN + r""", <br><br>
@@ -38,7 +44,7 @@ def email(EMAIL, FIRSTN):
     """ 
     mail.Send()
 
-df = pd.read_excel(r"myContactDirectory.xlsx")
+df = pd.read_excel(r"myContactDirect8ory.xlsx")
 df1 = df[df['manager name']=='Sarah Chen'].copy()
 df1.reset_index(inplace=True)
 df2= df1[['Name','ID']]
@@ -50,6 +56,7 @@ for i in range(df2.shape[0]):
     ID = df2.ID[i]
     EMAIL = ID+'@CompanyName.com'
     send_email(EMAIL, FIRSTN)
+
 ```
 
 Yes, it is that simple. 
