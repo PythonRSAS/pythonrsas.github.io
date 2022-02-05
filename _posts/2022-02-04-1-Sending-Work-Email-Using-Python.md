@@ -17,8 +17,7 @@ If you like to use the mouse, you can use Mail Merge.  Otherwise if you are like
 Say if you are sending each of your direct reports an email to let them know you are going to check on how they are doing, here is an example. It uses the <span class="coding">win32com.client</span> method from the <span class="coding">win32com</span> library, and specifically the <span class="coding">win32.Dispatch('outlook.application')</span> is for Outlook. 
 
 Note:
-1. Do not put any code comments within the HTML body <span class="coding">mail.HTMLBody</span> because otherwise they will appear in the email.  
-2. The HTML "<br>" tag means new line. 
+Do not put any code comments within the HTML body <span class="coding">mail.HTMLBody</span> because otherwise they will appear in the email.  
 
 <div class="code-head"><span>code</span>outlook.py</div>
 
