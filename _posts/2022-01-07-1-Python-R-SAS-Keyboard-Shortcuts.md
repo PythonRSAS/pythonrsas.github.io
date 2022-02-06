@@ -29,6 +29,18 @@ You can also define your own keyboard shortcut.
 ## Ipython shell commands
 These aren't technically shortcuts, but I count them in because they are convinient.
 
+<span class="coding">ls cd pwd</span> all work in Ipython shell as they do in command prompt. 
+
+<span class="coding">%automagic on</span> enables magic commands without having to use prefix "%". 
+
+<span class="coding">%history -n 2-5</span> presents history line 2 to 5. 
+
+<span class="coding">%run myStuff.py</span>: runs code in this directory. 
+
+>Functions defined in myStuff.py are alive in the current Ipython session after <span class="coding">%run myStuff.py</span>. 
+
+And get inspired by others' ![notebooks](https://nbviewer.org).
+
 ## RStudio 
 - <span class="coding">Ctrl+Enter </span>  To run a line of code from the source editor.
 - <span class="coding">Ctrl+Shift+M </span> is the pipe operator <span class="coding"> %>%</span> is or <span class="coding">Cmd+Shift+M</span> (Mac).
