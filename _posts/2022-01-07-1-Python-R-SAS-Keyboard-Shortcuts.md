@@ -11,6 +11,7 @@ image: images/posts/photos/IMG-0685.jpg
 ![](/images/posts/photos/IMG-0685.jpg)
 - [Keyboard shortcuts](#keyboard-shortcuts)
   - [VSCode](#vscode)
+  - [Ipython shell commands](#ipython-shell-commands)
   - [RStudio](#rstudio)
 - [Add custom snippets](#add-custom-snippets)
 
@@ -22,7 +23,11 @@ Although Spyder and Ipython (notebook and shell) both are great, VSCode is espec
 See [keyboard shortcuts pdf](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf) for the comprehensive list.  
 <!-- if image not shown, check if it is pushed yet, and case must match what's in github https://github.com/PythonRSAS/pythonrsas.github.io/tree/master/images/posts -->
 ![VSCode Keyboard Shortcuts](/images/posts/vscode_shortcuts.PNG)
+![VSCode Keyboard Shortcuts](/images/posts/vscode_shortcuts.JPEG)
 You can also define your own keyboard shortcut. 
+
+## Ipython shell commands
+These aren't technically shortcuts, but I count them in because they are convinient.
 
 ## RStudio 
 - <span class="coding">Ctrl+Enter </span>  To run a line of code from the source editor.
