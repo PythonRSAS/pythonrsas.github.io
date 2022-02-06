@@ -39,7 +39,7 @@ These aren't technically shortcuts, but I count them in because they are convini
 
 >Functions defined in myStuff.py are alive in the current Ipython session after <span class="coding">%run myStuff.py</span>. 
 
-And get inspired by others' ![notebooks](https://nbviewer.org).
+And get inspired by others' [notebooks](https://nbviewer.org).
 
 ## RStudio 
 - <span class="coding">Ctrl+Enter </span>  To run a line of code from the source editor.
