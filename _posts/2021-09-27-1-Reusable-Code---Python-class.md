@@ -67,7 +67,8 @@ for i in range(0,3):
 	v.left(120)
 ```
 
-We may turn some of the routine data analysis code into class.
+We may turn some of the routine data analysis code into class. For example, as shown below, we define a class for data description that has one attribute and three methods.  
+The one and only attribute is the data itself, like a *parameter* to a function. This "parameter" has 3 "sub-functions".  Or from the SAS users' perspective, 3 macro functions), one for <span class="coding">PROC CONTENTS</span>, one for <span class="coding">PROC MEANS</span> and <span class="coding">PROC FREQ </span> and one for <span class="coding">PROC CORR</span> (sort of). 
 <div class="code-head"><span>code</span>data analysis.py</div> 
 
 ```python
@@ -99,58 +100,15 @@ a.data_content()
 # ---  ------      --------------  -----
 #  0   total_bill  244 non-null    float64
 #  1   tip         244 non-null    float64
-#  2   sex         244 non-null    category
-#  3   smoker      244 non-null    category
-#  4   day         244 non-null    category
-#  5   time        244 non-null    category
-#  6   size        244 non-null    int64
-# dtypes: category(4), float64(2), int64(1)
-# memory usage: 7.4 KB
-# None
-
-# dtypes are:
-#  total_bill     float64
-# tip            float64
-# sex           category
-# smoker        category
-# day           category
-# time          category
-# size             int64
-# dtype: object
-
+# ...
 # column names are:
 #  ['total_bill', 'tip', 'sex', 'smoker', 'day', 'time', 'size']
 a.descriptive()
 #         total_bill   tip   sex smoker  day    time  size
 # count        244.0 244.0   244    244  244     244 244.0
-# unique         NaN   NaN     2      2    4       2   NaN
-# top            NaN   NaN  Male     No  Sat  Dinner   NaN
-# freq           NaN   NaN   157    151   87     176   NaN
 # ...
-#         total_bill   tip   sex smoker  day    time  size
-# count        244.0 244.0   244    244  244     244 244.0
-# unique         NaN   NaN     2      2    4       2   NaN
-# top            NaN   NaN  Male     No  Sat  Dinner   NaN
-# freq           NaN   NaN   157    151   87     176   NaN
-# mean        19.786 2.998   NaN    NaN  NaN     NaN  2.57
-# std          8.902 1.384   NaN    NaN  NaN     NaN 0.951
-# ...
-# 75%         24.127 3.562   NaN    NaN  NaN     NaN   3.0
-# max          50.81  10.0   NaN    NaN  NaN     NaN   6.0
 # missing          0     0     0      0    0       0     0
 a.data_content()
-# <class 'pandas.core.frame.DataFrame'>
-# RangeIndex: 244 entries, 0 to 243
-# Data columns (total 7 columns):
- #   Column      Non-Null Count  Dtype
-# ---  ------      --------------  -----
-#  0   total_bill  244 non-null    float64
-# ...
-
-# dtypes are:
-# total_bill     float64
-# tip            float64
-# sex           category
 ```
 
 # step by step examples
