@@ -1,11 +1,11 @@
 ---
 layout: page-doc
 title: Other Risks
-subheading: Fraud, AML, ACH and payments.
-description: Fraud, AML, ACH and payments.
+subheading: Macros, economoy, and other topics.
+description: Macros, economoy, and other topics.
 color: grad-blog
 image: "/images/icons/real-estate.svg"
-permalink: /fraud-and-risk
+permalink: /other-risks
 image: https://drive.google.com/uc?id=1edu-wUoFkrMuoemONmOvsIMpnvkAdFXY
 ---
 
