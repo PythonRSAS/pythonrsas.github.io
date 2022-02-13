@@ -72,10 +72,10 @@ permalink: /category
         </div>
         <div class="other-risks" onclick="location.href='{{ site.baseurl }}/other-risks';">
           <img src="{{ "/images/icons/real-estate.svg" | relative_url }}"/>
-          <h4>Other Risks</h4>
+          <h4>other risks</h4>
           <p>Risks that financial institutions encounter day to day</p>
           {% for post in site.posts %}
-            {% if post.categories contains 'Other Risks' %}
+            {% if post.categories contains 'other risks' %}
                 {% capture other_risks_count %} {{ other_risks_count | plus: 1 }} {% endcapture %}
             {% endif %}
           {% endfor %}

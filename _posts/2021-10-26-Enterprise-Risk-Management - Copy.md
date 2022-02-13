@@ -1,7 +1,7 @@
 ---
 layout: post
 tag: ERM
-category: "Other Risks"
+category: "other risks"
 title: "Enterprise Risk Management"
 description: ERM enterprise risk analysis/analytics introduction
 author: Sarah Chen

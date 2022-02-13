@@ -1,7 +1,7 @@
 ---
 layout: post
 tag: fraud risk
-category: "Other Risks"
+category: "other risks"
 title: "Mobile Payment Risk"
 description: The convenience of mobile payments 移动支付 comes with higher payment and fraud risk 风险. 
 author: Sarah Chen

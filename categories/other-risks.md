@@ -1,11 +1,11 @@
 ---
 layout: page-doc
-title: Other Risks
+title: other risks
 subheading: Macros, economoy, and other topics.
 description: Macros, economoy, and other topics.
 color: grad-blog
 image: "/images/icons/real-estate.svg"
-permalink: /Other-Risks
+permalink: /other-risks
 image: https://drive.google.com/uc?id=1edu-wUoFkrMuoemONmOvsIMpnvkAdFXY
 ---
 
@@ -15,7 +15,7 @@ image: https://drive.google.com/uc?id=1edu-wUoFkrMuoemONmOvsIMpnvkAdFXY
       <div class="page-holder">
         <ul>
         {% for post in site.posts %}
-          {% if post.categories contains "Other Risks" %}
+          {% if post.categories contains "other risks" %}
                 <li>
                   <a class="post-link" href="{{ site.baseurl }}{{ post.url }}">
                     <div class="page-treasure-wrapper">
