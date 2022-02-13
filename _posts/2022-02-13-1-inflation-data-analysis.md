@@ -1,9 +1,9 @@
 ---
 layout: post
-tag: Assesing risk factor
-category: "credit risk"
-title: "Counterparty Credit Risk"
-description: Counterparty credit risk basics
+tag: inflation, fred, data analysis
+category: "inflation risk"
+title: "Inflation Data Analysis"
+description: Using public data to assess inflation risk and magnitude
 author: Sarah Chen
 image: images/posts/counterparty.jpg
 ---
