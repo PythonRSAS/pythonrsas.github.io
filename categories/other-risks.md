@@ -5,7 +5,7 @@ subheading: Macros, economoy, and other topics.
 description: Macros, economoy, and other topics.
 color: grad-blog
 image: "/images/icons/real-estate.svg"
-permalink: /other-risks
+permalink: /Other-Risks
 image: https://drive.google.com/uc?id=1edu-wUoFkrMuoemONmOvsIMpnvkAdFXY
 ---
 

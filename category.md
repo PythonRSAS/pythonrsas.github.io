@@ -70,7 +70,7 @@ permalink: /category
           {% endfor %}
           <p class="no_of_posts">{{ machine_learning_count }} posts</p>
         </div>
-        <div class="commercial-real-estates" onclick="location.href='{{ site.baseurl }}/other-risks';">
+        <div class="other-risks" onclick="location.href='{{ site.baseurl }}/other-risks';">
           <img src="{{ "/images/icons/real-estate.svg" | relative_url }}"/>
           <h4>Other Risks</h4>
           <p>Risks that financial institutions encounter day to day</p>
