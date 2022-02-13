@@ -1,11 +1,11 @@
 ---
 layout: page-doc
 title: Other Risks
-subheading: Macro risk, inflation, and other risk.
-description: Macro risk, inflation, and other risk.
+subheading: Fraud, AML, ACH and payments.
+description: Fraud, AML, ACH and payments.
 color: grad-blog
 image: "/images/icons/real-estate.svg"
-permalink: /bigger-and-or-other-risk
+permalink: /fraud-and-risk
 image: https://drive.google.com/uc?id=1edu-wUoFkrMuoemONmOvsIMpnvkAdFXY
 ---
 
