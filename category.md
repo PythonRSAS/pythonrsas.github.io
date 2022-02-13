@@ -70,16 +70,16 @@ permalink: /category
           {% endfor %}
           <p class="no_of_posts">{{ machine_learning_count }} posts</p>
         </div>
-        <div class="commercial-real-estates" onclick="location.href='{{ site.baseurl }}/fraud-and-risk';">
+        <div class="commercial-real-estates" onclick="location.href='{{ site.baseurl }}/other-risks';">
           <img src="{{ "/images/icons/real-estate.svg" | relative_url }}"/>
           <h4>Other Risks</h4>
           <p>Risks that financial institutions encounter day to day</p>
           {% for post in site.posts %}
             {% if post.categories contains 'Other Risks' %}
-                {% capture fraud_and_risk_count %} {{ fraud_and_risk_count | plus: 1 }} {% endcapture %}
+                {% capture other_risks_count %} {{ other_risks_count | plus: 1 }} {% endcapture %}
             {% endif %}
           {% endfor %}
-          <p class="no_of_posts">{{ fraud_and_risk_count }} posts</p>
+          <p class="no_of_posts">{{ other_risks_count }} posts</p>
         </div>
         <div class="education" onclick="location.href='{{ site.baseurl }}/education';">
           <img src="{{ "/images/icons/education.svg" | relative_url }}" />
