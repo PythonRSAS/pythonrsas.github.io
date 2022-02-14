@@ -1,15 +1,15 @@
 ---
 layout: post
-tag: inflation, FRED, data analysis, Milton Frieman
+tag: inflation, FRED, data analysis
 category: "other risks"
 title: "Inflation Data Analysis"
 description: Using public data to assess inflation risk and magnitude
 author: Sarah Chen
-image: images/posts/photos/IMG-0868.JPG
+image: images/posts/photos/IMG-0868.jpg
 
 ---
 <figure>
-  <img src="{{ "/images/posts/photos/IMG-0868.JPG" | relative_url }}">
+  <img src="{{ "/images/posts/photos/IMG-0868.jpg" | relative_url }}">
   <figcaption></figcaption>
 </figure>
 Milton Frieman said that inflation is a disease, and that inflation is always everywhere a monetary phenomena, the result of too much money.  Inflation can cause many problems, and can even bring down a society/nation. 
@@ -65,7 +65,7 @@ def plot_series(df, NAME):
 ``` 
 # Money Suppy
 ## M2 
-![M2](images/posts/m2.png)
+![M2](images/posts/m2.PNG)
 
 <div class="code-head"><span>code</span>corr.py</div> 
 
@@ -85,13 +85,13 @@ m2 = get_series(MEV, NAME)
 # 1960-01-01 298.200
 ```
 
-![M2 month over month change rate](images/posts/m2_mom.png)
+![M2 month over month change rate](images/posts/m2_mom.PNG)
 
-![M2 year over year change rate](images/posts/m2_yoy.png)
+![M2 year over year change rate](images/posts/m2_yoy.PNG)
 
 ## Money velocity
 
-![M2 year over year change rate](images/posts/m2_yoy.png)
+![M2 year over year change rate](images/posts/m2_yoy.PNG)
 <div class="code-head"><span>code</span>corr.py</div> 
 
 ```python
