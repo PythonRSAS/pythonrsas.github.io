@@ -66,7 +66,7 @@ def plot_series(df, NAME):
 
 ![M2](/images/posts/m2.png)
 
-<div class="code-head"><span>code</span>corr.py</div> 
+<div class="code-head"><span>code</span>m2.py</div> 
 
 ```python
 MEV = 'M2Sl'^M
@@ -91,68 +91,53 @@ m2 = get_series(MEV, NAME)
 ## Money velocity
 
 ![M2 year over year change rate](/images/posts/m2_yoy.png)
-<div class="code-head"><span>code</span>corr.py</div> 
 
 ```python
-MEV = 'M2V'^M
- NAME = "m2v"^M
- with open(file_mev, 'w') as f:^M
-     f.write("\n") ^M
-     f.write("**************************************") ^M
-     f.write("Velocity of the M2 money")^M
- m2v = get_series(MEV, NAME)^M
- plot_series(m2v,NAME)^M
+DATE
+1960-01-01 1.817
+1960-04-01 1.797
+1960-07-01 1.780
+1960-10-01 1.737
+1961-01-01 1.723
 
-# DATE
-# 1960-01-01 1.817
-# 1960-04-01 1.797
-# 1960-07-01 1.780
-# 1960-10-01 1.737
-# 1961-01-01 1.723
-#              m2v
-# DATE
-# 2020-10-01 1.134
-# 2021-01-01 1.121
-# 2021-04-01 1.119
-# 2021-07-01 1.115
-# 2021-10-01 1.120
-# The max happens on  m2v   1997-07-01
-# dtype: datetime64[ns]
-#              m2v
-# DATE
-# 1997-07-01 2.192
-# The min happens on  m2v   2020-04-01
-# dtype: datetime64[ns]
-#              m2v
-# DATE
-# 2020-04-01 1.100
+DATE
+2020-10-01 1.134
+2021-01-01 1.121
+2021-04-01 1.119
+2021-07-01 1.115
+2021-10-01 1.120
 
+The max happens on  m2v   1997-07-01
+
+DATE
+1997-07-01 2.192
+
+The min happens on  m2v   2020-04-01
+DATE
+2020-04-01 1.100
 ```
-<div class="code-head"><span>code</span>m2v_mom.py</div> 
 
 ```python
- m2v_mom = level_to_mom(m2v, NAME) # convert to mom and plot
-#             m2v_mom
-# DATE
-# 1960-04-01   -1.101
-# 1960-07-01   -0.946
-# 1960-10-01   -2.416
-# 1961-01-01   -0.806
-# 1961-04-01    0.116
-#             m2v_mom
-# DATE
-# 2020-10-01   -1.133
-# 2021-01-01   -1.146
-# 2021-04-01   -0.178
-# 2021-07-01   -0.357
-# 2021-10-01    0.448
-# The max happens on  m2v_mom   2020-07-01
-# dtype: datetime64[ns]
-#             m2v_mom
-# DATE
-# 2020-07-01    4.273
-# The min happens on  m2v_mom   2020-04-01
-# dtype: datetime64[ns]
+             m2v_mom
+ DATE
+ 1960-04-01   -1.101
+ 1960-07-01   -0.946
+ 1960-10-01   -2.416
+ 1961-01-01   -0.806
+ 1961-04-01    0.116
+             m2v_mom
+ DATE
+ 2020-10-01   -1.133
+ 2021-01-01   -1.146
+ 2021-04-01   -0.178
+ 2021-07-01   -0.357
+ 2021-10-01    0.448
+ The max happens on  m2v_mom   2020-07-01
+ dtype: datetime64[ns]
+             m2v_mom
+ DATE
+ 2020-07-01    4.273
+ The min happens on  m2v_mom   2020-04-01
 ```
 ![Velocity of money month over month change rate](/images/posts/2v_mom.png)
 
@@ -204,85 +189,41 @@ wti_mom = level_to_mom(wti, NAME) # convert to yoy and plot
 ```python
 
 # 2. price
-MEV = 'CPIAUCSL'
-NAME = 'cpi'
-cpi = get_series(MEV, NAME)
-plot_series(cpi,NAME)
-cpi = daily_to_monthly(cpi, NAME)
-cpi_yoy = level_to_yoy(cpi, NAME)
-cpi_mom = level_to_mom(cpi, NAME)
 
-```
+![CPI](/images/posts/cpi.png)
+![CPI month over month](/images/posts/cpi_mom.png)
+![CPI year over year](/images/posts/cpi_yoy.png)
 
-
-<div class="code-head"><span>code</span>corr.py</div> 
-
-```python
-
-MEV = 'PPIACO'
-NAME = 'ppiaco'
-ppiaco = get_series(MEV, NAME)
-plot_series(ppiaco,NAME)
-# ppiaco = daily_to_monthly(ppiaco, NAME) # already monthly
-ppiaco_yoy = level_to_yoy(ppiaco, NAME)
-ppiaco_mom = level_to_mom(ppiaco, NAME)
-
-```
 ## HPI
-<div class="code-head"><span>code</span>hpi.py</div> 
-
-```python
-# hpi  quarterly frequency WIP (how to deal with monthly and quarterly frequency)
-MEV = 'USSTHPI' 
-NAME = 'ussthpi'
-with open(file_mev, 'w') as f:
-    f.write("\n") 
-    f.write("**************************************") 
-    f.write("US HPI")
-ussthpi = get_series(MEV, NAME)
-plot_series(ussthpi,NAME)
-# ussthpi = daily_to_monthly(ussthpi, NAME) # already monthly
-ussthpi_yoy = level_to_yoy(ussthpi, NAME)
-ussthpi_mom = level_to_mom(ussthpi, NAME)
-```
-
-# 
+![HPI](/images/posts/ussthpi.png)
+![HPI month over month](/images/posts/ussthpi_mom.png)
+![HPI year over year](/images/posts/ussthpi_yoy.png)
 
 # 3. RATES
-<div class="code-head"><span>code</span>corr.py</div> 
 
-```python
-
+## Fed funds rate
 MEV = 'FEDFUNDS'
 NAME = 'fedfunds'
-with open(file_mev, 'w') as f:
-    f.write("\n") 
-    f.write("**************************************") 
-    f.write("Federal funds rate effective")
-fedfunds = get_series(MEV, NAME)
-plot_series(fedfunds,NAME)
-# fedfunds = daily_to_monthly(fedfunds, NAME) # already monthly
-fedfunds_yoy = level_to_yoy(fedfunds, NAME)
+
+![fedfunds](/images/posts/fedfunds.png)
+![fedfunds year over year](/images/posts/fedfunds_yoy.png)
+
+## 10-year treasury note yield
 
 MEV = 'DGS10'
 NAME = 'dgs10'
-with open(file_mev, 'w') as f:
-    f.write("\n") 
-    f.write("**************************************") 
-    f.write("Yield on 10-Year Treasury note")
-dgs10 = get_series(MEV, NAME)
-plot_series(dgs10,NAME)
-# dgs10 = daily_to_monthly(dgs10, NAME) # already monthly
-dgs10_yoy = level_to_yoy(dgs10, NAME)
+
+![dgs10](/images/posts/dgs10.png)
+![dgs10 year over year](/images/posts/dgs10_yoy.png)
+
+## 3-month treasury bill yield
 
 MEV = 'TB3MS'
 NAME = 'tb3ms'
-with open(file_mev, 'w') as f:
-    f.write("\n") 
-    f.write("**************************************") 
-    f.write("Yield on 3-month Treasury bill")
-tb3ms = get_series(MEV, NAME)
-plot_series(tb3ms,NAME)
-# tb3ms = daily_to_monthly(tb3ms, NAME) # already monthly
-tb3ms_yoy = level_to_yoy(tb3ms, NAME)
-```
+![tb3ms](/images/posts/tb3ms.png)
+![tb3ms year over year](/images/posts/tb3ms_yoy.png)
+
+# 4. Economy 
+## GDP
+![gdp](/images/posts/gdp.png)
+![gdp year over year](/images/posts/gdp_yoy.png)
