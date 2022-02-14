@@ -224,6 +224,20 @@ NAME = 'tb3ms'
 ![tb3ms year over year](/images/posts/tb3ms_yoy.png)
 
 # 4. Economy 
-## GDP
+## Nominal GDP
 ![gdp](/images/posts/gdp.png)
 ![gdp year over year](/images/posts/gdp_yoy.png)
+
+## Real GDP (inflation adjusted)
+![gdpc1](/images/posts/gdpc1.png)
+![gdpc1 year over year](/images/posts/gdpc1_yoy.png)
+
+# 5. Financial stress and volatility
+## Financial stress
+![stlfsi](/images/posts/stlfsi.png)
+![stlfsi year over year](/images/posts/stlfsi_yoy.png)
+
+## VIX
+![vixcls](/images/posts/vixcls.png)
+![vixcls year over year](/images/posts/vixcls_yoy.png)
+
