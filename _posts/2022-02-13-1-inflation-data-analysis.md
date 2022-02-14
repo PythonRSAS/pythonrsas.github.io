@@ -3,12 +3,12 @@ layout: post
 tag: inflation, FRED, data analysis
 category: "other risks"
 title: "Inflation Data Analysis"
-description: Using public data to assess inflation risk and magnitude
+description: Using FRED data to assess inflation risk and magnitude
 author: Sarah Chen
-image: images/posts/photos/IMG-0868.JPG
+image: images/posts/photos/IMG-0869.JPG
 ---
 
-![](/images/posts/photos/IMG-0868.jpg)
+![](/images/posts/photos/IMG-0869.jpg)
 
 Milton Frieman said that inflation is a disease, and that inflation is always everywhere a monetary phenomena, the result of too much money.  Inflation can cause many problems, and can even bring down a society/nation. 
 <!-- what's the cause of the disease,
@@ -157,7 +157,7 @@ MEV = 'M2V'^M
 ![Velocity of money month over month change rate](/images/posts/2v_mom.png)
 
 ```python
- m2v_yoy = level_to_yoy(m2v, NAME) # convert to yoy and plot
+ m2v_yoy = level_to_yoy(m2v, NAME) 
  #             m2v_yoy
 # DATE
 # 1963-01-01   -6.990
@@ -194,6 +194,7 @@ wti_yoy = level_to_yoy(wti, NAME)
 wti_mom = level_to_mom(wti, NAME) # convert to yoy and plot
 
 ```
+
 ![WTI price](/images/posts/wti.png)
 ![WTI month over month change rate](/images/posts/wti_mom.png)
 ![WTI year over year change rate](/images/posts/wti_yoy.png)
