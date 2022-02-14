@@ -1,7 +1,7 @@
 ---
 layout: post
-tag: inflation, fred, data analysis
-category: "other risk"
+tag: inflation, FRED, data analysis, Milton Frieman
+category: "other risks"
 title: "Inflation Data Analysis"
 description: Using public data to assess inflation risk and magnitude
 author: Sarah Chen
