@@ -184,10 +184,6 @@ wti_mom = level_to_mom(wti, NAME) # convert to yoy and plot
 ![WTI month over month change rate](/images/posts/wti_mom.png)
 ![WTI year over year change rate](/images/posts/wti_yoy.png)
 
-<div class="code-head"><span>code</span>corr.py</div> 
-
-```python
-
 # 2. price
 
 ![CPI](/images/posts/cpi.png)
