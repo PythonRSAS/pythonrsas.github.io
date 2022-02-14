@@ -46,7 +46,7 @@ def get_series(MEV, NAME):
     print("The max happens on ", df.idxmax())
     print(df.loc[df.idxmax()])
     print("The min happens on ", df.idxmin())
-    df.loc[df.idxmin()]
+    print(df.loc[df.idxmin()])
     return df
 def plot_series(df, NAME):
     fig, axes = plt.subplots(1,2, figsize=(12,4))
@@ -64,5 +64,104 @@ def plot_series(df, NAME):
     plt.savefig('./images/%s'%NAME, dpi=300)
 ``` 
 # Money Suppy
-
+## M2 
 ![M2](images/posts/m2.png)
+
+<div class="code-head"><span>code</span>corr.py</div> 
+
+```python
+MEV = 'M2Sl'^M
+NAME = "m2"^M
+m2 = get_series(MEV, NAME)
+# The max happens on  m2   2021-12-01
+# dtype: datetime64[ns]
+#                   m2
+# DATE
+# 2021-12-01 21638.100
+# The min happens on  m2   1960-01-01
+# dtype: datetime64[ns]
+#                 m2
+# DATE
+# 1960-01-01 298.200
+```
+
+![M2 month over month change rate](images/posts/m2_mom.png)
+
+![M2 year over year change rate](images/posts/m2_yoy.png)
+
+## Money velocity
+
+![M2 year over year change rate](images/posts/m2_yoy.png)
+<div class="code-head"><span>code</span>corr.py</div> 
+
+```python
+MEV = 'M2V'^M
+ NAME = "m2v"^M
+ with open(file_mev, 'w') as f:^M
+     f.write("\n") ^M
+     f.write("**************************************") ^M
+     f.write("Velocity of the M2 money")^M
+ m2v = get_series(MEV, NAME)^M
+ plot_series(m2v,NAME)^M
+ m2v_yoy = level_to_yoy(m2v, NAME) # convert to yoy and plot^M
+ m2v_mom = level_to_mom(m2v, NAME) # convert to mom and plot
+
+# DATE
+# 1960-01-01 1.817
+# 1960-04-01 1.797
+# 1960-07-01 1.780
+# 1960-10-01 1.737
+# 1961-01-01 1.723
+#              m2v
+# DATE
+# 2020-10-01 1.134
+# 2021-01-01 1.121
+# 2021-04-01 1.119
+# 2021-07-01 1.115
+# 2021-10-01 1.120
+# The max happens on  m2v   1997-07-01
+# dtype: datetime64[ns]
+#              m2v
+# DATE
+# 1997-07-01 2.192
+# The min happens on  m2v   2020-04-01
+# dtype: datetime64[ns]
+#              m2v
+# DATE
+# 2020-04-01 1.100
+#             m2v_yoy
+# DATE
+# 1963-01-01   -6.990
+# 1963-04-01   -6.789
+# 1963-07-01   -5.618
+# 1963-10-01   -3.742
+# 1964-01-01   -2.205
+# The max happens on  m2v_yoy   1995-01-01
+# dtype: datetime64[ns]
+#             m2v_yoy
+# DATE
+# 1995-01-01   14.995
+# The min happens on  m2v_yoy   2021-07-01
+# dtype: datetime64[ns]
+#             m2v_mom
+# DATE
+# 1960-04-01   -1.101
+# 1960-07-01   -0.946
+# 1960-10-01   -2.416
+# 1961-01-01   -0.806
+# 1961-04-01    0.116
+#             m2v_mom
+# DATE
+# 2020-10-01   -1.133
+# 2021-01-01   -1.146
+# 2021-04-01   -0.178
+# 2021-07-01   -0.357
+# 2021-10-01    0.448
+# The max happens on  m2v_mom   2020-07-01
+# dtype: datetime64[ns]
+#             m2v_mom
+# DATE
+# 2020-07-01    4.273
+# The min happens on  m2v_mom   2020-04-01
+# dtype: datetime64[ns]
+```
