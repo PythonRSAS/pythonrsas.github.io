@@ -165,3 +165,6 @@ MEV = 'M2V'^M
 # The min happens on  m2v_mom   2020-04-01
 # dtype: datetime64[ns]
 ```
+![Velocity of money month over month change rate](images/posts/2v_mom.png)
+
+![Velocity of money year over year change rate](images/posts/m2v_yoy.png)
