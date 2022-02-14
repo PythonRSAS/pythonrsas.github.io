@@ -7,6 +7,7 @@ description: Using public data to assess inflation risk and magnitude
 author: Sarah Chen
 image: images/posts/photos/IMG-0868.JPG
 ---
+
 ![](/images/posts/photos/IMG-0868.jpg)
 
 Milton Frieman said that inflation is a disease, and that inflation is always everywhere a monetary phenomena, the result of too much money.  Inflation can cause many problems, and can even bring down a society/nation. 
@@ -17,7 +18,7 @@ What are the side effects of it?
 What if we don't cure it? -->
 This post presents the data that shows too much money has inflicted inflation, which is likely going to stay and get worse in time.  
 
-Code that I use to get data from FRED and make plots. 
+I use the following code to get data from FRED and plot the data. 
 <div class="code-head"><span>code</span>corr.py</div> 
 
 ```python
@@ -62,6 +63,7 @@ def plot_series(df, NAME):
 ``` 
 # Money Suppy
 ## M2 
+
 ![M2](/images/posts/m2.png)
 
 <div class="code-head"><span>code</span>corr.py</div> 
