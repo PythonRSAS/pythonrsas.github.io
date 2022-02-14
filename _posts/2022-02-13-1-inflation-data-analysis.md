@@ -8,10 +8,8 @@ author: Sarah Chen
 image: images/posts/photos/IMG-0868.JPG
 
 ---
-<figure>
-  <img src="{{ "/images/posts/photos/IMG-0868.JPG" | relative_url }}">
-  <figcaption></figcaption>
-</figure>
+![](/images/posts/photos/IMG-0868.JPG)
+
 Milton Frieman said that inflation is a disease, and that inflation is always everywhere a monetary phenomena, the result of too much money.  Inflation can cause many problems, and can even bring down a society/nation. 
 <!-- what's the cause of the disease,
 how do we cure the disease?
@@ -85,13 +83,13 @@ m2 = get_series(MEV, NAME)
 # 1960-01-01 298.200
 ```
 
-[M2 month over month change rate](images/posts/m2_mom.png)
+![M2 month over month change rate](images/posts/m2_mom.png)
 
-[M2 year over year change rate](images/posts/m2_yoy.png)
+![M2 year over year change rate](images/posts/m2_yoy.png)
 
 ## Money velocity
 
-[M2 year over year change rate](images/posts/m2_yoy.png)
+![M2 year over year change rate](images/posts/m2_yoy.png)
 <div class="code-head"><span>code</span>corr.py</div> 
 
 ```python
@@ -155,7 +153,7 @@ MEV = 'M2V'^M
 # The min happens on  m2v_mom   2020-04-01
 # dtype: datetime64[ns]
 ```
-[Velocity of money month over month change rate](images/posts/2v_mom.png)
+![Velocity of money month over month change rate](images/posts/2v_mom.png)
 
 ```python
  m2v_yoy = level_to_yoy(m2v, NAME) # convert to yoy and plot
@@ -195,6 +193,94 @@ wti_yoy = level_to_yoy(wti, NAME)
 wti_mom = level_to_mom(wti, NAME) # convert to yoy and plot
 
 ```
-[WTI price](images/posts/wti.png)
-[WTI month over month change rate](images/posts/wti_mom.png)
-[WTI year over year change rate](images/posts/wti_yoy.png)
+![WTI price](images/posts/wti.png)
+![WTI month over month change rate](images/posts/wti_mom.png)
+![WTI year over year change rate](images/posts/wti_yoy.png)
+
+<div class="code-head"><span>code</span>corr.py</div> 
+
+```python
+
+# 2. price
+MEV = 'CPIAUCSL'
+NAME = 'cpi'
+cpi = get_series(MEV, NAME)
+plot_series(cpi,NAME)
+cpi = daily_to_monthly(cpi, NAME)
+cpi_yoy = level_to_yoy(cpi, NAME)
+cpi_mom = level_to_mom(cpi, NAME)
+
+```
+
+
+<div class="code-head"><span>code</span>corr.py</div> 
+
+```python
+
+MEV = 'PPIACO'
+NAME = 'ppiaco'
+ppiaco = get_series(MEV, NAME)
+plot_series(ppiaco,NAME)
+# ppiaco = daily_to_monthly(ppiaco, NAME) # already monthly
+ppiaco_yoy = level_to_yoy(ppiaco, NAME)
+ppiaco_mom = level_to_mom(ppiaco, NAME)
+
+```
+## HPI
+<div class="code-head"><span>code</span>hpi.py</div> 
+
+```python
+# hpi  quarterly frequency WIP (how to deal with monthly and quarterly frequency)
+MEV = 'USSTHPI' 
+NAME = 'ussthpi'
+with open(file_mev, 'w') as f:
+    f.write("\n") 
+    f.write("**************************************") 
+    f.write("US HPI")
+ussthpi = get_series(MEV, NAME)
+plot_series(ussthpi,NAME)
+# ussthpi = daily_to_monthly(ussthpi, NAME) # already monthly
+ussthpi_yoy = level_to_yoy(ussthpi, NAME)
+ussthpi_mom = level_to_mom(ussthpi, NAME)
+```
+
+# 
+
+# 3. RATES
+<div class="code-head"><span>code</span>corr.py</div> 
+
+```python
+
+MEV = 'FEDFUNDS'
+NAME = 'fedfunds'
+with open(file_mev, 'w') as f:
+    f.write("\n") 
+    f.write("**************************************") 
+    f.write("Federal funds rate effective")
+fedfunds = get_series(MEV, NAME)
+plot_series(fedfunds,NAME)
+# fedfunds = daily_to_monthly(fedfunds, NAME) # already monthly
+fedfunds_yoy = level_to_yoy(fedfunds, NAME)
+
+MEV = 'DGS10'
+NAME = 'dgs10'
+with open(file_mev, 'w') as f:
+    f.write("\n") 
+    f.write("**************************************") 
+    f.write("Yield on 10-Year Treasury note")
+dgs10 = get_series(MEV, NAME)
+plot_series(dgs10,NAME)
+# dgs10 = daily_to_monthly(dgs10, NAME) # already monthly
+dgs10_yoy = level_to_yoy(dgs10, NAME)
+
+MEV = 'TB3MS'
+NAME = 'tb3ms'
+with open(file_mev, 'w') as f:
+    f.write("\n") 
+    f.write("**************************************") 
+    f.write("Yield on 3-month Treasury bill")
+tb3ms = get_series(MEV, NAME)
+plot_series(tb3ms,NAME)
+# tb3ms = daily_to_monthly(tb3ms, NAME) # already monthly
+tb3ms_yoy = level_to_yoy(tb3ms, NAME)
+```
