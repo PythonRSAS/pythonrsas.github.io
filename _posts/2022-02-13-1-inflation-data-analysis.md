@@ -6,9 +6,8 @@ title: "Inflation Data Analysis"
 description: Using public data to assess inflation risk and magnitude
 author: Sarah Chen
 image: images/posts/photos/IMG-0868.JPG
-
 ---
-![](/images/posts/photos/IMG-0868.JPG)
+![](/images/posts/photos/IMG-0868.jpg)
 
 Milton Frieman said that inflation is a disease, and that inflation is always everywhere a monetary phenomena, the result of too much money.  Inflation can cause many problems, and can even bring down a society/nation. 
 <!-- what's the cause of the disease,
@@ -63,7 +62,7 @@ def plot_series(df, NAME):
 ``` 
 # Money Suppy
 ## M2 
-![M2](images/posts/m2.png)
+![M2](/images/posts/m2.png)
 
 <div class="code-head"><span>code</span>corr.py</div> 
 
@@ -83,13 +82,13 @@ m2 = get_series(MEV, NAME)
 # 1960-01-01 298.200
 ```
 
-![M2 month over month change rate](images/posts/m2_mom.png)
+![M2 month over month change rate](/images/posts/m2_mom.png)
 
-![M2 year over year change rate](images/posts/m2_yoy.png)
+![M2 year over year change rate](/images/posts/m2_yoy.png)
 
 ## Money velocity
 
-![M2 year over year change rate](images/posts/m2_yoy.png)
+![M2 year over year change rate](/images/posts/m2_yoy.png)
 <div class="code-head"><span>code</span>corr.py</div> 
 
 ```python
@@ -153,7 +152,7 @@ MEV = 'M2V'^M
 # The min happens on  m2v_mom   2020-04-01
 # dtype: datetime64[ns]
 ```
-![Velocity of money month over month change rate](images/posts/2v_mom.png)
+![Velocity of money month over month change rate](/images/posts/2v_mom.png)
 
 ```python
  m2v_yoy = level_to_yoy(m2v, NAME) # convert to yoy and plot
@@ -173,7 +172,7 @@ MEV = 'M2V'^M
 # dtype: datetime64[ns]
  ```
 
-[Velocity of money year over year change rate](images/posts/m2v_yoy.png)
+[Velocity of money year over year change rate](/images/posts/m2v_yoy.png)
 
 # Oil
 
@@ -193,9 +192,9 @@ wti_yoy = level_to_yoy(wti, NAME)
 wti_mom = level_to_mom(wti, NAME) # convert to yoy and plot
 
 ```
-![WTI price](images/posts/wti.png)
-![WTI month over month change rate](images/posts/wti_mom.png)
-![WTI year over year change rate](images/posts/wti_yoy.png)
+![WTI price](/images/posts/wti.png)
+![WTI month over month change rate](/images/posts/wti_mom.png)
+![WTI year over year change rate](/images/posts/wti_yoy.png)
 
 <div class="code-head"><span>code</span>corr.py</div> 
 
