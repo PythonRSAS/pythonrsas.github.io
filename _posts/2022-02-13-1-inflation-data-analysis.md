@@ -176,3 +176,25 @@ MEV = 'M2V'^M
  ```
 
 [Velocity of money year over year change rate](images/posts/m2v_yoy.png)
+
+# Oil
+
+<div class="code-head"><span>code</span>oil.py</div> 
+
+```python
+MEV = 'DCOILWTICO'
+NAME = 'wti'
+with open(file_mev, 'w') as f:
+    f.write("\n") 
+    f.write("**************************************") 
+    f.write("WTI oil price")
+wti = get_series(MEV, NAME)
+plot_series(wti,NAME)
+wti = daily_to_monthly(wti, NAME)
+wti_yoy = level_to_yoy(wti, NAME) 
+wti_mom = level_to_mom(wti, NAME) # convert to yoy and plot
+
+```
+[WTI price](images/posts/wti.png)
+[WTI month over month change rate](images/posts/wti_mom.png)
+[WTI year over year change rate](images/posts/wti_yoy.png)
