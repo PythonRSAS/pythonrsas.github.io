@@ -103,8 +103,6 @@ MEV = 'M2V'^M
      f.write("Velocity of the M2 money")^M
  m2v = get_series(MEV, NAME)^M
  plot_series(m2v,NAME)^M
- m2v_yoy = level_to_yoy(m2v, NAME) # convert to yoy and plot^M
- m2v_mom = level_to_mom(m2v, NAME) # convert to mom and plot
 
 # DATE
 # 1960-01-01 1.817
@@ -129,20 +127,12 @@ MEV = 'M2V'^M
 #              m2v
 # DATE
 # 2020-04-01 1.100
-#             m2v_yoy
-# DATE
-# 1963-01-01   -6.990
-# 1963-04-01   -6.789
-# 1963-07-01   -5.618
-# 1963-10-01   -3.742
-# 1964-01-01   -2.205
-# The max happens on  m2v_yoy   1995-01-01
-# dtype: datetime64[ns]
-#             m2v_yoy
-# DATE
-# 1995-01-01   14.995
-# The min happens on  m2v_yoy   2021-07-01
-# dtype: datetime64[ns]
+
+```
+<div class="code-head"><span>code</span>m2v_mom.py</div> 
+
+```python
+ m2v_mom = level_to_mom(m2v, NAME) # convert to mom and plot
 #             m2v_mom
 # DATE
 # 1960-04-01   -1.101
@@ -166,5 +156,23 @@ MEV = 'M2V'^M
 # dtype: datetime64[ns]
 ```
 ![Velocity of money month over month change rate](images/posts/2v_mom.png)
+
+```python
+ m2v_yoy = level_to_yoy(m2v, NAME) # convert to yoy and plot
+ #             m2v_yoy
+# DATE
+# 1963-01-01   -6.990
+# 1963-04-01   -6.789
+# 1963-07-01   -5.618
+# 1963-10-01   -3.742
+# 1964-01-01   -2.205
+# The max happens on  m2v_yoy   1995-01-01
+# dtype: datetime64[ns]
+#             m2v_yoy
+# DATE
+# 1995-01-01   14.995
+# The min happens on  m2v_yoy   2021-07-01
+# dtype: datetime64[ns]
+ ```
 
 ![Velocity of money year over year change rate](images/posts/m2v_yoy.png)
