@@ -16,10 +16,23 @@ Milton Frieman said that inflation is a disease, and that inflation is always ev
 
 In this post, I look at some data from FRED related to inflation.  Here is a list I compile,, and will expand in the future. 
 
-| MEV        | frequency   |\n|:-----------|:------------|\n| M2Sl       | monthly     |\n| BASE       | bi-weekly   |\n| M2V        | quarterly   |\n| DCOILWTICO | daily       |\n| CPIAUCSL   | monthly     |\n| PPIACO     | monthly     |\n| USSTHPI    | quarterly   |\n| FEDFUNDS   | monthly     |\n| DGS10      | daily       |\n| TB3MS      | monthly     |\n| UNRATE     | monthly     |\n| GDP        | quarterly   |\n| GDPC1      | quarterly   |\n| STLFSI     | weekly      |\n| VIXCLS     | daily       |
-
-
-| M2Sl    | BASE      | M2V       | DCOILWTICO   | CPIAUCSL   | PPIACO   | USSTHPI   | FEDFUNDS   | DGS10   | TB3MS   | UNRATE   | GDP       | GDPC1     | STLFSI   | VIXCLS   |\n|:----------|:--------|:----------|:----------|:-------------|:-----------|:---------|:----------|:-----------|:--------|:--------|:---------|:----------|:----------|:---------|:---------|\n| frequency | monthly | bi-weekly | quarterly | daily        | monthly    | monthly  | quarterly | monthly    | daily   | monthly | monthly  | quarterly | quarterly | weekly   | daily    |
+| MEV        | frequency   | date                |
+|:-----------|:------------|:--------------------|
+| M2Sl       | monthly     | first of month      |
+| BASE       | bi-weekly   | 2019-12-18 00:00:00 |
+| M2V        | quarterly   | first of quarter    |
+| DCOILWTICO | daily       | nan                 |
+| CPIAUCSL   | monthly     | first of month      |
+| PPIACO     | monthly     | first of month      |
+| USSTHPI    | quarterly   | first of quarter    |
+| FEDFUNDS   | monthly     | first of month      |
+| DGS10      | daily       | nan                 |
+| TB3MS      | monthly     | first of month      |
+| UNRATE     | monthly     | first of month      |
+| GDP        | quarterly   | first of quarter    |
+| GDPC1      | quarterly   | first of quarter    |
+| STLFSI     | weekly      | nan                 |
+| VIXCLS     | daily       | nan                 |
 
 <!-- what's the cause of the disease,
 how do we cure the disease?
