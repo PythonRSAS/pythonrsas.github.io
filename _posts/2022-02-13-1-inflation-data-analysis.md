@@ -199,10 +199,9 @@ The most recent change over the prevous month YoY is negative, which means that 
 ## HPI
 ![HPI](/images/posts/ussthpi.png)
 ![HPI month over month](/images/posts/ussthpi_mom.png)
-![HPI year over year](/images/posts/ussthpi_yoy.png)
+![HPI year over year](/images/posts/US hpi_yoy_20220225.png)
 
 # 3. RATES
-
 ## Fed funds rate
 MEV = 'FEDFUNDS'
 NAME = 'fedfunds'
