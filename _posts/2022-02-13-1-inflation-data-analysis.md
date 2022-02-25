@@ -16,7 +16,7 @@ Milton Frieman said that inflation is a disease, and that inflation is always ev
 
 In this post, I look at some data from FRED related to inflation.  Here is a list I compile,, and will expand in the future. 
 
-| MEV        | frequency   | date                | NAME       | category         |\n|:-----------|:------------|:--------------------|:-----------|:-----------------|\n| M2Sl       | monthly     | first of month      | m2sl       | money            |\n| BASE       | bi-weekly   | 2019-12-18 00:00:00 | base       | money            |\n| M2V        | quarterly   | first of quarter    | m2v        | money            |\n| DCOILWTICO | daily       | nan                 | dcoilwtico | oil              |\n| CPIAUCSL   | monthly     | first of month      | cpiaucsl   | price            |\n| PPIACO     | monthly     | first of month      | ppiaco     | price            |\n| USSTHPI    | quarterly   | first of quarter    | ussthpi    | price            |\n| FEDFUNDS   | monthly     | first of month      | fedfunds   | rate             |\n| DGS10      | daily       | nan                 | dgs10      | rate             |\n| TB3MS      | monthly     | first of month      | tb3ms      | rate             |\n| UNRATE     | monthly     | first of month      | unrate     | labor            |\n| GDP        | quarterly   | first of quarter    | gdp        | output           |\n| GDPC1      | quarterly   | first of quarter    | gdpc1      | output           |\n| STLFSI     | weekly      | nan                 | stlfsi     | financial stress |\n| VIXCLS     | daily       | nan                 | vixcls     | financial stress |
+| MEV        | frequency   |\n|:-----------|:------------|\n| M2Sl       | monthly     |\n| BASE       | bi-weekly   |\n| M2V        | quarterly   |\n| DCOILWTICO | daily       |\n| CPIAUCSL   | monthly     |\n| PPIACO     | monthly     |\n| USSTHPI    | quarterly   |\n| FEDFUNDS   | monthly     |\n| DGS10      | daily       |\n| TB3MS      | monthly     |\n| UNRATE     | monthly     |\n| GDP        | quarterly   |\n| GDPC1      | quarterly   |\n| STLFSI     | weekly      |\n| VIXCLS     | daily       |
 
 <!-- what's the cause of the disease,
 how do we cure the disease?
@@ -192,20 +192,20 @@ wti_mom = level_to_mom(wti, NAME) # convert to yoy and plot
 ![WTI year over year change rate](/images/posts/wti_yoy.png)
 
 # 2. price
-The CPI data from Fred is monthly.  The latest data as of writing is January, 2022. 
+Both the CPI and PPI data from Fred is monthly.  The latest data as of writing is January, 2022. 
 ![CPI](/images/posts/cpi.png)
 ![CPI month over month](/images/posts/cpi_mom.png)
 The YoY shown in chart has monthly resolution. For example, January PPI compares with previous year January PPI, and so on. 
 ![CPI year over year](/images/posts/US cpi_yoy_20220224.png)
-
-The PPI data from Fred is also monthly.  The latest data as of writing is January, 2022. 
 
 The most recent change over the prevous month YoY is negative, which means that the rise of inflation has slowed down a little. 
 ![PPI year over year](/images/posts/US ppi_yoy_20220224.png)
 
 ## HPI
 ![HPI](/images/posts/ussthpi.png)
+HPI month over month growth rate is sp
 ![HPI month over month](/images/posts/ussthpi_mom.png)
+
 ![HPI year over year](/images/posts/US hpi_yoy_20220225.png)
 
 # 3. RATES
