@@ -227,20 +227,30 @@ DATE
 2022-01-01 281.933
 ```
 **CPI Month over Month** 
+
+The max month over month growth rate happened in 1973-08.  The rate was 1.8%, which is annualized at 21.6%!
+We know that 1973 was the year of the oil embargo from OPEC to the US.  It was an "energy Pearl Harbor" per Nixon adviser. 
+
+The min happend in 2008-11, which was -1.77%,  right after the collape of Lehman Brothers on September 15, 2008.  
+
 ![CPI Month over Month](/images/posts/US cpi_mom_20220225.png)
-Note that the max cpi_mom happens on 1980-Q1, where the CPI jumped by 14.6%.  One of the triggers could be the stoppage of Iranian oil productions in the early part of 1979, and the cutback of productions of OPEC, which kept the oil prices high.  Aggrevating a situation of shorter supply is hoarding, which increases demand. 
+
 **CPI Year over Year** 
 
 The YoY shown in chart has monthly resolution. For example, January 2022 CPI YoY growth rate compares January, 2022 with January of 2021.  
-"1-period +6%" means that the YoY growth rate has increased by 6% in January, 2022. 
+"1-period +6%" means that the YoY growth rate has increased by 6% in January, 2022. In other words, *inflation has sped up*. 
 
 | DATE       |  cpi_yoy |
-|:-----------|--------:|
+|-----------:|--------:|
 | 2021-09-01 |   5.389 |
 | 2021-10-01 |   6.236 |
 | 2021-11-01 |   6.828 |
 | 2021-12-01 |   7.096 |
 | 2022-01-01 |   7.525 |
+
+Note that the max cpi_mom happened on 1980-Q1, where the CPI jumped by 14.6%.  One of the triggers could be the stoppage of Iranian oil productions in the early part of 1979, and the cutback of productions of OPEC, which kept the oil prices high.  Aggrevating a situation of shorter supply is hoarding, which increases demand. 
+
+The smallest CPI month over month growth rate happened in 3Q2009, right in the *GFC*. 
 
 ![CPI Year over Year](/images/posts/US cpi_yoy_20220225.png)
 
