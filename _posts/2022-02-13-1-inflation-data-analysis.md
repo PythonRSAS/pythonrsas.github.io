@@ -231,7 +231,7 @@ DATE
 
 ![CPI Year over Year](/images/posts/US cpi_yoy_20220225.png)
 The YoY shown in chart has monthly resolution. For example, January PPI compares with previous year January PPI, and so on. 
-![CPI year over year](/images/posts/US cpi_yoy_20220224.png)
+![CPI year over year](/images/posts/US cpi_yoy_20220225.png)
 
 The most recent change over the prevous month YoY is negative, which means that the rise of inflation has slowed down a little. 
 ![PPI year over year](/images/posts/US ppi_yoy_20220224.png)
