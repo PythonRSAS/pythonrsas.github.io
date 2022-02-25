@@ -15,7 +15,9 @@ Too much inflation can cause many problems, and can even bring down a society/na
 Milton Frieman said that inflation is a disease, and that inflation is always everywhere a monetary phenomena, the result of too much money.  It is more complicated than just about money.  Other factors such as innovation, natural disaster, forces of nature, wars, and so on can all play important roles.  
 
 In this post, I look at some data from FRED related to inflation.  Here is a list I compile,, and will expand in the future. 
-
+<!-- from pandas import DataFrame -->
+<!-- from tabulate import tabulate -->
+<!-- print(tabulate(freq_tbl.iloc[:,:1], tablefmt="pipe", headers='keys')) -->
 | MEV        | frequency   | date                |
 |:-----------|:------------|:--------------------|
 | M2Sl       | monthly     | first of month      |
@@ -39,7 +41,7 @@ how do we cure the disease?
 what are the effects of the cure?
 What are the side effects of it?
 What if we don't cure it? -->
-This post presents the data that shows too much money has inflicted inflation, which is likely going to stay and get worse in time.  
+This post presents the data that shows too much money has inflicted inflation.  The recent trends indicates that it is likely going to stay and get worse in time.  
 
 I use the following code to get data from FRED and plot the data. 
 <div class="code-head"><span>code</span>corr.py</div> 
@@ -208,10 +210,13 @@ wti_mom = level_to_mom(wti, NAME) # convert to yoy and plot
 ![WTI year over year change rate](/images/posts/wti_yoy.png)
 
 # 2. price
-The CPI data is quarterly and PPI data is monthly.  
+The CPI data is monthly, HPI quarterly, and PPI data is monthly.  
+## CPI
 
-The latest CPI data as of writing is 1Q2022. 
-![CPI](/images/posts/cpi.png)
+Prices have been increasing throughout time.  Moderate inflation such as 2% annual rate has been considered as good for the economy as it encourages people to spend money (things are cheapter now than in the future) as opposed to saving and hoarding money, which happens if prices don't increase or even decrease. 
+
+The latest CPI data as of writing is January 2022.   Figure shows that over the preceeding month, the CPI increased by 1%.  This is very significant.  Because if we annualize it, it will be 12%, much higher than the 2% target. 
+![CPI](/images/posts/US cpi_20220225.png)
 ```python
                cpi
 DATE
@@ -221,7 +226,10 @@ DATE
 2021-12-01 280.126
 2022-01-01 281.933
 ```
-![CPI quarter over quarter](/images/posts/cpi_mom.png)
+
+![CPI Month over Month](/images/posts/US cpi_mom_20220225.png)
+
+![CPI Year over Year](/images/posts/US cpi_yoy_20220225.png)
 The YoY shown in chart has monthly resolution. For example, January PPI compares with previous year January PPI, and so on. 
 ![CPI year over year](/images/posts/US cpi_yoy_20220224.png)
 
@@ -234,6 +242,9 @@ HPI month over month growth rate is sp
 ![HPI month over month](/images/posts/ussthpi_mom.png)
 
 ![HPI year over year](/images/posts/US hpi_yoy_20220225.png)
+
+## PPI
+
 
 # 3. RATES
 ## Fed funds rate
