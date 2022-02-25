@@ -18,6 +18,9 @@ In this post, I look at some data from FRED related to inflation.  Here is a lis
 
 | MEV        | frequency   |\n|:-----------|:------------|\n| M2Sl       | monthly     |\n| BASE       | bi-weekly   |\n| M2V        | quarterly   |\n| DCOILWTICO | daily       |\n| CPIAUCSL   | monthly     |\n| PPIACO     | monthly     |\n| USSTHPI    | quarterly   |\n| FEDFUNDS   | monthly     |\n| DGS10      | daily       |\n| TB3MS      | monthly     |\n| UNRATE     | monthly     |\n| GDP        | quarterly   |\n| GDPC1      | quarterly   |\n| STLFSI     | weekly      |\n| VIXCLS     | daily       |
 
+
+| M2Sl    | BASE      | M2V       | DCOILWTICO   | CPIAUCSL   | PPIACO   | USSTHPI   | FEDFUNDS   | DGS10   | TB3MS   | UNRATE   | GDP       | GDPC1     | STLFSI   | VIXCLS   |\n|:----------|:--------|:----------|:----------|:-------------|:-----------|:---------|:----------|:-----------|:--------|:--------|:---------|:----------|:----------|:---------|:---------|\n| frequency | monthly | bi-weekly | quarterly | daily        | monthly    | monthly  | quarterly | monthly    | daily   | monthly | monthly  | quarterly | quarterly | weekly   | daily    |
+
 <!-- what's the cause of the disease,
 how do we cure the disease?
 what are the effects of the cure?
@@ -192,9 +195,20 @@ wti_mom = level_to_mom(wti, NAME) # convert to yoy and plot
 ![WTI year over year change rate](/images/posts/wti_yoy.png)
 
 # 2. price
-Both the CPI and PPI data from Fred is monthly.  The latest data as of writing is January, 2022. 
+The CPI data is quarterly and PPI data is monthly.  
+
+The latest CPI data as of writing is 1Q2022. 
 ![CPI](/images/posts/cpi.png)
-![CPI month over month](/images/posts/cpi_mom.png)
+```python
+               cpi
+DATE
+2021-09-01 274.214
+2021-10-01 276.590
+2021-11-01 278.524
+2021-12-01 280.126
+2022-01-01 281.933
+```
+![CPI quarter over quarter](/images/posts/cpi_mom.png)
 The YoY shown in chart has monthly resolution. For example, January PPI compares with previous year January PPI, and so on. 
 ![CPI year over year](/images/posts/US cpi_yoy_20220224.png)
 
