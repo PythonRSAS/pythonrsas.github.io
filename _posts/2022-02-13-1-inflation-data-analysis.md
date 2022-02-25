@@ -212,6 +212,7 @@ wti_mom = level_to_mom(wti, NAME) # convert to yoy and plot
 # 2. price
 The CPI data is monthly, HPI quarterly, and PPI data is monthly.  
 ## CPI
+The CPI is the most important price gauge in the US, although PPI, HPI and labor costs are important as well. 
 
 Prices have been increasing throughout time.  Moderate inflation such as 2% annual rate has been considered as good for the economy as it encourages people to spend money (things are cheapter now than in the future) as opposed to saving and hoarding money, which happens if prices don't increase or even decrease. 
 
