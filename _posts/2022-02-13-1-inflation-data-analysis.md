@@ -228,6 +228,7 @@ DATE
 ```
 **CPI Month over Month** 
 ![CPI Month over Month](/images/posts/US cpi_mom_20220225.png)
+Note that the max cpi_mom happens on 1980-Q1, where the CPI jumped by 14.6%.  One of the triggers could be the stoppage of Iranian oil productions in the early part of 1979, and the cutback of productions of OPEC, which kept the oil prices high.  Aggrevating a situation of shorter supply is hoarding, which increases demand. 
 **CPI Year over Year** 
 
 The YoY shown in chart has monthly resolution. For example, January 2022 CPI YoY growth rate compares January, 2022 with January of 2021.  
