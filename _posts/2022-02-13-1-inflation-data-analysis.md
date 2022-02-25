@@ -188,11 +188,13 @@ wti_mom = level_to_mom(wti, NAME) # convert to yoy and plot
 The CPI data from Fred is monthly.  The latest data as of writing is January, 2022. 
 ![CPI](/images/posts/cpi.png)
 ![CPI month over month](/images/posts/cpi_mom.png)
-![CPI year over year](/images/posts/cpi_yoy_20220224.png)
+The YoY shown in chart has monthly resolution. For example, January PPI compares with previous year January PPI, and so on. 
+![CPI year over year](/images/posts/US cpi_yoy_20220224.png)
 
 The PPI data from Fred is also monthly.  The latest data as of writing is January, 2022. 
+
 The most recent change over the prevous month YoY is negative, which means that the rise of inflation has slowed down a little. 
-![PPI year over year](/images/posts/ppi_yoy_20220224.png)
+![PPI year over year](/images/posts/US ppi_yoy_20220224.png)
 
 ## HPI
 ![HPI](/images/posts/ussthpi.png)
