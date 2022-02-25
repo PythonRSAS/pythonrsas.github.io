@@ -233,6 +233,7 @@ Note that the max cpi_mom happens on 1980-Q1, where the CPI jumped by 14.6%.  On
 
 The YoY shown in chart has monthly resolution. For example, January 2022 CPI YoY growth rate compares January, 2022 with January of 2021.  
 "1-period +6%" means that the YoY growth rate has increased by 6% in January, 2022. 
+
 | DATE       |  cpi_yoy |
 |:-----------|--------:|
 | 2021-09-01 |   5.389 |
@@ -240,6 +241,7 @@ The YoY shown in chart has monthly resolution. For example, January 2022 CPI YoY
 | 2021-11-01 |   6.828 |
 | 2021-12-01 |   7.096 |
 | 2022-01-01 |   7.525 |
+
 ![CPI Year over Year](/images/posts/US cpi_yoy_20220225.png)
 
 ## PPI
