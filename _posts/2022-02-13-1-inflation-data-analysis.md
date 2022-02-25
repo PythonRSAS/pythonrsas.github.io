@@ -226,14 +226,22 @@ DATE
 2021-12-01 280.126
 2022-01-01 281.933
 ```
-
+**CPI Month over Month** 
 ![CPI Month over Month](/images/posts/US cpi_mom_20220225.png)
+**CPI Year over Year** 
 
+The YoY shown in chart has monthly resolution. For example, January 2022 CPI YoY growth rate compares January, 2022 with January of 2021.  
+"1-period +6%" means that the YoY growth rate has increased by 6% in January, 2022. 
+| DATE       |  cpi_yoy |
+|:-----------|--------:|
+| 2021-09-01 |   5.389 |
+| 2021-10-01 |   6.236 |
+| 2021-11-01 |   6.828 |
+| 2021-12-01 |   7.096 |
+| 2022-01-01 |   7.525 |
 ![CPI Year over Year](/images/posts/US cpi_yoy_20220225.png)
-The YoY shown in chart has monthly resolution. For example, January PPI compares with previous year January PPI, and so on. 
-![CPI year over year](/images/posts/US cpi_yoy_20220225.png)
 
-The most recent change over the prevous month YoY is negative, which means that the rise of inflation has slowed down a little. 
+## PPI
 ![PPI year over year](/images/posts/US ppi_yoy_20220224.png)
 
 ## HPI
