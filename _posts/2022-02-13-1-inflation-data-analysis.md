@@ -257,14 +257,19 @@ The smallest CPI month over month growth rate happened in 3Q2009, right in the *
 
 ## PPI
 The producer price index is a measure on how much it costs to produce goods.  It is supposed to be a leading factor for CPI. 
-| DATE       |   ppi |
-|:-----------|-----:|
-| 2021-08-01 | 233.4|
-| 2021-09-01 | 235.6|
-| 2021-10-01 | 240.4|
-| 2021-11-01 | 243.2|
-| 2021-12-01 | 241.1|
-| 2022-01-01 | 244.2|
+![PPI(/images/posts/ppi.png)
+
+However, from the plot we can see that the recent rise in PPI is not monotonic, with December number smaller than November. 
+
+| DATE       |  ppi | ppi_mom |
+|:-----------|：------|：-----|
+| 2021-09-01 | 235.6| 0.970
+| 2021-10-01 | 240.4| 2.022
+| 2021-11-01 | 243.2| 1.170
+| 2021-12-01 | 241.1|-0.847
+| 2022-01-01 | 244.2| 1.268
+
+
 ![PPI year over year](/images/posts/US ppi_yoy_20220224.png)
 
 ```python
@@ -280,6 +285,16 @@ DATE
 2008-10-01   -5.333
 ```
 ## HPI
+
+
+            PPI_mom
+DATE
+2021-09-01    0.970
+2021-10-01    2.022
+2021-11-01    1.170
+2021-12-01   -0.847
+2022-01-01    1.268
+
 ![HPI](/images/posts/ussthpi.png)
 HPI month over month growth rate is sp
 ![HPI month over month](/images/posts/ussthpi_mom.png)
