@@ -229,6 +229,7 @@ However, from the plot we can see that the recent rise in PPI is not monotonic, 
 | 2021-11-01 | 243.26 |      1.17 |     22.67 |
 | 2021-12-01 | 241.2  |     -0.85 |     20.3  |
 | 2022-01-01 | 244.26 |      1.27 |     19.27 |
+
 **PPI Month over Month** 
 ![CPI Month over Month](/images/posts/US PPI_mom_20220225.png)
 
