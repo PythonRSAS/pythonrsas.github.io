@@ -44,49 +44,6 @@ What are the side effects of it?
 What if we don't cure it? -->
 This post presents the data that shows too much money has inflicted inflation.  The recent trends indicates that it is likely going to stay and get worse in time.  
 
-I use the following code to get data from FRED and plot the data. 
-<div class="code-head"><span>code</span>corr.py</div> 
-
-```python
-import pandas_datareader.data as web    # pandas 0.19.x and later
-from datetime import datetime
-grey = "#57606c"
-file_mev = 'mev_inflation.txt'
-def get_series(MEV, NAME):
-    df =web.DataReader(MEV, "fred", start, end)
-    df.columns=[NAME]
-    df[NAME] = np.where(df[NAME]==0., np.nan, df[NAME])
-    df.dropna(axis=0, inplace=True)
-    df.to_excel('./data/%s.xlsx'%MEV) # need index which are dates
-    with open(file_mev, 'w') as f:
-        f.write("%s %s"%(MEV, NAME))
-        f.write("\n") 
-        f.write("The max happens on %s"%df.idxmax())
-        f.write("\n")
-        f.write("The min happens on %s"%df.idxmin())
-        f.write("\n")
-    print(df.head())
-    print(df.tail())
-    print("The max happens on ", df.idxmax())
-    print(df.loc[df.idxmax()])
-    print("The min happens on ", df.idxmin())
-    print(df.loc[df.idxmin()])
-    return df
-def plot_series(df, NAME):
-    fig, axes = plt.subplots(1,2, figsize=(12,4))
-    sns.histplot(data= df, x=NAME, ax=axes[0], color=blue)
-    sns.lineplot(data= df, x=df.index, y=NAME, ax=axes[1], color=blue)
-    axes[1].hlines(y=0, xmin=df.index[0], xmax=df.index[-1], color='k', linestyle='dashed', linewidth=0.5)
-    MEAN = df[NAME].mean()
-    axes[1].hlines(y=MEAN, xmin=df.index[0], xmax=df.index[-1], color='red', alpha=.5,linestyle='dashed', linewidth=0.5)
-    for i in range(2):
-        axes[i].tick_params(color=grey, labelcolor=grey)
-        for spine in axes[i].spines.values():
-            spine.set_edgecolor(grey)
-    # plt.tight_layout()
-    plt.show()
-    plt.savefig('./images/%s'%NAME, dpi=300)
-``` 
 # Money Suppy
 ## M2 
 
@@ -189,6 +146,8 @@ DATE
 
 # Oil
 
+While alternative energy has been increasing, oil is still extremely important to the economy, not only as an energy source.
+
 <div class="code-head"><span>code</span>oil.py</div> 
 
 ```python
@@ -205,16 +164,16 @@ wti_yoy = level_to_yoy(wti, NAME)
 wti_mom = level_to_mom(wti, NAME) # convert to yoy and plot
 
 ```
-
 ![WTI price](/images/posts/wti.png)
 ![WTI month over month change rate](/images/posts/wti_mom.png)
 ![WTI year over year change rate](/images/posts/wti_yoy.png)
 
 # 2. price
-The CPI data is monthly, HPI quarterly, and PPI data is monthly.  
-## CPI
 The CPI is the most important price gauge in the US, although PPI, HPI and labor costs are important as well. 
 
+The CPI data is monthly, HPI quarterly, and PPI data is monthly.  
+
+## CPI
 Prices have been increasing throughout time.  Moderate inflation such as 2% annual rate has been considered as good for the economy as it encourages people to spend money (things are cheapter now than in the future) as opposed to saving and hoarding money, which happens if prices don't increase or even decrease. 
 
 The latest CPI data as of writing is January 2022.   Figure shows that over the preceeding month, the CPI increased by 1%.  This is very significant.  Because if we annualize it, it will be 12%, much higher than the 2% target. 
@@ -259,20 +218,49 @@ The smallest CPI month over month growth rate happened in 3Q2009, right in the *
 ## PPI
 The producer price index is a measure on how much it costs to produce goods.  It is supposed to be a leading factor for CPI. 
 
-![PPI(/images/posts/ppi.png)
+![PPI](/images/posts/ppi.png)
 
 However, from the plot we can see that the recent rise in PPI is not monotonic, with December number smaller than November. 
 
-| DATE       |  ppi | ppi_mom |
-|:-----------|：------|：-----|
-| 2021-09-01 | 235.6| 0.970
-| 2021-10-01 | 240.4| 2.022
-| 2021-11-01 | 243.2| 1.170
-| 2021-12-01 | 241.1|-0.847
-| 2022-01-01 | 244.2| 1.268
+| DATE       |    ppi |   PPI_mom |   ppi_yoy |
+|:-----------|-------:|----------:|----------:|
+| 2021-09-01 | 235.68 |      0.97 |     20.55 |
+| 2021-10-01 | 240.44 |      2.02 |     22.36 |
+| 2021-11-01 | 243.26 |      1.17 |     22.67 |
+| 2021-12-01 | 241.2  |     -0.85 |     20.3  |
+| 2022-01-01 | 244.26 |      1.27 |     19.27 |
+**PPI Month over Month** 
+<!-- image -->
+![CPI Month over Month](/images/posts/US PPI_mom_20220225.png)
+
+<!-- table -->
+| DATE       |   PPI_mom |
+|:-----------|----------:|
+| 2021-09-01 |      0.97 |
+| 2021-10-01 |      2.02 |
+| 2021-11-01 |      1.17 |
+| 2021-12-01 |     -0.85 |
+| 2022-01-01 |      1.27 |
 
 
-![PPI year over year](/images/posts/US ppi_yoy_20220224.png)
+<!-- text -->
+**PPI Year over Year** 
+<!-- image -->
+![CPI Year over Year](/images/posts/US cpi_yoy_20220225.png)
+
+
+![PPI year over year](/images/posts/US ppi_yoy_20220225.png)
+<!-- table -->
+
+| DATE                |   ppi_yoy |
+|:--------------------|----------:|
+| 2021-09-01 00:00:00 |   20.5514 |
+| 2021-10-01 00:00:00 |   22.3634 |
+| 2021-11-01 00:00:00 |   22.6717 |
+| 2021-12-01 00:00:00 |   20.2978 |
+| 2022-01-01 00:00:00 |   19.2656 |
+
+<!-- text -->
 
 ```python
 The max happens on  PPI_mom   1973-08-01
@@ -288,14 +276,7 @@ DATE
 ```
 ## HPI
 
-
-            PPI_mom
-DATE
-2021-09-01    0.970
-2021-10-01    2.022
-2021-11-01    1.170
-2021-12-01   -0.847
-2022-01-01    1.268
+Because CPI does not include house prices, we need to look at HPI to get a bigger picture, especially because housing price is a big part of where people spend their money. 
 
 ![HPI](/images/posts/ussthpi.png)
 HPI month over month growth rate is sp
@@ -349,3 +330,49 @@ NAME = 'tb3ms'
 
 
 # Real Estate
+
+# Code
+
+I use the following code to get data from FRED and plot the data. 
+<div class="code-head"><span>code</span>get_fred.py</div> 
+
+```python
+import pandas_datareader.data as web    # pandas 0.19.x and later
+from datetime import datetime
+grey = "#57606c"
+file_mev = 'mev_inflation.txt'
+def get_series(MEV, NAME):
+    df =web.DataReader(MEV, "fred", start, end)
+    df.columns=[NAME]
+    df[NAME] = np.where(df[NAME]==0., np.nan, df[NAME])
+    df.dropna(axis=0, inplace=True)
+    df.to_excel('./data/%s.xlsx'%MEV) # need index which are dates
+    with open(file_mev, 'w') as f:
+        f.write("%s %s"%(MEV, NAME))
+        f.write("\n") 
+        f.write("The max happens on %s"%df.idxmax())
+        f.write("\n")
+        f.write("The min happens on %s"%df.idxmin())
+        f.write("\n")
+    print(df.head())
+    print(df.tail())
+    print("The max happens on ", df.idxmax())
+    print(df.loc[df.idxmax()])
+    print("The min happens on ", df.idxmin())
+    print(df.loc[df.idxmin()])
+    return df
+def plot_series(df, NAME):
+    fig, axes = plt.subplots(1,2, figsize=(12,4))
+    sns.histplot(data= df, x=NAME, ax=axes[0], color=blue)
+    sns.lineplot(data= df, x=df.index, y=NAME, ax=axes[1], color=blue)
+    axes[1].hlines(y=0, xmin=df.index[0], xmax=df.index[-1], color='k', linestyle='dashed', linewidth=0.5)
+    MEAN = df[NAME].mean()
+    axes[1].hlines(y=MEAN, xmin=df.index[0], xmax=df.index[-1], color='red', alpha=.5,linestyle='dashed', linewidth=0.5)
+    for i in range(2):
+        axes[i].tick_params(color=grey, labelcolor=grey)
+        for spine in axes[i].spines.values():
+            spine.set_edgecolor(grey)
+    # plt.tight_layout()
+    plt.show()
+    plt.savefig('./images/%s'%NAME, dpi=300)
+``` 
