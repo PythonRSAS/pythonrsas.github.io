@@ -218,13 +218,23 @@ The smallest CPI month over month growth rate happened in 3Q2009, right in the *
 ## PPI
 The producer price index is a measure on how much it costs to produce goods.  It is supposed to be a leading factor for CPI. 
 
-![PPI](/images/posts/ppi.png)
-
 However, from the plot we can see that the recent rise in PPI is not monotonic, with December number smaller than November. 
 
 But the overall *recent year PPI YOY is much higher than a year ago*.  
 
-|            |   ppi |   PPI_mom |   ppi_yoy |
+![PPI](/images/posts/ppi.png)
+
+
+**PPI Month over Month** 
+
+![PPI Month over Month](/images/posts/US PPI_mom_20220225.png)
+
+**PPI Year over Year** 
+
+![PPI year over year](/images/posts/US ppi_yoy_20220225.png)
+
+
+|     Date   |   ppi |   PPI_mom |   ppi_yoy |
 |:-----------|------:|----------:|----------:|
 | 2021-01-01 | 204.8 |       2.1 |       2.8 |
 | 2021-02-01 | 210.6 |       2.8 |       7.1 |
@@ -240,22 +250,13 @@ But the overall *recent year PPI YOY is much higher than a year ago*.
 | 2021-12-01 | 241.2 |      -0.8 |      20.3 |
 | 2022-01-01 | 244.3 |       1.3 |      19.3 |
 
-
-**PPI Month over Month** 
-
-![PPI Month over Month](/images/posts/US ppi_mom_20220225.png)
-
-|            |   PPI_mom | Max_min   |
-|:-----------|----------:|:----------|
+|     Date   |   PPI_mom | Max_min   |
+|:-----------|----------:|----------:|
 | 1973-08-01 |       5.8 | Max       |
 | 2008-10-01 |      -5.3 | min       |
 
-**PPI Year over Year** 
-
-![PPI year over year](/images/posts/US ppi_yoy_20220225.png)
-
-|            |   ppi_yoy | Max_min   |
-|:-----------|----------:|:----------|
+|     Date   |   ppi_yoy | Max_min   |
+|:-----------|----------:|----------:|
 | 1974-11-01 |      23.4 | Max       |
 | 2009-07-01 |     -16.1 | min       |
 
@@ -279,11 +280,11 @@ Because CPI does not include house prices, we need to look at HPI to get a bigge
 
 ![HPI](/images/posts/ussthpi.png)
 HPI month over month growth rate is sp
+
 ![HPI month over month](/images/posts/ussthpi_mom.png)
 
 ![HPI year over year](/images/posts/US hpi_yoy_20220225.png)
 
-## PPI
 
 
 # 3. RATES
