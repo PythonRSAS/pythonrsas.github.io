@@ -230,20 +230,8 @@ However, from the plot we can see that the recent rise in PPI is not monotonic, 
 | 2021-12-01 | 241.2  |     -0.85 |     20.3  |
 | 2022-01-01 | 244.26 |      1.27 |     19.27 |
 **PPI Month over Month** 
-<!-- image -->
 ![CPI Month over Month](/images/posts/US PPI_mom_20220225.png)
 
-<!-- table -->
-| DATE       |   PPI_mom |
-|:-----------|----------:|
-| 2021-09-01 |      0.97 |
-| 2021-10-01 |      2.02 |
-| 2021-11-01 |      1.17 |
-| 2021-12-01 |     -0.85 |
-| 2022-01-01 |      1.27 |
-
-
-<!-- text -->
 **PPI Year over Year** 
 <!-- image -->
 ![CPI Year over Year](/images/posts/US cpi_yoy_20220225.png)
@@ -251,16 +239,6 @@ However, from the plot we can see that the recent rise in PPI is not monotonic, 
 
 ![PPI year over year](/images/posts/US ppi_yoy_20220225.png)
 <!-- table -->
-
-| DATE                |   ppi_yoy |
-|:--------------------|----------:|
-| 2021-09-01 00:00:00 |   20.5514 |
-| 2021-10-01 00:00:00 |   22.3634 |
-| 2021-11-01 00:00:00 |   22.6717 |
-| 2021-12-01 00:00:00 |   20.2978 |
-| 2022-01-01 00:00:00 |   19.2656 |
-
-<!-- text -->
 
 ```python
 The max happens on  PPI_mom   1973-08-01
