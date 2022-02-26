@@ -15,8 +15,8 @@ Too much inflation can cause many problems, and can even bring down a society/na
 Milton Frieman said that inflation is a disease, and that inflation is always everywhere a monetary phenomena, the result of too much money.  It is more complicated than just about money.  Other factors such as innovation, natural disaster, forces of nature, wars, and so on can all play important roles.  
 
 In this post, I look at some data from FRED related to inflation.  Here is a list I compile,, and will expand in the future. 
-<!-- from pandas import DataFrame -->
-<!-- from tabulate import tabulate -->
+from pandas import DataFrame
+from tabulate import tabulate
 <!-- print(tabulate(freq_tbl.iloc[:,:1], tablefmt="pipe", headers='keys')) -->
 
 | MEV        | frequency   | date                |
@@ -222,23 +222,43 @@ The producer price index is a measure on how much it costs to produce goods.  It
 
 However, from the plot we can see that the recent rise in PPI is not monotonic, with December number smaller than November. 
 
-| DATE       |    ppi |   PPI_mom |   ppi_yoy |
-|:-----------|-------:|----------:|----------:|
-| 2021-09-01 | 235.68 |      0.97 |     20.55 |
-| 2021-10-01 | 240.44 |      2.02 |     22.36 |
-| 2021-11-01 | 243.26 |      1.17 |     22.67 |
-| 2021-12-01 | 241.2  |     -0.85 |     20.3  |
-| 2022-01-01 | 244.26 |      1.27 |     19.27 |
+But the overall *recent year PPI YOY is much higher than a year ago*.  
+
+|            |   ppi |   PPI_mom |   ppi_yoy |
+|:-----------|------:|----------:|----------:|
+| 2021-01-01 | 204.8 |       2.1 |       2.8 |
+| 2021-02-01 | 210.6 |       2.8 |       7.1 |
+| 2021-03-01 | 215   |       2.1 |      11.3 |
+| 2021-04-01 | 217.9 |       1.3 |      17.5 |
+| 2021-05-01 | 224.9 |       3.2 |      19.2 |
+| 2021-06-01 | 228.9 |       1.8 |      19.7 |
+| 2021-07-01 | 231.8 |       1.3 |      20.1 |
+| 2021-08-01 | 233.4 |       0.7 |      20.1 |
+| 2021-09-01 | 235.7 |       1   |      20.6 |
+| 2021-10-01 | 240.4 |       2   |      22.4 |
+| 2021-11-01 | 243.3 |       1.2 |      22.7 |
+| 2021-12-01 | 241.2 |      -0.8 |      20.3 |
+| 2022-01-01 | 244.3 |       1.3 |      19.3 |
+
 
 **PPI Month over Month** 
-![CPI Month over Month](/images/posts/US PPI_mom_20220225.png)
+
+![PPI Month over Month](/images/posts/US ppi_mom_20220225.png)
+
+|            |   PPI_mom | Max_min   |
+|:-----------|----------:|:----------|
+| 1973-08-01 |       5.8 | Max       |
+| 2008-10-01 |      -5.3 | min       |
 
 **PPI Year over Year** 
-<!-- image -->
-![CPI Year over Year](/images/posts/US cpi_yoy_20220225.png)
-
 
 ![PPI year over year](/images/posts/US ppi_yoy_20220225.png)
+
+|            |   ppi_yoy | Max_min   |
+|:-----------|----------:|:----------|
+| 1974-11-01 |      23.4 | Max       |
+| 2009-07-01 |     -16.1 | min       |
+
 <!-- table -->
 
 ```python
