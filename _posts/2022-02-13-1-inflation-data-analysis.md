@@ -250,16 +250,6 @@ But the overall *recent year PPI YOY is much higher than a year ago*.
 | 2021-12-01 | 241.2 |      -0.8 |      20.3 |
 | 2022-01-01 | 244.3 |       1.3 |      19.3 |
 
-|     Date   |   PPI_mom | Max_min   |
-|:-----------|----------:|----------:|
-| 1973-08-01 |       5.8 | Max       |
-| 2008-10-01 |      -5.3 | min       |
-
-|     Date   |   ppi_yoy | Max_min   |
-|:-----------|----------:|----------:|
-| 1974-11-01 |      23.4 | Max       |
-| 2009-07-01 |     -16.1 | min       |
-
 <!-- table -->
 
 ```python
@@ -284,13 +274,25 @@ DATE
 
 Because CPI does not include house prices, we need to look at HPI to get a bigger picture, especially because housing price is a big part of where people spend their money. 
 
+The latest data is as of 4Q2021.  Clearly *in 2021 the prices rose dramatically*. 
+
 ![HPI](/images/posts/ussthpi.png)
 
-![HPI quarter over quarter](/images/posts/US hpi_qoq_20220225)
+![HPI quarter over quarter](/images/posts/US hpi_qoq_20220225.png)
 
 ![HPI year over year](/images/posts/US hpi_yoy_20220225.png)
 
-
+|            |   hpi |   hpi_qoq |   hpi_yoy |
+|------------|-------|-----------|-----------|
+| 2019-10-01 | 445.4 |       0.9 |       5   |
+| 2020-01-01 | 450.6 |       1.1 |       5.1 |
+| 2020-04-01 | 455   |       1   |       4.4 |
+| 2020-07-01 | 463   |       1.8 |       4.9 |
+| 2020-10-01 | 473.2 |       2.2 |       6.2 |
+| 2021-01-01 | 484.4 |       2.4 |       7.5 |
+| 2021-04-01 | 511.1 |       5.5 |      12.3 |
+| 2021-07-01 | 539.6 |       5.6 |      16.5 |
+| 2021-10-01 | 557.7 |       3.4 |      17.9 |
 
 # 3. RATES
 ## Fed funds rate
