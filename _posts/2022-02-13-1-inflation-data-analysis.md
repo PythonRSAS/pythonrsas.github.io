@@ -257,6 +257,7 @@ The smallest CPI month over month growth rate happened in 3Q2009, right in the *
 
 ## PPI
 The producer price index is a measure on how much it costs to produce goods.  It is supposed to be a leading factor for CPI. 
+
 ![PPI(/images/posts/ppi.png)
 
 However, from the plot we can see that the recent rise in PPI is not monotonic, with December number smaller than November. 
