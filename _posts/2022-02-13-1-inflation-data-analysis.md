@@ -18,6 +18,7 @@ In this post, I look at some data from FRED related to inflation.  Here is a lis
 <!-- from pandas import DataFrame -->
 <!-- from tabulate import tabulate -->
 <!-- print(tabulate(freq_tbl.iloc[:,:1], tablefmt="pipe", headers='keys')) -->
+
 | MEV        | frequency   | date                |
 |:-----------|:------------|:--------------------|
 | M2Sl       | monthly     | first of month      |
