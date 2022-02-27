@@ -14,9 +14,8 @@ Too much inflation can cause many problems, and can even bring down a society/na
 
 Milton Frieman said that inflation is a disease, and that inflation is always everywhere a monetary phenomena, the result of too much money.  It is more complicated than just about money.  Other factors such as innovation, natural disaster, forces of nature, wars, and so on can all play important roles.  
 
-In this post, I look at some data from FRED related to inflation.  Here is a list I compile,, and will expand in the future. 
-from pandas import DataFrame
-from tabulate import tabulate
+In this post, I look at some data from FRED related to inflation.  Here is a list I compile,, and will expand in the future.  Note that the sources of original data came from government agencies, and organizations such as the IMF.  
+
 <!-- print(tabulate(freq_tbl.iloc[:,:1], tablefmt="pipe", headers='keys')) -->
 
 | MEV        | frequency   | date                |
@@ -165,35 +164,48 @@ wti_yoy = level_to_yoy(wti, NAME)
 wti_mom = level_to_mom(wti, NAME) # convert to yoy and plot
 
 ```
-![WTI price](/images/posts/wti.png)
-![WTI month over month change rate](/images/posts/wti_mom.png)
-![WTI year over year change rate](/images/posts/wti_yoy.png)
+The latest data is as Febuary, 2022.  The monthly average price is $91.2. 
+
+![wti price](/images/posts/US wti_20220227.png)
+
+**wti Month over Month** 
+
+![wti month over month change rate](/images/posts/wti_mom.png)
+
+**wti Year over Year** 
+
+![wti year over year change rate](/images/posts/wti_yoy.png)
 
 # Global commodities
-MEV = 'PALLFNFINDEXQ'
+
+MEV = 'PALLFNFINDEXQ', or 'PALLFNFINDEXM'
 NAME = 'commodities'
-Latest data from Fred is as of 3Q2021. 
+Latest data from Fred is as of 3Q2021.  I used the quarterly data, but for the month over month plot, I used monthly data. 
 
 ![global commodities](/images/posts/global commodities_20220227.png)
+
+**Global Commodities Quarter over Quarter** 
+
 ![global commodities_qoq](/images/posts/global commodities_qoq_20220227.png)
+
+**Global Commodities Year over Year** 
+
 ![global commodities_yoy](/images/posts/global commodities_yoy_20220227.png)
 
-The highest commodity index is in 2Q2011.  
+**Global Commodities Month over Month** 
 
-The highest spikes are in 1Q2021.  
+![global commodities_mom](/images/posts/global commodities_mom_20220227.png)
 
-| DATE       |   commodities | Max_min   | DATE       |   commodities_qoq | Max_min   | DATE        |   commodities_yoy | Max_min   |
-|:-----------|--------------:|:----------|:-----------|------------------:|:----------|:------------|------------------:|:----------|
-| *2011-04-01* |         189.5 | Max       | 2021-01-01 |              19.3 | Max       | 2021-04-01  |              68   | Max       |
-| 2003-04-01 |          63.1 | min       | 2008-10-01 |             -35.8 | min       | 2009-04-01  |             -40.4 | min       |
+The commodity index is highest in 2Q2011.  
 
+The highest spikes were in 1Q2021, in the midst of the pandemic.   And the other extreme took place in 3Q2008 during the GFC. 
 
+| DATE       |   commodities | Max_min   | DATE       |   commodities_qoq | Max_min   | DATE        |   commodities_yoy | Max_min   | DATE          commodities_mom | Max_min   |
+|:-----------|--------------:|:----------|:-----------|------------------:|:----------|:------------|------------------:|:----------|:-----------------------------:|:----------|
+| 2011-04-01 |         189.5 | Max       | 2021-01-01 |              19.3 | Max       | 2021-04-01  |              68   | Max       | 2021-10-01               11.4 | Max       |
+| 2003-04-01 |          63.1 | min       | 2008-10-01 |             -35.8 | min       | 2009-04-01  |             -40.4 | min       | 2008-10-01              -18.2 | min       |
 
-
-
-
-
-
+Quaterly data:
 
 | DATE       |   commodities |   commodities_qoq |   commodities_yoy |
 |------------|---------------|-------------------|-------------------|
@@ -210,6 +222,24 @@ The highest spikes are in 1Q2021.
 | 2021-04-01 |         154.1 |              10.3 |              68   |
 | 2021-07-01 |         167.5 |               8.7 |              56.9 |
 | 2021-10-01 |         187.7 |              12.1 |              60.3 |
+
+Monthly data
+
+| DATE                |   commodities |   commodities_mom |
+|---------------------|---------------|-------------------|
+| 2021-01-01 00:00:00 |         137.4 |               9.4 |
+| 2021-02-01 00:00:00 |         140.6 |               2.3 |
+| 2021-03-01 00:00:00 |         141.2 |               0.5 |
+| 2021-04-01 00:00:00 |         145   |               2.7 |
+| 2021-05-01 00:00:00 |         155.7 |               7.3 |
+| 2021-06-01 00:00:00 |         161.7 |               3.9 |
+| 2021-07-01 00:00:00 |         166.1 |               2.7 |
+| 2021-08-01 00:00:00 |         163.8 |              -1.4 |
+| 2021-09-01 00:00:00 |         172.7 |               5.4 |
+| 2021-10-01 00:00:00 |         192.4 |              11.4 |
+| 2021-11-01 00:00:00 |         183.8 |              -4.4 |
+| 2021-12-01 00:00:00 |         186.9 |               1.7 |
+| 2022-01-01 00:00:00 |         190.9 |               2.1 |
 
 # 2. price
 The CPI is the most important price gauge in the US, although PPI, HPI and labor costs are important as well. 
@@ -312,6 +342,11 @@ DATE
 |------------|-----------|-----------|------------|-----------|-----------|
 | 2021-07-01 |      5.58 | Max       | 2021-10-01 |     17.86 | Max       |
 | 2008-07-01 |     -3.15 | min       | 2008-10-01 |     -7.14 | min       |
+
+# wti and commodities and cpi
+
+WTI and global commodities seem to have some cyclicality, whereas the CPI has a very strong trend, which is so strong that any cyclicality is not visible from the chart. 
+![wti and commodities and cpi](/images/posts/wti and commodities and cpi.png)
 
 ## HPI
 
