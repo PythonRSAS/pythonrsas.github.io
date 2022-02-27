@@ -122,7 +122,7 @@ DATE
  2020-07-01    4.273
  The min happens on  m2v_mom   2020-04-01
 ```
-![Velocity of money month over month change rate](/images/posts/2v_mom.png)
+![Velocity of money month over month change rate](/images/posts/m2v_mom.png)
 
 ```python
  m2v_yoy = level_to_yoy(m2v, NAME) 
@@ -328,7 +328,6 @@ NAME = 'fedfunds'
 |------------|------------|-----------|------------|----------------|-----------|------------|----------------|-----------|
 | 1981-06-01 |      19.1  | Max       | 2015-12-01 |         100    | Max       | 2016-02-01 |         245.45 | Max       |
 | 2020-04-01 |       0.05 | min       | 2020-04-01 |         -92.31 | min       | 2020-04-01 |         -97.93 | min       |
-
 
 
 ## 10-year treasury note yield
