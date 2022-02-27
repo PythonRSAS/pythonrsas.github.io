@@ -364,8 +364,8 @@ NAME = 'tb3ms'
 ![vixcls](/images/posts/vixcls.png)
 ![vixcls year over year](/images/posts/vixcls_yoy.png)
 
+# Complete Fed Funds History from Fred
 
-# Real Es
 |            |   fedfunds |   fedfunds_mom |   fedfunds_yoy |
 |------------|------------|----------------|----------------|
 | 1960-01-01 |       3.99 |         nan    |         nan    |
