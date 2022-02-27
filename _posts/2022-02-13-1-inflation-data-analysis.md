@@ -345,15 +345,15 @@ DATE
 
 # cpi and ppi
 
-![cpi and ppi](/images/posts/cpi and ppi.png)
+![cpi and ppi](/images/posts/ppi and cpi.png)
 
-![cpi_mom and ppi_mom all data](/images/posts/cpi_mom and ppi_mom_all_data.png)
+![cpi_mom and ppi_mom all data](/images/posts/PPI_mom and cpi_mom_all_data.png)
 
 The chart above has a long history and it is hard to see.  So, we take a shorter span.
 
-![cpi_mom and ppi_mom since 2006](/images/posts/cpi_mom and ppi_mom.png)
+![cpi_mom and ppi_mom since 2006](/images/posts/ppi_mom and cpi_mom.png)
 
-![cpi_yoy and ppi_yoy](/images/posts/cpi_yoy and ppi_yoy.png)
+![cpi_yoy and ppi_yoy](/images/posts/ppi_yoy and cpi_yoy.png)
 
 # wti and commodities and cpi
 
