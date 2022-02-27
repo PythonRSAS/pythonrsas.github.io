@@ -347,10 +347,17 @@ DATE
 
 ![cpi and ppi](/images/posts/cpi and ppi.png)
 
+![cpi_mom and ppi_mom all data](/images/posts/cpi_mom and ppi_mom_all_data.png)
+
+The chart above has a long history and it is hard to see.  So, we take a shorter span.
+
+![cpi_mom and ppi_mom since 2006](/images/posts/cpi_mom and ppi_mom.png)
+
+![cpi_yoy and ppi_yoy](/images/posts/cpi_yoy and ppi_yoy.png)
+
 # wti and commodities and cpi
 
 WTI and global commodities seem to have some cyclicality, whereas the CPI has a very strong trend, which is so strong that any cyclicality is not visible from the chart. 
-
 
 ## HPI
 
