@@ -365,6 +365,7 @@ print(tabulate(t10.join(t10_mom).join(t10_yoy).tail(13).round(1), tablefmt="gith
 | 2021-12-01 00:00:00 |   0.1 |       0   |     -11.1 |
 | 2022-01-01 00:00:00 |   0.1 |       0   |     -11.1 |
 
+The fed funds rate and T10 are very much moving together. 
 ![fed funds and T10](/images/posts/fed funds and t10.png)
 
 ## 3-month treasury bill yield
