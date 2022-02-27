@@ -25,6 +25,7 @@ from tabulate import tabulate
 | BASE       | bi-weekly   | 2019-12-18 00:00:00 |
 | M2V        | quarterly   | first of quarter    |
 | DCOILWTICO | daily       | nan                 |
+| PALLFNFINDEXQ  | quarterly     | first of quarter      |
 | CPIAUCSL   | monthly     | first of month      |
 | PPIACO     | monthly     | first of month      |
 | USSTHPI    | quarterly   | first of quarter    |
@@ -167,6 +168,12 @@ wti_mom = level_to_mom(wti, NAME) # convert to yoy and plot
 ![WTI price](/images/posts/wti.png)
 ![WTI month over month change rate](/images/posts/wti_mom.png)
 ![WTI year over year change rate](/images/posts/wti_yoy.png)
+
+# Global commodities
+MEV = 'PALLFNFINDEXQ'
+NAME = 'commodities'
+![global commodities_qoq](/images/posts/global commodities_qoq_20220227.png)
+![global commodities_yoy](/images/posts/global commodities_yoy_20220227.png)
 
 # 2. price
 The CPI is the most important price gauge in the US, although PPI, HPI and labor costs are important as well. 
@@ -365,7 +372,7 @@ print(tabulate(t10.join(t10_mom).join(t10_yoy).tail(13).round(1), tablefmt="gith
 | 2021-12-01 00:00:00 |   0.1 |       0   |     -11.1 |
 | 2022-01-01 00:00:00 |   0.1 |       0   |     -11.1 |
 
-The fed funds rate and T10 are very much moving together. 
+The fed funds rate and t10 are very much moving together.  But the fed funds rate movement are much bigger than t10.  
 ![fed funds and T10](/images/posts/fed funds and t10.png)
 
 ## 3-month treasury bill yield
