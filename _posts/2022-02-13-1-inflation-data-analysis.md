@@ -343,10 +343,14 @@ DATE
 | 2021-07-01 |      5.58 | Max       | 2021-10-01 |     17.86 | Max       |
 | 2008-07-01 |     -3.15 | min       | 2008-10-01 |     -7.14 | min       |
 
+# cpi and ppi
+
+![cpi and ppi](/images/posts/cpi and ppi.png)
+
 # wti and commodities and cpi
 
 WTI and global commodities seem to have some cyclicality, whereas the CPI has a very strong trend, which is so strong that any cyclicality is not visible from the chart. 
-![wti and commodities and cpi](/images/posts/wti and commodities and cpi.png)
+
 
 ## HPI
 
