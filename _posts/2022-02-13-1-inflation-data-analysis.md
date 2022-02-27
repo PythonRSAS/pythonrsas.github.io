@@ -172,8 +172,44 @@ wti_mom = level_to_mom(wti, NAME) # convert to yoy and plot
 # Global commodities
 MEV = 'PALLFNFINDEXQ'
 NAME = 'commodities'
+Latest data from Fred is as of 3Q2021. 
+
+![global commodities](/images/posts/global commodities_20220227.png)
 ![global commodities_qoq](/images/posts/global commodities_qoq_20220227.png)
 ![global commodities_yoy](/images/posts/global commodities_yoy_20220227.png)
+
+The highest commodity index is in 2Q2011.  
+
+The highest spikes are in 1Q2021.  
+
+| DATE       |   commodities | Max_min   | DATE       |   commodities_qoq | Max_min   | DATE        |   commodities_yoy | Max_min   |
+|:-----------|--------------:|:----------|:-----------|------------------:|:----------|:------------|------------------:|:----------|
+| *2011-04-01* |         189.5 | Max       | 2021-01-01 |              19.3 | Max       | 2021-04-01  |              68   | Max       |
+| 2003-04-01 |          63.1 | min       | 2008-10-01 |             -35.8 | min       | 2009-04-01  |             -40.4 | min       |
+
+
+
+
+
+
+
+
+
+| DATE       |   commodities |   commodities_qoq |   commodities_yoy |
+|------------|---------------|-------------------|-------------------|
+| 2018-10-01 |         123.7 |              -5   |               3.3 |
+| 2019-01-01 |         118.7 |              -4.1 |              -7.1 |
+| 2019-04-01 |         119.8 |               1   |              -8.6 |
+| 2019-07-01 |         115   |              -4   |             -11.7 |
+| 2019-10-01 |         116.7 |               1.5 |              -5.7 |
+| 2020-01-01 |         108.1 |              -7.4 |              -8.9 |
+| 2020-04-01 |          91.7 |             -15.1 |             -23.4 |
+| 2020-07-01 |         106.7 |              16.4 |              -7.1 |
+| 2020-10-01 |         117.1 |               9.7 |               0.4 |
+| 2021-01-01 |         139.7 |              19.3 |              29.3 |
+| 2021-04-01 |         154.1 |              10.3 |              68   |
+| 2021-07-01 |         167.5 |               8.7 |              56.9 |
+| 2021-10-01 |         187.7 |              12.1 |              60.3 |
 
 # 2. price
 The CPI is the most important price gauge in the US, although PPI, HPI and labor costs are important as well. 
