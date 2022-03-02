@@ -347,17 +347,27 @@ DATE
 
 ![cpi and ppi](/images/posts/ppi and cpi.png)
 
+
+**cpi_mom and ppi_mom all data**
 ![cpi_mom and ppi_mom all data](/images/posts/PPI_mom and cpi_mom_all_data.png)
 
 The chart above has a long history and it is hard to see.  So, we take a shorter span.
 
-![cpi_mom and ppi_mom since 2006](/images/posts/ppi_mom and cpi_mom.png)
+**cpi_mom and ppi_mom since 2006**
+
+![cpi_mom and ppi_mom since 2006](/images/posts/PPI_mom and cpi_mom.png)
+
+**cpi_yoy and ppi_yoy**
 
 ![cpi_yoy and ppi_yoy](/images/posts/ppi_yoy and cpi_yoy.png)
 
 # wti and commodities and cpi
 
-WTI and global commodities seem to have some cyclicality, whereas the CPI has a very strong trend, which is so strong that any cyclicality is not visible from the chart. 
+WTI and global commodities seem to have some **cyclicality**, whereas the CPI has a very **strong trend**, which is so strong that any cyclicality is not visible from the chart. 
+
+This tells that although rising oil and commodity prices can be a driver for inflation, but it is definitely not THE driver, nor the only driver.  The real drivers are truly too much money and too much spending/demand relative to production. 
+
+This also tells that oil and commodities are subject to the law of demand and supply and have their cycles, as any industry.  For instance, the insurance or banking industries have their cycles (e.g. insurance underwriting cycle and banking credit cycle). 
 
 ## HPI
 
@@ -394,7 +404,13 @@ MEV = 'FEDFUNDS'
 NAME = 'fedfunds'
 
 ![fedfunds](/images/posts/fedfunds.png)
+
+**Fed funds rate Month over Month** 
+
 ![fedfunds month over month](/images/posts/US fedfunds_mom_20220225.png)
+
+**Fed funds rate Year over Year** 
+
 ![fedfunds year over year](/images/posts/US fedfunds_yoy_20220225.png)
 
 |            |   fedfunds |   fedfunds_mom |   fedfunds_yoy |
@@ -424,7 +440,13 @@ MEV = 'DGS10'
 NAME = 'dgs10'
 
 ![dgs10](/images/posts/dgs10.png)
+
+**T10 Year over Year** 
+
 ![T10 year over year](/images/posts/US t10_yoy_20220225.png)
+
+**T10 Month over Month** 
+
 ![T10 month over month](/images/posts/US t10_mom_20220225.png)
 
 
@@ -434,9 +456,9 @@ NAME = 'dgs10'
 | 2020-04-01 |  0.05 | min       | 2020-04-01 |    -92.31 | min       | 2020-04-01 |    -97.93 | min       |
 
 
-```python
+<!-- ```python
 print(tabulate(t10.join(t10_mom).join(t10_yoy).tail(13).round(1), tablefmt="github", headers='keys'))
-```
+``` -->
 
 |                     |   t10 |   t10_mom |   t10_yoy |
 |---------------------|-------|-----------|-----------|
@@ -461,10 +483,147 @@ The fed funds rate and t10 are very much moving together.  But the fed funds rat
 
 MEV = 'TB3MS'
 NAME = 'tb3ms'
-![tb3ms](/images/posts/tb3ms.png)
-![tb3ms year over year](/images/posts/tb3ms_yoy.png)
+![tb3ms](/images/posts/US tb3ms_20220301.png)
+
+When looking at the YoY and Mom charts, don't be overly alarmed by the seemingly astronomically large rates of change.  The cause is that the denominators are very small.
+
+**3m Treasury Month over Month** 
+
+![tb3ms](/images/posts/US tb3ms_mom_20220301.png)
+
+**3m Treasury Year over Year** 
+
+![tb3ms year over year](/images/posts/tb3ms_yoy_20220301.png)
+
+Similar to other rates, the maximum rates are in early 1981.   
+
+Besides the magnitude of rates themselves, we should also pay close attention to large rate changes and understand the reasons behind them. 
+
+Note the rates have been zero or near zero in 2021.   Rates have been increasing in 2022 slowly.   
+
+| Date       |   tb3ms | Max_min   | Date        |   tb3ms_mom | Max_min   | Date        |   tb3ms_yoy | Max_min   |
+|------------|---------|-----------|-------------|-------------|-----------|-------------|-------------|-----------|
+| 1981-05-01 |   16.3  | Max       | 2015-11-01  |      500    | Max       | 2016-10-01  |        1550 | Max       |
+| 2011-09-01 |    0.01 | min       | 2008-12-01  |      -84.21 | min       | 2008-12-01  |         -99 | min       |
+
+**Recent 3m Treasury**
+
+| DATE        |   tb3ms |   tb3ms_mom |   tb3ms_yoy |
+|-------------|---------|-------------|-------------|
+| 2021-02-01  |     0   |       -50   |       -97.4 |
+| 2021-03-01  |     0   |       -25   |       -89.7 |
+| 2021-04-01  |     0   |       -33.3 |       -85.7 |
+| 2021-05-01  |     0   |         0   |       -84.6 |
+| 2021-06-01  |     0   |       100   |       -75   |
+| 2021-07-01  |     0   |        25   |       -61.5 |
+| 2021-08-01  |     0   |         0   |       -50   |
+| 2021-09-01  |     0   |       -20   |       -63.6 |
+| 2021-10-01  |     0   |        25   |       -50   |
+| 2021-11-01  |     0   |         0   |       -44.4 |
+| 2021-12-01  |     0.1 |        20   |       -33.3 |
+| 2022-01-01  |     0.2 |       150   |        87.5 |
+| 2022-02-01  |     0.3 |       120   |       725   |
+
+**High rate period of 3m Treasury**
+
+| DATE        |   tb3ms |   tb3ms_mom |   tb3ms_yoy |
+|-------------|---------|-------------|-------------|
+| 1979-06-01  |    9.06 |       -5.72 |       34.62 |
+| 1979-07-01  |    9.24 |        1.99 |       31.81 |
+| 1979-08-01  |    9.52 |        3.03 |       34.46 |
+| 1979-09-01  |   10.26 |        7.77 |       30.7  |
+| 1979-10-01  |   11.7  |       14.04 |       46.43 |
+| 1979-11-01  |   11.79 |        0.77 |       36.46 |
+| 1979-12-01  |   12.04 |        2.12 |       32.6  |
+| 1980-01-01  |   12    |       -0.33 |       28.34 |
+| 1980-02-01  |   12.86 |        7.17 |       37.98 |
+| 1980-03-01  |   15.2  |       18.2  |       60.34 |
+| 1980-04-01  |   13.2  |      -13.16 |       39.53 |
+| 1980-05-01  |    8.58 |      -35    |      -10.72 |
+| 1980-06-01  |    7.07 |      -17.6  |      -21.96 |
+| 1980-07-01  |    8.06 |       14    |      -12.77 |
+| 1980-08-01  |    9.13 |       13.28 |       -4.1  |
+| 1980-09-01  |   10.27 |       12.49 |        0.1  |
+| 1980-10-01  |   11.62 |       13.15 |       -0.68 |
+| 1980-11-01  |   13.73 |       18.16 |       16.45 |
+| 1980-12-01  |   15.49 |       12.82 |       28.65 |
+| 1981-01-01  |   15.02 |       -3.03 |       25.17 |
+| 1981-02-01  |   14.79 |       -1.53 |       15.01 |
+| 1981-03-01  |   13.36 |       -9.67 |      -12.11 |
+| 1981-04-01  |   13.69 |        2.47 |        3.71 |
+| 1981-05-01  |   16.3  |       19.07 |       89.98 |
+| 1981-06-01  |   14.73 |       -9.63 |      108.35 |
 
 # 4. Economy 
+
+## Unemployment rate
+
+![uem](/images/posts/US uem_20220301.png)
+
+**Unemployment Rate Month over Month**
+
+![uem month over month](/images/posts/US uem_mom_20220301.png)
+
+**Unemployment Rate Year over Year**
+
+![uem year over year](/images/posts/US uem_yoy_20220301.png)
+
+**Unemployment Rate Extreme Values**
+
+| Date       |   uem | Max_min   | Date       |   uem_mom | Max_min   | Date        |   uem_yoy | Max_min   |
+|------------|-------|-----------|------------|-----------|-----------|-------------|-----------|-----------|
+| 2020-04-01 |  14.7 | Max       | 2020-04-01 |    234.09 | Max       | 2020-04-01  |    308.33 | Max       |
+| 1968-09-01 |   3.4 | min       | 2020-08-01 |    -17.65 | min       | 2021-04-01  |    -59.18 | min       |
+
+**Recent Unemployment Rate**
+
+| DATE        |   uem |   uem_mom |   uem_yoy |
+|-------------|-------|-----------|-----------|
+| 2021-01-01  |   6.4 |      -4.5 |      82.9 |
+| 2021-02-01  |   6.2 |      -3.1 |      77.1 |
+| 2021-03-01  |   6   |      -3.2 |      36.4 |
+| 2021-04-01  |   6   |       0   |     -59.2 |
+| 2021-05-01  |   5.8 |      -3.3 |     -56.1 |
+| 2021-06-01  |   5.9 |       1.7 |     -46.4 |
+| 2021-07-01  |   5.4 |      -8.5 |     -47.1 |
+| 2021-08-01  |   5.2 |      -3.7 |     -38.1 |
+| 2021-09-01  |   4.7 |      -9.6 |     -40.5 |
+| 2021-10-01  |   4.6 |      -2.1 |     -33.3 |
+| 2021-11-01  |   4.2 |      -8.7 |     -37.3 |
+| 2021-12-01  |   3.9 |      -7.1 |     -41.8 |
+| 2022-01-01  |   4   |       2.6 |     -37.5 |
+
+**Unemployment Rate During High Rate Periods**
+
+| DATE        |   uem |   uem_mom |   uem_yoy |
+|-------------|-------|-----------|-----------|
+| 1979-01-01  |   5.9 |    -1.667 |    -7.812 |
+| 1979-02-01  |   5.9 |     0     |    -6.349 |
+| 1979-03-01  |   5.8 |    -1.695 |    -7.937 |
+| 1979-04-01  |   5.8 |     0     |    -4.918 |
+| 1979-05-01  |   5.6 |    -3.448 |    -6.667 |
+| 1979-06-01  |   5.7 |     1.786 |    -3.39  |
+| 1979-07-01  |   5.7 |     0     |    -8.065 |
+| 1979-08-01  |   6   |     5.263 |     1.695 |
+| 1979-09-01  |   5.9 |    -1.667 |    -1.667 |
+| 1979-10-01  |   6   |     1.695 |     3.448 |
+| 1979-11-01  |   5.9 |    -1.667 |     0     |
+| 1979-12-01  |   6   |     1.695 |     0     |
+| 1980-01-01  |   6.3 |     5     |     6.78  |
+| 1980-02-01  |   6.3 |     0     |     6.78  |
+| 1980-03-01  |   6.3 |     0     |     8.621 |
+| 1980-04-01  |   6.9 |     9.524 |    18.966 |
+| 1980-05-01  |   7.5 |     8.696 |    33.929 |
+| 1980-06-01  |   7.6 |     1.333 |    33.333 |
+| 1980-07-01  |   7.8 |     2.632 |    36.842 |
+| 1980-08-01  |   7.7 |    -1.282 |    28.333 |
+| 1980-09-01  |   7.5 |    -2.597 |    27.119 |
+| 1980-10-01  |   7.5 |     0     |    25     |
+| 1980-11-01  |   7.5 |     0     |    27.119 |
+| 1980-12-01  |   7.2 |    -4     |    20     |
+| 1981-01-01  |   7.5 |     4.167 |    19.048 |
+
+
 ## Nominal GDP
 ![gdp](/images/posts/gdp.png)
 ![gdp year over year](/images/posts/gdp_yoy.png)
@@ -1240,7 +1399,6 @@ I use the following code to get data from FRED and plot the data.
 ```python
 import pandas_datareader.data as web    # pandas 0.19.x and later
 from datetime import datetime
-grey = "#57606c"
 file_mev = 'mev_inflation.txt'
 def get_series(MEV, NAME):
     df =web.DataReader(MEV, "fred", start, end)
@@ -1262,18 +1420,4 @@ def get_series(MEV, NAME):
     print("The min happens on ", df.idxmin())
     print(df.loc[df.idxmin()])
     return df
-def plot_series(df, NAME):
-    fig, axes = plt.subplots(1,2, figsize=(12,4))
-    sns.histplot(data= df, x=NAME, ax=axes[0], color=blue)
-    sns.lineplot(data= df, x=df.index, y=NAME, ax=axes[1], color=blue)
-    axes[1].hlines(y=0, xmin=df.index[0], xmax=df.index[-1], color='k', linestyle='dashed', linewidth=0.5)
-    MEAN = df[NAME].mean()
-    axes[1].hlines(y=MEAN, xmin=df.index[0], xmax=df.index[-1], color='red', alpha=.5,linestyle='dashed', linewidth=0.5)
-    for i in range(2):
-        axes[i].tick_params(color=grey, labelcolor=grey)
-        for spine in axes[i].spines.values():
-            spine.set_edgecolor(grey)
-    # plt.tight_layout()
-    plt.show()
-    plt.savefig('./images/%s'%NAME, dpi=300)
 ``` 
