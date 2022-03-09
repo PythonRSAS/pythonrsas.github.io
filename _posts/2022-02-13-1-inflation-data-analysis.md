@@ -12,8 +12,16 @@ image: images/posts/photos/IMG-0869.JPG
 
 Too much inflation can cause many problems, and can even bring down a society/nation. 
 
-Milton Frieman said that inflation is a disease, and that inflation is always everywhere a monetary phenomena, the result of too much money.  It is more complicated than just about money.  Other factors such as innovation, natural disaster, forces of nature, wars, and so on can all play important roles.  
+Milton Frieman said that inflation is a disease, and that inflation is always everywhere a monetary phenomena, the result of too much money.  It is more complicated than just about money.  Other factors such as innovation, natural disaster, forces of nature, wars, and so on can all play important roles. 
+
+We had lived in a world with low inflation in the US coming out of a decade of less than 2.5% YoY inflation rate.  It is hard to imagine how inflation possibly could get any worse than the current +7% in the US, and 5.8% in Europe (average), China less than 4%, India 6%, and Japan only at 0.5%.  But it very well likely can!
+
+Without referring to any specific hyperinflation country current or in history, it is worth nothing that one of the worst inflation that affected the US and most of the world is the 1970s.
+
+The graph shows that most of the world has double digit annual inflation rate in the 1970s (note that China and the then-USSR were not measured)
+
 ![World Annualized Inflation in 1970s](/images/posts/world_inflation.PNG).  [Source: Inflation by the Decades: 1970s, by: Steve H. Hanke and Tal Boger](https://www.cato.org/sites/cato.org/files/troubled-currencies-project-site/inflation-by-the-decades-1970s.pdf)
+
 
 In this post, I look at some data from FRED related to inflation.  Here is a list I compile,, and will expand in the future.  Note that the sources of original data came from government agencies, and organizations such as the IMF.  
 
