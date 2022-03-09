@@ -13,6 +13,7 @@ image: images/posts/photos/IMG-0869.JPG
 Too much inflation can cause many problems, and can even bring down a society/nation. 
 
 Milton Frieman said that inflation is a disease, and that inflation is always everywhere a monetary phenomena, the result of too much money.  It is more complicated than just about money.  Other factors such as innovation, natural disaster, forces of nature, wars, and so on can all play important roles.  
+![World Annualized Inflation in 1970s](/images/posts/world_inflation.PNG).  [Source: Inflation by the Decades: 1970s, by: Steve H. Hanke and Tal Boger](https://www.cato.org/sites/cato.org/files/troubled-currencies-project-site/inflation-by-the-decades-1970s.pdf)
 
 In this post, I look at some data from FRED related to inflation.  Here is a list I compile,, and will expand in the future.  Note that the sources of original data came from government agencies, and organizations such as the IMF.  
 
