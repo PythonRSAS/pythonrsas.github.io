@@ -14,7 +14,7 @@ Too much inflation can cause many problems, and can even bring down a society/na
 
 Milton Frieman said that inflation is a disease, and that inflation is always everywhere a monetary phenomena, the result of too much money.  It is more complicated than just about money.  Other factors such as innovation, natural disaster, forces of nature, wars, and so on can all play important roles. 
 
-We had lived in a world with low inflation in the US coming out of a decade of less than 2.5% YoY inflation rate.  It is hard to imagine how inflation possibly could get any worse than the current +7% in the US, and 5.8% in Europe (average), China less than 4%, India 6%, and Japan only at 0.5%.  But it very well likely can!
+We had lived in a world with low inflation in the US coming out of a decade of less than 2.5% YoY inflation rate.  China inflation rate is less than 4%, India 6%, and Japan only at 0.5%.  It is hard to imagine how inflation possibly could get any worse than the current +7% in the US, and 5.8% in Europe (average) in the West.  But it very well likely can.   
 
 Without referring to any specific hyperinflation country current or in history, it is worth nothing that one of the worst inflation that affected the US and most of the world is the 1970s.
 
