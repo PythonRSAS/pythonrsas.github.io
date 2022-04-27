@@ -157,6 +157,8 @@ DATE
 
 While alternative energy has been increasing, oil is still extremely important to the economy, not only as an energy source.
 
+The most susceptible industries to oil prices are: food production (most fertilizers and pesticides are made of oil, tractors run on oil, and food distribution rely on oil), transportation, airline travels, consumer discretionary, chemicals, and some construction materials. 
+
 <div class="code-head"><span>code</span>oil.py</div> 
 
 ```python
