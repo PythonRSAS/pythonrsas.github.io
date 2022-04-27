@@ -1,6 +1,6 @@
 ---
 layout: post
-tag: ERM
+tag: Regulation for banks
 category: "other risks"
 title: "Regulation W"
 description: Notes taken from annual trainings on Regulation W
@@ -10,7 +10,7 @@ image: images/posts/photos/IMG-0683.jpg
 ![](/images/posts/photos/IMG-0683.jpg)
 
 
-# Compare Regulation W and Insurance
+# What is Regulation W
 
 [Regulation W, also known as "Affiliate Transactions"](https://www.federalreserve.gov/supervisionreg/topics/regulation_w.htm) is a U.S. FRB regulation.  Its purpose is to help ensure the safty and soundness of the U.S. banking system by prohibiting (transfering bad assets from one subsidiary to another, lending to affiliate without collateral) and/or limiting certain transactions between depository institutions, such as a bank and their affiliates to prevent abuse from its own ***non-bank affiliates***.  
 
