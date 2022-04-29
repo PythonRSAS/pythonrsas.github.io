@@ -17,7 +17,7 @@ image: images/posts/photos/IMG-0672.JPG
 The concepts between SAS <span class="coding">PROC SQL</span>, Excel pivot table, and <span class="coding">pandas.pivot_table</span>, <span class="coding">df.groupby</span> are the same: **to get summaries on a two-way table, where the rows are the group-by and the columns are the <span class="coding">select</span>**, using SQL language.   I will not get into useful SAS procedures such as PROC MEANS, PROC SUMMARY, etc., even though the concepts are similar. 
 
 **Columns**: select
-**Rows**: groupby
+**Rows**: groupby (also need to be in the select statement)
 
 # Columns
 Below is a simple select statement,selecting all the columns, using a where statement to filter. 
@@ -34,7 +34,28 @@ data[(data.date> pd.Timestamp('2022-04-29')) &(data.tempreture < 0)]
 ```
 
 # Rows and columns
-Lrt's illustrate using an example, which came from a [SAS community Q &A.](https://communities.sas.com/t5/SAS-Programming/how-do-I-achieve-PIVOT-the-one-in-EXCEL-in-SQL/td-p/567311)
+
+
+<div class="code-head"><span>code</span>groupby.py</div>
+
+```python
+tips= sns.load_dataset('tips')
+tips.groupby(['smoker', 'day']).agg({'tip': [np.size, np.mean]})
+Out: 
+               tip
+              size  mean
+smoker day
+Yes    Thur 17.000 3.030
+       Fri  15.000 2.714
+       Sat  42.000 2.875
+       Sun  19.000 3.517
+No     Thur 45.000 2.674
+       Fri   4.000 2.812
+       Sat  45.000 3.103
+       Sun  57.000 3.168
+```
+
+Let's look at an example from a [SAS community Q &A.](https://communities.sas.com/t5/SAS-Programming/how-do-I-achieve-PIVOT-the-one-in-EXCEL-in-SQL/td-p/567311)
 
 <div class="code-head"><span>code</span>prepare_data.sas</div>
 
@@ -90,16 +111,22 @@ quit ;
 
 **Python**
 
-This can be achieved in pandas easily with <span class="coding">groupby</span>. The difference is that in pandas we initially include the column that is to be summarized in the <span class="coding">groupby</span>, and then <span class="coding">unstack</span> it to the columns. 
+This can be achieved in pandas easily with <span class="coding">groupby</span> or <span class="coding">pd.pivot_table</span>.  They can produce the same summary.  
+
+The difference between the result is that 
+
+The difference is that in pandas we initially include the column that is to be summarized in the <span class="coding">groupby</span>, and then <span class="coding">unstack</span> it to the columns. 
 
 > To keep missings in a group, use <span class="coding">dropna=False</span>.
 
 <div class="code-head"><span>code</span>groupyby.py</div>
 
 ```python 
- summarized = df.groupby(['com_a','year','result_of_a'], dropna=False).count().
-  unstack().fillna(0).sort_index(ascending=[False,True])
- summarized
+df = pd.read_excel(r".\python_SAS\Python-for-SAS-Users\data\sql_data.xlsx")
+df=pd.read_excel(r".\Python-for-SAS-Users\data\battlerecord.xlsx")
+summarized = df.groupby(['com_a','year','result_of_a'], dropna=False).count().\
+     unstack().fillna(0).sort_index(ascending=[False,True])
+summarized
 ```
 Although the column names are not exactly the same as the questioner asked for, we have accomplished most of what’s been asked for.
 
@@ -111,7 +138,10 @@ Although the column names are not exactly the same as the questioner asked for, 
 | ('AMD', 2016)   |                     0 |                   0 |                   2 |                  0 |
 
 
-If we are not satisfied with how the index and column labels look, we can do the following:
+Note that the levels of indices start from the outer layer: column indices start from the top and row indices start from the left.  
+
+To remove the outer layer of row or column index, we can use <span class="coding">.droplevel(0)</span>.
+To remove the inner most layer of row or column index, use <span class="coding">.droplevel(-1)</span>
 
 ```python
 # to drop the top level of column multiindex
@@ -127,7 +157,6 @@ summarized.reset_index(inplace=True)
 |  2 | INTEL   |   2017 |        0 |      0 |      0 |     1 |
 |  3 | AMD     |   2016 |        0 |      0 |      2 |     0 |
 
-Note that the levels of indices start from the outer layer: column indices start from the top and row indices start from the left.  
 
 Another way in Python is to use <span class="coding">pd.pivot_table</span>. 
 
@@ -162,7 +191,7 @@ However, it is not enough just to get a solution. Understanding how these method
 # Treatment of missing
 ## Filtering rows
 
-Column A | SAS PROC SQL | python pandas
+Task | SAS PROC SQL | python pandas
 ---------|----------|---------
 want rows with missing | SELECT * FROM df WHERE col IS NULL | df[df.col.isna()]
 don't want rows with missing | SELECT * FROM df WHERE col IS NOT NULL | <span class="coding">df[df.col.notna()</span>]
@@ -175,7 +204,7 @@ SELECT *
 FROM data WHERE date IS NULL;
 ```
 
-## As a group in group by
+## In group by
 SAS PROC SQL treats missing as a group unless you specify it with "where 1 is not missing".  This is a good feature. 
 
 Whereas in Python, pd.pivot_table, using <span class="coding">dropna=False</span> will keep the missing as a row. 
@@ -188,3 +217,41 @@ One of the use cases is to leverage datetime index in the methods.
 For example, say we have a portfolio of loans to a group of customers.  After we <span class="coding">pd.pivot_table(index=datetime_colum, column = customer, aggfunc=’size’)</span>, we can immediately follow up with pandas <span class="coding">resampling</span> or <span class="coding">rolling</span> methods to perform additional statistics desired. 
 
 
+# Joins
+
+A trick that I use to remember the SQL syntax is: **S F J O W G H O**, which means
+- select
+- from
+- join
+- on
+- where
+- group by
+- having
+- order by
+
+
+<div class="code-head"><span>code</span>join.sas</div>
+
+```sas
+SELECT *
+FROM df1
+INNER JOIN df2
+  ON df1.key = df2.key;
+```
+
+```python
+pd.merge(df1, df2, on='key')
+```
+
+<div class="code-head"><span>code</span>left join.sas</div>
+
+```sas
+SELECT *
+FROM df1
+LEFT OUTER JOIN df2
+  ON df1.key = df2.key;
+```
+
+```python
+pd.merge(df1, df2, on='key', how='left')
+```
