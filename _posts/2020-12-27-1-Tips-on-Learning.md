@@ -3,7 +3,7 @@ layout: post
 tag: The art of Learning
 category: education
 title: "Tips on Learning"
-description: Tips on learnig and how to be accomplished
+description: Tips on learnig and how to work efficiently and have more enjoyment
 author: Sarah Chen
 image: images/posts/photos/IMG-0631.jpg
 ---
@@ -12,9 +12,24 @@ image: images/posts/photos/IMG-0631.jpg
    <figcaption></figcaption>
 </figure> 
 
-It is year end of 2020, time to reflect. 
+# How to work from the time & place dimensions
+To me, there are two modes of work:
+1. Solitude: anyting that requires quiet thinking, such as reading, coding. 
+2. In a group: interacting with others
+3. Anywhere in between the above
 
-Simple tips on how to be accomplished:
+For solitude work, it is best when it is dark outside when everyone is asleep.  Since staying up at night will result in bad long term health, getting up before 4:30 am is the only option.   The catch is that I need to remember to go to sleep early (before 9 pm).  
+
+In quite solitude, you can think, read, code, and work out the plan for the day as well. 
+
+Mode of work | When  | Where
+---------|----------|---------
+Solitude | 4:30 am before 8:30 am | Home office or quiet quarter in office
+With others | 8:30 am to 5 pm | Office or anywhere with the phone
+
+# So
+
+since staying up at night will result in a poor workday, 
 
 - It is focusing on the **priorities**.
 - It is **consistenly** making progress.  

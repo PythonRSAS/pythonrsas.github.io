@@ -12,9 +12,29 @@ image: images/posts/photos/IMG-0672.JPG
    <img src="{{"/images/photos/posts/IMG-0672.jpg"| relative_url}}"> 
    <figcaption>Photo by Ji Biduan</figcaption>
 </figure> 
-The concepts between SAS <span class="coding">PROC SQL</span>, Excel pivot table, and <span class="coding">pandas.pivot_table</span>, <span class="coding">df.groupby</span> are more or less the same: to get summaries on a two-way table, where the rows are the group-by and the columns are the <span class="coding">select</span>, using SQL language. 
 
-It may be better to illustrate using an example, which came from a [SAS community Q &A.](https://communities.sas.com/t5/SAS-Programming/how-do-I-achieve-PIVOT-the-one-in-EXCEL-in-SQL/td-p/567311)
+
+The concepts between SAS <span class="coding">PROC SQL</span>, Excel pivot table, and <span class="coding">pandas.pivot_table</span>, <span class="coding">df.groupby</span> are the same: **to get summaries on a two-way table, where the rows are the group-by and the columns are the <span class="coding">select</span>**, using SQL language.   I will not get into useful SAS procedures such as PROC MEANS, PROC SUMMARY, etc., even though the concepts are similar. 
+
+**Columns**: select
+**Rows**: groupby
+
+# Columns
+Below is a simple select statement,selecting all the columns, using a where statement to filter. 
+<div class="code-head"><span>code</span>select.sas</div>
+
+```sas
+SELECT * 
+FROM data WHERE date > '2022-04-29'd and tempreture < 0;
+```
+
+In Python, 
+```python
+data[(data.date> pd.Timestamp('2022-04-29')) &(data.tempreture < 0)]
+```
+
+# Rows and columns
+Lrt's illustrate using an example, which came from a [SAS community Q &A.](https://communities.sas.com/t5/SAS-Programming/how-do-I-achieve-PIVOT-the-one-in-EXCEL-in-SQL/td-p/567311)
 
 <div class="code-head"><span>code</span>prepare_data.sas</div>
 
@@ -48,6 +68,7 @@ Goal: we are going to group by 2 of the 3 columns and pivot the 3rd column, and 
 **SAS**
 To summarize it using SAS Proc SQL, the logic is straight forward as plain SQL.  The *tedious* part is to do <span class="coding">sum (result_of_a in ("WIN")) as</span> repeatedly. 
 
+
 <div class="code-head"><span>code</span>proc sql.sas</div>
 
 ```sas
@@ -66,7 +87,6 @@ proc sql ;
   ;                                                                  
 quit ;    
 ```
-> Note: PROC SQL treats missing as a group unless you specify it with "where 1 is not missing".
 
 **Python**
 
@@ -139,10 +159,32 @@ pd.pivot_table(df, columns ='result_of_a', index=['com_a','year'], aggfunc='size
 ```
 However, it is not enough just to get a solution. Understanding how these methods are related to each other, and the general kind of problems that they can solve, can help us solve many more problems. 
 
+# Treatment of missing
+## Filtering rows
+
+Column A | SAS PROC SQL | python pandas
+---------|----------|---------
+want rows with missing | SELECT * FROM df WHERE col IS NULL | df[df.col.isna()]
+don't want rows with missing | SELECT * FROM df WHERE col IS NOT NULL | <span class="coding">df[df.col.notna()</span>]
+group by | automatically includes missing asa | use <span class="coding">dropna=False</span>
+
+<div class="code-head"><span>code</span>select missing.sas</div>
+
+```sas
+SELECT * 
+FROM data WHERE date IS NULL;
+```
+
+## As a group in group by
+SAS PROC SQL treats missing as a group unless you specify it with "where 1 is not missing".  This is a good feature. 
+
+Whereas in Python, pd.pivot_table, using <span class="coding">dropna=False</span> will keep the missing as a row. 
+
 ## A Step Above
 However, the advantage of using <span class="coding">pd.pivote_table<span> or <span class="coding">df.groupby</span> is not limited to summary tables. 
 
 One of the use cases is to leverage datetime index in the methods.
 
 For example, say we have a portfolio of loans to a group of customers.  After we <span class="coding">pd.pivot_table(index=datetime_colum, column = customer, aggfunc=’size’)</span>, we can immediately follow up with pandas <span class="coding">resampling</span> or <span class="coding">rolling</span> methods to perform additional statistics desired. 
+
 

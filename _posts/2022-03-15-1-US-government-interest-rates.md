@@ -41,6 +41,10 @@ What if we don't cure it? -->
 <div class="code-head"><span>code</span>fred.py</div> 
 
 ```python
+import pandas_datareader.data as web    # pandas 0.19.x and later
+from datetime import datetime
+import pandas as pd
+import matplotlib.pyplot as plt
 lt = ["FEDFUNDS","DGS10",   "DGS2",    "TB3MS",   "UNRATE",  "GDP",     "GDPC1"]
 ss_lt =[]
 start = pd.Timestamp('1960-1-1')
@@ -48,6 +52,6 @@ end = datetime.today()
 for i in lt:
     ss =web.DataReader(i, "fred", start, end)
     ss_lt.append(ss)
-df.pd.concat(ss_lt, axis=1)
+df = pd.concat(ss_lt, axis=1)
 ```
 
