@@ -2,8 +2,8 @@
 layout: post
 tag : Learning Python and SAS
 category: "Python for SAS"
-title: "SAS PROC SQL and python df.groupby and pivot_table."
-description:  On python groupby and pivot_table methods beyond SQL
+title: "SAS PROC SQL and python df.groupby and pivot_table, and simple joins"
+description:  On python pandas groupby, pivot_table and other methods and compare them to SAS PROC SQL, which is like most SQL
 author: Sarah Chen
 image: images/posts/photos/IMG-0672.JPG
 
@@ -14,9 +14,12 @@ image: images/posts/photos/IMG-0672.JPG
 </figure> 
 
 
-The concepts between SAS <span class="coding">PROC SQL</span>, Excel pivot table, and <span class="coding">pandas.pivot_table</span>, <span class="coding">df.groupby</span> are the same: **to get summaries on a two-way table, where the rows are the group-by and the columns are the <span class="coding">select</span>**, using SQL language.   I will not get into useful SAS procedures such as PROC MEANS, PROC SUMMARY, etc., even though the concepts are similar. 
+The concepts between SAS <span class="coding">PROC SQL</span>, Excel pivot table, and <span class="coding">pandas.pivot_table</span>, <span class="coding">df.groupby</span> are similar: **to get summaries on a two-way table, where the rows are the group-by and the columns are the <span class="coding">select</span>**, using SQL language.   
+
+I will not get into useful SAS procedures such as PROC MEANS, PROC SUMMARY, etc., even though the concepts are similar. 
 
 **Columns**: select
+
 **Rows**: groupby (also need to be in the select statement)
 
 # Columns
