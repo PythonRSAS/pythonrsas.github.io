@@ -209,13 +209,14 @@ SAS PROC SQL treats missing as a group unless you specify it with "where 1 is no
 
 Whereas in Python, pd.pivot_table, using <span class="coding">dropna=False</span> will keep the missing as a row. 
 
-## A Step Above
-However, the advantage of using <span class="coding">pd.pivote_table<span> or <span class="coding">df.groupby</span> is not limited to summary tables. 
+# Use case in financial analysis
+The advantage of using <span class="coding">pd.pivote_table</span> or <span class="coding">df.groupby</span> is not limited to summary tables. 
 
 One of the use cases is to leverage datetime index in the methods.
 
 For example, say we have a portfolio of loans to a group of customers.  After we <span class="coding">pd.pivot_table(index=datetime_colum, column = customer, aggfunc=’size’)</span>, we can immediately follow up with pandas <span class="coding">resampling</span> or <span class="coding">rolling</span> methods to perform additional statistics desired. 
 
+<span class="coding">pd.pivot_table(index=datetime_colum)</span> +  <span class="coding">resampling</span>
 
 # Joins
 
@@ -233,10 +234,12 @@ A trick that I use to remember the SQL syntax is: **S F J O W G H O**, which mea
 <div class="code-head"><span>code</span>join.sas</div>
 
 ```sas
+PROC SQL;
 SELECT *
 FROM df1
 INNER JOIN df2
   ON df1.key = df2.key;
+QUIT;
 ```
 
 ```python
@@ -246,10 +249,12 @@ pd.merge(df1, df2, on='key')
 <div class="code-head"><span>code</span>left join.sas</div>
 
 ```sas
+PROC SQL;
 SELECT *
 FROM df1
 LEFT OUTER JOIN df2
   ON df1.key = df2.key;
+QUIT;
 ```
 
 ```python
@@ -266,11 +271,13 @@ Union is stacking one set of data upon another, where the same columns are lined
 <div class="code-head"><span>code</span>union.sas</div>
 
 ```sas
+PROC SQL;
 SELECT city, rank
 FROM df1
 UNION ALL
 SELECT city, rank
 FROM df2;
+QUIT;
 ```
 
 <div class="code-head"><span>code</span>union.py</div>
