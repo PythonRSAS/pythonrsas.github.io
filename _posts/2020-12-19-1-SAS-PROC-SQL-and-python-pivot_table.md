@@ -193,8 +193,8 @@ However, it is not enough just to get a solution. Understanding how these method
 
 Task | SAS PROC SQL | python pandas
 ---------|----------|---------
-want rows with missing | SELECT * FROM df WHERE col IS NULL | df[df.col.isna()]
-don't want rows with missing | SELECT * FROM df WHERE col IS NOT NULL | <span class="coding">df[df.col.notna()</span>]
+want rows with missing | <span class="coding">SELECT * FROM df WHERE col IS NULL</span> | <span class="coding">df[df.col.isna()]</span>
+don't want rows with missing | <span class="coding">SELECT * FROM df WHERE col IS NOT NULL</span> | <span class="coding">df[df.col.notna()</span>]
 group by | automatically includes missing asa | use <span class="coding">dropna=False</span>
 
 <div class="code-head"><span>code</span>select missing.sas</div>
@@ -254,4 +254,27 @@ LEFT OUTER JOIN df2
 
 ```python
 pd.merge(df1, df2, on='key', how='left')
+```
+
+# Union
+Union is stacking one set of data upon another, where the same columns are lined up.
+
+<span class="coding">Union all</span> is stacking everything regardless duplicates.  Whereas <span class="coding">union</span> removes duplicates. 
+## union all
+<span class="coding">union all </span>
+
+<div class="code-head"><span>code</span>union.sas</div>
+
+```sas
+SELECT city, rank
+FROM df1
+UNION ALL
+SELECT city, rank
+FROM df2;
+```
+
+<div class="code-head"><span>code</span>union.py</div>
+
+```python
+pd.concat([df1, df2])
 ```
