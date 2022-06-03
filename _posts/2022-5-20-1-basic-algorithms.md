@@ -14,7 +14,7 @@ Basic algorithms: recursion, sorting (select sort, bubble sort, quick sort).
 # Recursion
 Recursion in algorithm refers to calling a function within its own definition. Many mathematical computations can be defined using recursion.  For example, Taylor expansions, Fibonnaci sequence, and so on. 
 
-[cross-section of a nautilus shell](https://www.maa.org/sites/default/files/images/cms_upload/spiral04457.gif) with a superimposed polar coordinate grid. The outer spiral of the shell has been traced with a green curve.
+![cross-section of a nautilus shell](https://www.maa.org/sites/default/files/images/cms_upload/spiral04457.gif) with a superimposed polar coordinate grid. The outer spiral of the shell has been traced with a green curve.
 
 For recursion to work, we must provide **starter values** to get it going.  In the Fibonnaci example, the starter values are 0, and 1, although 0 is not in the sequence. 
 
