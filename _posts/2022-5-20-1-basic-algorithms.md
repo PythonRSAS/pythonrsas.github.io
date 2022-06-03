@@ -13,21 +13,10 @@ Basic algorithms: recursion, sorting (select sort, bubble sort, quick sort).
 
 # Recursion
 Recursion in algorithm refers to calling a function within its own definition. Many mathematical computations can be defined using recursion.  For example, Taylor expansions, Fibonnaci sequence, and so on. 
-[cross-section of a nautilus shell](https://www.maa.org/sites/default/files/images/cms_upload/spiral04457.gif with a superimposed polar coordinate grid. The outer spiral of the shell has been traced with a green curve.
-<div class="code-head"><span>code</span>Fibonacci.sas</div>
 
-```sas
-DATA fs;
-n1 = 0; n2=.;  
-i =0; n3 = n2; output;
-DO i = 1 TO 10;
-    n3 = sum(n1, n2);
-    OUTPUT;
-    n2 = n1;
-    n1 = n3;
-END;
-RUN;
-```
+[cross-section of a nautilus shell](https://www.maa.org/sites/default/files/images/cms_upload/spiral04457.gif) with a superimposed polar coordinate grid. The outer spiral of the shell has been traced with a green curve.
+
+For recursion to work, we must provide **starter values** to get it going.  In the Fibonnaci example, the starter values are 0, and 1, although 0 is not in the sequence. 
 
 <div class="code-head"><span>code</span>Fibonacci using recursion.py</div>
 
@@ -70,6 +59,22 @@ def fb_loop(n):
         n0 = n1
         n1 = n
     return seq
+```
+The following is one way to do it in SAS using <span class="coding">DO</span> loop. 
+
+<div class="code-head"><span>code</span>Fibonacci.sas</div>
+
+```sas
+DATA fs;
+n1 = 0; n2=.;  
+i =0; n3 = n2; output;
+DO i = 1 TO 10;
+    n3 = sum(n1, n2);
+    OUTPUT;
+    n2 = n1;
+    n1 = n3;
+END;
+RUN;
 ```
 
 Sorting algorithms are extremely important.  In the Women in Mathematics summer program that I participated in Washington DC 2006, the NSA director of mathematics came and gave us a talk on sorting algorithms.  
@@ -170,60 +175,3 @@ array([3,4,5,6,1,2])
 ```
 
 <span class="coding">np.dot</span> as the name implies, gives a dot product.  The result is a single number. 
-
-# reshape
-An useful reshape trick is **<span class="coding">-1</span>**, which is a placeholder that refers to the size of the remaining axis that is to be inferred.
-
-For example, we begin with a 1-d array of length 6, and want to reshape it to (2,3), 2 rows and 3 columns.  By <span class="coding">(2,-1)</span>, we mean: 2 rows and 6/2 columns.  <span class="coding">-1</span> is a placeholder for the inferred <span class="coding">3</span>.  
-
-```python
->>> a = np.array([1,2,3,4,5,6])
->>> a1 = a.reshape(2,-1)
->>> print(a1)
-Out:
-[[1,2,3]
-[4,5,6]]
-```
-
-# Outer product
-Outer product is also called "cartesian product".  It is every order combination of the two arrays, and multiplied.  The number of elements in the end result is nXm, if the left has n and the right has m elements, respectively. 
-
-In all methods below, my favorite is <span class="coding">reshape</span> because there is nothing extra to remember other than the use of <span class="coding">-1</span>. 
-
-<div class="code-head"><span>code</span>outer product.py</div>
-
-```python
-In [1]: x = np.array([1,2,3])
-
-In [2]: y = np.array([2,4])
-
-In [3]: np.outer(x,y)
-Out[3]:
-array([[ 2,  4],
-       [ 4,  8],
-       [ 6, 12]])
-
-In [4]: x[:,np.newaxis]*y[np.newaxis,:]
-Out[4]:
-array([[ 2,  4],
-       [ 4,  8],
-       [ 6, 12]])
-
-In [5]: x.reshape((-1,1))*y.reshape((1,-1))
-Out[5]:
-array([[ 2,  4],
-       [ 4,  8],
-       [ 6, 12]])
-
-In [6]: x.reshape((-1,1))*y.reshape((-1,1)).T
-Out[6]:
-array([[ 2,  4],
-       [ 4,  8],
-       [ 6, 12]])
-
-In [7]: np.multiply(x.ravel()[:,np.newaxis],y.ravel()[np.newaxis,:])
-Out[7]:
-array([[ 2,  4],
-       [ 4,  8],
-       [ 6, 12]])
-```
