@@ -25,9 +25,9 @@ In analytic number theory class by my late professor Patrick Gallagher,the big O
 ![Professor Patric Gallagher](images/posts/Gallagher.PNG)
 
 Recall the “big O” notation: if $$S$$ is a set and f and g are functions $$S$$ → $$R$$, we say that $$ f = O(g)$$
-if there exists an M > 0 such that $$|f(s)| ≤ Mg(s)$$ for all s $$∈$$ $$S$$. Usually the set $$S$$ is taken to be
-the interval [a, ∞) for some sufficiently large a ∈ R that is left unstated, or an open interval like
-(1, 2] if we care about asymptotic behavior near 1.
+if there exists an $$M > 0$$ such that $$|f(s)| ≤ Mg(s)$$ for all s $$∈$$ $$S$$. Usually the set $$S$$ is taken to be
+the interval $$[a, ∞)$$ for some sufficiently large $$a ∈ R$$ that is left unstated, or an open interval like
+$$(1, 2]$$ if we care about asymptotic behavior near 1.
 
 
 You can use the list structure and the associated SAS/IML functions to emulate many different data structures, including the following:
