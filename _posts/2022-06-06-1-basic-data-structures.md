@@ -42,6 +42,13 @@ In computer science, the big $$O$$ is used as a time efficiency metric for data 
 In computer science context, constant time (e.g. O(1)) means that the amound of time it takes to do something (something could be one of the 4 tasks above) is independent of the size of the data.  The size of data $$n$$ is absent from the $$O()$$. Constant time is the most efficient but also difficult to achieve. 
 
 As VaR (value at risk) is not the only thing we used for measuring market risk, the big $$O$$ is not the only thing either.  But it is very useful. 
+
+
+Time complexity | $$O$$ as a function of data size $$n$$ | Explain
+---------|----------|---------
+constant | $$O(1)$$ | data size is irrelevant
+log n | $$O(log(n))$$ | data size is relevant, but not less than linearly
+linear |$$O(n)$$ | time is a linear function of data size
 # Stack
 
 Stack is the backbone for all recursive processes in our computers.  
