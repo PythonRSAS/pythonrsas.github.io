@@ -24,9 +24,8 @@ heaps and grapsh
 In analytic number theory class by my late professor Patrick Gallagher,the big O metric was associated with whether two different representations are aymptotically close (when the epsilon is )
 ![Professor Patric Gallagher](/images/posts/Gallagher.PNG)
 
-The “big O” notation: if $$S$$ is a set and f and g are functions $$S$$ → $$R$$, we say that $$ f = O(g)$$ if there exists an $$M > 0$$ such that $$|f(s)| ≤ Mg(s)$$ for all s $$∈$$ $$S$$. 
-
-Usually the set $$S$$ is taken to be the interval $$[a, ∞)$$ for some sufficiently large $$a ∈ R$$ that is left unstated, or an open interval like
+The “big O” notation: 
+If $$S$$ is a set and f and g are functions $$S$$ → $$R$$, we say that $$ f = O(g)$$ if there exists an $$M > 0$$ such that $$|f(s)| ≤ Mg(s)$$ for all s $$∈$$ $$S$$.  Usually the set $$S$$ is taken to be the interval $$[a, ∞)$$ for some sufficiently large $$a ∈ R$$ that is left unstated, or an open interval like
 $$(1, 2]$$ if we care about asymptotic behavior near 1.
 
 Therefore, $$O(1)$$ means some constant (time). Similarly, $$O(2)$$ or $$O(100)$$ also mean constant. 
@@ -49,6 +48,7 @@ Time complexity | $$O$$ as a function of data size $$n$$ | Explain
 constant | $$O(1)$$ | data size is irrelevant
 log n | $$O(log(n))$$ | data size is relevant, but not less than linearly
 linear |$$O(n)$$ | time is a linear function of data size
+
 # Stack
 
 Stack is the backbone for all recursive processes in our computers.  
