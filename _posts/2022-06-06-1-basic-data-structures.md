@@ -28,7 +28,7 @@ The “big O” notation:
 If $$S$$ is a set and $$f$$ and $$g$$ are functions $$S$$ → $$R$$, we say that $$ f = O(g)$$ if there exists an $$k > 0$$ such that $$|f(s)| ≤ Mg(s)$$ for all s $$∈$$ $$S$$.  Usually the set $$S$$ is taken to be the interval $$[a, ∞)$$ for some sufficiently large $$a ∈ R$$ that is left unstated, or an open interval like
 $$(1, 2]$$ if we care about asymptotic behavior near 1.
 
-Therefore, $$O(1)$$ means some constant (time). Similarly, $$O(2)$$ or $$O(100)$$ also mean constant. 
+Therefore, $$O(1)$$ means some constant (time). Similarly, $$O(2)$$ or $$O(100)$$ also mean constant, as long as the number is fixed. 
 
 $$O(n)$$ means linear as in $$k*n$$ for some $$k>0$$.
 
@@ -40,16 +40,25 @@ In computer science, the big $$O$$ is used as a time efficiency metric for data 
 
 In computer science context, constant time (e.g. O(1)) means that the amound of time it takes to do something (something could be one of the 4 tasks above) is independent of the size of the data.  The size of data $$n$$ is absent from the $$O()$$. Constant time is the most efficient but also difficult to achieve. 
 
-As VaR (value at risk) is not the only thing we used for measuring market risk, the big $$O$$ is not the only thing either.  But it is very useful. 
 
 
 Time complexity | $$O$$ as a function of data size $$n$$ |Example | Explain
 ---------|----------|---------|---------
 constant | $$O(1)$$ |indexed data |data size is irrelevant
 log n | $$O(log(n))$$ | binary search |data size is relevant, but unit "cost" decreases as data size increases
-linear |$$O(n)$$ | |time is a linear function of data size
+linear |$$O(n)$$ | accessing |time is a linear function of data size
+linear*log |$$O(nlog(n))$$ | | As we can see, its slope ($$log(n)+1$$) is a positive function of n
+power |$$O(n**2)$$ | inserting/deleting| slope ($$2n$$) is a positive function of n
+exponential |$$O(2**n)$$ | | the worst in efficiency
+
+As VaR (value at risk) is not the only thing we used for measuring market risk, the big $$O$$ is not the only thing either.  
+
+Some data structures are very inefficient in terms of time, but they are very useful. 
 
 ![time complexity](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Comparison_computational_complexity.svg/330px-Comparison_computational_complexity.svg.png)
+
+# Array
+
 # Stack
 
 Stack is the backbone for all recursive processes in our computers.  
