@@ -22,17 +22,31 @@ heaps and grapsh
 
 # The Big O metric
 In analytic number theory class by my late professor Patrick Gallagher,the big O metric was associated with whether two different representations are aymptotically close (when the epsilon is )
-![Professor Patric Gallagher](images/posts/Gallagher.PNG)
+![Professor Patric Gallagher](/images/posts/Gallagher.PNG)
 
-Recall the “big O” notation: if $$S$$ is a set and f and g are functions $$S$$ → $$R$$, we say that $$ f = O(g)$$
-if there exists an $$M > 0$$ such that $$|f(s)| ≤ Mg(s)$$ for all s $$∈$$ $$S$$. Usually the set $$S$$ is taken to be
-the interval $$[a, ∞)$$ for some sufficiently large $$a ∈ R$$ that is left unstated, or an open interval like
+The “big O” notation: if $$S$$ is a set and f and g are functions $$S$$ → $$R$$, we say that $$ f = O(g)$$ if there exists an $$M > 0$$ such that $$|f(s)| ≤ Mg(s)$$ for all s $$∈$$ $$S$$. 
+
+Usually the set $$S$$ is taken to be the interval $$[a, ∞)$$ for some sufficiently large $$a ∈ R$$ that is left unstated, or an open interval like
 $$(1, 2]$$ if we care about asymptotic behavior near 1.
 
+Therefore, $$O(1)$$ means some constant (time). Similarly, $$O(2)$$ or $$O(100)$$ also mean constant. 
 
-You can use the list structure and the associated SAS/IML functions to emulate many different data structures, including the following:
+$$O(n)$$ means linear as in $$M*n$$ for some $$M>0$$.
 
-Associative arrays. An associative array (also called a map or a dictionary) is a set of key-value pairs. Elements in an associative array are accessed by specifying the key. In the SAS/IML language, you can use the ListSetName subroutine to assign names to some or all elements. You can then access the elements by name.
+In computer science, the big $$O$$ is used as a time efficiency metric for data structure: how much time it takes to do each of the following:
+1. Access (to get)
+2. Search (to find)
+3. Insert (to add)
+4. Delete (to remove)
+
+In computer science context, constant time (e.g. O(1)) means that the amound of time it takes to do something (something could be one of the 4 tasks above) is independent of the size of the data.  The size of data $$n$$ is absent from the $$O()$$. Constant time is the most efficient but also difficult to achieve. 
+
+As VaR (value at risk) is not the only thing we used for measuring market risk, the big $$O$$ is not the only thing either.  But it is very useful. 
+# Stack
+
+Stack is the backbone for all recursive processes in our computers.  
+# Data structures in SAS
+In SAS, one can use the list structure and the associated SAS/IML functions to emulate many different data structures, including the following:
 
 Structs. A struct is a collection of named elements called members. The members can be inhomogeneous, which means they do not have to be the same type or size. For example, you could create a list that contains named fields for a person’s name, address, telephone number, and salary. You can use the ListSetName subroutine to assign names to list items.
 
@@ -42,4 +56,5 @@ Queues. A queue is a linear array in which objects can be inserted at the end of
 
 Trees. A tree contains nodes and directed edges. A tree starts with a root node. The root node is connected via branches to other nodes, called child nodes. Every node except the root node has exactly one parent node. In SAS/IML, lists can contains sublists. For an example, see the section Construct a Binary Search Tree.
 
+Associative arrays. An associative array (also called a map or a dictionary) is a set of key-value pairs. Elements in an associative array are accessed by specifying the key. In the SAS/IML language, you can use the ListSetName subroutine to assign names to some or all elements. You can then access the elements by name.
 # Recursion
