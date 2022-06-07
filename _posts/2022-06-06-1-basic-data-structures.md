@@ -8,7 +8,7 @@ author: Sarah Chen
 image: images/posts/derek-mack.jpg
 
 ---
-In working in financial services, whether credit risk modeing, or insurnace pricing, I did not once need to use knowledge on data structures such as stack, queue.  Surely, I need to know how SAS, Python, and R processes data, in particular when working with large filres.  But the goal was to get insight, build models, and predict/forecast. Working in SAS, all you need to know are the <span class="coding">DAT</span> steps, procedures such as <span class="coding">PROC MEAN</span>, <span class="coding">PROC UNIVARIATE</span> and so on for basic data analysis, and more specific procedures for deeper dives and modeling.  Working in Python, the story was quite similar. You master pandas, maybe a little bit of matplotlib, seaborn, numpy and scipy, statsmodels, and sklearn, you've covered all the basics. 
+In working in financial services, whether credit risk modeing, or insurnace pricing, I did not once need to use knowledge on data structures such as stack, queue.  Surely, I need to know how SAS, Python, and R processes data, in particular when working with large filres.  But the goal was to get insight, build models, and predict/forecast. Working in SAS, all you need to know are the <span class="coding">DATA</span> steps, procedures such as <span class="coding">PROC MEAN</span>, <span class="coding">PROC UNIVARIATE</span> and so on for basic data analysis, and more specific procedures for deeper dives and modeling.  Working in Python, the story was quite similar. You master pandas, maybe a little bit of matplotlib, seaborn, numpy and scipy, statsmodels, and sklearn, you've covered all the basics. 
 
 However, in the machine learning era, the goals and capacities of analytics have far expanded beyond statistics and modeling.
 
@@ -25,12 +25,12 @@ In analytic number theory class by my late professor Patrick Gallagher,the big O
 ![Professor Patric Gallagher](./images/posts/Gallagher.PNG)
 
 The “big O” notation: 
-If $$S$$ is a set and f and g are functions $$S$$ → $$R$$, we say that $$ f = O(g)$$ if there exists an $$M > 0$$ such that $$|f(s)| ≤ Mg(s)$$ for all s $$∈$$ $$S$$.  Usually the set $$S$$ is taken to be the interval $$[a, ∞)$$ for some sufficiently large $$a ∈ R$$ that is left unstated, or an open interval like
+If $$S$$ is a set and $$f$$ and $$g$$ are functions $$S$$ → $$R$$, we say that $$ f = O(g)$$ if there exists an $$k > 0$$ such that $$|f(s)| ≤ Mg(s)$$ for all s $$∈$$ $$S$$.  Usually the set $$S$$ is taken to be the interval $$[a, ∞)$$ for some sufficiently large $$a ∈ R$$ that is left unstated, or an open interval like
 $$(1, 2]$$ if we care about asymptotic behavior near 1.
 
 Therefore, $$O(1)$$ means some constant (time). Similarly, $$O(2)$$ or $$O(100)$$ also mean constant. 
 
-$$O(n)$$ means linear as in $$M*n$$ for some $$M>0$$.
+$$O(n)$$ means linear as in $$k*n$$ for some $$k>0$$.
 
 In computer science, the big $$O$$ is used as a time efficiency metric for data structure: how much time it takes to do each of the following:
 1. Access (to get)
@@ -43,12 +43,13 @@ In computer science context, constant time (e.g. O(1)) means that the amound of 
 As VaR (value at risk) is not the only thing we used for measuring market risk, the big $$O$$ is not the only thing either.  But it is very useful. 
 
 
-Time complexity | $$O$$ as a function of data size $$n$$ | Explain
----------|----------|---------
-constant | $$O(1)$$ | data size is irrelevant
-log n | $$O(log(n))$$ | data size is relevant, but not less than linearly
-linear |$$O(n)$$ | time is a linear function of data size
+Time complexity | $$O$$ as a function of data size $$n$$ |Example | Explain
+---------|----------|---------|---------
+constant | $$O(1)$$ |indexed data |data size is irrelevant
+log n | $$O(log(n))$$ | binary search |data size is relevant, but unit "cost" decreases as data size increases
+linear |$$O(n)$$ | |time is a linear function of data size
 
+![time complexity](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Comparison_computational_complexity.svg/330px-Comparison_computational_complexity.svg.png)
 # Stack
 
 Stack is the backbone for all recursive processes in our computers.  
