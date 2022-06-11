@@ -5,7 +5,7 @@ category: "Python for SAS"
 title: "Basic data structures"
 description: essentials in data structures including stack, queue, linked list. 
 author: Sarah Chen
-image: images/posts/derek-mack.jpg
+image: images/posts/photos/IMG_0878.JPG
 
 ---
 In working in financial services, whether credit risk modeing, or insurnace pricing, I did not once need to use knowledge on data structures such as stack, queue.  Surely, I need to know how SAS, Python, and R processes data, in particular when working with large filres.  But the goal was to get insight, build models, and predict/forecast. Working in SAS, all you need to know are the <span class="coding">DATA</span> steps, procedures such as <span class="coding">PROC MEAN</span>, <span class="coding">PROC UNIVARIATE</span> and so on for basic data analysis, and more specific procedures for deeper dives and modeling.  Working in Python, the story was quite similar. You master pandas, maybe a little bit of matplotlib, seaborn, numpy and scipy, statsmodels, and sklearn, you've covered all the basics. 
@@ -80,7 +80,7 @@ efficient accessing | insert/delete are not as efficent
 
 Array elements are stored in contiguous (continuous) memory locations. Its efficiency is in scaling its attributes to all its elements. 
 
-## Array in Python
+## Array in python
 Numpy arrays depends on the numpy library.  Python does not have a native support for arrays, but has a more generic data structure called *list*. 
 
 The following code are from Github repository "Data Structure using Python". 
@@ -211,7 +211,8 @@ if __name__ == '__main__':
 ```
 
 ### Get missing number
-<div class="code-head"><span>code</span>a2_arrayRotation.py</div>
+
+<div class="code-head"><span>code</span>a3_findMissing.py</div>
 
 ```py
 
@@ -240,7 +241,7 @@ if __name__ == '__main__':
 
 ### Get missing number
 
-<div class="code-head"><span>code</span>a2_arrayRotation.py</div>
+<div class="code-head"><span>code</span>a4_odd_number_occurance.py</div>
 
 ```py
 # Given an array of positive integers. All numbers occur even number of times except one
@@ -266,7 +267,7 @@ if __name__ == '__main__':
 ```
 ### Check for pair sum
 
-<div class="code-head"><span>code</span>a2_arrayRotation.py</div>
+<div class="code-head"><span>code</span>a5_CheckForPairSum.py</div>
 
 ```py
 # Given an array A[] of n numbers and another number x, determines whether or not there exist two elements
