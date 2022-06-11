@@ -142,7 +142,8 @@ Counterparty credit risk arises when it is in the money for the bank because the
 
 Like market risk, counterpary credit risk also uses simulation to generate loss distributions: simulation => loss distribution.  A very similar concept to VaR is *PFE*, which is the 95th or other higher percentile loss. 
 
-# Washington Mutual (WaMu)
+# Case study
+##  Washington Mutual (WaMu)
 
 Washington Mutual was incorporated on September 25, 1889, after the Great Seattle Fire destroyed 120 acres of the central business district of Seattle.  The newly formed company made its first home mortgage loan on the West Coast on February 10, 1890.
 
@@ -184,7 +185,7 @@ $35.3 billion in 1997 to a record $432.2 billion in 2003. The hard work and dedi
 management team and employees paid off as today Washington Mutual is recognized as one
 of the nation’s leading retailers of financial services. We’ve come a long way, fast.
 
-While our efforts over the past decade focused on building our franchise, our future results
+While our efforts over the past deced on building our franchise, our future results
 and success are centered around maximizing the full power of what we have built. In September,
 we announced a major organizational realignment to center the company around two broad
 customer sets: consumers and commercial clients. This new alignment will serve to create a
@@ -207,3 +208,15 @@ businesses in the United States is an excellent way to generate increasingly sta
 earnings growth over the long term."
 
 Unfortunately, the best of time is also the worst of time for WaMu. 
+
+## Taper tantrum
+
+In 2013, the Fed announced that it was going to taper (reduce) its QE by reducing buying of Treasury bonds (i.e. creating money from thin air) to decrese the amount of "money" it had been pumping into the U.S. economy since the Financial Crisis.  
+
+The market reaction was a surge in U.S. Treasury yields in relative terms (e.g. month over month), known as "taper tantrum".  The cause of the "tantrum" was market participants (big ones of course) worrying that the valuation of the bonds and stocks will drop. 
+
+The Fed actually did not stop QE as they had intended to.  The extreme bond market reaction to just a possibility of less support in the future shows how the bond markets (and stock markets) had become addicted to Fed stimulus.  
+
+What the Fed ended up doing, instead of reducing QE, in the following months was another round of massive bond purchases of another $1.5 trillion by 2015. 
+
+![M2 money supply](../images/posts/m2.png)
