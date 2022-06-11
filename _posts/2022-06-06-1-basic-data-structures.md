@@ -1135,8 +1135,6 @@ if __name__ == '__main__':
 <div class="code-head"><span>code</span> ListViewUsingTree.py</div>
 
 ```py
-# Author: Parameswaran
-
 # sample object
 class Sample:
     def __init__(self, data_description, node_id, parent_id=""):
@@ -1210,7 +1208,6 @@ a.print_tree(a.Root, "|_")
 <div class="code-head"><span>code</span> P01_BreadthFirstTraversal.py</div>
 
 ```py
-# Author: OMKAR PATHAK
 
 class Node(object):
     def __init__(self, data = None):
@@ -1266,7 +1263,6 @@ if __name__ == '__main__':
 <div class="code-head"><span>code</span> P02_CountLeafNodes.py</div>
 
 ```py
-# Author: OMKAR PATHAK
 
 # leaf node is the one which does not have any children
 
@@ -1380,7 +1376,6 @@ inorder(root)
 <div class="code-head"><span>code</span> P04_RootToLeafPaths.py</div>
 
 ```py
-# Author: OMKAR PATHAK
 
 # Use a path array path[] to store current root to leaf path. Traverse from root to all leaves in top-down fashion.
 # While traversing, store data of all nodes in current path in array path[]. When we reach a leaf node, print the path
@@ -1423,7 +1418,6 @@ if __name__ == '__main__':
 <div class="code-head"><span>code</span> P05_InorderPredecessorAndSuccessor.py</div>
 
 ```py
-# Author: OMKAR PATHAK
 
 # Input: root node, key
 #
