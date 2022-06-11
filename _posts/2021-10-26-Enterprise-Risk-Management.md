@@ -48,3 +48,13 @@ ERA are data-hungry, complex and entails sophisticated mathmatics besides busine
 **weak analysis**: may exaggerate certain aspects of risk while underestimating others, which may mislead decision making and result in too aggressive or too cautious approaches. 
 
 Analysis should include assumptions and what-if in cases of assumptions do not work out.
+
+# Stress tests
+One of the key methods of risk management is stress test. Many financial organizations have implemented routine internal and regulatory stress tests. The scenarios used for the stress tests are variations of historical crisis, such as the Great Financial Recession in 2008, inflation scenario similar to 1970's, and so on. 
+
+While variations of historical crisis are useful for stress testing, they only cover a subset of the possibilities.  
+
+Rapid stress tests, unlike variations of historical scenarios, are tied to recent shock events, for example, the Russia-Ukraine war.  It is intended to be executed within days, answering questions such as "what is our exposure at risk if this war causes credit spread to spike to xyz, commodity prices to be doubled,tripled, etc.?"
+
+## Limitations of stress tests
+Stress tests scenarios are usually informed by historical experiences, which have their own sets of underlying fundamentals that are most likely not true for the current or future situations.  In stead of looking at everything through the prism of historical crisis, we should think about the fundamentals and our current vulnerabilities. 

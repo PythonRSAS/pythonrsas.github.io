@@ -10,16 +10,16 @@ image: images/posts/photos/IMG_0878.JPG
 ---
 In working in financial services, whether credit risk modeing, or insurnace pricing, I did not once need to use knowledge on data structures such as stack, queue.  Surely, I need to know how SAS, Python, and R processes data, in particular when working with large filres.  But the goal was to get insight, build models, and predict/forecast. Working in SAS, all you need to know are the <span class="coding">DATA</span> steps, procedures such as <span class="coding">PROC MEAN</span>, <span class="coding">PROC UNIVARIATE</span> and so on for basic data analysis, and more specific procedures for deeper dives and modeling.  Working in Python, the story was quite similar. You master pandas, maybe a little bit of matplotlib, seaborn, numpy and scipy, statsmodels, and sklearn, you've covered all the basics. 
 
-However, in the machine learning era, the goals and capacities of analytics have far expanded beyond statistics and modeling. Modelers may want to or need to implement the models themselves.  In order to implement models, it is necessary to understand computer science fundamentals on data structures. 
+However, in the machine learning era, the goals and capacities of analytics have far expanded beyond statistics and modeling. Modelers may need to implement the models themselves.  In order to implement models, it is necessary to understand computer science fundamentals on data structures. 
 
 Data structures are defined and built according to varied needs of different data types and algorithms:
-Stack is the backbone for all recursive processes in our computers because of its "Last In First Out" rule.  
-Queue, the opposite of a stack, is used for queue-jobs because of its "First In First Out" rule. 
-Linked list
-Doubly linked list
-dictionary and hash tables
-trees and tries (for word-procssing algo)
-heaps and grapsh
+* Stack is the backbone for all recursive processes in our computers because of its "Last In First Out" rule.  
+* Queue, the opposite of a stack, is used for queue-jobs because of its "First In First Out" rule. 
+* Linked list
+* Doubly linked list
+* dictionary and hash tables
+* trees and tries (for word-procssing algo)
+* heaps and grapsh
 
 # The Big O metric
 In order to measure run time efficiency, the big $O$ metric is used. 

@@ -358,3 +358,158 @@ Year Month
 ```
 In this example, level 2018 denotes the outer row slice and 3 denotes the inner row slice.  This subset-sets the DataFrame by returning month 3 for every year.  The column slice follows the second comma.  Again, with no column slice provided, denoted by the colon <span class="coding">:</span> all columns are returned.
 
+
+<div class="code-head"><span>code</span>Slice Year 2018 and Month 3.py</div>
+
+```python
+ tickets.loc[2018, 3, :]
+Out:
+Area       City       Rural       Suburbs
+When        Day Night   Day Night     Day Night
+Year Month
+2018 3      3.0  32.0  33.0  21.0    24.0   6.0
+```
+##### Slicing Rows and Columns
+Consider the example below, Slice Month 3 for all Years.   In this example we wish to return the 3rd month for each year.  Based on what we have learned about row and column slicing up to this point, it is reasonable to conclude the statement:
+
+tickets.loc[(:,3),:]
+
+is the appropirate syntax.  However, this syntax raises an error since it is illeagl to use a colon inside a tuple constructor.   Recall a tuple is an immutable sequence of items enclosed by parenthesis. As a convenience the Python’s built-in <span class="coding">slice(None)</span> function selects all the content for a level. In this case we want month level 3 for all years.  
+
+<div class="code-head"><span>code</span> Slice Month 3 for all Years.py</div>
+
+```python
+>>> tickets.loc[(slice(None), 3), :]
+Area        City       Rural       Suburbs
+When         Day Night   Day Night     Day Night
+Year Month
+2015 3       5.0  54.0   7.0   6.0    14.0  18.0
+2016 3       9.0  17.0  31.0  48.0     2.0  17.0
+2017 3      31.0  12.0  19.0  17.0    14.0   2.0
+2018 3       3.0  32.0  33.0  21.0    24.0   6.0
+```
+The syntax <span class="coding">slice(None)</span> is the slicer for the Year column which includes all values for a given level, in this case, 2015 to 2018 followed by 3 to designate the level for month.  All columns are returned since no column slicer was given.
+Another way to request this same sub-set is:
+
+```python
+tickets.loc[(slice(None), slice(3,3)), :]
+```
+
+Consider the request for all years and months 2 and 3 as the row slicer in the following example, Slice Months 2 and 3 for all Years.
+
+<div class="code-head"><span>code</span> Slice Months 2 and 3 for all Years.py</div>
+
+```python
+>>> tickets.loc[(slice(None), slice(2,3)), :]
+Area        City       Rural       Suburbs
+When         Day Night   Day Night     Day Night
+Year Month
+2015 2      11.0  18.0   3.0  30.0    42.0  15.0
+     3       5.0  54.0   7.0   6.0    14.0  18.0
+2016 2       7.0  23.0   3.0   5.0    19.0   2.0
+     3       9.0  17.0  31.0  48.0     2.0  17.0
+2017 2       5.0  33.0  19.0   2.0     7.0  10.0
+     3      31.0  12.0  19.0  17.0    14.0   2.0
+2018 2      35.0  14.0   9.0  14.0    10.0   1.0
+     3       3.0  32.0  33.0  21.0    24.0   6.0
+```
+Alternatively, the same results are accomplished with the syntax:
+```python
+idx_obj = ((slice(None), slice(2,3)), slice(None))
+tickets.loc[idx_obj]
+```
+
+This syntax helps in further understanding exactly how the slicing operation is performed.  
+
+1. The first <span class="coding">slice(None)</span> requests all of the rows for the outer row label, years 2015 to 2018. 
+2. <span class="coding">slice(2,3) </span> returns months 2 and 3 for inner row label.  
+3. The last <span class="coding">slice(None)</span> requests all columns, that is, both the outer column Area and the inner column When.
+   
+Fairly quickly, however, we begin to have difficulty supplying a collection of tuples  for the slicers used by the <span class="coding">.loc</span> indexer.  Fortunately, Pandas provides the <span class="coding">IndexSlice</span> object to deal with this situation.  
+
+Consider the example below <span class="coding">IndexSlice</span> Object, as an alternative to the example, <span class="coding">IndexSlice</span> Object.
+
+<div class="code-head"><span>code</span> IndexSlice Object.py</div>
+
+```python
+>>> idx = pd.IndexSlice
+>>> tickets.loc[idx[2015:2018, 2:3], :]
+>>>
+Area        City       Rural       Suburbs
+When         Day Night   Day Night     Day Night
+Year Month
+2015 2      11.0  18.0   3.0  30.0    42.0  15.0
+     3       5.0  54.0   7.0   6.0    14.0  18.0
+2016 2       7.0  23.0   3.0   5.0    19.0   2.0
+     3       9.0  17.0  31.0  48.0     2.0  17.0
+2017 2       5.0  33.0  19.0   2.0     7.0  10.0
+     3      31.0  12.0  19.0  17.0    14.0   2.0
+2018 2      35.0  14.0   9.0  14.0    10.0   1.0
+     3       3.0  32.0  33.0  21.0    24.0   6.0
+```
+The <span class="coding">IndexSlice</span> object provides a more natural syntax for slicing operations on MultiIndexed rows and columns.  
+
+In this case, the slice:
+<span class="coding">tickets.loc[idx[2015:2018, 2:3], :]</span>
+return years 2015:2018 inclusive on the outer level of the <span class="coding">MultiIndex</span> for the rows and months 2 and 3 inclusive on the inner level.  The colon (:) designates the start and stop positions for these row labels.  Following the row slicer is a comma (,) to designate the column slicer.  With no explicit column slices defined all columns are returned.  
+
+Consider the following example, Slicing Rows and Columns, Example 1.
+
+<div class="code-head"><span>code</span> Slicing Rows and Columns, Example 1.py</div>
+
+```python
+>>> idx = pd.IndexSlice
+>>> tickets.loc[idx[2018:, 2:3 ], 'City' : 'Rural']
+Area        City       Rural
+When         Day Night   Day Night
+Year Month
+2018 2      35.0  14.0   9.0  14.0
+     3       3.0  32.0  33.0  21.0
+```
+The row slicer returns levels 2018  for Year on the outer level of the <span class="coding">MultiIndex</span> and 2 and 3 from Month on the inner level.  The column slicer returns the levels City and Rural from Area on the outer level of the <span class="coding">MultiIndex</span>.  In this example, the column slicer did not slice along the inner level of the <span class="coding">MultiIndex</span> on When.
+
+In the following example, Slicing Rows and Slicing Columns, Example 2, illustrates details for slicing columns.  
+
+<div class="code-head"><span>code</span> Rolling Count-based Window vs Time-based Window for Regular DatetimeIndex.py</div>
+
+```python
+>>> idx = pd.IndexSlice
+>>> tickets.loc[idx[2018:, 2:3 ], idx['City', 'Day' : 'Night']]
+Area        City
+When         Day Night
+Year Month
+2018 2      35.0  14.0
+     3       3.0  32.0
+```
+The row slicer returns levels 2018 for Year on the outer level of the <span class="coding">MultiIndex</span> and 2 and 3 from Month on the inner level.  The column slicer returns the levels City for Area on the outer level of the <span class="coding">MultiIndex</span> and the levels Day and Night on the inner level from When.
+
+# Examples from work
+
+## Reduce a dataframe to a dataframe with only numbers
+When you become comfortable with multi-indexing, you will feel even more powerful at "manipulating" data.  For example, say you have a set of tables with company quarterly financials by region, department, and other categories. You can lump all the catagorical columns into one multi-index, with only financial values by quarter remaining, where the columns are "Q1", "Q2",...,"Qn". 
+
+Since all the tables are numbers, you can first sort each of the tables by index (sorting them by index is very important otherwise the result would be wrong).  Adding checks will help ensuring this is done. 
+
+```python
+try:
+     print(np.all(df1.index==df2.index))
+except:
+     print("index not matched")
+```
+You can perform interpolations, regressions, etc. directly using each table as an element in the computations. For example,
+
+```python
+3*df1+df2*df3
+```
+
+After you have achieved what you need to do with the numbers, you can then release the multi-index back to the columns using a simple <span class="coding">.reset_index(drop=False)</span> command. 
+
+## Joining on index
+If you don't want to write merge on which keys, you can put the keys in the index.  That way, all you have to do is use <span class="coding">.join()</span> in pandas and let it handle the rest. 
+
+## Use list of tuples (multiindex) to filter a dataframe
+Sometimes you have a list of idenfiers in the form of a list of tuples,say each has two elements.  The list can always be used as multiinex or obtained from multiindex.  And you have a dataframe df.  You want to get all the rows from df where two columns match the tuples. 
+
+```python
+df.merge(pd.DataFrame(tuple_list, columns=['col_1','col_2']))
+```
