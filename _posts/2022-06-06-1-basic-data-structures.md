@@ -22,33 +22,33 @@ Data structures are defined and built according to varied needs of different dat
 * heaps and grapsh
 
 # The Big O metric
-In order to measure run time efficiency, the big $O$ metric is used. 
+In order to measure run time efficiency, the big $$O$$ metric is used. 
 
 In analytic number theory class by my late professor Patrick Gallagher,the big O metric was associated with whether two different representations are aymptotically close. 
-![Professor Patrick Gallagher](./images/posts/Gallagher.png)
+![Professor Patrick Gallagher](../images/posts/gallagher.PNG)
 
-If $S$ is a set and $f$ and $g$ are functions $S$ →$R$, we say that$f = O(g)$ if there exists an$k > 0$ such that$|f(s)| ≤ Mg(s)$ for all s$∈$S$.  
+If $$S$$ is a set and $$f$$ and $$g$$ are functions $$S$$ →$$R$$, we say that$$f = O(g)$$ if there exists an$$k > 0$$ such that$$|f(s)| ≤ Mg(s)$$ for all s$$∈$$S$$.  
 
-Therefore,$O(1)$ means some constant (time). Similarly,$O(2)$ or $O(100)$ also mean constant, as long as the number is fixed. 
+Therefore,$$O(1)$$ means some constant (time). Similarly,$$O(2)$$ or $$O(100)$$ also mean constant, as long as the number is fixed. 
 
-$O(n)$ means linear as in$k*n$ for some $k>0$.
+$$O(n)$$ means linear as in$$k*n$$ for some $$k>0$$.
 
-In computer science, the big $O$ is used as a time efficiency metric for data structure: how much time it takes to do each of the following:
+In computer science, the big $$O$$ is used as a time efficiency metric for data structure: how much time it takes to do each of the following:
 1. Access (to get)
 2. Search (to find)
 3. Insert (to add)
 4. Delete (to remove)
 
-In computer science context, constant time (e.g. O(1)) means that the amound of time it takes to do something (something could be one of the 4 tasks above) is independent of the size of the data.  The size of data$n$ is absent from the$O()$. Constant time is the most efficient but also difficult to achieve. 
+In computer science context, constant time (e.g. O(1)) means that the amound of time it takes to do something (something could be one of the 4 tasks above) is independent of the size of the data.  The size of data$$n$$ is absent from the$$O()$$. Constant time is the most efficient but also difficult to achieve. 
 
-Time complexity or run time | $O$ as a function of data size$n$ |Example | Explain
+Time complexity or run time | $$O$$ as a function of data size$$n$$ |Example | Explain
 ---------|----------|---------|---------
-constant |$O(1)$ |indexed data |data size is irrelevant
-log n |$O(log(n))$ | binary search |data size is relevant, but unit "cost" decreases as data size increases
-linear |$O(n)$ | accessing |time is a linear function of data size
-linear*log |$O(nlog(n))$ | | As we can see, its slope ($log(n)+1$) is a positive function of n
-power |$O(n**2)$ | inserting/deleting| slope ($2n$) is a positive function of n
-exponential |$O(2**n)$ | | the worst in efficiency
+constant |$$O(1)$$ |indexed data |data size is irrelevant
+log n |$$O(log(n))$$ | binary search |data size is relevant, but unit "cost" decreases as data size increases
+linear |$$O(n)$$ | accessing |time is a linear function of data size
+linear*log |$$O(nlog(n))$$ | | As we can see, its slope ($$log(n)+1$$) is a positive function of n
+power |$$O(n**2)$$ | inserting/deleting| slope ($$2n$$) is a positive function of n
+exponential |$$O(2**n)$$ | | the worst in efficiency
 
 In general, those with less flexibility are faster for certain basic tasks. For example, in Python tuple are immutable (cannot add or change) is faster than list (Note that although tuple elements cannot be changed, but a list within a tuple can be changed, for example ([1,2,3],)). 
 
@@ -66,10 +66,10 @@ There are 2 ways to create an array:
 - define the entire array along with its elements altogether
 - define its size only and populate it later (not possible in base Python although we can do it using numpy)
 
-1. Access: random access use *index* as all elements are indexed, run time is$O(1)$; 
-2. Search:$O(n)$, may need to go over each element to find an item from an unsorted array
-3. Insert:$O(n)$, because we need to shift the elements, which are after the index where we want to insert the item, to the *'right'* for one space  
-4. Delete:$O(n)$, because we need to shift the elements, which are after the index where we want to insert the item, to the *"left"* for one space  
+1. Access: random access use *index* as all elements are indexed, run time is$$O(1)$$; 
+2. Search:$$O(n)$$, may need to go over each element to find an item from an unsorted array
+3. Insert:$$O(n)$$, because we need to shift the elements, which are after the index where we want to insert the item, to the *'right'* for one space  
+4. Delete:$$O(n)$$, because we need to shift the elements, which are after the index where we want to insert the item, to the *"left"* for one space  
 
 pros | cons
 ---------|----------
