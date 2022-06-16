@@ -27,11 +27,11 @@ In order to measure run time efficiency, the big $$O$$ metric is used.
 In analytic number theory class by my late professor Patrick Gallagher,the big O metric was associated with whether two different representations are *aymptotically* close. 
 ![Professor Patrick Gallagher](../images/posts/gallagher.PNG)
 
-If $$S$$ is a set and $$f$$ and $$g$$ are functions $$S$$ →$$R$$, we say that$$f = O(g)$$ if there exists an $$k > 0$$ such that $$\|f(s)\| ≤ Mg(s)$$ for all s$$∈$$S$$.  
+If $$S$$ is a set and $$f$$ and $$g$$ are functions $$S$$ →$$R$$, we say that$$f = O(g)$$ if there exists an $$k > 0$$ such that $$\|f(s)\| ≤ Mg(s)$$ for all $s$ $$∈$$S$$.  
 
 Therefore,$$O(1)$$ means some constant (time). Similarly,$$O(2)$$ or $$O(100)$$ also mean constant, as long as the number is fixed. 
 
-$$O(n)$$ means linear as in$$k*n$$ for some $$k>0$$.
+$$O(n)$$ means linear as in $$k*n$$ for some $$k>0$$.
 
 In computer science, the big $$O$$ is used as a time efficiency metric for data structure: how much time it takes to do each of the following essential functions:
 1. Access (to get)
