@@ -27,7 +27,7 @@ In order to measure run time efficiency, the big $$O$$ metric is used.
 In analytic number theory class by my late professor Patrick Gallagher,the big O metric was associated with whether two different representations are *aymptotically* close. 
 ![Professor Patrick Gallagher](../images/posts/gallagher.PNG)
 
-If $$S$$ is a set and $$f$$ and $$g$$ are functions $$S$$ →$$R$$, we say that$$f = O(g)$$ if there exists an $$k > 0$$ such that $$\|f(s)\| ≤ kg(s)$$ for all $$s$$ $$\∈$$S$$.  
+If $$S$$ is a set and $$f$$ and $$g$$ are functions $$S$$ →$$R$$, we say that$$f = O(g)$$ if there exists an $$k > 0$$ such that $$\|f(s)\| ≤ kg(s)$$ for all $$s∈S$$.  
 
 Therefore,$$O(1)$$ means some constant (time). Similarly,$$O(2)$$ or $$O(100)$$ also mean constant, as long as the number is fixed. 
 
@@ -39,16 +39,16 @@ In computer science, the big $$O$$ is used as a time efficiency metric for data 
 3. Insert (to add)
 4. Delete (to remove)
 
-In computer science context, constant time (e.g. O(1)) means that the amound of time it takes to do something (something could be one of the 4 tasks above) is independent of the size of the data.  The size of data$$n$$ is absent from the$$O()$$. Constant time is the most efficient but also difficult to achieve. 
+In computer science context, constant time (e.g. O(1)) means that the amound of time it takes to do something (something could be one of the 4 tasks above) is independent of the size of the data.  The size of data $$n$$ is absent from the $$O$$. Constant time is the most efficient but also difficult to achieve. 
 
 Time complexity or run time | $$O$$ as a function of data size$$n$$ |Example | Explain
 ---------|----------|---------|---------
 constant |$$O(1)$$ |indexed data |data size is irrelevant
 log n |$$O(log(n))$$ | binary search |data size is relevant, but unit "cost" decreases as data size increases
 linear |$$O(n)$$ | accessing |time is a linear function of data size
-linear*log |$$O(nlog(n))$$ | | As we can see, its slope ($$log(n)+1$$) is a positive function of n
-power |$$O(n**2)$$ | inserting/deleting| slope ($$2n$$) is a positive function of n
-exponential |$$O(2**n)$$ | | the worst in efficiency
+linear*log |$$O(nlog(n))$$ | | As we can see, its slope $$log(n)+1$$ is a positive function of n
+power |$$O(n**2)$$ | inserting/deleting| slope $$2n$$ is a positive function of n
+exponential |$$O(2^n)$$ | | the worst in efficiency
 
 In the following code, 
 1. <span class="coding">print_1st_one</span> prints the first item regardless how big the input is.  The run time is a constant.
