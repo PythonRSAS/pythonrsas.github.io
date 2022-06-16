@@ -24,7 +24,7 @@ Data structures are defined and built according to varied needs of different dat
 # The Big O metric
 In order to measure run time efficiency, the big $$O$$ metric is used. 
 
-In analytic number theory class by my late professor Patrick Gallagher,the big O metric was associated with whether two different representations are aymptotically close. 
+In analytic number theory class by my late professor Patrick Gallagher,the big O metric was associated with whether two different representations are *aymptotically* close. 
 ![Professor Patrick Gallagher](../images/posts/gallagher.PNG)
 
 If $$S$$ is a set and $$f$$ and $$g$$ are functions $$S$$ →$$R$$, we say that$$f = O(g)$$ if there exists an $$k > 0$$ such that $$|f(s)| ≤ Mg(s)$$ for all s$$∈$$S$$.  
@@ -33,7 +33,7 @@ Therefore,$$O(1)$$ means some constant (time). Similarly,$$O(2)$$ or $$O(100)$$ 
 
 $$O(n)$$ means linear as in$$k*n$$ for some $$k>0$$.
 
-In computer science, the big $$O$$ is used as a time efficiency metric for data structure: how much time it takes to do each of the following:
+In computer science, the big $$O$$ is used as a time efficiency metric for data structure: how much time it takes to do each of the following essential functions:
 1. Access (to get)
 2. Search (to find)
 3. Insert (to add)
@@ -50,11 +50,67 @@ linear*log |$$O(nlog(n))$$ | | As we can see, its slope ($$log(n)+1$$) is a posi
 power |$$O(n**2)$$ | inserting/deleting| slope ($$2n$$) is a positive function of n
 exponential |$$O(2**n)$$ | | the worst in efficiency
 
+In the following code, 
+1. <span class="coding">print_1st_one</span> prints the first item regardless how big the input is.  The run time is a constant.
+2. <span class="coding">print_all</span> prints all input. So it is a linear function of the input length.  The run time is $2*n$, which is $O(n)$. 
+2. <span class="coding">print_all_ordered_pairs</span> prints all ordered pairs (like a multiplication table) in a double loop. The run time is $O(n^2)$. 
+
+<div class="code-head"><span>code</span>O_time.py</div>
+
+```py
+# O(1)
+def print_1st_one(s):
+    print(s[0])
+
+# O(n)
+def print_all(s):
+    for i in s:
+        print(i)
+    for j in s:
+        print(j)
+
+# O(n^2)
+def print_all_ordered_pairs(s):
+    for i in s:
+        for j in s:
+            print(i,j)
+```
+
 In general, those with less flexibility are faster for certain basic tasks. For example, in Python tuple are immutable (cannot add or change) is faster than list (Note that although tuple elements cannot be changed, but a list within a tuple can be changed, for example ([1,2,3],)). 
 
 Some data structures are very inefficient in terms of time, but they are very useful for what they are made to do. 
 
 ![time complexity](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Comparison_computational_complexity.svg/330px-Comparison_computational_complexity.svg.png)
+
+Space complexity is about **how much memory running the code will take as a function of the input size**.  Space complexity is similar to time complexity.  
+
+In the following code, 
+1. <span class="coding">say_n_time</span> although it says n times, it says the same thing, which takes constant space $O(1)$. 
+2. <span class="coding">get_largest</span>, like <span class="coding">say_n_time</span>, even though the input has length $n$, the memory required is constant $O(1)$. 
+2. <span class="coding">say_n_times_and_remember_all</span> requires memory space is $O(n)$ as the computer has to remember all the words printed in the past. 
+<div class="code-head"><span>code</span>O_space.py</div>
+
+```py
+# O(1)
+def say_n_times(n):
+    for i in range(n):
+        print("I love you")
+
+# O(1)
+def get_largest(nums):
+    largest = float('-inf')
+    for i in nums:
+        if i > largest:
+            largest = i
+    return largest
+
+# O(n)
+def say_n_times_and_remember_all(n):
+    remembered = []
+    for i in range(n):
+        print("I love you ")
+        remembered.append(i)
+```
 
 # Array
 Arrays are lists of similar data. An array of an array is a 2-dimensional array, i.e. matrix. 
