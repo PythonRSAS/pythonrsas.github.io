@@ -27,7 +27,7 @@ In order to measure run time efficiency, the big $$O$$ metric is used.
 In analytic number theory class by my late professor Patrick Gallagher,the big O metric was associated with whether two different representations are *aymptotically* close. 
 ![Professor Patrick Gallagher](../images/posts/gallagher.PNG)
 
-If $$S$$ is a set and $$f$$ and $$g$$ are functions $$S$$ →$$R$$, we say that$$f = O(g)$$ if there exists an $$k > 0$$ such that $$|f(s)| ≤ Mg(s)$$ for all s$$∈$$S$$.  
+If $$S$$ is a set and $$f$$ and $$g$$ are functions $$S$$ →$$R$$, we say that$$f = O(g)$$ if there exists an $$k > 0$$ such that $$\|f(s)\| ≤ Mg(s)$$ for all s$$∈$$S$$.  
 
 Therefore,$$O(1)$$ means some constant (time). Similarly,$$O(2)$$ or $$O(100)$$ also mean constant, as long as the number is fixed. 
 
@@ -82,6 +82,7 @@ Some data structures are very inefficient in terms of time, but they are very us
 
 ![time complexity](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Comparison_computational_complexity.svg/330px-Comparison_computational_complexity.svg.png)
 
+## Space complexity
 Space complexity is about **how much memory running the code will take as a function of the input size**.  Space complexity is similar to time complexity.  
 
 In the following code, 
