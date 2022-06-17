@@ -39,15 +39,15 @@ In computer science, the big $$O$$ is used as a time efficiency metric for data 
 3. Insert (to add)
 4. Delete (to remove)
 
-In computer science context, constant time (e.g. O(1)) means that the amound of time it takes to do something (something could be one of the 4 tasks above) is independent of the size of the data.  The size of data $$n$$ is absent from the $$O$$. Constant time is the most efficient but also difficult to achieve. 
+In computer science context, constant time (e.g. $$O(1)$$) means that the amound of time it takes to do something (something could be one of the 4 tasks above) is independent of the size of the data.  The size of data $$n$$ is absent from the $$O$$. Constant time is the most efficient but also difficult to achieve. 
 
 Time complexity or run time | $$O$$ as a function of data size$$n$$ |Example | Explain
 ---------|----------|---------|---------
 constant |$$O(1)$$ |indexed data |data size is irrelevant
 log n |$$O(log(n))$$ | binary search |data size is relevant, but unit "cost" decreases as data size increases
 linear |$$O(n)$$ | accessing |time is a linear function of data size
-linear*log |$$O(nlog(n))$$ | | As we can see, its slope $$log(n)+1$$ is a positive function of n
-power |$$O(n**2)$$ | inserting/deleting| slope $$2n$$ is a positive function of n
+linear*log |$$O(nlog(n))$$ | | As we can see, its slope $$log(n)+1$$ is a positive function of $$n$$
+power |$$O(n^2)$$ | inserting/deleting| slope $$2n$$ is a positive function of $$n$$
 exponential |$$O(2^n)$$ | | the worst in efficiency
 
 In the following code, 
@@ -83,7 +83,7 @@ Some data structures are very inefficient in terms of time, but they are very us
 ![time complexity](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Comparison_computational_complexity.svg/330px-Comparison_computational_complexity.svg.png)
 
 ## Space complexity
-Space complexity is about **how much memory running the code will take as a function of the input size**.  Space complexity is similar to time complexity.  
+Space complexity is about **how much memory running the code will take as a function of the input size**.  Space complexity is similar to time complexity.  **In place** operations are the least costly in memory space. 
 
 In the following code, 
 1. <span class="coding">say_n_time</span> although it says n times, it says the same thing, which takes constant space $O(1)$. 
@@ -111,6 +111,44 @@ def say_n_times_and_remember_all(n):
     for i in range(n):
         print("I love you ")
         remembered.append(i)
+```
+
+### Example: in-place sort integer list 
+
+* **Problem**:
+We want to sort in place a list of integers such that all even numbers are before all odd numbers. 
+
+The way to do it, as other space $$O(1)$$ problems, is to use partition into 3 parts: left is even, middle is unsorted, and the right side is odd.  
+
+Two index pointers are needed to partition a list in 3.  
+
+We start checking from the left side. 
+
+1. Whenever an even number is encountered, left index moves forward by 1
+2. If the number is odd, we swap the number where the left index is with the number where the right index is.  Since we are sure that the number moving to the right is odd, we can decrement the right index by 1
+> Note that the number where the right index was at can be even or odd, the number that is coming to the left side can be even or odd. Hence we cannot increment the left index. 
+3. Continue until even_idx and odd_idx cross
+
+<div class="code-head"><span>code</span>even_odd_O_1.py</div>
+
+```py
+
+def sort_integers(lt):
+    # even_idx and odd_idx are indices of left and right pointer
+    even_idx, odd_idx = 0, len(lt) - 1 # length - 1 because of Python index starts from 0 and ends at length -1
+    while even_idx < odd_idx:
+        # check even 
+        if lt[even_idx] % 2 == 0:
+            even_idx += 1 # left index move forward by 1
+        else:
+            lt[even_idx], lt[odd_idx] = lt[odd_idx], lt[even_idx] # swap so that these two numbers become sorted
+            odd_idx -= 1 # right index move forward by 1
+            # the reason why we are not incrementing even_idx by 1 is that lt[odd_idx] can be odd
+    return lt
+myList = [2, 3, 5, 6, 1, 2]
+print(sort_integers(myList))
+# [2, 6, 5, 3]
+
 ```
 
 # Array
