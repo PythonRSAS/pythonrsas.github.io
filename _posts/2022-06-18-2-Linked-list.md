@@ -12,7 +12,7 @@ image: images/posts/photos/IMG_0877.JPG
 # Linked List
 
 A linked list is a data structure,  like a chain of objects, each points to the next except the last one.  Linked lists are linear data structures that hold data in individual objects called *nodes*.  Each node holds both data and reference to the next node.
-![what is a linked list](../images/posts/linked_list.JPG)
+![what is a linked list](./images/posts/linked_list.JPG)
 
 * Successive elements a re connected by pointers
 * The last element points to <span class="coding">\__None__</span> (NULL)
@@ -126,27 +126,32 @@ class LinkedList(object):
             return True
         return self.search(node.getNext(), data)
             
-List = LinkedList()
-List.head = Node("Hello")                   # create the head node
+LL = LinkedList()
+LL.head = Node("Hello")
+print("After defining head node")
+LL.printLinkedList()
+node1 = Node(1)
+LL.head.setNext(node1) 
+print("After inserting 1 after head node")
 node2 = Node(2)
-List.head.setNext(node2)           # head node's next --> node2
-node3 = Node(3)
-node2.setNext(node3)                # node2's next --> node3
-List.insertAtStart(4)                   # node4's next --> head-node --> node2 --> node3
-List.insertBetween(node2, 5)     # node2's next --> node5
-List.insertAtEnd(6)
-List.printLinkedList()
+node1.setNext(node2)     
+LL.insertAtStart(4)    
+LL.insertBetween(node1, 5)
+LL.insertAtEnd(6)
+LL.printLinkedList()
 print()
-List.delete(3)
-List.printLinkedList()
+LL.delete(3)
+LL.printLinkedList()
 print()
-print(List.search(List.head, 1))
+print(LL.search(LL.head, 1))
 
 ```
 
 * In general, __array__ is considered a data structure for which size is fixed at the compile time and array memory is allocated either from __Data section__ (e.g. global array) or __Stack section__ (e.g. local array). 
 * Similarly, linked list is considered a data structure for which size is not fixed and memory is allocated from __Heap section__ (e.g. using malloc() etc.) as and when needed. In this sense, array is taken as a static data structure (residing in Data or Stack section) while linked list is taken as a dynamic data structure (residing in Heap section).
 * The array elements are allocated memory in sequence i.e. __contiguous memory__ while nodes of a linked list are non-contiguous in memory. Though it sounds trivial yet this is the most important difference between array and linked list. It should be noted that due to this contiguous versus non-contiguous memory, array and linked list are different.
+
+# Implementing doubly linked list
 
 <div class="code-head"><span>code</span>doublyLlinkedList.py</div>
 
@@ -281,138 +286,19 @@ def reverseLinkedList(myLinkedList):
     myLinkedList.head = previous
 
 
-if __name__ == '__main__':
-    myLinkedList = SinglyLinkedList.LinkedList()
-    for i in range(10, 0, -1):
-        myLinkedList.insertAtStart(i)
+myLinkedList = SinglyLinkedList.LinkedList()
+for i in range(10, 0, -1):
+    myLinkedList.insertAtStart(i)
 
-    print('Original:', end = ' ')
-    myLinkedList.printLinkedList()
-    print()
-    print('Reversed:', end = ' ')
-    reverseLinkedList(myLinkedList)
-    myLinkedList.printLinkedList()
+print('Original:', end = ' ')
+myLinkedList.printLinkedList()
+print()
+print('Reversed:', end = ' ')
+reverseLinkedList(myLinkedList)
+myLinkedList.printLinkedList()
 
-    # OUTPUT:
-    # Original: 1 2 3 4 5 6 7 8 9 10
-    # Reversed: 10 9 8 7 6 5 4 3 2 1
-
-```
-
-<div class="code-head"><span>code</span>a2_reverseLlinkedListLength.py</div>
-
-```py
-
-# Linked List and Node can be accomodated in separate classes for convenience
-
-class Node(object):
-    # Each node has its data and a pointer that points to next node in the Linked List
-    def __init__(self, data, next = None):
-        self.data = data;
-        self.next = next;
-
-    # function to set data
-    def setData(self, data):
-        self.data = data;
-
-    # function to get data of a particular node
-    def getData(self):
-        return self.data
-
-    # function to set next node
-    def setNext(self, next):
-        self.next = next
-
-    # function to get the next node
-    def getNext(self):
-        return self.next
-
-class LinkedList(object):
-    # Defining the head of the linked list
-    def __init__(self):
-        self.head = None
-
-    # printing the data in the linked list
-    def printLinkedList(self):
-        temp = self.head
-        while(temp):
-            print(temp.data, end=' ')
-            temp = temp.next
-
-    # inserting the node at the beginning
-    def insertAtStart(self, data):
-        if self.head == None:
-            newNode = Node(data)
-            self.head = newNode
-        else:
-            newNode = Node(data)
-            newNode.next = self.head
-            self.head = newNode
-
-    # inserting the node in between the linked list (after a specific node)
-    def insertBetween(self, previousNode, data):
-        if (previousNode.next is None):
-            print('Previous node should have next node!')
-        else:
-            newNode = Node(data)
-            newNode.next = previousNode.next
-            previousNode.next = newNode
-
-    # inserting at the end of linked list
-    def insertAtEnd(self, data):
-        newNode = Node(data)
-        temp = self.head
-        while(temp.next != None):         # get last node
-            temp = temp.next
-        temp.next = newNode
-
-    # deleting an item based on data(or key)
-    def delete(self, data):
-        temp = self.head
-        # if data/key is found in head node itself
-        if (temp.next is not None):
-            if(temp.data == data):
-                self.head = temp.next
-                temp = None
-                return
-            else:
-                #  else search all the nodes
-                while(temp.next != None):
-                    if(temp.data == data):
-                        break
-                    prev = temp          #save current node as previous so that we can go on to next node
-                    temp = temp.next
-
-                # node not found
-                if temp == None:
-                    return
-
-                prev.next = temp.next
-                return
-
-    # iterative search
-    def search(self, node, data):
-        if node == None:
-            return False
-        if node.data == data:
-            return True
-        return self.search(node.getNext(), data)
-
-if __name__ == '__main__':
-    List = LinkedList()
-    List.head = Node(1)                # create the head node
-    node2 = Node(2)
-    List.head.setNext(node2)           # head node's next --> node2
-    node3 = Node(3)
-    node2.setNext(node3)               # node2's next --> node3
-    List.insertAtStart(4)              # node4's next --> head-node --> node2 --> node3
-    List.insertBetween(node2, 5)       # node2's next --> node5
-    List.insertAtEnd(6)
-    List.printLinkedList()
-    print()
-    List.delete(3)
-    List.printLinkedList()
-    print()
-    print(List.search(List.head, 1))
+# OUTPUT:
+# Original: 1 2 3 4 5 6 7 8 9 10
+# Reversed: 10 9 8 7 6 5 4 3 2 1
 
 ```
