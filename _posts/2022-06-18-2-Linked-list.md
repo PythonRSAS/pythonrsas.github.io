@@ -2,7 +2,7 @@
 layout: post
 tag : computer data structure, python
 category: "Python for SAS"
-title: "arrays"
+title: "Linked list"
 description: array in Python, actually it is about list
 author: Sarah Chen
 image: images/posts/photos/IMG_0877.JPG
