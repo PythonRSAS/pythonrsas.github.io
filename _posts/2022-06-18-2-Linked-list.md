@@ -22,6 +22,7 @@ A linked list is a data structure,  like a chain of objects, each points to the 
 
 
 ![linked list uses](../images/posts/linked_list_uses.jpg)
+
 * Linked lists are linear data structures that hold data in individual objects called nodes. These nodes hold both the data and a reference to the next node in the list.
 * Each node contains a value, and a reference (also known as a pointer) to the next node. The last node, points to a null node. This means the list is at its end.
 * Linked lists offer some important advantages over other linear data structures. Unlike arrays, they are a dynamic data structure, resizable at run-time. Also, the insertion and deletion operations are efficient and easily implemented.
@@ -29,7 +30,9 @@ A linked list is a data structure,  like a chain of objects, each points to the 
 * Additionally, linked lists use more storage than the array due to their property of referencing the next node in the linked list.
 * Finally, unlike an array whose values are all stored in contiguous memory, a linked list's nodes are at arbitrary, possibly far apart locations in memory.
 
-
+  
+# Linked list implementation
+In this implementation, linked list and Node are defined in separate classes. 
 ## Common Operations:
 * Insert           
 * Insert at end
@@ -38,9 +41,7 @@ A linked list is a data structure,  like a chain of objects, each points to the 
 * Delete                
 * Search                
 * Indexing
-  
-# Linked List and Node can be accomodated in separate classes for convenience
-
+* 
 <div class="code-head"><span>code</span>linkedList.py</div>
 
 ```py
