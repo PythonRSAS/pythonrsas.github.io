@@ -11,20 +11,19 @@ image: images/posts/photos/IMG_0877.JPG
 
 # Linked List
 
-A linked list is a data structure,  like a chain of objects, each points to the next except the last one.  Linked lists are linear data structures that hold data in individual objects called *nodes*.  Each node holds both data and reference to the next node.
+A linked list is a data structure,  like a chain of objects, called *nodes*, each points to the next except the last one, which points to <span class="coding">\__None__</span> (NULL).  
+
 ![what is a linked list](./images/posts/linked_list.JPG)
 
-* Successive elements a re connected by pointers
-* The last element points to <span class="coding">\__None__</span> (NULL)
-* Can grow or shrink in size during execution of a program
-* Can be made just as long as required (until systems memory exhausts)
+* Can change size during execution of a program
+* Can be arbitrarily long, up to memory size
 * Does not waste memory space (but takes some extra memory for pointers)
 
 ![linked list uses](../images/posts/linked_list_uses.jpg)
 # Compare with (abstract) array
 * Unlike abstract data structure arrays, they are resizable at run-time. Also, the insertion and deletion operations are efficient and easily implemented.
 * Unlike arrays, linked lists are *slow* at finding the <span class="coding">__n__th</span> item.To find a node at position  <span class="coding">__n__</span>, we have to start the search at the first (head) node and iterate through via <span class="coding">next</span>. 
-* Linked lists takes more space than the array.  Compare with an array whose values are all stored in contiguous memory, a linked list's nodes are at arbitrary, possibly far apart locations in memory.
+* Linked lists takes more space than the array.  Compare with an array whose values are all stored in contiguous memory, a linked list's nodes are at arbitrary locations in memory.
 
 # Linked list implementation
 In this implementation, linked list and Node are defined in separate classes.  It has the following common operations:
@@ -125,25 +124,61 @@ class LinkedList(object):
         if node.data == data:
             return True
         return self.search(node.getNext(), data)
+    # iterative search return found item instead of True/False
+    def search_list(self, node, data):
+        while node and node.data != data:
+            node = node.next
+        return node
             
-LL = LinkedList()
-LL.head = Node("Hello")
-print("After defining head node")
-LL.printLinkedList()
-node1 = Node(1)
-LL.head.setNext(node1) 
-print("After inserting 1 after head node")
-node2 = Node(2)
-node1.setNext(node2)     
-LL.insertAtStart(4)    
-LL.insertBetween(node1, 5)
-LL.insertAtEnd(6)
-LL.printLinkedList()
-print()
-LL.delete(3)
-LL.printLinkedList()
-print()
-print(LL.search(LL.head, 1))
+In [5]: LL = LinkedList()^M
+   ...: LL.head = Node("Hello")^M
+   ...: print("After defining head node")
+   ...: LL.printLinkedList()
+After defining head node
+Hello
+ 
+In [8]: node1 = Node(1)^M
+   ...: LL.head.setNext(node1) ^M
+   ...: print("After inserting 1 after head node")^M
+   ...: LL.printLinkedList()
+   ...:
+After inserting 1 after head node
+Hello 1
+
+In [10]: node2 = Node(2)^M
+    ...: node1.setNext(node2)     ^M
+    ...: LL.insertAtStart(4)    ^M
+    ...: LL.insertBetween(node1, 5)^M
+    ...: LL.insertAtEnd(6)^M
+    ...: print("After inserting at start, between and end")^M
+    ...: LL.printLinkedList()^M
+    ...:
+After inserting at start, between and end
+4 Hello 1 5 2 6
+
+In [11]: LL.delete(3)^M
+    ...: print("After deleting 3")^M
+    ...: LL.printLinkedList()
+    ...:
+After deleting 3
+4 Hello 1 5 2
+
+In [12]: print(LL.search(LL.head, 1))
+True
+
+In [13]: print("Searching for 'hello'")^M
+    ...: print(LL.search(LL.head, 'hello'))
+    ...:
+Searching for 'hello'
+False
+
+In [14]: print("Searching for 'Hello'")^M
+    ...: found = LL.search_list(LL.head, 'Hello')^M
+    ...: print(found.data)
+    ...:
+    ...:
+Searching for 'Hello'
+Hello
 
 ```
 
@@ -236,9 +271,9 @@ dll.printdll()
 
 ```
 
-## Linked list examples
+# Linked list examples
 
-### Find linkedlist length
+## Find linkedlist length
 
 
 <div class="code-head"><span>code</span>a1_findLlinkedListLength.py</div>
@@ -256,17 +291,16 @@ def checkLength(linkedList):
 
     return count
 
-if __name__ == '__main__':
-    myLinkedList = SinglyLinkedList.LinkedList()
-    for i in range(10):
-        myLinkedList.insertAtStart(i)
-    myLinkedList.printLinkedList()
-    print()
-    print('Length:', checkLength(myLinkedList))
+myLinkedList = SinglyLinkedList.LinkedList()
+for i in range(10):
+    myLinkedList.insertAtStart(i)
+myLinkedList.printLinkedList()
+print()
+print('Length:', checkLength(myLinkedList))
 
-    # OUTPUT:
-    # 9 8 7 6 5 4 3 2 1 0
-    # Length: 10
+# OUTPUT:
+# 9 8 7 6 5 4 3 2 1 0
+# Length: 10
     
 ```
 
