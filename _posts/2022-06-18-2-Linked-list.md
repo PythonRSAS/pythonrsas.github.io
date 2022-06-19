@@ -12,7 +12,7 @@ image: images/posts/photos/IMG_0877.JPG
 # Linked List
 
 A linked list is a data structure,  like a chain of objects, each points to the next except the last one. 
-![what is a linked list](../images/posts/linked_list.jpg)
+![what is a linked list](../images/posts/linked_list.JPG)
 
 * Successive elements a re connected by pointers
 * The last element points to <span class="coding">\__None__</span> (NULL)
