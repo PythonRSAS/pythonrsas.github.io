@@ -11,7 +11,7 @@ image: images/posts/photos/IMG_0877.JPG
 
 # Linked List
 
-A linked list is a data structure,  like a chain of objects, each points to the next except the last one. 
+A linked list is a data structure,  like a chain of objects, each points to the next except the last one.  Linked lists are linear data structures that hold data in individual objects called *nodes*.  Each node holds both data and reference to the next node.
 ![what is a linked list](../images/posts/linked_list.JPG)
 
 * Successive elements a re connected by pointers
@@ -20,28 +20,20 @@ A linked list is a data structure,  like a chain of objects, each points to the 
 * Can be made just as long as required (until systems memory exhausts)
 * Does not waste memory space (but takes some extra memory for pointers)
 
-
 ![linked list uses](../images/posts/linked_list_uses.jpg)
+# Compare with (abstract) array
+* Unlike abstract data structure arrays, they are resizable at run-time. Also, the insertion and deletion operations are efficient and easily implemented.
+* Unlike arrays, linked lists are *slow* at finding the <span class="coding">__n__th</span> item.To find a node at position  <span class="coding">__n__</span>, we have to start the search at the first (head) node and iterate through via <span class="coding">next</span>. 
+* Linked lists takes more space than the array.  Compare with an array whose values are all stored in contiguous memory, a linked list's nodes are at arbitrary, possibly far apart locations in memory.
 
-* Linked lists are linear data structures that hold data in individual objects called nodes. These nodes hold both the data and a reference to the next node in the list.
-* Each node contains a value, and a reference (also known as a pointer) to the next node. The last node, points to a null node. This means the list is at its end.
-* Linked lists offer some important advantages over other linear data structures. Unlike arrays, they are a dynamic data structure, resizable at run-time. Also, the insertion and deletion operations are efficient and easily implemented.
-* However, linked lists do have some drawbacks. Unlike arrays, linked lists aren't fast at finding the __n__th item.To find a node at position __n__, you have to start the search at the first node in the linked list, following the path of references  times. Also, because linked lists are inherently sequential in the forward direction, operations like backwards traversal--visiting every node starting from the end and ending in the front--is especially cumbersome. (__Only sequential search possible__)
-* Additionally, linked lists use more storage than the array due to their property of referencing the next node in the linked list.
-* Finally, unlike an array whose values are all stored in contiguous memory, a linked list's nodes are at arbitrary, possibly far apart locations in memory.
-
-  
 # Linked list implementation
-In this implementation, linked list and Node are defined in separate classes. 
-## Common Operations:
-* Insert           
-* Insert at end
-* Insert at beginning
-* Insert between
-* Delete                
-* Search                
-* Indexing
-* 
+In this implementation, linked list and Node are defined in separate classes.  It has the following common operations:
+* Insert, insert at end, insert at beginning, insert between
+* Delete (iterative find and then delete)               
+* Search (iterative search)  
+* Print list           
+<!-- * Indexing -->
+  
 <div class="code-head"><span>code</span>linkedList.py</div>
 
 ```py
@@ -134,22 +126,21 @@ class LinkedList(object):
             return True
         return self.search(node.getNext(), data)
             
-if __name__ == '__main__':
-    List = LinkedList()
-    List.head = Node(1)                   # create the head node
-    node2 = Node(2)
-    List.head.setNext(node2)           # head node's next --> node2
-    node3 = Node(3)
-    node2.setNext(node3)                # node2's next --> node3
-    List.insertAtStart(4)                   # node4's next --> head-node --> node2 --> node3
-    List.insertBetween(node2, 5)     # node2's next --> node5
-    List.insertAtEnd(6)
-    List.printLinkedList()
-    print()
-    List.delete(3)
-    List.printLinkedList()
-    print()
-    print(List.search(List.head, 1))
+List = LinkedList()
+List.head = Node("Hello")                   # create the head node
+node2 = Node(2)
+List.head.setNext(node2)           # head node's next --> node2
+node3 = Node(3)
+node2.setNext(node3)                # node2's next --> node3
+List.insertAtStart(4)                   # node4's next --> head-node --> node2 --> node3
+List.insertBetween(node2, 5)     # node2's next --> node5
+List.insertAtEnd(6)
+List.printLinkedList()
+print()
+List.delete(3)
+List.printLinkedList()
+print()
+print(List.search(List.head, 1))
 
 ```
 
