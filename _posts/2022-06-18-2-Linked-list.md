@@ -13,14 +13,15 @@ image: images/posts/photos/IMG_0877.JPG
 
 A linked list is a kind of abstract data structure,  like a chain of objects, called *nodes*, each points to the next except the last one, which points to <span class="coding">\__None__</span> (NULL). 
 
-It is made for doing something better than other data structures.  
+Of course, it is made for doing something better than other data structures :)
+
 # Compare with (abstract) array
 * **Advantages**:
-* Unlike abstract data structure arrays, they are resizable at run-time as linked list nodes are stored at arbitrary locations in memory (they don't have to be stored in continuous blocks of memory and therefore can save space, although the pointers take extra spaces)
-* Insertion and deletion operations do not need to change the indices of other elements or their storage location because linked list nodes are stored at arbitrary locations in memory 
+* Unlike abstract data structure arrays, they are resizable at run-time as linked list nodes are stored at *arbitrary locations in memory* (they don't have to be stored in continuous blocks of memory and therefore can save space, although the pointers take extra spaces).
+* Insertion and deletion operations do not need to change the indices of other elements or their storage location because linked list nodes are stored at arbitrary locations in memory. 
   
 * **Disddvantages**:
-* We cannot access elements in constant time as we do in arrays.  To find a node at position  <span class="coding">__n__</span>, we have to start the search at the first (head) node and iterate through via <span class="coding">next</span>, and <span class="coding">next</span>. 
+* We cannot access elements in constant time as we do in arrays.  To find a node at position n, we have to start the search at the first (head) node and iterate through via <span class="coding">next</span>. 
 * Linked lists takes more space than the array. 
 
 ![what is a linked list](./images/posts/linked_list.JPG)
@@ -72,7 +73,7 @@ In this implementation, linked list has the following common operations:
 
 The <span class="coding">count</span> attribute is convenient because we don't need to go through the entire linked list to get the number of elements.  With each insert, the count increments by 1 whereas delete decreases by 1 with <span class="coding">delete</span>. 
 
-However, this attribute potentially has a problem: if <span class="coding">LinkedLis</span> is instantiated without a head and is added a head later such as in <span class="coding">LL.head = Node("Hello")</span>, its count stays 0.  Therefore, we define count as the number of elements without head. 
+However, this attribute potentially has a problem: if <span class="coding">LinkedList</span> is instantiated without a head, and a head is added later such as in <span class="coding">LL.head = Node("Hello")</span>, its count stays 0.  Therefore, we define count as the number of elements without head. 
 
 <div class="code-head"><span>code</span>linkedList.py</div>
 
