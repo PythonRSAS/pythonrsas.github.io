@@ -37,7 +37,7 @@ In the extreme case, as shown below, $$height = n$$.  To correct unbalance,
 - **height of node** is the length of the longest path between the node and leaf.
   
 * **Local rule**  
-$$\text{height of node} = max{\text{height of left child}, \text{height of right child}} + 1$$
+$$\text{height of node} = $$ $$max{$$\text{height of left child}, \text{height of right child}$$} + 1$$
 
 Whenever we have local rules that depend on the children only, we get constant overhead: store node height for free. 
 
@@ -66,36 +66,34 @@ They are useful when we need fast insertion and deletion, and when we do not kno
 
 ![Binary search tree uses](../images/posts/linked_list_uses.jpg)
 
-# Binary search tree implementation
-Python does not have a native support for Binary search tree. So we need to build the node class first and then implement Binary search tree. 
+# Binary search problem
 
-Each node is an *independent object that can contain anything*. 
-        
-<!-- * Indexing -->  
-<div class="code-head"><span>code</span>node.py</div>
+Given a sorted array of integers, we want to find a number, which we call "target".  The code should return the index of target, and return -1 if not found. 
+
+The devide and conquer method is implemented as follows:
+1. We begin with the entire array of numbers, defined by the index for the smallest number and the index of the biggest number.         
+2. We find the mid point.  Although it seems <span class="coding">small_idx + (big_idx - small_idx) // 2</span> and <span class="coding">(big_idx + small_idx) // 2</span> are equivalent, in computation, they have a subtle difference: the latter may cause overflow (even though it may never happen).
+3. 
+<div class="code-head"><span>code</span>binary search.py</div>
 
 ```py
-class Node(object):
-    # Each node has its data and a pointer that points to next node in the Binary search tree
-    def __init__(self, data, next = None):
-        self.data = data;
-        self.next = next;
+def bSearch(A, target):
+    N = len(A)
+    small_idx = 0
+    big_idx = N - 1
+    while small_idx < big_idx:
+        m_idx = small_idx + (big_idx - small_idx) // 2
+        if target > A[m_idx]:
+            small_idx = m_idx + 1
+        elif target < A[m_idx]:
+            big_idx = m_idx - 1
+        else:
+            return m_idx
+    return - 1
 
-    # function to set data
-    def setData(self, data):
-        self.data = data;
-        
-    # function to get data of a particular node
-    def getData(self):
-        return self.datalin
-    
-    # function to set next node
-    def setNext(self, next):
-        self.next = next
-        
-    # function to get the next node
-    def getNext(self):
-        return self.next
+lt = [1, 2, 5, 7, 8, 10, 20]
+print(bSearch(lt, 7))
+
 ```
 
 In this implementation, Binary search tree has the following common operations:
