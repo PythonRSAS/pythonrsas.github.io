@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : abstract data structure, binary search tree, BST
+tag : abstract data structure and algorithm, binary search tree, BST
 category: "Python for SAS"
 title: "binary search trees"
 description: binary search trees abstract data structure, algorithm, and implementation in Python
@@ -38,7 +38,7 @@ In the extreme case, as shown below, $$height = n$$.  To correct unbalance,
   
 **Local rule**  
 
-$$\text{height of node} =$$ $$max{$$\text{height of left child}, \text{height of right child}$$} + 1$$
+$$\text{height of node} = max{ \text{height of left child}, \text{height of right child} } + 1$$
 
 Whenever we have local rules that depend on the children only, we get constant overhead: store node height for free. 
 
@@ -67,7 +67,7 @@ They are useful when we need fast insertion and deletion, and when we do not kno
 
 ![Binary search tree uses](../images/posts/linked_list_uses.jpg)
 
-# Binary search problem
+# Binary search problems
 
 Given a sorted array of integers, we want to find a number, which we call "target".  The code should return the index of target, and return -1 if not found. 
 
@@ -79,7 +79,11 @@ The devide and conquer method is implemented as follows:
    2. Else if the target is smaller than the mid point, then we drop the right half $$->$$ <span class="coding">big_idx</span> moves to <span class="coding">m_idx - 1</span>, $$\text{mid point} - 1$$
    3. else it means the target is equal to the mid point, we return it and get out of the loop
 4. After the search area is updated, we continue the search from step 1. 
-   
+
+Because one mistake that I sometimes make is mixing index with numbers, I code all indices with the suffix <span class="coding">_idx</span>.  Therefore, in any arithmetic operations involving indices, all terms have <span class="coding">_idx</span> in them. 
+
+The condition for the while loop is <span class="coding">while small_idx <= big_idx</span>.  Missing the $$=$$ sign the algorithm will be wrong.  For example, if you search for the boundary values, it would return $$-1$$ erroneously. 
+
 <div class="code-head"><span>code</span>binary search.py</div>
 
 ```py
@@ -87,8 +91,8 @@ def bSearch(A, target):
     N = len(A)
     small_idx = 0
     big_idx = N - 1
-    while small_idx < big_idx:
-        m_idx = small_idx + (big_idx - small_idx) // 2
+    while small_idx <= big_idx:
+        m_idx = small_idx + (big_idx - small_idx) // 2 # not writing it as (big_idx + small_idx) // 2 to prevent overflow
         if target > A[m_idx]:
             small_idx = m_idx + 1
         elif target < A[m_idx]:
