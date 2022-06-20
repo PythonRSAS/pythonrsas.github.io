@@ -36,7 +36,15 @@ In the extreme case, as shown below, $$height = n$$.  To correct unbalance,
 
 - **height of node** is the length of the longest path between the node and leaf.
   
-$$height of node = max{height of left child, height of right child} + 1$$
+* **Local rule**  
+$$\text{height of node} = max{height of left child, height of right child} + 1$$
+
+Whenever we have local rules that depend on the children only, we get constant overhead: store node height for free. 
+
+Our goal is to keep the tree's height small (we want short/bushy trees). 
+
+# Maintein structure of subtree
+Data structure augmentation.
 
 # Keeping tree balanced
 There are many ways to keep trees balanced, AVL. 
