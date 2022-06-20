@@ -1,47 +1,61 @@
 ---
 layout: post
-tag : data structure, algorithm, python
+tag : abstract data structure, binary search tree, BST
 category: "Python for SAS"
-title: "Linked list"
-description: linked list as an abstract data structure, what, why, and how
+title: "binary search trees"
+description: binary search trees abstract data structure, algorithm, and implementation in Python
 author: Sarah Chen
-image: images/posts/photos/IMG_0877.JPG
+image: images/posts/photos/IMG_0876.JPG
 
 ---
 
-# Linked List
+# Binary search tree
 
-A linked list is a kind of abstract data structure,  like a chain of objects, called *nodes*, each points to the next except the last one, which points to <span class="coding">\__None__</span> (NULL). 
+A Binary search tree is a kind of abstract data structure.  It is very intuitive from the mathematical perspective: *divide and conquer*.  For a sorted array/list, if we know that x is bigger than the median, then we don't need to spend time on the left half.  On the right half, we divide and conquer again.
 
 Of course, it is made for doing something better than other data structures :)
 
-# Compare with (abstract) array
+<!-- # Compare with (abstract) array
 * **Advantages**:
-* *Fast insertion/deletion*: Unlike arrays (abstract data structure), linked lists are resizable at run-time as linked list nodes are stored at *arbitrary locations in memory*.  Fast Insertion and deletion operations because do not need to change the indices of other elements or storage location. 
+*Fast search*: Unlike arrays (abstract data structure), Binary search trees are resizable at run-time as Binary search tree nodes are stored at *arbitrary locations in memory*.  Fast Insertion and deletion operations because do not need to change the indices of other elements or storage location. 
   
 * **Disadvantages**:
 * *Slower search*: We cannot access elements in constant time as we do in arrays.  To find a node at position n, we have to start the search at the first (head) node and iterate through via <span class="coding">next</span>. 
-* Linked lists takes more space than the array. 
+* Binary search trees takes more space than the array.  -->
 
-![what is a linked list](../images/posts/linked_list.jpg)
 
-In table Below we compare the abstract data structure of array and linked list:
+* **Properties**
+- Search time is proportional to $$O(h)$$, where $$h$$ is height of tree.
 
-Compare | array | linked list
+- **height of tree** is the length of the longest path between the root and leaf. In a balanced tree, $$height = log(n)$$
+![a balanced binary search tree](../images/posts/binary_search_tree_balanced.PNG)
+
+In the extreme case, as shown below, $$height = n$$.  To correct unbalance, 
+  
+![an unbalanced binary search tree](../images/posts/binary_search_tree_unbalanced.PNG)
+
+- **height of node** is the length of the longest path between the node and leaf.
+
+# Keeping tree balanced
+There are many ways to keep trees balanced, AVL. 
+## AVL 
+In table Below we compare the abstract data structure of array and Binary search tree:
+
+Compare | array | Binary search tree
 ---------|----------|---------
  size | fixed at birth | can change from insertion/deletion
  storage | static in continuous block of memory allocated during compile time | dynamic, nodes are located at run time
  ordering/sorting | fast direct access via index  | sequential, transverse from the head node via link (next)
  search | binary and linear search | linear search
-
-# Linked lists uses
+ 
+# Binary search trees uses
 
 They are useful when we need fast insertion and deletion, and when we do not know in advance the size of data, or do not need random access when searching for items.   
 
-![linked list uses](../images/posts/linked_list_uses.jpg)
+![Binary search tree uses](../images/posts/linked_list_uses.jpg)
 
-# Linked list implementation
-Python does not have a native support for linked list. So we need to build the node class first and then implement linked list. 
+# Binary search tree implementation
+Python does not have a native support for Binary search tree. So we need to build the node class first and then implement Binary search tree. 
 
 Each node is an *independent object that can contain anything*. 
         
@@ -50,7 +64,7 @@ Each node is an *independent object that can contain anything*.
 
 ```py
 class Node(object):
-    # Each node has its data and a pointer that points to next node in the Linked List
+    # Each node has its data and a pointer that points to next node in the Binary search tree
     def __init__(self, data, next = None):
         self.data = data;
         self.next = next;
@@ -72,14 +86,14 @@ class Node(object):
         return self.next
 ```
 
-In this implementation, linked list has the following common operations:
+In this implementation, Binary search tree has the following common operations:
 * Insert, insert at end, insert at beginning, insert between
 * Delete (iterative find and then delete)               
 * Search (iterative search)  
 * Count number of elements
 * Print list   
 
-The <span class="coding">count</span> attribute is convenient because we don't need to go through the entire linked list to get the number of elements.  With each insert, the count increments by 1 whereas delete decreases by 1 with <span class="coding">delete</span>. 
+The <span class="coding">count</span> attribute is convenient because we don't need to go through the entire Binary search tree to get the number of elements.  With each insert, the count increments by 1 whereas delete decreases by 1 with <span class="coding">delete</span>. 
 
 However, this attribute potentially has a problem: if <span class="coding">LinkedList</span> is instantiated without a head, and a head is added later such as in <span class="coding">LL.head = Node("Hello")</span>, its count stays 0.  Therefore, we define count as the number of elements without head. 
 
@@ -88,7 +102,7 @@ However, this attribute potentially has a problem: if <span class="coding">Linke
 ```py
     
 class LinkedList(object):
-    # Defining the head of the linked list
+    # Defining the head of the Binary search tree
     def __init__(self, head = None):
         # if head = None:
         #     self.head = None
@@ -98,7 +112,7 @@ class LinkedList(object):
         #     self.count = 1
         self.head = head
         self.count = 0
-    # printing the data in the linked list
+    # printing the data in the Binary search tree
     def printLinkedList(self):
         temp = self.head
         while(temp):
@@ -112,7 +126,7 @@ class LinkedList(object):
         self.head = newNode # update LinkList head
         self.count += 1 # update count
         
-    # inserting the node in between the linked list (after a specific node)
+    # inserting the node in between the Binary search tree (after a specific node)
     def insertBetween(self, previousNode, data):
         if (previousNode.next is None):
             print('Previous node should have next node!')
@@ -122,7 +136,7 @@ class LinkedList(object):
             previousNode.next = newNode
             self.count += 1 # update count
             
-    # inserting at the end of linked list
+    # inserting at the end of Binary search tree
     def insertAtEnd(self, data):
         newNode = Node(data)
         temp = self.head
@@ -223,16 +237,16 @@ Hello
 ```
 
 * In general, __array__ is considered a data structure for which size is fixed at the compile time and array memory is allocated either from __Data section__ (e.g. global array) or __Stack section__ (e.g. local array). 
-* Similarly, linked list is considered a data structure for which size is not fixed and memory is allocated from __Heap section__ (e.g. using malloc() etc.) as and when needed. In this sense, array is taken as a static data structure (residing in Data or Stack section) while linked list is taken as a dynamic data structure (residing in Heap section).
-* The array elements are allocated memory in sequence i.e. __contiguous memory__ while nodes of a linked list are non-contiguous in memory. Though it sounds trivial yet this is the most important difference between array and linked list. It should be noted that due to this contiguous versus non-contiguous memory, array and linked list are different.
+* Similarly, Binary search tree is considered a data structure for which size is not fixed and memory is allocated from __Heap section__ (e.g. using malloc() etc.) as and when needed. In this sense, array is taken as a static data structure (residing in Data or Stack section) while Binary search tree is taken as a dynamic data structure (residing in Heap section).
+* The array elements are allocated memory in sequence i.e. __contiguous memory__ while nodes of a Binary search tree are non-contiguous in memory. Though it sounds trivial yet this is the most important difference between array and Binary search tree. It should be noted that due to this contiguous versus non-contiguous memory, array and Binary search tree are different.
 
-# Implementing doubly linked list
+# Implementing doubly Binary search tree
 
 <div class="code-head"><span>code</span>doublyLlinkedList.py</div>
 
 ```py
 class Node(object):
-    # Each node has its data and a pointer that points to next node in the Linked List
+    # Each node has its data and a pointer that points to next node in the Binary search tree
     def __init__(self, data, next = None, previous = None):
         self.data = data;
         self.next = next;
@@ -242,7 +256,7 @@ class DoublyLinkedList(object):
     def __init__(self):
         self.head = None
     
-    # for inserting at beginning of linked list
+    # for inserting at beginning of Binary search tree
     def insertAtStart(self, data):
         if self.head == None:
             newNode = Node(data)
@@ -253,7 +267,7 @@ class DoublyLinkedList(object):
             newNode.next = self.head
             self.head = newNode
             
-    # for inserting at end of linked list
+    # for inserting at end of Binary search tree
     def insertAtEnd(self, data):
         newNode = Node(data)
         temp = self.head
@@ -262,7 +276,7 @@ class DoublyLinkedList(object):
         temp.next = newNode
         newNode.previous = temp
         
-    # deleting a node from linked list
+    # deleting a node from Binary search tree
     def delete(self, data):
         temp = self.head
         if(temp.next != None):
@@ -292,7 +306,7 @@ class DoublyLinkedList(object):
         if (temp == None):
             return
         
-    # for printing the contents of linked lists
+    # for printing the contents of Binary search trees
     def printdll(self):
         temp = self.head
         while(temp != None):
@@ -311,7 +325,7 @@ dll.printdll()
 
 ```
 
-# Linked list examples
+# Binary search tree examples
 
 ## Find linkedlist length
 
