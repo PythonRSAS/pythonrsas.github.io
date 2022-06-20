@@ -17,15 +17,23 @@ Of course, it is made for doing something better than other data structures :)
 
 # Compare with (abstract) array
 * **Advantages**:
-* Unlike abstract data structure arrays, they are resizable at run-time as linked list nodes are stored at *arbitrary locations in memory* (they don't have to be stored in continuous blocks of memory and therefore can save space, although the pointers take extra spaces).
-* Insertion and deletion operations do not need to change the indices of other elements or their storage location because linked list nodes are stored at arbitrary locations in memory. 
+* *Fast insertion/deletion*: Unlike arrays (abstract data structure), linked lists are resizable at run-time as linked list nodes are stored at *arbitrary locations in memory*.  Fast Insertion and deletion operations because do not need to change the indices of other elements or storage location. 
   
-* **Disddvantages**:
-* We cannot access elements in constant time as we do in arrays.  To find a node at position n, we have to start the search at the first (head) node and iterate through via <span class="coding">next</span>. 
+* **Disadvantages**:
+* *Slower search*: We cannot access elements in constant time as we do in arrays.  To find a node at position n, we have to start the search at the first (head) node and iterate through via <span class="coding">next</span>. 
 * Linked lists takes more space than the array. 
 
 ![what is a linked list](../images/posts/linked_list.jpg)
 
+In table Below we compare the abstract data structure of array and linked list:
+
+Compare | array | linked list
+---------|----------|---------
+ size | fixed at birth | can change from insertion/deletion
+ storage | static in continuous block of memory allocated during compile time | dynamic, nodes are located at run time
+ ordering/sorting | fast direct access via index  | sequential, transverse from the head node via link (next)
+ search | binary and linear search | linear search
+ 
 # Linked lists uses
 
 They are useful when we need fast insertion and deletion, and when we do not know in advance the size of data, or do not need random access when searching for items.   
