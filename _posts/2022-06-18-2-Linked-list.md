@@ -24,7 +24,7 @@ Of course, it is made for doing something better than other data structures :)
 * We cannot access elements in constant time as we do in arrays.  To find a node at position n, we have to start the search at the first (head) node and iterate through via <span class="coding">next</span>. 
 * Linked lists takes more space than the array. 
 
-![what is a linked list](./images/posts/linked_list.JPG)
+![what is a linked list](../images/posts/linked_list.jpg)
 
 # Linked lists uses
 
