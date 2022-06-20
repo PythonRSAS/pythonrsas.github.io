@@ -38,7 +38,7 @@ In the extreme case, as shown below, $$height = n$$.  To correct unbalance,
   
 **Local rule**  
 
-$$\text{height of node} = $$ $$max{$$\text{height of left child}, \text{height of right child}$$} + 1$$
+$$\text{height of node} =$$ $$max{$$\text{height of left child}, \text{height of right child}$$} + 1$$
 
 Whenever we have local rules that depend on the children only, we get constant overhead: store node height for free. 
 
