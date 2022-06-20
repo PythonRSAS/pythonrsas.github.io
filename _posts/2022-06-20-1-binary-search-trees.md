@@ -27,16 +27,17 @@ Of course, it is made for doing something better than other data structures :)
 * **Properties**
 - Search time is proportional to $$O(h)$$, where $$h$$ is height of tree.
 
-- **height of tree** is the length of the longest path between the root and leaf. In a balanced tree, $$height = log(n)$$
+- **height of tree** is the length of the longest path between the *root* and *leaf*. In a balanced tree, $$height = log(n)$$
 ![a balanced binary search tree](../images/posts/binary_search_tree_balanced.PNG)
 
 In the extreme case, as shown below, $$height = n$$.  To correct unbalance, 
   
 ![an unbalanced binary search tree](../images/posts/binary_search_tree_unbalanced.PNG)
 
-- **height of node** is the length of the longest path between the node and leaf.
+**height of node** is the length of the longest path between the *node* and *leaf*.
   
-* **Local rule**  
+**Local rule**  
+
 $$\text{height of node} = $$ $$max{$$\text{height of left child}, \text{height of right child}$$} + 1$$
 
 Whenever we have local rules that depend on the children only, we get constant overhead: store node height for free. 
@@ -71,9 +72,14 @@ They are useful when we need fast insertion and deletion, and when we do not kno
 Given a sorted array of integers, we want to find a number, which we call "target".  The code should return the index of target, and return -1 if not found. 
 
 The devide and conquer method is implemented as follows:
-1. We begin with the entire array of numbers, defined by the index for the smallest number and the index of the biggest number.         
+1. We begin searching the entire array of numbers, defined by the index for the smallest number and the index of the biggest number.         
 2. We find the mid point.  Although it seems <span class="coding">small_idx + (big_idx - small_idx) // 2</span> and <span class="coding">(big_idx + small_idx) // 2</span> are equivalent, in computation, they have a subtle difference: the latter may cause overflow (even though it may never happen).
-3. 
+3. We compare the target with the mid point:
+   1. if the target is bigger than the mid point, then we can disregard the left half $$->$$ <span class="coding">small_idx</span> moves to <span class="coding">m_idx + 1</span>, $$\text{mid point} + 1$$
+   2. Else if the target is smaller than the mid point, then we drop the right half $$->$$ <span class="coding">big_idx</span> moves to <span class="coding">m_idx - 1</span>, $$\text{mid point} - 1$$
+   3. else it means the target is equal to the mid point, we return it and get out of the loop
+4. After the search area is updated, we continue the search from step 1. 
+   
 <div class="code-head"><span>code</span>binary search.py</div>
 
 ```py
