@@ -11,29 +11,33 @@ image: images/posts/photos/IMG_0877.JPG
 
 # Linked List
 
-A linked list is a data structure,  like a chain of objects, called *nodes*, each points to the next except the last one, which points to <span class="coding">\__None__</span> (NULL).  
+A linked list is a kind of abstract data structure,  like a chain of objects, called *nodes*, each points to the next except the last one, which points to <span class="coding">\__None__</span> (NULL). 
+
+It is made for doing something better than other data structures.  
+# Compare with (abstract) array
+* **Advantages**:
+* Unlike abstract data structure arrays, they are resizable at run-time as linked list nodes are stored at arbitrary locations in memory (they don't have to be stored in continuous blocks of memory and therefore can save space, although the pointers take extra spaces)
+* Insertion and deletion operations do not need to change the indices of other elements or their storage location because linked list nodes are stored at arbitrary locations in memory 
+  
+* **Disddvantages**:
+* We cannot access elements in constant time as we do in arrays.  To find a node at position  <span class="coding">__n__</span>, we have to start the search at the first (head) node and iterate through via <span class="coding">next</span>, and <span class="coding">next</span>. 
+* Linked lists takes more space than the array. 
 
 ![what is a linked list](./images/posts/linked_list.JPG)
 
-* Can change size during execution of a program
-* Can be arbitrarily long, up to memory size
-* Does not waste memory space (but takes some extra memory for pointers)
+# Linked lists uses
+
+They are useful when we need fast insertion and deletion, and when we do not know in advance the size of data, or do not need random access when searching for items.   
 
 ![linked list uses](../images/posts/linked_list_uses.jpg)
-# Compare with (abstract) array
-* Unlike abstract data structure arrays, they are resizable at run-time. Also, the insertion and deletion operations are efficient and easily implemented.
-* Unlike arrays, linked lists are *slow* at finding the <span class="coding">__n__th</span> item.To find a node at position  <span class="coding">__n__</span>, we have to start the search at the first (head) node and iterate through via <span class="coding">next</span>. 
-* Linked lists takes more space than the array.  Compare with an array whose values are all stored in contiguous memory, a linked list's nodes are at arbitrary locations in memory.
 
 # Linked list implementation
-In this implementation, linked list and Node are defined in separate classes.  It has the following common operations:
-* Insert, insert at end, insert at beginning, insert between
-* Delete (iterative find and then delete)               
-* Search (iterative search)  
-* Print list           
-<!-- * Indexing -->
-  
-<div class="code-head"><span>code</span>linkedList.py</div>
+Python does not have a native support for linked list. So we need to build the node class first and then implement linked list. 
+
+Each node is an *independent object that can contain anything*. 
+        
+<!-- * Indexing -->  
+<div class="code-head"><span>code</span>node.py</div>
 
 ```py
 class Node(object):
@@ -41,14 +45,14 @@ class Node(object):
     def __init__(self, data, next = None):
         self.data = data;
         self.next = next;
-        
+
     # function to set data
     def setData(self, data):
         self.data = data;
         
     # function to get data of a particular node
     def getData(self):
-        return self.data
+        return self.datalin
     
     # function to set next node
     def setNext(self, next):
@@ -57,12 +61,34 @@ class Node(object):
     # function to get the next node
     def getNext(self):
         return self.next
+```
+
+In this implementation, linked list has the following common operations:
+* Insert, insert at end, insert at beginning, insert between
+* Delete (iterative find and then delete)               
+* Search (iterative search)  
+* Count number of elements
+* Print list   
+
+The <span class="coding">count</span> attribute is convenient because we don't need to go through the entire linked list to get the number of elements.  With each insert, the count increments by 1 whereas delete decreases by 1 with <span class="coding">delete</span>. 
+
+However, this attribute potentially has a problem: if <span class="coding">LinkedLis</span> is instantiated without a head and is added a head later such as in <span class="coding">LL.head = Node("Hello")</span>, its count stays 0.  Therefore, we define count as the number of elements without head. 
+
+<div class="code-head"><span>code</span>linkedList.py</div>
+
+```py
     
 class LinkedList(object):
     # Defining the head of the linked list
-    def __init__(self):
-        self.head = None
-        
+    def __init__(self, head = None):
+        # if head = None:
+        #     self.head = None
+        #     self.count = 0
+        # else: 
+        #     self.head = head
+        #     self.count = 1
+        self.head = head
+        self.count = 0
     # printing the data in the linked list
     def printLinkedList(self):
         temp = self.head
@@ -74,7 +100,8 @@ class LinkedList(object):
     def insertAtStart(self, data):
         newNode = Node(data)
         newNode.next = self.head
-        self.head = newNode
+        self.head = newNode # update LinkList head
+        self.count += 1 # update count
         
     # inserting the node in between the linked list (after a specific node)
     def insertBetween(self, previousNode, data):
@@ -84,6 +111,7 @@ class LinkedList(object):
             newNode = Node(data)
             newNode.next = previousNode.next
             previousNode.next = newNode
+            self.count += 1 # update count
             
     # inserting at the end of linked list
     def insertAtEnd(self, data):
@@ -92,14 +120,16 @@ class LinkedList(object):
         while(temp.next != None):         # get last node
             temp = temp.next
         temp.next = newNode
+        self.count += 1 # update count
         
-    # deleting an item based on data(or key)
+    # deleting an item based on data
     def delete(self, data):
         temp = self.head
-        # if data/key is found in head node itself
-        if (temp.next is not None):
+        # if data to be deleted is the head
+        if (temp.next is not None): 
             if(temp.data == data):
                 self.head = temp.next
+                self.count -= 1
                 temp = None
                 return
             else:
@@ -114,7 +144,8 @@ class LinkedList(object):
                 if temp == None:
                     return
                 
-                prev.next = temp.next
+                prev.next = temp.next # if found, then drop the node by omiting it from the link
+                self.count -= 1
                 return
             
     # iterative search
@@ -130,34 +161,34 @@ class LinkedList(object):
             node = node.next
         return node
             
-In [5]: LL = LinkedList()^M
-   ...: LL.head = Node("Hello")^M
+In [5]: LL = LinkedList()
+   ...: LL.head = Node("Hello")
    ...: print("After defining head node")
    ...: LL.printLinkedList()
 After defining head node
 Hello
  
-In [8]: node1 = Node(1)^M
-   ...: LL.head.setNext(node1) ^M
-   ...: print("After inserting 1 after head node")^M
+In [8]: node1 = Node(1)
+   ...: LL.head.setNext(node1) 
+   ...: print("After inserting 1 after head node")
    ...: LL.printLinkedList()
    ...:
 After inserting 1 after head node
 Hello 1
 
-In [10]: node2 = Node(2)^M
-    ...: node1.setNext(node2)     ^M
-    ...: LL.insertAtStart(4)    ^M
-    ...: LL.insertBetween(node1, 5)^M
-    ...: LL.insertAtEnd(6)^M
-    ...: print("After inserting at start, between and end")^M
-    ...: LL.printLinkedList()^M
+In [10]: node2 = Node(2)
+    ...: node1.setNext(node2)     
+    ...: LL.insertAtStart(4)    
+    ...: LL.insertBetween(node1, 5)
+    ...: LL.insertAtEnd(6)
+    ...: print("After inserting at start, between and end")
+    ...: LL.printLinkedList()
     ...:
 After inserting at start, between and end
 4 Hello 1 5 2 6
 
-In [11]: LL.delete(3)^M
-    ...: print("After deleting 3")^M
+In [11]: LL.delete(3)
+    ...: print("After deleting 3")
     ...: LL.printLinkedList()
     ...:
 After deleting 3
@@ -166,14 +197,14 @@ After deleting 3
 In [12]: print(LL.search(LL.head, 1))
 True
 
-In [13]: print("Searching for 'hello'")^M
+In [13]: print("Searching for 'hello'")
     ...: print(LL.search(LL.head, 'hello'))
     ...:
 Searching for 'hello'
 False
 
-In [14]: print("Searching for 'Hello'")^M
-    ...: found = LL.search_list(LL.head, 'Hello')^M
+In [14]: print("Searching for 'Hello'")
+    ...: found = LL.search_list(LL.head, 'Hello')
     ...: print(found.data)
     ...:
     ...:
