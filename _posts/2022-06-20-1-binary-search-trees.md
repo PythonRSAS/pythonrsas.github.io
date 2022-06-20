@@ -37,18 +37,20 @@ In the extreme case, as shown below, $$height = n$$.  To correct unbalance,
 - **height of node** is the length of the longest path between the node and leaf.
   
 * **Local rule**  
-$$\text{height of node} = max{height of left child, height of right child} + 1$$
+$$\text{height of node} = max{\text{height of left child}, \text{height of right child}} + 1$$
 
 Whenever we have local rules that depend on the children only, we get constant overhead: store node height for free. 
 
-Our goal is to keep the tree's height small (we want short/bushy trees). 
+Our goal is to keep the tree's height small (we want short/bushy trees), quivalently, the heights of the children equal.  Cascading down, it means to keep heights of left and right children of every node to differ by at most $$+-1$$. 
 
-# Maintein structure of subtree
-Data structure augmentation.
+<!-- # Maintein structure of subtree
+Data structure augmentation. -->
 
 # Keeping tree balanced
-There are many ways to keep trees balanced, AVL. 
-## AVL 
+There are many ways to keep trees balanced, AVL is the original method discovered in the 1960s.  AVL trees use node heights (i.e. heights of left and right children).
+
+An AVL tree (named after inventors Adelson-Velsky and Landis in 1962) is a *self-balancing* binary search tree (BST).  
+
 In table Below we compare the abstract data structure of array and Binary search tree:
 
 Compare | array | Binary search tree
