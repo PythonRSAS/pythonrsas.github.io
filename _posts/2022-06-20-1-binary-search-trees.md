@@ -35,6 +35,8 @@ In the extreme case, as shown below, $$height = n$$.  To correct unbalance,
 ![an unbalanced binary search tree](../images/posts/binary_search_tree_unbalanced.PNG)
 
 - **height of node** is the length of the longest path between the node and leaf.
+  
+$$height of node = max{height of left child, height of right child} + 1$$
 
 # Keeping tree balanced
 There are many ways to keep trees balanced, AVL. 
