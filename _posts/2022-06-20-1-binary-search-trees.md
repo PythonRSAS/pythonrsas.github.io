@@ -73,38 +73,97 @@ Given a sorted array of integers, we want to find a number, which we call "targe
 
 The devide and conquer method is implemented as follows:
 1. We begin searching the entire array of numbers, defined by the index for the smallest number and the index of the biggest number.         
-2. We find the mid point.  Although it seems <span class="coding">small_idx + (big_idx - small_idx) // 2</span> and <span class="coding">(big_idx + small_idx) // 2</span> are equivalent, in computation, they have a subtle difference: the latter may cause overflow (even though it may never happen).
+2. We find the mid point.  Although it seems <span class="coding">l + (r - l) // 2</span> and <span class="coding">(r + l) // 2</span> are equivalent, in computation, they have a subtle difference: the latter may cause overflow (even though it may never happen) in some languages (not in Python because Python integers are unbounded).
 3. We compare the target with the mid point:
-   1. if the target is bigger than the mid point, then we can disregard the left half $$->$$ <span class="coding">small_idx</span> moves to <span class="coding">m_idx + 1</span>, $$\text{mid point} + 1$$
-   2. Else if the target is smaller than the mid point, then we drop the right half $$->$$ <span class="coding">big_idx</span> moves to <span class="coding">m_idx - 1</span>, $$\text{mid point} - 1$$
+   1. if the target is bigger than the mid point, then we can disregard the left half $$->$$ <span class="coding">l</span> moves to <span class="coding">m + 1</span>, $$\text{mid point} + 1$$
+   2. Else if the target is smaller than the mid point, then we drop the right half $$->$$ <span class="coding">r</span> moves to <span class="coding">m - 1</span>, $$\text{mid point} - 1$$
    3. else it means the target is equal to the mid point, we return it and get out of the loop
 4. After the search area is updated, we continue the search from step 1. 
 
-Because one mistake that I sometimes make is mixing index with numbers, I code all indices with the suffix <span class="coding">_idx</span>.  Therefore, in any arithmetic operations involving indices, all terms have <span class="coding">_idx</span> in them. 
+Because one mistake that I sometimes make is mixing index with numbers, I code all indices with a single letter in lower case.  Therefore, in any arithmetic operations involving indices, all terms must be a single lower case letter.
 
-The condition for the while loop is <span class="coding">while small_idx <= big_idx</span>.  Missing the $$=$$ sign the algorithm will be wrong.  For example, if you search for the boundary values, it would return $$-1$$ erroneously. 
+
+What | Expression| Example
+---------|----------|---------
+ index | single lower case letter |  i, l, r, m
+ array or list | single upper case letter  | A
+ function name | words with first letter in lower and rest proper case | bSearch
+
+
+> The condition for the while loop is <span class="coding">while l <= r</span>.  Missing the $$=$$ sign the algorithm will be wrong.  For example, if you search for the boundary values, it would return $$-1$$ erroneously. 
+
+For an one-element array, [1], or [100], the <span class="coding">while</span> loop would not have even run if we did not have the $$=$$ sign because the boundary indices would be the same. 
+
+So, when we check our code, we can test these extreme cases:
+* one-element array
+* target is one of the boundary values
+
+> Note that if the target is found, it will be returned and the function call will stop immediately. 
 
 <div class="code-head"><span>code</span>binary search.py</div>
 
 ```py
 def bSearch(A, target):
     N = len(A)
-    small_idx = 0
-    big_idx = N - 1
-    while small_idx <= big_idx:
-        m_idx = small_idx + (big_idx - small_idx) // 2 # not writing it as (big_idx + small_idx) // 2 to prevent overflow
-        if target > A[m_idx]:
-            small_idx = m_idx + 1
-        elif target < A[m_idx]:
-            big_idx = m_idx - 1
+    l = 0
+    r = N - 1
+    while l <= r:
+        m = l + (r - l) // 2 # not writing it as (r + l) // 2 to prevent overflow
+        if target > A[m]:
+            l = m + 1
+        elif target < A[m]:
+            r = m - 1
         else:
-            return m_idx
+            return m # return and stop the function
     return - 1
 
 lt = [1, 2, 5, 7, 8, 10, 20]
 print(bSearch(lt, 7))
 
 ```
+
+# First and last position in sorted array
+
+Now, instead of finding the index of the target (assuming no duplicates), we want to find the first and the last position of the target.  
+
+<div class="code-head"><span>code</span>binary search variation.py</div>
+
+```py
+def searchRange(A, target):
+    small = bSearch(A, target, True)
+    big = bSearch(A, target, False)
+    return [small, big]
+    
+def bSearch(A, target, smallBias):
+    ```
+    smallbias: True means we are searching for the first & False means searching for the last
+    ```
+    N = len(A)
+    l = 0
+    r = N - 1
+    idx = -1
+    while l <= r:
+        m = l + (r - l )//2
+        if target > A[m]:
+            l = m + 1
+        elif target < A[m]:
+            r = m - 1
+        else:
+            idx = m
+            # return idx for regular binary bSearch
+            if smallBias:
+                r = m - 1
+            else:
+                l = m + 1
+
+    return idx
+
+lt = [1]
+lt2 = [1,1,1, 2,2, 5, 7, 8, 10, 20, 30, 100]
+print(searchRange(lt, 1))
+print(searchRange(lt2, 2))
+```    
+
 
 In this implementation, Binary search tree has the following common operations:
 * Insert, insert at end, insert at beginning, insert between
