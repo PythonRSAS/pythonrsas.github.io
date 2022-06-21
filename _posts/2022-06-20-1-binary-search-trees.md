@@ -69,6 +69,8 @@ They are useful when we need fast insertion and deletion, and when we do not kno
 
 # Binary search problems
 
+## Problem 1: the basic search
+
 Given a sorted array of integers, we want to find a number, which we call "target".  The code should return the index of target, and return -1 if not found. 
 
 The devide and conquer method is implemented as follows:
@@ -79,16 +81,6 @@ The devide and conquer method is implemented as follows:
    2. Else if the target is smaller than the mid point, then we drop the right half $$->$$ <span class="coding">r</span> moves to <span class="coding">m - 1</span>, $$\text{mid point} - 1$$
    3. else it means the target is equal to the mid point, we return it and get out of the loop
 4. After the search area is updated, we continue the search from step 1. 
-
-Because one mistake that I sometimes make is mixing index with numbers, I code all indices with a single letter in lower case.  Therefore, in any arithmetic operations involving indices, all terms must be a single lower case letter.
-
-
-What | Expression| Example
----------|----------|---------
- index | single lower case letter |  i, l, r, m
- array or list | single upper case letter  | A
- function name | words with first letter in lower and rest proper case | bSearch
-
 
 > The condition for the while loop is <span class="coding">while l <= r</span>.  Missing the $$=$$ sign the algorithm will be wrong.  For example, if you search for the boundary values, it would return $$-1$$ erroneously. 
 
@@ -122,7 +114,7 @@ print(bSearch(lt, 7))
 
 ```
 
-# First and last position in sorted array
+# Problem 2: first and last position in sorted array
 
 Now, instead of finding the index of the target (assuming no duplicates), we want to find the first and the last position of the target.  
 
