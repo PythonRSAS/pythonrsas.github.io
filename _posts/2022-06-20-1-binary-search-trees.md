@@ -161,10 +161,51 @@ print(searchRange(lt2, 2))
 The [bisect library](https://docs.python.org/3/library/bisect.html) has some functions that perform variations of binary search. 
 > The source code may be most useful as a working example of the algorithm (the boundary conditions are already right!).
 
+The <span class="coding">bisect_left</span> function returns the leftist index of the value we search, if it exist in the input array. If value we search does not exist in the array, then the function gives the index position the insertion point where it would be:
 ![bisect_left, bisect, bisect_right](../images/posts/bisect.PNG)
+
+The results show that:
+1. when x is not in the input array, bisect_left, bisect, and bisect_right all produce the same result: the insertion point
+2. when x is in the input array, biset_left gives the index of the leftmost one, while bisect and bisect_right give the index of the number adjacent to the rightmost x. 
+
 <div class="code-head"><span>code</span>bisect.py</div>
 
 ```py
 from bisect import bisect, bisect_left, bisect_right
-print(bisect_left(list1, 5))
-print(bisect(list1, 5))
+In [61]: list1 = [1, 4, 4, 5, 6]
+    ...: x = 3
+    ...: print(bSearch(list1, x))
+    ...: print(bisect_left(list1, x))
+    ...: print(bisect(list1, x))
+    ...: print(bisect_right(list1, x))
+    ...:
+-1
+1
+1
+1
+
+In [62]: list1 = [1, 4, 4, 5, 6]
+    ...: x = 4
+    ...: print(bSearch(list1, x))
+    ...: print(bisect_left(list1, x))
+    ...: print(bisect(list1, x))
+    ...: print(bisect_right(list1, x))
+    ...:
+2
+1
+3
+3
+
+In [63]: list1 = [1, 4, 4, 5, 6, 6, 6]
+    ...: x = 6
+    ...: print(bSearch(list1, x))
+    ...: print(bisect_left(list1, x))
+    ...: print(bisect(list1, x))
+    ...: print(bisect_right(list1, x))
+    ...:
+5
+4
+7
+7
+
+```
