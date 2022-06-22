@@ -9,22 +9,21 @@ image: images/posts/photos/IMG_0874.JPG
 
 ---
 
-# Binary search problems
+# Binary search the basics
 
-## Problem 1: the basic search
-
-Given a sorted array of integers, we want to find a number, which we call "target".  The code should return the index of target, and return -1 if not found. 
+Given a sorted array of integers $$A$$, we want to find a number, which we call "target", or $$x$$  The code should return the index of target, and return $$-1$$ if not found. 
 
 The devide and conquer method is implemented as follows:
 1. We begin searching the entire array of numbers, defined by the index for the smallest number and the index of the biggest number.         
-2. We find the mid point.  Although it seems <span class="coding">l + (r - l) // 2</span> and <span class="coding">(r + l) // 2</span> are equivalent, in computation, they have a subtle difference: the latter may cause overflow (even though it may never happen) in some languages (not in Python because Python integers are unbounded).
-3. We compare the target with the mid point:
-   1. if the target is bigger than the mid point, then we can disregard the left half $$->$$ <span class="coding">l</span> moves to <span class="coding">m + 1</span>, $$\text{mid point} + 1$$
-   2. Else if the target is smaller than the mid point, then we drop the right half $$->$$ <span class="coding">r</span> moves to <span class="coding">m - 1</span>, $$\text{mid point} - 1$$
-   3. else it means the target is equal to the mid point, we return it and get out of the loop
-4. After the search area is updated, we continue the search from step 1. 
+2. Compute the mid point index. 
+>  <span class="coding">l + (r - l) // 2</span> and <span class="coding">(r + l) // 2</span> are equivalent, in computation, they have a subtle difference: the latter may cause overflow (even though it may never happen) in some languages (not in Python because Python integers are unbounded).
+3. We compare the target with the $$A[m]$$:
+   1. if the target $$>A[m]$$, then we can disregard the left half $$->$$ <span class="coding">l</span> moves to <span class="coding">m + 1</span>, $$\text{mid point index} + 1$$
+   2. else if the target $$<A[m]$$, then we drop the right half $$->$$ <span class="coding">r</span> moves to <span class="coding">m - 1</span>, $$\text{mid point index} - 1$$
+   3. else it means the target is equal to $$A[m]$$, we return it and get out of the loop
+4. Continue the search from step 1 until loop is exhausted 
 
-> The condition for the while loop is <span class="coding">while l <= r</span>.  Missing the $$=$$ sign the algorithm will be wrong.  For example, if you search for the boundary values, it would return $$-1$$ erroneously. 
+> The condition for the <span class="coding">while</span> loop is <span class="coding">while l <= r</span>.  Missing the $$=$$ sign the algorithm will be wrong in this particular set up.  For example, if you search for the boundary values, it would return $$-1$$ erroneously. 
 
 For an one-element array, [1], or [100], the <span class="coding">while</span> loop would not have even run if we did not have the $$=$$ sign because the boundary indices would be the same. 
 
@@ -157,8 +156,8 @@ The following snippets are modified from the bisect page.
 
 Action | Math expression | Function
 ---------|----------|---------
- Locate the leftmost value exactly equal to x  | $$min{i| A[i] = x}$$| bisect_left
- Find rightmost value less than x | $$max{y|y<x and y\in A}$$  | C2
+ Locate the leftmost value exactly equal to x  | $$min{i\| A[i] = x}$$| bisect_left
+ Find rightmost value less than x | $$max{y\|y<x and y\in A}$$  | C2
 
 <div class="code-head"><span>code</span>bisect_derived_functions.py</div>
 
