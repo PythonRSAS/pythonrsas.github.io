@@ -156,8 +156,8 @@ The following snippets are modified from the bisect page.
 
 Action | Math expression | Function
 ---------|----------|---------
- Locate the leftmost value exactly equal to x  | $$min\{i\| A[i] = x\}$$| bisect_left
- Find rightmost value less than x | $$max\{y\|y<x and y\in A\}$$  | C2
+ **Locate the leftmost value exactly equal to x**  | $$min\{i\| A[i] = x\}$$| bisect_left(A,x)
+ **Find rightmost value less than x** | $$max\{y\|y<x and y\in A\}$$  | A[bisect_left(A,x) - 1]
 
 <div class="code-head"><span>code</span>bisect_derived_functions.py</div>
 
