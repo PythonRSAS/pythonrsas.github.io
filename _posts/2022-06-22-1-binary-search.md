@@ -99,15 +99,13 @@ print(searchRange(lt2, 2))
 
 # The bisect library
 
-The [bisect library](https://docs.python.org/3/library/bisect.html) has some functions that perform variations of binary search. 
+The [bisect library](https://docs.python.org/3/library/bisect.html) has some functions that perform variations of binary search.  For example, the <span class="coding">bisect_left</span> function returns the leftist index of the value we search, if it exist in the input array. If value we search does not exist in the array, then it gives the index position the insertion point.
 > The source code may be most useful as a working example of the algorithm (the boundary conditions are already right!).
 
-The <span class="coding">bisect_left</span> function returns the leftist index of the value we search, if it exist in the input array. If value we search does not exist in the array, then the function gives the index position the insertion point where it would be:
 ![bisect_left, bisect, bisect_right](../images/posts/bisect.PNG)
 
-The results show that:
-1. when x is not in the input array, bisect_left, bisect, and bisect_right all produce the same result: the insertion point
-2. when x is in the input array, biset_left gives the index of the leftmost one, while bisect and bisect_right give the index of the number adjacent to the rightmost x. 
+1. **when x is *missing* from the input array**: <span class="coding">bisect_left</span>, <span class="coding">bisect</span>, and <span class="coding">bisect_right</span> all produce the same result: **the insertion point**
+2. **when x is in the input array**:  <span class="coding">bisect_left</span> gives the index of the leftmost one, while <span class="coding">bisect</span> and <span class="coding">bisect_right</span> returns the insertion point immediately after the rightmost x, i.e., the leftmost insertion point after the target, 
 
 <div class="code-head"><span>code</span>bisect.py</div>
 
@@ -156,10 +154,10 @@ For "Find leftmost value less than or equal to x", we use <span class="coding">b
 
 Action | Math expression | Function
 ---------|----------|---------
- **Locate the leftmost value exactly equal to x**  | $$min\{i\| A[i] = x\}$$| <span class="coding">bisect_left(A,x)</span>
- **Find rightmost value less than x** | $$max\{y\|y<x \cap y\in A\}$$  | <span class="coding">A[bisect_left(A,x) - 1]</span>                                   
- **Find rightmost value less than or equal to x** | $$max\{y\|y<=x \cap y\in A\}$$  | <span class="coding">A[bisect_right(A,x) - 1]</span>
- **Find leftmost value less than or equal to x** | $$min\{y\|y<=x \cap y\in A\}$$  | <span class="coding">A[bisect_left(A,x) - 1] </span>
+ **locate leftmost value exactly equal to x**  | $$min\{i\| A[i] = x\}$$| <span class="coding">bisect_left(A,x)</span>
+ **rightmost value less than x** | $$max\{y\|y<x \cap y\in A\}$$  | <span class="coding">A[bisect_left(A,x) - 1]</span>                                   
+ **rightmost value less than or equal to x** | $$max\{y\|y<=x \cap y\in A\}$$  | <span class="coding">A[bisect_right(A,x) - 1]</span>
+ **leftmost value less than or equal to x** | $$min\{y\|y<=x \cap y\in A\}$$  | <span class="coding">A[bisect_left(A,x) - 1] </span>
 
 The following snippets are modified from the bisect page.
 
@@ -195,5 +193,42 @@ def find_ge(A, x):
         return A[i]
     raise ValueError
 
-
 ```
+
+The [example](https://docs.python.org/3/library/bisect.html) on numeric table lookups is interesting and clever.  Since the <span class="coding">bisect()</span> function gives the leftmost insertion point after the target, *all numbers from 60 (inclusive) up to 70 (exclusive) will be given the index of 60, and plus 1*. 
+
+This code would not have worked had we used <span class="coding">bisect_left()</span>
+
+We have $$n$$ breakPoints, which corresponds to a 5-part partition on the range [0, 100].  The 5-part partition corresponds to the 5 grades, in sorted order. 
+<div class="code-head"><span>code</span>ratings.py</div>
+
+```py
+from bisect import bisect, bisect_left, bisect_right
+def grade_location(score, breakpoints, grades='FDCBA'):
+    i = bisect(breakpoints, score)
+    return i
+def grade(score, breakpoints, grades='FDCBA'):
+    i = bisect(breakpoints, score)
+    return grades[i]
+
+A = [33, 59, 60, 61,  70, 77, 79, 89, 90, 100]
+breakPoints = [60, 70, 80, 90]
+grades='FDCBA'
+print([grade_location(score,breakPoints, grades) for score in A])
+print([grade(score,breakPoints, grades) for score in A])
+# [0, 0, 1, 1, 2, 2, 2, 3, 4, 4]
+# ['F', 'F', 'D', 'D', 'C', 'C', 'C', 'B', 'A', 'A']
+```
+
+|  in range  |   score |   index | grade   |
+|---:|--------:|--------:|:--------|
+|  below 60 |      33 |       0 | F       |
+|  [0,60) |      59 |       0 | F       |
+|  [60,70) |      60 |       1 | D       |
+|  [60,70) |      61 |       1 | D       |
+|  [70,80) |      70 |       2 | C       |
+|  [70,80)  |      77 |       2 | C       |
+|  [70,80) |      79 |       2 | C       |
+|  [80,90)  |      89 |       3 | B       |
+|  90 and above |      90 |       4 | A       |
+|  90 and above |     100 |       4 | A       |
