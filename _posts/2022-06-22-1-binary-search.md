@@ -151,13 +151,17 @@ In [63]: list1 = [1, 4, 4, 5, 6, 6, 6]
 
 ```
 
-The following snippets are modified from the bisect page.
-
+I have summarized some variations of binary search in the table below. 
+For "Find leftmost value less than or equal to x", we use <span class="coding">bisect_left</span> since bisect_left gives the leftmost index when found and the insertion index if not found, 
 
 Action | Math expression | Function
 ---------|----------|---------
  **Locate the leftmost value exactly equal to x**  | $$min\{i\| A[i] = x\}$$| bisect_left(A,x)
- **Find rightmost value less than x** | $$max\{y\|y<x and y\in A\}$$  | A[bisect_left(A,x) - 1]
+ **Find rightmost value less than x** | $$max\{y\|y<x & y\in A\}$$  | A[bisect_left(A,x) - 1]
+ **Find rightmost value less than or equal to x** | $$max\{y\|y<=x & y\in A\}$$  | A[bisect_right(A,x) - 1]
+ **Find leftmost value less than or equal to x** | $$min\{y\|y<=x & y\in A\}$$  | A[bisect_left(A,x) - 1]
+
+The following snippets are modified from the bisect page.
 
 <div class="code-head"><span>code</span>bisect_derived_functions.py</div>
 
@@ -190,3 +194,4 @@ def find_ge(A, x):
     if i != len(A):
         return A[i]
     raise ValueError
+```
