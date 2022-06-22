@@ -195,7 +195,7 @@ def find_ge(A, x):
 
 ```
 
-The [example](https://docs.python.org/3/library/bisect.html) on numeric table lookups is interesting and clever.  Since the <span class="coding">bisect()</span> function gives the leftmost insertion point after the target, *all numbers from 60 (inclusive) up to 70 (exclusive) will be given the index of 60, and plus 1*. 
+The [example](https://docs.python.org/3/library/bisect.html) on numeric table lookups is interesting and clever.  Since the <span class="coding">bisect()</span> function gives the leftmost insertion point after the target, *all numbers **from** break point 60 (**inclusive**) up to next break point 70 (**exclusive**) will be given the insertion point after break point*.  
 
 This code would not have worked had we used <span class="coding">bisect_left()</span>
 
