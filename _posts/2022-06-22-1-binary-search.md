@@ -5,7 +5,7 @@ category: "Python for SAS"
 title: "binary search"
 description: binary search algorithm implementation in Python and the bisect library
 author: Sarah Chen
-image: images/posts/photos/IMG_0876.JPG
+image: images/posts/photos/IMG_0874.JPG
 
 ---
 
@@ -151,3 +151,43 @@ In [63]: list1 = [1, 4, 4, 5, 6, 6, 6]
 7
 
 ```
+
+The following snippets are modified from the bisect page.
+
+
+Action | Math expression | Function
+---------|----------|---------
+ Locate the leftmost value exactly equal to x  | $$min{i| A[i] = x}$$| bisect_left
+ Find rightmost value less than x | $$max{y|y<x and y\in A}$$  | C2
+
+<div class="code-head"><span>code</span>bisect_derived_functions.py</div>
+
+```py
+
+def find_lt(A, x):
+    'Find rightmost value less than x'
+    i = bisect_left(A, x)
+    if i:
+        return A[i-1]
+    raise ValueError
+
+def find_le(A, x):
+    'Find rightmost value less than or equal to x'
+    i = bisect_right(A, x)
+    if i:
+        return A[i-1]
+    raise ValueError
+
+def find_gt(A, x):
+    'Find leftmost value greater than x'
+    i = bisect_right(A, x)
+    if i != len(A):
+        return A[i]
+    raise ValueError
+
+def find_ge(A, x):
+    'Find leftmost item greater than or equal to x'
+    i = bisect_left(A, x)
+    if i != len(A):
+        return A[i]
+    raise ValueError
