@@ -156,10 +156,10 @@ For "Find leftmost value less than or equal to x", we use <span class="coding">b
 
 Action | Math expression | Function
 ---------|----------|---------
- **Locate the leftmost value exactly equal to x**  | $$min\{i\| A[i] = x\}$$| bisect_left(A,x)
- **Find rightmost value less than x** | $$max\{y\|y<x & y\in A\}$$  | A[bisect_left(A,x) - 1]
- **Find rightmost value less than or equal to x** | $$max\{y\|y<=x & y\in A\}$$  | A[bisect_right(A,x) - 1]
- **Find leftmost value less than or equal to x** | $$min\{y\|y<=x & y\in A\}$$  | A[bisect_left(A,x) - 1]
+ **Locate the leftmost value exactly equal to x**  | $$min\{i\| A[i] = x\}$$| <span class="coding">bisect_left(A,x)</span>
+ **Find rightmost value less than x** | $$max\{y\|y<x & y\in A\}$$  | <span class="coding">A[bisect_left(A,x) - 1]</span>                                   
+ **Find rightmost value less than or equal to x** | $$max\{y\|y<=x & y\in A\}$$  | <span class="coding">A[bisect_right(A,x) - 1]</span>
+ **Find leftmost value less than or equal to x** | $$min\{y\|y<=x & y\in A\}$$  | <span class="coding">A[bisect_left(A,x) - 1] </span>
 
 The following snippets are modified from the bisect page.
 
@@ -194,4 +194,11 @@ def find_ge(A, x):
     if i != len(A):
         return A[i]
     raise ValueError
+
+def grade(score, breakpoints=[60, 70, 80, 90], grades='FDCBA'):
+    i = bisect(breakpoints, score)
+    return grades[i]
+[grade(score) for score in [33, 99, 77, 70, 89, 90, 100]]
+
+# ['F', 'A', 'C', 'C', 'B', 'A', 'A']
 ```
