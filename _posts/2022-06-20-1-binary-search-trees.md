@@ -24,10 +24,13 @@ Of course, it is made for doing something better than other data structures :)
 * Binary search trees takes more space than the array.  -->
 
 
-* **Properties**
-- Search time is proportional to $$O(h)$$, where $$h$$ is height of tree.
+* **Search time**:  Search time is proportional to $$O(h)$$, where $$h$$ is height of tree.
 
-- **height of tree** is the length of the longest path between the *root* and *leaf*. In a balanced tree, $$height = log(n)$$
+**Height of tree** is the length of the longest path between the *root* and *leaf*.  Or, the number of nodes from root to leaf, not including the leaf itself.  Or the number of edges connecting from root to leaf. 
+
+In a balanced tree, $$height = log(n)$$
+
+
 ![a balanced binary search tree](../images/posts/binary_search_tree_balanced.PNG)
 
 In the extreme case, as shown below, $$height = n$$.  To correct unbalance, 
@@ -43,9 +46,6 @@ $$\text{height of node} = max{ \text{height of left child}, \text{height of righ
 Whenever we have local rules that depend on the children only, we get constant overhead: store node height for free. 
 
 Our goal is to keep the tree's height small (we want short/bushy trees), quivalently, the heights of the children equal.  Cascading down, it means to keep heights of left and right children of every node to differ by at most $$+-1$$. 
-
-<!-- # Maintein structure of subtree
-Data structure augmentation. -->
 
 # Keeping tree balanced
 There are many ways to keep trees balanced, AVL is the original method discovered in the 1960s.  AVL trees use node heights (i.e. heights of left and right children).
@@ -65,4 +65,13 @@ Compare | array | Binary search tree
 
 They are useful when we need fast insertion and deletion, and when we do not know in advance the size of data, or do not need random access when searching for items.   
 
-![Binary search tree uses](../images/posts/linked_list_uses.jpg)
+![Binary search tree uses](../images/posts/linked_list_uses.JPG)
+
+# Tree traversing/walking
+
+* **In-order traversal**: 
+Inorder DFS: Left -> node -> right
+![In order depth first search](../images/posts/Inorder-DFS.PNG)
+
+* **pre-order traversal**:
+* **post-order traversal**:
