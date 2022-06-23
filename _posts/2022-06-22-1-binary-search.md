@@ -268,3 +268,67 @@ print(searchRange(lt, 1))
 print(searchRange(lt2, 2))
 ```    
 ## Check if perfect square
+
+<div class="code-head"><span>code</span>checkSquares.py</div>
+
+```py
+def checkSquare(num):
+    if num == 1:
+        return True
+    else:
+        for i in range(2, num//2, 1):
+            if i**2 == num:
+                return True
+    return False
+    
+def checkSquare2(num):
+    if num == 1:
+        return True
+    l = 0
+    r = num // 2
+    while l <= r:
+        m = l + (r - l)//2
+        if m*m > num:
+            r = m -1
+        elif m*m < num:
+            l = m + 1
+        else:
+            return True
+    return False
+# print(checkSquare2(3))
+
+from datetime import datetime
+import pandas as pd
+def compareTime(A):
+    bs, bs_time, linear, linear_time = [], [], [], []
+    for i in A:
+        t0 = datetime.now()
+        bs.append(checkSquare2(i))
+        bs_time.append((datetime.now() - t0).microseconds)
+
+        t1 = datetime.now()
+        linear.append(checkSquare(i))
+        linear_time.append((datetime.now() - t1).microseconds)
+    df = pd.DataFrame({
+        'num': A,
+        'bs': bs,
+        'bs_time': bs_time,
+        'linear': linear,
+        'linear_time': linear_time
+    })
+    return df
+
+A = [3, 30, 300, 3000, 30000, 300000, 3000000]
+result = compareTime(A)
+print(result)
+```
+
+|    |     num | bs    |   bs_time | linear   |   linear_time |
+|---:|--------:|:------|----------:|:---------|--------------:|
+|  0 |       3 | False |         0 | False    |             0 |
+|  1 |      30 | False |         0 | False    |             0 |
+|  2 |     300 | False |         0 | False    |             0 |
+|  3 |    3000 | False |         0 | False    |         15622 |
+|  4 |   30000 | False |         0 | False    |         39016 |
+|  5 |  300000 | False |         0 | False    |        519450 |
+|  6 | 3000000 | False |         0 | False    |        314920 |
