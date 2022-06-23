@@ -269,23 +269,25 @@ print(searchRange(lt2, 2))
 ```    
 ## Check if perfect square
 
+Problem: Given a positive interger, we want to check if it is a perfect square.  
+
+My instinct would have been just use the square root function and check if the root is an integer.  I am sure there are many different ways to solve this.   The two solutions here are to square numbers almost by brute force and check if the result matches the number:
+
+1. Linear time: a small trick used to reduce computation is loop through up to input number//2.  Because all numbers squared are larger than doubled, except 2.  
+2. Log(n) time: use binary search.  
+![check if a number is a square](../images/posts/checkSquare.PNG)
 <div class="code-head"><span>code</span>checkSquares.py</div>
 
 ```py
 def checkSquare(num):
-    if num == 1:
-        return True
-    else:
-        for i in range(2, num//2, 1):
-            if i**2 == num:
-                return True
+    for i in range(1, num//2 + 1, 1):
+        if i**2 == num:
+            return True
     return False
-    
+
 def checkSquare2(num):
-    if num == 1:
-        return True
-    l = 0
-    r = num // 2
+    l = 1
+    r = 1+ num // 2
     while l <= r:
         m = l + (r - l)//2
         if m*m > num:
@@ -318,17 +320,20 @@ def compareTime(A):
     })
     return df
 
-A = [3, 30, 300, 3000, 30000, 300000, 3000000]
+A = [1, 3, 30, 300, 3000, 30000, 300000, 3000000]
 result = compareTime(A)
 print(result)
+
 ```
 
-|    |     num | bs    |   bs_time | linear   |   linear_time |
-|---:|--------:|:------|----------:|:---------|--------------:|
-|  0 |       3 | False |         0 | False    |             0 |
-|  1 |      30 | False |         0 | False    |             0 |
-|  2 |     300 | False |         0 | False    |             0 |
-|  3 |    3000 | False |         0 | False    |         15622 |
-|  4 |   30000 | False |         0 | False    |         39016 |
-|  5 |  300000 | False |         0 | False    |        519450 |
-|  6 | 3000000 | False |         0 | False    |        314920 |
+|     num | bs    |   bs_time | linear   |   linear_time |
+|--------:|:------|----------:|:---------|--------------:|
+|       0 | True  |         0 | True     |             0 |
+|       3 | False |         0 | False    |             0 |
+|       3 | False |         0 | False    |             0 |
+|      30 | False |         0 | False    |             0 |
+|     300 | False |         0 | False    |             0 |
+|    3000 | False |         0 | False    |         15622 |
+|   30000 | False |         0 | False    |         39016 |
+|  300000 | False |         0 | False    |        519450 |
+| 3000000 | False |         0 | False    |        314920 |
