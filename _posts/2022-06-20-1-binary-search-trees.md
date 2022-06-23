@@ -70,7 +70,9 @@ They are useful when we need fast insertion and deletion, and when we do not kno
 # Tree traversing/walking
 
 * **In-order traversal**: 
-Inorder DFS: Left -> node -> right
+Inorder DFS LNR: Left -> node -> right
+When data is stored sorted in the binary tree, in-order traversal retrieves the data in ascending sorted order.  Hence the name "in order".
+
 ![In order depth first search](../images/posts/Inorder-DFS.PNG)
 
 * **pre-order traversal**:
