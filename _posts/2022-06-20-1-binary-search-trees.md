@@ -11,7 +11,7 @@ image: images/posts/photos/IMG_0876.JPG
 
 # Binary search tree
 
-A Binary search tree is a kind of abstract data structure.  It is very intuitive from the mathematical perspective: *divide and conquer*.  For a sorted array/list, if we know that x is bigger than the median, then we don't need to spend time on the left half.  On the right half, we divide and conquer again.
+A Binary search tree is a kind of abstract data structure. It is also called an [**ordered/sorted binary tree**](https://en.wikipedia.org/wiki/Binary_search_tree).   It is very intuitive from the mathematical perspective: *divide and conquer*.  For a sorted array/list, if we know that x is bigger than the median, then we don't need to spend time on the left half.  On the right half, we divide and conquer again.
 
 Of course, it is made for doing something better than other data structures :)
 
@@ -23,13 +23,13 @@ Of course, it is made for doing something better than other data structures :)
 * *Slower search*: We cannot access elements in constant time as we do in arrays.  To find a node at position n, we have to start the search at the first (head) node and iterate through via <span class="coding">next</span>. 
 * Binary search trees takes more space than the array.  -->
 
+The insert, delete and search take $$O(logn)## nodes. 
 
 * **Search time**:  Search time is proportional to $$O(h)$$, where $$h$$ is height of tree.
 
 **Height of tree** is the length of the longest path between the *root* and *leaf*.  Or, the number of nodes from root to leaf, not including the leaf itself.  Or the number of edges connecting from root to leaf. 
 
 In a balanced tree, $$height = log(n)$$
-
 
 ![a balanced binary search tree](../images/posts/binary_search_tree_balanced.PNG)
 
@@ -69,6 +69,8 @@ They are useful when we need fast insertion and deletion, and when we do not kno
 
 # Tree traversing/walking
 
+<!-- If tree traversals are implemented using recursion, the time complexity is $$O(n)$$, and space complexity is $$O(h)$$, where $$h$$ is height of tree.  -->
+
 ## Depth first search (DFS)
 
 Depth first as much as possible before going to the next sibling.   
@@ -80,7 +82,7 @@ There are $$3!$$ different DFS.
 * **In-order traversal**: 
 **Inorder DFS LNR**: Left -> node -> right
 
-When data is stored sorted in the binary tree, in-order traversal retrieves the data in ascending sorted order.  Hence the name "in order".
+When data is stored sorted in the binary tree (aka "binary search tree"), in-order traversal retrieves the data in ascending sorted order.  Hence the name "in order".
 
 ![In order depth first search](../images/posts/Inorder-DFS.PNG)
 
