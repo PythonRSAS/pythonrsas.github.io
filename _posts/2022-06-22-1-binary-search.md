@@ -69,9 +69,9 @@ print(bSearch(lt, 7))
 
 In above basic binary search, we compare mid point of search range with target.
 
-To genearalize, we compare a monotonic function of the mid point with target.  In the basic search, $$f$$ is the identity function. 
+To genearalize, we compare a monotonic function  $$f$$ of the mid point with target.  In the basic search, $$f$$ is the identity function. 
 
-$$f(m)\text{compares with target}$$, where $$f$$ is a monotonic function.  The check if a number is perfect square problem is such an example.  
+$$f(m)\text{compares with target}$$, where $$f$$ is a monotonic function.  [Check if an integer is a perfect square](#check-if-an-integer-is-a-perfect-square) problem is such an example.  
 
 # The bisect library
 
@@ -342,6 +342,7 @@ result = compareTime(A)
 print(result)
 
 ```
+Summary of run time and results of linear search and binary search:
 
 |     num | bs    |   bs_time | linear   |   linear_time |
 |--------:|:------|----------:|:---------|--------------:|
