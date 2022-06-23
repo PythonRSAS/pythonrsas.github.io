@@ -84,6 +84,7 @@ There are $$3!$$ different DFS.
 
 When data is stored sorted in the binary tree (aka "binary search tree"), in-order traversal retrieves the data in ascending sorted order.  Hence the name "in order".
 
+
 ![In order depth first search](../images/posts/Inorder-DFS.PNG)
 
 
