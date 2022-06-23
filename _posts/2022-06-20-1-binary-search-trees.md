@@ -69,11 +69,27 @@ They are useful when we need fast insertion and deletion, and when we do not kno
 
 # Tree traversing/walking
 
+## Depth first search (DFS)
+
+Depth first as much as possible before going to the next sibling.   
+
+Let N represent "node", "L" represent "left", and "R" represent "right".
+
+There are $$3!$$ different DFS. 
+
 * **In-order traversal**: 
-Inorder DFS LNR: Left -> node -> right
+**Inorder DFS LNR**: Left -> node -> right
+
 When data is stored sorted in the binary tree, in-order traversal retrieves the data in ascending sorted order.  Hence the name "in order".
 
 ![In order depth first search](../images/posts/Inorder-DFS.PNG)
 
-* **pre-order traversal**:
-* **post-order traversal**:
+
+Order | Vertical direction 
+---------|----------
+ **In-order LNR** | Up
+ **Pre-order NLR** | Down
+ **Post_order LRN** | Up 
+
+
+## Breath first search (BFS)
