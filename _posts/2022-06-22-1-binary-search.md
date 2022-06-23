@@ -8,12 +8,16 @@ author: Sarah Chen
 image: images/posts/photos/IMG_0874.JPG
 
 ---
+By halfing the search range each time, the binary search *very quickly* zoom in on the search range. 
+
 - [Binary search the basics](#binary-search-the-basics)
+- [Genearalize the binary search](#genearalize-the-binary-search)
 - [The bisect library](#the-bisect-library)
 - [Variations of binary search](#variations-of-binary-search)
 - [Binary search trivial problems](#binary-search-trivial-problems)
   - [First and last position in sorted array](#first-and-last-position-in-sorted-array)
-  - [Check if perfect square](#check-if-perfect-square)
+  - [Check if an integer is a perfect square](#check-if-an-integer-is-a-perfect-square)
+
 
 # Binary search the basics
 
@@ -61,6 +65,13 @@ print(bSearch(lt, 7))
 
 ```
 
+# Genearalize the binary search
+
+In above basic binary search, we compare mid point of search range with target.
+
+To genearalize, we compare a monotonic function of the mid point with target.  In the basic search, $$f$$ is the identity function. 
+
+$$f(m)\text{compares with target}$$, where $$f$$ is a monotonic function.  The check if a number is perfect square problem is such an example.  
 
 # The bisect library
 
@@ -267,7 +278,7 @@ lt2 = [1,1,1, 2,2, 5, 7, 8, 10, 20, 30, 100]
 print(searchRange(lt, 1))
 print(searchRange(lt2, 2))
 ```    
-## Check if perfect square
+## Check if an integer is a perfect square
 
 Problem: Given a positive interger, we want to check if it is a perfect square.  
 
@@ -276,7 +287,10 @@ My instinct would have been just use the square root function and check if the r
 1. Linear time: a small trick used to reduce computation is loop through up to input number//2.  Because all numbers squared are larger than doubled, except 2.  
 2. Log(n) time: use binary search.  
    
+
 ![binary search check if a number is a square](../images/posts/checkSquare.PNG)
+
+We can change the problem and still use almost the same solutions. For example, we can ask for checking if a number is a cube, a fourth power, and so on.   
 
 Below program compare the two methods by recording the time they each take to check a list of integers.  Aparently, linear time becomes large quickly whereas log(n) time increases very slowly. 
 <div class="code-head"><span>code</span>checkSquares.py</div>
@@ -293,7 +307,7 @@ def checkSquare2(num):
     r = 1+ num // 2
     while l <= r:
         m = l + (r - l)//2
-        if m*m > num:
+        if m**2 > num:
             r = m -1
         elif m*m < num:
             l = m + 1
