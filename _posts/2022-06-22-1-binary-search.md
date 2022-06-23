@@ -275,7 +275,10 @@ My instinct would have been just use the square root function and check if the r
 
 1. Linear time: a small trick used to reduce computation is loop through up to input number//2.  Because all numbers squared are larger than doubled, except 2.  
 2. Log(n) time: use binary search.  
-![check if a number is a square](../images/posts/checkSquare.PNG)
+   
+![binary search check if a number is a square](../images/posts/checkSquare.PNG)
+
+Below program compare the two methods by recording the time they each take to check a list of integers.  Aparently, linear time becomes large quickly whereas log(n) time increases very slowly. 
 <div class="code-head"><span>code</span>checkSquares.py</div>
 
 ```py
