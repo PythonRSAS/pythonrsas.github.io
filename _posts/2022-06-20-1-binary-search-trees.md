@@ -23,7 +23,7 @@ Of course, it is made for doing something better than other data structures :)
 * *Slower search*: We cannot access elements in constant time as we do in arrays.  To find a node at position n, we have to start the search at the first (head) node and iterate through via <span class="coding">next</span>. 
 * Binary search trees takes more space than the array.  -->
 
-The insert, delete and search take $$O(logn)## nodes. 
+The insert, delete and search take $$O(logn)$$ nodes. 
 
 * **Search time**:  Search time is proportional to $$O(h)$$, where $$h$$ is height of tree.
 
