@@ -8,6 +8,12 @@ author: Sarah Chen
 image: images/posts/photos/IMG_0874.JPG
 
 ---
+- [Binary search the basics](#binary-search-the-basics)
+- [The bisect library](#the-bisect-library)
+- [Variations of binary search](#variations-of-binary-search)
+- [Binary search trivial problems](#binary-search-trivial-problems)
+  - [First and last position in sorted array](#first-and-last-position-in-sorted-array)
+  - [Check if perfect square](#check-if-perfect-square)
 
 # Binary search the basics
 
@@ -55,47 +61,6 @@ print(bSearch(lt, 7))
 
 ```
 
-## Problem 2: first and last position in sorted array
-
-Now, instead of finding the index of the target (assuming no duplicates), we want to find the first and the last position of the target.  
-
-<div class="code-head"><span>code</span>binary search variation.py</div>
-
-```py
-def searchRange(A, target):
-    small = bSearch(A, target, True)
-    big = bSearch(A, target, False)
-    return [small, big]
-    
-def bSearch(A, target, smallBias):
-    ```
-    smallbias: True means we are searching for the first & False means searching for the last
-    ```
-    N = len(A)
-    l = 0
-    r = N - 1
-    idx = -1
-    while l <= r:
-        m = l + (r - l )//2
-        if target > A[m]:
-            l = m + 1
-        elif target < A[m]:
-            r = m - 1
-        else:
-            idx = m
-            # return idx for regular binary bSearch
-            if smallBias:
-                r = m - 1
-            else:
-                l = m + 1
-
-    return idx
-
-lt = [1]
-lt2 = [1,1,1, 2,2, 5, 7, 8, 10, 20, 30, 100]
-print(searchRange(lt, 1))
-print(searchRange(lt2, 2))
-```    
 
 # The bisect library
 
@@ -170,6 +135,8 @@ In [63]: list1 = [1, 4, 4, 5, 6, 6, 6]
 7
 
 ```
+
+# Variations of binary search
 
 I have summarized some variations of binary search in the table below. 
 For "Find leftmost value less than or equal to x", we use <span class="coding">bisect_left</span> since bisect_left gives the leftmost index when found and the insertion index if not found, 
@@ -259,4 +226,45 @@ print([grade(score,breakPoints, grades) for score in A])
 
 A few trivial problems are documented here. 
 
+## First and last position in sorted array
+
+Now, instead of finding the index of the target (assuming no duplicates), we want to find the first and the last position of the target.  
+
+<div class="code-head"><span>code</span>binary search variation.py</div>
+
+```py
+def searchRange(A, target):
+    small = bSearch(A, target, True)
+    big = bSearch(A, target, False)
+    return [small, big]
+    
+def bSearch(A, target, smallBias):
+    ```
+    smallbias: True means we are searching for the first & False means searching for the last
+    ```
+    N = len(A)
+    l = 0
+    r = N - 1
+    idx = -1
+    while l <= r:
+        m = l + (r - l )//2
+        if target > A[m]:
+            l = m + 1
+        elif target < A[m]:
+            r = m - 1
+        else:
+            idx = m
+            # return idx for regular binary bSearch
+            if smallBias:
+                r = m - 1
+            else:
+                l = m + 1
+
+    return idx
+
+lt = [1]
+lt2 = [1,1,1, 2,2, 5, 7, 8, 10, 20, 30, 100]
+print(searchRange(lt, 1))
+print(searchRange(lt2, 2))
+```    
 ## Check if perfect square
