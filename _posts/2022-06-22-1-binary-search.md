@@ -102,6 +102,28 @@ print(searchRange(lt2, 2))
 The [bisect library](https://docs.python.org/3/library/bisect.html) has some functions that perform variations of binary search.  For example, the <span class="coding">bisect_left</span> function returns the leftist index of the value we search, if it exist in the input array. If value we search does not exist in the array, then it gives the index position the insertion point.
 > The source code may be most useful as a working example of the algorithm (the boundary conditions are already right!).
 
+I simplified the bisect_left source code as below.  
+Note many of the small differences from <span class="coding">bSearch</span> function above.
+* while loop condition
+* two conditions in if-else rather than there
+* r is updated as r = m rather than r = m -1
+* return left pointer <span class="coding">l</span> 
+
+<div class="code-head"><span>code</span>bisectLeft.py</div>
+
+```py
+def bisectLeft(A, target):
+    l = 0
+    r = len(A)
+    while l < r:
+        m = l + (r - l) // 2
+        if A[m] < target:
+            l = m + 1
+        else:
+            r = m
+    return l
+```
+
 ![bisect_left, bisect, bisect_right](../images/posts/bisect.PNG)
 
 1. **when x is *missing* from the input array**: <span class="coding">bisect_left</span>, <span class="coding">bisect</span>, and <span class="coding">bisect_right</span> all produce the same result: **the insertion point**
@@ -220,7 +242,7 @@ print([grade(score,breakPoints, grades) for score in A])
 # ['F', 'F', 'D', 'D', 'C', 'C', 'C', 'B', 'A', 'A']
 ```
 
-|  in range  |   score |   index | grade   |
+|  in range  |   score |   index/insertion point | grade   |
 |---:|--------:|--------:|:--------|
 |  below 60 |      33 |       0 | F       |
 |  [0,60) |      59 |       0 | F       |
@@ -232,3 +254,9 @@ print([grade(score,breakPoints, grades) for score in A])
 |  [80,90)  |      89 |       3 | B       |
 |  90 and above |      90 |       4 | A       |
 |  90 and above |     100 |       4 | A       |
+
+# Binary search trivial problems
+
+A few trivial problems are documented here. 
+
+## Check if perfect square
