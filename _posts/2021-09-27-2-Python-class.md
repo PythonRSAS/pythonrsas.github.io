@@ -12,11 +12,13 @@ image: images/posts/photos/IMG-0668.JPG
 
 > Only in a Python class did I see clearly that the thinking process is different from SAS.  The design of a class is the essence of object programming and the essence of what makes Python thought process different from SAS.   It is when writing a class that I finally say to myself "Aha, that's something that SAS does not provide, at least not in open scene, and that's kind of new to me!" 
 
+
 # a class in Python
 A class is a class,literally.  It is a group of things and things associated with that group of things. Using jargon, a class groups objects such as attributes and functions/methods that belong together. ["Classes provide a means of bundling data and functionality together."](https://docs.python.org/3/tutorial/classes.html)  The closest thing from SAS to Python class is a SAS procedure specifically those that do very specific things.  For example, PROC LOGISTIC, which contains almost all the reusable code that one needs for doing logistic regression in a statical-focused context. 
 
 We may turn some of the routine data analysis code into class. For example, as shown below, we define a class for data description that has one attribute and three methods.  
 The one and only attribute is the data itself, like a *parameter* to a function. This "parameter" has 3 "sub-functions".  Or from the SAS users' perspective, 3 macro functions), one for <span class="coding">PROC CONTENTS</span>, one for <span class="coding">PROC MEANS</span> and <span class="coding">PROC FREQ </span> and one for <span class="coding">PROC CORR</span> (sort of). 
+
 <div class="code-head"><span>code</span>data analysis.py</div> 
 
 ```python
@@ -58,8 +60,42 @@ a.descriptive()
 # missing          0     0     0      0    0       0     0
 a.data_content()
 ```
-
 ![class](/images/posts/class_data.PNG)
+
+# def /__init__()
+
+A class does not have to have an /__init__() method.  But most of the time we like to create objects with instances customized to a specific initial state. Therefore a class may define a special method named <span class="coding">/__init__()</span>, like this:
+
+```python
+def __init__(self, data):
+    self.data = data
+```
+
+When a class defines an <span class="coding">/__init__()</span> method, class instantiation automatically invokes <span class="coding">/__init__()</span> for the newly-created class instance.
+
+# Class attribute
+
+<div class="code-head"><span>code</span>class attribute.py</div> 
+
+```python
+class MyClass:
+    """A simple example class"""
+    i = 12345
+
+    def f(self):
+        return 'hello Mars'
+
+x = MyClass()
+print(x.f())
+
+x.counter = 1
+while x.counter < 10:
+    x.counter = x.counter * 2
+print(x.counter)
+del x.counter
+print(x.counter)
+```
+
 
 # step by step examples
 The following are my notes from watching [Corey Shafer](https://www.youtube.com/watch?v=ZDa-Z5JzLYM&t=7s).  
