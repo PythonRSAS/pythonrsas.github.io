@@ -251,13 +251,13 @@ tree.inorder()
 # 1 2 3 4 5 6 7 8 9
 
 ''' Following tree is getting created:
-                10
+                3
              /      \
-           8         9
+           1         9
           / \           \
-        4     8          20
-             /          /
-            7         15
+        2     2          20
+                       /
+                     15
                      /
                    13
     '''
