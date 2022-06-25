@@ -15,7 +15,6 @@ image: images/posts/photos/IMG-0668.JPG
 # a class in Python
 A class is a class,literally.  It is a group of things and things associated with that group of things. Using jargon, a class groups objects such as attributes and functions/methods that belong together. ["Classes provide a means of bundling data and functionality together."](https://docs.python.org/3/tutorial/classes.html)  The closest thing from SAS to Python class is a SAS procedure specifically those that do very specific things.  For example, PROC LOGISTIC, which contains almost all the reusable code that one needs for doing logistic regression in a statical-focused context. 
 
-
 We may turn some of the routine data analysis code into class. For example, as shown below, we define a class for data description that has one attribute and three methods.  
 The one and only attribute is the data itself, like a *parameter* to a function. This "parameter" has 3 "sub-functions".  Or from the SAS users' perspective, 3 macro functions), one for <span class="coding">PROC CONTENTS</span>, one for <span class="coding">PROC MEANS</span> and <span class="coding">PROC FREQ </span> and one for <span class="coding">PROC CORR</span> (sort of). 
 <div class="code-head"><span>code</span>data analysis.py</div> 
@@ -59,6 +58,8 @@ a.descriptive()
 # missing          0     0     0      0    0       0     0
 a.data_content()
 ```
+
+![class](/images/posts/class_data.PNG)
 
 # step by step examples
 The following are my notes from watching [Corey Shafer](https://www.youtube.com/watch?v=ZDa-Z5JzLYM&t=7s).  
