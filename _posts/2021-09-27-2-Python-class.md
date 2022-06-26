@@ -17,8 +17,10 @@ image: images/posts/photos/IMG-0668.JPG
 - [def \__init__()](#def-_init_)
 - [Class attributes and methods](#class-attributes-and-methods)
   - [Attributes can be defined within class or outside](#attributes-can-be-defined-within-class-or-outside)
+  - [Simple calculator](#simple-calculator)
 - [Parent class and child classes](#parent-class-and-child-classes)
 - [Example from modules](#example-from-modules)
+  - [# reference](#-reference)
   
 # a class in Python
 A class is a group of things and things associated with that group of things. Using jargon, a class groups objects such as attributes and functions/methods that belong together. ["Classes provide a means of bundling data and functionality together."](https://docs.python.org/3/tutorial/classes.html)  
@@ -31,18 +33,23 @@ The one and only attribute is the data itself, like a *parameter* to a function.
 <div class="code-head"><span>code</span>data analysis.py</div> 
 
 ```python
+import pandas as pd
+import matplotlib.pyplot as plt
 class DataDescription(object):
     def __init__(self, data): # 第一个 input总是self。即， 一个instance. self = instance.  Can call "self" any name you want
         self.data = data # 类似其他语言的constructor # can call "self" or anything we want.  'self' is because of convention
      # could have written self.values = first, or self.something = first, but it is easier to keep track of if keep the same names
+
     def data_content(self):
         print(self.data.info())
         print('\ndtypes are: \n', self.data.dtypes)
         print('\ncolumn names are: \n',self.data.columns.tolist())
+        
     def cal_corr(self):
         pearson_corr = self.data.corr(method='pearson')
         spearman_corr = self.data.corr(method='spearman')
         return pearson_corr,spearman_corr
+
     def descriptive(self):
 	    des = self.data.describe(include='all').T
         missing = self.data.isnull().sum().to_frame(name='missing')
@@ -50,6 +57,28 @@ class DataDescription(object):
         print(des)
         return des
 
+    # categorical variables study
+    def cate_analysis(self):
+        cates = self.data.select_dtypes(exclude = np.number).columns
+        print("\n", "*"*10,  'Frequency counts', "*"*10)
+        for i in cates:
+            print("\n",i)
+            count = self.data[i].value_counts(sort=False,dropna=False) 
+            pct = self.data[i].value_counts(sort=False,dropna=False)/len(self.data)
+            combined = pd.concat([count, pct], axis=1)
+            combined.columns = ['count','percent']
+            print(combined.sort_values(by = 'count', ascending = False))
+            # GroupBy descriptives
+            print("\n", "*"*10,  'Groupby descriptives', "*"*10)
+            des = self.data.groupby(i).describe().round(2).T
+            print(des)
+            print("\n",i)
+            print("correlations")
+            pearson_corr = self.data.groupby(i).corr(method='pearson')
+            spearman_corr = self.data.groupby(i).corr(method='spearman')
+            print(pearson_corr,spearman_corr)
+    
+import seaborn as sns
 df = sns.load_dataset('tips')
 a = DataDescription(df)
 a.data_content()
@@ -68,7 +97,7 @@ a.descriptive()
 # count        244.0 244.0   244    244  244     244 244.0
 # ...
 # missing          0     0     0      0    0       0     0
-a.data_content()
+
 ```
 
 # def \__init__()
@@ -167,12 +196,12 @@ class Data:
 
 dt1 = Data()
 
-dt1.data = [1, 2, 3]
+dt1.data =2
 dt1.name = "anyName"
 
 print(dt1.data)
 print(dt1.name)
-print([i**2 for i in dt1.data])
+print(dt1.data**2)
 
 # 2. attritutes defined within class
 class Data:
@@ -180,18 +209,64 @@ class Data:
         self.data = data
         self.name = name
     def square(self):
-        self.data = [i**2 for i in self.data]
+        return self.data**2
         
 
-dt1 = Data([1,2,3],'any name')
+dt1 = Data(2,'any name')
 print(dt1.data)
 print(dt1.name)
-dt1.square()
-print(dt1.data)
+print(dt1.square())
 ```
 
+## Simple calculator
+<div class="code-head"><span>code</span>class attribute2.py</div> 
+
+```python
+class Calculator:
+    def __init__(self, num1, num2):
+        self.a = num1
+        self.b = num2
+
+    # addition
+    def addition(self):
+        result = self.a + self.b
+        print("Addition:        " + str(result))
+
+    # subtraction
+    def subtraction(self):
+        result = self.a - self.b
+        print("Subtraction:     " + str(result))
+
+    # multiplication
+    def multiplication(self):
+        result = self.a * self.b
+        print("Multiplication:  " + str(result))
+
+    # division
+    def division(self):
+        result = self.a / self.b
+        print("Division:        " + str(result))
+
+#Calling the class
+mycalc = Calculator(20, 10)
+mycalc.addition()
+mycalc.subtraction()
+mycalc.multiplication()
+mycalc.division()
+```
 
 # Parent class and child classes
+
+We can create a new "child" class to inherite from an existing "parent" class. 
+
+Child class can:
+* get features from a parent class
+* modify features from parent
+* add new features 
+
+Instead of copy and pasting the code from parent and create a new class, using child class makes the code more maintainable. 
+
+The logical order of parent-child follows the following chart:
 <figure>
   <img src="{{ "/images/posts/classes_cats1.PNG" | relative_url }}">
   <figcaption> classes</figcaption>
@@ -202,17 +277,13 @@ print(dt1.data)
 Examples:
 [**turtle** library](https://docs.python.org/3/library/turtle.html):  
 
-The [<span class="coding">RawTurtle</span> class](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2513), inherites from two parent classes, [TPen](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2022) and [TNavigator](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L1511).  The TPen class has the drawing part: a drawing [Pen](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2337) with size, colors, and how to draw.  The TNavigator class groups navigation and movements: position, set X and set Y, forward, backward, degree, radius, and goto, etc. 
+The [<span class="coding">RawTurtle</span> class](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2513), inherites from parent classes from module <span class="coding">tkinter</span>, 
 
 Even though the following snippet seems like a very elementary program written by elementary school kids (and yes it was), the module turtle is actually quite complex.   This is an example of reusable code because a child can import the module, start an instance of the class, and do those things that she normally does with drawing, using the language and a computer. 
+
 <div class="code-head"><span>code</span>Turtle.python</div>
 
 ```python
-""""
-reference
-# https://github.com/magicmathmandarin/Turtle/blob/master/shapes.py
-# https://docs.python.org/3/library/turtle.html
-""""
 import turtle
 v=turtle.Pen()
 v.color("blue")
@@ -221,4 +292,9 @@ for i in range(0,3):
 	v.forward(30)
 	v.left(120)
 ```
+
+# reference
+-----------
+[Turtle code](https://github.com/magicmathmandarin/Turtle/blob/master/shapes.py)
+[Turtle library](https://docs.python.org/3/library/turtle.html)
 [Youtube video by Corey Shafer](https://www.youtube.com/watch?v=ZDa-Z5JzLYM&t=7s).  
