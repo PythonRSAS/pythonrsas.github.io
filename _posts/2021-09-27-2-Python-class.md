@@ -13,8 +13,17 @@ image: images/posts/photos/IMG-0668.JPG
 > Only in a Python class did I see clearly that the thinking process is different from SAS.  The design of a class is the essence of object programming and the essence of what makes Python thought process different from SAS.   It is when writing a class that I finally say to myself "Aha, that's kind of new to me!" 
 
 
+- [a class in Python](#a-class-in-python)
+- [def \__init__()](#def-_init_)
+- [Class attributes and methods](#class-attributes-and-methods)
+  - [Attributes can be defined within class or outside](#attributes-can-be-defined-within-class-or-outside)
+- [Parent class and child classes](#parent-class-and-child-classes)
+- [Example from modules](#example-from-modules)
+  
 # a class in Python
-A class is a class,literally.  It is a group of things and things associated with that group of things. Using jargon, a class groups objects such as attributes and functions/methods that belong together. ["Classes provide a means of bundling data and functionality together."](https://docs.python.org/3/tutorial/classes.html)  The closest thing from SAS to Python class is a SAS procedure specifically those that do very specific things.  For example, PROC LOGISTIC, which contains almost all the reusable code that one needs for doing logistic regression in a statical-focused context. 
+A class is a group of things and things associated with that group of things. Using jargon, a class groups objects such as attributes and functions/methods that belong together. ["Classes provide a means of bundling data and functionality together."](https://docs.python.org/3/tutorial/classes.html)  
+
+The closest thing from SAS to Python class is a SAS procedure specifically those that do very specific things.  For example, PROC LOGISTIC, which contains almost all the reusable code that one needs for doing logistic regression in a statical-focused context. 
 
 We may turn some of the routine data analysis code into class. For example, as shown below, we define a class for data description that has one attribute and three methods.  
 The one and only attribute is the data itself, like a *parameter* to a function. This "parameter" has 3 "sub-functions".  Or from the SAS users' perspective, 3 macro functions), one for <span class="coding">PROC CONTENTS</span>, one for <span class="coding">PROC MEANS</span> and <span class="coding">PROC FREQ </span> and one for <span class="coding">PROC CORR</span> (sort of). 
@@ -23,8 +32,9 @@ The one and only attribute is the data itself, like a *parameter* to a function.
 
 ```python
 class DataDescription(object):
-    def __init__(self, data):
-        self.data = data
+    def __init__(self, data): # 第一个 input总是self。即， 一个instance. self = instance.  Can call "self" any name you want
+        self.data = data # 类似其他语言的constructor # can call "self" or anything we want.  'self' is because of convention
+     # could have written self.values = first, or self.something = first, but it is easier to keep track of if keep the same names
     def data_content(self):
         print(self.data.info())
         print('\ndtypes are: \n', self.data.dtypes)
@@ -60,207 +70,134 @@ a.descriptive()
 # missing          0     0     0      0    0       0     0
 a.data_content()
 ```
+
+# def \__init__()
+
+A class does not have to have an \__init__() method.  But most of the time we like to create objects initialized with a specific initial state. Therefore a class may define a special method named <span class="coding">\__init__()</span>, like this:
+
 ![class](/images/posts/class_data.PNG)
 
-# def /__init__()
+When a class defines an <span class="coding">\__init__()</span> method, class instantiation automatically invokes <span class="coding">\__init__()</span> for the newly-created class instance.
 
-A class does not have to have an /__init__() method.  But most of the time we like to create objects with instances customized to a specific initial state. Therefore a class may define a special method named <span class="coding">/__init__()</span>, like this:
+# Class attributes and methods
 
-```python
-def __init__(self, data):
-    self.data = data
-```
+Attributes and methods are terms used often interchangably.  Some refer to anything following the <span class="coding">.</span> as attributes or methods. 
 
-When a class defines an <span class="coding">/__init__()</span> method, class instantiation automatically invokes <span class="coding">/__init__()</span> for the newly-created class instance.
+Although we by convention use <span class="coding">self</span> when we define class methods, we can actually call it almost anything, just like we can name variables with any name. 
 
-# Class attribute
+## Attributes can be defined within class or outside
 
+**Within class definition**
+
+In example below, myClass is defined with 2 attributes: <span class="coding">i</span> and <span class="coding">telescope</span>.  
+
+The attributes defined within class definition **cannot** be deleted using <span class="coding">del</span>.   
+
+**After instantiating**
+
+Outside of class definition, after instantiate an myClass object, we can also give the object new attributes, which is <span class="coding">counter</span> in the example.
+
+The new attribute can be written, used, and deleted. After deleted, we don't find the counter attribute anymore.  They are *easy come and easy go*. 
+
+Notice that although we can define attributes after instantiation anyway we want: .first, .last, .pay, and .X, .Y, .Z.  But this will **not be reusable** because these attributes are specific to this instance, and not to the class. 
+
+Also notice that instead of <span class="coding">self</span>, I first use <span class="coding">martian</span> in a method called <span class="coding">f</span>, and then change it to <span class="coding">venus</span> in another method called <span class="coding">g</span>. 
 <div class="code-head"><span>code</span>class attribute.py</div> 
 
 ```python
-class MyClass:
-    """A simple example class"""
-    i = 12345
-
-    def f(self):
-        return 'hello Mars'
-
-x = MyClass()
-print(x.f())
-
-x.counter = 1
-while x.counter < 10:
-    x.counter = x.counter * 2
-print(x.counter)
-del x.counter
-print(x.counter)
-```
-
-
-# step by step examples
-The following are my notes from watching [Corey Shafer](https://www.youtube.com/watch?v=ZDa-Z5JzLYM&t=7s).  
-
-## version 0
-Nothing is defined for the class Employee.  It is still a valid class.  
-
-The purpose of this example is about the point of **reusable code**.   
-
-Notice that we can define various attributes anyway we want: we can perfectly define .first, .last, .pay, and .X, .Y, .Z, and write a program that does something.  But this will **not be reusable**. 
-
-<div class="code-head"><span>code</span>Employee version 0.python</div>
-
-```python
-class Employee:
-    pass
-# a class is a blueprint for creating instances
-emp_1 = Employee()
-emp_1.first = 'sarah'
-emp_1.last = 'chen'
-emp_1.pay = 500000 # I would like to make this much 
-In [3]: emp_1
-Out[3]: <__main__.Employee at 0x1698e004588>
-
-In [4]: emp_1.first
-Out[4]: 'sarah'
-
-In [5]: emp_1.raise_amount = 1.05
-
-In [6]:  myRaise = emp_1.pay*(emp_1.raise_amount-1)^M
-   ...: myRaise
+In [2]: class myClass:
+   ...:     """A simple example class"""
+   ...:     i = 12345
+   ...:     telescope = "James Webb"
+   ...:     def f(martian):
+   ...:         return 'hello Mars'
+   ...: 
+   ...:     def g(venus):
+   ...:         return 'I live on Mars'
+   ...: x = myClass()
+   ...: 
+   ...: print(x.f())
+   ...: print(x.g())
    ...:
-Out[6]: 25000.000000000022
+hello Mars
+I live on Mars
+
+In [3]: print(x.i)
+   ...: print(x.telescope)
+   ...:
+12345
+James Webb
+
+In [4]: x.counter = 1
+   ...: while x.counter < 10:
+   ...:     x.counter = x.counter * 2
+   ...: print(x.counter)
+   ...:
+16
+
+In [5]: del x.counter
+   ...: print(x.counter)
+   ...:
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-5-6daa4215855c> in <module>()
+      1 del x.counter
+----> 2 print(x.counter)
+
+AttributeError: 'myClass' object has no attribute 'counter'
+
+In [6]: del x.f
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-6-a09835603615> in <module>()
+----> 1 del x.f
+
+In [7]: x.f()
+Out[7]: 'hello Mars'
 ```
-## version 1
 
-<div class="code-head"><span>code</span>Employee version 1.python</div>
+Below example compares defining attribute/method within class definition and added for an instance of a class. 
 
-```python
-class Employee: # 第一个 input总是self。即， 一个instance. self = instance.  Can call "self" any name you want
-    def __init__(self, first, last, pay): # 类似其他语言的constructor # can call "self" or anything we want.  'self' is because of convention
-        self.first = first  # could have written self.fname = first, or self.fn = first, but it is easier to keep track of if keep the same names
-        self.last = last
-        self.email = first + '.' + last +'@company.com'
-
-emp_1 = Employee('sarah', 'chen', 500000)
-#  这麻烦得很。每次要type这么多
-print(emp_1.email)
-print('{} {}'.format(emp_1.first, emp_1.last))
-# 所以，我门给它个method
-sarah.chen@company.com
-sarah chen
-```
-## version 2
-
-<div class="code-head"><span>code</span>Employee version 2.python</div>
+<div class="code-head"><span>code</span>class attribute2.py</div> 
 
 ```python
-class Employee:
-    def __init__(self, first, last, pay): # 类似其他语言的constructor # can call "self" or anything we want.  'self' is because of convention
-        self.first = first  # could have written self.fname = first, or self.fn = first, but it is easier to keep track of if keep the same names
-        self.last = last
-        self.email = first + '.' + last +'@company.com'
-    def fullname(self):
-        # return ('{} {}'.format(emp_1.first, emp_1.last))
-        return ('{} {}'.format(self.first, self.last))
-# 现在
-print(emp_1.fullname()) # 注意fullname 是method，不是attribute，所以必须加括号
-```
-<div class="code-head"><span>code</span>dir.python</div>
+# 1. add attritutes for an instance of a class
+class Data:
+    pass
 
-```python
-In [11]: dir(Employee)
-Out[11]:
-['__class__',
- '__delattr__',
- '__dict__',
- '__dir__',
- '__doc__',
- '__eq__',
- '__format__',
- '__ge__',
- '__getattribute__',
- '__gt__',
- '__hash__',
- '__init__',
- '__init_subclass__',
- '__le__',
- '__lt__',
- '__module__',
- '__ne__',
- '__new__',
- '__reduce__',
- '__reduce_ex__',
- '__repr__',
- '__setattr__',
- '__sizeof__',
- '__str__',
- '__subclasshook__',
- '__weakref__',
- 'fullname']
- ```
+dt1 = Data()
 
-## version 3
+dt1.data = [1, 2, 3]
+dt1.name = "anyName"
 
-<div class="code-head"><span>code</span>Employee version 3.python</div>
+print(dt1.data)
+print(dt1.name)
+print([i**2 for i in dt1.data])
 
-```python
- 
-# version 3
-class Employee:
-    def __init__(self, first, last, pay): # 类似其他语言的constructor # can call "self" or anything we want.  'self' is because of convention
-        self.first = first  # could have written self.fname = first, or self.fn = first, but it is easier to keep track of if keep the same names
-        self.last = last
-        self.email = first + '.' + last +'@company.com'
-        self.pay = pay
-    def fullname(self):
-        # return ('{} {}'.format(emp_1.first, emp_1.last))
-        return ('{} {}'.format(self.first, self.last))
-    def apply_raise(self):
-        self.pay = int(self.pay* 1.04)
-emp_1 = Employee('sarah', 'chen', 500000)
-emp_1.apply_raise()
-print(emp_1.pay) 
-```
-## version 4
+# 2. attritutes defined within class
+class Data:
+    def __init__(self, data,name):
+        self.data = data
+        self.name = name
+    def square(self):
+        self.data = [i**2 for i in self.data]
+        
 
-<div class="code-head"><span>code</span>Employee version 3.python</div>
-
-```python
-# 现在我们想把raise percent 作为一个 class variable
-# version 4 method 用 class variable 以 self. 的形式， 而非 className. 的形式
-class Employee:
-    raise_amount = 1.04 # raise percent 作为一个 class variable
-    def __init__(self, first, last, pay): # 类似其他语言的constructor # can call "self" or anything we want.  'self' is because of convention
-        self.first = first  # could have written self.fname = first, or self.fn = first, but it is easier to keep track of if keep the same names
-        self.last = last
-        self.email = first + '.' + last +'@company.com'
-        self.pay = pay
-    def fullname(self):
-        # return ('{} {}'.format(emp_1.first, emp_1.last))
-        return ('{} {}'.format(self.first, self.last))
-    def apply_raise(self):
-        self.pay = int(self.pay* self.raise_amount)  # ！！！ 必须用 self.raise_amount 或 Employee.raise_amount 
-emp_1 = Employee('sarah', 'chen', 500000)
-emp_2 = Employee('sam', 'Poola', 500000)
-
-print(emp_1.__dict__)
-# In [25]: print(emp_1.__dict__)
-# {'first': 'sarah', 'last': 'chen', 'email': 'sarah.chen@company.com', 'pay': 500000}
-emp_1.raise_amount = 1.10
-print(Employee.raise_amount)
-print(emp_1.raise_amount)
-print(emp_2.raise_amount)
-# 1.04
-# 1.1  # !!! 注意！！！
-# 1.04  emp_2 还是class 的raise_amount
+dt1 = Data([1,2,3],'any name')
+print(dt1.data)
+print(dt1.name)
+dt1.square()
+print(dt1.data)
 ```
 
 
-One of the most intuitive way writings about how a class roughly works is the "Python for Kids" book I read years ago but still review from time to time. 
+# Parent class and child classes
 <figure>
   <img src="{{ "/images/posts/classes_cats1.PNG" | relative_url }}">
   <figcaption> classes</figcaption>
 </figure>
+
+# Example from modules
 
 Examples:
 [**turtle** library](https://docs.python.org/3/library/turtle.html):  
@@ -284,3 +221,4 @@ for i in range(0,3):
 	v.forward(30)
 	v.left(120)
 ```
+[Youtube video by Corey Shafer](https://www.youtube.com/watch?v=ZDa-Z5JzLYM&t=7s).  
