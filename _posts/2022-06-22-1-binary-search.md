@@ -16,6 +16,7 @@ By halfing the search range each time, the binary search *very quickly* zoom in 
 - [Variations of binary search](#variations-of-binary-search)
 - [Binary search trivial problems](#binary-search-trivial-problems)
   - [First and last position in sorted array](#first-and-last-position-in-sorted-array)
+  - [Position or insertion position](#position-or-insertion-position)
   - [Check if an integer is a perfect square](#check-if-an-integer-is-a-perfect-square)
 
 
@@ -278,6 +279,39 @@ lt2 = [1,1,1, 2,2, 5, 7, 8, 10, 20, 30, 100]
 print(searchRange(lt, 1))
 print(searchRange(lt2, 2))
 ```    
+
+## Position or insertion position
+
+Given an input array of sorted integers, for example, nums = [1,3, 5,6], find position of a number; if not found, return the insertion position that keeps the sorted order.
+
+What this problem asks for is equivalent to <span class="coding">bisect.bisect_left</span> does. 
+
+<div class="code-head"><span>code</span>myLeft.py</div>
+
+```py
+def myLeft(A,num):
+    N = len(A)
+    l = 0
+    r = N - 1
+    while l<= r:
+        m = l + (r-l)//2
+        if num > A[m]:
+            l = m + 1
+        elif num < A[m]:
+            r = m - 1
+        else:
+            return m
+    return r+1
+nums = [1,3, 5,6]
+target = 100
+print(myLeft(nums,target))
+# 4
+from bisect import bisect_left
+print(bisect_left(nums,target))
+# 4
+```
+
+
 ## Check if an integer is a perfect square
 
 Problem: Given a positive interger, we want to check if it is a perfect square.  
