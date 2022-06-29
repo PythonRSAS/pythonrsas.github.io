@@ -7,24 +7,30 @@ description: getting the simplest things right
 author: Sarah Chen
 image: images/posts/photos/IMG-0632.JPG
 ---
-<figure> 
+<!-- <figure> 
    <img src="{{"/images/posts/photos/IMG-0632.JPG"| relative_url}}"> 
    <figcaption></figcaption>
-</figure> 
+</figure>  -->
 
 
 # What is recursion
 
 > Recursion is like brocolli (or cauliflower). 
 
-Recursion is a function that is defined with itself.  What does that supposed to mean?  
+Recursion is a function that is defined with itself.  $$f(n) = \text{some combination of }f(n-1)$$.   What does that supposed to mean?  
 
 The simplest example is the natural number sequence $$1, 2, 3, 4, 5, 6, ...$$
-  
 
-|  n   |   0 |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |
+## Natural number
+The natural numbers can be expressed as:
+
+$$f(n)=f(n-1)+1$$, with the initial condition that the first number is $$0$$ (when $$n=0$$).  
+**The initial values must be given in order for the recursion to be fully defined**. 
+
+
+|  n   |   **0** |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |
 |:-----|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
-| f(n) |   0 |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |
+| f(n) |   **0** |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |
 
 
 <div class="code-head"><span>code</span>natural number.py</div>
@@ -40,26 +46,16 @@ for i in range(10):
    print(f(i))
 ``` 
 
+## Fibonacci number
+The Fibonacci numbers can be expressed as:
 
-|   n |   f(n) |
-|----:|-------:|
-|   0 |      0 |
-|   1 |      1 |
-|   2 |      2 |
-|   3 |      3 |
-|   4 |      4 |
-|   5 |      5 |
-|   6 |      6 |
-|   7 |      7 |
-|   8 |      8 |
-|   9 |      9 |
+$$f(n)=f(n-1)+ f(n-2)$$, 
+with the initial condition that the first and the second numbers $$1$$ and $$1$$ (when $$n=0$$ and $$n=1$$).  Again, **the initial values must be given in order for the recursion to be fully defined**. 
 
 
-
-
-|        |   0 |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |
+|        |   **0** |   **1** |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |
 |:-------|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
-| fib(n) |   1 |   1 |   2 |   3 |   5 |   8 |  13 |  21 |  34 |  55 |
+| fib(n) |   **1** |   **1** |   2 |   3 |   5 |   8 |  13 |  21 |  34 |  55 |
 
 
 <div class="code-head"><span>code</span>fibonacci number.py</div>
@@ -73,11 +69,17 @@ def fib(n):
 for i in range(10):
    print(fib(i))
 
-
-lt = []
-for i in range(10):
-   print(fib(i))
-   lt.append(fib(i))
-df = pd.DataFrame({'fib(n)':lt})
-print(df.T.to_markdown())
+# lt = []
+# for i in range(10):
+#    print(fib(i))
+#    lt.append(fib(i))
+# df = pd.DataFrame({'fib(n)':lt})
+# print(df.T.to_markdown())
 ``` 
+
+# Receipt for recursion
+
+After working out the two simple examples successfully, we can use the same thinking process to tackle bigger recursion problems.
+1. Write down the mathematical formula of recursion
+2. Specify initial values correctly
+3. Code it accordingly
