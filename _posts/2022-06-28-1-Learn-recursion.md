@@ -33,6 +33,10 @@ $$f(n)=f(n-1)+1$$, with the initial condition that the first number is $$0$$ (wh
 |:-----|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
 | f(n) |   **0** |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |
 
+Now, we translate it to code. 
+
+> if input is equal to initial value, then return the values for initial values
+> else return the mathematical function
 
 <div class="code-head"><span>code</span>natural number.py</div>
 
