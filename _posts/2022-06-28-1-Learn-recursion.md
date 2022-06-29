@@ -94,3 +94,9 @@ After working out the two simple examples successfully, we can use the same thin
 3. Code it accordingly
 
 Our recipe creation process feels like some kind of recursion too: we came up with a process (or a pattern of a process) that works and generalize it to future ones.  
+
+
+# Future explorations
+
+![Earth's most stunning fractal patterns](https://www.wired.com/2010/09/fractal-patterns-in-nature/)
+
