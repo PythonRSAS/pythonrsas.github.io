@@ -17,8 +17,9 @@ image: images/posts/photos/IMG-0632.JPG
 
 > Recursion is like brocolli (or cauliflower). 
 
-Recursion is a function that is defined with itself.  $$f(n) = \text{some combination of }f(n-1)$$.   What does that supposed to mean?  
 
+Recursion is a function that is defined with itself.  $$f(n) = \text{some combination of }f(n-1)$$.   What does that supposed to mean?  
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Sierpinski_triangle.svg/375px-Sierpinski_triangle.svg.png)
 The simplest example is the natural number sequence $$1, 2, 3, 4, 5, 6, ...$$
 
 ## Natural number
