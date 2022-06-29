@@ -28,16 +28,16 @@ The natural numbers can be expressed as:
 $$f(n)=f(n-1)+1$$, with the initial condition that the first number is $$0$$ (when $$n=0$$).  
 **The initial values must be given in order for the recursion to be fully defined**. 
 
-
-|  n   |   **0** |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |
+|  n   |   0 |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |
 |:-----|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
-| f(n) |   **0** |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |
+| f(n) |  **1** |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |  10 |
 
 Now, we translate it to code. 
 
 > if input is equal to initial value, then return the values for initial values
 > else return the mathematical function
 
+The initial value  for natural number is $$1$$, and the value it is associated with is also
 <div class="code-head"><span>code</span>natural number.py</div>
 
 ```py
