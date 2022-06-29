@@ -5,7 +5,8 @@ category: education
 title: "Learn recursion"
 description: getting the simplest things right
 author: Sarah Chen
-image: images/posts/photos/IMG-0632.JPG
+image: https://en.wikipedia.org/wiki/Romanesco_broccoli#/media/File:Romanesco_broccoli_(3).jpg
+# image: images/posts/photos/IMG-0632.JPG
 ---
 <!-- <figure> 
    <img src="{{"/images/posts/photos/IMG-0632.JPG"| relative_url}}"> 
@@ -17,10 +18,13 @@ image: images/posts/photos/IMG-0632.JPG
 
 > Recursion is like brocolli (or cauliflower). 
 
+![Romanesco_broccoli](https://en.wikipedia.org/wiki/Romanesco_broccoli#/media/File:Romanesco_broccoli_(3).jpg)
 
 Recursion is a function that is defined with itself.  $$f(n) = \text{some combination of }f(n-1)$$.   What does that supposed to mean?  
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Sierpinski_triangle.svg/375px-Sierpinski_triangle.svg.png)
-The simplest example is the natural number sequence $$1, 2, 3, 4, 5, 6, ...$$
+
+![](https://en.wikipedia.org/wiki/Recursion#/media/File:Sierpinski_triangle.svg)
+
+The simplest example I think is the natural number sequence $$1, 2, 3, 4, 5, 6, ...$$
 
 ## Natural number
 The natural numbers can be expressed as:
