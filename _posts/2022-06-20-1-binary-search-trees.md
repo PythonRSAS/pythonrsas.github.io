@@ -8,16 +8,28 @@ author: Sarah Chen
 image: images/posts/photos/IMG_0876.JPG
 
 ---
+- [Binary search tree basics](#binary-search-tree-basics)
+- [Keeping tree balanced](#keeping-tree-balanced)
+- [Binary search trees uses](#binary-search-trees-uses)
+- [Tree traversing/walking](#tree-traversingwalking)
+  - [Depth first search (DFS)](#depth-first-search-dfs)
+- [Binary search tree implementation in Python](#binary-search-tree-implementation-in-python)
+  - [Libraries](#libraries)
+  - [Write it](#write-it)
 
-# Binary search tree
+# Binary search tree basics
 
-A Binary search tree is a kind of abstract data structure. It is also called an [**ordered/sorted binary tree**](https://en.wikipedia.org/wiki/Binary_search_tree).   
+A Binary search tree (often abbreviated as "BST") is an abstract data structure. It is also called an [**ordered/sorted binary tree**](https://en.wikipedia.org/wiki/Binary_search_tree).   
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Binary_search_tree.svg/270px-Binary_search_tree.svg)
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Binary_search_tree.svg)
+
+The general property of the BST can be summarized in graph below:
 
 ![](../images/posts/bst.PNG)
 
-Its setup is very intuitive from the mathematical perspective: *divide and conquer*.  For a sorted array/list, if we know that x is bigger than the median, then we don't need to spend time on the left half.  On the right half, we divide and conquer again.
+Its setup is very intuitive from the mathematical perspective: *divide and conquer*, or recursion, or induction, you name it. 
+
+For a sorted array/list, if we know that x is bigger than the median, then we don't need to spend time on the left half.  On the right half, we divide and conquer again.
 
 ![Binary search tree from Wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Binary_search_tree.svg/180px-Binary_search_tree.svg.png)
 Of course, it is made for doing something better than other data structures :)
@@ -104,7 +116,16 @@ Order | Vertical direction
 
 # Binary search tree implementation in Python
 
-There can be many different ways to implement this.  All implementations have 2 parts: Node and Tree.  Users will not interact with the Node class, which is only used by the Tree class. 
+[Python does not have a built-in binary search tree](https://stackoverflow.com/questions/17857496/built-in-binary-search-tree-in-python).  
+
+## Libraries
+
+* [sortedcontainers](https://grantjenks.com/docs/sortedcontainers/) module.
+Underlying data structure: **sorted list of sorted list**
+Time complexity: $$O(/sqrt(n))$$ (as compared with $$O(log(n))$$ for balanced binary search tree)
+
+## Write it 
+There can be many different ways to implement this.  All of them have 2 parts: Node and Tree.  
 
 The most complicated is for the delete function because we need to account for different situations.  
 
@@ -116,6 +137,20 @@ class Node(object):
         self.data = data
         self.leftChild = None
         self.rightChild = None
+
+    def minValueNode(self, node):
+        current = node
+        # loop down to find the leftmost leaf
+        while(current.leftChild is not None):
+            current = current.leftChild
+        return current
+
+    def maxValueNode(self, node):
+        current = node
+        # loop down to find the rightmost leaf
+        while(current.rightChild is not None):
+            current = current.rightChild
+        return current
 
     def insert(self, data):
         ''' For inserting the data in the Tree '''
@@ -133,21 +168,7 @@ class Node(object):
             else:
                 self.rightChild = Node(data)
                 return True
-
-    def minValueNode(self, node):
-        current = node
-        # loop down to find the leftmost leaf
-        while(current.leftChild is not None):
-            current = current.leftChild
-        return current
-
-    def maxValueNode(self, node):
-        current = node
-        # loop down to find the rightmost leaf
-        while(current.rightChild is not None):
-            current = current.rightChild
-        return current
-
+                
     def delete(self, data,root):
         ''' For deleting the node '''
         if self is None:
