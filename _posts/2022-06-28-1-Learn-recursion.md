@@ -18,7 +18,7 @@ image: https://en.wikipedia.org/wiki/Romanesco_broccoli#/media/File:Romanesco_br
 
 > Recursion is like brocolli (or cauliflower). 
 
-![Romanesco_broccoli](https://en.wikipedia.org/wiki/Romanesco_broccoli#/media/File:Romanesco_broccoli_(3).jpg)
+![Romanesco_broccoli](https://i0.wp.com/growingwithplants.com/wp-content/uploads/2011/10/romanesco.jpg?w=640)
 
 Recursion is a function that is defined with itself.  $$f(n) = \text{some combination of }f(n-1)$$.   What does that supposed to mean?  
 
@@ -86,9 +86,11 @@ for i in range(10):
 # print(df.T.to_markdown())
 ``` 
 
-# Receipt for recursion
+# Recipe for recursion
 
 After working out the two simple examples successfully, we can use the same thinking process to tackle bigger recursion problems.
 1. Write down the mathematical formula of recursion
 2. Specify initial values correctly
 3. Code it accordingly
+
+Our recipe creation process feels like some kind of recursion too: we came up with a process (or a pattern of a process) that works and generalize it to future ones.  
