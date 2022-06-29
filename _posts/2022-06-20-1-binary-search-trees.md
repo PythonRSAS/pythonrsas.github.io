@@ -13,11 +13,13 @@ image: images/posts/photos/IMG_0876.JPG
 
 A Binary search tree is a kind of abstract data structure. It is also called an [**ordered/sorted binary tree**](https://en.wikipedia.org/wiki/Binary_search_tree).   
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Binary_search_tree.svg/270px-Binary_search_tree.svg.png)
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Binary_search_tree.svg/270px-Binary_search_tree.svg)
+
+![](../images/posts/bst.PNG)
 
 Its setup is very intuitive from the mathematical perspective: *divide and conquer*.  For a sorted array/list, if we know that x is bigger than the median, then we don't need to spend time on the left half.  On the right half, we divide and conquer again.
 
-[Binary search tree from Wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Binary_search_tree.svg/180px-Binary_search_tree.svg.png)
+![Binary search tree from Wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Binary_search_tree.svg/180px-Binary_search_tree.svg.png)
 Of course, it is made for doing something better than other data structures :)
 
 <!-- # Compare with (abstract) array
