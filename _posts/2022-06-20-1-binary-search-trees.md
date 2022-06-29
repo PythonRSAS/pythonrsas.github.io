@@ -23,7 +23,7 @@ A Binary search tree (often abbreviated as "BST") is an abstract data structure.
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Binary_search_tree.svg)
 
-The general property of the BST can be summarized in graph below:
+The general property of the BST is: at each node, it is greater or equal to its left child but is less or equal to its right child.  It can be summarized in graph below:
 
 ![](../images/posts/bst.PNG)
 
@@ -42,10 +42,6 @@ Of course, it is made for doing something better than other data structures :)
 * *Slower search*: We cannot access elements in constant time as we do in arrays.  To find a node at position n, we have to start the search at the first (head) node and iterate through via <span class="coding">next</span>. 
 * Binary search trees takes more space than the array.  -->
 
-The insert, delete and search take $$O(log(n))$$ nodes. 
-
-* **Search time**:  Search time is proportional to $$O(h)$$, where $$h$$ is height of tree.
-
 **Height of tree** is the length of the longest path between the *root* and *leaf*.  Or, the number of nodes from root to leaf, not including the leaf itself.  Or the number of edges connecting from root to leaf. 
 
 In a balanced tree, $$height = log(n)$$
@@ -60,7 +56,7 @@ In the extreme case it becomes a single linked list, as shown below, $$height = 
   
 **Local rule**  
 
-$$\text{height of node} = max{ \text{height of left child}, \text{height of right child} } + 1$$
+$$\text{height of node}=max{\text{height of left child},\text{height of right child}}+1$$
 
 Whenever we have local rules that depend on the children only, we get constant overhead: store node height for free. 
 
@@ -69,7 +65,7 @@ Our goal is to keep the tree's height small (we want short/bushy trees), quivale
 # Keeping tree balanced
 There are many ways to keep trees balanced, AVL is the original method discovered in the 1960s.  AVL trees use node heights (i.e. heights of left and right children).
 
-An AVL tree (named after inventors Adelson-Velsky and Landis in 1962) is a *self-balancing* binary search tree (BST).  
+An AVL tree (named after inventors Adelson-Velsky and Landis in 1962) is a *self-balancing* BST.  
 
 In table Below we compare the abstract data structure of array and Binary search tree:
 
@@ -82,10 +78,13 @@ Compare | array | Binary search tree
  
 # Binary search trees uses
 
+The primary use of BST is searching: find the min and max elements, and find the next largest or smallest element. 
+
 They are useful when we need fast insertion and deletion, and when we do not know in advance the size of data, or do not need random access when searching for items.   
-
-![Binary search tree uses](../images/posts/linked_list_uses.JPG)
-
+* **Time complexity**:  
+* Search time is proportional to $$O(h)$$, where $$h$$ is height of tree. 
+* The insert, delete and search take $$O(log(n))$$. 
+  
 # Tree traversing/walking
 
 <!-- If tree traversals are implemented using recursion, the time complexity is $$O(n)$$, and space complexity is $$O(h)$$, where $$h$$ is height of tree.  -->
@@ -96,16 +95,25 @@ Depth first as much as possible before going to the next sibling.
 
 Let N represent "node", "L" represent "left", and "R" represent "right".
 
-There are $$3!$$ different DFS. 
+There are $$3!$$ different DFS because of permutation of NLR. 
 
 * **In-order traversal**: 
+
+When data is stored sorted a BST, in-order [traversal](https://en.wikipedia.org/wiki/Tree_traversal) retrieves the data in ascending sorted order.  Hence the name "in order".
+
 **Inorder DFS LNR**: Left -> node -> right
 
-When data is stored sorted in the binary tree (aka "binary search tree"), in-order traversal retrieves the data in ascending sorted order.  Hence the name "in order".
-
+1. Recursively traverse the current node's left subtree.
+2. Visit the current node (in the figure: position green).
+3. Recursively traverse the current node's right subtree.
 
 ![In order depth first search](../images/posts/Inorder-DFS.PNG)
 
+Conversey, Reverse in-order, **RNL** retrieves data in descending order:
+
+1. Recursively traverse the current node's right subtree.
+2. Visit the current node.
+3. Recursively traverse the current node's left subtree.
 
 Order | Vertical direction 
 ---------|----------
@@ -121,8 +129,8 @@ Order | Vertical direction
 ## Libraries
 
 * [sortedcontainers](https://grantjenks.com/docs/sortedcontainers/) module.
-Underlying data structure: **sorted list of sorted list**
-Time complexity: $$O(/sqrt(n))$$ (as compared with $$O(log(n))$$ for balanced binary search tree)
+* Underlying data structure: **sorted list of sorted list**
+* Time complexity: $$O(\sqrt{n})$$ (as compared with $$O(log(n))$$ for balanced binary search tree)
 
 ## Write it 
 There can be many different ways to implement this.  All of them have 2 parts: Node and Tree.  
