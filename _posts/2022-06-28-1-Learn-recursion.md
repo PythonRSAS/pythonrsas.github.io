@@ -104,6 +104,13 @@ Our recipe creation process feels like some kind of recursion too: we came up wi
 
 Maybe history is a recursion as well...
 
+# Mathematical induction
+
+Mathematical induction is a twin sister of recursion.  
+
+If something is true for the initial value of a sequence, 
+And if we can prove that it is true for $$n+1$$ if assuming it is true for $$n$$, then it is true for all $$n$$. 
+
 # Search binary search tree
 
 Below code searches if a given value is in a binary search tree. 
