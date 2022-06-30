@@ -32,10 +32,13 @@ Compare with binary search trees (BSTs), hash tables are more efficient in acces
 
 > **same keys must map to the same hash code**.  Although not in any way related, but same keys to a lock should both open it, right? 
 
-$$x=y\Longrightarrowf(x)=f(y)$$
+$$x=y\rArr f(x)=f(y)$$
+$$ \text{Converse is not true}$$
 
-$$\text{Converse is not true}.
-In other words, $$f(x)=f(y)\text{, then }x\text{ may or may not}=y$$
+In other words
+$$f(x)=f(y)$$
+then
+$$x \text{ may or may not}=y$$
 
 ## Deterministic property
 
