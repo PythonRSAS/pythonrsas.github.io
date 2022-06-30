@@ -5,387 +5,56 @@ category: "Python for SAS"
 title: "hash table"
 description: hash table algorithm implementation in Python and the bisect library
 author: Sarah Chen
-image: images/posts/photos/IMG_0872.JPG
+image: images/posts/photos/IMG_0873.JPG
 
 ---
-By halfing the search range each time, the hash table *very quickly* zoom in on the search range. 
+> Hash tables can be seen as *indexed arrays* via hash functions. 
 
 - [hash table the basics](#hash-table-the-basics)
-- [Genearalize the hash table](#genearalize-the-hash-table)
-- [The bisect library](#the-bisect-library)
-- [Variations of hash table](#variations-of-hash-table)
-- [hash table trivial problems](#hash-table-trivial-problems)
-  - [First and last position in sorted array](#first-and-last-position-in-sorted-array)
-  - [Position or insertion position](#position-or-insertion-position)
-  - [Check if an integer is a perfect square](#check-if-an-integer-is-a-perfect-square)
-
+  - [Deterministic property](#deterministic-property)
+- [Hash tables in Python](#hash-tables-in-python)
 
 # hash table the basics
 
-Given a sorted array of integers $$A$$, we want to find a number, which we call "target", or $$x$$  The code should return the index of target, and return $$-1$$ if not found. 
+A hash table is data structure like a Python dictionary. It is designed to store keys (strings), and optionally, with associated values in an **array**.  It is highly efficient for find, insert, and delete. 
 
-The devide and conquer method is implemented as follows:
-1. We begin searching the entire array of numbers, defined by the index for the smallest number and the index of the biggest number.         
-2. Compute the mid point index. 
->  <span class="coding">l + (r - l) // 2</span> and <span class="coding">(r + l) // 2</span> are equivalent, in computation, they have a subtle difference: the latter may cause overflow (even though it may never happen) in some languages (not in Python because Python integers are unbounded).
-3. We compare the target with the $$A[m]$$:
-   1. if the target $$>A[m]$$, then we can disregard the left half $$->$$ <span class="coding">l</span> moves to <span class="coding">m + 1</span>, $$\text{mid point index} + 1$$
-   2. else if the target $$<A[m]$$, then we drop the right half $$->$$ <span class="coding">r</span> moves to <span class="coding">m - 1</span>, $$\text{mid point index} - 1$$
-   3. else it means the target is equal to $$A[m]$$, we return it and get out of the loop
-4. Continue the search from step 1 until loop is exhausted 
+A key is stored in the array locations based on its hash code, which is an integer $$\text{hash code}=\text{array index}=f(\text{input key})$$.  
 
-> The condition for the <span class="coding">while</span> loop is <span class="coding">while l <= r</span>.  Missing the $$=$$ sign the algorithm will be wrong in this particular set up.  For example, if you search for the boundary values, it would return $$-1$$ erroneously. 
+Hash codes are integers that are array indices. 
 
-For an one-element array, [1], or [100], the <span class="coding">while</span> loop would not have even run if we did not have the $$=$$ sign because the boundary indices would be the same. 
+Hash function maps keys to array indices. 
 
-So, when we check our code, we can test these extreme cases:
-* one-element array
-* target is one of the boundary values
+A good hash function distributes hash codes uniformly through the array locations, which prevents collision as much as possible and promotes fast access, insertion and deletion. 
 
-> Note that if the target is found, it will be returned and the function call will stop immediately. 
+* Time complexity: find, insert, and delete all in $$O(1)$$ time if we have a good hash function.   
 
-<div class="code-head"><span>code</span>hash table.py</div>
+Compare with binary search trees (BSTs), hash tables are more efficient in access (find), insert and delete, as long as we have a good hash function. 
+
+> **same keys must map to the same hash code**.  Although not in any way related, but same keys to a lock should both open it, right? 
+
+$$x=y\Longrightarrowf(x)=f(y)$$
+
+$$\text{Converse is not true}.
+In other words, $$f(x)=f(y)\text{, then }x\text{ may or may not}=y$$
+
+## Deterministic property
+
+Hash function (input and output) must be constant (stay the same).  Therefore, many programming languages require hash keys be immutable.  In Python dictionary, keys can be strings or integers, which are immutable. 
+
+# Hash tables in Python
+
+Python has 4 built-in hash table types: *set*, *dict*, *collections.defaultdict*, *collections.Counter*, where a set only stores keys.
+
+Note that <span class="coding">collections.defaultdict</span> is nothing but a <span class="coding">dict</span> with an added option to specify default, so that error can be prevented if key is not found. 
+
+
+<div class="code-head"><span>code</span>defaultdict.py</div>
 
 ```py
-def bSearch(A, target):
-    N = len(A)
-    l = 0
-    r = N - 1
-    while l <= r:
-        m = l + (r - l) // 2 # not writing it as (r + l) // 2 to prevent overflow
-        if target > A[m]:
-            l = m + 1
-        elif target < A[m]:
-            r = m - 1
-        else:
-            return m # return and stop the function
-    return - 1
-
-lt = [1, 2, 5, 7, 8, 10, 20]
-print(bSearch(lt, 7))
-
+from collections import defaultdict
+d = defaultdict(str) #default is 0 if key not found
+d['OCI']= "other comprehensive income, an accounting category related to AFS"
+d["BST"]
+# Out
+# ''
 ```
-
-# Genearalize the hash table
-
-In above basic hash table, we compare mid point of search range with target.
-
-To genearalize, we compare a monotonic function  $$f$$ of the mid point with target.  In the basic search, $$f$$ is the identity function. 
-
-$$f(m)\text{compares with target}$$, where $$f$$ is a monotonic function.  [Check if an integer is a perfect square](#check-if-an-integer-is-a-perfect-square) problem is such an example.  
-
-# The bisect library
-
-The [bisect library](https://docs.python.org/3/library/bisect.html) has some functions that perform variations of hash table.  For example, the <span class="coding">bisect_left</span> function returns the leftist index of the value we search, if it exist in the input array. If value we search does not exist in the array, then it gives the index position the insertion point.
-> The source code may be most useful as a working example of the algorithm (the boundary conditions are already right!).
-
-I simplified the bisect_left source code as below.  
-Note many of the small differences from <span class="coding">bSearch</span> function above.
-* while loop condition
-* two conditions in if-else rather than there
-* r is updated as r = m rather than r = m -1
-* return left pointer <span class="coding">l</span> 
-
-<div class="code-head"><span>code</span>bisectLeft.py</div>
-
-```py
-def bisectLeft(A, target):
-    l = 0
-    r = len(A)
-    while l < r:
-        m = l + (r - l) // 2
-        if A[m] < target:
-            l = m + 1
-        else:
-            r = m
-    return l
-```
-
-![bisect_left, bisect, bisect_right](../images/posts/bisect.PNG)
-
-1. **when x is *missing* from the input array**: <span class="coding">bisect_left</span>, <span class="coding">bisect</span>, and <span class="coding">bisect_right</span> all produce the same result: **the insertion point**
-2. **when x is in the input array**:  <span class="coding">bisect_left</span> gives the index of the leftmost one, while <span class="coding">bisect</span> and <span class="coding">bisect_right</span> returns the insertion point immediately after the rightmost x, i.e., the leftmost insertion point after the target, 
-
-<div class="code-head"><span>code</span>bisect.py</div>
-
-```py
-from bisect import bisect, bisect_left, bisect_right
-In [61]: list1 = [1, 4, 4, 5, 6]
-    ...: x = 3
-    ...: print(bSearch(list1, x))
-    ...: print(bisect_left(list1, x))
-    ...: print(bisect(list1, x))
-    ...: print(bisect_right(list1, x))
-    ...:
--1
-1
-1
-1
-
-In [62]: list1 = [1, 4, 4, 5, 6]
-    ...: x = 4
-    ...: print(bSearch(list1, x))
-    ...: print(bisect_left(list1, x))
-    ...: print(bisect(list1, x))
-    ...: print(bisect_right(list1, x))
-    ...:
-2
-1
-3
-3
-
-In [63]: list1 = [1, 4, 4, 5, 6, 6, 6]
-    ...: x = 6
-    ...: print(bSearch(list1, x))
-    ...: print(bisect_left(list1, x))
-    ...: print(bisect(list1, x))
-    ...: print(bisect_right(list1, x))
-    ...:
-5
-4
-7
-7
-
-```
-
-# Variations of hash table
-
-I have summarized some variations of hash table in the table below. 
-For "Find leftmost value less than or equal to x", we use <span class="coding">bisect_left</span> since bisect_left gives the leftmost index when found and the insertion index if not found, 
-
-Action | Math expression | Function
----------|----------|---------
- **locate leftmost value exactly equal to x**  | $$min\{i\| A[i] = x\}$$| <span class="coding">bisect_left(A,x)</span>
- **rightmost value less than x** | $$max\{y\|y<x \cap y\in A\}$$  | <span class="coding">A[bisect_left(A,x) - 1]</span>                                   
- **rightmost value less than or equal to x** | $$max\{y\|y<=x \cap y\in A\}$$  | <span class="coding">A[bisect_right(A,x) - 1]</span>
- **leftmost value less than or equal to x** | $$min\{y\|y<=x \cap y\in A\}$$  | <span class="coding">A[bisect_left(A,x) - 1] </span>
-
-The following snippets are modified from the bisect page.
-
-<div class="code-head"><span>code</span>bisect_derived_functions.py</div>
-
-```py
-
-def find_lt(A, x):
-    'Find rightmost value less than x'
-    i = bisect_left(A, x)
-    if i:
-        return A[i-1]
-    raise ValueError
-
-def find_le(A, x):
-    'Find rightmost value less than or equal to x'
-    i = bisect_right(A, x)
-    if i:
-        return A[i-1]
-    raise ValueError
-
-def find_gt(A, x):
-    'Find leftmost value greater than x'
-    i = bisect_right(A, x)
-    if i != len(A):
-        return A[i]
-    raise ValueError
-
-def find_ge(A, x):
-    'Find leftmost item greater than or equal to x'
-    i = bisect_left(A, x)
-    if i != len(A):
-        return A[i]
-    raise ValueError
-
-```
-
-The [example](https://docs.python.org/3/library/bisect.html) on numeric table lookups is interesting and clever.  Since the <span class="coding">bisect()</span> function gives the leftmost insertion point after the target, *all numbers **from** break point 60 (**inclusive**) up to next break point 70 (**exclusive**) will be given the insertion point after break point*.  
-
-This code would not have worked had we used <span class="coding">bisect_left()</span>
-
-We have $$n$$ breakPoints, which corresponds to a 5-part partition on the range [0, 100].  The 5-part partition corresponds to the 5 grades, in sorted order. 
-<div class="code-head"><span>code</span>ratings.py</div>
-
-```py
-from bisect import bisect, bisect_left, bisect_right
-def grade_location(score, breakpoints, grades='FDCBA'):
-    i = bisect(breakpoints, score)
-    return i
-def grade(score, breakpoints, grades='FDCBA'):
-    i = bisect(breakpoints, score)
-    return grades[i]
-
-A = [33, 59, 60, 61,  70, 77, 79, 89, 90, 100]
-breakPoints = [60, 70, 80, 90]
-grades='FDCBA'
-print([grade_location(score,breakPoints, grades) for score in A])
-print([grade(score,breakPoints, grades) for score in A])
-# [0, 0, 1, 1, 2, 2, 2, 3, 4, 4]
-# ['F', 'F', 'D', 'D', 'C', 'C', 'C', 'B', 'A', 'A']
-```
-
-|  in range  |   score |   index/insertion point | grade   |
-|---:|--------:|--------:|:--------|
-|  below 60 |      33 |       0 | F       |
-|  [0,60) |      59 |       0 | F       |
-|  [60,70) |      60 |       1 | D       |
-|  [60,70) |      61 |       1 | D       |
-|  [70,80) |      70 |       2 | C       |
-|  [70,80)  |      77 |       2 | C       |
-|  [70,80) |      79 |       2 | C       |
-|  [80,90)  |      89 |       3 | B       |
-|  90 and above |      90 |       4 | A       |
-|  90 and above |     100 |       4 | A       |
-
-# hash table trivial problems
-
-A few trivial problems are documented here. 
-
-## First and last position in sorted array
-
-Now, instead of finding the index of the target (assuming no duplicates), we want to find the first and the last position of the target.  
-
-<div class="code-head"><span>code</span>hash table variation.py</div>
-
-```py
-def searchRange(A, target):
-    small = bSearch(A, target, True)
-    big = bSearch(A, target, False)
-    return [small, big]
-    
-def bSearch(A, target, smallBias):
-    ```
-    smallbias: True means we are searching for the first & False means searching for the last
-    ```
-    N = len(A)
-    l = 0
-    r = N - 1
-    idx = -1
-    while l <= r:
-        m = l + (r - l )//2
-        if target > A[m]:
-            l = m + 1
-        elif target < A[m]:
-            r = m - 1
-        else:
-            idx = m
-            # return idx for regular binary bSearch
-            if smallBias:
-                r = m - 1
-            else:
-                l = m + 1
-
-    return idx
-
-lt = [1]
-lt2 = [1,1,1, 2,2, 5, 7, 8, 10, 20, 30, 100]
-print(searchRange(lt, 1))
-print(searchRange(lt2, 2))
-```    
-
-## Position or insertion position
-
-Given an input array of sorted integers, for example, nums = [1,3, 5,6], find position of a number; if not found, return the insertion position that keeps the sorted order.
-
-What this problem asks for is equivalent to <span class="coding">bisect.bisect_left</span> does. 
-
-<div class="code-head"><span>code</span>myLeft.py</div>
-
-```py
-def myLeft(A,num):
-    N = len(A)
-    l = 0
-    r = N - 1
-    while l<= r:
-        m = l + (r-l)//2
-        if num > A[m]:
-            l = m + 1
-        elif num < A[m]:
-            r = m - 1
-        else:
-            return m
-    return r+1
-nums = [1,3, 5,6]
-target = 100
-print(myLeft(nums,target))
-# 4
-from bisect import bisect_left
-print(bisect_left(nums,target))
-# 4
-```
-
-
-## Check if an integer is a perfect square
-
-Problem: Given a positive interger, we want to check if it is a perfect square.  
-
-My instinct would have been just use the square root function and check if the root is an integer.  I am sure there are many different ways to solve this.   The two solutions here are to square numbers almost by brute force and check if the result matches the number:
-
-1. Linear time: a small trick used to reduce computation is loop through up to input number//2.  Because all numbers squared are larger than doubled, except 2.  
-2. Log(n) time: use hash table.  
-   
-
-![hash table check if a number is a square](../images/posts/checkSquare.PNG)
-
-We can change the problem and still use almost the same solutions. For example, we can ask for checking if a number is a cube, a fourth power, and so on.   
-
-Below program compare the two methods by recording the time they each take to check a list of integers.  Aparently, linear time becomes large quickly whereas log(n) time increases very slowly. 
-<div class="code-head"><span>code</span>checkSquares.py</div>
-
-```py
-def checkSquare(num):
-    for i in range(1, num//2 + 1, 1):
-        if i**2 == num:
-            return True
-    return False
-
-def checkSquare2(num):
-    l = 1
-    r = 1+ num // 2
-    while l <= r:
-        m = l + (r - l)//2
-        if m**2 > num:
-            r = m -1
-        elif m*m < num:
-            l = m + 1
-        else:
-            return True
-    return False
-# print(checkSquare2(3))
-
-from datetime import datetime
-import pandas as pd
-def compareTime(A):
-    bs, bs_time, linear, linear_time = [], [], [], []
-    for i in A:
-        t0 = datetime.now()
-        bs.append(checkSquare2(i))
-        bs_time.append((datetime.now() - t0).microseconds)
-
-        t1 = datetime.now()
-        linear.append(checkSquare(i))
-        linear_time.append((datetime.now() - t1).microseconds)
-    df = pd.DataFrame({
-        'num': A,
-        'bs': bs,
-        'bs_time': bs_time,
-        'linear': linear,
-        'linear_time': linear_time
-    })
-    return df
-
-A = [1, 3, 30, 300, 3000, 30000, 300000, 3000000]
-result = compareTime(A)
-print(result)
-
-```
-Summary of run time and results of linear search and hash table:
-
-|     num | bs    |   bs_time | linear   |   linear_time |
-|--------:|:------|----------:|:---------|--------------:|
-|       0 | True  |         0 | True     |             0 |
-|       3 | False |         0 | False    |             0 |
-|       3 | False |         0 | False    |             0 |
-|      30 | False |         0 | False    |             0 |
-|     300 | False |         0 | False    |             0 |
-|    3000 | False |         0 | False    |         15622 |
-|   30000 | False |         0 | False    |         39016 |
-|  300000 | False |         0 | False    |        519450 |
-| 3000000 | False |         0 | False    |        314920 |
