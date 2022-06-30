@@ -50,8 +50,21 @@ how do we cure the disease?
 what are the effects of the cure?
 What are the side effects of it?
 What if we don't cure it? -->
-This post presents the data that shows too much money has inflicted inflation.  The recent trends indicates that it is likely going to stay and get worse in time.  
-
+- [Money Suppy](#money-suppy)
+  - [M2](#m2)
+  - [Money velocity](#money-velocity)
+- [Oil](#oil)
+- [Global commodities](#global-commodities)
+  - [Monthly data](#monthly-data)
+- [Price](#price)
+  - [CPI](#cpi)
+  - [PPI](#ppi)
+- [cpi and ppi](#cpi-and-ppi)
+- [wti and commodities and cpi](#wti-and-commodities-and-cpi)
+  - [HPI](#hpi)
+- [ATES](#ates)
+  - [Fed funds rate](#fed-funds-rate)
+  - [10-year treasury note yield](#10-year-treasury-note-yield)
 # Money Suppy
 ## M2 
 
@@ -290,7 +303,7 @@ DATE
 | 2022-03-01 00:00:00 |              18.6 | Max       |
 | 2008-10-01 00:00:00 |             -18.2 | min       |
 
-# 2. price
+# Price
 The CPI is the most important price gauge in the US, although PPI, HPI and labor costs are important as well. 
 
 The CPI data is monthly, HPI quarterly, and PPI data is monthly.  
@@ -453,7 +466,7 @@ The latest data is as of 1Q2022.  The data availability is much later than WTI a
 
 
 
-# 3. RATES
+# ATES
 ## Fed funds rate
 MEV = 'FEDFUNDS'
 NAME = 'fedfunds'
