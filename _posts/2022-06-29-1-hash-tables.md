@@ -19,6 +19,7 @@ image: images/posts/photos/IMG_0873.JPG
   - [Counter](#counter)
   - [Hash table examples](#hash-table-examples)
     - [Find anagram](#find-anagram)
+    - [If letter](#if-letter)
 
 # hash table the basics
 
@@ -141,5 +142,24 @@ for k, w in d.items():
 # equivalent to: aestt, ['taste', 'state']
 # equivalent to: eilnst, ['listen']
 # equivalent to: eilsv, ['levis', 'elvis', 'lives']
+```
+
+### If letter 
+
+Given a letter, and a magazine (or another letter), both contain text.  
+Problem: can the letter be constructed using the characters in the magazine?
+
+If any charaters are left, then it implicitly implies True.  So, adding <span class="coding">not</span> returns False, because letter cannot be constructed using the characters in the magazine. 
+
+<div class="code-head"><span>code</span>anagram.py</div>
+
+```py
+from collections import Counter
+
+def L_subset_of_M(L, M):
+    result = Counter(L) - Counter(M)
+    return not result
+
+print(L_subset_of_M("ab","a"))
 ```
 
