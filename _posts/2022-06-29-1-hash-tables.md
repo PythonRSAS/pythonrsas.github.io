@@ -17,9 +17,10 @@ image: images/posts/photos/IMG_0873.JPG
 - [Hash tables in Python](#hash-tables-in-python)
   - [defaultdict](#defaultdict)
   - [Counter](#counter)
+  - [set](#set)
   - [Hash table examples](#hash-table-examples)
     - [Find anagram](#find-anagram)
-    - [If letter](#if-letter)
+    - [If letter can be constructed](#if-letter-can-be-constructed)
 
 # hash table the basics
 
@@ -88,6 +89,10 @@ c = Counter({'high': 100, 'low': 5000})       # a new counter from a mapping
 c = Counter(high=100, low=5000)                   # a new counter from keyword args
 ```
 
+## set
+
+sets are my favorite objects.  I use sets whenever I can when comparing memberships.  
+
 ## Hash table examples
 
 ### Find anagram 
@@ -144,7 +149,7 @@ for k, w in d.items():
 # equivalent to: eilsv, ['levis', 'elvis', 'lives']
 ```
 
-### If letter 
+### If letter can be constructed
 
 Given a letter, and a magazine (or another letter), both contain text.  
 Problem: can the letter be constructed using the characters in the magazine?
@@ -163,3 +168,7 @@ def L_subset_of_M(L, M):
 print(L_subset_of_M("ab","a"))
 ```
 
+Time complexity is $$O(l+m)$$, where $$l$$ is the number of the charaters in letter. 
+Space complexity is $$O(L+M)$$, where $$L$$ is the number of distinct charaters in letter. 
+
+This is not the best solution in terms of cost, but it is the simplest, which can matter more, especially to senior management.  
