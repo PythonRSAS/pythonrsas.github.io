@@ -8,6 +8,26 @@ author: Sarah Chen
 image: images/posts/photos/IMG-0869.JPG
 ---
 
+- [Introduction](#introduction)
+- [Money Suppy](#money-suppy)
+  - [M2](#m2)
+  - [Money velocity](#money-velocity)
+- [Oil](#oil)
+- [Global commodities](#global-commodities)
+  - [Monthly data](#monthly-data)
+- [Price](#price)
+  - [CPI](#cpi)
+  - [PPI](#ppi)
+- [cpi and ppi](#cpi-and-ppi)
+- [wti and commodities and cpi](#wti-and-commodities-and-cpi)
+  - [HPI](#hpi)
+    - [HPI historical extremes](#hpi-historical-extremes)
+- [RATES](#rates)
+  - [Fed funds rate](#fed-funds-rate)
+  - [10-year treasury note yield](#10-year-treasury-note-yield)
+
+# Introduction 
+
 When big changes that affect the world happen, risk (uncertainties) rise.
 
 Both rising rates and inflation can impact businesses and people's lives, as well as countries. 
@@ -45,26 +65,6 @@ In this post, I updated some data from FRED related to rates, macros and inflati
 | STLFSI     | weekly      | nan                 |
 | VIXCLS     | daily       | nan                 |
 
-<!-- what's the cause of the disease,
-how do we cure the disease?
-what are the effects of the cure?
-What are the side effects of it?
-What if we don't cure it? -->
-- [Money Suppy](#money-suppy)
-  - [M2](#m2)
-  - [Money velocity](#money-velocity)
-- [Oil](#oil)
-- [Global commodities](#global-commodities)
-  - [Monthly data](#monthly-data)
-- [Price](#price)
-  - [CPI](#cpi)
-  - [PPI](#ppi)
-- [cpi and ppi](#cpi-and-ppi)
-- [wti and commodities and cpi](#wti-and-commodities-and-cpi)
-  - [HPI](#hpi)
-- [ATES](#ates)
-  - [Fed funds rate](#fed-funds-rate)
-  - [10-year treasury note yield](#10-year-treasury-note-yield)
 # Money Suppy
 ## M2 
 
@@ -223,85 +223,35 @@ The commodity index is highest in 2Q2011.
 
 The highest spikes were in 1Q2021, in the midst of the pandemic.   And the other extreme took place in 3Q2008 during the GFC. 
 
-| DATE                |   commodities | Max_min   |
-|:--------------------|--------------:|:----------|
-| 2022-01-01 00:00:00 |         211.8 | Max       |
-| 2003-04-01 00:00:00 |          63.1 | min       |
 
+**Historical extreme values**
 
-| DATE                |   commodities_qoq | Max_min   |
-|:--------------------|------------------:|:----------|
-| 2021-01-01 00:00:00 |              19.3 | Max       |
-| 2008-10-01 00:00:00 |             -35.8 | min       |
-
-
-| DATE                |   commodities_yoy | Max_min   |
-|:--------------------|------------------:|:----------|
-| 2021-04-01 00:00:00 |              67.4 | Max       |
-| 2009-04-01 00:00:00 |             -40.4 | min       |
-
-
-| Date                |   commodities | Max_min   | Date                |   commodities_qoq | Max_min   | Date                |   commodities_yoy | Max_min   |
-|---------------------|---------------|-----------|---------------------|-------------------|-----------|---------------------|-------------------|-----------|
-| 2022-01-01 00:00:00 |         211.8 | Max       | 2021-01-01 00:00:00 |             19.33 | Max       | 2021-04-01 00:00:00 |             67.44 | Max       |
-| 2003-04-01 00:00:00 |          63.1 | min       | 2008-10-01 00:00:00 |            -35.75 | min       | 2009-04-01 00:00:00 |            -40.45 | min       |
+| Date        |   commodities | Extremes   | Date        |   commodities_qoq | Extremes   | Date        |   commodities_yoy | Extremes   |
+|-------------|---------------|-----------|-------------|-------------------|-----------|-------------|-------------------|-----------|
+| 2022-01-01  |         211.8 | Max       | 2021-01-01  |             19.33 | Max       | 2021-04-01  |             67.44 | Max       |
+| 2003-04-01  |          63.1 | min       | 2008-10-01  |            -35.75 | min       | 2009-04-01  |            -40.45 | min       |
 
 ## Monthly data
 
-           commodities
-DATE
-2022-04-01      226.488
-2022-03-01      241.066
-2022-02-01      203.331
-2022-01-01      190.990
-2021-12-01      186.483
-            commodities_mom
-DATE
-2003-02-01            7.662
-2003-03-01           -6.422
-2003-04-01           -6.018
-2003-05-01            1.931
-2003-06-01            2.059
-            commodities_mom
-DATE
-2021-12-01            1.836
-2022-01-01            2.417
-2022-02-01            6.461
-2022-03-01           18.558
-2022-04-01           -6.047
+**Recent history**
 
-The max happens on  commodities_mom   2022-03-01
-dtype: datetime64[ns]
-            commodities_mom
-DATE
-2022-03-01           18.558
-The min happens on  commodities_mom   2008-10-01
-dtype: datetime64[ns]
-            commodities_mom
-DATE
-2008-10-01          -18.247
+| DATE        |   commodities |   commodities_mom |
+|-------------|---------------|-------------------|
+| 2021-04-01  |         145   |               2.7 |
+| 2021-05-01  |         155.1 |               6.9 |
+| 2021-06-01  |         160.6 |               3.6 |
+| 2021-07-01  |         165.3 |               2.9 |
+| 2021-08-01  |         163.5 |              -1.1 |
+| 2021-09-01  |         172.1 |               5.2 |
+| 2021-10-01  |         191.5 |              11.3 |
+| 2021-11-01  |         183.1 |              -4.4 |
+| 2021-12-01  |         186.5 |               1.8 |
+| 2022-01-01  |         191   |               2.4 |
+| 2022-02-01  |         203.3 |               6.5 |
+| 2022-03-01  |         241.1 |              18.6 |
+| 2022-04-01  |         226.5 |              -6   |
 
 
-| DATE                |   commodities |   commodities_mom |
-|---------------------|---------------|-------------------|
-| 2021-04-01 00:00:00 |         145   |               2.7 |
-| 2021-05-01 00:00:00 |         155.1 |               6.9 |
-| 2021-06-01 00:00:00 |         160.6 |               3.6 |
-| 2021-07-01 00:00:00 |         165.3 |               2.9 |
-| 2021-08-01 00:00:00 |         163.5 |              -1.1 |
-| 2021-09-01 00:00:00 |         172.1 |               5.2 |
-| 2021-10-01 00:00:00 |         191.5 |              11.3 |
-| 2021-11-01 00:00:00 |         183.1 |              -4.4 |
-| 2021-12-01 00:00:00 |         186.5 |               1.8 |
-| 2022-01-01 00:00:00 |         191   |               2.4 |
-| 2022-02-01 00:00:00 |         203.3 |               6.5 |
-| 2022-03-01 00:00:00 |         241.1 |              18.6 |
-| 2022-04-01 00:00:00 |         226.5 |              -6   |
-
-| DATE                |   commodities_mom | Max_min   |
-|:--------------------|------------------:|:----------|
-| 2022-03-01 00:00:00 |              18.6 | Max       |
-| 2008-10-01 00:00:00 |             -18.2 | min       |
 
 # Price
 The CPI is the most important price gauge in the US, although PPI, HPI and labor costs are important as well. 
@@ -369,22 +319,22 @@ But the overall *recent year PPI YOY is much higher than a year ago*.
 ![PPI year over year](/images/posts/US ppi_yoy_20220630.png)
 
 
-| DATE                |    ppi |   PPI_mom |   ppi_yoy |
-|---------------------|--------|-----------|-----------|
-| 2022-01-01 00:00:00 | 246.45 |      2.12 |     20.34 |
-| 2022-02-01 00:00:00 | 252.62 |      2.5  |     19.95 |
-| 2022-03-01 00:00:00 | 259.82 |      2.85 |     20.85 |
-| 2022-04-01 00:00:00 | 265.18 |      2.06 |     21.7  |
-| 2022-05-01 00:00:00 | 273.21 |      3.03 |     21.48 |
+| DATE        |    ppi |   PPI_mom |   ppi_yoy |
+|-------------|--------|-----------|-----------|
+| 2022-01-01  | 246.45 |      2.12 |     20.34 |
+| 2022-02-01  | 252.62 |      2.5  |     19.95 |
+| 2022-03-01  | 259.82 |      2.85 |     20.85 |
+| 2022-04-01  | 265.18 |      2.06 |     21.7  |
+| 2022-05-01  | 273.21 |      3.03 |     21.48 |
 
 
-| DATE                |   PPI_mom | Max_min   |
+| DATE                |   PPI_mom | Extremes   |
 |:--------------------|----------:|:----------|
 | 1973-08-01 00:00:00 |       5.8 | Max       |
 | 2008-10-01 00:00:00 |      -5.3 | min       |
 
 
-| DATE                |   ppi_yoy | Max_min   |
+| DATE                |   ppi_yoy | Extremes   |
 |:--------------------|----------:|:----------|
 | 1974-11-01 00:00:00 |      23.4 | Max       |
 | 2009-07-01 00:00:00 |     -16.1 | min       |
@@ -404,7 +354,7 @@ DATE
 2008-10-01   -5.333
 ```
 
-| Date       |   hpi_qoq | Max_min   | Date       |   hpi_yoy | Max_min   |
+| Date       |   hpi_qoq | Extremes   | Date       |   hpi_yoy | Extremes   |
 |------------|-----------|-----------|------------|-----------|-----------|
 | 2021-07-01 |      5.58 | Max       | 2021-10-01 |     17.86 | Max       |
 | 2008-07-01 |     -3.15 | min       | 2008-10-01 |     -7.14 | min       |
@@ -447,26 +397,26 @@ The latest data is as of 1Q2022.  The data availability is much later than WTI a
 
 ![HPI year over year 1Q2022](/images/posts/US hpi_yoy_20220630.png)
 
-| DATE                |   hpi_qoq | Max_min   |
-|:--------------------|----------:|:----------|
-| 2021-04-01 00:00:00 |       5.6 | Max       |
-| 2008-07-01 00:00:00 |      -3.2 | min       |
+### HPI historical extremes
+
+**QoQ**
+
+| DATE       |   hpi_qoq | Extremes   |
+|:-----------|----------:|:----------|
+| 2021-04-01 |       5.6 | Max       |
+| 2008-07-01 |      -3.2 | min       |
+
+**YoY**
+
+| DATE       |   hpi_yoy | Extremes   |
+|:-----------|----------:|:----------|
+| 2022-01-01 |      19.4 | Max       |
+| 2008-10-01 |      -7.1 | min       |
 
 
-| DATE                |   hpi_yoy | Max_min   |
-|:--------------------|----------:|:----------|
-| 2022-01-01 00:00:00 |      19.4 | Max       |
-| 2008-10-01 00:00:00 |      -7.1 | min       |
+# RATES
+Interest rates are extremely important. It affects how the economy works from large corporations to families and individuals. 
 
-
-| Date                |   hpi_qoq | Max_min   | Date                |   hpi_yoy | Max_min   |
-|---------------------|-----------|-----------|---------------------|-----------|-----------|
-| 2021-04-01 00:00:00 |      5.56 | Max       | 2022-01-01 00:00:00 |     19.36 | Max       |
-| 2008-07-01 00:00:00 |     -3.15 | min       | 2008-10-01 00:00:00 |     -7.15 | min       |
-
-
-
-# ATES
 ## Fed funds rate
 MEV = 'FEDFUNDS'
 NAME = 'fedfunds'
@@ -481,29 +431,11 @@ NAME = 'fedfunds'
 
 ![fedfunds year over year](/images/posts/US fedfunds_yoy_20220630.png)
 
-saving figure US fedfunds_yoy_20220630.png
-| DATE       |   fedfunds | Max_min   |
-|:-----------|-----------:|:----------|
-| 1981-06-01 |       19.1 | Max       |
-| 2020-04-01 |        0   | min       |
 
-
-| DATE        |   fedfunds_mom | Max_min   |
-|:------------|---------------:|:----------|
-| 2022-03-01  |          150   | Max       |
-| 2020-04-01  |          -92.3 | min       |
-
-
-| DATE       |   fedfunds_yoy | Max_min   |
-|:-----------|---------------:|:----------|
-| 2022-05-01 |         1183.3 | Max       |
-| 2020-04-01 |          -97.9 | min       |
-
-
-| Date       |   fedfunds | Max_min   | Date                |   fedfunds_mom | Max_min   | Date                |   fedfunds_yoy | Max_min   |
-|------------|------------|-----------|---------------------|----------------|-----------|---------------------|----------------|-----------|
-| 1981-06-01 |      19.1  | Max       | 2022-03-01 00:00:00 |         150    | Max       | 2022-05-01 00:00:00 |        1183.33 | Max       |
-| 2020-04-01 |       0.05 | min       | 2020-04-01 00:00:00 |         -92.31 | min       | 2020-04-01 00:00:00 |         -97.93 | min       |
+| Date       |   fedfunds | Extremes   | Date       |   fedfunds_mom | Extremes   | Date       |   fedfunds_yoy | Extremes   |
+|------------|------------|-----------|------------|----------------|-----------|------------|----------------|-----------|
+| 1981-06-01 |      19.1  | Max       | 2022-03-01 |         150    | Max       | 2022-05-01 |        1183.33 | Max       |
+| 2020-04-01 |       0.05 | min       | 2020-04-01 |         -92.31 | min       | 2020-04-01 |         -97.93 | min       |
 
 
 
@@ -554,7 +486,6 @@ saving figure US fedfunds_yoy_20220630.png
 | 1981-01-01 |      19.08 |          0.952 |         38.061 |
 
 
-
 ## 10-year treasury note yield
 
 MEV = 'DGS10'
@@ -571,7 +502,7 @@ NAME = 'dgs10'
 ![T10 month over month](/images/posts/US t10_mom_20220630.png)
 
 
-| Date       |   t10 | Max_min   | Date       |   t10_mom | Max_min   | Date       |   t10_yoy | Max_min   |
+| Date       |   t10 | Extremes   | Date       |   t10_mom | Extremes   | Date       |   t10_yoy | Extremes   |
 |------------|-------|-----------|------------|-----------|-----------|------------|-----------|-----------|
 | 1981-06-01 | 19.1  | Max       | 2015-12-01 |    100    | Max       | 2016-02-01 |    245.45 | Max       |
 | 2020-04-01 |  0.05 | min       | 2020-04-01 |    -92.31 | min       | 2020-04-01 |    -97.93 | min       |
@@ -597,7 +528,8 @@ print(tabulate(t10.join(t10_mom).join(t10_yoy).tail(13).round(1), tablefmt="gith
 | 2021-12-01 00:00:00 |   0.1 |       0   |     -11.1 |
 | 2022-01-01 00:00:00 |   0.1 |       0   |     -11.1 |
 
-The fed funds rate and t10 are very much moving together.  But the fed funds rate movement are much bigger than t10.  
+The fed funds rate and t10 are very much moving together.  But the fed funds rate movement are much bigger than t10.
+
 ![fed funds and T10](/images/posts/fed funds and t10.png)
 
 ## 3-month treasury bill yield
@@ -622,19 +554,7 @@ Besides the magnitude of rates themselves, we should also pay close attention to
 
 Note the rates have been zero or near zero in 2021.   Rates have been increasing in 2022 slowly.   
 
-| DATE       |   tb3ms | Max_min   |
-|:-----------|--------:|:----------|
-| 1981-05-01 |    16.3 | Max       |
-| 2011-09-01 |     0   | min       |
-| DATE       |   tb3ms_mom | Max_min   |
-|:-----------|------------:|:----------|
-| 2015-11-01 |       500   | Max       |
-| 2008-12-01 |       -84.2 | min       |
-| DATE       |   tb3ms_yoy | Max_min   |
-|:-----------|------------:|:----------|
-| 2022-05-01 |        4800 | Max       |
-| 2008-12-01 |         -99 | min       |
-| Date       |   tb3ms | Max_min   | Date       |   tb3ms_mom | Max_min   | Date        |   tb3ms_yoy | Max_min   |
+| Date       |   tb3ms | Extremes   | Date       |   tb3ms_mom | Extremes   | Date        |   tb3ms_yoy | Extremes   |
 |------------|---------|-----------|------------|-------------|-----------|-------------|-------------|-----------|
 | 1981-05-01 |   16.3  | Max       | 2015-11-01 |      500    | Max       | 2022-05-01  |        4800 | Max       |
 | 2011-09-01 |    0.01 | min       | 2008-12-01 |      -84.21 | min       | 2008-12-01  |         -99 | min       |
@@ -704,7 +624,7 @@ Note the rates have been zero or near zero in 2021.   Rates have been increasing
 
 **Unemployment Rate Extreme Values**
 
-| Date       |   uem | Max_min   | Date       |   uem_mom | Max_min   | Date        |   uem_yoy | Max_min   |
+| Date       |   uem | Extremes   | Date       |   uem_mom | Extremes   | Date        |   uem_yoy | Extremes   |
 |------------|-------|-----------|------------|-----------|-----------|-------------|-----------|-----------|
 | 2020-04-01 |  14.7 | Max       | 2020-04-01 |    234.09 | Max       | 2020-04-01  |    308.33 | Max       |
 | 1968-09-01 |   3.4 | min       | 2020-08-01 |    -17.65 | min       | 2021-04-01  |    -59.18 | min       |
