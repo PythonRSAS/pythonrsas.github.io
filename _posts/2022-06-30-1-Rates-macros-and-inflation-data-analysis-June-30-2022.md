@@ -5,7 +5,7 @@ category: "other risks"
 title: "Rates macros and inflation data analysis June 30 2022"
 description: Using FRED data to assess rate change, inflation risk and magnitude
 author: Sarah Chen
-image: images/posts/photos/IMG-0869.JPG
+image: images/posts/photos/IMG_0869.JPG
 ---
 
 - [Introduction](#introduction)
@@ -42,11 +42,12 @@ We should also refer back to the 2004- 2007 pre-crisis period when rates were gr
 
 I think perhaps more than that. 
 
-In this post, I updated some data from FRED related to rates, macros and inflation.  Here is a list I compile,, and will expand in the future.  Note that the sources of original data came from government agencies, and organizations such as the IMF.  
+In this post, I updated my post from a few months ago on rates, macros and inflation.    
 
-<!-- print(tabulate(freq_tbl.iloc[:,:1], tablefmt="pipe", headers='keys')) -->
+Note that the sources of original data came from government agencies, and organizations such as the IMF.  
 
-| MEV        | frequency   | date                |
+
+| FRED Symbol        | frequency   | date                |
 |:-----------|:------------|:--------------------|
 | M2Sl       | monthly     | first of month      |
 | BASE       | bi-weekly   | 2019-12-18 00:00:00 |

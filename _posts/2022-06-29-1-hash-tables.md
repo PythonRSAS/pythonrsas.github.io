@@ -13,6 +13,8 @@ image: images/posts/photos/IMG_0873.JPG
 - [hash table the basics](#hash-table-the-basics)
   - [Deterministic property](#deterministic-property)
 - [Hash tables in Python](#hash-tables-in-python)
+  - [Hash table examples](#hash-table-examples)
+    - [Find anagram](#find-anagram)
 
 # hash table the basics
 
@@ -50,14 +52,50 @@ Python has 4 built-in hash table types: *set*, *dict*, *collections.defaultdict*
 
 Note that <span class="coding">collections.defaultdict</span> is nothing but a <span class="coding">dict</span> with an added option to specify default, so that error can be prevented if key is not found. 
 
+## Hash table examples
 
-<div class="code-head"><span>code</span>defaultdict.py</div>
+### Find anagram
+
+In Python, a string is a sequence (list) of unicode. So when we apply the <span class="coding">sorted</span> method, the letters become separated individuals sorted in a sequence.  
+
+The sorted sequence of the letters are joined without space.  It becomes the representative of its anagram group.  
+
+> This reminds me of class representatives in math.  
+
+A set of class representatives is a subset of X which contains exactly one element from each [equivalence class](https://en.wikipedia.org/wiki/Equivalence_class)
+
+<div class="code-head"><span>code</span>anagram.py</div>
 
 ```py
 from collections import defaultdict
-d = defaultdict(str) #default is 0 if key not found
-d['OCI']= "other comprehensive income, an accounting category related to AFS"
-d["BST"]
-# Out
-# ''
+def find_anagram(wordList):
+    dd = defaultdict(list)
+    for word in wordList:
+        print(word, sorted(word))
+        dd[''.join(sorted(word))].append(word)
+    return dd
+
+words = ['debitcard','badcredit', 'below', 'taste','state','elbow', 'listen','levis', 'elvis', 'lives','freedom']
+
+d = find_anagram(words)
+for k, w in d.items():
+    if len(w) > 1:
+        print('equivalent to: {}, {}'.format(k, w))
+# Out:
+# debitcard ['a', 'b', 'c', 'd', 'd', 'e', 'i', 'r', 't']
+# badcredit ['a', 'b', 'c', 'd', 'd', 'e', 'i', 'r', 't']
+# below ['b', 'e', 'l', 'o', 'w']
+# taste ['a', 'e', 's', 't', 't']
+# state ['a', 'e', 's', 't', 't']
+# elbow ['b', 'e', 'l', 'o', 'w']
+# listen ['e', 'i', 'l', 'n', 's', 't']
+# levis ['e', 'i', 'l', 's', 'v']
+# elvis ['e', 'i', 'l', 's', 'v']
+# lives ['e', 'i', 'l', 's', 'v']
+# freedom ['d', 'e', 'e', 'f', 'm', 'o', 'r']
+# equivalent to: abcddeirt, ['debitcard', 'badcredit']
+# equivalent to: below, ['below', 'elbow']
+# equivalent to: aestt, ['taste', 'state']
+# equivalent to: eilnst, ['listen']
+# equivalent to: eilsv, ['levis', 'elvis', 'lives']
 ```
