@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : hash table, dict, set
+tag : hash table, dict, set, equivalence class
 category: "Python for SAS"
 title: "hash table"
 description: hash table algorithm implementation in Python and the bisect library
@@ -14,6 +14,7 @@ image: images/posts/photos/IMG_0873.JPG
   - [hash function](#hash-function)
     - [one-to-one or many-to-one](#one-to-one-or-many-to-one)
     - [Deterministic](#deterministic)
+    - [hashable](#hashable)
 - [Hash tables in Python](#hash-tables-in-python)
   - [defaultdict](#defaultdict)
   - [Counter](#counter)
@@ -64,11 +65,26 @@ Usage:  If we have already computed the hash, then it suffices to compare the ha
 
 ### Deterministic
 
-Hash function (input and output) must be constant (stay the same).  Therefore, many programming languages require hash keys be immutable.  In Python dictionary, keys can be strings or integers, which are immutable. 
+Hash function (input and output) must be constant (stay the same).  It would have been a disaster if it changes during use.  
+
+### hashable
+
+Hashable means if an object can be hashed (circular definition).  So we ask ourselves?  What objects are good for hashing?   The answer is those that satisfy the deterministic requirement: the immutable ones.  Immutable means not likely to be changed.  Therefore, many programming languages require hash keys be immutable.  
+
+Table below summarizes mutual and immutable objects in Python:
+
+Immutable |Mutable 
+---------|----------
+ int, float, decimal, complex, bool, string, tuple, range, frozen set, bytes | list, dict, set, bytearray, user-defined classes 
+
+keys can be strings or integers, which are immutable. 
 
 # Hash tables in Python
 
 Python has 4 built-in hash table types: *set*, *dict*, *collections.defaultdict*, *collections.Counter*, where a set only stores keys.
+
+The pandas DataFrame class [can be thought of as a dict-like container for Series objects](https://github.com/pandas-dev/pandas/blob/e8093ba372f9adfe79439d90fe74b0b5b6dea9d6/pandas/core/frame.py#L459-L10976). 
+
 
 ## defaultdict 
 <span class="coding">collections.defaultdict</span> is nothing but a <span class="coding">dict</span> with an added option to specify default, so that error can be prevented if key is not found. 
@@ -103,13 +119,9 @@ The sorted sequence of the letters are joined without space.  It becomes the rep
 
 > This reminds me of class representatives in math.  
 
-A set of class representatives is a subset of X which contains exactly one element from each [equivalence class](https://en.wikipedia.org/wiki/Equivalence_class)
+A set of class representatives is a subset of X which contains exactly one element from each [equivalence class](https://en.wikipedia.org/wiki/Equivalence_class). 
 
-An equivalence relation on a set {\displaystyle X}X is a binary relation {\displaystyle \,\sim \,}\,\sim\, on {\displaystyle X}X satisfying the three properties:[6][7]
-
-{\displaystyle a\sim a}{\displaystyle a\sim a} for all {\displaystyle a\in X}a\in X (reflexivity),
-{\displaystyle a\sim b}a\sim b implies {\displaystyle b\sim a}{\displaystyle b\sim a} for all {\displaystyle a,b\in X}{\displaystyle a,b\in X} (symmetry),
-if {\displaystyle a\sim b}a\sim b and {\displaystyle b\sim c}{\displaystyle b\sim c} then {\displaystyle a\sim c}{\displaystyle a\sim c} for all {\displaystyle a,b,c\in X}a,b,c\in X (transitivity).
+For example, prime number factorizaiton equivalence class is a kind of equivalence class. 
 
 Here we use <span class="coding">defaultdict</span> as the hashtable. 
 
@@ -156,7 +168,7 @@ Problem: can the letter be constructed using the characters in the magazine?
 
 If any charaters are left, then it implicitly implies True.  So, adding <span class="coding">not</span> returns False, because letter cannot be constructed using the characters in the magazine. 
 
-<div class="code-head"><span>code</span>anagram.py</div>
+<div class="code-head"><span>code</span>constructable_letter.py</div>
 
 ```py
 from collections import Counter
@@ -172,3 +184,29 @@ Time complexity is $$O(l+m)$$, where $$l$$ is the number of the charaters in let
 Space complexity is $$O(L+M)$$, where $$L$$ is the number of distinct charaters in letter. 
 
 This is not the best solution in terms of cost, but it is the simplest, which can matter more, especially to senior management.  
+
+Below method is lower in cost but has longer code. 
+1. In comparison with the above, this one uses hash table only once, and use it on $$L$$, the one of interest. <span class="coding">freq_L = Counter(L</span>
+2. Then it iterates through elements of $$M$$, if the element is in $$L$$, then subtract the frequency count by 1.  If the frequency count is 0, then remove this element from the frequency hash table <span class="coding">freq_L</span> of .  If  <span class="coding">freq_L</span> has nothing left, then return True, yes, it is constructable from $$M$$. 
+
+This method still has time complexity of $$O(l+m)$$, where $$l$$ is the number of the charaters in letter because of consideration of worst case. 
+But Space complexity is $$O(L)$$, because we only have 1 hash table.  
+
+<div class="code-head"><span>code</span>constructable_letter.py</div>
+
+```py
+from collections import Counter
+
+def L_subset_of_M(L, M):
+    freq_L = Counter(L)
+    for c in M:
+        if c in freq_L:
+            freq_L[c] -=1 # reduce L
+            if freq_L[c] == 0:
+                del freq_L[c]
+                if not freq_L: # L has been exhausted
+                    return True
+    return not freq_L
+print(L_subset_of_M("adefghb","zhighuvdabfea"))
+
+```
