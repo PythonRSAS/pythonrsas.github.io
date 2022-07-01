@@ -64,6 +64,12 @@ The sorted sequence of the letters are joined without space.  It becomes the rep
 
 A set of class representatives is a subset of X which contains exactly one element from each [equivalence class](https://en.wikipedia.org/wiki/Equivalence_class)
 
+An equivalence relation on a set {\displaystyle X}X is a binary relation {\displaystyle \,\sim \,}\,\sim\, on {\displaystyle X}X satisfying the three properties:[6][7]
+
+{\displaystyle a\sim a}{\displaystyle a\sim a} for all {\displaystyle a\in X}a\in X (reflexivity),
+{\displaystyle a\sim b}a\sim b implies {\displaystyle b\sim a}{\displaystyle b\sim a} for all {\displaystyle a,b\in X}{\displaystyle a,b\in X} (symmetry),
+if {\displaystyle a\sim b}a\sim b and {\displaystyle b\sim c}{\displaystyle b\sim c} then {\displaystyle a\sim c}{\displaystyle a\sim c} for all {\displaystyle a,b,c\in X}a,b,c\in X (transitivity).
+
 <div class="code-head"><span>code</span>anagram.py</div>
 
 ```py
