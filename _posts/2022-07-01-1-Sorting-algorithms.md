@@ -3,13 +3,11 @@ layout: post
 tag : data structure, algorithm, python
 category: "Python for SAS"
 title: "Sorting algorithms"
-description: quick sort, bubble sort,select sort
+description: quick sort, select sort, bubble sort, merge sort, bucket sort
 author: Sarah Chen
 image: images/posts/photos/IMG_0871.JPG
 
 ---
-The basic data structures in Python are: dictionary, list, special lists (linked list, stack, queue). 
-Basic algorithms: recursion, sorting (select sort, bubble sort, quick sort).
 
 Sorting algorithms are very important.  In the Women in Mathematics summer program that I participated in Washington DC 2006 during my college junior year, the NSA director of mathematics came and gave us (16 women math college students from around the country) a talk on sorting algorithms.  The fact that he chose to talk about sorting made me realize it is importance.  For examples:
 
@@ -32,8 +30,55 @@ Then we apply the same method to each of the two parts, and continue until each 
 
 ![quick sort recursion](../images/posts/quickSort2.PNG)
 
-- Starting from the left side of the search range, **the goal is to move all elements smaller than the pivot to the left** (and therefore all elements larger than the pivot are moved to the right). 
-  - the search range is 
+Below quick sort implementation is simple but not optimized in any way. 
+
+<div class="code-head"><span>code</span>basic quick sort.py</div>
+
+```python
+def qs(A):
+    N = len(A)
+    if N < 2:
+       return A
+    else:
+        L = [] # not inplace
+        H = []
+        pivot = A.pop() # using the last element instead of random or the "median of three" method
+        for i in range(0,len(A)):
+            if A[i]> pivot:
+                H.append(A[i])
+            else:
+                L.append(A[i])
+    return qs(L)+[pivot] + qs(H)
+
+nums = [100, 3, 9, 1, 0]
+print(qs(nums))
+# [0, 1, 3, 9, 100]
+```
+Below quick sort implementation has improvement in space complexity.  
+
+<div class="code-head"><span>code</span>basic quick sort in place.py</div>
+
+```python
+def partition(A, l, r):
+    i = l - 1
+    pivot = A[r] # use the rightmost of range as pivot (not the best method)
+    for j in range(l, r):
+        if A[j] <= pivot:
+            i +=1
+            A[i], A[j] = A[j], A[i]
+    A[i+1], A[r] = A[r], A[i+1]
+    return i+1
+def quicksort(A, l=0, r = None):
+    if r==None:
+        r = len(A) - 1
+    if l < r:
+        pivot = partition(A, l,r)
+        quicksort(A, l, pivot-1)
+        quicksort(A, pivot+1, r)
+    return A
+nums = [100, 3, 9, 1, 0]
+quicksort(nums,l=0)
+
 
 # Merge sort
 
@@ -80,27 +125,6 @@ a = [4,9, 100, 1, 0,8,2]
 print(ss(a))
 # [0, 1, 2, 4, 8, 9, 100]
 ```
-## Quick sort (not in place)
-<div class="code-head"><span>code</span>quick_sort_0.py</div>
-
-```python
-def qs(a):
-    if len(a)< 2:
-       return a
-    else:
-        small = []
-        big = []
-        pivot = a.pop()
-        for i in range(0,len(a)):
-            if a[i]> pivot:
-                big.append(a[i])
-            else:
-                small.append(a[i])
-    return qs(small)+[pivot] + qs(big)
-print(qs(a))
-# [0, 1, 2, 4, 8, 9, 100]
-```
-
 
 ```python
 
