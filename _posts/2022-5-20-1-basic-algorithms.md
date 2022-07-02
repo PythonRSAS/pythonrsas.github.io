@@ -11,6 +11,14 @@ image: images/posts/derek-mack.jpg
 The basic data structures in Python are: dictionary, list, special lists (linked list, stack, queue). 
 Basic algorithms: recursion, sorting (select sort, bubble sort, quick sort).
 
+- [Recursion](#recursion)
+- [Sorting algorithms](#sorting-algorithms)
+  - [Bubble sort](#bubble-sort)
+- [bubble sort](#bubble-sort-1)
+  - [Select sort](#select-sort)
+  - [Quick sort (not in place)](#quick-sort-not-in-place)
+- [rotate a numpy array](#rotate-a-numpy-array)
+  
 # Recursion
 Recursion in algorithm refers to calling a function within its own definition. Many mathematical computations can be defined using recursion.  For example, Taylor expansions, Fibonnaci sequence, [factals](https://en.wikipedia.org/wiki/Fractal) in general, and endless more. 
 
