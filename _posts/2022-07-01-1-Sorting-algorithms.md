@@ -78,8 +78,74 @@ def quicksort(A, l=0, r = None):
     return A
 nums = [100, 3, 9, 1, 0]
 quicksort(nums,l=0)
+```
 
+# Insertion sort
+Insertion sort feels like some kind of depth-first algorithm although it does not have anything to do with trees.
 
+> It starts from left to right.  The leftiest two element chuck gets sorted.  Then three-element chunk gets sorted, and so on. 
+![insertion sort](../images/posts/insertionSort.PNG)
+
+> **For each element, compare it with all elements on its left side to find its right insertion point**. As we progress, all elements are in their rightplaces. 
+
+For the element in the 2nd position, compare with its only left neighbor, if it is smaller than its left neighbor, swap.
+Now the first two elements are sorted.
+
+Then move on to the next element, the one in the 3rd position, compare it with its immediate left neighbor, swap if needed. 
+
+Because for each element, the first comparison is always with its **immediate left** neighbor, if it is bigger than its immediate left neightbor, then nothing needs to be done because the left side has already been sorted.  Break to get out and move to the next element.
+
+Else then we have to do **all the comparisons** to ensure the new element will be in its proper place so that order is maintained.  **All the comparisons** means it must go 'stepwise' and swap if needed <span class="coding">A[j+1], A[j] = A[j], A[j+1]</span>. 
+
+All we have to do is to translate the above statement to code.  Before typing, we should work out the indices as shown in table below.
+
+Loop pointer | start | end (inclusive) | direction | end + 1 (Python range)
+---------|----------|---------|--------|--------
+ Outer loop $$i$$ | $$1$$| $$N - 1$$ | L to R| $$N$$
+ Inner loop $$j$$ | $$i-1$$ | $$0$$ | R to L | $$-1$$
+
+<div class="code-head"><span>code</span>insertion sort.py</div>
+
+```python
+def insertionSort(A):
+    N = len(A)
+    for i in range(1,N):
+        print("\ni is ", i)
+        print("A[i] is ", A[i])
+        for j in range(i-1, -1, -1): # everyone to the left of i
+            print("j is ", j)
+            print("A[j] is ", A[j])
+            print("A is ", A)
+            if A[j+1] >= A[j]:
+                break
+            else:
+                A[j+1], A[j] = A[j], A[j+1]
+                print("swapping ", A[j], " and ", A[j+1])
+    return A
+
+nums = [100,3,1]
+print(insertionSort(nums))
+
+# i is  1
+# A[i] is  3
+# j is  0
+# A[j] is  100
+# A is  [100, 3, 1]
+# swapping  3  and  100
+
+# i is  2
+# A[i] is  1
+# j is  1
+# A[j] is  100
+# A is  [3, 100, 1]
+# swapping  1  and  100
+# j is  0
+# A[j] is  3
+# A is  [3, 1, 100]
+# swapping  1  and  3
+# [1, 3, 100]
+```
+Insertion sort is not super fast because it uses nested loops. It is useful for only small datasets. 
 # Merge sort
 
 # Bucket sort
