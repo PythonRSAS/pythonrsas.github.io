@@ -145,10 +145,68 @@ print(insertionSort(nums))
 # swapping  1  and  3
 # [1, 3, 100]
 ```
+We can also use a while-loop instead of if-else-loop. 
+<div class="code-head"><span>code</span>insertion sort while loop.py</div>
+
+```python
+def insertionSort(A):
+    N = len(A)
+    for i in range(1,N):
+        j = i -1
+        while A[j]>A[j+1] and j>=0:
+            A[j], A[j+1] = A[j+1], A[j]
+            j -= 1
+    return A
+
+nums = [100, 3, 9, 1, 0]
+print(insertionSort(nums))
+```
+
 Insertion sort is not super fast because it uses nested loops. It is useful for only small datasets. 
+
 # Merge sort
 
-# Bucket sort
+# Bucket sort (Radix sort)
+
+Radix sort is a very fast sorting algorithm for integers.  Unlike other sorting methods, it does no comparisons. Digits of integers are slotted into their respective buckets (0, 1, 2, 3, ..., 9)
+
+> There is no comparions and no if-else branching
+
+![Bucket sort](../images/posts/bucketSort.PNG)
+
+It is very fast for large quantities of small integers. 
+
+Note the order of operations in <span class="coding">i//10**(digit)%10</span>:
+> The exponential is computed first even if you put a space between like <span class="coding">i//10** (digit)%10</span>!
+> To avoid any confusion, it may be better to write <span class="coding">i//(10**digit)%10</span>
+
+Also, pay attention to that $$A$$ is modified with each loop. 
+
+**In the first loop, $$A$$ is the input**.
+**In all subsequent loops, $$A$$ is the flattened buckets $$B$$**. 
+
+I intentionally print out each step 
+```python
+def bucketSort(A):
+    num_digits = len(str(max(A)))
+
+    for digit in range(0, num_digits):
+        B = [[] for i in range(10)] # list of list
+        for i in A:
+            num = i//10**(digit)%10 
+            B[num].append(i)
+        # flatten
+        A = []
+        for i in B:
+            A.extend(i)
+    return A
+
+A = [4, 9, 100, 1, 598, 0, 8]
+print(bucketSort(A))
+
+# [0, 1, 4, 8, 9, 100, 598]
+```
+
 
 
 # Bubble sort
