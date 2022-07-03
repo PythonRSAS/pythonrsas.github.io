@@ -9,6 +9,15 @@ image: images/posts/photos/IMG_0871.JPG
 
 ---
 
+- [Introduction](#introduction)
+- [Quick sort](#quick-sort)
+- [Insertion sort](#insertion-sort)
+- [Merge sort](#merge-sort)
+- [Bubble sort](#bubble-sort)
+- [Select sort](#select-sort)
+- [Bucket sort (Radix sort)](#bucket-sort-radix-sort)
+# Introduction
+
 Sorting algorithms are very important.  In the Women in Mathematics summer program that I participated in Washington DC 2006 during my college junior year, the NSA director of mathematics came and gave us (16 women math college students from around the country) a talk on sorting algorithms.  The fact that he chose to talk about sorting made me realize it is importance.  For examples:
 
 When things are sorted, you can find order much faster, for example, percentiles.  
@@ -35,7 +44,7 @@ Below quick sort implementation is simple but not optimized in any way.
 <div class="code-head"><span>code</span>basic quick sort.py</div>
 
 ```python
-def qs(A):
+def quickSort(A):
     N = len(A)
     if N < 2:
        return A
@@ -44,11 +53,11 @@ def qs(A):
         H = []
         pivot = A.pop() # using the last element instead of random or the "median of three" method
         for i in range(0,len(A)):
-            if A[i]> pivot:
+            if A[i] > pivot:
                 H.append(A[i])
             else:
                 L.append(A[i])
-    return qs(L)+[pivot] + qs(H)
+    return quickSort(L) + [pivot] + quickSort(H)
 
 nums = [100, 3, 9, 1, 0]
 print(qs(nums))
@@ -64,7 +73,7 @@ def partition(A, l, r):
     pivot = A[r] # use the rightmost of range as pivot (not the best method)
     for j in range(l, r):
         if A[j] <= pivot:
-            i +=1
+            i += 1
             A[i], A[j] = A[j], A[i]
     A[i+1], A[r] = A[r], A[i+1]
     return i+1
@@ -166,6 +175,51 @@ Insertion sort is not super fast because it uses nested loops. It is useful for 
 
 # Merge sort
 
+# Bubble sort
+
+
+<div class="code-head"><span>code</span>bubble sort.py</div>
+
+```python
+def bubbleSort(A):
+    sorted = False
+
+    while not sorted:
+        sorted = True # for getting out the while loop
+
+        for i in range(0, len(A)-1):
+            if A[i] > A[i+1]:
+                sorted = False
+                A[i], A[i+1] = A[i+1],A[i]
+    return A
+a = [4, 9, 100, 1, 0, 8, 2]
+print(bubbleSort(a))
+# [0, 1, 2, 4, 8, 9, 100]
+```
+
+
+# Select sort
+
+
+<div class="code-head"><span>code</span>select sort.py</div>
+
+```python
+def selectSort(A):
+    N = len(A)
+    for i in range(0, N-1):
+        min_index = i
+        for j in range(i,N):
+            if A[j] < A[min_index]:
+                min_index = j
+        A[i], A[min_index] = A[min_index], A[i]
+
+    return A
+a = [4,9, 100, 1, 0,8,2]
+print(selectSort(a))
+# [0, 1, 2, 4, 8, 9, 100]
+```
+
+
 # Bucket sort (Radix sort)
 
 Radix sort is a very fast sorting algorithm for integers.  Unlike other sorting methods, it does no comparisons. Digits of integers are slotted into their respective buckets (0, 1, 2, 3, ..., 9)
@@ -174,7 +228,9 @@ Radix sort is a very fast sorting algorithm for integers.  Unlike other sorting 
 
 ![Bucket sort](../images/posts/bucketSort.PNG)
 
-It is very fast for large quantities of small integers. 
+Bucket sort is very fast for large quantities of small integers. 
+
+Even though the algorithm is for integers only, other objects can be mapped to integers to use this sorting method. 
 
 Note the order of operations in <span class="coding">i//10**(digit)%10</span>:
 > The exponential is computed first even if you put a space between like <span class="coding">i//10** (digit)%10</span>!
@@ -208,76 +264,3 @@ print(bucketSort(A))
 ```
 
 
-
-# Bubble sort
-
-
-<div class="code-head"><span>code</span>bubble sort.py</div>
-
-```python
-def bs(a):
-    sorted= False
-    while not sorted:
-        sorted = True # for getting out the while loop
-        for i in range(0, len(a)-1):
-            if a[i]>a[i+1]:
-                sorted=False
-                a[i], a[i+1] = a[i+1],a[i]
-    return a
-a = [4,9, 100, 1, 0,8,2]
-print(bs(a))
-# [0, 1, 2, 4, 8, 9, 100]
-```
-
-
-# Select sort
-
-
-<div class="code-head"><span>code</span>select sort.py</div>
-
-```python
-def ss(a):
-    for i in range(0, len(a)-1):
-        min_index = i
-        for j in range(i,len(a)):
-            if a[j]< a[min_index]:
-                min_index=j
-        a[i],a[min_index] =a[min_index], a[i]
-
-    return **a**
-a = [4,9, 100, 1, 0,8,2]
-print(ss(a))
-# [0, 1, 2, 4, 8, 9, 100]
-```
-
-```python
-
->>> a = 'Hello, how are you'
->>> r = rotate(a,7)
->>> print(r)
-Out:
-how are youhello,
-```
-
-# rotate a numpy array
-
-We can recycle the previous code for rotating a list.  The 2 differences are:
-1. use <span class="coding">np.concatenate</span> instead of <span class="coding">+</span>.
-2. use <span class="coding">axis=None</span> such that the numbers are joined without using any axis. 
-
-If we have inputs of multiple dimensions, we can just reshape or flatten them, and rotate accordingly to what we want to achieve. 
-
-```python
->>> def rotate_array(a,k):
->>>        if k==0: return a
->>>        k = k%len(a)
->>>        return (np.concatenate((a[k:],a[:k]), axis=None))
->>> a = np.array([1,2,3,4,5,6])
->>> r = rotate_array(a,2)
->>> print(r)
-Out:
-array([3,4,5,6,1,2])
-
-```
-
-<span class="coding">np.dot</span> as the name implies, gives a dot product.  The result is a single number. 
