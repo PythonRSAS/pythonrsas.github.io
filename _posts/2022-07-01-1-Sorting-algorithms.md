@@ -13,7 +13,7 @@ image: images/posts/photos/IMG_0871.JPG
 - [Quick sort](#quick-sort)
 - [Insertion sort](#insertion-sort)
 - [Select sort](#select-sort)
-  - [Compare Select sort and Insertion sort](#compare-select-sort-and-insertion-sort)
+  - [## Compare Select sort and Insertion sort](#-compare-select-sort-and-insertion-sort)
 - [Merge sort](#merge-sort)
 - [Bubble sort](#bubble-sort)
 - [Bucket sort (Radix sort)](#bucket-sort-radix-sort)
@@ -338,11 +338,13 @@ print(selectSort(a))
 # [0, 1, 1, 3, 4, 5, 9, 9]
 ```
 
+
 ## Compare Select sort and Insertion sort
+-----------------------------------------
 
 My graphic summary of the select sort method looks identical to the one from the insertion sort method.
 
-Both of them progress sorted from left to right.  
+Both of them grow the sorted from left to right.  
 
 Both of them use double looping.
 
@@ -369,6 +371,7 @@ Loop pointer | start | end (inclusive) | direction | end + 1 (Python range)
 ---------|----------|---------|--------|--------
  Outer loop $$i$$ | $$0$$| $$N - 2$$ | L to R| $$N-1$$
  Inner loop $$j$$ | $$i$$ | $$N-1$$ | L to R | $$N$$
+
 
 
 # Merge sort
