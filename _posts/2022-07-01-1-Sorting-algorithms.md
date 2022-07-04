@@ -12,9 +12,10 @@ image: images/posts/photos/IMG_0871.JPG
 - [Introduction](#introduction)
 - [Quick sort](#quick-sort)
 - [Insertion sort](#insertion-sort)
+- [Select sort](#select-sort)
+  - [Compare Select sort and Insertion sort](#compare-select-sort-and-insertion-sort)
 - [Merge sort](#merge-sort)
 - [Bubble sort](#bubble-sort)
-- [Select sort](#select-sort)
 - [Bucket sort (Radix sort)](#bucket-sort-radix-sort)
 # Introduction
 
@@ -164,7 +165,7 @@ def insertionSort(A):
     N = len(A)
     for i in range(1,N):
         j = i -1
-        while A[j]>A[j+1] and j>=0:
+        while A[j] > A[j+1] and j >= 0:
             A[j], A[j+1] = A[j+1], A[j]
             j -= 1
     return A
@@ -174,6 +175,63 @@ print(insertionSort(nums))
 ```
 
 Insertion sort is not super fast because it uses nested loops. It is useful for only small datasets. 
+
+# Select sort
+
+> Select means to select the smallest from the unsorted (yellow portion)
+
+> The first outer loop returns the "global minimum" from N elements and places it at the first place
+
+> The second outer loop selects the minimum from the remining N - 1 elements, and so on
+
+
+![select sort](../images/posts/selectSort.PNG)
+
+<div class="code-head"><span>code</span>select sort.py</div>
+
+```python
+def selectSort(A):
+    N = len(A)
+    for i in range(0, N-1):
+        min_index = i
+        for j in range(i,N):
+            if A[j] < A[min_index]:
+                min_index = j
+        A[i], A[min_index] = A[min_index], A[i]
+
+    return A
+a = [4,9, 100, 1, 0,8,2]
+print(selectSort(a))
+# [0, 1, 2, 4, 8, 9, 100]
+```
+
+## Compare Select sort and Insertion sort
+
+My graphic summary of the select sort method looks identical to the one from the insertion sort method.
+
+Both of them progress sorted from left to right.  
+
+Both of them use double looping.
+
+**Their differences**:
+Select sort actions happen from the right side (yellow).  Each outer loop ***selects the smallest one from the unsorted side***  and places at the end of the left (sorted) side. 
+
+Insertion sort actions happen from the left side (green).  Each outer loop *moves the immediate neighbor from the unsorted sorted side* and uses pair-wise swap (if needed) to find the new *defector* the right insertion point. 
+
+* Insertion sort pointer indexing summary
+
+Loop pointer | start | end (inclusive) | direction | end + 1 (Python range)
+---------|----------|---------|--------|--------
+ Outer loop $$i$$ | $$1$$| $$N - 1$$ | L to R| $$N$$
+ Inner loop $$j$$ | $$i-1$$ | $$0$$ | R to L | $$-1$$
+
+* Select sort pointer indexing summary
+
+Loop pointer | start | end (inclusive) | direction | end + 1 (Python range)
+---------|----------|---------|--------|--------
+ Outer loop $$i$$ | $$0$$| $$N - 2$$ | L to R| $$N-1$$
+ Inner loop $$j$$ | $$i$$ | $$N-1$$ | L to R | $$N$$
+
 
 # Merge sort
 
@@ -396,26 +454,6 @@ print(bubbleSort(a))
 ```
 
 
-# Select sort
-
-
-<div class="code-head"><span>code</span>select sort.py</div>
-
-```python
-def selectSort(A):
-    N = len(A)
-    for i in range(0, N-1):
-        min_index = i
-        for j in range(i,N):
-            if A[j] < A[min_index]:
-                min_index = j
-        A[i], A[min_index] = A[min_index], A[i]
-
-    return A
-a = [4,9, 100, 1, 0,8,2]
-print(selectSort(a))
-# [0, 1, 2, 4, 8, 9, 100]
-```
 
 
 # Bucket sort (Radix sort)
