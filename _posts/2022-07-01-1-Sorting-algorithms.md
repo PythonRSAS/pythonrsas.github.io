@@ -205,6 +205,139 @@ print(selectSort(a))
 # [0, 1, 2, 4, 8, 9, 100]
 ```
 
+In the code below, I print out each step of the double looping to show how it works.
+
+<div class="code-head"><span>code</span>select sort in detail.py</div>
+
+```python
+def selectSort(A):
+    N = len(A)
+    for i in range(0, N-1):
+        min_idx = i
+        print("\nmin_idx is ", min_idx)
+        for j in range(i, N):
+            print("j is ", j)
+            print("comparing if A[j] < A[min_idx]:", A[j], "and", A[min_idx])^
+            if A[j] < A[min_idx]:
+                min_idx = j
+                print("min_idx is updated to ", min_idx)
+        print("\nswap A[i], A[min_idx]: ", A[i], " and ",  A[min_idx])
+        A[i], A[min_idx] = A[min_idx], A[i]
+    return A
+
+a = [4, 3, 5, 9, 9, 1, 1, 0]
+print(selectSort(a))
+
+# min_idx is  0
+# j is  0
+# comparing if A[j] < A[min_idx]: 4 and 4
+# j is  1
+# comparing if A[j] < A[min_idx]: 3 and 4
+# min_idx is updated to  1
+# j is  2
+# comparing if A[j] < A[min_idx]: 5 and 3
+# j is  3
+# comparing if A[j] < A[min_idx]: 9 and 3
+# j is  4
+# comparing if A[j] < A[min_idx]: 9 and 3
+# j is  5
+# comparing if A[j] < A[min_idx]: 1 and 3
+# min_idx is updated to  5
+# j is  6
+# comparing if A[j] < A[min_idx]: 1 and 1
+# j is  7
+# comparing if A[j] < A[min_idx]: 0 and 1
+# min_idx is updated to  7
+
+# swap A[i], A[min_idx]:  4  and  0
+
+# min_idx is  1
+# j is  1
+# comparing if A[j] < A[min_idx]: 3 and 3
+# j is  2
+# comparing if A[j] < A[min_idx]: 5 and 3
+# j is  3
+# comparing if A[j] < A[min_idx]: 9 and 3
+# j is  4
+# comparing if A[j] < A[min_idx]: 9 and 3
+# j is  5
+# comparing if A[j] < A[min_idx]: 1 and 3
+# min_idx is updated to  5
+# j is  6
+# comparing if A[j] < A[min_idx]: 1 and 1
+# j is  7
+# comparing if A[j] < A[min_idx]: 4 and 1
+
+# swap A[i], A[min_idx]:  3  and  1
+
+# min_idx is  2
+# j is  2
+# comparing if A[j] < A[min_idx]: 5 and 5
+# j is  3
+# comparing if A[j] < A[min_idx]: 9 and 5
+# j is  4
+# comparing if A[j] < A[min_idx]: 9 and 5
+# j is  5
+# comparing if A[j] < A[min_idx]: 3 and 5
+# min_idx is updated to  5
+# j is  6
+# comparing if A[j] < A[min_idx]: 1 and 3
+# min_idx is updated to  6
+# j is  7
+# comparing if A[j] < A[min_idx]: 4 and 1
+
+# swap A[i], A[min_idx]:  5  and  1
+
+# min_idx is  3
+# j is  3
+# comparing if A[j] < A[min_idx]: 9 and 9
+# j is  4
+# comparing if A[j] < A[min_idx]: 9 and 9
+# j is  5
+# comparing if A[j] < A[min_idx]: 3 and 9
+# min_idx is updated to  5
+# j is  6
+# comparing if A[j] < A[min_idx]: 5 and 3
+# j is  7
+# comparing if A[j] < A[min_idx]: 4 and 3
+
+# swap A[i], A[min_idx]:  9  and  3
+
+# min_idx is  4
+# j is  4
+# comparing if A[j] < A[min_idx]: 9 and 9
+# j is  5
+# comparing if A[j] < A[min_idx]: 9 and 9
+# j is  6
+# comparing if A[j] < A[min_idx]: 5 and 9
+# min_idx is updated to  6
+# j is  7
+# comparing if A[j] < A[min_idx]: 4 and 5
+# min_idx is updated to  7
+
+# swap A[i], A[min_idx]:  9  and  4
+
+# min_idx is  5
+# j is  5
+# comparing if A[j] < A[min_idx]: 9 and 9
+# j is  6
+# comparing if A[j] < A[min_idx]: 5 and 9
+# min_idx is updated to  6
+# j is  7
+# comparing if A[j] < A[min_idx]: 9 and 5
+
+# swap A[i], A[min_idx]:  9  and  5
+
+# min_idx is  6
+# j is  6
+# comparing if A[j] < A[min_idx]: 9 and 9
+# j is  7
+# comparing if A[j] < A[min_idx]: 9 and 9
+
+# swap A[i], A[min_idx]:  9  and  9
+# [0, 1, 1, 3, 4, 5, 9, 9]
+```
+
 ## Compare Select sort and Insertion sort
 
 My graphic summary of the select sort method looks identical to the one from the insertion sort method.
@@ -249,7 +382,51 @@ In code below, **the recursion calls are placed immediately after halfing the in
 
 Since the <span class="coding">mergeSort(L)</span> is placed before <span class="coding">mergeSort(R)</span>, it means that the left half will be recursively partitioned and merged before the right half. 
 
-I intentionally printed out every single step to explain how the process works. 
+
+<div class="code-head"><span>code</span>merge sort.py</div>
+
+```python
+
+# merge sort
+def mergeSort(A):
+    N = len(A)
+    if N > 1:
+        L = A[:N//2]
+        R = A[N//2:]
+    
+        # recursion
+        mergeSort(L)
+        mergeSort(R)
+
+        # merge
+        i = 0 # left array idx initiated at 0, whenever an element is copied to A i < len(L) means 
+        j = 0 # right array idx
+        k = 0 # merged array idx
+        while i < len(L) and j < len(R): 
+            if L[i] < R[j]:
+                A[k] = L[i]
+                i += 1
+            else: 
+                A[k] = R[j]
+                j += 1
+            k += 1
+
+        while i < len(L):
+            A[k] = L[i]
+            k += 1
+            i += 1
+            
+        while j < len(R):
+            A[k] = R[j]
+            k += 1
+            j += 1
+    return A
+A = [9, 4, 100, 1, 598, 0, 8]
+print(mergeSort(A))
+# [0, 1, 4, 8, 9, 100, 598]
+```
+
+To see how the recursion works, I printed out every single as shown in code and output below. 
 
 <div class="code-head"><span>code</span>merge sort.py</div>
 
