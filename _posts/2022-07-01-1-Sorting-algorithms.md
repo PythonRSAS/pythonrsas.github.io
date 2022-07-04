@@ -23,6 +23,8 @@ Sorting algorithms are very important.  In the Women in Mathematics summer progr
 When things are sorted, you can find order much faster, for example, percentiles.  
 The [binary search algorithm](2022-06-22-1-binary-search.md) works on a sorted array.  
 
+There are two main types of sorting: by comparison and not by comparion.  Most of the sorting methods in this post are by comparion, except bucket sort. 
+
 ![Sorting algorithms and time efficiencies](../images/posts/sort.PNG)
 
 # Quick sort
@@ -174,6 +176,54 @@ print(insertionSort(nums))
 Insertion sort is not super fast because it uses nested loops. It is useful for only small datasets. 
 
 # Merge sort
+
+Like quick sort, merge sort is a divide-and-conquer recursive method. 
+
+The quick sort algorithm tries to split an array in **"half"**, and then **"halves of halves"**, by comparing with members of arrays (or more precisely "sub-arrays") that are commonly called "pivot".  The sorting efficiency depends on how close the "pivots" are close to the medians of the arrays. 
+
+Time complexity: $$O(n*log(n))$$, which is optimal for comparison based algorithm. 
+
+<div class="code-head"><span>code</span>merge sort.py</div>
+
+```python
+def mergeSort(A):
+    N = len(A)
+    if N > 1:
+        L = A[:N//2]
+        R = A[N//2:]
+
+        # recursion
+        mergeSort(L)
+        mergeSort(R)
+
+        # merge
+        i = 0 # left array idx
+        j = 0 # right array idx
+        k = 0 # merged array idx
+        while i < len(L) and j < len(R):
+            if L[i] < R[j]:
+                A[k] = L[i]
+                i += 1
+            else: 
+                A[k] = R[j]
+                j += 1
+            k += 1
+
+        while i < len(L):
+            A[k] = L[i]
+            k += 1
+            i += 1
+            
+        while j < len(R):
+            A[k] = R[j]
+            k += 1
+            j += 1
+
+    return A
+A = [4, 9, 100, 1, 598, 0, 8]
+print(mergeSort(A))
+```
+
 
 # Bubble sort
 
