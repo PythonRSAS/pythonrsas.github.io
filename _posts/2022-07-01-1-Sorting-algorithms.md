@@ -346,10 +346,15 @@ Both of them progress sorted from left to right.
 
 Both of them use double looping.
 
-**Their differences**:
-Select sort actions happen from the right side (yellow).  Each outer loop ***selects the smallest one from the unsorted side***  and places at the end of the left (sorted) side. 
+* Differences:
 
-Insertion sort actions happen from the left side (green).  Each outer loop *moves the immediate neighbor from the unsorted sorted side* and uses pair-wise swap (if needed) to find the new *defector* the right insertion point. 
+Select sort **actions in the unsorted (right) side** (yellow).  
+
+Each outer loop ***selects the smallest one from the unsorted side***  and places at the end of the left (sorted) side. 
+
+Insertion sort **actions in the sorted (left)** side (green).  
+
+Each outer loop ***moves the immediate neighbor from the unsorted sorted side*** and uses pair-wise swap (if needed) to find the new *defector* the right insertion point. 
 
 * Insertion sort pointer indexing summary
 
