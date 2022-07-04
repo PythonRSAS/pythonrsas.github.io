@@ -179,49 +179,197 @@ Insertion sort is not super fast because it uses nested loops. It is useful for 
 
 Like quick sort, merge sort is a divide-and-conquer recursive method. 
 
-The quick sort algorithm tries to split an array in **"half"**, and then **"halves of halves"**, by comparing with members of arrays (or more precisely "sub-arrays") that are commonly called "pivot".  The sorting efficiency depends on how close the "pivots" are close to the medians of the arrays. 
+The quick sort algorithm tries to sort an array in two **"halves"** (or more accurately,two parts), and then **"halves of halves"**, by *comparing* with members of arrays (or more precisely "sub-arrays") that are commonly called "pivot".  The sorting efficiency depends on how close the "pivots" are close to the medians of the arrays.  The pivots are not the medians in reality because we don't know what the medians are. 
+
+Whereas the merge sort method splits input array in exact halves, and then halves, recursively, into one-unit subarrays, compare elements of the subarrays with each other in a binary fashion, and **merge** them back recursively into one sorted array.  
+
+The merge sort method feels like some kind of **depth-first** search even though it is a sorting method. 
 
 Time complexity: $$O(n*log(n))$$, which is optimal for comparison based algorithm. 
+
+In code below, **the recursion calls are placed immediately after halfing the input array into left and right halves**.   
+
+Since the <span class="coding">mergeSort(L)</span> is placed before <span class="coding">mergeSort(R)</span>, it means that the left half will be recursively partitioned and merged before the right half. 
+
+I intentionally printed out every single step to explain how the process works. 
 
 <div class="code-head"><span>code</span>merge sort.py</div>
 
 ```python
+
+# merge sort
 def mergeSort(A):
+    print("\nEntering function call, A is ", A)
     N = len(A)
+    print("N, the length of A is, ", N)
     if N > 1:
         L = A[:N//2]
         R = A[N//2:]
-
+        print("L is ", L)
+        print("R is ", R)
+    
         # recursion
         mergeSort(L)
         mergeSort(R)
 
         # merge
-        i = 0 # left array idx
+        print("\nMERGING STEP")
+        i = 0 # left array idx initiated at 0, whenever an element is copied to A i < len(L) means 
         j = 0 # right array idx
         k = 0 # merged array idx
-        while i < len(L) and j < len(R):
+        while i < len(L) and j < len(R): 
             if L[i] < R[j]:
+                print("if both L & R have something left, and left is smaller than right")
+                print("L[i] is ", L[i])      
                 A[k] = L[i]
                 i += 1
             else: 
+                print("if both L & R have something left, and left is bigger than right")
                 A[k] = R[j]
+                print("R[j] is ", R[j])
                 j += 1
             k += 1
 
         while i < len(L):
+            print("if only L has something left, then copy them to A")
             A[k] = L[i]
             k += 1
             i += 1
             
         while j < len(R):
+            print("if only R has something left, then copy them to A")
             A[k] = R[j]
             k += 1
             j += 1
-
+    print("\nExiting function call, A is ", A)
     return A
-A = [4, 9, 100, 1, 598, 0, 8]
+A = [9, 4, 100, 1, 598, 0, 8]
+# A = [9, 4, 100, 1]
 print(mergeSort(A))
+
+# Entering function call, A is  [9, 4, 100, 1, 598, 0, 8]
+# N, the length of A is,  7
+# L is  [9, 4, 100]
+# R is  [1, 598, 0, 8]
+
+# Entering function call, A is  [9, 4, 100]
+# N, the length of A is,  3
+# L is  [9]
+# R is  [4, 100]
+
+# Entering function call, A is  [9]
+# N, the length of A is,  1
+
+# Exiting function call, A is  [9]
+
+# Entering function call, A is  [4, 100]
+# N, the length of A is,  2
+# L is  [4]
+# R is  [100]
+
+# Entering function call, A is  [4]
+# N, the length of A is,  1
+
+# Exiting function call, A is  [4]
+
+# Entering function call, A is  [100]
+# N, the length of A is,  1
+
+# Exiting function call, A is  [100]
+
+# MERGING STEP
+# if both L & R have something left, and left is smaller than right
+# L[i] is  4
+# if only R has something left, then copy them to A
+
+# Exiting function call, A is  [4, 100]
+
+# MERGING STEP
+# if both L & R have something left, and left is bigger than right
+# R[j] is  4
+# if both L & R have something left, and left is smaller than right
+# L[i] is  9
+# if only R has something left, then copy them to A
+
+# Exiting function call, A is  [4, 9, 100]
+
+# Entering function call, A is  [1, 598, 0, 8]
+# N, the length of A is,  4
+# L is  [1, 598]
+# R is  [0, 8]
+
+# Entering function call, A is  [1, 598]
+# N, the length of A is,  2
+# L is  [1]
+# R is  [598]
+
+# Entering function call, A is  [1]
+# N, the length of A is,  1
+
+# Exiting function call, A is  [1]
+
+# Entering function call, A is  [598]
+# N, the length of A is,  1
+
+# Exiting function call, A is  [598]
+
+# MERGING STEP
+# if both L & R have something left, and left is smaller than right
+# L[i] is  1
+# if only R has something left, then copy them to A
+
+# Exiting function call, A is  [1, 598]
+
+# Entering function call, A is  [0, 8]
+# N, the length of A is,  2
+# L is  [0]
+# R is  [8]
+
+# Entering function call, A is  [0]
+# N, the length of A is,  1
+
+# Exiting function call, A is  [0]
+
+# Entering function call, A is  [8]
+# N, the length of A is,  1
+
+# Exiting function call, A is  [8]
+
+# MERGING STEP
+# if both L & R have something left, and left is smaller than right
+# L[i] is  0
+# if only R has something left, then copy them to A
+
+# Exiting function call, A is  [0, 8]
+
+# MERGING STEP
+# if both L & R have something left, and left is bigger than right
+# R[j] is  0
+# if both L & R have something left, and left is smaller than right
+# L[i] is  1
+# if both L & R have something left, and left is bigger than right
+# R[j] is  8
+# if only L has something left, then copy them to A
+
+# Exiting function call, A is  [0, 1, 8, 598]
+
+# MERGING STEP
+# if both L & R have something left, and left is bigger than right
+# R[j] is  0
+# if both L & R have something left, and left is bigger than right
+# R[j] is  1
+# if both L & R have something left, and left is smaller than right
+# L[i] is  4
+# if both L & R have something left, and left is bigger than right
+# R[j] is  8
+# if both L & R have something left, and left is smaller than right
+# L[i] is  9
+# if both L & R have something left, and left is smaller than right
+# L[i] is  100
+# if only R has something left, then copy them to A
+
+# Exiting function call, A is  [0, 1, 4, 8, 9, 100, 598]
+# [0, 1, 4, 8, 9, 100, 598]
 ```
 
 
@@ -272,7 +420,7 @@ print(selectSort(a))
 
 # Bucket sort (Radix sort)
 
-Radix sort is a very fast sorting algorithm for integers.  Unlike other sorting methods, it does no comparisons. Digits of integers are slotted into their respective buckets (0, 1, 2, 3, ..., 9)
+Radix sort is a very fast sorting algorithm for integers.  Unlike other sorting methods, it does no comparisons. Digits of integers are slotted into their respective buckets (0, 1, 2, 3, ..., 9).
 
 > There is no comparions and no if-else branching
 
@@ -288,10 +436,9 @@ Note the order of operations in <span class="coding">i//10**(digit)%10</span>:
 
 Also, pay attention to that $$A$$ is modified with each loop. 
 
-**In the first loop, $$A$$ is the input**.
-**In all subsequent loops, $$A$$ is the flattened buckets $$B$$**. 
+**In the first outer loop, $$A$$ is the input**.
+**In all subsequent outer loops, $$A$$ is the flattened buckets $$B$$**. 
 
-I intentionally print out each step 
 ```python
 def bucketSort(A):
     num_digits = len(str(max(A)))
