@@ -15,10 +15,11 @@ image: images/posts/photos/IMG_0871.JPG
 - [Select sort](#select-sort)
 - [Compare Select sort and Insertion sort](#compare-select-sort-and-insertion-sort)
 - [Merge sort](#merge-sort)
+- [Bubble sort](#bubble-sort)
 - [Heapsort 堆排序](#heapsort-堆排序)
   - [Max heap data structrue](#max-heap-data-structrue)
   - [Implement max heap in Python](#implement-max-heap-in-python)
-- [Bubble sort](#bubble-sort)
+  - [The heapq  module](#the-heapq--module)
 - [Bucket sort (Radix sort)](#bucket-sort-radix-sort)
 # Introduction
 
@@ -190,7 +191,7 @@ Insertion sort is not super fast because it uses nested loops. It is useful for 
 
 ![select sort](../images/posts/selectSort.PNG)
 
-<div class="code-head"><span>code</span>select sort.py</div>
+<div class="code-head"><span>code</span>selection sort.py</div>
 
 ```python
 def selectSort(A):
@@ -210,7 +211,7 @@ print(selectSort(a))
 
 In the code below, I print out each step of the double looping to show how it works.
 
-<div class="code-head"><span>code</span>select sort in detail.py</div>
+<div class="code-head"><span>code</span>selection sort in detail.py</div>
 
 ```python
 def selectSort(A):
@@ -616,6 +617,91 @@ print(mergeSort(A))
 # Exiting function call, A is  [0, 1, 4, 8, 9, 100, 598]
 # [0, 1, 4, 8, 9, 100, 598]
 ```
+
+# Bubble sort
+
+> With each loop, the largest one from the unsorted (left yellow section) is moved to sorted section (right) while ironing out **local wrinkles**.  
+
+![Bubble sort](../images/posts/bubbleSort.PNG)
+
+> The buble sort is quite similar to **insertion sort** as both use **adjacent pair-wise comparions**, and swaps them into sorted order in each scanning loop. 
+
+Insertion sort moves the immediate neighbor from unsorted (right) to the sorted (left) and shuffles it to its proper insertion point via pair-wise comparision <span class="coding">A[j], A[j+1] = A[j+1], A[j]</span>, bubble sort bubbles the the largest one from the unsorted to the sorted (left to right).  
+
+
+<div class="code-head"><span>code</span>bubble sort.py</div>
+
+```python
+def bubbleSort(A):
+    N = len(A)
+    sorted = False
+
+    while not sorted:
+        sorted = True # for getting out the while loop
+        for i in range(0, N -1):
+            if A[i] > A[i+1]:
+                sorted = False
+                A[i], A[i+1] = A[i+1],A[i]
+    return A
+a = [4, 9, 100, 1, 0, 8, 2]
+print(bubbleSort(a))
+# [0, 1, 2, 4, 8, 9, 100]
+```
+
+In the buble sort code below, I have printed out how the input array gets sorted in each step and each loop.
+
+<div class="code-head"><span>code</span>bubble sort explanation version.py</div>
+
+```python
+def bubbleSort(A):
+    N = len(A)
+    sorted = False
+    print(A)
+    while not sorted:
+        print("\nStarting the loop:")
+        sorted = True # for getting out the while loop
+        for i in range(0, N -1):
+            if A[i] > A[i+1]:
+                sorted = False
+                A[i], A[i+1] = A[i+1],A[i]
+                print(A)
+    return A
+a = [4, 9, 100, 1, 200, 0, 8, 2]
+print(bubbleSort(a))
+
+# [4, 9, 100, 1, 200, 0, 8, 2]
+
+# Starting the loop:
+# [4, 9, 1, 100, 200, 0, 8, 2]
+# [4, 9, 1, 100, 0, 200, 8, 2]
+# [4, 9, 1, 100, 0, 8, 200, 2]
+# [4, 9, 1, 100, 0, 8, 2, 200]
+
+# Starting the loop:
+# [4, 1, 9, 100, 0, 8, 2, 200]
+# [4, 1, 9, 0, 100, 8, 2, 200]
+# [4, 1, 9, 0, 8, 100, 2, 200]
+# [4, 1, 9, 0, 8, 2, 100, 200]
+
+# Starting the loop:
+# [1, 4, 9, 0, 8, 2, 100, 200]
+# [1, 4, 0, 9, 8, 2, 100, 200]
+# [1, 4, 0, 8, 9, 2, 100, 200]
+# [1, 4, 0, 8, 2, 9, 100, 200]
+
+# Starting the loop:
+# [1, 0, 4, 8, 2, 9, 100, 200]
+# [1, 0, 4, 2, 8, 9, 100, 200]
+
+# Starting the loop:
+# [0, 1, 4, 2, 8, 9, 100, 200]
+# [0, 1, 2, 4, 8, 9, 100, 200]
+
+# Starting the loop:
+# [0, 1, 2, 4, 8, 9, 100, 200]
+```
+
+
 # Heapsort 堆排序
 
 > [Heapsort can be thought of as an improved Selection sort](https://en.wikipedia.org/wiki/Heapsort).
@@ -642,15 +728,22 @@ The max heap data structure is a **complete binary tree** with the max heap prop
 * $$Right(i)=2*i+2$$
 * $$Parent(j)=[(i-2)/2]$$
 
+The "parent-children" relationship are defined by the array indices in the above three functions.  There is no need of any pointers.  There is no need for attributes such as left or right children either. 
+
 ![binary max heap](https://en.wikipedia.org/wiki/Binary_heap#/media/File:Max-Heap.svg)
 
 
 ## Implement max heap in Python
 
 Below implementation of the maxHeap object has 3 public functions: push, peek, and pop.   
+
 When a <span class="coding">maxHeap</span> object is instantiated, the input is transformed into a max heap using the <span class="coding">__heapifyUp</span> function. 
 
-Both <span class="coding">__heapifyUp</span> and <span class="coding">__heapifyDown</span> functions are recursive functions.
+Both <span class="coding">__heapifyUp</span> and <span class="coding">__heapifyDown</span> functions are recursive functions.  The former compares with "parent" whereas the latter compares with "children".
+
+The <span class="coding">__heapifyUp</span> compares the value at the current index with the value at its parent index, if the value at current index is bigger, then it swaps with "its parent" so that the value at the parent index is bigger. 
+
+The <span class="coding">__heapifyDown</span> compares the value at the current index with the values at its children indices.  If the current value is smaller, then it swaps with "one of its children" so that the value at the child index is smaller, or equivalently the value at the current index is bigger. 
 
 <div class="code-head"><span>code</span>heap.py</div>.
 
@@ -662,7 +755,8 @@ class maxHeap:
     __heapifyUp
     __heapifyDown
     """
-    def __init__(self, items= object):
+    def __init__(self, items= []):
+    # def __init__(self, items= object):
         self.heap = []
         for i in items:
             self.heap.append(i)
@@ -680,9 +774,9 @@ class maxHeap:
 
     def pop(self):
         if len(self.heap) > 1:
-            self.__swap(0, len(self.heap) - 1)
+            self.__swap(0, len(self.heap) - 1) # swap the max and last element
             max = self.heap.pop()
-            self.__heapifyDown(0)
+            self.__heapifyDown(0) # heapify down the last element that got swapped to the max position
         elif len(self.heap) ==1:
             max = self.heap.pop()
         else:
@@ -692,84 +786,74 @@ class maxHeap:
     def __swap(self, i, j):
         self.heap[i], self.heap[j] =  self.heap[j], self.heap[i]
 
-    def __heapifyUp(self, index):
-        parent = (index - 1) //2 # index of parent
-        if index <= 0:
-            return 
-        elif self.heap[index] > self.heap[parent]: # if larger than parent, then swap with parent
-            self.__swap(index, parent)
+    def __heapifyUp(self, idx):
+        parent = (idx - 1) //2 #  parent index
+        if idx <= 0:
+            return # do nothing if already at the top
+        elif self.heap[idx] > self.heap[parent]: # if larger than parent, then swap with parent
+            self.__swap(idx, parent)
             self.__heapifyUp(parent) # recurse
 
-    def __heapifyDown(self, index):  # very similar to selection sort to select the largest
-        left = index *2 +1 # left child index
-        right = index * 2 + 2 # right child index
-        largest = index # assume current index holds the largest
+    def __heapifyDown(self, idx):  # heapify down until it is not smaller than its children
+        left = idx *2 +1 # left child index
+        right = idx * 2 + 2 # right child index
+        largest = idx # assume current idx holds the largest
         if len(self.heap) > left and self.heap[largest] < self.heap[left]:
             largest = left
         if len(self.heap) > right and self.heap[largest] < self.heap[right]:
             largest = right
-        if largest != index:
-            self.__swap(index, largest)
+        if largest != idx:
+            self.__swap(idx, largest)
             self.__heapifyDown(largest) # recurse
 
 ```
+Below code instantiates a maxHeap object we defined above, and repeatedly pops the maximum of the values. 
+
 
 <div class="code-head"><span>code</span>heapSort.py</div>
 
 ```python
-# M = maxHeap([1, 2, 3, 4, 5, 6, 7, 8, 9])  
-M.push('yellow')
+unsortedA = [5, 7,3,9, 2,8, 1, 4,6,]
+M = maxHeap(unsortedA)  
+M.push(10)
 print(M.heap)
 
-print(M.pop())
-print(M.heap)
-        
-print(M.pop())
-print(M.heap)
+from collections import deque
+A = deque()
+for i in range(len(M.heap)):
+    A.appendleft(M.pop())
+print(A)
 
-print(M.pop())
-print(M.heap)
-print(M.pop())
-print(M.heap)
-print(M.pop())
-print(M.heap)
-print(M.pop())
-print(M.heap)
-print(M.pop())
-print(M.heap)
-print(M.pop())
-print(M.heap)
-print(M.pop())
-print(M.heap)
-print(M.pop())
-print(M.heap)
+# [10, 9, 8, 6, 7, 3, 1, 4, 5, 2]
+# deque([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
 ```
 
-# Bubble sort
+## The heapq  module
 
+
+We can also use the Python <span class="coding">heapq</span> module.  
 
 <div class="code-head"><span>code</span>bubble sort.py</div>
 
 ```python
-def bubbleSort(A):
-    sorted = False
+import heapq
+A = [5, 7 ,3, 9, 2, 8, 1, 4, 6]
+heapq._heapify_max(A)
+print("max heap", A)
 
-    while not sorted:
-        sorted = True # for getting out the while loop
+print(heapq.heappop(A))
+print("after poping max")
+print(A)
 
-        for i in range(0, len(A)-1):
-            if A[i] > A[i+1]:
-                sorted = False
-                A[i], A[i+1] = A[i+1],A[i]
-    return A
-a = [4, 9, 100, 1, 0, 8, 2]
-print(bubbleSort(a))
-# [0, 1, 2, 4, 8, 9, 100]
+print(heapq.heappop(A))
+print("after poping the second number, we see that it is no longer max heap")
+print(A)
+
+print("need to heapify again")
+heapq._heapify_max(A)
+print("max heap", A)
 ```
-
-
-
 
 # Bucket sort (Radix sort)
 
