@@ -13,7 +13,7 @@ image: images/posts/photos/IMG_0871.JPG
 - [Quick sort](#quick-sort)
 - [Insertion sort](#insertion-sort)
 - [Select sort](#select-sort)
-  - [## Compare Select sort and Insertion sort](#-compare-select-sort-and-insertion-sort)
+- [Compare Select sort and Insertion sort](#compare-select-sort-and-insertion-sort)
 - [Merge sort](#merge-sort)
 - [Bubble sort](#bubble-sort)
 - [Bucket sort (Radix sort)](#bucket-sort-radix-sort)
@@ -339,8 +339,7 @@ print(selectSort(a))
 ```
 
 
-## Compare Select sort and Insertion sort
------------------------------------------
+# Compare Select sort and Insertion sort
 
 My graphic summary of the select sort method looks identical to the one from the insertion sort method.
 
