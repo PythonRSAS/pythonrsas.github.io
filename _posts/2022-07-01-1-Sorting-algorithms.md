@@ -638,17 +638,30 @@ The max heap data structure is a **complete binary tree** with the max heap prop
 
 * $$\forall \text{ complete binary tree, }\exists\text{ an unique array, and vice versa.}
 
-![binary max heap](https://en.wikipedia.org/wiki/Binary_heap#/media/File:Max-Heap.svg)
+* $$Left(i)=2*i+1$$
+* $$Right(i)=2*i+2$$
+* $$Parent(j)=[(i-2)/2]$$
 
+![binary max heap](https://en.wikipedia.org/wiki/Binary_heap#/media/File:Max-Heap.svg)
 
 
 ## Implement max heap in Python
 
+Below implementation of the maxHeap object has 3 public functions: push, peek, and pop.   
+When a <span class="coding">maxHeap</span> object is instantiated, the input is transformed into a max heap using the <span class="coding">__heapifyUp</span> function. 
 
-<div class="code-head"><span>code</span>heap.py</div>
+Both <span class="coding">__heapifyUp</span> and <span class="coding">__heapifyDown</span> functions are recursive functions.
+
+<div class="code-head"><span>code</span>heap.py</div>.
 
 ```python
 class maxHeap:
+    """
+    3 private functions: 
+    __swap
+    __heapifyUp
+    __heapifyDown
+    """
     def __init__(self, items= object):
         self.heap = []
         for i in items:
@@ -680,24 +693,24 @@ class maxHeap:
         self.heap[i], self.heap[j] =  self.heap[j], self.heap[i]
 
     def __heapifyUp(self, index):
-        parent = (index - 1) //2
+        parent = (index - 1) //2 # index of parent
         if index <= 0:
             return 
-        elif self.heap[index] > self.heap[parent]:
+        elif self.heap[index] > self.heap[parent]: # if larger than parent, then swap with parent
             self.__swap(index, parent)
-            self.__heapifyUp(parent)
+            self.__heapifyUp(parent) # recurse
 
-    def __heapifyDown(self, index):
-        left = index *2 +1
-        right = index * 2 + 2
-        largest = index
+    def __heapifyDown(self, index):  # very similar to selection sort to select the largest
+        left = index *2 +1 # left child index
+        right = index * 2 + 2 # right child index
+        largest = index # assume current index holds the largest
         if len(self.heap) > left and self.heap[largest] < self.heap[left]:
             largest = left
         if len(self.heap) > right and self.heap[largest] < self.heap[right]:
             largest = right
         if largest != index:
             self.__swap(index, largest)
-            self.__heapifyDown(largest)
+            self.__heapifyDown(largest) # recurse
 
 ```
 
