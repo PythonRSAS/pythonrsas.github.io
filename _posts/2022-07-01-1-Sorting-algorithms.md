@@ -15,6 +15,9 @@ image: images/posts/photos/IMG_0871.JPG
 - [Select sort](#select-sort)
 - [Compare Select sort and Insertion sort](#compare-select-sort-and-insertion-sort)
 - [Merge sort](#merge-sort)
+- [Heapsort 堆排序](#heapsort-堆排序)
+  - [Max heap data structrue](#max-heap-data-structrue)
+  - [Implement max heap in Python](#implement-max-heap-in-python)
 - [Bubble sort](#bubble-sort)
 - [Bucket sort (Radix sort)](#bucket-sort-radix-sort)
 # Introduction
@@ -613,7 +616,122 @@ print(mergeSort(A))
 # Exiting function call, A is  [0, 1, 4, 8, 9, 100, 598]
 # [0, 1, 4, 8, 9, 100, 598]
 ```
+# Heapsort 堆排序
 
+> [Heapsort can be thought of as an improved Selection sort](https://en.wikipedia.org/wiki/Heapsort).
+
+> Like Selection sort, heapsort partitions its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by selecting the largest element from it and inserting it into the sorted region in order. 
+
+> Unlike selection sort, heapsort does not waste time with a linear-time scan (**no pointers**) of the unsorted region; rather, heap sort maintains the unsorted region in a **max heap data structure** to more quickly find the largest element in each step.
+
+In practice on most machines it is slower than a well-implemented quicksort ($$O(n^2)$$), it has better worst-case $$O(n*log(n))$$ runtime than quicksort. 
+
+Heapsort is an in-place algorithm, but it is not a stable sort.
+
+## Max heap data structrue
+
+> The heap data structure is a fusion of array and tree. 
+
+The max heap data structure is a **complete binary tree** with the max heap property: **At each node, the parent is larger than its chidren.**
+
+* Complete means that at all levels of the tree, except possibly the last one (deepest) are fully filled, and, if the last level of the tree is not complete, the nodes of that level are filled from left to right (left-aligned).
+
+* $$\forall \text{ complete binary tree, }\exists\text{ an unique array, and vice versa.}
+
+![binary max heap](https://en.wikipedia.org/wiki/Binary_heap#/media/File:Max-Heap.svg)
+
+
+
+## Implement max heap in Python
+
+
+<div class="code-head"><span>code</span>heap.py</div>
+
+```python
+class maxHeap:
+    def __init__(self, items= object):
+        self.heap = []
+        for i in items:
+            self.heap.append(i)
+            self.__heapifyUp(len(self.heap) - 1)
+
+    def push(self, data):
+        self.heap.append(data)
+        self.__heapifyUp(len(self.heap) - 1)
+
+    def peek(self):
+        if self.heap[0]:
+            return self.heap[0]
+        else:
+            return False
+
+    def pop(self):
+        if len(self.heap) > 1:
+            self.__swap(0, len(self.heap) - 1)
+            max = self.heap.pop()
+            self.__heapifyDown(0)
+        elif len(self.heap) ==1:
+            max = self.heap.pop()
+        else:
+            max = False
+        return max
+    
+    def __swap(self, i, j):
+        self.heap[i], self.heap[j] =  self.heap[j], self.heap[i]
+
+    def __heapifyUp(self, index):
+        parent = (index - 1) //2
+        if index <= 0:
+            return 
+        elif self.heap[index] > self.heap[parent]:
+            self.__swap(index, parent)
+            self.__heapifyUp(parent)
+
+    def __heapifyDown(self, index):
+        left = index *2 +1
+        right = index * 2 + 2
+        largest = index
+        if len(self.heap) > left and self.heap[largest] < self.heap[left]:
+            largest = left
+        if len(self.heap) > right and self.heap[largest] < self.heap[right]:
+            largest = right
+        if largest != index:
+            self.__swap(index, largest)
+            self.__heapifyDown(largest)
+
+```
+
+<div class="code-head"><span>code</span>heapSort.py</div>
+
+```python
+# M = maxHeap([1, 2, 3, 4, 5, 6, 7, 8, 9])  
+M.push('yellow')
+print(M.heap)
+
+print(M.pop())
+print(M.heap)
+        
+print(M.pop())
+print(M.heap)
+
+print(M.pop())
+print(M.heap)
+print(M.pop())
+print(M.heap)
+print(M.pop())
+print(M.heap)
+print(M.pop())
+print(M.heap)
+print(M.pop())
+print(M.heap)
+print(M.pop())
+print(M.heap)
+print(M.pop())
+print(M.heap)
+print(M.pop())
+print(M.heap)
+
+```
 
 # Bubble sort
 
