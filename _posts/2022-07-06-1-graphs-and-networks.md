@@ -3,19 +3,30 @@ layout: post
 tag : data structure, algorithm, python
 category: "Python for SAS"
 title: "Graphs and networks"
-description: graph data structure and representations, network
+description: graph data structure, their mathematics set, adjacency list and adjacency matrix representations
 author: Sarah Chen
 image: images/posts/photos/IMG_0870.JPG
 
 ---
 
-- [Introduction](#introduction)
-  - [Use namedtuple](#use-namedtuple)
-  - [Use adjacency list](#use-adjacency-list)
-  - [Use adjacency matrix](#use-adjacency-matrix)
+- [Representations](#representations)
+  - [Mathematical set representation](#mathematical-set-representation)
+  - [adjacency list representation](#adjacency-list-representation)
+  - [Adjacency matrix representation](#adjacency-matrix-representation)
+- [Comparisons of representations](#comparisons-of-representations)
+- [Appendix](#appendix)
+  - [tuples](#tuples)
+  - [namedtuple](#namedtuple)
 
 
-# Introduction
+Graphs are useful for representing relationships.
+
+A tree is a speciaal type of graph.  It is an undirected connected group with no cycles.  
+
+One other definition relating tree to graph is: a graph is a free tree iff there exists a unique path between every pair of vertices. 
+
+# Representations
+## Mathematical set representation
 
 In mathematics, graph is a pair of two sets.
 $$G=(V,E), 
@@ -25,31 +36,25 @@ For example,
 $$V={0, 1, 2, 3}$$
 $$E={(0, 1),(0, 2), (0, 3),(2, 3}$$
 
-![bridge](../images/posts/bridge.PNG)
+![7 bridges](https://www.maa.org/sites/default/files/images/cms_upload/Konigsberg_colour37936.jpg))
 
-For example, 
+For example, Euler's 7 bridge problem.  A, B, C, D are the names of regions. 
 $$V={A, B, C, D}$$
 $$E={(A,B),(A,B), (A,C), (A,C), (B,D), (A,D), (C,D)$$
 The set of $$E$$ is called a multi-set because it contains "duplicates". 
 
-Graphs are useful for representing relationships.
+![bridge](../images/posts/bridge.PNG)
 
-
-## Use namedtuple
-<div class="code-head"><span>code</span>graph1.py</div>
-
-```python
-# G = (V, E)
-# [0, 1, 3, 9, 100]
-```
-
-<div class="code-head"><span>code</span>graph representation using namedtuple.py</div>
+Use <span class="coding">namedtuple</span> is a natural choice for coding graph objects in Python.  
+<div class="code-head"><span>code</span>graph representation 1.py</div>
 
 ```python
 from collections import namedtuple
+
 Graph = namedtuple("Graph", ["vertice", "edge"])
-apple = ['A','B', 'C', 'D']
-banana =[
+
+V = ['A','B', 'C', 'D']
+E =[
     ('A','B'),
     ('A','B'),
     ('A','C'),
@@ -58,12 +63,15 @@ banana =[
     ('B','D'),
     ('C','D'),
 ]
-G = Graph(apple,banana)
+# W= [0.1, 0.1, 0.1, 0.1,0.1, 0.1,0.4]
+G = Graph(V ,E)
+# G = Graph(V ,E, W)
 print(G)
-# Graph(vertice=['A', 'B', 'C', 'D'], edge=[('A', 'B'), ('A', 'B'), ('A', 'C'), ('A', 'C'), ('A', 'D'), ('B', 'D'), ('C', 'D')])
+# Graph(vertice=['A', 'B', 'C', 'D'], edge=[('A', 'B'), ('A', 'B'), ('A', 'C'), ('A', 'C'), ('A', 'D'), ('B', 'D'), ('C', 'D')], weights=[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.4])
+
 ```
 
-## Use adjacency list
+## adjacency list representation
 
 Adjacency list groupbys the vertices and lists out their immediate neighbors. 
 
@@ -72,42 +80,148 @@ $$B: A, A, D$$
 $$C: A, A, D$$
 $$D: A, B, C$$
 
-<div class="code-head"><span>code</span>graph representation using namedtuple.py</div>
+Below code uses Python dictionary to store the adjacency list representation of the graph.  
+
+Note that using dictionary (a hash table) has limitation:
+Because dictionary keys have to be hashable, this means that list, and user-defined classes cannot be used as keys.  Therefore, this limits our vertices cannot be list or user-defined classes. 
+
+<div class="code-head"><span>code</span>graph representation using adjacency list.py</div>
+
+```python
+adjG_dict = {'A': ['B', 'B', 'C', 'C', 'D'],
+ 'B': ['A', 'A', 'D'],
+ 'C': ['A', 'A', 'D'],
+ 'D': ['A', 'B', 'C']}
+# Graph(vertice=['A', 'B', 'C', 'D'], edge=[('A', 'B'), ('A', 'B'), ('A', 'C'), ('A', 'C'), ('A', 'D'), ('B', 'D'), ('C', 'D')])
+# def adja_dict(graph):
+#     """
+#     Returns the adjacency list representation of graph
+#     """
+#     adj = {vertice:[] for vertice in graph.vertice}
+#     print(adj)
+#     for edge in graph.edge:
+#         vertice1, vertice2 = edge[0], edge[1]
+#         adj[vertice1].append(vertice2)
+#         adj[vertice2].append(vertice1)
+#     return adj
+# aG = adja_dict(G)
+# print(aG)
+```
+If our source data for the vertices and edges is a pandas DataFrame using mathematical set representation, we can use <span class="coding">df.groupby('vertice')['edge'].apply(list)</span> to quickly convert it to adjacency list representation. 
+
+## Adjacency matrix representation
+
+Adjacency matrix representation looks very much like a square transition matrix.  
+
+$$|V|\cross|V|$$ Boolean-valued matrix indexed by vertices, with $$1$$ indicating edge or connection. 
+
+The time and space complexity of a graph
+We put a 1 (or weight, or the number of times they are connected) in the (i,j) cell for edges , and 0 for no connection. 
+
+In the code below, we use pandas to handle the indexing. 
+1. Read in list of edge tuples to a DataFrame
+2. Copy the DataFrame from step 1 with columns flipped.  However, the names should follow the first DataFrame's order.
+3. Concatenate the 2 DataFrames, and crosstab to get the count
+4. (Optional) Re-index both columns and row index in order to get rid of the old names
+   
+<div class="code-head"><span>code</span>convert set representation to adjacency matrix.py</div>
+
+```python
+import pandas as pd
+df1 = pd.DataFrame(E, columns = ['v1','v2'])
+df2 = df1[['v2','v1']].copy() # copy but with columns flipped because of undirected graph has symmetry
+df2.columns = ['v1','v2']
+df = pd.concat([df1, df2], axis=0)
+df = pd.crosstab(df.v1,df.v2)
+df.columns = V
+df.index = V
+print (df)
+#    A  B  C  D
+# A  0  2  2  1
+# B  2  0  0  1
+# C  2  0  0  1
+# D  1  1  1  0
+```
+
+If we don't use pandas, we would have to re-code the list of tuples of edges from letters to integers because list indexing cannot be letters. 
+
+<div class="code-head"><span>code</span>convert set representation to adjacency matrix.py</div>
 
 ```python
 from collections import namedtuple
 
 Graph = namedtuple("Graph", ["vertice", "edge"])
-apple = ['A','B', 'C', 'D']
-banana =[
-    ('A','B'),
-    ('A','B'),
-    ('A','C'),
-    ('A','C'),
-    ('A','D'),
-    ('B','D'),
-    ('C','D'),
+V = ['A','B', 'C', 'D']
+E = [
+    (0, 1),
+    (0, 1),
+    (0, 2),
+    (0, 2),
+    (0, 3),
+    (1, 3),
+    (2, 3)
 ]
-G = Graph(apple,banana)
-print(G)
-# Graph(vertice=['A', 'B', 'C', 'D'], edge=[('A', 'B'), ('A', 'B'), ('A', 'C'), ('A', 'C'), ('A', 'D'), ('B', 'D'), ('C', 'D')])
-def adja_dict(graph):
-    """
-    Returns the adjacency list representation of graph
-    """
-    adj = {node:[] for node in graph.nodes}
-    print(adj)
-    for edge in graph.edges:
-        print("\nedge is ", edge)
-        node1, node2 = edge[0], edge[1]
-        print("node1, node2", node1, node2)
-        adj[node1].append(node2)
-        print("adj: ", adj)
-        adj[node2].append(node1)
-        print("adj: ", adj)
+G = Graph(V,E)
+print(G.vertice)
+def adja_matrix(graph):
+    adj = [[0 for i in graph.vertice] for j in graph.vertice]
+    for edge in graph.edge:
+        n1, n2 = edge[0], edge[1]
+        adj[n1][n2] += 1
+        adj[n2][n1] += 1
     return adj
-aG = adja_dict(G)
-print(aG)
+
+print(adja_matrix(G))
 ```
 
-## Use adjacency matrix
+# Comparisons of representations
+The adjacency list is more compact, and saves space. 
+But the adjaceny matrix is faster. 
+
+
+
+# Appendix
+## tuples
+
+Below notes are adapted from the book [Think Python](https://www.greenteapress.com/thinkpython/html/thinkpython013.html). 
+> Tuples are like lists, except tuples are immutable. 
+> A tuple is a comma-separated list of values, which **can be any type**, and they are indexed by integers, so in that respect tuples are a lot like lists. 
+> Most list operators also work on tuples. The bracket operator <span class="coding">[]</span> for indexing, and the slicing operator <span class="coding">:</span>. 
+> Tuple as function return values: allows us to return multiple values, a function can only return one value, but if the value is a tuple, the effect is the same as returning multiple values. 
+> Use <span class="coding">zip</span>, a built-in function, to take two or more sequences and “zips” them into a list of tuples. For example, we can zip a list of country, and a list of capitals associated with the countries. 
+
+```python
+t = 'a', 'b', 'c', 'd', 'e'
+```
+Although it is not necessary, it is common to enclose tuples in parentheses:
+
+```python
+>>> t = ('a', 'b', 'c', 'd', 'e')
+```
+
+> Dictionaries have a method called <span class="coding">items</span> that returns an iterator, a list of tuples, where each tuple is a key-value pair.
+
+## namedtuple
+A [namedtuple](https://docs.python.org/3/library/collections.html?highlight=counter#collections.namedtuple) object is a new tuple subclass with a name we give it. 
+
+The new subclass is used to create tuple-like objects that have fields *accessible by the <span class="coding">.</span>* notation as well as inherited tuple attributes such as indexable and iterable. 
+In code below, we define a Graph class. <span class="coding">help(G)</span>
+
+```python
+help(G)
+# Help on Graph in module __main__ object:
+# class Graph(builtins.tuple)
+#  |  Graph(vertice, edge, weights)
+#  |
+#  |  Graph(vertice, edge, weights)
+#  |
+#  |  Method resolution order:
+#  |      Graph
+#  |      builtins.tuple
+#  |      builtins.object
+
+G[0]
+# ['A', 'B', 'C', 'D']
+G.vertice
+# ['A', 'B', 'C', 'D']
+```
