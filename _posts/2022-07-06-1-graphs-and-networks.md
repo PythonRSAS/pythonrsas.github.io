@@ -9,24 +9,23 @@ image: images/posts/photos/IMG_0870.JPG
 
 ---
 
-- [Representations](#representations)
-  - [Mathematical set representation](#mathematical-set-representation)
-  - [adjacency list representation](#adjacency-list-representation)
-  - [Adjacency matrix representation](#adjacency-matrix-representation)
+- [Introduction](#introduction)
+- [Directed graphs](#directed-graphs)
 - [Comparisons of representations](#comparisons-of-representations)
 - [Appendix](#appendix)
   - [tuples](#tuples)
   - [namedtuple](#namedtuple)
 
+# Introduction
+Graphs, or networks, are useful for representing relationships. In this post, we will talk about the humble beginning of graph theory from the problem of proving it is not possible to cross each of the 7 bridges of Konigsberg once and only once.   
 
-Graphs are useful for representing relationships.
+Euler was not only famous for being a mathematician, but also for his notations, how he represented the problems using symbols.  
 
-A tree is a speciaal type of graph.  It is an undirected connected group with no cycles.  
+In this post, we will go over three representations of network: mathematical set, adjacency list, and adjacency matrix. 
 
-One other definition relating tree to graph is: a graph is a free tree iff there exists a unique path between every pair of vertices. 
+A tree is a special type of graph.  It is an undirected connected group with no cycles.   One other definition relating tree to graph is: a graph is a free tree iff there exists a unique path between every pair of vertices. 
 
-# Representations
-## Mathematical set representation
+#Mathematical set representation
 
 In mathematics, graph is a pair of two sets:
 
@@ -83,7 +82,7 @@ print(G)
 
 ```
 
-## adjacency list representation
+#adjacency list representation
 
 Adjacency list groupbys the vertices and lists out their immediate neighbors. 
 
@@ -103,28 +102,28 @@ Because dictionary keys have to be hashable, this means that list, and user-defi
 <div class="code-head"><span>code</span>graph representation using adjacency list.py</div>
 
 ```python
-adjG_dict = {'A': ['B', 'B', 'C', 'C', 'D'],
+adjacency_dict = {'A': ['B', 'B', 'C', 'C', 'D'],
  'B': ['A', 'A', 'D'],
  'C': ['A', 'A', 'D'],
  'D': ['A', 'B', 'C']}
 # Graph(vertice=['A', 'B', 'C', 'D'], edge=[('A', 'B'), ('A', 'B'), ('A', 'C'), ('A', 'C'), ('A', 'D'), ('B', 'D'), ('C', 'D')])
-# def adja_dict(graph):
-#     """
-#     Returns the adjacency list representation of graph
-#     """
-#     adj = {vertice:[] for vertice in graph.vertice}
-#     print(adj)
-#     for edge in graph.edge:
-#         vertice1, vertice2 = edge[0], edge[1]
-#         adj[vertice1].append(vertice2)
-#         adj[vertice2].append(vertice1)
-#     return adj
-# aG = adja_dict(G)
-# print(aG)
+def adjacency_dict(graph):
+    """
+    Returns the adjacency list representation of graph
+    """
+    adj = {vertice:[] for vertice in graph.vertice}
+    print(adj)
+    for edge in graph.edge:
+        V1, V2 = edge[0], edge[1]
+        adj[V1].append(V2)
+        adj[V2].append(V1)
+    return adj
+aG = adjacency_dict(G)
+print(aG)
 ```
 If our source data for the vertices and edges is a pandas DataFrame using mathematical set representation, we can use <span class="coding">df.groupby('vertice')['edge'].apply(list)</span> to quickly convert it to adjacency list representation. 
 
-## Adjacency matrix representation
+#Adjacency matrix representation
 
 Adjacency matrix representation looks very much like a square transition matrix.  
 
@@ -143,11 +142,11 @@ In the code below, we use pandas to handle the indexing.
 
 ```python
 import pandas as pd
-df1 = pd.DataFrame(E, columns = ['v1','v2'])
-df2 = df1[['v2','v1']].copy() # copy but with columns flipped because of undirected graph has symmetry
-df2.columns = ['v1','v2']
+df1 = pd.DataFrame(E, columns = ['V1','V2'])
+df2 = df1[['V2','V1']].copy() # copy but with columns flipped because of undirected graph has symmetry
+df2.columns = ['V1','V2']
 df = pd.concat([df1, df2], axis=0)
-df = pd.crosstab(df.v1,df.v2)
+df = pd.crosstab(df.V1,df.V2)
 df.columns = V
 df.index = V
 print (df)
@@ -178,21 +177,73 @@ E = [
 ]
 G = Graph(V,E)
 print(G.vertice)
-def adja_matrix(graph):
+def adjacency_matrix(graph):
     adj = [[0 for i in graph.vertice] for j in graph.vertice]
     for edge in graph.edge:
-        n1, n2 = edge[0], edge[1]
-        adj[n1][n2] += 1
-        adj[n2][n1] += 1
+        V1, V2 = edge[0], edge[1]
+        adj[V1][V2] += 1
+        adj[V2][V1] += 1
     return adj
 
-print(adja_matrix(G))
+print(adjacency_matrix(G))
+```
+
+# Directed graphs
+
+Directed graphs have one-way directions.  
+
+We rewrite the Graph nametuple and functions above to add <span class="coding">is_directed</span> parameter. 
+
+<div class="code-head"><span>code</span>directedGraph.py</div>
+
+```python
+from collections import namedtuple
+
+Graph = namedtuple("Graph", ["vertice", "edge", "is_directed"])
+G = Graph(vertice = range(3), edge = [(1,0),(1,2), (0, 2)],is_directed= True)
+
+def adjacency_dict_directed(graph):
+    """
+    Returns the adjacency list representation of graph
+    """
+    adj = {vertice:[] for vertice in graph.vertice}
+    print(adj)
+    for edge in graph.edge:
+        V1, V2 = edge[0], edge[1]
+        adj[V1].append(V2)
+        if not graph.is_directed:
+            adj[V2].append(V1)
+    return adj
+adjacency_dict(G)  # undirected because we use the function defined regardless of directed
+# {0: [1, 2], 1: [0, 2], 2: [1, 0]}
+aG = adjacency_dict_directed(G)
+print(aG)
+# {0: [2], 1: [0, 2], 2: []}
+
+def adjacency_matrix_directed(graph):
+    """
+    Returns the adjacency list representation of graph
+    """
+    adj = [[0 for i in graph.vertice] for j in graph.vertice]
+    print(adj)
+    for edge in graph.edge:
+        V1, V2 = edge[0], edge[1]
+        adj[V1][V2] += 1
+        if not graph.is_directed:
+            adj[V2][V1] += 1
+    return adj
+
+adjacency_matrix(G)
+# [[0, 1, 1], [1, 0, 1], [1, 1, 0]]
+
+adjacency_matrix_directed(G)
+# [[0, 0, 1], [1, 0, 1], [0, 0, 0]]
 ```
 
 # Comparisons of representations
+
 The adjacency list is more compact, and saves space. 
 But the adjaceny matrix is faster. 
-
 
 
 # Appendix
