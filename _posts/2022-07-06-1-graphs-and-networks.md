@@ -28,19 +28,31 @@ One other definition relating tree to graph is: a graph is a free tree iff there
 # Representations
 ## Mathematical set representation
 
-In mathematics, graph is a pair of two sets.
+In mathematics, graph is a pair of two sets:
+
 $$G=(V,E), 
+
 where $$V$$ is the set of vertices, and $$E$$ is the set of edges.
 
 For example, 
+
 $$V={0, 1, 2, 3}$$
+
 $$E={(0, 1),(0, 2), (0, 3),(2, 3}$$
 
 ![7 bridges](https://www.maa.org/sites/default/files/images/cms_upload/Konigsberg_colour37936.jpg))
 
-For example, Euler's 7 bridge problem.  A, B, C, D are the names of regions. 
+[From MAA "Leonard Euler's Solution to the Konigsberg Bridge Problem"](https://www.maa.org/press/periodicals/convergence/leonard-eulers-solution-to-the-konigsberg-bridge-problem#:~:text=Euler%20states%20that%20if%20bridge,the%20starting%20or%20ending%20place.)
+"According to lore, the citizens of Königsberg used to spend Sunday afternoons walking around their beautiful city.  While walking, the people of the city decided to create a game for themselves, their goal being to devise a way in which they could walk around the city, crossing each of the seven bridges only once.  Even though none of the citizens of Königsberg could invent a route that would allow them to cross each of the bridges only once, still they could not prove that it was impossible."
+
+Euler's 
+![](https://www.maa.org/sites/default/files/images/upload_library/46/1/old_convergence/Paoletti/Figure-2-perchance.png)
+We will use graph representation on Euler's 7 bridge problem.  A, B, C, D are the names of regions. 
+
 $$V={A, B, C, D}$$
+
 $$E={(A,B),(A,B), (A,C), (A,C), (B,D), (A,D), (C,D)$$
+
 The set of $$E$$ is called a multi-set because it contains "duplicates". 
 
 ![bridge](../images/posts/bridge.PNG)
@@ -76,8 +88,11 @@ print(G)
 Adjacency list groupbys the vertices and lists out their immediate neighbors. 
 
 $$A: B, B, C, C, D$$
+
 $$B: A, A, D$$
+
 $$C: A, A, D$$
+
 $$D: A, B, C$$
 
 Below code uses Python dictionary to store the adjacency list representation of the graph.  
@@ -113,7 +128,7 @@ If our source data for the vertices and edges is a pandas DataFrame using mathem
 
 Adjacency matrix representation looks very much like a square transition matrix.  
 
-$$|V|\cross|V|$$ Boolean-valued matrix indexed by vertices, with $$1$$ indicating edge or connection. 
+$$\|V\|\cross\|V\|$$ Boolean-valued matrix indexed by vertices, with $$1$$ indicating edge or connection. 
 
 The time and space complexity of a graph
 We put a 1 (or weight, or the number of times they are connected) in the (i,j) cell for edges , and 0 for no connection. 
