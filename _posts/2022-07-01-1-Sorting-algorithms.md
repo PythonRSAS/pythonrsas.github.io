@@ -3,7 +3,7 @@ layout: post
 tag : data structure, algorithm, python
 category: "Python for SAS"
 title: "Sorting algorithms"
-description: quick sort, select sort, bubble sort, merge sort, bucket sort
+description: quick sort, selection sort, insertion sort, bubble sort, merge sort, heap sort, bucket sort
 author: Sarah Chen
 image: images/posts/photos/IMG_0871.JPG
 
@@ -189,7 +189,7 @@ Insertion sort is not super fast because it uses nested loops. It is useful for 
 > The second outer loop selects the minimum from the remining N - 1 elements, and so on
 
 
-![select sort](../images/posts/selectSort.PNG)
+![selection sort](../images/posts/selectSort.PNG)
 
 <div class="code-head"><span>code</span>selection sort.py</div>
 
@@ -345,7 +345,7 @@ print(selectSort(a))
 
 # Compare Select sort and Insertion sort
 
-My graphic summary of the select sort method looks identical to the one from the insertion sort method.
+My graphic summary of the selection sort method looks identical to the one from the insertion sort method.
 
 Both of them grow the sorted from left to right.  
 
@@ -710,7 +710,7 @@ print(bubbleSort(a))
 
 > Unlike selection sort, heapsort does not waste time with a linear-time scan (**no pointers**) of the unsorted region; rather, heap sort maintains the unsorted region in a **max heap data structure** to more quickly find the largest element in each step.
 
-In practice on most machines it is slower than a well-implemented quicksort ($$O(n^2)$$), it has better worst-case $$O(n*log(n))$$ runtime than quicksort. 
+In practice on most machines it is **slower than** a well-implemented quicksort ($$O(n^2)$$), it has better worst-case $$O(n*log(n))$$ runtime than quicksort. 
 
 Heapsort is an in-place algorithm, but it is not a stable sort.
 
@@ -720,9 +720,9 @@ Heapsort is an in-place algorithm, but it is not a stable sort.
 
 The max heap data structure is a **complete binary tree** with the max heap property: **At each node, the parent is larger than its chidren.**
 
-* Complete means that at all levels of the tree, except possibly the last one (deepest) are fully filled, and, if the last level of the tree is not complete, the nodes of that level are filled from left to right (left-aligned).
+*  Complete means that at all levels of the tree, except possibly the last one (deepest) are fully filled, and, if the last level of the tree is not complete, the nodes of that level are filled from left to right (left-aligned).
 
-* $$\forall \text{ complete binary tree, }\exists\text{ an unique array, and vice versa.}
+* $$ \forall \text{ complete binary tree, }\exists\text{ an unique array, and vice versa.}
 
 * $$Left(i)=2*i+1$$
 * $$Right(i)=2*i+2$$
@@ -730,8 +730,7 @@ The max heap data structure is a **complete binary tree** with the max heap prop
 
 The "parent-children" relationship are defined by the array indices in the above three functions.  There is no need of any pointers.  There is no need for attributes such as left or right children either. 
 
-![binary max heap](https://en.wikipedia.org/wiki/Binary_heap#/media/File:Max-Heap.svg)
-
+![binary max heap](https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Max-Heap.svg/330px-Max-Heap.svg.png)
 
 ## Implement max heap in Python
 
@@ -807,23 +806,28 @@ class maxHeap:
             self.__heapifyDown(largest) # recurse
 
 ```
-Below code instantiates a maxHeap object we defined above, and repeatedly pops the maximum of the values. 
+Below code instantiates a maxHeap object we defined above, and repeatedly pops the maximum. 
 
 
 <div class="code-head"><span>code</span>heapSort.py</div>
 
 ```python
-unsortedA = [5, 7,3,9, 2,8, 1, 4,6,]
-M = maxHeap(unsortedA)  
+A = [5, 7,3,9, 2,8, 1, 4,6,]
+maxHeap(A).heap
+# [9, 7, 8, 6, 2, 3, 1, 4, 5]
+
+M = maxHeap(A)  
+print(M.heap) 
+# [9, 7, 8, 6, 2, 3, 1, 4, 5]
 M.push(10)
 print(M.heap)
+# [10, 9, 8, 6, 7, 3, 1, 4, 5, 2]
 
 from collections import deque
 A = deque()
 for i in range(len(M.heap)):
     A.appendleft(M.pop())
-print(A)
-
+print(A) # sorted
 # [10, 9, 8, 6, 7, 3, 1, 4, 5, 2]
 # deque([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
@@ -832,15 +836,26 @@ print(A)
 ## The heapq  module
 
 
-We can also use the Python <span class="coding">heapq</span> module.  
+We can also use the Python <span class="coding">heapq</span> module.  The heapq module is part of Python standard library, with well-documented [Github source code](https://github.com/python/cpython/blob/3.10/Lib/heapq.py). 
 
-<div class="code-head"><span>code</span>bubble sort.py</div>
+Note that it implements min heap, which means that the root node is the smallest. 
+
+The <span class="coding">_heapify_max</span> function converts an input to a max heap in-place, in O(n) time. 
+
+<div class="code-head"><span>code</span>heapq.py</div>
 
 ```python
 import heapq
 A = [5, 7 ,3, 9, 2, 8, 1, 4, 6]
+heapq.heapify(A)
+print(A)
+# [1, 2, 3, 4, 7, 8, 5, 9, 6]
+
+A = [5, 7 ,3, 9, 2, 8, 1, 4, 6]
 heapq._heapify_max(A)
 print("max heap", A)
+# max heap [9, 7, 8, 6, 2, 3, 1, 4, 5]
+
 
 print(heapq.heappop(A))
 print("after poping max")

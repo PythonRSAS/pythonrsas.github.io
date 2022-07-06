@@ -93,6 +93,22 @@ for i in range(10):
 # print(df.T.to_markdown())
 ``` 
 
+## Factorial
+
+The factorial is another simple example.  $$n! = n*(n-1)*...*1$$
+<div class="code-head"><span>code</span>factorial.py</div>
+
+```py
+def fact(n):
+   if n < 0:
+      return -1
+   elif n == 1:
+      return 1
+   else:
+      return n*fact(n-1)
+print(fact(5))
+# 120
+```
 # Recipe for recursion
 
 After working out the two simple examples successfully, we can use the same thinking process to tackle bigger recursion problems.
@@ -125,6 +141,18 @@ What it does:
 def search(tree, target):
    return (tree if not tree or tree.data == target else search(tree, left, target) if target < tree.data else search(tree.right, target))
 ```
+
+# When to use or not to use recursion
+
+Mathematically we don't see any reason why not to use it: it is elegant.
+
+Sometimes, such as binary search trees, it is much faster and easy to code using recursion than otherwise. 
+
+However in computer implementation, most programs typically do not start any computation until all the recursions have unwind until the base/initial case.  
+
+For most languages, unless the language specifically has optmized recursions, the repeated stack calls mean as many stack calls as needed to reach the initial case, which can be quite slow in comparison with some other algorithms such as loops that are optimized in many languages.  In addition, the computer may run out of memory because of (millions of) function calls. 
+
+
 # Future explorations
 
 ![Earth's most stunning fractal patterns](https://www.wired.com/2010/09/fractal-patterns-in-nature/)
