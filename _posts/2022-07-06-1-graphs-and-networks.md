@@ -251,6 +251,25 @@ But the adjaceny matrix is faster for desne graphs. It is also simpler for weigh
 
 # Implementation of undirected graph
 
+The implementation using adjacency matrix has two classes Vertex (for a single point or node) and Graph.  
+
+The <span class="coding">Vertex</span> class has attributes: its name, and its neighbors, and a function for adding neighbor.
+
+The <span class="coding">Graphx</span> class defines vertices and edge_indices, each with a dictionary, and edges in a list.  The class has 3 methods: <span class="coding">add_vertex</span>, 
+<span class="coding">add_edge</span> and <span class="coding">print_graph</span>.  
+
+When adding English letter vertices in the Graph object we define, we use the <span class="coding">range</span> function with two other built-in functions: <span class="coding">ord</span> and <span class="coding">chr</span> to convert letter to unicode, and from unicode back to character. 
+
+For example, 
+```python
+ord('A')
+# 65
+ord('B')
+# 66
+chr(ord('A'))
+# 'A'
+```
+
 <div class="code-head"><span>code</span>undirectedGraphImplement.py</div>
 
 ```python
@@ -266,6 +285,8 @@ class Vertex: # could call it class V but it seems too short
 
 class Graph:
     vertices = {}
+    edges =[]
+    edge_indices = {}
 
     def add_vertex(self, vertex):
         if isinstance(vertex, Vertex) and vertex.name not in self.vertices:
@@ -288,10 +309,9 @@ class Graph:
     def print_graph(self):
         for key in sorted(list(self.vertices.keys())):
             print(key + str(self.vertices[key].neighbors))
-    
-g = Graph()
 
 a = Vertex('A')
+g = Graph()
 g.add_vertex(a)
 g.add_vertex(Vertex('B'))
 for i in range(ord('A'), ord('K')):
