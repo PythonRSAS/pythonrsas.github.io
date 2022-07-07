@@ -23,7 +23,7 @@ Graphs, or networks, are useful for representing relationships. In this post, we
 
 In this post, we will go over three representations of network: mathematical set, adjacency list, and adjacency matrix. 
 
-A tree is a special type of graph.  It is an undirected connected group with no cycles.   One other definition relating tree to graph is: a graph is a free tree iff there exists a unique path between every pair of vertices. 
+A tree is a special type of graph.  It is an undirected connected group with no cycles.   One other definition relating tree to graph is: a graph is a free tree iff there exists a unique path between every pair of nodes. 
 
 #Mathematical set representation
 
@@ -31,7 +31,7 @@ In mathematics, graph is a pair of two sets:
 
 $$G=(V,E), 
 
-where $$V$$ is the set of vertices, and $$E$$ is the set of edges.
+where $$V$$ is the set of nodes, and $$E$$ is the set of edges.
 
 For example, 
 
@@ -85,7 +85,7 @@ print(G)
 
 #adjacency list representation
 
-Adjacency list groupbys the vertices and lists out their immediate neighbors. 
+Adjacency list groupbys the nodes and lists out their immediate neighbors. 
 
 $$A: B, B, C, C, D$$
 
@@ -98,7 +98,7 @@ $$D: A, B, C$$
 Below code uses Python dictionary to store the adjacency list representation of the graph.  
 
 Note that using dictionary (a hash table) has limitation:
-Because dictionary keys have to be hashable, this means that list, and user-defined classes cannot be used as keys.  Therefore, this limits our vertices cannot be list or user-defined classes. 
+Because dictionary keys have to be hashable, this means that list, and user-defined classes cannot be used as keys.  Therefore, this limits our nodes cannot be list or user-defined classes. 
 
 <div class="code-head"><span>code</span>graph representation using adjacency list.py</div>
 
@@ -122,13 +122,13 @@ def adjacency_dict(graph):
 aG = adjacency_dict(G)
 print(aG)
 ```
-If our source data for the vertices and edges is a pandas DataFrame using mathematical set representation, we can use <span class="coding">df.groupby('vertice')['edge'].apply(list)</span> to quickly convert it to adjacency list representation. 
+If our source data for the nodes and edges is a pandas DataFrame using mathematical set representation, we can use <span class="coding">df.groupby('vertice')['edge'].apply(list)</span> to quickly convert it to adjacency list representation. 
 
 #Adjacency matrix representation
 
 Adjacency matrix representation looks very much like a square transition matrix.  
 
-$$\|V\|\times\|V\|$$ Boolean-valued matrix indexed by vertices, with $$1$$ indicating edge or connection. 
+$$\|V\|\times\|V\|$$ Boolean-valued matrix indexed by nodes, with $$1$$ indicating edge or connection. 
 
 The time and space complexity of a graph
 We put a 1 (or weight, or the number of times they are connected) in the (i,j) cell for edges , and 0 for no connection. 
@@ -158,7 +158,7 @@ print (df)
 # D  1  1  1  0
 ```
 
-If we don't use pandas, we would have to re-code the list of tuples of edges from letters to integers because list indexing cannot be letters. 
+If we don't use pandas, we would have to re-code the list of tuples of edges from letters to integers because list indexing cannot be letters. Alternatively we can use the Python built-in functions <span class="coding">ord</span> and <span class="coding">chr</span>.  But I think using pandas requires less coding. 
 
 <div class="code-head"><span>code</span>convert set representation to adjacency matrix.py</div>
 
@@ -251,14 +251,14 @@ But the adjaceny matrix is faster for desne graphs. It is also simpler for weigh
 
 # Implementation of undirected graph
 
-The implementation using adjacency matrix has two classes Vertex (for a single point or node) and Graph.  
+The implementations using adjacency list and adjacency matrix.  Each has two classes Node (for a single point or node) and Graph.  
 
-The <span class="coding">Vertex</span> class has attributes: its name, and its neighbors, and a function for adding neighbor.
+The <span class="coding">Node</span> class has attributes: its name, and its neighbors, and a function for adding neighbor.
 
-The <span class="coding">Graphx</span> class defines vertices and edge_indices, each with a dictionary, and edges in a list.  The class has 3 methods: <span class="coding">add_vertex</span>, 
+The <span class="coding">Graphx</span> class defines nodes and edge_indices, each with a dictionary, and edges in a list.  The class has 3 methods: <span class="coding">add_node</span>, 
 <span class="coding">add_edge</span> and <span class="coding">print_graph</span>.  
 
-When adding English letter vertices in the Graph object we define, we use the <span class="coding">range</span> function with two other built-in functions: <span class="coding">ord</span> and <span class="coding">chr</span> to convert letter to unicode, and from unicode back to character. 
+When adding English letter nodes in the Graph object we define, we use the <span class="coding">range</span> function with two other built-in functions: <span class="coding">ord</span> and <span class="coding">chr</span> to convert letter to unicode, and from unicode back to character. 
 
 For example, 
 ```python
@@ -270,10 +270,12 @@ chr(ord('A'))
 # 'A'
 ```
 
-<div class="code-head"><span>code</span>undirectedGraphImplement.py</div>
+We first verify that the node to be added is not already in the code. 
+
+<div class="code-head"><span>code</span>undirectedGraphListImplement.py</div>
 
 ```python
-class Vertex: # could call it class V but it seems too short
+class Node: # could call it class V but it seems too short
     def __init__(self,n):
         self.name = n
         self.neighbors = list()
@@ -284,20 +286,18 @@ class Vertex: # could call it class V but it seems too short
             self.neighbors.sort()
 
 class Graph:
-    vertices = {}
-    edges =[]
-    edge_indices = {}
+    nodes = {}
 
-    def add_vertex(self, vertex):
-        if isinstance(vertex, Vertex) and vertex.name not in self.vertices:
-            self.vertices[vertex.name] = vertex
+    def add_node(self, node):
+        if isinstance(node, Node) and node.name not in self.nodes:
+            self.nodes[node.name] = node
             return True
         else:
             return False
         
-    def add_edge(self, u, v):
-        if u in self.vertices and v in self.vertices:
-            for key, value in self.vertices.items():
+    def add_edge(self, u, v, weight = 1):
+        if u in self.nodes and v in self.nodes:
+            for key, value in self.nodes.items():
                 if key == u:
                     value.add_neighbor(v)
                 if key == v:
@@ -307,22 +307,104 @@ class Graph:
             return False
 
     def print_graph(self):
-        for key in sorted(list(self.vertices.keys())):
-            print(key + str(self.vertices[key].neighbors))
+        for key in sorted(list(self.nodes.keys())):
+            print(key + str(self.nodes[key].neighbors))
 
-a = Vertex('A')
+# test code
+a = Node('A')
 g = Graph()
-g.add_vertex(a)
-g.add_vertex(Vertex('B'))
+g.add_node(a)
+g.add_node(Node('B'))
 for i in range(ord('A'), ord('K')):
-    g.add_vertex(Vertex(chr(i)))
+    g.add_node(Node(chr(i)))
 
 edges = ['AB','AE', 'BF', 'CG', 'DE', 'DH','EH', 'FG','FI', 'FJ','GJ','HI']
 for edge in edges:
     g.add_edge(edge[:1], edge[1:])
 
 g.print_graph()
+
+# A['B', 'E']
+# B['A', 'F']
+# C['G']
+# D['E', 'H']
+# E['A', 'D', 'H']
+# F['B', 'G', 'I', 'J']
+# G['C', 'F', 'J']
+# H['D', 'E', 'I']
+# I['F', 'H']
+# J['F', 'G']
 ```
+
+<div class="code-head"><span>code</span>undirectedGraphMatrixImplement.py</div>
+
+```python
+class Node:
+    def __init__(self,n):
+        self.name = n
+        self.neighbors = list()
+
+    def add_neighbor(self, v):
+        if v not in self.neighbors:
+            self.neighbors.append(v)
+            self.neighbors.sort()
+
+class Graph:
+    nodes = {}
+    edges = []
+    edge_indices = {}
+
+    def add_node(self, node):
+        if isinstance(node, Node) and node.name not in self.nodes:
+            self.nodes[node.name] = node
+            for row in self.edges:
+                row.append(0) # add rows of zeros
+            self.edges.append([0]*(len(self.edges) + 1)) # add columns of zeros
+            self.edge_indices[node.name] = len(self.edge_indices)
+            return True
+        else:
+            return False
+        
+    def add_edge(self, u, v, weight = 1):
+        if u in self.nodes and v in self.nodes:
+            self.edges[self.edge_indices[u]][self.edge_indices[v]] = weight
+            self.edges[self.edge_indices[v]][self.edge_indices[u]] = weight
+            return True
+        else:
+            return False
+
+    def print_graph(self):
+        for v, i in sorted(self.edge_indices.items()):
+            print(v + ' ', end= '')
+            for j in range(len(self.edges)):
+                print(self.edges[i][j], end='')
+            print(' ')
+    
+# test code
+g = Graph()
+a = Node('A')
+g.add_node(a)
+g.add_node(Node('B'))
+for i in range(ord('A'), ord('K')):
+    g.add_node(Node(chr(i)))
+
+edges = ['AB','AE', 'BF', 'CG', 'DE', 'DH','EH', 'FG','FI', 'FJ','GJ','HI']
+for edge in edges:
+    g.add_edge(edge[:1], edge[1:])
+
+g.print_graph()
+# A 0100100000
+# B 1000010000
+# C 0000001000
+# D 0000100100
+# E 1001000100
+# F 0100001011
+# G 0010010001
+# H 0001100010
+# I 0000010100
+# J 0000011000
+```
+
 
 # Appendix
 ## tuples
