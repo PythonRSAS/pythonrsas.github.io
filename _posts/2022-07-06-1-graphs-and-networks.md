@@ -12,14 +12,14 @@ image: images/posts/photos/IMG_0870.JPG
 - [Introduction](#introduction)
 - [Directed graphs](#directed-graphs)
 - [Comparisons of representations](#comparisons-of-representations)
+- [Implementation of undirected graph](#implementation-of-undirected-graph)
 - [Appendix](#appendix)
   - [tuples](#tuples)
   - [namedtuple](#namedtuple)
 
 # Introduction
-Graphs, or networks, are useful for representing relationships. In this post, we will talk about the humble beginning of graph theory from the problem of proving it is not possible to cross each of the 7 bridges of Konigsberg once and only once.   
+Graphs, or networks, are useful for representing relationships. In this post, we start with the humble beginning of graph theory from the problem of proving it is not possible to cross each of the 7 bridges of Konigsberg once and only once, and go over its three presentations, and implementating a graph object. 
 
-Euler was not only famous for being a mathematician, but also for his notations, how he represented the problems using symbols.  
 
 In this post, we will go over three representations of network: mathematical set, adjacency list, and adjacency matrix. 
 
@@ -44,7 +44,8 @@ $$E={(0, 1),(0, 2), (0, 3),(2, 3}$$
 [From MAA "Leonard Euler's Solution to the Konigsberg Bridge Problem"](https://www.maa.org/press/periodicals/convergence/leonard-eulers-solution-to-the-konigsberg-bridge-problem#:~:text=Euler%20states%20that%20if%20bridge,the%20starting%20or%20ending%20place.)
 "According to lore, the citizens of Königsberg used to spend Sunday afternoons walking around their beautiful city.  While walking, the people of the city decided to create a game for themselves, their goal being to devise a way in which they could walk around the city, crossing each of the seven bridges only once.  Even though none of the citizens of Königsberg could invent a route that would allow them to cross each of the bridges only once, still they could not prove that it was impossible."
 
-Euler's 
+Euler was not only famous for being a mathematician, but also for his notations, how he represented the problems using symbols.  
+
 ![](https://www.maa.org/sites/default/files/images/upload_library/46/1/old_convergence/Paoletti/Figure-2-perchance.png)
 We will use graph representation on Euler's 7 bridge problem.  A, B, C, D are the names of regions. 
 
@@ -127,7 +128,7 @@ If our source data for the vertices and edges is a pandas DataFrame using mathem
 
 Adjacency matrix representation looks very much like a square transition matrix.  
 
-$$\|V\|\cross\|V\|$$ Boolean-valued matrix indexed by vertices, with $$1$$ indicating edge or connection. 
+$$\|V\|\times\|V\|$$ Boolean-valued matrix indexed by vertices, with $$1$$ indicating edge or connection. 
 
 The time and space complexity of a graph
 We put a 1 (or weight, or the number of times they are connected) in the (i,j) cell for edges , and 0 for no connection. 
@@ -138,7 +139,7 @@ In the code below, we use pandas to handle the indexing.
 3. Concatenate the 2 DataFrames, and crosstab to get the count
 4. (Optional) Re-index both columns and row index in order to get rid of the old names
    
-<div class="code-head"><span>code</span>convert set representation to adjacency matrix.py</div>
+<div class="code-head"><span>code</span>convert set representation to adjacency matrix using pandas.py</div>
 
 ```python
 import pandas as pd
@@ -194,7 +195,7 @@ Directed graphs have one-way directions.
 
 We rewrite the Graph nametuple and functions above to add <span class="coding">is_directed</span> parameter. 
 
-<div class="code-head"><span>code</span>directedGraph.py</div>
+<div class="code-head"><span>code</span>directedGraphRepresentations.py</div>
 
 ```python
 from collections import namedtuple
@@ -242,9 +243,66 @@ adjacency_matrix_directed(G)
 
 # Comparisons of representations
 
-The adjacency list is more compact, and saves space. 
-But the adjaceny matrix is faster. 
+Adjacency list is more compact, and saves space for sparse graph. 
+But adjacency list is slow for dense graphs.
 
+Adjaceny matrix takes up $$\|V\|^2$$ space, regardless how dense the graph. 
+But the adjaceny matrix is faster for desne graphs. It is also simpler for weighted edges. 
+
+# Implementation of undirected graph
+
+<div class="code-head"><span>code</span>undirectedGraphImplement.py</div>
+
+```python
+class Vertex: # could call it class V but it seems too short
+    def __init__(self,n):
+        self.name = n
+        self.neighbors = list()
+
+    def add_neighbor(self, v):
+        if v not in self.neighbors:
+            self.neighbors.append(v)
+            self.neighbors.sort()
+
+class Graph:
+    vertices = {}
+
+    def add_vertex(self, vertex):
+        if isinstance(vertex, Vertex) and vertex.name not in self.vertices:
+            self.vertices[vertex.name] = vertex
+            return True
+        else:
+            return False
+        
+    def add_edge(self, u, v):
+        if u in self.vertices and v in self.vertices:
+            for key, value in self.vertices.items():
+                if key == u:
+                    value.add_neighbor(v)
+                if key == v:
+                    value.add_neighbor(u)
+            return True
+        else:
+            return False
+
+    def print_graph(self):
+        for key in sorted(list(self.vertices.keys())):
+            print(key + str(self.vertices[key].neighbors))
+    
+g = Graph()
+
+a = Vertex('A')
+g.add_vertex(a)
+g.add_vertex(Vertex('B'))
+for i in range(ord('A'), ord('K')):
+    g.add_vertex(Vertex(chr(i)))
+
+edges = ['AB','AE', 'BF', 'CG', 'DE', 'DH','EH', 'FG','FI', 'FJ','GJ','HI']
+for edge in edges:
+    g.add_edge(edge[:1], edge[1:])
+
+g.print_graph()
+```
 
 # Appendix
 ## tuples
