@@ -53,7 +53,7 @@ We will use graph representation on Euler's 7 bridge problem.  A, B, C, D are th
 
 $$V=\{A, B, C, D\}$$
 
-$$E=\{\(A,B\),\(A,B\), \(A,C\), \(A,C\), \(B,D\), \(A,D\), \(C,D\)$$
+$$E=\{\left(A,B\),\(A,B\), \(A,C\), \(A,C\), \(B,D\), \(A,D\), \(C,D\)$$
 
 A set is a collection of unique elements.  The set of $$E$$ is called a multi-set because it contains "duplicates". 
 
