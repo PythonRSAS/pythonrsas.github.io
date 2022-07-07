@@ -10,6 +10,7 @@ image: images/posts/photos/IMG_0870.JPG
 ---
 
 - [Introduction](#introduction)
+- [Mathematical set representation](#mathematical-set-representation)
 - [Directed graphs](#directed-graphs)
 - [Comparisons of representations](#comparisons-of-representations)
 - [Implementation of undirected graph](#implementation-of-undirected-graph)
@@ -25,11 +26,11 @@ In this post, we will go over three representations of network: mathematical set
 
 A tree is a special type of graph.  It is an undirected connected group with no cycles.   One other definition relating tree to graph is: a graph is a free tree iff there exists a unique path between every pair of nodes. 
 
-#Mathematical set representation
+# Mathematical set representation
 
 In mathematics, graph is a pair of two sets:
 
-$$G=(V,E), 
+$$G=(V,E)$$ 
 
 where $$V$$ is the set of nodes, and $$E$$ is the set of edges.
 
@@ -39,9 +40,10 @@ $$V={0, 1, 2, 3}$$
 
 $$E={(0, 1),(0, 2), (0, 3),(2, 3}$$
 
+[From MAA "Leonard Euler's Solution to the Konigsberg Bridge Problem"](https://www.maa.org/press/periodicals/convergence/leonard-eulers-solution-to-the-konigsberg-bridge-problem#:~:text=Euler%20states%20that%20if%20bridge,the%20starting%20or%20ending%20place.)
+
 ![7 bridges](https://www.maa.org/sites/default/files/images/cms_upload/Konigsberg_colour37936.jpg))
 
-[From MAA "Leonard Euler's Solution to the Konigsberg Bridge Problem"](https://www.maa.org/press/periodicals/convergence/leonard-eulers-solution-to-the-konigsberg-bridge-problem#:~:text=Euler%20states%20that%20if%20bridge,the%20starting%20or%20ending%20place.)
 "According to lore, the citizens of Königsberg used to spend Sunday afternoons walking around their beautiful city.  While walking, the people of the city decided to create a game for themselves, their goal being to devise a way in which they could walk around the city, crossing each of the seven bridges only once.  Even though none of the citizens of Königsberg could invent a route that would allow them to cross each of the bridges only once, still they could not prove that it was impossible."
 
 Euler was not only famous for being a mathematician, but also for his notations, how he represented the problems using symbols.  
@@ -49,11 +51,11 @@ Euler was not only famous for being a mathematician, but also for his notations,
 ![](https://www.maa.org/sites/default/files/images/upload_library/46/1/old_convergence/Paoletti/Figure-2-perchance.png)
 We will use graph representation on Euler's 7 bridge problem.  A, B, C, D are the names of regions. 
 
-$$V={A, B, C, D}$$
+$$V=\{A, B, C, D\}$$
 
-$$E={(A,B),(A,B), (A,C), (A,C), (B,D), (A,D), (C,D)$$
+$$E=\{\(A,B\),\(A,B\), \(A,C\), \(A,C\), \(B,D\), \(A,D\), \(C,D\)$$
 
-The set of $$E$$ is called a multi-set because it contains "duplicates". 
+A set is a collection of unique elements.  The set of $$E$$ is called a multi-set because it contains "duplicates". 
 
 ![bridge](../images/posts/bridge.PNG)
 
