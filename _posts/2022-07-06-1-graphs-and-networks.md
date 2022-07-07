@@ -10,24 +10,44 @@ image: images/posts/photos/IMG_0870.JPG
 ---
 
 - [Introduction](#introduction)
-- [Mathematical set representation](#mathematical-set-representation)
-- [Directed graphs](#directed-graphs)
-- [Comparisons of representations](#comparisons-of-representations)
-- [Implementation of undirected graph](#implementation-of-undirected-graph)
+  - [Types of graphs](#types-of-graphs)
+- [Representations](#representations)
+  - [Mathematical set representation](#mathematical-set-representation)
+  - [adjacency list representation](#adjacency-list-representation)
+  - [Directed graphs](#directed-graphs)
+  - [Comparisons of representations](#comparisons-of-representations)
+- [Implementation](#implementation)
+  - [undirected graph](#undirected-graph)
 - [Appendix](#appendix)
   - [tuples](#tuples)
   - [namedtuple](#namedtuple)
 
 # Introduction
-Graphs, or networks, are useful for representing relationships. In this post, we start with the humble beginning of graph theory from the problem of proving it is not possible to cross each of the 7 bridges of Konigsberg once and only once, and go over its three presentations, and implementating a graph object. 
-
+Graphs, or networks, are useful for representing relationships from social network,maps, the internet, and the universe.  In this post, we start with the humble beginning of graph theory from the problem of proving it is not possible to cross each of the 7 bridges of Konigsberg once and only once, and go over its three presentations, and implementating a graph object. 
 
 In this post, we will go over three representations of network: mathematical set, adjacency list, and adjacency matrix. 
 
-A tree is a special type of graph.  It is an undirected connected group with no cycles.   One other definition relating tree to graph is: a graph is a free tree iff there exists a unique path between every pair of nodes. 
+## Types of graphs
+1. Undirected graphs. E.g.,two-way streets
+2. Directed graphs (Digraph). E.g., Instagram followers and influencers
+3. Weighted graphs, where edges have varied weights, such as credit risk transition matrix
+4. Special graphs: trees, rooted tree, directed acyclic graphs (DGA)
+   
+**tree** is undirected connected graph with no cycles.   One other definition relating tree to graph is: a graph is a free tree iff there exists a unique path between every pair of nodes. 
+A tree with $$N$$ nodes has $$N-1$$ edges. 
 
-# Mathematical set representation
+A **rooted tree** (often simplily referred to as "tree") is a tree with a root node where either all edges point towards the root node ("out-tree") or away from it ("in-tree").  For example, max and min heaps. 
 
+**DGA**s are directed graphs with no cycles. DAGs are used to represent structures with dependencies.   All out-trees are DAGs but all DAGs are out-trees. 
+
+**Bipartite graph**: a graph that can be split into two groups such that every edges is a link between the two groups (male and female among the heterosexual, job seekers and jobs)
+
+**Complete graph** is fully connected where every node is connected to every other node. 
+
+# Representations
+## Mathematical set representation
+
+The mathematical set representation is also called "edge list". Tt is conceptually simple, although it is not often used in computer implementation because of the lack of structure.  
 In mathematics, graph is a pair of two sets:
 
 $$G=(V,E)$$ 
@@ -53,7 +73,7 @@ We will use graph representation on Euler's 7 bridge problem.  A, B, C, D are th
 
 $$V=\{A, B, C, D\}$$
 
-$$E=\{\(A,B\),\(A,B\), \(A,C\), \(A,C\), \(B,D\), \(A,D\), \(C,D\)$$
+$$E=\{(A,B),(A,B), (A,C), (A,C), (B,D), (A,D), (C,D)\}$$
 
 A set is a collection of unique elements.  The set of $$E$$ is called a multi-set because it contains "duplicates". 
 
@@ -85,9 +105,9 @@ print(G)
 
 ```
 
-#adjacency list representation
+## adjacency list representation
 
-Adjacency list groupbys the nodes and lists out their immediate neighbors. 
+Adjacency list groupbys the nodes and lists out their immediate neighbors.  In other words, it maps from nodes to lists of edges.  
 
 $$A: B, B, C, C, D$$
 
@@ -191,7 +211,7 @@ def adjacency_matrix(graph):
 print(adjacency_matrix(G))
 ```
 
-# Directed graphs
+## Directed graphs
 
 Directed graphs have one-way directions.  
 
@@ -243,15 +263,17 @@ adjacency_matrix_directed(G)
 # [[0, 0, 1], [1, 0, 1], [0, 0, 0]]
 ```
 
-# Comparisons of representations
+## Comparisons of representations
 
 Adjacency list is more compact, and saves space for sparse graph. 
 But adjacency list is slow for dense graphs.
 
-Adjaceny matrix takes up $$\|V\|^2$$ space, regardless how dense the graph. 
-But the adjaceny matrix is faster for desne graphs. It is also simpler for weighted edges. 
+Adjaceny matrix takes up $$O(\|V\|^2)$$ space, regardless how dense the graph.  Iterating over all edges takes $$O(\|V\|^2)$$ time. 
+But the adjaceny matrix is $$O(1)$$ for edge weight lookup, and is faster than adjacency list for dense graphs. It is also simpler representation. 
 
-# Implementation of undirected graph
+# Implementation 
+
+## undirected graph
 
 The implementations using adjacency list and adjacency matrix.  Each has two classes Node (for a single point or node) and Graph.  
 
