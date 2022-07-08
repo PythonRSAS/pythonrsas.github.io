@@ -434,10 +434,15 @@ g.print_graph()
 ## tuples
 
 Below notes are adapted from the book [Think Python](https://www.greenteapress.com/thinkpython/html/thinkpython013.html). 
+
 > Tuples are like lists, except tuples are immutable. 
+
 > A tuple is a comma-separated list of values, which **can be any type**, and they are indexed by integers, so in that respect tuples are a lot like lists. 
+
 > Most list operators also work on tuples. The bracket operator <span class="coding">[]</span> for indexing, and the slicing operator <span class="coding">:</span>. 
+
 > Tuple as function return values: allows us to return multiple values, a function can only return one value, but if the value is a tuple, the effect is the same as returning multiple values. 
+
 > Use <span class="coding">zip</span>, a built-in function, to take two or more sequences and “zips” them into a list of tuples. For example, we can zip a list of country, and a list of capitals associated with the countries. 
 
 ```python
