@@ -31,7 +31,7 @@ A key is stored in the array locations based on its hash code, which is an integ
 
 Hash function maps keys to array indices. 
 
-Hash codes are integers that are array indices. 
+Hash codes or hash values are **integers** that are array indices that are used during a dictionary lookup quickly.
 
 Compare with binary search trees (BSTs), hash tables are more efficient in access (find), insert and delete, as long as we have a good hash function. 
 * Time complexity: find, insert, and delete all in $$O(1)$$ time if we have a good hash function.   
@@ -71,6 +71,8 @@ Hash function (input and output) must be constant (stay the same).  It would hav
 
 Hashable means if an object can be hashed (circular definition).  So we ask ourselves?  What objects are good for hashing?   The answer is those that satisfy the deterministic requirement: the immutable ones.  Immutable means not likely to be changed.  Therefore, many programming languages require hash keys be immutable.  
 
+Internally, <span class="coding">hash()</span> method calls <span class="coding">__hash__()</span> method of an object which are set by default for any object.
+
 Table below summarizes mutual and immutable objects in Python:
 
 Immutable |Mutable 
@@ -78,6 +80,12 @@ Immutable |Mutable
  int, float, decimal, complex, bool, string, tuple, range, frozen set, bytes | list, dict, set, bytearray, user-defined classes 
 
 keys can be strings or integers, which are immutable. 
+
+An error that I have made in the past is the following.   I used a list as a key in the code below and got a TypeError. 
+```python
+graphDict[someList]
+# TypeError: unhashable type: 'list'
+```
 
 # Hash tables in Python
 

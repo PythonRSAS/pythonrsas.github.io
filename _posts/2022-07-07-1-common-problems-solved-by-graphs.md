@@ -21,6 +21,7 @@ image: images/posts/photos/IMG_0869.JPG
 - [Algorithms](#algorithms)
   - [DFS](#dfs)
   - [BFS](#bfs)
+  - [Compare iterative DFS and BFS](#compare-iterative-dfs-and-bfs)
 
 # Introduction
 Graphs, or networks, are useful for representing relationships. In this post, we learn common problems that are solved using graph theory, and a few of the most well-known algorithms. 
@@ -86,17 +87,33 @@ With an infinite input source, how much "flow" can we push through the network? 
 A bridge is a single link between connected components (or local networks). 
 Bridges are where the network vulnearabilities or weak points. 
 
+Algorithms:
+DFS
+
 # Algorithms
 
 ## DFS
 
-It is quite instructive to read the [pesudo code](https://en.wikipedia.org/wiki/Depth-first_search) and traverse manually to really understand this algorithm.  It goes as deep as possible before bouncing back to span the left sub-tree, and then to the next child of the root node and plunge all the way again, and then bounce back to span the right sub-tree. 
+![DFS](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Depth-first-tree.svg/375px-Depth-first-tree.svg.png)
+It is quite instructive to read the [pesudo code from Wikipedia](https://en.wikipedia.org/wiki/Depth-first_search) and traverse manually to really understand this algorithm.  
+
+It goes as deep as possible before bouncing back to span the left sub-tree, and then to the next child of the root node and plunge all the way again, and then bounce back to span the right sub-tree. 
 
 > procedure DFS(G, v) is
+
 >    label v as discovered
->    for all directed edges from v to w that are in G.adjacentEdges(v) do
->        if vertex w is not labeled as discovered then
+
+>    for all **directed** edges from v to w that are in G.adjacentEdges(v) do
+
+>        if node w is not labeled as discovered then
+
 >            recursively call DFS(G, w)
+
+The DFS algorithm can be written using recursion with only 4 lines of code (excluding the return statement).  
+
+Note that <span class="coding">if node not in visited</span> is important for undirected graph.  Without it, the recursion will never stop. 
+
+The <span class="coding">discovered</span> in the psudo code is the list <span class="coding">visited</span> in the code.  We could have used a set for visited, but a set would not show the order of traversal.  
 
 <div class="code-head"><span>code</span>DFS.py</div>
 
@@ -135,9 +152,56 @@ def dfs(G, startNode,visited):
     return visited
 print(dfs(graph, 'A', []))
 # ['A', 'B', 'D', 'E', 'F', 'H', 'C', 'G']
-
 ``` 
 
+The DFS can also be written using iteratively with short length, using psudo code from Wikipedia. 
+
+
+> procedure DFS_iterative(G, v) is
+
+>     let S be a stack
+
+>     S.push(v)
+
+>     while S is not empty do
+
+>         v = S.pop()
+
+>         if v is not labeled as discovered then
+
+>             label v as discovered
+
+>             for all edges from v to w in G.adjacentEdges(v) do 
+
+>                 S.push(w)
+The iterative DFS and the recursive DFS visit the neighbors of each node in the opposite order from each other: the first neighbor of v visited by the recursive variation is the first one in the list of adjacent edges, while in the iterative variation the first visited neighbor is the last one in the list of adjacent edges. 
+
+In other words, while both are depth-first, the recursive goes from left to right whereas the iterative goes from right to left. 
+
+<div class="code-head"><span>code</span>DFS.py</div>
+
+```python
+def dfs_iterative_r_to_l(G, startNode):
+    # initialize
+    visited = []
+    S = list(startNode)
+    while S:
+        node = S.pop()
+        if node not in visited:
+            visited.append(node)
+        # for all edges from v to w in G.adjacentEdges(v)
+        for node in G[node]:
+            if node not in visited:
+                S.append(node)
+    return visited
+print(dfs_iterative_r_to_l(graph, 'A'))
+# ['A', 'B', 'D', 'E', 'F', 'H', 'C', 'G']
+```
+DSF can be used for:
+- Solving puzzles with only one solution, such as mazes.
+- Finding connected components.
+- Topological sorting.
+- Finding the bridges of a graph.
 
 ## BFS
 
@@ -213,4 +277,11 @@ graph ={
 ```
 > The negative side is that we have to do more membership tests.  For example, when we are at the $$B$$ node, we have to ask if $$A$$ was in the <span class="coding">visited</span> even though we just came from A. 
 
+## Compare iterative DFS and BFS
+
+The non-recursive implementation is similar to breadth-first search but differs from it in two ways:
+
+it uses a stack instead of a queue, and
+it delays checking whether a vertex has been discovered until the vertex is popped from the stack rather than making this check before adding the vertex.
+If G is a tree, replacing the queue of the breadth-first search algorithm with a stack will yield a depth-first search algorithm. For general graphs, replacing the stack of the iterative depth-first search implementation with a queue would also produce a breadth-first search algorithm, although a somewhat nonstandard one.[7]
 
