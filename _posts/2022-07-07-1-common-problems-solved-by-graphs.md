@@ -20,6 +20,8 @@ image: images/posts/photos/IMG_0869.JPG
   - [Bridge](#bridge)
 - [Algorithms](#algorithms)
   - [DFS](#dfs)
+    - [DFS edge classfication](#dfs-edge-classfication)
+    - [Topological sort](#topological-sort)
   - [BFS](#bfs)
   - [Compare iterative DFS and BFS](#compare-iterative-dfs-and-bfs)
 
@@ -95,6 +97,7 @@ DFS
 ## DFS
 
 ![DFS](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Depth-first-tree.svg/375px-Depth-first-tree.svg.png)
+
 It is quite instructive to read the [pesudo code from Wikipedia](https://en.wikipedia.org/wiki/Depth-first_search) and traverse manually to really understand this algorithm.  
 
 It goes as deep as possible before bouncing back to span the left sub-tree, and then to the next child of the root node and plunge all the way again, and then bounce back to span the right sub-tree. 
@@ -178,7 +181,7 @@ The iterative DFS and the recursive DFS visit the neighbors of each node in the 
 
 In other words, while both are depth-first, the recursive goes from left to right whereas the iterative goes from right to left. 
 
-<div class="code-head"><span>code</span>DFS.py</div>
+<div class="code-head"><span>code</span>DFS_iterative_r_to_l.py</div>
 
 ```python
 def dfs_iterative_r_to_l(G, startNode):
@@ -195,13 +198,53 @@ def dfs_iterative_r_to_l(G, startNode):
                 S.append(node)
     return visited
 print(dfs_iterative_r_to_l(graph, 'A'))
+# ['A', 'C', 'G', 'B', 'F', 'H', 'E', 'D']
+```
+
+<div class="code-head"><span>code</span>DFS_iterative_l_to_r.py</div>
+
+```python
+def dfs_iterative_l_to_r(G, startNode):
+    # initialize
+    visited = []
+    S = list(startNode)
+    while S:
+        node = S.pop()
+        if node not in visited:
+            visited.append(node)
+        # for all edges from v to w in G.adjacentEdges(v)
+            S.extend(reversed(G[node]))
+    return visited
+print(dfs_iterative_l_to_r(graph, 'A'))
 # ['A', 'B', 'D', 'E', 'F', 'H', 'C', 'G']
 ```
+### DFS edge classfication
+
+From [MIT CS course recitation](https://courses.csail.mit.edu/6.006/fall11/rec/rec14.pdf), the edges we traverse as we execute a depth-first search can be classified into four edge types.
+
+During a DFS execution, the classification of edge $$(u, v)$$ depends on:
+*if we have visited $$v$$ before in the DFS* and if so, the relationship between $$u$$ and $$v$$.
+
+1. If $$v$$ is visited for the first time as we traverse the edge $$(u, v)$$, then the edge is a **tree edge**.
+2. Else, $$v$$ has already been visited:
+(a) If $$v$$ is an ancestor of $$u$$, then edge $$(u, v)$$ is a **back edge**.
+(b) Else, if $$v$$ is a descendant of $$u$$, then edge $$(u, v)$$ is a **forward edge**.
+(c) Else, if $$v$$ is neither an ancestor or descendant of $$u$$, then edge $$(u, v)$$ is a **cross edge**.
+
+![edgeClassification](../images/posts/edgeClassification.PNG)
+
+We can use edge type information to learn some things about G. For example, **tree edges** form trees containing each vertex DFS visited in $$G$$. 
+
+$$G$$ has a cycle if and only if DFS finds at least one **back edge**.
+
 DSF can be used for:
 - Solving puzzles with only one solution, such as mazes.
 - Finding connected components.
 - Topological sorting.
 - Finding the bridges of a graph.
+
+### Topological sort
+
 
 ## BFS
 
