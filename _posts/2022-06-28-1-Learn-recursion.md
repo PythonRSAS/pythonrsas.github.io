@@ -109,12 +109,65 @@ def fact(n):
 print(fact(5))
 # 120
 ```
+
+## Greatest common divisor (GCD)
+
+Two integers, $$a$$ and $$b$$, what is their greatest common divisor (GDC)?
+
+In my view, division is a shorthand for subtraction, which is another way to look at addition. 
+
+GCD means that what is the biggest number that $$a$$ and $$b$$ commonly made up of?    Let the GCD be $$k$$.
+
+Then it means that their difference is also made up of $$k$$.  That means a linear combination (with integer weights) is also made up of $$k$$.  They are all in their $$k$$ world. 
+
+That means when one is divided by the other, their remainer is also made up of $$k$$. 
+
+Look at it another way.  
+$$a=b*q+r$$
+where $$q$$ is the quotient, and $$r$$ is the remainder. 
+
+Since $$a$$ and $$b$$ both are divisible by $$k$$, 
+$$r=b*q-a$$
+must also be divisible by $$k$$
+
+As always, we **should** and we **must start with some simple examples with actual numbers**.  For example, 15 and 9. 
+
+<div class="code-head"><span>code</span>GCD.py</div>
+
+```py
+def gcd(a, b):
+   if a%b == 0:
+      return b
+   else:
+      return gcd(b, a%b)
+print(gcd(15, 25))
+# 5
+```
+
+## Depth-first search (DFS)
+
+DFS is a graph traversal method: for a given graph G, we start at a node N, for each of its children, left to right, we go down as much as possible before going to siblings.  In other words, if can go down, go down.  Only when cannot go down any further, go right.  When cannot go right any more, go up. 
+
+<div class="code-head"><span>code</span>DFS.py</div>
+
+```py
+def dfs(G, N, visited): # with the visited parameter for recursion
+   '''
+   G is represented using adjacency list
+   '''
+   if N not in visited:
+      visited.append(N)
+   for i in G(N):
+      dfs(G, i, visited)
+   return visited
+```
+
 # Recipe for recursion
 
 After working out the two simple examples successfully, we can use the same thinking process to tackle bigger recursion problems.
 1. Write down the mathematical formula of recursion
 2. Specify initial values correctly
-3. Code it accordingly
+3. Code it accordingly.  Pay close attention to function inputs, which takes last function call's output.
 
 Our recipe creation process feels like some kind of recursion too: we came up with a process (or a pattern of a process) that works and generalize it to future ones.  
 

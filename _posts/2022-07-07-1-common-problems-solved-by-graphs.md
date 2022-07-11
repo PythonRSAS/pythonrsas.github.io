@@ -253,7 +253,36 @@ In DFS, each node at the top is not finished until its dependents are finished.
 
 For every directed edge $$(u, v)$$ from vertex $$u$$ to vertex $$v$$, $$u$$ comes before $$v$$ in the ordering. 
 
-The only type of graph that can have topological orderings is directed acyclit graph (DAG).  DAGs have no cycles. 
+The only type of graph that can have topological orderings is DAG.  DAGs have no cycles. 
+
+The [graphlib](https://docs.python.org/3/library/graphlib.html) library, part of Python standard library.  Its <span class="coding">graphlib.TopologicalSorter</span> does exactly topological sort. 
+
+```python
+graph = {"D": {"B", "C"}, "C": {"A"}, "B": {"A"}}
+ts = TopologicalSorter(graph)
+tuple(ts.static_order())
+```
+<div class="code-head"><span>code</span>BFS.py</div>
+
+```python
+import graphlib
+from graphlib import TopologicalSorter
+
+# graph = {"D": {"B", "C"}, "C": {"A"}, "B": {"A"}}
+graph ={
+    'A': ['B', 'C'],
+    'B': ['D', 'E', 'F'],
+    'C': ['G'],
+    'D': [],
+    'E': [],
+    'F': ['H'],
+    'G': ['I'],
+    'H': [],
+    'G': []
+}
+ts = TopologicalSorter(graph)
+print(tuple(ts.static_order()))
+```
 
 ## BFS
 
