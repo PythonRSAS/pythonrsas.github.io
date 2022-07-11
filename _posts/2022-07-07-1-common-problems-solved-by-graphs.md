@@ -233,9 +233,9 @@ During a DFS execution, the classification of edge $$(u, v)$$ depends on:
 
 ![edgeClassification](../images/posts/edgeClassification.PNG)
 
-We can use edge type information to learn some things about G. For example, **tree edges** form trees containing each vertex DFS visited in $$G$$. 
+We can use edge type information to learn some things about G. For example, **tree edges** form trees containing each node DFS visited in $$G$$. 
 
-$$G$$ has a cycle if and only if DFS finds at least one **back edge**.
+> $$G$$ has a cycle if and only if DFS finds at least one **back edge**.
 
 DSF can be used for:
 - Solving puzzles with only one solution, such as mazes.
@@ -245,6 +245,15 @@ DSF can be used for:
 
 ### Topological sort
 
+A topological sort is a graph traversal in which each node is visited only after all its dependencies are visited.  This sounds very much like how DFS works. 
+
+In DFS, each node at the top is not finished until its dependents are finished. 
+
+![topologicalSort](../images/posts/topologicalSort.PNG)
+
+For every directed edge $$(u, v)$$ from vertex $$u$$ to vertex $$v$$, $$u$$ comes before $$v$$ in the ordering. 
+
+The only type of graph that can have topological orderings is directed acyclit graph (DAG).  DAGs have no cycles. 
 
 ## BFS
 
@@ -325,6 +334,6 @@ graph ={
 The non-recursive implementation is similar to breadth-first search but differs from it in two ways:
 
 it uses a stack instead of a queue, and
-it delays checking whether a vertex has been discovered until the vertex is popped from the stack rather than making this check before adding the vertex.
+it delays checking whether a node has been discovered until the node is popped from the stack rather than making this check before adding the node.
 If G is a tree, replacing the queue of the breadth-first search algorithm with a stack will yield a depth-first search algorithm. For general graphs, replacing the stack of the iterative depth-first search implementation with a queue would also produce a breadth-first search algorithm, although a somewhat nonstandard one.[7]
 
