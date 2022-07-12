@@ -13,7 +13,6 @@ image: https://en.wikipedia.org/wiki/Romanesco_broccoli#/media/File:Romanesco_br
    <figcaption></figcaption>
 </figure>  -->
 
-
 # What is recursion
 
 > Recursion is like brocolli (or cauliflower). 
@@ -135,13 +134,27 @@ As always, we **should** and we **must start with some simple examples with actu
 <div class="code-head"><span>code</span>GCD.py</div>
 
 ```py
-def gcd(a, b):
-   if a%b == 0:
-      return b
-   else:
-      return gcd(b, a%b)
-print(gcd(15, 25))
-# 5
+
+def gcd(a,b):
+    if a % b == 0:
+        return b
+    else:
+        return gcd(b, a % b)
+```
+
+Just for reference, the iterative version of GCD is below.  It is brute force and not as clever as the recursive method.  But it works. 
+
+<div class="code-head"><span>code</span>GCD_recursive.py</div>
+
+```py
+# iterative
+def gcd(a,b):
+    c = min(a, b)
+    for i in range(c,0, -1):
+        print(i)
+        if (a % i == 0) and (b % i == 0):
+            return i
+print(gcd(9, 15))
 ```
 
 ## Depth-first search (DFS)
