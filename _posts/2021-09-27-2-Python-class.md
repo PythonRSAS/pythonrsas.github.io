@@ -14,12 +14,14 @@ image: images/posts/photos/IMG-0668.JPG
 
 
 - [a class in Python](#a-class-in-python)
-- [def \__init__()](#def-_init_)
+- [def <span class="coding">\__init__()</span>](#def-_init_)
 - [Class attributes and methods](#class-attributes-and-methods)
   - [Attributes can be defined within class or outside](#attributes-can-be-defined-within-class-or-outside)
   - [Simple calculator](#simple-calculator)
 - [Parent class and child classes](#parent-class-and-child-classes)
 - [Example from modules](#example-from-modules)
+- [Dunder (magic) methods](#dunder-magic-methods)
+- [Decorators](#decorators)
   - [# reference](#-reference)
   
 # a class in Python
@@ -100,7 +102,7 @@ a.descriptive()
 
 ```
 
-# def \__init__()
+# def <span class="coding">\__init__()</span>
 
 A class does not have to have an \__init__() method.  But most of the time we like to create objects initialized with a specific initial state. Therefore a class may define a special method named <span class="coding">\__init__()</span>, like this:
 
@@ -110,7 +112,15 @@ When a class defines an <span class="coding">\__init__()</span> method, class in
 
 # Class attributes and methods
 
-Attributes and methods are terms used often interchangably.  Some refer to anything following the <span class="coding">.</span> as attributes or methods. 
+Attributes and methods are terms used often interchangably.  We refer to anything following the <span class="coding">.</span> as attributes.  Roughly, we call what's defined in the <span class="coding">\__init__</span> function as attributes, and those define outside of <span class="coding">\__init__</span> function as methods. 
+
+Attributes can be accssed with <span class="coding">.</span>.  
+
+Methods are those that we need to add <span class="coding">()</span> after its name.  
+
+For example, <span class="coding">.shape</span> is an attribute for numpy arrays and pandas DataFrames. We cannot add <span class="coding">()</span>.  
+
+Whereas the call <span class="coding">df.describe()</span> is calling the method and needs <span class="coding">()</span>. 
 
 Although we by convention use <span class="coding">self</span> when we define class methods, we can actually call it almost anything, just like we can name variables with any name. 
 
@@ -293,8 +303,23 @@ for i in range(0,3):
 	v.left(120)
 ```
 
+# Dunder (magic) methods
+Dunder methods are special methods. <span class="coding">\__init__()</span> is one of them. We can customize dunder methods for the user defined classes. 
+
+Other most commonly used dunder methods are <span class="coding">\__str__()</span> and <span class="coding">\__repr__()</span>.  Both of them allow us to print attributes for the class object instance.  Without them, if we print an instance of a class, all we see is "main...", nothing meaningful will be printed.   
+
+Other dunder methods that should be noted are arithmetics and comparison ones.   For example, <span class="coding">\__add__()</span>, <span class="coding">\__lt__()</span>,  <span class="coding">\__len__()</span>, and many more.  We can customize arithmetics and comparisons to suit the class object and its attributes. 
+
+Another interesting one is <span class="coding">\__hash__</span>. 
+
+# Decorators
+The <span class="coding">@</span> symbol is used with decorators. [A decorator](https://docs.python.org/3/glossary.html#term-decorator) is a function returning another function, usually applied as a function transformation using the @wrapper syntax. Common examples for decorators are classmethod() and staticmethod().
+
+Everything in [functools](https://docs.python.org/3/library/functools.html) are decorators. 
+
+A simple example usage is to use decorator on a class method so that it can be used as an attribute as well. 
+
 # reference
 -----------
 [Turtle code](https://github.com/magicmathmandarin/Turtle/blob/master/shapes.py)
 [Turtle library](https://docs.python.org/3/library/turtle.html)
-[Youtube video by Corey Shafer](https://www.youtube.com/watch?v=ZDa-Z5JzLYM&t=7s).  
