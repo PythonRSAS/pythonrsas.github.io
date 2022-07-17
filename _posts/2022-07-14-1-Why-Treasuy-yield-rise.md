@@ -30,3 +30,4 @@ They do not want to hold on bonds.
 
 > "So I should sell them.  If I want to buy T10, I will buy the newly issued bonds (at a cheaper price) later when rates are higher" 
 
+Therefore, when there is expectation that the Fed is raising rates, bond yield will rise. 
