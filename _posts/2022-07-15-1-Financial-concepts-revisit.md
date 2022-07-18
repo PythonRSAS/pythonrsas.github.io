@@ -8,8 +8,6 @@ author: Sarah Chen
 image: images/posts/photos/sf/IMG_0935.jpg
 ---
 
-![t10](../images/posts/t10.PNG)
-
 Languages we use can help or hinder our thinking. 
 
 When we are working in different worlds, we need to simplify the words used without 1 million jargons.  We simplily cannot work with 1 million jargons in banking,1 million jargons in derivatives, 1 million jargons in insurance,1 million jargons in computer algorithm, and another million of jargons from statistics and machine learning.  Oh, what a mouthful! 
