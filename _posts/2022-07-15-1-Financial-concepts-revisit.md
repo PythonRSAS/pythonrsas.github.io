@@ -19,21 +19,28 @@ Euler was able to make leaps and bounds in mathematics to a certain degree becau
 Mathematics relies on simplifications.  
 
 # Bets
-A lot of financial products are bets. 
+Most financial products are bets: forwards, options, swaps, FX swaps,... etc. 
 ## Forward
-Forward is agreeing to buy/sell something at sometime in the future at a price.  
+Forward is agreeing to buy/sell something at sometime in the future at a price.  It is a bet.
 
 **Buyer vs. seller**
 **Agreed price vs. market price** at the time
 
 Forwards are the riskiest financial contracts. 
 
+# Risk (not a correct view, nonetheless...)
+Where an organization makes the most money can be where the highest risks are.
 
-PSE: our position in the deal is long. So client will owe us when it rises.  When it is strongr than ..., then the client owe us.  Then we have credit risk. 
+Risk departement all day long seems to think their job is to follow policy.
 
-PSE is $400 million.  Is it a lot or not?  I am afraid that number tells me absolutely nothing.  Need 2 more things:
-1. Forward rate used for calculating the PSE, i.e. PSE rate
-2. Volatility used for calculating the PSE
-   
-Is it on the low or high, or about right.  Then we know how much risk we are taking. PSE
+Spent too much time and money on Risk & Controls, and nearly not as much on how to get the wholesale or trading business. 
+
+# Volatility
+Unfortunately everwhere standard deviation is used to represent volatility.  
+
+# Rates
+Rates are rental fees for rental of money.
+
+# SOFR
+Overnight repo rate. The current "risk free" rate used in the U.S.. 
 
