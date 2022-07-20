@@ -5,13 +5,18 @@ category: education
 title: "Bit-wise operations"
 description: learning bit (binary) operations and use Python to illustrate
 author: Sarah Chen
-image: images/posts/photos/sf/photos/sf/IMG_0956.JPG
+image: images/posts/photos/sf/photos/sf/IMG_0956.jpg
 # image: images/posts/photos/IMG-0632.JPG
 ---
 <figure> 
-   <img src="{{"/images/posts/photos/sf/IMG_0956.JPG"| relative_url}}"> 
+   <img src="{{"/images/posts/photos/sf/IMG_0956.jpg"| relative_url}}"> 
    <figcaption></figcaption>
 </figure> 
+
+
+> <span class="coding">|</span> is used to set a certain bit to $$1$$.
+
+> <span class="coding">a&1</span> is used to test if a certain bit is $$1$$ or $$0$$.
 
 # What is bit
 
@@ -23,16 +28,25 @@ I first learned about bit-wise number system when I was a child.  It is nothing 
 
 # Binary vs decimal number system
 When we represent numbers in decimal number system, we use powers of 10. 
+
 $$1 = 10^0$$
+
 $$10 = 10^1$$
+
 $$100 = 10^2$$
+
 $$1000 = 10^3$$
+
 $$16= 10^1+6*10^0$$
+
 $$214 = 2*10^2+10^1 +4*10^0$$
 
 In the bit-wise or binary number system, we use powers of 2.
+
 $$1 = 2^0 => 1$$
+
 $$16 = 2^4 => 10000$$
+
 $$20 = 16 + 4 = 2^4 +2^2 => 10100$$
 
 ```py
@@ -53,7 +67,7 @@ We can use any number system.  Say it is 3.  Then all numbers will be decomposed
 The following operations should be taken *very literally*.  Please see the tables. 
  
 
-And <span class="coding">a & b</span>
+**And** <span class="coding">a & b</span>
 
 Returns $$1$$ only when both $$a$$ and $$b$$ are $$1$$, otherwise $$0$$. 
 
@@ -62,12 +76,11 @@ Returns $$1$$ only when both $$a$$ and $$b$$ are $$1$$, otherwise $$0$$.
 | $$0$$ | $$0$$ | $$0$$ |
 | $$1$$ | $$0$$ | $$1$$ |
 
-Example, want the lower 4 bits of an integer.  We <span class="coding">AND</span> it with $$15$$ (binary $$1111$$) so:
+Example, if we want the lower 4 bits of an integer, we <span class="coding">AND</span> it with $$15$$ (binary $$1111$$) so:
 
-    201: 1100 1001
-AND  15: 0000 1111
-------------------
- IS   9  0000 1001
+$$201$$ is  $$1100 1001$$
+
+After "and" with $$15$$, all upper bits disappear, keeping only the lower 4 bits. 
 
 <div class="code-head"><span>code</span>Using And.py</div>
 
@@ -92,7 +105,7 @@ bin(201&192)
 '0b11000000'
 ```
 
-Or <span class="coding">a | b</span>
+**Or** <span class="coding">a | b</span>
 
 Always $$1$$ except when both $$a$$ and $$b$$ are $$0$$.
 
@@ -112,10 +125,10 @@ setbit0_1(4)
 # 0b101
 ```
 
-> <span class="coding">x & 1</span> is used to test if bit 0 of x is 1 or 0.  
+<span class="coding">x & 1</span> can be used to test if bit 0 of x is 1 or 0.  
 
 
-XOR <span class="coding">a ^ b</span>
+**XOR** <span class="coding">a ^ b</span>
 
 <span class="coding">^</span> stands for "bitwise exclusive or".   Do not confuse it with <span class="coding">**</span>.
 
@@ -143,8 +156,7 @@ x << 1 is doubling and x >> 1 is halving.
 
 In decimal system it is multiplying a by $$2^y$$.
 
-<span class="coding">a >> b</span> returns a with the bits shifted to the right by b places. This is the same as a//2**b.
-
+<span class="coding">a >> b</span> returns a with the bits shifted to the right by b places. This is the same as <span class="coding">a//2**b</span>.
 
 <div class="code-head"><span>code</span>bitwise operations.py</div>
 
@@ -157,7 +169,7 @@ bin(10) == bin(10|2)
 
 # Examples
 
-Below example of parsing hexadecimal colours is from [stackoverflow](https://stackoverflow.com/questions/1746613/bitwise-operation-and-usage).  
+Below example of parsing hexadecimal colours came from [stackoverflow](https://stackoverflow.com/questions/1746613/bitwise-operation-and-usage).  
 
 It accepts a String like #FF09BE and returns a tuple of its Red, Green and Blue values.
 <div class="code-head"><span>code</span>hex to rgb.py</div>
@@ -176,7 +188,7 @@ def hexToRgb(value):
     # Simply binary AND to obtain 8 bits representing blue
     b = (num & 0xFF)
     return (r, g, b)
-
+```
 
 
 # Reference
