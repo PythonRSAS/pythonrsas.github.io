@@ -37,9 +37,11 @@ $$20_10 = 16_10 + 4_10 = 2^4 +2^2 => 10100$$
 
 We can use any number system.  Say it is 3.  Then all numbers will be decomposed as powers of 3. 
 
-# Bit-wise operations on integers
+# Bit-wise operations
+
+The following operations should be taken *very literally*.  Please see the tables. 
  
-## And <span class="coding">a & b</span>
+**And <span class="coding">a & b</span>**
 Returns $$1$$ only when both $$a$$ and $$b$$ are $$1$$, otherwise $$0$$. 
 
 | And| $$0$$ | $$1$$ |
@@ -47,31 +49,75 @@ Returns $$1$$ only when both $$a$$ and $$b$$ are $$1$$, otherwise $$0$$.
 | $$0$$ | $$0$$ | $$0$$ |
 | $$1$$ | $$0$$ | $$1$$ |
 
-## Or <span class="coding">a | b</span>
+Example, want the lower 4 bits of an integer.  We <span class="coding">AND</span> it with $$15$$ (binary $$1111$$) so:
+
+    201: 1100 1001
+AND  15: 0000 1111
+------------------
+ IS   9  0000 1001
+
+<div class="code-head"><span>code</span>Using And.py</div>
+
+```py
+print(bin(201))
+print(bin(15))
+print(bin(201&15))
+# 0b11001001
+# 0b1111
+# 0b1001
+print(201&15)
+# 9
+``` 
+
+Similarly, if we want to clear the lower 4 bits of the integer 201, we can do the following:
+```python
+int('0b11001001',2)
+201
+int('0b11000000',2)
+192
+bin(201&192)
+'0b11000000'
+```
+
+**Or <span class="coding">a | b</span>**
 
 Always $$1$$ except when both $$a$$ and $$b$$ are $$0$$.
 
-## XOR <span class="coding">a ^ b</span> 
+| Or| $$0$$ | $$1$$ |
+| ---------|:---------:|----------|
+| $$0$$ | $$0$$ | $$1$$ |
+| $$1$$ | $$1$$ | $$1$$ |
+
+**XOR <span class="coding">a ^ b</span>**
 
 "bitwise exclusive or".
 
 It returns 1 only when $$a$$ and $$b$$ are different. 
 
-## Shift to left <span class="coding">a << b</span>
+| XOR| $$0$$ | $$1$$ |
+| ---------|:---------:|----------|
+| $$0$$ | $$0$$ | $$1$$ |
+| $$1$$ | $$1$$ | $$0$$ |
+
+**Not <span class="coding">~ a</span>**
+
+Returns the complement of $$a$$.  If input is 0, then output is 1. It is the number you get by switching each 1 for a 0 and each 0 for a 1. This is the same as a - 1.
+
+| Not| $$0$$ | $$1$$ |
+| ---------|:---------:|----------|
+|          | $$1$$ | $$0$$ |
+
+
+**Shift to left <span class="coding">a << b</span>**
 
 Returns a with the bits shifted to the left by b places (and new bits on the right-hand-side are zeros).  
 
 In decimal system it is multiplying a by $$2^y$$.
 
-## Shift to right <span class="coding">a >> b</span>
+**Shift to right <span class="coding">a >> b</span>**
 
 Returns x with the bits shifted to the right by y places. This is the same as //'ing a by 2**y.
 
-## Not <span class="coding">~ a</span>
-
-Returns the complement of $$a$$. 
-
-the number you get by switching each 1 for a 0 and each 0 for a 1. This is the same as -x - 1.
 
 <div class="code-head"><span>code</span>bitwise operations.py</div>
 
@@ -86,7 +132,7 @@ bin(10) == bin(10|2)
 # True
 ``` 
 
-## Using bitwise operations
+## Examples using bitwise operations
 
 
 
