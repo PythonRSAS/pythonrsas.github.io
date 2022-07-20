@@ -71,10 +71,10 @@ The following operations should be taken *very literally*.  Please see the table
 
 Returns $$1$$ only when both $$a$$ and $$b$$ are $$1$$, otherwise $$0$$. 
 
-| And| $$0$$ | $$1$$ |
-| ---------|:---------:|----------|
-| $$0$$ | $$0$$ | $$0$$ |
-| $$1$$ | $$0$$ | $$1$$ |
+| And| $$0$$ | $$1$$ || Or| $$0$$ | $$1$$ |
+| ---------|:---------:|----------|| ---------|:---------:|----------|
+| $$0$$ | $$0$$ | $$0$$ || $$0$$ | $$0$$ | $$1$$ |
+| $$1$$ | $$0$$ | $$1$$ || $$1$$ | $$1$$ | $$1$$ |
 
 Example, if we want the lower 4 bits of an integer, we <span class="coding">AND</span> it with $$15$$ (binary $$1111$$) so:
 
@@ -139,7 +139,7 @@ It returns 1 only when $$a$$ and $$b$$ are different.
 | $$0$$ | $$0$$ | $$1$$ |
 | $$1$$ | $$1$$ | $$0$$ |
 
-Not <span class="coding">~ a</span>
+**Not** <span class="coding">~ a</span>
 
 Returns the complement of $$a$$.  If input is 0, then output is 1. It is the number you get by switching each 1 for a 0 and each 0 for a 1. This is the same as a - 1.
 
