@@ -1,9 +1,9 @@
 ---
 layout: post
-tag : data structure, algorithm, python
+tag : data structure, algorithm, python, search, BFS, Prim's, min heap
 category: "Python for SAS"
-title: "Common problems solved by graphs"
-description: common problems that are solved using graph theory and basic algorithms like BFS and DFS
+title: "Minimum spanning tree"
+description: minimum distance or cost to span or connect all nodes in a tree using Prim's algorithm
 author: Sarah Chen
 image: images/posts/photos/IMG_0869.JPG
 
@@ -15,6 +15,7 @@ Minimum spanning tree is a **subset** of the edges of a connected, edge-weighted
 > Spanning means to connect all nodes. 
 > Tree means no cycles. 
 
+Spanning trees are not unique.  There may well be other spanning trees that have the same minimum cost. 
 Algorithms:
 - Kruskal's
 - Prim's & Boruvka's
@@ -26,6 +27,18 @@ What it reminds me of are 2 things:
 1. Start with an arbitrary node
 2. At the node where we are, use a metric to pick the next node.  In Prim's, it is the minimum cost edge.  In Metroplis, it is the one with the highest probability. 
 
+We will try to understand Prim's algorithm from the problem below. 
+
+Given a list of nodes, find the minimum cost from the 
+Input XY is a set of nodes expressed as list of lists [[x1,y1],..., [x2,y2]]
+
+1. We build adjacency list, a dictionary with nodes as keys, and their distance to other nodes as values in list [cost, node]. 
+2. We pick an arbitrary starting point and place it in minH (list of lists, maintained in the min heap data structure order)
+3. We keep track of visited
+4. As long as visited is not completed, pop the minH for the node with the minimum cost, and add it to the sum.
+5. For the one that just got popped, push all its adjacent list [cost, node] into minH if the neighbor has not been visited. 
+
+The visit method is exactly the same as BFS.
 
 <div class="code-head"><span>code</span>mst_prim.py</div>
 
@@ -38,7 +51,8 @@ def minCostConnect(XY) -> int:
     pick an arbitrary starting point and place it in minH (list of lists, maintained in the min heap data structure order)
     keep track of visited
     as long as visited is not completed, pop the minH for the node with the minimum cost, and add it to the sum.
-    for the one that just got popped, push all its adjacent list [cost, node] into minH if the neighbor has not been visited
+    for the one that just got popped, push all its adjacent list [cost, node] into minH if the neighbor has not been visited. 
+    The visit method is exactly the same as BFS.
     """
     N = len(XY)
     adj = {i:[] for i in range(N)} # i: list of [cost, node]
@@ -92,3 +106,8 @@ class MyList(list):
 
 q = [MyList(x) for x in n]
 ```
+
+# Reference
+## Videos
+[Prim's Algorithm: Minimal Spanning Tree](https://www.youtube.com/watch?v=YyLaRffCdk4)
+[Graphs: Prim's Minimal Spanning Tree and Dijkstra's Shortest Path](https://www.youtube.com/watch?v=i4W8WgTuGTE&t=288s)
