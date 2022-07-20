@@ -21,7 +21,7 @@ From Wikipedia: [The bit is the most basic unit of information in computing and 
 
 I first learned about bit-wise number system when I was a child.  It is nothing but using binary instead of decimal  
 
-# Binary number system vs decimal number system
+# Binary vs decimal number system
 When we represent numbers in decimal number system, we use powers of 10. 
 $$1 = 10^0$$
 $$10 = 10^1$$
@@ -31,17 +31,30 @@ $$16= 10^1+6*10^0$$
 $$214 = 2*10^2+10^1 +4*10^0$$
 
 In the bit-wise or binary number system, we use powers of 2.
-$$1_10 = 2^0 => 1$$
-$$16_10 = 2^4 => 10000$$
-$$20_10 = 16_10 + 4_10 = 2^4 +2^2 => 10100$$
+$$1 = 2^0 => 1$$
+$$16 = 2^4 => 10000$$
+$$20 = 16 + 4 = 2^4 +2^2 => 10100$$
 
+```py
+print(bin(10))
+# 0b1010
+print(bin(10)[2:])
+# 1010
+bin(0xFF)
+# '0b11111111'
+
+int(bin(0xFF)[2:],2)
+# 255
+```
 We can use any number system.  Say it is 3.  Then all numbers will be decomposed as powers of 3. 
 
 # Bit-wise operations
 
 The following operations should be taken *very literally*.  Please see the tables. 
  
-**And <span class="coding">a & b</span>**
+
+And <span class="coding">a & b</span>
+
 Returns $$1$$ only when both $$a$$ and $$b$$ are $$1$$, otherwise $$0$$. 
 
 | And| $$0$$ | $$1$$ |
@@ -79,7 +92,7 @@ bin(201&192)
 '0b11000000'
 ```
 
-**Or <span class="coding">a | b</span>**
+Or <span class="coding">a | b</span>
 
 Always $$1$$ except when both $$a$$ and $$b$$ are $$0$$.
 
@@ -88,9 +101,23 @@ Always $$1$$ except when both $$a$$ and $$b$$ are $$0$$.
 | $$0$$ | $$0$$ | $$1$$ |
 | $$1$$ | $$1$$ | $$1$$ |
 
-**XOR <span class="coding">a ^ b</span>**
+<span class="coding">|</span> is used to set a certain bit to $$1$$.  
 
-"bitwise exclusive or".
+Counting from the lower and the first lower as 0, <span class="coding">x | 2</span> is used to set bit 1 of x to 1. 
+
+```python
+def setbit0_1(x):
+    print(bin(x|1))
+setbit0_1(4)
+# 0b101
+```
+
+> <span class="coding">x & 1</span> is used to test if bit 0 of x is 1 or 0.  
+
+
+XOR <span class="coding">a ^ b</span>
+
+<span class="coding">^</span> stands for "bitwise exclusive or".   Do not confuse it with <span class="coding">**</span>.
 
 It returns 1 only when $$a$$ and $$b$$ are different. 
 
@@ -99,7 +126,7 @@ It returns 1 only when $$a$$ and $$b$$ are different.
 | $$0$$ | $$0$$ | $$1$$ |
 | $$1$$ | $$1$$ | $$0$$ |
 
-**Not <span class="coding">~ a</span>**
+Not <span class="coding">~ a</span>
 
 Returns the complement of $$a$$.  If input is 0, then output is 1. It is the number you get by switching each 1 for a 0 and each 0 for a 1. This is the same as a - 1.
 
@@ -108,31 +135,47 @@ Returns the complement of $$a$$.  If input is 0, then output is 1. It is the num
 |          | $$1$$ | $$0$$ |
 
 
-**Shift to left <span class="coding">a << b</span>**
+<span class="coding">a << b</span> and <span class="coding">a >> b</span>
 
-Returns a with the bits shifted to the left by b places (and new bits on the right-hand-side are zeros).  
+x << 1 is doubling and x >> 1 is halving. 
+
+<span class="coding">a << b</span> returns a with the bits shifted to the left by b places (and new bits on the right-hand-side are zeros).  
 
 In decimal system it is multiplying a by $$2^y$$.
 
-**Shift to right <span class="coding">a >> b</span>**
-
-Returns x with the bits shifted to the right by y places. This is the same as //'ing a by 2**y.
+<span class="coding">a >> b</span> returns a with the bits shifted to the right by b places. This is the same as a//2**b.
 
 
 <div class="code-head"><span>code</span>bitwise operations.py</div>
 
 ```py
-print(bin(10))
-# 0b1010
-print(bin(10)[2:])
-# 1010
 bin(10|2)[2:]
 # 1010
 bin(10) == bin(10|2)
 # True
 ``` 
 
-## Examples using bitwise operations
+# Examples
+
+Below example of parsing hexadecimal colours is from [stackoverflow](https://stackoverflow.com/questions/1746613/bitwise-operation-and-usage).  
+
+It accepts a String like #FF09BE and returns a tuple of its Red, Green and Blue values.
+<div class="code-head"><span>code</span>hex to rgb.py</div>
+
+```py
+def hexToRgb(value):
+    # Convert string to hexadecimal number (base 16)
+    num = (int(value.lstrip("#"), 16))
+
+    # Shift 16 bits to the right, and then binary AND to obtain 8 bits representing red
+    r = ((num >> 16) & 0xFF)
+
+    # Shift 8 bits to the right, and then binary AND to obtain 8 bits representing green
+    g = ((num >> 8) & 0xFF)
+
+    # Simply binary AND to obtain 8 bits representing blue
+    b = (num & 0xFF)
+    return (r, g, b)
 
 
 
