@@ -71,12 +71,12 @@ The following operations should be taken *very literally*.  Please see the table
 
 Returns $$1$$ only when both $$a$$ and $$b$$ are $$1$$, otherwise $$0$$. 
 
-| And| $$0$$ | $$1$$ || Or| $$0$$ | $$1$$ |
-| ---------|:---------:|----------|| ---------|:---------:|----------|
-| $$0$$ | $$0$$ | $$0$$ || $$0$$ | $$0$$ | $$1$$ |
-| $$1$$ | $$0$$ | $$1$$ || $$1$$ | $$1$$ | $$1$$ |
+| And| $$0$$ | $$1$$ || Or| $$0$$ | $$1$$ || XOR| $$0$$ | $$1$$ |
+| ---------|:---------:|----------|| ---------|:---------:|----------|| ---------|:---------:|----------|
+| $$0$$ | $$0$$ | $$0$$ || $$0$$ | $$0$$ | $$1$$ || $$0$$ | $$0$$ | $$1$$ |
+| $$1$$ | $$0$$ | $$1$$ || $$1$$ | $$1$$ | $$1$$ || $$1$$ | $$1$$ | $$0$$ |
 
-Example, if we want the lower 4 bits of an integer, we <span class="coding">AND</span> it with $$15$$ (binary $$1111$$) so:
+Example, if we want the lower (least significant) 4 bits of an integer, we <span class="coding">AND</span> it with $$15$$ (binary $$1111$$) so:
 
 $$201$$ is  $$1100 1001$$
 
@@ -105,14 +105,7 @@ bin(201&192)
 '0b11000000'
 ```
 
-**Or** <span class="coding">a | b</span>
-
-Always $$1$$ except when both $$a$$ and $$b$$ are $$0$$.
-
-| Or| $$0$$ | $$1$$ |
-| ---------|:---------:|----------|
-| $$0$$ | $$0$$ | $$1$$ |
-| $$1$$ | $$1$$ | $$1$$ |
+**Or** <span class="coding">a | b</span> is always $$1$$ except when both $$a$$ and $$b$$ are $$0$$.
 
 <span class="coding">|</span> is used to set a certain bit to $$1$$.  
 
@@ -127,17 +120,11 @@ setbit0_1(4)
 
 <span class="coding">x & 1</span> can be used to test if bit 0 of x is 1 or 0.  
 
-
 **XOR** <span class="coding">a ^ b</span>
 
 <span class="coding">^</span> stands for "bitwise exclusive or".   Do not confuse it with <span class="coding">**</span>.
 
 It returns 1 only when $$a$$ and $$b$$ are different. 
-
-| XOR| $$0$$ | $$1$$ |
-| ---------|:---------:|----------|
-| $$0$$ | $$0$$ | $$1$$ |
-| $$1$$ | $$1$$ | $$0$$ |
 
 **Not** <span class="coding">~ a</span>
 
@@ -148,9 +135,14 @@ Returns the complement of $$a$$.  If input is 0, then output is 1. It is the num
 |          | $$1$$ | $$0$$ |
 
 
-<span class="coding">a << b</span> and <span class="coding">a >> b</span>
+**shifting** <span class="coding">a << b</span>  <span class="coding">a >> b</span>
 
 x << 1 is doubling and x >> 1 is halving. 
+
+```python
+print(-16>>1)
+-8
+```
 
 <span class="coding">a << b</span> returns a with the bits shifted to the left by b places (and new bits on the right-hand-side are zeros).  
 
@@ -168,6 +160,47 @@ bin(10) == bin(10|2)
 ``` 
 
 # Examples
+
+In the first example, we count the number of 1's in a number.  <span class="coding">&1</span> removes all digits before the lowest one, and <span class="coding">x & 1</span> is simply 0 or 1 depending on weather the last digit of a number is 1 or 0. 
+
+We can also use <span class="coding">bit_count</span> or <span class="coding">bin(n).count('1')</span> to count non-zero bits.
+
+```python
+n = 4
+print(n.bit_count())
+# 1
+print(bin(4).count("1"))
+```
+<div class="code-head"><span>code</span>count bits.py</div>
+
+```py
+def count_bits(x):
+    numBits = 0
+    while x:
+        numBits += x & 1
+        x >>= 1
+    return numBits
+
+for i in range(5):
+    print("\n",i, "in binary system is:", bin(i)[2:])
+    print("The number of 1's or bits is", count_bits(i))
+
+#  0 in binary system is: 0
+# The number of 1's or bits is 0
+
+#  1 in binary system is: 1
+# The number of 1's or bits is 1
+
+#  2 in binary system is: 10
+# The number of 1's or bits is 1
+
+#  3 in binary system is: 11
+# The number of 1's or bits is 2
+
+#  4 in binary system is: 100
+# The number of 1's or bits is 1
+
+```
 
 Below example of parsing hexadecimal colours came from [stackoverflow](https://stackoverflow.com/questions/1746613/bitwise-operation-and-usage).  
 
