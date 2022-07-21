@@ -5,8 +5,7 @@ category: education
 title: "Bit-wise operations"
 description: learning bit (binary) operations and use Python to illustrate
 author: Sarah Chen
-image: images/posts/photos/sf/photos/sf/IMG_0956.jpg
-# image: images/posts/photos/IMG-0632.JPG
+image: images/posts/photos/sf/IMG_0956.jpg
 ---
 <figure> 
    <img src="{{"/images/posts/photos/sf/IMG_0956.jpg"| relative_url}}"> 
@@ -22,7 +21,11 @@ image: images/posts/photos/sf/photos/sf/IMG_0956.jpg
 
 > The bit represents a logical state with one of two possible values. These values are most commonly represented as either "1" or "0", true/false, yes/no, and etc..
 
-From Wikipedia: [The bit is the most basic unit of information in computing and digital communications. The name is a portmanteau of binary digit.](https://en.wikipedia.org/wiki/Bit)
+From Wikipedia: [The bit is the most basic unit of information in computing and digital communications. The name is a portmanteau of binary digit.](https://en.wikipedia.org/wiki/Bit).
+
+A 32-bit computer system can access $$2^32$$ different memory addresses, i.e 4 GB of RAM (and more)
+
+A 64-bit system can access $$2^64$$ different memory addresses. 
 
 I first learned about bit-wise number system when I was a child.  It is nothing but using binary instead of decimal  
 
@@ -159,8 +162,34 @@ bin(10) == bin(10|2)
 # True
 ``` 
 
+# Use in set operations
+
+<div class="code-head"><span>code</span>set operations.py</div>
+
+```py
+a = {1, 2, 3, 4, 5, 6}
+b = {4, 5, 6, 7, 8, 9}
+
+print(a | b)
+
+print(a & b)
+
+print(a - b)
+
+print(b - a)
+
+print(a ^ b)
+
+# {1, 2, 3, 4, 5, 6, 7, 8, 9}
+# {4, 5, 6}
+# {1, 2, 3}
+# {8, 9, 7}
+# {1, 2, 3, 7, 8, 9}
+```
+
 # Examples
 
+## count bits
 In the first example, we count the number of 1's in a number.  <span class="coding">&1</span> removes all digits before the lowest one, and <span class="coding">x & 1</span> is simply 0 or 1 depending on weather the last digit of a number is 1 or 0. 
 
 We can also use <span class="coding">bit_count</span> or <span class="coding">bin(n).count('1')</span> to count non-zero bits.
@@ -202,6 +231,36 @@ for i in range(5):
 
 ```
 
+## Reverse integer
+
+Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range $$[-2^31, 2^31 - 1]$$, then return 0.
+
+Assume the enviroment does not allow us to store 64-bit integers (signed or unsigned).
+
+<div class="code-head"><span>code</span>reverse integer.py</div>
+
+```py
+import math
+def reverse(x: int)-> int:
+    MIN = -2147483648
+    MAX = 2147483647
+
+    res = 0
+    while x:
+        digit = int(math.fmod(x, 10))
+        x = int(x / 10)
+
+        if (res > MAX // 10 or 
+            (res == MAX // 10 and digit >= MAX %10)):
+            return 0
+        if (res < MIN // 10 or 
+            (res == MIN // 10 and digit <= MIN %10)):
+            return 0
+        res = (res * 10) + digit
+    return res
+```
+
+## hex to RGB
 Below example of parsing hexadecimal colours came from [stackoverflow](https://stackoverflow.com/questions/1746613/bitwise-operation-and-usage).  
 
 It accepts a String like #FF09BE and returns a tuple of its Red, Green and Blue values.
