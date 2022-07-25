@@ -58,7 +58,7 @@ def fibRecurse(n):
 
 Dynamic programming solves the problem by remembering those we have alredy computed.  When we need them, we look them up in constant time so that they don't need to be computed again.  
 
-In the Fibonaci case, the time complexity is reduced to $$O(n)$$. 
+In the Fibonaci case, the time complexity is reduced to $$O(n)$$, while space complexity goes up to $$O(n)$$. 
 
 <div class="code-head"><span>code</span>fibonanci using dynamic programming.py</div>
 
@@ -76,7 +76,9 @@ def fibDP(n, cache = {}):
 
 ## Compare run time
 
-Below we compare three different algorithms for this simple problem. 
+Below we compare three different algorithms for this simple problem on their running time.  Recursion is the slowest one by far. 
+
+Note that the iterative loop or bottom-up method has $$O(1)$$ space complexity as we reuse the name to represent the previous number. 
 
 <div class="code-head"><span>code</span>compare algorithms.py</div>
 
@@ -94,35 +96,78 @@ def fibLoop(n):
     return F
 
 from datetime import datetime
-n = 20
-t0 = datetime.now()
-print(fibDP(n))
-print(datetime.now() - t0)
-
-t1 = datetime.now()
-print(fibRecurse(n))
-print(datetime.now() - t1)
-
-t2 = datetime.now()
-print(fibLoop(n))
+n = 30
+print("DP")
+t0 = datetime.now()^M
+print(fibDP(n))^M
+print(datetime.now() - t0)^M
+print("Recursion")
+t1 = datetime.now()^M
+print(fibRecurse(n))^M
+print(datetime.now() - t1)^M
+print("Loop")
+t2 = datetime.now()^M
+print(fibLoop(n))^M
 print(datetime.now() - t2)
 # DP
-# 6765
+# 832040
 # 0:00:00
-# Recurse
-# 6765
-# 0:00:00.016181
+# Recursion
+# 832040
+# 0:00:02.566668
 # Loop
-# 6765
-# 0:00:00.015625
+# 832040
+# 0:00:00
 ```
 
-We should add validation code as below to capture invalid inputs. 
+# Subarray with the greatest sum
 
-```python
-if not(isinstance(n, int) and n > 0):
-    raise ValueError(f'positive integer expected, got "{n}"')
+We are given an array and asked to find the subarray with the greatest sum.  Note that subarrays need to be contiguous.
+
+Initially I thought, well, why don't we just sum all the positive numbers.  But, no. 
+
+## Number of subarrays
+Since the subarray has to be contiguous, we can *look at it as one single element* of the given array. 
+
+One element: $${n\choose 1}$$
+Two elements: $${n-1\choose 1}$$
+Three elements: $${n-2\choose 1}$$
+Four elements: $${n-3\choose 1}$$
+k elements: $${n-k+1\choose 1}$$
+
+So, the number of subarrays is $$n + (n-1) + (n-2) + ...+1$$
+That amounts to our familar $$\frac{(n+1)*n}{2}$$
+
+## Brute force method
+
+Since there are $$\frac{(n+1)*n}{2}$$ subarrays, and each takes $$O(n)$$ to sum, the time complexity is $$O(n^3)$$. 
+
+The loop "for i in [0, 1, 2, ..., n-1]" gives the starting index of subarrays.
+
+The loop "for j in [i, ..., n-1]" gives the ending index.
+
+The loop " for k in (i, ..., j) sums the elements of subarrays. 
+
+## Memorizing method (DP)
+
+Each when we enounter overlapping subproblems, it is time to consider dynamic programming. 
+
+When we sum the $$ith$$ to the $$jth$$ element, do we really have to start from the beginning $$ith$$?  If we store cumulative sums, then we just have to look it up like we did in the Fibonaci problem. 
+
+
+<div class="code-head"><span>code</span>number of subarrays DP.py</div>
+
+```py
+import itertools
+def maxSubArrayDP(A):
+    minSum = maxSum = 0
+    print(list(itertools.accumulate(A)))
+    for runningSum in itertools.accumulate(A):
+        minSum = min(minSum, runningSum)
+        maxSum = max(maxSum, runningSum - minSum)
+    return maxSum
 ```
+
 
 # Finding the shortest path
 

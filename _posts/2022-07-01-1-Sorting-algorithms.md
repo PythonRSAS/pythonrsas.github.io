@@ -59,7 +59,7 @@ def quickSort(A):
         L = [] # not inplace
         H = []
         pivot = A.pop() # using the last element instead of random or the "median of three" method
-        for i in range(0,len(A)):
+        for i in range(0,N):
             if A[i] > pivot:
                 H.append(A[i])
             else:
