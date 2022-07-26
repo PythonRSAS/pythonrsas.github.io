@@ -5,7 +5,7 @@ category: education
 title: "Tips on Learning"
 description: Tips on learnig and how to work efficiently and have more enjoyment
 author: Sarah Chen
-image: images/posts/photos/IMG-0631.jpg
+image: images/posts/photos/IMG-0631.JPG
 ---
 <figure> 
    <img src="{{"/images/posts/photos/IMG-0631.JPG"| relative_url}}"> 

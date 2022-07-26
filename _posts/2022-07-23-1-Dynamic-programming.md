@@ -1,19 +1,18 @@
 ---
 layout: post
 tag: recursion, dynamic programming, memorize
-category: education
+category: "Python for SAS"
 title: "Dynamic programming"
-description: dynamic programming to solve repetitive calls (overlapping sub-problems) in recursion
+description: dynamic programming to solve overlapping sub-problems in recursion
 author: Sarah Chen
-image: images/posts/photos/sf/IMG-0957.JPG
+image: images/posts/photos/sf/IMG-0956.JPG
 ---
 <figure> 
-   <img src="{{"/images/posts/photos/sf/IMG-0957.JPG"| relative_url}}"> 
+   <img src="{{"/images/posts/photos/sf/IMG-0956.JPG"| relative_url}}"> 
    <figcaption></figcaption>
 </figure> 
 
-
-> Dynamic programming (DP) is used to eliminate repetitive calls (overlapping sub-problems) in recursions.  
+> Dynamic programming (DP) is used to eliminate overlapping sub-problems in recursions.  
 
 In comparison with recursion, it reduces time complexity from exponential to polynomial. 
 
@@ -21,15 +20,17 @@ But increases space complexity.
 
 # What is dynamic programming
 
-Dynamic programming is both a mathematical optimization method and a computer programming method. The method was developed by Richard Bellman in the 1950s.
+Dynamic programming is both a mathematical optimization method and a computer programming method. The method was developed by Richard Bellman in the 1950s.****
 
 We can see DP in two ways: an algorithm of its own, or as an improvement to recursion on the repetitive call problem. 
 
-On its own, from Wikipedia: [In both contexts it refers to simplifying a complicated problem by breaking it down into simpler sub-problems in a recursive manner. While some decision problems cannot be taken apart this way, decisions that span several points in time do often break apart recursively. Likewise, in computer science, if a problem can be solved optimally by breaking it into sub-problems and then recursively finding the optimal solutions to the sub-problems, then it is said to have optimal substructure.](https://en.wikipedia.org/wiki/Dynamic_programming).
+On its own, from Wikipedia: [[...] it refers to simplifying a complicated problem by breaking it down into simpler sub-problems in a recursive manner. While some decision problems cannot be taken apart this way, decisions that span several points in time do often break apart recursively.](https://en.wikipedia.org/wiki/Dynamic_programming).
 
-# Problem with recursion
+In computer science, if a problem can be solved *optimally* by breaking it into sub-problems and then recursively finding the optimal solutions to the sub-problems, then it is said to have *optimal substructure*.
 
-The problem with some recursion problems is that they have over-lapping sub-problems.  These redundant calls make these recursion problems exponential in time complexity.  In the case of Fibonaci numbers, it is $$O(2^n)$$. 
+# Problem with naive recursion
+
+The problem with many recursion problems is that they have over-lapping sub-problems.  These redundant calls make these recursion problems exponential in time complexity.  In the case of Fibonaci numbers, it is $$O(2^n)$$. 
 
 As shown in the image from Wikipedia below on the recursive call to the Fibonaci recursion.   There are two $$F_3$$ and $$F_2$$ just for the computation of $$F_5$$.  
 
@@ -38,6 +39,9 @@ $$F_5 = F_4 + F_3$$
 $$F_4 = F_3 + F_2$$
 
 $$F_3 = F_2 + F_1$$
+
+The recursion looks like an expanding tree, opposite of binary search tree.   We can guess its time complexity is $$O(2^n)$$. 
+
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Fibonacci_dynamic_programming.svg/162px-Fibonacci_dynamic_programming.svg.png)
 
@@ -56,25 +60,56 @@ def fibRecurse(n):
 
 # How dynamic programming solves the problem
 
-Dynamic programming solves the problem by remembering those we have alredy computed.  When we need them, we look them up in constant time so that they don't need to be computed again.  
+The idea is very simple. If Mr. Bellman did not come up with in 1950s, someone surely would have come up with it before long as well.  
 
-In the Fibonaci case, the time complexity is reduced to $$O(n)$$, while space complexity goes up to $$O(n)$$. 
+Dynamic programming solves the problem by **remembering** those we have alredy computed so that those overlapped sub-problems do not have to be reworked again and again.  All subproblems only need to be computed once.  When we need them, we look them up from memory in constant time.  
+
+## Top-down DP
+
+In the Fibonaci case, using DP with recursion (top-down approach), the time complexity is reduced to $$O(n)$$, while space complexity goes up to $$O(n)$$ because of memorizing each number. 
 
 <div class="code-head"><span>code</span>fibonanci using dynamic programming.py</div>
 
 ```py
 
-def fibDP(n, cache = {}):
-    if n <= 1:
-        return n
-    if n in cache:
-        return cache[n]
-    elif n not in cache:
-        cache[n] = fibDP(n -1) + fibDP(n -2)
-    return cache[n]
+def fibDP(n, memo = {1: 1, 2: 1}):
+    if n in memo:
+        return memo[n]
+    elif n not in memo:
+        memo[n] = fibDP(n -1) + fibDP(n -2)
+    return memo[n]
+print(fibDP(10))
+# 55
 ```
 
-## Compare run time
+## Bottom-up DP
+
+The bottom-up DP is exactly the same as the top-down DP in compution: it is recursion unwind or unrolled.  It is how we will compute it on the stack.  
+
+The bottom-up DP has one practical advantage: we can **reuse the same memory space for only the last two numbers: current and previous**.  
+
+Current and previous can get us to the next number. 
+
+<div class="code-head"><span>code</span>DP.py</div>
+
+```py
+
+# compare dynamic proramming with recursion and loops
+
+def fibDPLoop(n):   
+    if n in {0, 1}:
+        return n
+    previous, current = 0, 1  # 0 is not a Fibnonaci number
+    for _ in range(2, n+1):
+        current, previous = previous + current, current
+    return current
+```
+
+# Run time
+
+Run time can be summarized in this genearal formula:
+
+$$\text{time = Number of subproblems}*\frac{time}{subproblem}$$
 
 Below we compare three different algorithms for this simple problem on their running time.  Recursion is the slowest one by far. 
 
@@ -85,19 +120,9 @@ Note that the iterative loop or bottom-up method has $$O(1)$$ space complexity a
 ```py
 
 # compare dynamic proramming with recursion and loops
-
-def fibLoop(n):   
-    if n in {0, 1}:
-        return n
-    
-    F_1, F = 0, 1
-    for _ in range(2, n+1):
-        F_1, F = F, F_1 + F
-    return F
-
 from datetime import datetime
 n = 30
-print("DP")
+print("DP Recusion")
 t0 = datetime.now()^M
 print(fibDP(n))^M
 print(datetime.now() - t0)^M
@@ -105,17 +130,17 @@ print("Recursion")
 t1 = datetime.now()^M
 print(fibRecurse(n))^M
 print(datetime.now() - t1)^M
-print("Loop")
+print("DP Loop")
 t2 = datetime.now()^M
-print(fibLoop(n))^M
+print(fibDPLoop(n))^M
 print(datetime.now() - t2)
-# DP
+# DP Recusion
 # 832040
 # 0:00:00
 # Recursion
 # 832040
 # 0:00:02.566668
-# Loop
+# DP Loop
 # 832040
 # 0:00:00
 ```
@@ -140,7 +165,8 @@ Four elements: $${n-3\choose 1}$$
 
 k elements: $${n-k+1\choose 1}$$
 
-So, the number of subarrays is $$n + (n-1) + (n-2) + ...+1$$
+So, the number of subarrays is $$n + (n-1) + (n-2) + ...+1$$.
+
 That amounts to our familar $$\frac{(n+1)*n}{2}$$
 
 ## Brute force method
@@ -159,7 +185,6 @@ Each time when we enounter overlapping subproblems, it is time to consider dynam
 
 When we sum the $$ith$$ to the $$jth$$ element, do we really have to start from the beginning $$ith$$?  If we store cumulative sums, then we just have to look it up like we did in the Fibonaci problem. 
 
-
 <div class="code-head"><span>code</span>number of subarrays DP.py</div>
 
 ```py
@@ -174,7 +199,69 @@ def maxSubArrayDP(A):
 ```
 
 
-# Finding the shortest path
+# Shortest path
+
+From city A to city B, what is the shortest path?   
+
+In between A and B, there are many cities and many choices.  Hence many overlapping subproblems. 
+
+## Recursive thinking
+The shortest path reaching B must be the shortest path of reaching one of B's neighbors plus the final leg.  
+
+Which one is it?  We do not know.  We compute all.
+
+Likewise, the shortest path of reaching a neighbor of B, say X, is the shortest path of (reaching X's neighbor + the distance from this neighbor to X). 
+
+And so on
+
+
+<div class="code-head"><span>code</span>Dijkstra.py</div>
+
+```python
+import heapq
+def minCostConnect(XY) -> int:
+    """
+    input XY is a set of nodes expressed as list of lists [[x1,y1],..., [x2,y2]]
+    build adjacency list, a dictionary with nodes as keys, and their distance to other nodes as values in list [cost, node]
+    pick an arbitrary starting point and place it in minH (list of lists, maintained in the min heap data structure order)
+    keep track of visited
+    as long as visited is not completed, pop the minH for the node with the minimum cost, and add it to the sum.
+    for the one that just got popped, push all its adjacent list [cost, node] into minH if the neighbor has not been visited. 
+    The visit method is exactly the same as BFS.
+    """
+    N = len(XY)
+    adj = {i:[] for i in range(N)} # i: list of [cost, node]
+    print("adj ", adj)
+    for i in range(N):
+         x1, y1 = XY[i]
+         for j in range(i + 1, N): # for loop could be in Dijkstra's algo 
+             x2, y2 = XY[j]
+             distance = abs(x1 - x2) + abs(y1- y2)
+             adj[i].append([distance, j]) # build adjacency list
+             adj[j].append([distance, i])
+    print("adj ", adj)
+    # Dijkstra's
+    sum = 0
+    visit = set()
+    minH = [[0, 0]] 
+    while len(visit) < N:
+        cost, i = heapq.heappop(minH) # heappop maintains min heap structure
+        if i in visit:
+            continue
+        sum += cost
+        visit.add(i)
+        for neiCost, nei in adj[i]:
+            if nei not in visit:
+                heapq.heappush(minH, [neiCost, nei]) # heappush maintains min heap structure
+    return sum 
+
+A = [[0,0], [2,2], [3, 10], [5,2], [7,0]]
+print(minCostConnect(A))
+```
+
+## Bottom-up thinking
+
+Bottom-up thinking is identical to the top-down one, except that we start with A instead of B. 
 
 
 # Reference

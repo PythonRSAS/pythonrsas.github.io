@@ -64,7 +64,10 @@ for i in range(10):
 ## Fibonacci number
 The Fibonacci numbers can be expressed as:
 
-$$f(n)=f(n-1)+ f(n-2)$$, 
+$$F_1 = F_2 = 1$$,
+
+$$F_n=F_(n-1) + F_(n-2)$$
+
 with the initial condition that the first and the second numbers $$1$$ and $$1$$ (when $$n=0$$ and $$n=1$$).  Again, **the initial values must be given in order for the recursion to be fully defined**. 
 
 

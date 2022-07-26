@@ -5,10 +5,10 @@ category: education
 title: "Bit-wise operations"
 description: learning bit (binary) operations and use Python to illustrate
 author: Sarah Chen
-image: images/posts/photos/sf/IMG_0956.jpg
+image: images/posts/photos/sf/IMG-0955.JPG
 ---
 <figure> 
-   <img src="{{"/images/posts/photos/sf/IMG_0956.jpg"| relative_url}}"> 
+   <img src="{{"/images/posts/photos/sf/IMG-0955.JPGg"| relative_url}}"> 
    <figcaption></figcaption>
 </figure> 
 
