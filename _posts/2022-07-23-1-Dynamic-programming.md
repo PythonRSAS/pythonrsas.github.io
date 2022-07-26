@@ -5,10 +5,10 @@ category: education
 title: "Dynamic programming"
 description: dynamic programming to solve repetitive calls (overlapping sub-problems) in recursion
 author: Sarah Chen
-image: images/posts/photos/sf/IMG_0957.jpg
+image: images/posts/photos/sf/IMG-0957.JPG
 ---
 <figure> 
-   <img src="{{"/images/posts/photos/sf/IMG_0957.jpg"| relative_url}}"> 
+   <img src="{{"/images/posts/photos/sf/IMG-0957.JPG"| relative_url}}"> 
    <figcaption></figcaption>
 </figure> 
 

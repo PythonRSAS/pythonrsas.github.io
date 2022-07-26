@@ -5,8 +5,8 @@ category: education
 title: "Learn recursion"
 description: getting the simplest things right
 author: Sarah Chen
-image: https://en.wikipedia.org/wiki/Romanesco_broccoli#/media/File:Romanesco_broccoli_(3).jpg
-# image: images/posts/photos/IMG-0632.JPG
+# image: https://en.wikipedia.org/wiki/Romanesco_broccoli#/media/File:Romanesco_broccoli_(3).jpg
+image: images/posts/photos/IMG-0632.JPG
 ---
 <!-- <figure> 
    <img src="{{"/images/posts/photos/IMG-0632.JPG"| relative_url}}"> 
