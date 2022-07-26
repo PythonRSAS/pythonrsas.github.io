@@ -127,12 +127,17 @@ We are given an array and asked to find the subarray with the greatest sum.  Not
 Initially I thought, well, why don't we just sum all the positive numbers.  But, no. 
 
 ## Number of subarrays
+
 Since the subarray has to be contiguous, we can *look at it as one single element* of the given array. 
 
 One element: $${n\choose 1}$$
+
 Two elements: $${n-1\choose 1}$$
+
 Three elements: $${n-2\choose 1}$$
+
 Four elements: $${n-3\choose 1}$$
+
 k elements: $${n-k+1\choose 1}$$
 
 So, the number of subarrays is $$n + (n-1) + (n-2) + ...+1$$
@@ -150,7 +155,7 @@ The loop " for k in (i, ..., j) sums the elements of subarrays.
 
 ## Memorizing method (DP)
 
-Each when we enounter overlapping subproblems, it is time to consider dynamic programming. 
+Each time when we enounter overlapping subproblems, it is time to consider dynamic programming. 
 
 When we sum the $$ith$$ to the $$jth$$ element, do we really have to start from the beginning $$ith$$?  If we store cumulative sums, then we just have to look it up like we did in the Fibonaci problem. 
 
