@@ -68,6 +68,14 @@ Dynamic programming solves the problem by **remembering** those we have alredy c
 
 In the Fibonaci case, using DP with recursion (top-down approach), the time complexity is reduced to $$O(n)$$, while space complexity goes up to $$O(n)$$ because of memorizing each number. 
 
+Although this problem seems super easy, I did make a few mistakes: 
+
+* **Mistake 1**: I coded <span class="coding">if memo[n]</span>, thinking that it would have worked as boolean.   But no!  It gave me a key error.
+
+* **Mistake 2**:: I coded <span class="coding">memo[n] = memo[n - 1] + memo[n - 2]</span>.  Oops!
+
+In fact, the *invention* is **<span class="coding"> memo[n] = fibDP(n -1) + fibDP(n -2)</span>**.
+
 <div class="code-head"><span>code</span>fibonanci using dynamic programming.py</div>
 
 ```py
@@ -75,7 +83,7 @@ In the Fibonaci case, using DP with recursion (top-down approach), the time comp
 def fibDP(n, memo = {1: 1, 2: 1}):
     if n in memo:
         return memo[n]
-    elif n not in memo:
+    else:
         memo[n] = fibDP(n -1) + fibDP(n -2)
     return memo[n]
 print(fibDP(10))

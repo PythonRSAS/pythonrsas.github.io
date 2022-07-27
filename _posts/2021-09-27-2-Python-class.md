@@ -304,7 +304,7 @@ for i in range(0,3):
 ```
 
 # Dunder (magic) methods
-Dunder methods are special methods. <span class="coding">\__init__()</span> is one of them. We can customize dunder methods for the user defined classes. 
+Dunder (short for double underscore) methods are special methods. <span class="coding">\__init__()</span> is one of them. We can customize dunder methods for the user defined classes. 
 
 Other most commonly used dunder methods are <span class="coding">\__str__()</span> and <span class="coding">\__repr__()</span>.  Both of them allow us to print attributes for the class object instance.  Without them, if we print an instance of a class, all we see is "main...", nothing meaningful will be printed.   
 
