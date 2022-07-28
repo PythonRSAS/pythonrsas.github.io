@@ -21,6 +21,9 @@ image: images/posts/photos/IMG-0668.JPG
 - [Parent class and child classes](#parent-class-and-child-classes)
 - [Example from modules](#example-from-modules)
 - [Dunder (magic) methods](#dunder-magic-methods)
+  - [<span class="coding">\__init__()</span>](#_init_)
+  - [<span class="coding">\__call__()</span>](#_call_)
+  - [Other notable dunders](#other-notable-dunders)
 - [Decorators](#decorators)
   - [# reference](#-reference)
   
@@ -304,8 +307,54 @@ for i in range(0,3):
 ```
 
 # Dunder (magic) methods
-Dunder (short for double underscore) methods are special methods. <span class="coding">\__init__()</span> is one of them. We can customize dunder methods for the user defined classes. 
+Dunder (short for double underscore) methods are special methods. 
 
+## <span class="coding">\__init__()</span>
+<span class="coding">\__init__()</span> is one of them. We can customize dunder methods for the user defined classes. 
+
+## <span class="coding">\__call__()</span>
+<span class="coding">\__call__()</span> makes an instance of a class [callable (see SOF)](https://stackoverflow.com/questions/111234/what-is-a-callable).  Whatever you want it do it when the genie is called should be placed within the <span class="coding">\__call__()</span> function. 
+
+```python
+class Foo:
+  def __call__(self):
+    print('Master, I am called')
+
+foo_instance = Foo()
+foo_instance() #this is calling the __call__ method
+# Master, I am called
+```
+
+Sometimes you read code someone else has written, and there are no example on how to use the classes.  Remember the following:
+
+> <span class="coding">\__init__()</span> has the attributes which we use with the <span class="coding">.</span>. 
+
+> <span class="coding">\__call__()</span> tells us how to use callable function, namely what arguments to provide it.   
+
+```python
+    def __call__(self, *args: Any, **kwds: Any) -> Any:
+```
+
+For example, in example below (example from (realPython)[https://realpython.com/fibonacci-sequence-python/]), the <span class="coding">n</span> in <span class="coding">\__call__(self, n)</span> tells us what arguments to provide in order to use instance of the class: we are supposed to give it an integer. 
+
+```python
+class fibonacci:
+    def __init__(self):
+        self.cache = [0, 1]
+    
+    def __call__(self, n-> int):
+        if not(isinstance(n, int) and n >= 0):
+            raise ValueError("n needs to be positive integer")
+            if n < len(self.cache):
+            return self.cache[n]
+        else:
+            fib = self(n -1) + self(n - 2)
+            self.cache.append(fib)
+        return self.cache[n]
+a = Fibonacci()
+print(a(10))
+```
+## Other notable dunders 
 Other most commonly used dunder methods are <span class="coding">\__str__()</span> and <span class="coding">\__repr__()</span>.  Both of them allow us to print attributes for the class object instance.  Without them, if we print an instance of a class, all we see is "main...", nothing meaningful will be printed.   
 
 Other dunder methods that should be noted are arithmetics and comparison ones.   For example, <span class="coding">\__add__()</span>, <span class="coding">\__lt__()</span>,  <span class="coding">\__len__()</span>, and many more.  We can customize arithmetics and comparisons to suit the class object and its attributes. 

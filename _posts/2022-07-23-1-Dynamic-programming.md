@@ -74,7 +74,11 @@ Although this problem seems super easy, I did make a few mistakes:
 
 * **Mistake 2**:: I coded <span class="coding">memo[n] = memo[n - 1] + memo[n - 2]</span>.  Oops!
 
-In fact, the *invention* is **<span class="coding"> memo[n] = fibDP(n -1) + fibDP(n -2)</span>**.
+In fact, the whole *invention* is **<span class="coding"> memo[n] = fibDP(n -1) + fibDP(n -2)</span>**.
+
+If the nth Fibonaci number is in memo, then return it.  
+
+**Otherwise we recursely compute it and save it to memo** before return it. 
 
 <div class="code-head"><span>code</span>fibonanci using dynamic programming.py</div>
 
@@ -88,6 +92,45 @@ def fibDP(n, memo = {1: 1, 2: 1}):
     return memo[n]
 print(fibDP(10))
 # 55
+```
+
+If we print the memo at the start of the function, we will get the following:
+
+```python
+{1: 1, 2: 1}
+{1: 1, 2: 1}
+{1: 1, 2: 1}
+{1: 1, 2: 1}
+{1: 1, 2: 1}
+{1: 1, 2: 1}
+{1: 1, 2: 1}
+{1: 1, 2: 1}
+{1: 1, 2: 1}
+{1: 1, 2: 1}
+{1: 1, 2: 1, 3: 2}
+{1: 1, 2: 1, 3: 2, 4: 3}
+{1: 1, 2: 1, 3: 2, 4: 3, 5: 5}
+{1: 1, 2: 1, 3: 2, 4: 3, 5: 5, 6: 8}
+{1: 1, 2: 1, 3: 2, 4: 3, 5: 5, 6: 8, 7: 13}
+{1: 1, 2: 1, 3: 2, 4: 3, 5: 5, 6: 8, 7: 13, 8: 21}
+{1: 1, 2: 1, 3: 2, 4: 3, 5: 5, 6: 8, 7: 13, 8: 21, 9: 34}
+```
+
+Furthermore, when we call the function again, it remembers all the numbers it previously collected.   
+
+Tying <span class="coding">fibDP?</span>, we see that the function has *grown up*.  
+
+It is still the function we initially defined, but the memo has taken on a life of its own.  That's one of the beauties of dynamic programming:
+
+> **We only need to compute it once**
+
+```python
+print(fibDP(2))
+# 1
+# {1: 1, 2: 1, 3: 2, 4: 3, 5: 5, 6: 8, 7: 13, 8: 21, 9: 34, 10: 55}
+fibDP?
+# Signature: fibDP(n, memo={1: 1, 2: 1, 3: 2, 4: 3, 5: 5, 6: 8, 7: 13, 8: 21, 9: 34, 10: 55})
+# Docstring: <no docstring>
 ```
 
 ## Bottom-up DP
@@ -211,17 +254,22 @@ def maxSubArrayDP(A):
 
 From city A to city B, what is the shortest path?   
 
-In between A and B, there are many cities and many choices.  Hence many overlapping subproblems. 
+In between A and B, there are many cities and many choices.  Hence many overlapping subproblems, which means it is a candidate for DP to optimize upon. 
 
 ## Recursive thinking
 The shortest path reaching B must be the shortest path of reaching one of B's neighbors plus the final leg.  
 
 Which one is it?  We do not know.  We compute all.
 
-Likewise, the shortest path of reaching a neighbor of B, say X, is the shortest path of (reaching X's neighbor + the distance from this neighbor to X). 
+Likewise, the shortest path of reaching a neighbor of B, say X, is the shortest path of (reaching X's neighbor + the distance from this neighbor to X).  And so on. 
 
-And so on
+In code below, the input is a set of nodes expressed as list of lists [[x1,y1],..., [x2,y2]], where $$x_i, y_i$$ are coordinates on the plane.  We use the coordinates to compute distance. 
 
+The distances are stored in a dictionary, which is working as an adjacency list. 
+
+Nodes are represented by $$0, 1, ..., N$$. 
+
+For $$x_i, y_i$$, adj[i] is a list of lists, in the format of <span class="coding">[distance, j]</span> to all neighbors of  $$x_i, y_i$$.   The reason why <span class="coding">[distance, j]</span> instead of <span class="coding">[j, distance]</span> is that we are using the *heapq* moduel.  The <span class="coding">heapq.heappop</span> method by default pops the minimum according to the first number.  So we want to put distance first. 
 
 <div class="code-head"><span>code</span>Dijkstra.py</div>
 
@@ -238,7 +286,8 @@ def minCostConnect(XY) -> int:
     The visit method is exactly the same as BFS.
     """
     N = len(XY)
-    adj = {i:[] for i in range(N)} # i: list of [cost, node]
+    # build adjacency list of [cost, neighboring node] for all nodes
+    adj = {i:[] for i in range(N)} # i: list of [cost, neighboring node]
     print("adj ", adj)
     for i in range(N):
          x1, y1 = XY[i]
@@ -251,14 +300,14 @@ def minCostConnect(XY) -> int:
     # Dijkstra's
     sum = 0
     visit = set()
-    minH = [[0, 0]] 
+    minH = [[0, 0]]  # starting node, distance to itself is 0
     while len(visit) < N:
         cost, i = heapq.heappop(minH) # heappop maintains min heap structure
         if i in visit:
             continue
         sum += cost
         visit.add(i)
-        for neiCost, nei in adj[i]:
+        for neiCost, nei in adj[i]:  # push neighbors of i into minH if they are not yet visited. 
             if nei not in visit:
                 heapq.heappush(minH, [neiCost, nei]) # heappush maintains min heap structure
     return sum 
