@@ -29,7 +29,58 @@ Minimum spanning tree is a **subset** of the edges of a connected, edge-weighted
 
 Spanning trees are not unique.  There may well be other spanning trees that have the same minimum cost. 
 
-Intuitively, if the edge weights (costs) are all different, then the MST is unique.  
+Intuitively, if the edge weights (costs) are all different, then the MST is unique. 
+
+
+# scipy.sparse.csgraph.minimum_spanning_tree
+
+<span class="coding">scipy.sparse.csgraph.minimum_spanning_tree</span> implements using the Kruskal algorithm, and uses matrix representation. 
+
+In the matrix representation, the number in position $$(i, j)$$ is the weight of the edge connecting the nodes $$(i, j)$$.  If the number is zero, then there is no connection between the nodes. 
+
+The method takes 2 inputs: 
+1. a N x N matrix representing an undirected graph over N nodes.
+2. whether to overwrite input matrix
+
+Note that the routine loses precision when users input a dense matrix. Small elements < 1E-8 of the dense matrix [are rounded to zero](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csgraph.minimum_spanning_tree.html). 
+
+<!-- I should test if this is a problem for transition matrix -->
+
+<div class="code-head"><span>code</span>mst_prim.py</div>
+
+```python
+from scipy.sparse import csr_matrix
+from scipy.sparse.csgraph import minimum_spanning_tree
+X = csr_matrix([[0, 8, 0, 3],
+                [0, 0, 2, 5],
+                [0, 0, 0, 6],
+                [0, 0, 0, 0]])
+Tcsr = minimum_spanning_tree(X)
+Tcsr.toarray().astype(int)
+# array([[0, 0, 0, 3],
+#        [0, 0, 2, 5],
+#        [0, 0, 0, 0],
+#        [0, 0, 0, 0]])
+```
+
+![MST from scipy](../images/posts/mst.PNG)
+
+Here, we might as compare DFS and BFS with MST using the same example.  
+
+MST is using BFS. 
+
+**DFS**
+![DFS_scipy from scipy](../images/posts/DFS_scipy.PNG)
+
+The same input matrix as above, using <span class="coding">scipy.sparse.csgraph.breadth_first_tree(csgraph, i_start, directed=True)</span>. 
+
+
+**BFS**
+The same input matrix as above, using <span class="coding">scipy.sparse.csgraph.breadth_first_tree(csgraph, i_start, directed=True)</span>[<span class="coding">scipy.sparse.csgraph.breadth_first_tree(csgraph, i_start, directed=True)</span>](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csgraph.depth_first_tree.html)
+
+(https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csgraph.breadth_first_tree.html)
+![BFS_scipy from scipy](../images/posts/BFS_scipy.PNG)
+
 
 # Greedy algorithm
 
@@ -154,55 +205,6 @@ The reason why we can use heapqpop and heapqpush with lists is because it compar
 
 ## Keep track of the tree
 
-
-## scipy.sparse.csgraph.minimum_spanning_tree
-
-<span class="coding">scipy.sparse.csgraph.minimum_spanning_tree</span> implements using the Kruskal algorithm, and uses matrix representation. 
-
-In the matrix representation, the number in position $$(i, j)$$ is the weight of the edge connecting the nodes $$(i, j)$$.  If the number is zero, then there is no connection between the nodes. 
-
-The method takes 2 inputs: 
-1. a N x N matrix representing an undirected graph over N nodes.
-2. whether to overwrite input matrix
-
-Note that the routine loses precision when users input a dense matrix. Small elements < 1E-8 of the dense matrix [are rounded to zero](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csgraph.minimum_spanning_tree.html). 
-
-<!-- I should test if this is a problem for transition matrix -->
-
-<div class="code-head"><span>code</span>mst_prim.py</div>
-
-```python
-from scipy.sparse import csr_matrix
-from scipy.sparse.csgraph import minimum_spanning_tree
-X = csr_matrix([[0, 8, 0, 3],
-                [0, 0, 2, 5],
-                [0, 0, 0, 6],
-                [0, 0, 0, 0]])
-Tcsr = minimum_spanning_tree(X)
-Tcsr.toarray().astype(int)
-# array([[0, 0, 0, 3],
-#        [0, 0, 2, 5],
-#        [0, 0, 0, 0],
-#        [0, 0, 0, 0]])
-```
-
-![MST from scipy](../images/posts/mst.PNG)
-
-Here, we might as compare DFS and BFS with MST using the same example.  
-
-MST is using BFS. 
-
-* **DFS**
-![DFS_scipy from scipy](../images/posts/DFS_scipy.PNG)
-
-The same input matrix as above, using <span class="coding">scipy.sparse.csgraph.breadth_first_tree(csgraph, i_start, directed=True)</span>. 
-
-
-* **BFS**
-The same input matrix as above, using <span class="coding">scipy.sparse.csgraph.breadth_first_tree(csgraph, i_start, directed=True)</span>[<span class="coding">scipy.sparse.csgraph.breadth_first_tree(csgraph, i_start, directed=True)</span>](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csgraph.depth_first_tree.html)
-
-(https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csgraph.breadth_first_tree.html)
-![BFS_scipy from scipy](../images/posts/BFS_scipy.PNG)
 
 
 # Appendix
