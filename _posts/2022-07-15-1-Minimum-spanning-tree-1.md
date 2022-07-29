@@ -195,8 +195,15 @@ MST is using BFS.
 * **DFS**
 ![DFS_scipy from scipy](../images/posts/DFS_scipy.PNG)
 
+The same input matrix as above, using <span class="coding">scipy.sparse.csgraph.breadth_first_tree(csgraph, i_start, directed=True)</span>. 
+
+
 * **BFS**
+The same input matrix as above, using <span class="coding">scipy.sparse.csgraph.breadth_first_tree(csgraph, i_start, directed=True)</span>[<span class="coding">scipy.sparse.csgraph.breadth_first_tree(csgraph, i_start, directed=True)</span>](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csgraph.depth_first_tree.html)
+
+(https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csgraph.breadth_first_tree.html)
 ![BFS_scipy from scipy](../images/posts/BFS_scipy.PNG)
+
 
 # Appendix
 
@@ -222,6 +229,37 @@ class MyList(list):
 
 q = [MyList(x) for x in n]
 ```
+
+import scipy as sp
+from scipy.sparse import csr_matrix
+from scipy.sparse.csgraph import minimum_spanning_tree
+
+import networkx as nx
+
+
+friendships = [
+    ('A', 'B',{'weight':2}),
+    ('A', 'C',{'weight':4}),
+    ('A', 'D',{'weight':1}),
+    ('A', 'E',{'weight':10}),
+    ('B', 'D',{'weight':1}),
+    ('C', 'D',{'weight':4}),
+    ('C', 'G',{'weight':3}),
+    ('D', 'E',{'weight':7}),
+    ('D', 'F',{'weight':10}),
+    ('D', 'G',{'weight':7}),
+    ('E', 'F',{'weight':8}),
+    ('E', 'G',{'weight':5}),
+]
+
+G = nx.MultiGraph()
+G.add_edges_from(friendships)
+X = nx.to_numpy_matrix(G)
+nx.draw(G, with_labels=True, font_weight='bold')
+
+X = csr_matrix(X)
+Tcsr = minimum_spanning_tree(X)
+Tcsr.toarray().astype(int)
 
 ## Maximum spanning tree
 
