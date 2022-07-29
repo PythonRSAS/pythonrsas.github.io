@@ -5,7 +5,7 @@ category: "Python for SAS"
 title: "Minimum spanning tree"
 description: minimum distance or cost to span or connect all nodes in a tree using Prim's algorithm and greedy algorithm
 author: Sarah Chen
-image: images/posts/photos/IMG_0869.JPG
+image: ![](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Newton-WilliamBlake.jpg/330px-Newton-WilliamBlake.jpg)
 
 ---
 *"To see a World in a Grain of Sand*
