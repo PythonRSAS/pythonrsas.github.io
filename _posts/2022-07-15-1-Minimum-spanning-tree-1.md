@@ -151,7 +151,58 @@ print(minCostConnect(A))
 
 The reason why we can use heapqpop and heapqpush with lists is because it compares the first element of the lists. In the code above, [cost, node], we have placed cost before node in list.  Therefore, only costs are compared, and the minimum cost is popped from the min heap. 
 <!-- https://stackoverflow.com/questions/45892736/python-heapq-how-do-i-sort-the-heap-using-nth-element-of-the-list-of-lists -->
-# A
+
+## Keep track of the tree
+
+
+## scipy.sparse.csgraph.minimum_spanning_tree
+
+<span class="coding">scipy.sparse.csgraph.minimum_spanning_tree</span> implements using the Kruskal algorithm, and uses matrix representation. 
+
+In the matrix representation, the number in position $$(i, j)$$ is the weight of the edge connecting the nodes $$(i, j)$$.  If the number is zero, then there is no connection between the nodes. 
+
+The method takes 2 inputs: 
+1. a N x N matrix representing an undirected graph over N nodes.
+2. whether to overwrite input matrix
+
+Note that the routine loses precision when users input a dense matrix. Small elements < 1E-8 of the dense matrix [are rounded to zero](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csgraph.minimum_spanning_tree.html). 
+
+<!-- I should test if this is a problem for transition matrix -->
+
+<div class="code-head"><span>code</span>mst_prim.py</div>
+
+```python
+from scipy.sparse import csr_matrix
+from scipy.sparse.csgraph import minimum_spanning_tree
+X = csr_matrix([[0, 8, 0, 3],
+                [0, 0, 2, 5],
+                [0, 0, 0, 6],
+                [0, 0, 0, 0]])
+Tcsr = minimum_spanning_tree(X)
+Tcsr.toarray().astype(int)
+# array([[0, 0, 0, 3],
+#        [0, 0, 2, 5],
+#        [0, 0, 0, 0],
+#        [0, 0, 0, 0]])
+```
+
+![MST from scipy](../images/posts/mst.PNG)
+
+Here, we might as compare DFS and BFS with MST using the same example.  
+
+MST is using BFS. 
+
+* **DFS**
+![DFS_scipy from scipy](../images/posts/DFS_scipy.PNG)
+
+* **BFS**
+![BFS_scipy from scipy](../images/posts/BFS_scipy.PNG)
+
+# Appendix
+
+
+## Customize less than
+
 <div class="code-head"><span>code</span>lessThan.py</div>
 
 ```python
@@ -172,13 +223,35 @@ class MyList(list):
 q = [MyList(x) for x in n]
 ```
 
+## Maximum spanning tree
+
+
+# Use cases
+
+As we can imagine, MST is super useful in any kind of networks: cables, roads, etc.. 
+
+Even k-means clustering can be viewed as finding an MST and deleting the k-1 most expensive edges.
+
+## MST with pygame
+
+Ronald L. Rivest computes mst for set of bouncing balls. [Uses PyGame for graphics(http://people.csail.mit.edu/rivest/mst.py)
+
+
+
+# Maybe off topic
+
 It may be odd, but who is there to say it is odd.  Isn't math poetry?  
 
 > He [William Blake] died ... in a most glorious manner. He said He was going to that Country he had all His life wished to see & expressed Himself Happy, hoping for Salvation through Jesus Christ – Just before he died 
 > His Countenance became fair. His eyes Brighten'd and he burst out Singing of the things he saw in Heaven. -[ Grigson, Samuel Palmer, p. 38](https://en.wikipedia.org/wiki/William_Blake#cite_note-67)
 
 # Reference
+
+## book 
+Introduction to Algorithms by Cormen, Leiserson, Rivest, Stein, (MIT Press;McGraw Hill Chapter 23, for discussion of minimum spanning trees.
+
 [MIT lecture notes](https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/4a7fdddff3bc419c70bb470106a1663a_MIT6_046JS15_lec12.pdf)
+
 [William_Blake on Wikipeida](https://en.wikipedia.org/wiki/William_Blake)
 
 ## Videos
