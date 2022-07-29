@@ -1,7 +1,7 @@
 ---
 layout: post
-tag : greedy algorithm, local, global, optimal structure, dynamic programming, BFS, Prim's, min heap
-category: "Python for SAS"
+tag : greedy algorithm, local, global, optimal structure, dynamic programming, BFS, Prim's, min heap, William Blake, Adam Smith
+category: "education"
 title: "Minimum spanning tree"
 description: minimum distance or cost to span or connect all nodes in a tree using Prim's algorithm and greedy algorithm
 author: Sarah Chen
