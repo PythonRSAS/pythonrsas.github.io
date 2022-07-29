@@ -5,7 +5,7 @@ category: "Python for SAS"
 title: "Minimum spanning tree"
 description: minimum distance or cost to span or connect all nodes in a tree using Prim's algorithm and greedy algorithm
 author: Sarah Chen
-image: (https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Newton-WilliamBlake.jpg/330px-Newton-WilliamBlake.jpg)
+image: https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Newton-WilliamBlake.jpg/330px-Newton-WilliamBlake.jpg
 
 ---
 *"To see a World in a Grain of Sand*
@@ -29,9 +29,7 @@ Minimum spanning tree is a **subset** of the edges of a connected, edge-weighted
 
 Spanning trees are not unique.  There may well be other spanning trees that have the same minimum cost. 
 
-Algorithms: 
-- Kruskal's
-- Prim's & Boruvka's
+Intuitively, if the edge weights (costs) are all different, then the MST is unique.  
 
 # Greedy algorithm
 
@@ -100,7 +98,7 @@ def minCostConnect(XY) -> int:
     print("adj ", adj)
     for i in range(N):
          x1, y1 = XY[i]
-         for j in range(i + 1, N): # for loop could be in prim's algo 
+         for j in range(i + 1, N): 
              x2, y2 = XY[j]
              distance = abs(x1 - x2) + abs(y1- y2)
              adj[i].append([distance, j]) # build adjacency list
@@ -111,8 +109,8 @@ def minCostConnect(XY) -> int:
     visit = set()
     minH = [[0, 0]] 
     while len(visit) < N:
-        cost, i = heapq.heappop(minH) # heappop maintains min heap structure
-        if i in visit:
+        cost, node = heapq.heappop(minH) # heappop maintains min heap structure
+        if node in visit:
             continue
         sum += cost
         visit.add(i)
