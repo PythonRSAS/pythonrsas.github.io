@@ -5,7 +5,7 @@ category: "Python for SAS"
 title: "Minimum spanning tree"
 description: minimum distance or cost to span or connect all nodes in a tree using Prim's algorithm and greedy algorithm
 author: Sarah Chen
-image: ![](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Newton-WilliamBlake.jpg/330px-Newton-WilliamBlake.jpg)
+image: (https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Newton-WilliamBlake.jpg/330px-Newton-WilliamBlake.jpg)
 
 ---
 *"To see a World in a Grain of Sand*
@@ -68,10 +68,16 @@ Given a list of nodes, find the minimum cost from the
 Input XY is a set of nodes expressed as list of lists [[x1,y1],..., [x2,y2]]
 
 1. We build adjacency list, a dictionary with nodes as keys, and their distance to other nodes as values in list [cost, node]. 
-2. We pick an arbitrary starting point and place it in minH (list of lists, maintained in the min heap data structure order)
-3. We keep track of visited
-4. As long as visited is not completed, pop the minH for the node with the minimum cost, and add it to the sum.
-5. For the one that just got popped, push all its adjacent list [cost, node] into minH if the neighbor has not been visited. 
+2. We pick an arbitrary starting point and place it in minH (list of lists, maintained in the priority queue, which is implemented as min heap data structure)
+3. We make sure visited are not visited again to make sure no cycles
+4. As long as the visits are incomplete, pop the minH for the node with the minimum cost, and add it to the sum.
+5. For the one that just got popped, push all its adjacent list [cost, node] into minH if the neighbor has not been visited.
+   
+Note that nodes in the ***min heap represent all the nodes that are neighbors of those we have already visited***.
+
+Note that there will be duplicate nodes in the min heap.  But ***each of the duplicate nodes have different distances to those that have already been visited***.  And the one with the smallest cost will be popped.  
+
+The one with the smallest cost may not necessarily a neighbor of the node we just visited.  
 
 The visit method is exactly the same as BFS.
 
