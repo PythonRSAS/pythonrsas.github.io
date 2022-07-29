@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : greedy algorithm, python, search, BFS, Prim's, min heap
+tag : greedy algorithm, local, global, optimal structure, dynamic programming, BFS, Prim's, min heap
 category: "Python for SAS"
 title: "Minimum spanning tree"
 description: minimum distance or cost to span or connect all nodes in a tree using Prim's algorithm and greedy algorithm
@@ -8,6 +8,15 @@ author: Sarah Chen
 image: images/posts/photos/IMG_0869.JPG
 
 ---
+*"To see a World in a Grain of Sand*
+
+*And a Heaven in a Wild Flower*
+
+*Hold Infinity in the palm of your hand"*
+
+*-Willam Blake*
+
+![Newton](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Newton-WilliamBlake.jpg/330px-Newton-WilliamBlake.jpg)
 
 # Introduction
 
@@ -24,43 +33,27 @@ Algorithms:
 - Kruskal's
 - Prim's & Boruvka's
 
+# Greedy algorithm
+
+A greedy algorithm repeatedly makes a locally best choice or decision, but ignores the effects of the future.  
+
+The decision tree algorithm used in random forests and other tree-based models is a greedy algorithm. 
+
 If a problem can be solved by greedy algorithm, then it (usually) has 2 properties:
-1. Optimal substructure
-   
-    Optimal substructure is encapsulation of DP: optimal solution to problem incapsulates optimal solutions to subproblem(s).
+1. Optimal substructure   
+    Optimal substructure is encapsulation of DP: optimal solution to problem incapsulates optimal solutions to subproblem(s). Sounds like William Blake's 
+    
+> *"To see a World in a Grain of Sand*
+> *And a Heaven in a Wild Flower* 
+> *Hold Infinity in the palm of your hand* 
+
 
     If $$T'$$ is a minimum spanning tree of $$G/e$$, then $$T' ∪ {e}$$ is an MST of $$G$$. 
 
-2. Greedy Choice Property
-Locally optimal solutions lead to globally optimal solution (sounds like Adam Smith's the invisible hand). 
+2. **Greedy Choice Property**
+    Locally optimal solutions lead to globally optimal solution (sounds like **Adam Smith's the invisible hand**). 
 
-The MST problem can be solved by a greedy algorithm because the the locally optimal
-solution is also the globally optimal solution. This fact is described by the GreedyChoice Property for MSTs, and its proof of correctness is given via a “cut and paste”
-argument common for greedy proofs.
-
-Prim’s Algorithm
-Now, we can apply the insights from the optimal structure and greedy choice property
-to build a polynomial-time, greedy algorithm to solve the minimum spanning tree
-problem.
-<!-- ## Prim’s Algorithm Psuedocode
-
-1. Maintain priority queue Q on V \ S, where v.key = min{w(u, v) | u ∈ S}
-2. Q = V.
-
-3. Choose arbitrary start vertex s ∈ V , s.key = ∅
-
-4. for v in V \ {s}
-5.    $$v.key = ∞\inf$$
-6. while Q is not empty
-7.     u = Extract-Min(Q), add u to S
-8.     for v ∈ Adj[u]
-9.         if v ∈ Q and v /∈ S and w(u, v) < v.key:
-10.            v.key = w(u, v) (via a Decrease-Key operation)
-11.            v.parent = u
-12. return {{v, v.parent} | v ∈ V \ {s}} -->
-
-In the above pseudocode, we choose an arbitrary start vertex, and attempt to
-sequentially reduce the distance to all vertices. After attempting to
+The MST problem can be solved by a greedy algorithm because the the locally optimal solution is also the globally optimal solution. This fact is described by the GreedyChoice Property for MSTs. 
 
 # Prim's algorithm
 Prim's method somehow reminds me of the [Metropolis algorithm](https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm) even though I have not read anything that says they are related.   
@@ -148,15 +141,16 @@ class MyList(list):
 
 q = [MyList(x) for x in n]
 ```
-# Greedy algorithm
 
-A greedy algorithm repeatedly makes a locally best choice or decision, but ignores the effects of the future.  
+It may be odd, but who is there to say it is odd.  Isn't math poetry?  
 
-The decision tree algorithm used in random forests and other tree-based models is a greedy algorithm. 
-
+> He [William Blake] died ... in a most glorious manner. He said He was going to that Country he had all His life wished to see & expressed Himself Happy, hoping for Salvation through Jesus Christ – Just before he died 
+> His Countenance became fair. His eyes Brighten'd and he burst out Singing of the things he saw in Heaven. -[ Grigson, Samuel Palmer, p. 38](https://en.wikipedia.org/wiki/William_Blake#cite_note-67)
 
 # Reference
 [MIT lecture notes](https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/4a7fdddff3bc419c70bb470106a1663a_MIT6_046JS15_lec12.pdf)
+[William_Blake on Wikipeida](https://en.wikipedia.org/wiki/William_Blake)
+
 ## Videos
 [Prim's Algorithm: Minimal Spanning Tree](https://www.youtube.com/watch?v=YyLaRffCdk4)
 
