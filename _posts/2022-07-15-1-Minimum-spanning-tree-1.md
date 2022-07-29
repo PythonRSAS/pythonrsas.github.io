@@ -110,17 +110,43 @@ def minCostConnect(XY) -> int:
     minH = [[0, 0]] 
     while len(visit) < N:
         cost, node = heapq.heappop(minH) # heappop maintains min heap structure
+        print("\nPopped", [cost, node])
         if node in visit:
             continue
         sum += cost
-        visit.add(i)
-        for neiCost, nei in adj[i]:
+        visit.add(node)
+        for neiCost, nei in adj[node]:
             if nei not in visit:
                 heapq.heappush(minH, [neiCost, nei]) # heappush maintains min heap structure
+        print(minH)
     return sum 
 
 A = [[0,0], [2,2], [3, 10], [5,2], [7,0]]
 print(minCostConnect(A))
+
+# adj  {0: [], 1: [], 2: [], 3: [], 4: []}
+# adj  {0: [[4, 1], [13, 2], [7, 3], [7, 4]], 1: [[4, 0], [9, 2], [3, 3], [7, 4]], 2: [[13, 0], [9, 1], [10, 3], [14, 4]], 3: [[7, 0], [3, 1], [10, 2], [4, 4]], 4: [[7, 0], [7, 1], [14, 2], [4, 3]]}
+
+# Popped [0, 0]
+# [[4, 1], [7, 4], [7, 3], [13, 2]]
+
+# Popped [4, 1]
+# [[3, 3], [7, 3], [7, 4], [9, 2], [7, 4], [13, 2]]
+
+# Popped [3, 3]
+# [[4, 4], [7, 4], [7, 3], [9, 2], [13, 2], [10, 2], [7, 4]]
+
+# Popped [4, 4]
+# [[7, 3], [7, 4], [7, 4], [9, 2], [13, 2], [10, 2], [14, 2]]
+
+# Popped [7, 3]
+
+# Popped [7, 4]
+
+# Popped [7, 4]
+
+# Popped [9, 2]
+# [[10, 2], [13, 2], [14, 2]]
 ```
 
 The reason why we can use heapqpop and heapqpush with lists is because it compares the first element of the lists. In the code above, [cost, node], we have placed cost before node in list.  Therefore, only costs are compared, and the minimum cost is popped from the min heap. 
