@@ -97,7 +97,7 @@ If a problem can be solved by greedy algorithm, then it (usually) has 2 properti
 > *Hold Infinity in the palm of your hand* 
 
 
-    If $$T'$$ is a minimum spanning tree of $$G/e$$, then $$T' ∪ {e}$$ is an MST of $$G$$. 
+If T' is a minimum spanning tree of G/e, then T' ∪ {e} is an MST of G. 
 
 2. **Greedy Choice Property**
     Locally optimal solutions lead to globally optimal solution (sounds like **Adam Smith's the invisible hand**). 
@@ -144,7 +144,7 @@ def minCostConnect(XY) -> int:
     for the one that just got popped, push all its adjacent list [cost, node] into minH if the neighbor has not been visited. 
     The visit method is exactly the same as BFS.
     """
-    N = len(XY)
+    N = len(XY) # length of edges
     adj = {i:[] for i in range(N)} # i: list of [cost, node]
     print("adj ", adj)
     for i in range(N):
@@ -232,38 +232,94 @@ class MyList(list):
 q = [MyList(x) for x in n]
 ```
 
+Below code draws graph and compute mst.  The minimum cost is the sum of MST matrix. 
+
+<div class="code-head"><span>code</span>Draw graph and compute mst.py</div>
+
+```python
 import scipy as sp
 from scipy.sparse import csr_matrix
 from scipy.sparse.csgraph import minimum_spanning_tree
+import matplotlib.pyplot as plt
 
 import networkx as nx
-
-
-friendships = [
-    ('A', 'B',{'weight':2}),
-    ('A', 'C',{'weight':4}),
-    ('A', 'D',{'weight':1}),
-    ('A', 'E',{'weight':10}),
-    ('B', 'D',{'weight':1}),
-    ('C', 'D',{'weight':4}),
-    ('C', 'G',{'weight':3}),
-    ('D', 'E',{'weight':7}),
-    ('D', 'F',{'weight':10}),
-    ('D', 'G',{'weight':7}),
-    ('E', 'F',{'weight':8}),
-    ('E', 'G',{'weight':5}),
-]
-
 G = nx.MultiGraph()
-G.add_edges_from(friendships)
+# G = nx.MultiGraph()
+connections = [
+    (0, 1, 2),
+    (0, 2, 4),
+    (0, 3, 1),
+    (0, 4, 10),
+    (1, 3, 1),
+    (2, 3, 4),
+    (2, 5, 3),
+    (3, 4, 7),
+    (3, 6, 10),
+    (3, 5, 7),
+    (4, 6, 8),
+    (4, 5, 5)]
+
+G.add_weighted_edges_from(connections)
+pos=nx.spring_layout(G) # pos = nx.nx_agraph.graphviz_layout(G)
+
+nx.draw_networkx(G,pos, node_color='lightgreen')
+labels = nx.get_edge_attributes(G,'w')
+nx.draw_networkx_edge_labels(G,pos)
+plt.show()
+
+
 X = nx.to_numpy_matrix(G)
-nx.draw(G, with_labels=True, font_weight='bold')
-
 X = csr_matrix(X)
-Tcsr = minimum_spanning_tree(X)
-Tcsr.toarray().astype(int)
+aMst = minimum_spanning_tree(X)
+aMst.toarray().astype(int)
 
-## Maximum spanning tree
+# array([[0, 0, 0, 1, 0, 0, 0],
+#        [0, 0, 0, 0, 0, 0, 0],
+#        [0, 0, 0, 0, 0, 0, 0],
+#        [0, 1, 4, 0, 0, 0, 0],
+#        [0, 0, 0, 0, 0, 5, 8],
+#        [0, 0, 3, 0, 0, 0, 0],
+#        [0, 0, 0, 0, 0, 0, 0]])
+aMst.toarray().sum()
+# 22.0
+```
+
+![](../images/posts/graph.PNG)
+
+
+<div class="code-head"><span>code</span>Convert matrix to adjacency list and run mst.py</div>
+
+```python
+from collections import defaultdict
+from pprint import pprint
+
+graph = defaultdict(list)
+edges = set()
+X = nx.to_numpy_matrix(G)
+for i, v in enumerate(X.tolist(), 0): # X is a matrix
+    for j, u in enumerate(v, 0):
+        if frozenset([i, j]) not in edges:
+            edges.add(frozenset([i, j]))
+            graph[i].append([u, j])
+
+pprint(graph)
+# defaultdict(<class 'list'>,
+#             {0: [[0.0, 0],
+#                  [2.0, 1],
+#                  [4.0, 2],
+#                  [1.0, 3],
+#                  [10.0, 4],
+#                  [0.0, 5],
+#                  [0.0, 6]],
+#              1: [[0.0, 1], [0.0, 2], [1.0, 3], [0.0, 4], [0.0, 5], [0.0, 6]],
+#              2: [[0.0, 2], [4.0, 3], [0.0, 4], [3.0, 5], [0.0, 6]],
+#              3: [[0.0, 3], [7.0, 4], [7.0, 5], [10.0, 6]],
+#              4: [[0.0, 4], [5.0, 5], [8.0, 6]],
+#              5: [[0.0, 5], [0.0, 6]],
+#              6: [[0.0, 6]]})
+
+# to be continue: use Prim's to comput MST
+```
 
 
 # Use cases

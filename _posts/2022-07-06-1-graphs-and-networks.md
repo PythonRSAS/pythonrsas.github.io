@@ -14,6 +14,9 @@ image: images/posts/photos/IMG_0870.JPG
 - [Representations](#representations)
   - [Mathematical set representation](#mathematical-set-representation)
   - [adjacency list representation](#adjacency-list-representation)
+- [Adjacency matrix representation](#adjacency-matrix-representation)
+  - [Convert set representation to adjacency matrix](#convert-set-representation-to-adjacency-matrix)
+  - [Convert matrix to adjacency list](#convert-matrix-to-adjacency-list)
   - [Directed graphs](#directed-graphs)
   - [Comparisons of representations](#comparisons-of-representations)
 - [Implementation](#implementation)
@@ -146,7 +149,7 @@ print(aG)
 ```
 If our source data for the nodes and edges is a pandas DataFrame using mathematical set representation, we can use <span class="coding">df.groupby('vertice')['edge'].apply(list)</span> to quickly convert it to adjacency list representation. 
 
-#Adjacency matrix representation
+# Adjacency matrix representation
 
 Adjacency matrix representation looks very much like a square transition matrix.  
 
@@ -182,6 +185,8 @@ print (df)
 
 If we don't use pandas, we would have to re-code the list of tuples of edges from letters to integers because list indexing cannot be letters. Alternatively we can use the Python built-in functions <span class="coding">ord</span> and <span class="coding">chr</span>.  But I think using pandas requires less coding. 
 
+## Convert set representation to adjacency matrix
+
 <div class="code-head"><span>code</span>convert set representation to adjacency matrix.py</div>
 
 ```python
@@ -200,6 +205,8 @@ E = [
 ]
 G = Graph(V,E)
 print(G.vertice)
+# ['A', 'B', 'C', 'D']
+
 def adjacency_matrix(graph):
     adj = [[0 for i in graph.vertice] for j in graph.vertice]
     for edge in graph.edge:
@@ -209,6 +216,30 @@ def adjacency_matrix(graph):
     return adj
 
 print(adjacency_matrix(G))
+```
+
+## Convert matrix to adjacency list
+
+<div class="code-head"><span>code</span>convert set representation to adjacency matrix.py</div>
+
+```python
+
+
+from collections import defaultdict
+from pprint import pprint
+
+graph = defaultdict(list)
+edges = set()
+
+for i, v in enumerate(X.tolist(), 1): # X is a matrix
+    for j, u in enumerate(v, 1):
+        if u != 0 and frozenset([i, j]) not in edges:
+            edges.add(frozenset([i, j]))
+            graph[i].append({j: u})
+
+pprint(graph)
+
+
 ```
 
 ## Directed graphs
