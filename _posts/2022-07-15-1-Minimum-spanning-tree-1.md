@@ -18,6 +18,19 @@ image: https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Newton-WilliamB
 
 ![Newton](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Newton-WilliamBlake.jpg/330px-Newton-WilliamBlake.jpg)
 
+- [Introduction](#introduction)
+- [scipy.sparse.csgraph.minimum_spanning_tree](#scipysparsecsgraphminimum_spanning_tree)
+- [Greedy algorithm](#greedy-algorithm)
+- [Prim's algorithm](#prims-algorithm)
+  - [Keep track of the tree](#keep-track-of-the-tree)
+- [Appendix](#appendix)
+  - [Customize less than](#customize-less-than)
+- [Use cases](#use-cases)
+  - [MST with pygame](#mst-with-pygame)
+- [Maybe off topic](#maybe-off-topic)
+- [Reference](#reference)
+  - [book](#book)
+  - [Videos](#videos)
 # Introduction
 
 A tree is a connected, acyclic (no cycles) graph.

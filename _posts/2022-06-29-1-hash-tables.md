@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : hash table, dict, set, equivalence class
-category: "Python for SAS"
+category: education
 title: "hash table"
 description: hash table algorithm implementation in Python and the bisect library
 author: Sarah Chen

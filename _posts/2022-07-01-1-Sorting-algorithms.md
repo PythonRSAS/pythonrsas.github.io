@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : data structure, algorithm, python
-category: "Python for SAS"
+category: education
 title: "Sorting algorithms"
 description: quick sort, selection sort, insertion sort, bubble sort, merge sort, heap sort, bucket sort
 author: Sarah Chen
