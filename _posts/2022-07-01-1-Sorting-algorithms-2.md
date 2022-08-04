@@ -12,7 +12,11 @@ image: images/posts/photos/IMG_0871.JPG
 - [Introduction](#introduction)
 - [Quicksort](#quicksort)
   - [Worst case time complexity](#worst-case-time-complexity)
-  - [Quicksort implementation](#quicksort-implementation)
+  - [Quicksort implementations](#quicksort-implementations)
+    - [First shot](#first-shot)
+    - [Second try](#second-try)
+- [quick sort using list comprehension](#quick-sort-using-list-comprehension)
+  - [Preventing worst case](#preventing-worst-case)
 - [Merge sort](#merge-sort)
 - [Heapsort 堆排序](#heapsort-堆排序)
   - [Max heap data structrue](#max-heap-data-structrue)
@@ -47,61 +51,148 @@ Then we apply the same method to each of the two parts, and continue until each 
 Because we are divide-sorting in half every iteration, time complexity is $$n*log(n)$$ on average.  
 
 ## Worst case time complexity
+
 In the unfortunate case that the pivot is the largest or the smallest, then our intent to half the array fails: 
+
 • Then one subarray is always empty.
+
 • The second subarray contains n − 1 elements, i.e. all the elements other than the pivot.
+
 • Quicksort is recursively called only on this second group.
 
-The partitioning step: at least, n − 1 comparisons.
-• At each next step for n ≥ 1, the number of comparisons is
-one less, so that T(n) = T(n − 1) + (n − 1); T(1) = 0.
+To do the first partitioning, there are $$n − 1$$$$ comparisons.
 
-• “Telescoping” T(n) − T(n − 1) = n − 1:
-T(n)+T(n − 1)+T(n − 2)+. . .+T(3)+T(2)
+• At each subsequent step, the number of comparisons is one less, so that 
+
+$$T(n) = T(n − 1) + (n − 1)$$; 
+
+$$T(1) = 0$$.
+
+• “Telescoping” $$T(n) − T(n − 1) = n − 1$$:
+
+$$T(n)+T(n − 1)+T(n − 2)+. . .+T(3)+T(2)
 −T(n − 1)−T(n − 2)−. . .−T(3)−T(2)− T(1)
-= (n − 1) + (n − 2) +. . .+ 2 + 1 − 0
+= (n − 1) + (n − 2) +. . .+ 2 + 1 − 0$$
+
 $$T(n)= (n − 1) + (n − 2) +. . .+ 2 + 1 =(n−1)n/2$$
 
 This yields that $$T(n) ∈ Ω(n^2)$$.
-> Therefore, quicksort is slow on sorted or nearly sorted data. 
 
-> It is fast on the “randomly scattered” pivots, excpet with no guarantees. 
+> **Quicksort is slow on sorted or nearly sorted data**. 
 
-> If we want to guarantee $$n*log(n)$$ then we should use mergesort or a heapsort.
+> **It is fast on the “randomly scattered” pivots**, excpet with no guarantees. 
 
 ![quicksort](../images/posts/quickSort.PNG)
 
 ![quicksort recursion](../images/posts/quickSort2.PNG)
 
-## Quicksort implementation
+## Quicksort implementations
 
 Below quicksort implementation is simple but not optimized.  We use recursion.  The "initial" condition is that if input has only 1 element, then stop.  Otherwise, we split input in half according to whether elements are bigger or smaller than pivot. 
 
 
 ![quicksort recursion](../images/posts/quickSort_recursion.PNG)
 
+
+### First shot
+An error I made before was to use <span class="coding">A[-1]</span> as the pivot instead of <span class="coding">A.pop()</span>.   
+
+<span class="coding">A[-1]</span> does not remove the last element (used as pivot) from the comparison.
+
+<span class="coding">A.pop()</span> removes the last element. 
+
+To make sure we fully understand what's going on, we print out each step.
+
+In the second iteration of the sorting, the right array has only 1 element, 100.  So recursion stops for the right array. 
+
+The new left array L is now  [3, 9, 1, 0, -10].  Because nothing is smaller than the pivot -10, L is empty.  The new right array has to carry on and do all the work.
+
+Each time we see A is an empty array, we know it was recursed from an empty left or right array. 
+
 <div class="code-head"><span>code</span>basic quicksort.py</div>
 
 ```python
 def quickSort(A):
-    if len(A) < 2:
-       return A
+    print("\nA:", A)
+    if len(A) < 2:  # base case
+        return A
     else:
-        L = [] # not inplace
-        R = []
-        pivot = A.pop() # using the last element instead of random or the "median of three" method
-        for num in A:
-            if num > pivot:
-                R.append(num)
-            else:
+        L, R = [], []
+        print("pivot is ", A[-1])
+        pivot = A.pop()
+        for num in A: # pivot is not in A anymore
+            if num < pivot:
                 L.append(num)
+            else:
+                R.append(num)
+        print("L:", L)
+        print("R:", R)
     return quickSort(L) + [pivot] + quickSort(R)
 
-nums = [100, 3, 9, 1, 0]
+nums = [100, 3, 9, 1, 0, -10, 87]
 print(quickSort(nums))
-# [0, 1, 3, 9, 100]
+
+# A: [100, 3, 9, 1, 0, -10, 87]
+# pivot is  87
+# L: [3, 9, 1, 0, -10]
+# R: [100]
+
+# A: [3, 9, 1, 0, -10]
+# pivot is  -10
+# L: []
+# R: [3, 9, 1, 0]
+
+# A: []
+
+# A: [3, 9, 1, 0]
+# pivot is  0
+# L: []
+# R: [3, 9, 1]
+
+# A: []
+
+# A: [3, 9, 1]
+# pivot is  1
+# L: []
+# R: [3, 9]
+
+# A: []
+
+# A: [3, 9]
+# pivot is  9
+# L: [3]
+# R: []
+
+# A: [3]
+
+# A: []
+
+# A: [100]
+# [-10, 0, 1, 3, 9, 87, 100]
+
 ```
-Below quicksort implementation has improvement in space complexity.  
+
+### Second try
+
+# quick sort using list comprehension 
+
+One problem with the above code is that at the end, our input array is altered.  After all, we should not use <span class="coding">pop()</span>.   
+
+It is easy to fix that, we just let one side is strictly less than pivot, and right side be greater or equal to pivot.  
+
+
+Below snippet is from the book ["Python Cookbook"](https://www.oreilly.com/library/view/python-cookbook/0596001673/ch02s12.html).  
+
+<div class="code-head"><span>code</span>quicksort using list comprehension.py</div>
+
+```python
+def qsort(L):
+    if len(L) <= 1: return L
+    return qsort([lt for lt in L[1:] if lt < L[0]]) + L[0:1] + \
+           qsort([ge for ge in L[1:] if ge >= L[0]])
+```
+
+Below quicksort implementation has improvement in space complexity.  It uses the rightmost of range as pivot, which is not the best method because the rightmost can be the largest or smallest, and has higher likelihood to be the extreme values than if we use some methods to prevent it. 
 
 <div class="code-head"><span>code</span>basic quicksort in place.py</div>
 
@@ -111,9 +202,9 @@ def partition(A, l, r):
     pivot = A[r] # use the rightmost of range as pivot (not the best method)
     for j in range(l, r):
         if A[j] <= pivot:
-            i += 1
-            A[i], A[j] = A[j], A[i]
-    A[i+1], A[r] = A[r], A[i+1]
+            i += 1 # if a number is smaller than pivot, then pointer increments by 1
+            A[i], A[j] = A[j], A[i] # swap with that smaller number with the one pointer is at
+    A[i+1], A[r] = A[r], A[i+1] 
     return i+1
 def quicksort(A, l=0, r = None):
     if r==None:
@@ -127,7 +218,8 @@ nums = [100, 3, 9, 1, 0]
 quicksort(nums,l=0)
 ```
 
-[stackexchange "why is quicksort better than other sorting algorithms in practice"](https://cs.stackexchange.com/questions/3/why-is-quicksort-better-than-other-sorting-algorithms-in-practice)
+## Preventing worst case
+
 
 # Merge sort
 
@@ -583,3 +675,5 @@ print(bucketSort(A))
 # Reference
 
 * [Georgy Gimel’farb, Algorithm Quicksort: Analysis of Complexity, Lecture slide](https://www.cs.auckland.ac.nz/courses/compsci220s1c/lectures/2016S1C/CS220-Lecture10.pdf)
+
+* [stackexchange "why is quicksort better than other sorting algorithms in practice"](https://cs.stackexchange.com/questions/3/why-is-quicksort-better-than-other-sorting-algorithms-in-practice)
