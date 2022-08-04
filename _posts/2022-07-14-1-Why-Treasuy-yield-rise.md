@@ -41,4 +41,4 @@ Right now 2Y yield is above 3.128%. Whereas the 10Y is below 3%.  Why is that?
 
 There may be two reasons:
 1. Investors believe long term rates will back down because they believe the Fed cannot keep rates high either due to recession or inflation will be fixed before too long.
-2. There are more buyers of 10Y Treasury than buyers of 2Y.  Or possibly the other way around: there are more sellers of 2Y Treasury than 10Y.  This may likely because of near term rate hike expectations. 
+2. There are more buyers of 10Y Treasury than buyers of 2Y.  Or possibly the other way around: there are more sellers of 2Y Treasury than 10Y.  This may likely because of near term rate hike expectations. ****

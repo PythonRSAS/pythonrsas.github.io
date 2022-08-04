@@ -3,14 +3,14 @@ layout: post
 tag : data structure, algorithm, python
 category: education
 title: "Sorting algorithms 2"
-description: quick sort, merge sort, heap sort, bucket sort
+description: quicksort, merge sort, heap sort, bucket sort
 author: Sarah Chen
 image: images/posts/photos/IMG_0871.JPG
 
 ---
 
 - [Introduction](#introduction)
-- [Quick sort](#quick-sort)
+- [Quicksort](#quicksort)
 - [Merge sort](#merge-sort)
 - [Heapsort 堆排序](#heapsort-堆排序)
   - [Max heap data structrue](#max-heap-data-structrue)
@@ -19,53 +19,65 @@ image: images/posts/photos/IMG_0871.JPG
 - [Bucket sort (Radix sort)](#bucket-sort-radix-sort)
 # Introduction
 
-This is a second post on sorting algorithms.  In this post we talk about four common algorithms that have optimal time complexity $$O(n*log(n))$$. 
+This is a second post on sorting algorithms.  In this post we talk about four common algorithms that have average time complexity $$O(n*log(n))$$.  $$n*log(n)$$ is a lot better than $$n^2$$. 
 
 Most of the sorting methods in this post are by comparion, except bucket sort that does not use comparison. 
 
 ![Sorting algorithms and time efficiencies](../images/posts/sort.PNG)
 
-# Quick sort
+# Quicksort
 
-The quick sort algorithm reminds me of binary search.  
+The quicksort algorithm reminds me of binary search.  
 
 In binary search on a sorted array, we half the search range by comparing target with the median of the search range.  
 
-Quick sort works by sorting as if we only care about sorting into two parts: larger and smaller.  The element that is used to split the original array into two parts is commonly called the "pivot".  
+Quicksort works by sorting as if we only care about sorting into two parts: larger and smaller.  The element that is used to split the original array into two parts is commonly called the "pivot".  
 
-Then we apply the same method to each of the two parts, and continue until each of the parts has only 1 element (cannot be splited anymore).  
+Then we apply the same method to each of the two parts, and continue until each of the parts has only 1 element (cannot be splited anymore). 
 
-![quick sort](../images/posts/quickSort.PNG)
+Because we are divide-sorting in half every iteration, time complexity is $$n*log(n)$$ on average.  
 
-![quick sort recursion](../images/posts/quickSort2.PNG)
+In the unfortunate case that the pivot is the largest or the smallest, then our intent to half the array fails: 
+• Then one subarray is always empty.
+• The second subarray contains n − 1 elements, i.e. all the elements other than the pivot.
+• Quicksort is recursively called only on this second group.
 
-Below quick sort implementation is simple but not optimized in any way. 
+> Therefore, quicksort is slow on sorted or nearly sorted data. 
 
-<div class="code-head"><span>code</span>basic quick sort.py</div>
+> It is fast on the “randomly scattered” pivots, excpet with no guarantees. 
+
+> If we want to guarantee $$n*log(n)$$ then we should use mergesort or a heapsort.
+
+![quicksort](../images/posts/quickSort.PNG)
+
+![quicksort recursion](../images/posts/quickSort2.PNG)
+
+Below quicksort implementation is simple but not optimized.  We use recursion.  The "initial" condition is that if input has only 1 element, then stop.  Otherwise, we split input in half according to whether elements are bigger or smaller than pivot. 
+
+<div class="code-head"><span>code</span>basic quicksort.py</div>
 
 ```python
 def quickSort(A):
-    N = len(A)
-    if N < 2:
+    if len(A) < 2:
        return A
     else:
         L = [] # not inplace
-        H = []
+        R = []
         pivot = A.pop() # using the last element instead of random or the "median of three" method
-        for i in range(0,N):
-            if A[i] > pivot:
-                H.append(A[i])
+        for num in A:
+            if num > pivot:
+                R.append(num)
             else:
-                L.append(A[i])
-    return quickSort(L) + [pivot] + quickSort(H)
+                L.append(num)
+    return quickSort(L) + [pivot] + quickSort(R)
 
 nums = [100, 3, 9, 1, 0]
-print(qs(nums))
+print(quickSort(nums))
 # [0, 1, 3, 9, 100]
 ```
-Below quick sort implementation has improvement in space complexity.  
+Below quicksort implementation has improvement in space complexity.  
 
-<div class="code-head"><span>code</span>basic quick sort in place.py</div>
+<div class="code-head"><span>code</span>basic quicksort in place.py</div>
 
 ```python
 def partition(A, l, r):
@@ -89,11 +101,13 @@ nums = [100, 3, 9, 1, 0]
 quicksort(nums,l=0)
 ```
 
+[stackexchange "why is quicksort better than other sorting algorithms in practice"](https://cs.stackexchange.com/questions/3/why-is-quicksort-better-than-other-sorting-algorithms-in-practice)
+
 # Merge sort
 
-Like quick sort, merge sort is a divide-and-conquer recursive method. 
+Like quicksort, merge sort is a divide-and-conquer recursive method. 
 
-The quick sort algorithm tries to sort an array in two **"halves"** (or more accurately,two parts), and then **"halves of halves"**, by *comparing* with members of arrays (or more precisely "sub-arrays") that are commonly called "pivot".  The sorting efficiency depends on how close the "pivots" are close to the medians of the arrays.  The pivots are not the medians in reality because we don't know what the medians are. 
+The quicksort algorithm tries to sort an array in two **"halves"** (or more accurately,two parts), and then **"halves of halves"**, by *comparing* with members of arrays (or more precisely "sub-arrays") that are commonly called "pivot".  The sorting efficiency depends on how close the "pivots" are close to the medians of the arrays.  The pivots are not the medians in reality because we don't know what the medians are. 
 
 Whereas the merge sort method splits input array in exact halves, and then halves, recursively, into one-unit subarrays, compare elements of the subarrays with each other in a binary fashion, and **merge** them back recursively into one sorted array.  
 

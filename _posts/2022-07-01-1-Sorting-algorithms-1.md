@@ -24,6 +24,7 @@ There are two main types of sorting: by comparison and not by comparion.  All of
 
 ![Sorting algorithms and time efficiencies](../images/posts/sort.PNG)
 
+Note that Python's built-in <span class="coding">list.sort</span> implements the Timsort algorithm, and is faster than most methods. 
 
 # Insertion sort
 Insertion sort feels like some kind of depth-first algorithm although it does not have anything to do with trees.

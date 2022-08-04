@@ -1,7 +1,7 @@
 ---
 layout: post
 tag: recursion, dynamic programming, memorize
-category: "Python for SAS"
+category: education
 title: "Dynamic programming"
 description: dynamic programming to solve overlapping sub-problems in recursion
 author: Sarah Chen
@@ -263,57 +263,7 @@ Which one is it?  We do not know.  We compute all.
 
 Likewise, the shortest path of reaching a neighbor of B, say X, is the shortest path of (reaching X's neighbor + the distance from this neighbor to X).  And so on. 
 
-In code below, the input is a set of nodes expressed as list of lists [[x1,y1],..., [x2,y2]], where $$x_i, y_i$$ are coordinates on the plane.  We use the coordinates to compute distance. 
 
-The distances are stored in a dictionary, which is working as an adjacency list. 
-
-Nodes are represented by $$0, 1, ..., N$$. 
-
-For $$x_i, y_i$$, adj[i] is a list of lists, in the format of <span class="coding">[distance, j]</span> to all neighbors of  $$x_i, y_i$$.   The reason why <span class="coding">[distance, j]</span> instead of <span class="coding">[j, distance]</span> is that we are using the *heapq* moduel.  The <span class="coding">heapq.heappop</span> method by default pops the minimum according to the first number.  So we want to put distance first. 
-
-<div class="code-head"><span>code</span>Dijkstra.py</div>
-
-```python
-import heapq
-def minCostConnect(XY) -> int:
-    """
-    input XY is a set of nodes expressed as list of lists [[x1,y1],..., [x2,y2]]
-    build adjacency list, a dictionary with nodes as keys, and their distance to other nodes as values in list [cost, node]
-    pick an arbitrary starting point and place it in minH (list of lists, maintained in the min heap data structure order)
-    keep track of visited
-    as long as visited is not completed, pop the minH for the node with the minimum cost, and add it to the sum.
-    for the one that just got popped, push all its adjacent list [cost, node] into minH if the neighbor has not been visited. 
-    The visit method is exactly the same as BFS.
-    """
-    N = len(XY)
-    # build adjacency list of [cost, neighboring node] for all nodes
-    adj = {i:[] for i in range(N)} # i: list of [cost, neighboring node]
-    print("adj ", adj)
-    for i in range(N):
-         x1, y1 = XY[i]
-         for j in range(i + 1, N): # for loop could be in Dijkstra's algo 
-             x2, y2 = XY[j]
-             distance = abs(x1 - x2) + abs(y1- y2)
-             adj[i].append([distance, j]) # build adjacency list
-             adj[j].append([distance, i])
-    print("adj ", adj)
-    # Dijkstra's
-    sum = 0
-    visit = set()
-    minH = [[0, 0]]  # starting node, distance to itself is 0
-    while len(visit) < N:
-        cost, i = heapq.heappop(minH) # heappop maintains min heap structure
-        if i in visit:
-            continue
-        sum += cost
-        visit.add(i)
-        for neiCost, nei in adj[i]:  # push neighbors of i into minH if they are not yet visited. 
-            if nei not in visit:
-                heapq.heappush(minH, [neiCost, nei]) # heappush maintains min heap structure
-    return sum 
-
-A = [[0,0], [2,2], [3, 10], [5,2], [7,0]]
-print(minCostConnect(A))
 ```
 
 ## Bottom-up thinking

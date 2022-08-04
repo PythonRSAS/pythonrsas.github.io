@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : data structure, algorithm, python
-category: "Python for SAS"
+category: education
 title: "Graphs and networks"
 description: graph data structure, their mathematics set, adjacency list and adjacency matrix representations
 author: Sarah Chen

@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : abstract data structure binary search tree, BST
-category: "Python for SAS"
+category: education
 title: "binary search trees"
 description: binary search trees abstract data structure and implementation in Python
 author: Sarah Chen
