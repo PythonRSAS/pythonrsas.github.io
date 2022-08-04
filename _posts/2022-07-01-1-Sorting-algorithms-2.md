@@ -11,21 +11,26 @@ image: images/posts/photos/IMG_0871.JPG
 
 - [Introduction](#introduction)
 - [Quicksort](#quicksort)
+  - [Worst case time complexity](#worst-case-time-complexity)
+  - [Quicksort implementation](#quicksort-implementation)
 - [Merge sort](#merge-sort)
 - [Heapsort 堆排序](#heapsort-堆排序)
   - [Max heap data structrue](#max-heap-data-structrue)
   - [Implement max heap in Python](#implement-max-heap-in-python)
   - [The heapq  module](#the-heapq--module)
 - [Bucket sort (Radix sort)](#bucket-sort-radix-sort)
+- [Reference](#reference)
 # Introduction
 
-This is a second post on sorting algorithms.  In this post we talk about four common algorithms that have average time complexity $$O(n*log(n))$$.  $$n*log(n)$$ is a lot better than $$n^2$$. 
+This is a second post on sorting algorithms.  In this post we talk about four common algorithms that have average time complexity $$O(n*log(n))$$, which is a lot better than $$O(n^2)$$. 
 
-Most of the sorting methods in this post are by comparion, except bucket sort that does not use comparison. 
+Most of the sorting methods in this post are by comparion, except bucket sort. 
 
 ![Sorting algorithms and time efficiencies](../images/posts/sort.PNG)
 
-Volume 3 of Don Knuth's book series “The Art of Computer Programming” compares sorting speed for an artificial “typical” computer invented by the author. Some of the average case results:
+
+Volume 3 of Don Knuth's book series “The Art of Computer Programming” compares sorting speed for an *“artificial typical”* computer invented by the author. Some of the average case results are in the following plot:
+
 ![Don_Knuth_compare_sorting](../images/posts/Don_Knuth_compare_sorting.PNG)
 
 
@@ -35,17 +40,29 @@ The quicksort algorithm reminds me of binary search.
 
 In binary search on a sorted array, we half the search range by comparing target with the median of the search range.  
 
-Quicksort works by sorting as if we only care about sorting into two parts: larger and smaller.  The element that is used to split the original array into two parts is commonly called the "pivot".  
+Quicksort works by sorting as if we only care about sorting into two parts: larger than (something) and smaller than (something).  The element that is used to split the original array into two parts is commonly called the "pivot".  
 
 Then we apply the same method to each of the two parts, and continue until each of the parts has only 1 element (cannot be splited anymore). 
 
 Because we are divide-sorting in half every iteration, time complexity is $$n*log(n)$$ on average.  
 
+## Worst case time complexity
 In the unfortunate case that the pivot is the largest or the smallest, then our intent to half the array fails: 
 • Then one subarray is always empty.
 • The second subarray contains n − 1 elements, i.e. all the elements other than the pivot.
 • Quicksort is recursively called only on this second group.
 
+The partitioning step: at least, n − 1 comparisons.
+• At each next step for n ≥ 1, the number of comparisons is
+one less, so that T(n) = T(n − 1) + (n − 1); T(1) = 0.
+
+• “Telescoping” T(n) − T(n − 1) = n − 1:
+T(n)+T(n − 1)+T(n − 2)+. . .+T(3)+T(2)
+−T(n − 1)−T(n − 2)−. . .−T(3)−T(2)− T(1)
+= (n − 1) + (n − 2) +. . .+ 2 + 1 − 0
+$$T(n)= (n − 1) + (n − 2) +. . .+ 2 + 1 =(n−1)n/2$$
+
+This yields that $$T(n) ∈ Ω(n^2)$$.
 > Therefore, quicksort is slow on sorted or nearly sorted data. 
 
 > It is fast on the “randomly scattered” pivots, excpet with no guarantees. 
@@ -56,7 +73,12 @@ In the unfortunate case that the pivot is the largest or the smallest, then our 
 
 ![quicksort recursion](../images/posts/quickSort2.PNG)
 
+## Quicksort implementation
+
 Below quicksort implementation is simple but not optimized.  We use recursion.  The "initial" condition is that if input has only 1 element, then stop.  Otherwise, we split input in half according to whether elements are bigger or smaller than pivot. 
+
+
+![quicksort recursion](../images/posts/quickSort_recursion.PNG)
 
 <div class="code-head"><span>code</span>basic quicksort.py</div>
 
@@ -558,4 +580,6 @@ print(bucketSort(A))
 # [0, 1, 4, 8, 9, 100, 598]
 ```
 
+# Reference
 
+* [Georgy Gimel’farb, Algorithm Quicksort: Analysis of Complexity, Lecture slide](https://www.cs.auckland.ac.nz/courses/compsci220s1c/lectures/2016S1C/CS220-Lecture10.pdf)
