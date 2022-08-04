@@ -25,6 +25,10 @@ Most of the sorting methods in this post are by comparion, except bucket sort th
 
 ![Sorting algorithms and time efficiencies](../images/posts/sort.PNG)
 
+Volume 3 of Don Knuth's book series “The Art of Computer Programming” compares sorting speed for an artificial “typical” computer invented by the author. Some of the average case results:
+![Don_Knuth_compare_sorting](../images/posts/Don_Knuth_compare_sorting.PNG)
+
+
 # Quicksort
 
 The quicksort algorithm reminds me of binary search.  
