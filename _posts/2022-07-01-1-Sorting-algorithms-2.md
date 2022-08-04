@@ -13,9 +13,8 @@ image: images/posts/photos/IMG_0871.JPG
 - [Quicksort](#quicksort)
   - [Worst case time complexity](#worst-case-time-complexity)
   - [Quicksort implementations](#quicksort-implementations)
-    - [First shot](#first-shot)
-    - [Second try](#second-try)
-- [quick sort using list comprehension](#quick-sort-using-list-comprehension)
+    - [1. First shot](#1-first-shot)
+    - [2. quicksort using list comprehension](#2-quicksort-using-list-comprehension)
   - [Preventing worst case](#preventing-worst-case)
 - [Merge sort](#merge-sort)
 - [Heapsort 堆排序](#heapsort-堆排序)
@@ -94,7 +93,7 @@ Below quicksort implementation is simple but not optimized.  We use recursion.  
 ![quicksort recursion](../images/posts/quickSort_recursion.PNG)
 
 
-### First shot
+### 1. First shot
 An error I made before was to use <span class="coding">A[-1]</span> as the pivot instead of <span class="coding">A.pop()</span>.   
 
 <span class="coding">A[-1]</span> does not remove the last element (used as pivot) from the comparison.
@@ -172,24 +171,32 @@ print(quickSort(nums))
 
 ```
 
-### Second try
+### 2. quicksort using list comprehension 
 
-# quick sort using list comprehension 
-
-One problem with the above code is that at the end, our input array is altered.  After all, we should not use <span class="coding">pop()</span>.   
+One problem with the above code is that at the end, our input array is altered: it is missing the last element because of <span class="coding">pop()</span>.   
 
 It is easy to fix that, we just let one side is strictly less than pivot, and right side be greater or equal to pivot.  
 
+Below snippet is adapted from the book ["Python Cookbook"](https://www.oreilly.com/library/view/python-cookbook/0596001673/ch02s12.html).  
 
-Below snippet is from the book ["Python Cookbook"](https://www.oreilly.com/library/view/python-cookbook/0596001673/ch02s12.html).  
+It uses only 2 lines of code.  Simple!
 
 <div class="code-head"><span>code</span>quicksort using list comprehension.py</div>
 
 ```python
-def qsort(L):
-    if len(L) <= 1: return L
-    return qsort([lt for lt in L[1:] if lt < L[0]]) + L[0:1] + \
-           qsort([ge for ge in L[1:] if ge >= L[0]])
+# use the rightmost as pivot
+def qsort(A):
+    if len(A) <= 1: return A
+    return qsort([lt for lt in A[:-1] if lt < A[-1]]) + A[-1:] + \
+           qsort([ge for ge in A[:-1] if ge >= A[-1]])
+print(qsort(nums))
+
+# use the leftmost as pivot
+def qsort(A):
+    if len(A) <= 1: return A
+    return qsort([lt for lt in A[1:] if lt < A[0]]) + A[0:1] + \
+           qsort([ge for ge in A[1:] if ge >= A[0]])
+print(qsort(nums))
 ```
 
 Below quicksort implementation has improvement in space complexity.  It uses the rightmost of range as pivot, which is not the best method because the rightmost can be the largest or smallest, and has higher likelihood to be the extreme values than if we use some methods to prevent it. 
