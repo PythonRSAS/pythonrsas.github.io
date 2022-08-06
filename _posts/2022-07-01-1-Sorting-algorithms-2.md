@@ -231,6 +231,8 @@ quicksort(nums,l=0)
 Given the importance of pivot, below code takes a random element as pivot instead of what happens to be at the leftmost or rightmost position. 
 This code is adapted from this [stackoverflow](https://stackoverflow.com/questions/17773516/in-place-quicksort-in-python) post.
 
+This example implements quicksort inplace ($$O(n)$$ space complexity).  The pivot is picked randomly <span class="coding">pivotIdx = random.randint(l, r)</span>.  Another popular method is to take the median of 3 numbers. 
+
 It has two parts: 
 
  **1. quicksort body**.  It takes input array, left, right position, randomly pick an element as the pivot.  
