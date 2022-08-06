@@ -226,6 +226,7 @@ def quicksort(A, l=0, r = None):
 nums = [100, 3, 9, 1, 0]
 quicksort(nums,l=0)
 ```
+## Preventing worst case
 
 Given the importance of pivot, below code takes a random element as pivot instead of what happens to be at the leftmost or rightmost position. 
 This code is adapted from this [stackoverflow](https://stackoverflow.com/questions/17773516/in-place-quicksort-in-python) post.
@@ -233,9 +234,18 @@ This code is adapted from this [stackoverflow](https://stackoverflow.com/questio
 It has two parts: 
 
  **1. quicksort body**.  It takes input array, left, right position, randomly pick an element as the pivot.  
-It gives the function <span class="coding">partitionSort</span> input array, left, right and pivot indices, to do its partition-sort.   The <span class="coding">partitionSort</span> function sorts input array into two subarrays: smaller than pivot, and greater than pivot, and returns the position of the pivot where it ended up.
+*     It gives the function <span class="coding">partitionSort</span> input array, left, right and pivot indices, to do its partition-sort.   Although I almost never made any errors on the index of <span class="coding">l</span> begins at 0, I had often made the mistakes of the right index initial value, which is the last index of array, <span class="coding">len(A) - 1</span>, not the number of elements. 
+
+*     The <span class="coding">partitionSort</span> function sorts input array into two subarrays: smaller than pivot, and greater than pivot, and returns the position of the pivot where it ended up.
+
+*     The condition <span class="coding">if r == None: r = len(A) - 1</span> takes care of both worlds: initial parameters and subsequent recursion parameters.  When we run <span class="coding">quickSort(nums)</span> , we only provide the input array.  The inital run uses the default values <span class="coding">l = 0, r = None</span>.  herefore, r = the last index of input array. 
+*    It is critical to have <span class="coding">if r <= l: return </span> to control **where to stop**.
 
 It then recurse on the two subarrays. 
+
+> Note: when recurse, do think beyond the first run and what parameters work for the general case in recursive runs.  
+<span class="coding">quickSort(A, l, p - 1)</span> works for the genearl case.  Whereas <span class="coding">quickSort(A, 0, p - 1)</span> won't. 
+Similary, <span class="coding">quickSort(A, p + 1, r)</span> works for the genearal case.  Whereas <span class="coding">quickSort(A, p + 1)</span> won't. 
 
   **2. partitionSort**:  It takes input array, left, right and pivot indices, to do its partition-sort.  
 
@@ -274,10 +284,10 @@ def partitionSort(A, l, r, pivotIdx):
     A[l], A[i -1] = A[i -1], A[l]
     return i - 1
 
-def quickSort(A, l=0, r = None):
-    if r == None:
+def quickSort(A, l = 0, r = None):
+    if r == None: # takes care of both worlds: initial parameters and subsequent recursion parameters
         r = len(A) - 1
-    if r - 1 < l:
+    if r <= l: # controls where to stop: r cannot be less or equal to l
         return 
     pivotIdx = random.randint(l, r) # starting pivot index
     p = partitionSort(A, l, r, pivotIdx) # ending pivot index after sorting
@@ -294,7 +304,7 @@ print(nums)
 
 The error catching code <span class="coding">if not (l <= pivotIdx <= r):</span> was never used, but it is nevertheless good to put into place in case of any misuse. 
 
-## Preventing worst case
+
 
 
 # Merge sort
