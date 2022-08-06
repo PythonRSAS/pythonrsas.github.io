@@ -20,7 +20,33 @@ Data structures are defined and built according to varied needs of different dat
 * dictionary and hash tables
 * trees and tries (for word-procssing algo)
 * heaps and grapsh
-
+  
+- [The Big O metric](#the-big-o-metric)
+  - [Space complexity](#space-complexity)
+    - [Example: in-place sort integer list](#example-in-place-sort-integer-list)
+- [Array](#array)
+  - [Array in python](#array-in-python)
+    - [Reversing an array](#reversing-an-array)
+    - [Rotating an array](#rotating-an-array)
+    - [Get missing number](#get-missing-number)
+    - [Get missing number](#get-missing-number-1)
+    - [Check for pair sum](#check-for-pair-sum)
+  - [ArrayList](#arraylist)
+- [Stack](#stack)
+- [Queue](#queue)
+- [Linked List](#linked-list)
+  - [Common Operations:](#common-operations)
+- [Linked List and Node can be accomodated in separate classes for convenience](#linked-list-and-node-can-be-accomodated-in-separate-classes-for-convenience)
+  - [Linked list examples](#linked-list-examples)
+    - [Find linkedlist length](#find-linkedlist-length)
+- [Tree](#tree)
+- [Applications of trees](#applications-of-trees)
+- [Binary Tree](#binary-tree)
+    - [Binary tree implementation:](#binary-tree-implementation)
+    - [Tree traversal:](#tree-traversal)
+    - [Implementing tree traversals:](#implementing-tree-traversals)
+- [Heap](#heap)
+- [Data structures in SAS](#data-structures-in-sas)
 # The Big O metric
 In order to measure run time efficiency, the big $$O$$ metric is used. 
 

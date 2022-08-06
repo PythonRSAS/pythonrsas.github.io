@@ -307,8 +307,6 @@ print(nums)
 The error catching code <span class="coding">if not (l <= pivotIdx <= r):</span> was never used, but it is nevertheless good to put into place in case of any misuse. 
 
 
-
-
 # Merge sort
 
 Like quicksort, merge sort is a divide-and-conquer recursive method. 
@@ -336,37 +334,35 @@ def mergeSort(A):
     if N > 1:
         L = A[:N//2]
         R = A[N//2:]
-    
         # recursion
         mergeSort(L)
         mergeSort(R)
-
         # merge
-        i = 0 # left array idx initiated at 0, whenever an element is copied to A i < len(L) means 
-        j = 0 # right array idx
-        k = 0 # merged array idx
-        while i < len(L) and j < len(R): 
-            if L[i] < R[j]:
-                A[k] = L[i]
-                i += 1
-            else: 
-                A[k] = R[j]
-                j += 1
-            k += 1
-
-        while i < len(L):
-            A[k] = L[i]
-            k += 1
-            i += 1
-            
-        while j < len(R):
-            A[k] = R[j]
-            k += 1
-            j += 1
+        l = r = a = 0 # indices of left, right, and merged array initialized at 0
+        while (len(L) > l) and (len(R) > r):
+            if L[l] < R[r]:
+                A[a] = L[l]
+                l += 1
+            else:
+                A[a] = R[r]
+                r += 1
+            a += 1
+        while (len(L) > l):
+            A[a] = L[l]
+            a += 1
+            l += 1
+        while len(R) > r:
+            A[a] = R[r]
+            a += 1
+            r += 1
     return A
+
 A = [9, 4, 100, 1, 598, 0, 8]
 print(mergeSort(A))
 # [0, 1, 4, 8, 9, 100, 598]
+
+nums = [100, 3, 9, 1, 0, -10, 87, 87]
+print(mergeSort(nums))
 ```
 
 To see how the recursion works, I printed out every single parameter as shown in code and output below. 
@@ -549,14 +545,17 @@ print(mergeSort(A))
 # Exiting function call, A is  [0, 1, 4, 8, 9, 100, 598]
 # [0, 1, 4, 8, 9, 100, 598]
 ```
+## Cost
+Because halfing is stickly enforced (not up to chance as in quicksort), the time complexity is always $$O(n*log(n))$$. 
 
+However, because 
 # Heapsort 堆排序
 
 > [Heapsort can be thought of as an improved Selection sort](https://en.wikipedia.org/wiki/Heapsort).
 
-> Like Selection sort, heapsort partitions its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by selecting the largest element from it and inserting it into the sorted region in order. 
+Like Selection sort, heapsort partitions its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by selecting the largest element from it and inserting it into the sorted region in order. 
 
-> Unlike selection sort, heapsort does not waste time with a linear-time scan (**no pointers**) of the unsorted region; rather, heap sort maintains the unsorted region in a **max heap data structure** to more quickly find the largest element in each step.
+Unlike selection sort, heapsort does not waste time with a linear-time scan (**no pointers**) of the unsorted region; rather, heap sort maintains the unsorted region in a **max heap data structure** to more quickly find the largest element in each step.
 
 In practice on most machines it is **slower than** a well-implemented quicksort ($$O(n^2)$$), it has better worst-case $$O(n*log(n))$$ runtime than quicksort. 
 

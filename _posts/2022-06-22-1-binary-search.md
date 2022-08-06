@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : binary search algorithm, binary search problems
-category: "Python for SAS"
+category: education
 title: "binary search"
 description: binary search algorithm implementation in Python and the bisect library
 author: Sarah Chen

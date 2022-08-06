@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : data structure, algorithm, python
-category: "Python for SAS"
+category: education
 title: "Common problems solved by graphs"
 description: common problems that are solved using graph theory and basic algorithms like BFS and DFS
 author: Sarah Chen
