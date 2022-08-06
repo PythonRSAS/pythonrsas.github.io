@@ -23,6 +23,7 @@ image: images/posts/photos/IMG_0871.JPG
   - [The heapq  module](#the-heapq--module)
 - [Bucket sort (Radix sort)](#bucket-sort-radix-sort)
 - [Reference](#reference)
+  - [QuickSort](#quicksort-1)
 # Introduction
 
 This is a second post on sorting algorithms.  In this post we talk about four common algorithms that have average time complexity $$O(n*log(n))$$, which is a lot better than $$O(n^2)$$. 
@@ -44,6 +45,8 @@ The quicksort algorithm reminds me of binary search.
 In binary search on a sorted array, we half the search range by comparing target with the median of the search range.  
 
 Quicksort works by sorting as if we only care about sorting into two parts: larger than (something) and smaller than (something).  The element that is used to split the original array into two parts is commonly called the "pivot".  
+
+![quicksort](../images/posts/quickSort.PNG)
 
 Then we apply the same method to each of the two parts, and continue until each of the parts has only 1 element (cannot be splited anymore). 
 
@@ -81,7 +84,6 @@ This yields that $$T(n) ∈ Ω(n^2)$$.
 
 > **It is fast on the “randomly scattered” pivots**, excpet with no guarantees. 
 
-![quicksort](../images/posts/quickSort.PNG)
 
 ![quicksort recursion](../images/posts/quickSort2.PNG)
 
@@ -175,7 +177,7 @@ print(quickSort(nums))
 
 One problem with the above code is that at the end, our input array is altered: it is missing the last element because of <span class="coding">pop()</span>.   
 
-It is easy to fix that, we just let one side is strictly less than pivot, and right side be greater or equal to pivot.  
+It is easy to fix that, we use slicing instead of pop().   
 
 Below snippet is adapted from the book ["Python Cookbook"](https://www.oreilly.com/library/view/python-cookbook/0596001673/ch02s12.html).  
 
@@ -224,6 +226,49 @@ def quicksort(A, l=0, r = None):
 nums = [100, 3, 9, 1, 0]
 quicksort(nums,l=0)
 ```
+
+Given the importance of pivot, below code takes a random element as pivot instead of what happens to be at the leftmost or rightmost position. 
+This code came from [stackoverflow](https://stackoverflow.com/questions/17773516/in-place-quicksort-in-python).
+
+<div class="code-head"><span>code</span>quicksort in place with random pivot.py</div>
+
+```python
+def sub_partition(A, l, r, idx_pivot):
+
+    'returns the position where the pivot winds up'
+    if not (l <= idx_pivot <= r):
+        raise ValueError('idx pivot must be between l and r')
+
+    A[l], A[idx_pivot] = A[idx_pivot], A[l]
+    pivot = A[l]
+    i = l + 1
+    j = l + 1
+
+    while j <= r:
+        if A[j] <= pivot:
+            A[j], A[i] = A[i], A[j]
+            i += 1
+        j += 1
+
+    A[l], A[i - 1] = A[i - 1], A[l]
+    return i - 1
+
+def quicksort(A, l=0, r=None):
+
+    if r is None:
+        r = len(A) - 1
+
+    if r - l < 1:
+        return
+
+    idx_pivot = random.randint(l, r)
+    i = sub_partition(A, l, r, idx_pivot)
+    #print A, i, idx_pivot
+    quicksort(A, l, i - 1)
+    quicksort(A, i + 1, r)
+
+```
+
 
 ## Preventing worst case
 
@@ -681,6 +726,10 @@ print(bucketSort(A))
 
 # Reference
 
+## QuickSort
 * [Georgy Gimel’farb, Algorithm Quicksort: Analysis of Complexity, Lecture slide](https://www.cs.auckland.ac.nz/courses/compsci220s1c/lectures/2016S1C/CS220-Lecture10.pdf)
 
 * [stackexchange "why is quicksort better than other sorting algorithms in practice"](https://cs.stackexchange.com/questions/3/why-is-quicksort-better-than-other-sorting-algorithms-in-practice)
+
+* [stackexchange "inplace quicksort"](https://codereview.stackexchange.com/questions/272639/in-place-quicksort-algorithm-in-python)
+  
