@@ -228,47 +228,71 @@ quicksort(nums,l=0)
 ```
 
 Given the importance of pivot, below code takes a random element as pivot instead of what happens to be at the leftmost or rightmost position. 
-This code came from [stackoverflow](https://stackoverflow.com/questions/17773516/in-place-quicksort-in-python).
+This code is adapted from this [stackoverflow](https://stackoverflow.com/questions/17773516/in-place-quicksort-in-python) post.
+
+It has two parts: 
+
+ **1. quicksort body**.  It takes input array, left, right position, randomly pick an element as the pivot.  
+It gives the function <span class="coding">partitionSort</span> input array, left, right and pivot indices, to do its partition-sort.   The <span class="coding">partitionSort</span> function sorts input array into two subarrays: smaller than pivot, and greater than pivot, and returns the position of the pivot where it ended up.
+
+It then recurse on the two subarrays. 
+
+  **2. partitionSort**:  It takes input array, left, right and pivot indices, to do its partition-sort.  
+
+*     Station the pivot at the leftmost place by swapping <span class="coding">A[l]</span> with pivot. 
+*     Then it does its partition-sort by keeping track of two things: <span class="coding">i</span> and <span class="coding">j</span> both begin as <span class="coding">l + 1</span> because they need to leave the pivot alone. 
+*     <span class="coding">i</span> keeps track of the less-than-pivot elements, and moves by 1 to the right each time a less-than-pivot element is moved to the left subarray.  
+* <span class="coding">j</span> does the looping from <span class="coding">l + 1</span> all the way to <span class="coding">r</span> (inclusive), and checks one by one if less than pivot.  If less than pivot, <span class="coding">A[j]</span> swaps with <span class="coding">A[i]</span>, and <span class="coding">i</span> increments by $$1$$. 
+
+> **Note**: Do not omit the $$=$$ in  <span class="coding">while j <= r:</span>.  Because we may have duplicates in the array.  And because everyone in the subarray needs to compare with the pivot, including the one in the rightest. 
+
+On the other hand, result is correct whether we put $$=$$ in <span class="coding">if A[j] < pivot:</span>. 
 
 <div class="code-head"><span>code</span>quicksort in place with random pivot.py</div>
 
 ```python
-def sub_partition(A, l, r, idx_pivot):
-
-    'returns the position where the pivot winds up'
-    if not (l <= idx_pivot <= r):
-        raise ValueError('idx pivot must be between l and r')
-
-    A[l], A[idx_pivot] = A[idx_pivot], A[l]
-    pivot = A[l]
+import random
+def partitionSort(A, l, r, pivotIdx):
+    '''
+    sort into two parts, smaller than pivot, 
+    '''
+    if not (l <= pivotIdx <= r):
+        raise ValueError("pivot index must be within l and r")
+    # move pivot out of the way
+    pivot = A[pivotIdx]
+    # now in A, pivot is moved to the leftmost place
+    A[pivotIdx], A[l] = A[l], A[pivotIdx]
+    # adding 1 because we don't touch the pivot. 
     i = l + 1
     j = l + 1
-
     while j <= r:
-        if A[j] <= pivot:
-            A[j], A[i] = A[i], A[j]
-            i += 1
+        if A[j] < pivot:
+            A[i], A[j] = A[j], A[i]
+            i += 1 # i represent small item count, but we would need to decrement it by 1 for pivot in the end of the function
         j += 1
-
-    A[l], A[i - 1] = A[i - 1], A[l]
+    # put pivot where it belongs because we have i-1 items small or equal to pivot
+    A[l], A[i -1] = A[i -1], A[l]
     return i - 1
 
-def quicksort(A, l=0, r=None):
-
-    if r is None:
+def quickSort(A, l=0, r = None):
+    if r == None:
         r = len(A) - 1
+    if r - 1 < l:
+        return 
+    pivotIdx = random.randint(l, r) # starting pivot index
+    p = partitionSort(A, l, r, pivotIdx) # ending pivot index after sorting
+    quickSort(A, l, p - 1)
+    quickSort(A, p + 1, r)
+    return A
 
-    if r - l < 1:
-        return
 
-    idx_pivot = random.randint(l, r)
-    i = sub_partition(A, l, r, idx_pivot)
-    #print A, i, idx_pivot
-    quicksort(A, l, i - 1)
-    quicksort(A, i + 1, r)
+nums = [100, 3, 9, 1, 0, -10, 87]
+print(quickSort(nums))
+print(nums)
 
 ```
 
+The error catching code <span class="coding">if not (l <= pivotIdx <= r):</span> was never used, but it is nevertheless good to put into place in case of any misuse. 
 
 ## Preventing worst case
 
