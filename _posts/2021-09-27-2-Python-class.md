@@ -14,15 +14,12 @@ image: images/posts/photos/IMG-0668.JPG
 
 
 - [a class in Python](#a-class-in-python)
-- [def <span class="coding">\__init__()</span>](#def-_init_)
 - [Class attributes and methods](#class-attributes-and-methods)
   - [Attributes can be defined within class or outside](#attributes-can-be-defined-within-class-or-outside)
   - [Naming inputs and functions](#naming-inputs-and-functions)
 - [Parent class and child classes](#parent-class-and-child-classes)
 - [Example from modules](#example-from-modules)
 - [Dunder (magic) methods](#dunder-magic-methods)
-  - [<span class="coding">\__init__()</span>](#_init_)
-  - [<span class="coding">\__call__()</span>](#_call_)
   - [Other notable dunders](#other-notable-dunders)
 - [Decorators](#decorators)
   - [# reference](#-reference)
@@ -104,18 +101,12 @@ a.descriptive()
 # missing          0     0     0      0    0       0     0
 
 ```
-
-# def <span class="coding">\__init__()</span>
-
-A class does not have to have an \__init__() method.  But most of the time we like to create objects initialized with a specific initial state. Therefore a class may define a special method named <span class="coding">\__init__()</span>, like this:
-
-![class](/images/posts/class_data.PNG)
-
-When a class defines an <span class="coding">\__init__()</span> method, class instantiation automatically invokes <span class="coding">\__init__()</span> for the newly-created class instance.
-
 # Class attributes and methods
 
-Attributes and methods are terms used often interchangably.  We refer to anything following the <span class="coding">.</span> as attributes.  Roughly, we call what's defined in the <span class="coding">\__init__</span> function as attributes, and those define outside of <span class="coding">\__init__</span> function as methods. 
+Attributes and methods are terms used often interchangably.  We refer to anything following the <span class="coding">.</span> as attributes.  
+
+* We call what's defined in the <span class="coding">\__init__</span> function as attributes
+* those define outside of <span class="coding">\__init__</span> function as methods. 
 
 Attributes can be accssed with <span class="coding">.</span>.  
 
@@ -318,10 +309,13 @@ for i in range(0,3):
 # Dunder (magic) methods
 Dunder (short for double underscore) methods are special methods. 
 
-## <span class="coding">\__init__()</span>
-<span class="coding">\__init__()</span> is one of them. We can customize dunder methods for the user defined classes. 
+<span class="coding">\__init__()</span> is one of them. We can customize dunder methods for the user defined classes.  A class does not have to have an \__init__() method.  But most of the time we like to create objects initialized with a specific initial state. Therefore a class may define a special method named <span class="coding">\__init__()</span>, like this:
 
-## <span class="coding">\__call__()</span>
+![class](/images/posts/class_data.PNG)
+
+When a class defines an <span class="coding">\__init__()</span> method, class instantiation automatically invokes <span class="coding">\__init__()</span> for the newly-created class instance.
+
+
 <span class="coding">\__call__()</span> makes an instance of a class [callable (see SOF)](https://stackoverflow.com/questions/111234/what-is-a-callable).  Whatever you want it do it when the genie is called should be placed within the <span class="coding">\__call__()</span> function. 
 
 ```python
