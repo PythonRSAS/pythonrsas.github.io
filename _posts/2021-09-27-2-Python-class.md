@@ -15,10 +15,8 @@ image: images/posts/photos/IMG-0668.JPG
 
 - [a class in Python](#a-class-in-python)
 - [Class attributes and methods](#class-attributes-and-methods)
-  - [Attributes can be defined within class or outside](#attributes-can-be-defined-within-class-or-outside)
   - [Naming inputs and functions](#naming-inputs-and-functions)
 - [Parent class and child classes](#parent-class-and-child-classes)
-- [Example from modules](#example-from-modules)
 - [Dunder (magic) methods](#dunder-magic-methods)
   - [Other notable dunders](#other-notable-dunders)
 - [Decorators](#decorators)
@@ -103,22 +101,14 @@ a.descriptive()
 ```
 # Class attributes and methods
 
-Attributes and methods are terms used often interchangably.  We refer to anything following the <span class="coding">.</span> as attributes.  
+ 
 
-* We call what's defined in the <span class="coding">\__init__</span> function as attributes
-* those define outside of <span class="coding">\__init__</span> function as methods. 
-
-Attributes can be accssed with <span class="coding">.</span>.  
-
-Methods are those that we need to add <span class="coding">()</span> after its name.  
-
-For example, <span class="coding">.shape</span> is an attribute for numpy arrays and pandas DataFrames. We cannot add <span class="coding">()</span>.  
-
-Whereas the call <span class="coding">df.describe()</span> is calling the method and needs <span class="coding">()</span>. 
+* Attributes are what's defined in the <span class="coding">\__init__</span> function.  Attributes can be accssed with <span class="coding">.</span>.    For example, <span class="coding">.shape</span> is an attribute for numpy arrays and pandas DataFrames.
+* Methods are those define outside of <span class="coding">\__init__</span> function as methods.  We need to add <span class="coding">()</span> after its name when using it.  For example, <span class="coding">df.describe()</span> is calling the method and needs <span class="coding">()</span>. 
 
 Although we by convention use <span class="coding">self</span> when we define class methods, we can actually call it almost anything, just like we can name variables with any name. 
 
-## Attributes can be defined within class or outside
+Attributes can be defined within class or outside
 
 **Within class definition**
 
@@ -138,55 +128,45 @@ Also notice that instead of <span class="coding">self</span>, I first use <span 
 <div class="code-head"><span>code</span>class attribute.py</div> 
 
 ```python
-In [2]: class myClass:
-   ...:     """A simple example class"""
-   ...:     i = 12345
-   ...:     telescope = "James Webb"
-   ...:     def f(martian):
-   ...:         return 'hello Mars'
-   ...: 
-   ...:     def g(venus):
-   ...:         return 'I live on Mars'
-   ...: x = myClass()
-   ...: 
-   ...: print(x.f())
-   ...: print(x.g())
-   ...:
-hello Mars
-I live on Mars
+class myClass:
+    """A simple example class"""
+  i = 12345
+  telescope = "James Webb"
+  def f(martian):
+          return 'hello Mars'
+  def g(venus):
+          return 'I live on Mars'
 
-In [3]: print(x.i)
-   ...: print(x.telescope)
-   ...:
-12345
-James Webb
+x = myClass()
+print(x.f())
+print(x.g())
+# hello Mars
+# I live on Mars
+print(x.i)
+print(x.telescope)
+# 12345
+# James Webb
+x.counter = 1
+while x.counter < 10:
+    x.counter = x.counter * 2
+print(x.counter)
+# 16
+del x.counter
+print(x.counter)
+# ---------------------------------------------------------------------------
+# AttributeError                            Traceback (most recent call last)
+# <ipython-input-5-6daa4215855c> in <module>()
+#       1 del x.counter
+# ----> 2 print(x.counter)
 
-In [4]: x.counter = 1
-   ...: while x.counter < 10:
-   ...:     x.counter = x.counter * 2
-   ...: print(x.counter)
-   ...:
-16
-
-In [5]: del x.counter
-   ...: print(x.counter)
-   ...:
----------------------------------------------------------------------------
-AttributeError                            Traceback (most recent call last)
-<ipython-input-5-6daa4215855c> in <module>()
-      1 del x.counter
-----> 2 print(x.counter)
-
-AttributeError: 'myClass' object has no attribute 'counter'
-
-In [6]: del x.f
----------------------------------------------------------------------------
-AttributeError                            Traceback (most recent call last)
-<ipython-input-6-a09835603615> in <module>()
-----> 1 del x.f
-
-In [7]: x.f()
-Out[7]: 'hello Mars'
+# AttributeError: 'myClass' object has no attribute 'counter'
+del x.f
+# ---------------------------------------------------------------------------
+# AttributeError                            Traceback (most recent call last)
+# <ipython-input-6-a09835603615> in <module>()
+del x.f
+x.f()
+# 'hello Mars'
 ```
 
 Below example compares defining attribute/method within class definition and added for an instance of a class. 
@@ -197,16 +177,12 @@ Below example compares defining attribute/method within class definition and add
 # 1. add attritutes for an instance of a class
 class Data:
     pass
-
 dt1 = Data()
-
 dt1.data =2
 dt1.name = "anyName"
-
 print(dt1.data)
 print(dt1.name)
 print(dt1.data**2)
-
 # 2. attritutes defined within class
 class Data:
     def __init__(self, data,name):
@@ -214,8 +190,6 @@ class Data:
         self.name = name
     def square(self):
         return self.data**2
-        
-
 dt1 = Data(2,'any name')
 print(dt1.data)
 print(dt1.name)
@@ -231,8 +205,6 @@ In the initializing step, we can name them anything, for example, <span class="c
 After the initializing step, anytime we need the input numbers, we must strictly follow <span class="coding">self.num1</span> and <span class="coding">self.num2</span>. 
 
 When we use a sibling method within class, we need to prefix the function name with <span class="coding">self.</span> as well. 
-
-<div class="code-head"><span>code</span>class attribute2.py</div> 
 
 ```python
 class Calculator:
@@ -267,6 +239,90 @@ mycalc.multiplication()
 mycalc.division()
 ```
 
+Another good example of writing clean class without getting into complex algorithm is implementaing a basic linked list. 
+
+<div class="code-head"><span>code</span>class example using linked list.py</div> 
+
+```python
+class Node(object):
+    def __init__(self, data, next = None):
+        self.data = data
+        self.next = next
+    def setData(self, data):
+        self.data = data
+    def getData(self, data):
+        return self.data
+    def setNext(self, next):
+        self.next = next
+    def getNext(self):
+        return self.next
+n = Node(3)
+
+class LinkedList(object):
+    def __init__(self, head = None): # Defining the head of the linked list
+        self.head = head
+        self.count = 0
+    def printLinkedList(self): # printing the data in the linked list
+        temp = self.head
+        while(temp):
+            print(temp.data, end=' ')
+            temp = temp.next
+    def insertAtStart(self, data): # # inserting the node at the beginning
+        newNode = Node(data)
+        newNode.next = self.head
+        self.head = newNode # update LinkList head
+        self.count += 1 # update count
+    def insertBetween(self, previousNode, data):
+        if (previousNode.next is None):
+            print('Previous node should have next node!')
+        else:
+            newNode = Node(data)
+            newNode.next = previousNode.next
+            previousNode.next = newNode
+            self.count += 1 # update count
+    def insertAtEnd(self, data):
+        newNode = Node(data)
+        temp = self.head
+        while(temp.next != None): # get last node
+            temp = temp.next
+        temp.next = newNode
+        self.count += 1 # update count
+    def delete(self, data): # deleting an item based on data
+        temp = self.head
+        if (temp.next is not None):  # if data to be deleted is the head
+            if(temp.data == data):
+                self.head = temp.next
+                self.count -= 1
+                temp = None
+                return
+            else: #  else search all the nodes
+                while(temp.next != None):
+                    if(temp.data == data):
+                        break
+                    prev = temp #save current node as previous so that we can go on to next node
+                    temp = temp.next
+                if temp == None: # node not found
+                    return
+                prev.next = temp.next # if found, then drop the node by omiting it from the link
+                self.count -= 1
+                return
+    def search(self, node, data):# iterative search
+        if node == None:
+            return False
+        if node.data == data:
+            return True
+        return self.search(node.getNext(), data)
+    def search_list(self, node, data): # iterative search return found item instead of True/False
+        while node and node.data != data:
+            node = node.next
+        return node
+            
+LL = LinkedList()
+LL.head = Node("Hello")
+print("After defining head node")
+LL.printLinkedList()
+```
+
 
 # Parent class and child classes
 
@@ -285,26 +341,6 @@ The logical order of parent-child follows the following chart:
   <figcaption> classes</figcaption>
 </figure>
 
-# Example from modules
-
-Examples:
-[**turtle** library](https://docs.python.org/3/library/turtle.html):  
-
-The [<span class="coding">RawTurtle</span> class](https://github.com/python/cpython/blob/84975146a7ce64f1d50dcec8311b7f7188a5c962/Lib/turtle.py#L2513), inherites from parent classes from module <span class="coding">tkinter</span>, 
-
-Even though the following snippet seems like a very elementary program written by elementary school kids (and yes it was), the module turtle is actually quite complex.   This is an example of reusable code because a child can import the module, start an instance of the class, and do those things that she normally does with drawing, using the language and a computer. 
-
-<div class="code-head"><span>code</span>Turtle.python</div>
-
-```python
-import turtle
-v=turtle.Pen()
-v.color("blue")
-
-for i in range(0,3):
-	v.forward(30)
-	v.left(120)
-```
 
 # Dunder (magic) methods
 Dunder (short for double underscore) methods are special methods. 
