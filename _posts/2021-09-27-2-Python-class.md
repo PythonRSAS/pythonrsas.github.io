@@ -17,7 +17,7 @@ image: images/posts/photos/IMG-0668.JPG
 - [def <span class="coding">\__init__()</span>](#def-_init_)
 - [Class attributes and methods](#class-attributes-and-methods)
   - [Attributes can be defined within class or outside](#attributes-can-be-defined-within-class-or-outside)
-  - [Simple calculator](#simple-calculator)
+  - [Naming inputs and functions](#naming-inputs-and-functions)
 - [Parent class and child classes](#parent-class-and-child-classes)
 - [Example from modules](#example-from-modules)
 - [Dunder (magic) methods](#dunder-magic-methods)
@@ -131,7 +131,7 @@ Although we by convention use <span class="coding">self</span> when we define cl
 
 **Within class definition**
 
-In example below, myClass is defined with 2 attributes: <span class="coding">i</span> and <span class="coding">telescope</span>.  
+In the super simple example below, myClass is defined with 2 attributes: <span class="coding">i</span> and <span class="coding">telescope</span>.  
 
 The attributes defined within class definition **cannot** be deleted using <span class="coding">del</span>.   
 
@@ -231,33 +231,41 @@ print(dt1.name)
 print(dt1.square())
 ```
 
-## Simple calculator
+## Naming inputs and functions
+
+The example below uses <span class="coding">\__init__</span> to initialize object <span class="coding">self</span>, which takes on the two values given when we initialize the class object.  
+
+In the initializing step, we can name them anything, for example, <span class="coding">self.a = num1</span>  and <span class="coding">self.b = num2</span>. But it is more consistent if we just use the same name as the parameters <span class="coding">num1</span> and <span class="coding">num2</span>. 
+
+After the initializing step, anytime we need the input numbers, we must strictly follow <span class="coding">self.num1</span> and <span class="coding">self.num2</span>. 
+
+When we use a sibling method within class, we need to prefix the function name with <span class="coding">self.</span> as well. 
+
 <div class="code-head"><span>code</span>class attribute2.py</div> 
 
 ```python
 class Calculator:
     def __init__(self, num1, num2):
-        self.a = num1
-        self.b = num2
+        self.num1 = num1
+        self.num2 = num2
 
     # addition
     def addition(self):
-        result = self.a + self.b
+        result = self.num1 + self.num2
         print("Addition:        " + str(result))
-
     # subtraction
     def subtraction(self):
-        result = self.a - self.b
+        result = self.num1 - self.num2
         print("Subtraction:     " + str(result))
 
     # multiplication
     def multiplication(self):
-        result = self.a * self.b
+        result = self.num1 * self.num2
         print("Multiplication:  " + str(result))
 
     # division
     def division(self):
-        result = self.a / self.b
+        result = self.num1 / self.num2
         print("Division:        " + str(result))
 
 #Calling the class
@@ -267,6 +275,7 @@ mycalc.subtraction()
 mycalc.multiplication()
 mycalc.division()
 ```
+
 
 # Parent class and child classes
 

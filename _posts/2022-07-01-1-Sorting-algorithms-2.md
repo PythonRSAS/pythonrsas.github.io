@@ -246,7 +246,7 @@ It then recurse on the two subarrays.
 <span class="coding">quickSort(A, l, p - 1)</span> works for the genearl case.  Whereas <span class="coding">quickSort(A, 0, p - 1)</span> won't. 
 Similary, <span class="coding">quickSort(A, p + 1, r)</span> works for the genearal case.  Whereas <span class="coding">quickSort(A, p + 1)</span> won't. 
 
-  **2. partitionSort**:  It takes input array, left, right and pivot indices, to do its partition-sort.  
+  **2. partitionSort**:  It takes input array, left, right and pivot indices, to does its partition-sort.  
 
 *     Station the pivot at the leftmost place by swapping <span class="coding">A[l]</span> with pivot. 
 *     Then it does its partition-sort by keeping track of two things: <span class="coding">i</span> and <span class="coding">j</span> both begin as <span class="coding">l + 1</span> because they need to leave the pivot alone. 
@@ -545,8 +545,6 @@ print(mergeSort(A))
 ## Cost
 Because halfing is stickly enforced (not up to chance as in quicksort), the time complexity is always $$O(n*log(n))$$. 
 
-However, because 
-
 # Bucket sort (Radix sort)
 
 Radix sort is a very fast sorting algorithm for integers.  Unlike other sorting methods, it does no comparisons. Digits of integers are slotted into their respective buckets (0, 1, 2, 3, ..., 9).
@@ -566,6 +564,7 @@ Note the order of operations in <span class="coding">i//10**(digit)%10</span>:
 Also, pay attention to that $$A$$ is modified with each loop. 
 
 **In the first outer loop, $$A$$ is the input**.
+
 **In all subsequent outer loops, $$A$$ is the flattened buckets $$B$$**. 
 
 ```python
