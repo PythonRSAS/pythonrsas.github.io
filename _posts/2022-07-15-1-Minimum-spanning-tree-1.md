@@ -343,7 +343,7 @@ Even k-means clustering can be viewed as finding an MST and deleting the k-1 mos
 
 ## MST with pygame
 
-Ronald L. Rivest computes mst for set of bouncing balls. [Uses PyGame for graphics(http://people.csail.mit.edu/rivest/mst.py)
+Ronald L. Rivest computes mst for set of bouncing balls. [Uses PyGame for graphics](http://people.csail.mit.edu/rivest/mst.py)
 
 
 
