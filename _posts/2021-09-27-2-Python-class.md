@@ -197,6 +197,7 @@ print(dt1.square())
 ```
 
 ## Naming inputs and functions
+![class](/images/posts/class_data.PNG)
 
 The example below uses <span class="coding">\__init__</span> to initialize object <span class="coding">self</span>, which takes on the two values given when we initialize the class object.  
 
@@ -250,7 +251,7 @@ class Node(object):
         self.next = next
     def setData(self, data):
         self.data = data
-    def getData(self, data):
+    def getData(self):
         return self.data
     def setNext(self, next):
         self.next = next
@@ -347,7 +348,6 @@ Dunder (short for double underscore) methods are special methods.
 
 <span class="coding">\__init__()</span> is one of them. We can customize dunder methods for the user defined classes.  A class does not have to have an \__init__() method.  But most of the time we like to create objects initialized with a specific initial state. Therefore a class may define a special method named <span class="coding">\__init__()</span>, like this:
 
-![class](/images/posts/class_data.PNG)
 
 When a class defines an <span class="coding">\__init__()</span> method, class instantiation automatically invokes <span class="coding">\__init__()</span> for the newly-created class instance.
 
