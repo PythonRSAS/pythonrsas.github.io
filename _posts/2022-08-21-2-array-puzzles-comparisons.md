@@ -12,10 +12,13 @@ image: images/posts/photos/IMG_0875.JPG
 - [Problems that ask for permutation or rearrangement](#problems-that-ask-for-permutation-or-rearrangement)
   - [1. Leetcode 1389 create a target array in given order.](#1-leetcode-1389-create-a-target-array-in-given-order)
   - [2. Leetcode 1920. Build Array from Permutation](#2-leetcode-1920-build-array-from-permutation)
+  - [4. Passing Yearbooks - number of permutations](#4-passing-yearbooks---number-of-permutations)
 - [Problems that ask for a number](#problems-that-ask-for-a-number)
   - [Leetcode 1480. Running Sum of 1d Array](#leetcode-1480-running-sum-of-1d-array)
   - [Leetcode 2011. Final Value of Variable After Performing Operations](#leetcode-2011-final-value-of-variable-after-performing-operations)
   - [Leetcode 1672. Richest Customer Wealth- Max sum of subarrays](#leetcode-1672-richest-customer-wealth--max-sum-of-subarrays)
+- [Problems that ask for returning index](#problems-that-ask-for-returning-index)
+  - [Two Sum](#two-sum)
 
 
 # Introduction
@@ -165,6 +168,51 @@ The question is ***NOT*** asking for **output[0] = input[indices[0]]**.
 
 The state is not given from the output perspective.  Had we solve the problem with the wrong understanding, we would not have the right solutions. 
 
+## 4. Passing Yearbooks - number of permutations
+
+According to [Leetcode discussions](https://leetcode.com/discuss/interview-question/614096/facebook-interview-preparation-question-passing-yearbooks), this problem comes from Facebook recruiting portal
+
+There are n students, numbered from 1 to n, each with their own yearbook.
+
+They would like to pass their yearbooks around and get them signed by other students. You're given a list of n integers arr[1..n], which is guaranteed to be a permutation of 1..n.
+
+Initially, each student is holding their own yearbook. The students will then repeat the following two steps each minute: 
+Each student i will first sign the yearbook that they're currently holding (which may either belong to themselves or to another student), and then they'll pass it to student arr[i]. 
+
+It's possible that arr[i] = i for any given i, in which case student i will pass their yearbook back to themselves. Once a student has received their own yearbook back, they will hold on to it and no longer participate in the passing process.
+
+Output array: ith element is equal to the number of signatures that will be present in student i's yearbook once they receive it back.
+
+* Example 1
+
+n = 2
+
+arr = [2, 1]
+
+output = [2, 2]
+The first student will sign their own yearbook and pass it to the second, who will also sign it and pass it back to the first student, resulting in 2 signatures. Meanwhile, the second student's yearbook will similarly be signed both by themselves and then by the first student.
+
+* Example 2
+
+n = 2
+
+arr = [1, 2]
+
+output = [1, 1]
+Each student will simply pass their yearbook back to themselves, resulting in 1 signature each.
+
+
+* **Analysis and Problem Rewrite**:
+The problem statement is very long, even after I have shortened it.   We should simplify the problem.  Basically we can get rid of the whole story on yearbooks, and rewrite the question.  It is very difficult to think with so many words. 
+
+Given n students, and array arr, which is a permutation of 1..n.  
+
+Each student i will will move to arr[i], and will stop moving once it has returned to its starting position.  
+
+Output array: number of moves student i will make. 
+
+* **Analysis and Problem Rewrite**:
+
 
 # Problems that ask for a number
 
@@ -287,3 +335,29 @@ def maxSubSum(A):
 accounts = [[1,2,3],[3,2,1]]
 print(maxSubSum(accounts))
 ```
+
+# Problems that ask for returning index
+
+## Two Sum
+
+
+<div class="code-head"><span>code</span>twoSumUnsorted.py</div>
+
+```py
+
+def twoSumUnsorted(nums, target):
+    dd = {}
+    for idx, num in enumerate(nums):
+        if target - num in dd:
+            return [idx, dd[target - num]]
+        else:
+            dd[num] = idx
+nums = [2, 3, 4]
+target = 6
+print(twoSumUnsorted(nums, target))     
+
+nums = [11, 2,  7, 15]
+target = 9
+print(twoSumUnsorted(nums, target))    
+```
+
