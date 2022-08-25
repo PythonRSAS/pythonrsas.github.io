@@ -202,8 +202,12 @@ output = [1, 1]
 Each student will simply pass their yearbook back to themselves, resulting in 1 signature each.
 
 
-* **Analysis and Problem Rewrite**:
-The problem statement is very long, even after I have shortened it.   We should simplify the problem.  Basically we can get rid of the whole story on yearbooks, and rewrite the question.  It is very difficult to think with so many words. 
+* **Analysis and Simplifying Problem**:
+The problem statement is very long, even after I have shortened it. *Because it is very difficult to think with so many words. We should simplify the problem.*   Let's rewrite the question. 
+
+Do we really need the "yearbooks"?   **An immobile student reunites with his yearbook is equivalent to a moving student reuniting with his original position after moving about according to the given order from the given array.**    The yearbook can be substituted with "soul", "mate", or just simply "self".  
+
+If we use initial positions (1, ..., n) to represent students 1 to n, the given array 
 
 Given n students, and array arr, which is a permutation of 1..n.  
 
