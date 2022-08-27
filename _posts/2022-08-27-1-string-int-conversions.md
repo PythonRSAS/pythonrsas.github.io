@@ -5,7 +5,7 @@ category: education
 title: "string int conversions"
 description: explore string operations in Python and the ord, chr functions
 author: Sarah Chen
-image: images/posts/photos/IMG_0875.JPG
+image: images/posts//New_Unicode_logo.svg.PNG
 
 ---
 - [Convert string to integer](#convert-string-to-integer)
