@@ -48,15 +48,72 @@ max_Palindrome("abcd")
 
 # Clever ways
 
-The brute force method works. Now we try to find improvements.  
-1. Since palindroms are symmetric, do we really have to check the entire string if it is equal to its reverse?
+The brute force method works.   
+1. Since palindroms are *symmetric*, do we really have to check the entire string if it is equal to its reverse?  We can just check half.  Using <span class="coding">//</span> takes care of both even and odd lengths.  
    
 ```python
 def check_Palindrome(s):
     return all(s[i] == s[~i] for i in range(len(s) // 2))
 ```
-1. Can we loop through once instead of double loop?
-2. Since we are looking for the longest, then if we find one of length m, then we can immediately go to check on m + 1 length ones
+2. Can we loop through once instead of double loop?
+This one can be done.  The idea is to find center of palindrome, and expand towards outwards.  The solution has $$O(n)$$ time cost, and has $$O(1)$$ space complexity. 
+
+We can start from the left to right and test the centers.  For example, if the input string is "abcba", then
+the starting center at index 0
+l is  0
+r is  0
+res is a
+
+center goes to index 1
+l is  1
+r is  1
+res is b
+
+center goes to 2
+l is  2
+r is  2
+l decreases to  1
+r increases to  3
+l decreases 0
+r increases 4
+
+We get "abcba".
+
+Note that <span class="coding">if (len(s) - i - 1) <= len(tmp) // 2:</span>, we don't need to check any further, because the longest palindrome has already been found. 
+
+<div class="code-head"><span>code</span>palindrome_two_pointers.py</div>\
+
+```py
+def getLongestPalindrome(s, l, r):
+    """
+    helper function to get the longest palindrome, l, r are the middle indexes  
+    """ 
+    while l >= 0 and r < len(s) and s[l] == s[r]:
+        l -= 1 # from inner to outer
+        r += 1
+    return s[l+1:r]
+def f(s):
+    res = ""
+    for i in range(len(s)):
+        print("\ncenter: ", i)
+        # odd case, like "aba"
+        tmp = getLongestPalindrome(s, i, i)
+        if (len(s) - i - 1) <= len(tmp) // 2: # return if we have already found the longest palindrome
+            return tmp
+        if len(tmp) > len(res):
+            res = tmp
+        # even case, like "abba"
+        tmp = getLongestPalindrome(s, i, i+1)
+        if (len(s) - i - 1) <= len(tmp) // 2:  # return if we have already found the longest palindrome
+            return tmp
+        if len(tmp) > len(res):
+            res = tmp
+    return res
+f('abcba') 
+
+# : 'abcba'
+```
+3. Since we are looking for the longest, then if we find one of length m, then we can immediately go to check on m + 1 length ones.  
 
 # Remove symbols and white spaces
 
