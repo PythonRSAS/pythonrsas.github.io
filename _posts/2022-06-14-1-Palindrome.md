@@ -10,7 +10,12 @@ image: images/posts/photos/IMG_0869.JPG
 ---
 Quote from [Wikipedia](https://en.wikipedia.org/wiki/Longest_palindromic_substring#:~:text=In%20computer%20science%2C%20the%20longest,bananas%22%20is%20%22anana%22.) "In computer science, the longest palindromic substring or longest symmetric factor problem is the problem of finding a maximum-length contiguous substring of a given string that is also a palindrome. For example, the longest palindromic substring of "bananas" is "anana".
 
-Given a string, find the longest palindrome from the string. 
+Given a string, we want to find the longest palindrome from the string. 
+- [Brute force](#brute-force)
+- [Clever ways](#clever-ways)
+- [Remove symbols and white spaces](#remove-symbols-and-white-spaces)
+- [reverse vs. reversed()](#reverse-vs-reversed)
+
 # Brute force
 What came to my mind first is a brute force method.  
 
