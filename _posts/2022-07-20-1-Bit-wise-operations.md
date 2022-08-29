@@ -13,19 +13,40 @@ image: images/posts/photos/sf/IMG-0955.JPG
 </figure> 
 
 
-> <span class="coding">|</span> is used to set a certain bit to $$1$$.
 
-> <span class="coding">a&1</span> is used to test if a certain bit is $$1$$ or $$0$$.
+- [What is bit](#what-is-bit)
+- [Binary vs decimal number system](#binary-vs-decimal-number-system)
+- [Bit-wise operations](#bit-wise-operations)
+- [Examples](#examples)
+  - [count bits](#count-bits)
+  - [Reverse integer](#reverse-integer)
+  - [hex to RGB](#hex-to-rgb)
+- [Use in set operations](#use-in-set-operations)
+- [Reference](#reference)
+
+Below table summarizes bit-wise operations, which should be taken *very literally*.  
+
+
+| And| $$0$$ | $$1$$ || Or| $$0$$ | $$1$$ || XOR| $$0$$ | $$1$$ |
+| ---------|:---------:|----------|| ---------|:---------:|----------|| ---------|:---------:|----------|
+| $$0$$ | $$0$$ | $$0$$ || $$0$$ | $$0$$ | $$1$$ || $$0$$ | $$0$$ | $$1$$ |
+| $$1$$ | $$0$$ | $$1$$ || $$1$$ | $$1$$ | $$1$$ || $$1$$ | $$1$$ | $$0$$ |
+
+Using addition as an example, since  $$1$$ only when both $$a$$ and $$b$$ are $$1$$, otherwise $$0$$. 
+
+* **<span class="coding">| 1</span>**: can be used to set a certain bit to $$1$$.  For example, 2&1 is 0. 
+
+* **<span class="coding">& 1</span>**: can be used to test if a certain bit is $$1$$ or $$0$$.  2|1 is 3 (in binary 11).
+   
+* **<span class="coding">\<<</span>**: shift to left, i.e. double, or 乘2.  
 
 # What is bit
 
-> The bit represents a logical state with one of two possible values. These values are most commonly represented as either "1" or "0", true/false, yes/no, and etc..
+> The bit: either "1" or "0", true/false, yes/no, and etc..
 
 From Wikipedia: [The bit is the most basic unit of information in computing and digital communications. The name is a portmanteau of binary digit.](https://en.wikipedia.org/wiki/Bit).
 
-A 32-bit computer system can access $$2^32$$ different memory addresses, i.e 4 GB of RAM (and more)
-
-A 64-bit system can access $$2^64$$ different memory addresses. 
+A 32-bit computer system can access $$2^(32)$$ different memory addresses, i.e 4 GB of RAM (and more).   A 64-bit system can access $$2^(64)$$ different memory addresses. 
 
 I first learned about bit-wise number system when I was a child.  It is nothing but using binary instead of decimal  
 
@@ -67,17 +88,7 @@ We can use any number system.  Say it is 3.  Then all numbers will be decomposed
 
 # Bit-wise operations
 
-The following operations should be taken *very literally*.  Please see the tables. 
- 
-
 **And** <span class="coding">a & b</span>
-
-Returns $$1$$ only when both $$a$$ and $$b$$ are $$1$$, otherwise $$0$$. 
-
-| And| $$0$$ | $$1$$ || Or| $$0$$ | $$1$$ || XOR| $$0$$ | $$1$$ |
-| ---------|:---------:|----------|| ---------|:---------:|----------|| ---------|:---------:|----------|
-| $$0$$ | $$0$$ | $$0$$ || $$0$$ | $$0$$ | $$1$$ || $$0$$ | $$0$$ | $$1$$ |
-| $$1$$ | $$0$$ | $$1$$ || $$1$$ | $$1$$ | $$1$$ || $$1$$ | $$1$$ | $$0$$ |
 
 Example, if we want the lower (least significant) 4 bits of an integer, we <span class="coding">AND</span> it with $$15$$ (binary $$1111$$) so:
 
@@ -127,7 +138,7 @@ setbit0_1(4)
 
 <span class="coding">^</span> stands for "bitwise exclusive or".   Do not confuse it with <span class="coding">**</span>.
 
-It returns 1 only when $$a$$ and $$b$$ are different. 
+It returns 1 only when $$a$$ and $$b$$ are different.  Note that the inverse function of xor is itself. 
 
 **Not** <span class="coding">~ a</span>
 
@@ -162,30 +173,6 @@ bin(10) == bin(10|2)
 # True
 ``` 
 
-# Use in set operations
-
-<div class="code-head"><span>code</span>set operations.py</div>
-
-```py
-a = {1, 2, 3, 4, 5, 6}
-b = {4, 5, 6, 7, 8, 9}
-
-print(a | b)
-
-print(a & b)
-
-print(a - b)
-
-print(b - a)
-
-print(a ^ b)
-
-# {1, 2, 3, 4, 5, 6, 7, 8, 9}
-# {4, 5, 6}
-# {1, 2, 3}
-# {8, 9, 7}
-# {1, 2, 3, 7, 8, 9}
-```
 
 # Examples
 
@@ -282,6 +269,30 @@ def hexToRgb(value):
     return (r, g, b)
 ```
 
+# Use in set operations
+
+<div class="code-head"><span>code</span>set operations.py</div>
+
+```py
+a = {1, 2, 3, 4, 5, 6}
+b = {4, 5, 6, 7, 8, 9}
+
+print(a | b)
+
+print(a & b)
+
+print(a - b)
+
+print(b - a)
+
+print(a ^ b)
+
+# {1, 2, 3, 4, 5, 6, 7, 8, 9}
+# {4, 5, 6}
+# {1, 2, 3}
+# {8, 9, 7}
+# {1, 2, 3, 7, 8, 9}
+```
 
 # Reference
 
