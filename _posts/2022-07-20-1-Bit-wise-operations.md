@@ -27,18 +27,36 @@ image: images/posts/photos/sf/IMG-0955.JPG
 Below table summarizes bit-wise operations, which should be taken *very literally*.  
 
 
-| And| $$0$$ | $$1$$ || Or| $$0$$ | $$1$$ || XOR| $$0$$ | $$1$$ |
-| ---------|:---------:|----------|| ---------|:---------:|----------|| ---------|:---------:|----------|
-| $$0$$ | $$0$$ | $$0$$ || $$0$$ | $$0$$ | $$1$$ || $$0$$ | $$0$$ | $$1$$ |
-| $$1$$ | $$0$$ | $$1$$ || $$1$$ | $$1$$ | $$1$$ || $$1$$ | $$1$$ | $$0$$ |
+| And| $$0$$ | $$1$$ || Or| $$0$$ | $$1$$ || XOR| $$0$$ | $$1$$ || Not| $$0$$ | $$1$$ |
+| ---------|:---------:|----------|| ---------|:---------:|----------|| ---------|:---------:|----------|| ---------|:---------:|----------|
+| $$0$$ | $$0$$ | $$0$$ || $$0$$ | $$0$$ | $$1$$ || $$0$$ | $$0$$ | $$1$$ ||  $$1$$  |  $$0$$ 
+| $$1$$ | $$0$$ | $$1$$ || $$1$$ | $$1$$ | $$1$$ || $$1$$ | $$1$$ | $$0$$ || |
 
 Using addition as an example, since  $$1$$ only when both $$a$$ and $$b$$ are $$1$$, otherwise $$0$$. 
 
-* **<span class="coding">| 1</span>**: can be used to set a certain bit to $$1$$.  For example, 2&1 is 0. 
+* **<span class="coding">|</span>**: can be used to **set a certain bit to $$1$$**.  For example, 2|1 is 3 (11). 
 
-* **<span class="coding">& 1</span>**: can be used to test if a certain bit is $$1$$ or $$0$$.  2|1 is 3 (in binary 11).
+* **<span class="coding">&</span>**: can be used to test if a certain bit is $$1$$ or $$0$$, and can be used to **clear bits**.  
    
-* **<span class="coding">\<<</span>**: shift to left, i.e. double, or 乘2.  
+* **<span class="coding">\<<</span>**: shift to left, i.e. double, or 乘2. 
+
+* Set a bit (where n is the bit number):
+
+  unsigned char a |= (1 << n); 
+  It sets the nth bit to 1.   If n is 1, then it sets the second digit to 1.  4 |1<<1 is 6.  Because 4 is 100 and 6 is 110.  
+
+* Clear a bit:
+
+unsigned char b &= ~(1 << n);
+
+* Toggle a bit:
+
+unsigned char c ^= (1 << n);
+
+* Test a bit:
+
+unsigned char e = d & (1 << n);
+
 
 # What is bit
 
@@ -143,10 +161,6 @@ It returns 1 only when $$a$$ and $$b$$ are different.  Note that the inverse fun
 **Not** <span class="coding">~ a</span>
 
 Returns the complement of $$a$$.  If input is 0, then output is 1. It is the number you get by switching each 1 for a 0 and each 0 for a 1. This is the same as a - 1.
-
-| Not| $$0$$ | $$1$$ |
-| ---------|:---------:|----------|
-|          | $$1$$ | $$0$$ |
 
 
 **shifting** <span class="coding">a << b</span>  <span class="coding">a >> b</span>
