@@ -29,12 +29,13 @@ Below table summarizes bit-wise operations, which should be taken *very literall
 
 | And| $$0$$ | $$1$$ || Or| $$0$$ | $$1$$ || XOR| $$0$$ | $$1$$ || Not| $$0$$ | $$1$$ |
 | ---------|:---------:|----------|| ---------|:---------:|----------|| ---------|:---------:|----------|| ---------|:---------:|----------|
-| $$0$$ | $$0$$ | $$0$$ || $$0$$ | $$0$$ | $$1$$ || $$0$$ | $$0$$ | $$1$$ ||  $$1$$  |  $$0$$ 
-| $$1$$ | $$0$$ | $$1$$ || $$1$$ | $$1$$ | $$1$$ || $$1$$ | $$1$$ | $$0$$ || |
+| $$0$$ | $$0$$ | $$0$$ || $$0$$ | $$0$$ | $$1$$ || $$0$$ | $$0$$ | $$1$$ ||  |$$1$$  |  $$0$$ |
+| $$1$$ | $$0$$ | $$1$$ || $$1$$ | $$1$$ | $$1$$ || $$1$$ | $$1$$ | $$0$$ || | | |
+
 
 Using addition as an example, since  $$1$$ only when both $$a$$ and $$b$$ are $$1$$, otherwise $$0$$. 
 
-* **<span class="coding">|</span>**: can be used to **set a certain bit to $$1$$**.  For example, 2|1 is 3 (11). 
+* **<span class="coding">|</span>**: can be used to **set a certain bit to $$1$$**. 
 
 * **<span class="coding">&</span>**: can be used to test if a certain bit is $$1$$ or $$0$$, and can be used to **clear bits**.  
    
