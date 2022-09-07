@@ -5,17 +5,17 @@ category: education
 title: "string int conversions"
 description: explore string operations in Python and the ord, chr functions
 author: Sarah Chen
-image: images/posts//New_Unicode_logo.svg.PNG
+image: images/posts/New_Unicode_logo.svg.PNG
 
 ---
 - [Convert string to integer](#convert-string-to-integer)
 - [Convert integer to string](#convert-integer-to-string)
 - [Appendix](#appendix)
+- [Reference](#reference)
+- [Future reading list](#future-reading-list)
 
 
-It is easy to convert int to string or from string to int.  Just use the <span class="coding">int</span> and <span class="coding">str</span> functions.   
-
-The int function not only can 
+It seems super easy to convert int to string or from string to int.  Just use the <span class="coding">int</span> and <span class="coding">str</span> functions.   The <span class="coding">int</span> function not only can 
 - convert a string to number
 - convert using given base
 - remove decimals from a floating number 
@@ -28,29 +28,19 @@ int('10', base = 2)
 int(10.3)
 # 10
 ```
-But what if we want to implement those from scratch?  
+But what if we want to implement those from scratch?  We would need two Python functions that work with Unicode.    According to [Wikipedia](https://en.wikipedia.org/wiki/Unicode), The Unicode Standard is an information technology standard for the consistent encoding, representation, and handling of text expressed in most of the world's writing systems.  In simple terms, Unicode is a universal standard for encoding characters and symbols. It does that by assigning a code point to every character and symbol in every language in the world.
 
-* **ord**: Return the Unicode code point for a one-character string.
-* **chr**: Return a Unicode string of one character with ordinal i; 0 <= i <= 0x10ffff.
+<span class="coding">ord()</span> and <span class="coding">chr()</span> are inverses of each other.  
+
+* **ord**: converts a str character to its base-10 code point.  A Unicode code point is a unique number assigned to each Unicode character.  Examples:  <span class="coding">ord('0')</span> returns 48. <span class="coding">ord('0')</span> returns 49.  <span class="coding">ord('a')</span> returns 97.  <span class="coding">ord('z')</span> returns 122. 
   
-Unicode and code point can seem complicated.  According to [Wikipedia](https://en.wikipedia.org/wiki/Unicode) It is formally The Unicode Standard is an information technology standard for the consistent encoding, representation, and handling of text expressed in most of the world's writing systems. 
-  
+* **chr**: Inverse function of ord.  Return a Unicode **string** of an integer.  For example, <span class="coding">chr(48)</span> returns '0'. <span class="coding">chr(49)</span> returns '1'.  Guess what, <span class="coding">chr(97)</span> returns 'a'.  
+
+![codepoint](../images/posts/codepoint.png)
+
 # Convert string to integer
 
 We can use the <span class="coding">ord</span> function, which returns the Unicode code point for a one-character string. 
-```python
-ord('0')
-# 48
-
-ord('1')
-# 48
-
-ord('a')
-97
-
-ord('z')
-122
-```
 
 So we use <span class="coding">ord(s) - ord('0')</span> to get the integer because integer 1 - 9 can be represented by their distance to ord('0').
 
@@ -157,7 +147,7 @@ print(f(-12))
 ```
 
 # Appendix
-In SAS, to conver string to integer, we use
+Sometimes I like to add how to do things in SAS just so that I don't forget too much.  For reference, in SAS, to conver string to integer, we use
 
 ```sas
 data new;
@@ -170,3 +160,15 @@ data new;
     char_var = put(num_var,6.);
 run;
 ```
+
+# Reference
+
+[Stackoverflow: What's the difference between a character, a code point, a glyph and a grapheme?](https://stackoverflow.com/questions/27331819/whats-the-difference-between-a-character-a-code-point-a-glyph-and-a-grapheme)
+
+[ReaPython: Python Encoding Guide](https://realpython.com/python-encodings-guide/)
+
+[Learn Coding Fast: 2 ways to convert a string to lowercase in python](https://learncodingfast.com/2-ways-to-convert-a-string-to-lowercase-in-python/)
+# Future reading list
+[The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)](https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/)  
+
+[What Every Programmer Absolutely, Positively Needs To Know About Encodings And Character Sets To Work With Text](https://kunststube.net/encoding/)
