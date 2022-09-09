@@ -49,11 +49,16 @@ ho* ['hot']
 
 We first build an adjacency dictionary, where class representative is they, and the class contains words that can be represented by the representative. 
 
+Then we traverse the graph (represented by the adjacency dictionary) using BFS, layer by layer, and check if anyone we encounter is the endWord "cog".  Each layer we visit adds 1 to the ladder. 
+
+Each layer are the neighbors of the previously visited word.  We begin with "hit", and pop it.  Its immediate neighbors ['dot', 'lot', 'cot'] are added to the que.  We pop them one by one.  Then their immediate neighbors ['dog', 'log', 'cog'] are added to the que.   Again, we pop them one by one.  When "cog" was popped, we returen the number of layers and we are done. 
+
+I printed out each step to explain what the code does. 
 <div class="code-head"><span>code</span>word ladder.py</div>
 
 ```py
 from collections import deque, defaultdict
-def seqLength(A,Z, w_lt):
+def seqLength(A, Z, w_lt): # A=beginWord; Z=endWord
     if Z not in w_lt:
         return 0
     # build adjacency dictionary
@@ -61,34 +66,32 @@ def seqLength(A,Z, w_lt):
     w_lt.append(A) # because w_lt does not have begin word
     for word in w_lt:
         for i in range(len(word)):
-            dd[word[:i] + "*" + word[i+1:]].append(word) # 每个词有 ||词||个 keys, 如果词长度是3， 就有3个keys
-    for k, v in dd.items():
+            # 每个词有 ||词||个 keys, 如果词长度是3， 就有3个keys
+            dd[word[:i] + "*" + word[i+1:]].append(word) 
+    for k, v in dd.items(): # for explaination
         print(k, v)
 
     # BFS
     visit = set([A])
-    print("visit begins with: ", visit)
+    # print("visit begins with: ", visit)
     que = deque()
     que.append(A)
-    print('que begins with', que)
+    # print('que begins with', que)
     res = 1
     while que:
-        print("\n****************************************\n", que)
+        # print("\n****************************************\n", que)
         for i in range(len(que)):
             word = que.popleft()
-            print('\npopped ', word)
+            # print('\npopped ', word)
             if word == Z:
                 return res # exit 出口
             for j in range(len(word)):
                 for value in dd[word[:j] + "*" + word[j+1:]]:
                     if value not in visit:
-                        # print("value not in visit:", value)
-                        # print("to add ", value)
                         que.append(value)
-                        print("Add to que ", value)
+                        # print("Add to que ", value)
                         visit.add(value)
-                        # print("visit ", visit)
-            print("i:", i)
+            # print("i:", i)
         res += 1
         print("current res is ", res)
 
