@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : Learning Python and SAS
+tag : python class
 category: "Python for SAS"
 title: "Python class"
 description: What is a class and how to write and use it

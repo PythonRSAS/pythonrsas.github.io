@@ -8,7 +8,7 @@ author: Sarah Chen
 image: images/posts/photos/IMG-0867.JPG
 
 ---
-![](images/posts/photos/IMG-0867.JPG)
+![](./images/posts/photos/IMG-0867.JPG)
 
 Sometimes at work you want to send many people emails but you want to appear to be personal.  Sending them one by one manually is very tedious. 
 

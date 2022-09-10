@@ -1,7 +1,7 @@
 ---
 layout: post
 tag : data structure, algorithm, python
-category: "Python for SAS"
+category: education
 title: "Linked list"
 description: linked list as an abstract data structure, what, why, and how
 author: Sarah Chen

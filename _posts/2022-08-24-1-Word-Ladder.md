@@ -5,14 +5,14 @@ category: education
 title: "Word Ladder"
 description: solving the shortest word ladder puzzle
 author: Sarah Chen
-image: images/posts/Head_to_tail_word_ladder.svg.PNG
+image: images/posts/wordLadderBFS.PNG
 
 ---
-Quote from [Wikipedia](https://en.wikipedia.org/wiki/Word_ladder) "Word ladder (also known as Doublets, word-links, change-the-word puzzles, paragrams, laddergrams, or word golf) is a word game invented by Lewis Carroll..
+Quote from [Wikipedia](https://en.wikipedia.org/wiki/Word_ladder) "Word ladder (also known asdoublets, word-links, change-the-word puzzles, paragrams, laddergrams, or word golf) is a word game invented by Lewis Carroll..
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Head_to_tail_word_ladder.svg/220px-Head_to_tail_word_ladder.svg.png)
 
-
+# Problem
 The problem is [Leetcode 127. Word Ladder](https://leetcode.com/problems/word-ladder/).  
  
 Given two words, beginWord and endWord, and a wordList, return the number of words in the **shortest**  word ladder from beginWord to endWord, or 0 if no such sequence exists.
@@ -23,28 +23,20 @@ Example 1:
 
 Input: beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]
 Output: 5
-Explanation: One shortest transformation sequence is "hit" -> "hot" -> "dot" -> "dog" -> cog", which is 5 words long.
 
 Example 2:
 
 Input: beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log"]
 Output: 0
-Explanation: The endWord "cog" is not in wordList, therefore there is no valid transformation sequence.
-<!-- The method is like solving a very simple math problem.  
-* You first _understand what does the problem exactly ask for_.
-* **Put the requirements in math terms!**  
-* Then _test it on one or two basic cases to really understand the problem and solution_.  Because it is hard to think only think with abstractions.  
-* Work out the **generalization**. 
 
-1. Let the length of the string be $$n$$.  Assume the longest is the entire string, check if it is palindrom. If yes, then done. 
-2. If the entire string is not a palindrom, then we decrease check length by 1:  check on continuous chunks of length $$n-1$$, and iterate through them. Say the string is "abcd", then the iterations are: "abc", and "bcd". There are $$4-3+1$$ of them. We generalize the number of substrings with length $$x$$ to $$n - X +1$$.  If any of them is palindrom, then we are done.  Else continue. 
-    -->
-
+# Class representative hash table - adjacency dictionary
 For each word in the wordList, and the beginning word, we mask one letter at a time.  For the word "hot", since it has 3 letters, there are 3 ways to mask it. \*ot, h\*t, and ho\*.
 
 Let these masked words be class representatives (dictionary keys).  And the respective classes that they represent are lists of relatives who would be the same as each other if masked at the same position.  For example, 
 *ot ['hot', 'dot', 'lot', 'cot']
+
 h*t ['hot', 'hit']
+
 ho* ['hot']
 
 We first build an adjacency dictionary, where class representative is they, and the class contains words that can be represented by the representative. 

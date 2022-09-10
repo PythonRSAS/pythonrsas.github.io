@@ -32,11 +32,11 @@ But what if we want to implement those from scratch?  We would need two Python f
 
 <span class="coding">ord()</span> and <span class="coding">chr()</span> are inverses of each other.  
 
-**ord**: converts a str character to its base-10 code point.  A Unicode code point is a unique number assigned to each Unicode character.  Examples:  <span class="coding">ord('0')</span> returns 48. <span class="coding">ord('0')</span> returns 49.  <span class="coding">ord('a')</span> returns 97.  <span class="coding">ord('z')</span> returns 122. 
+**ord** converts a str character to its base-10 code point.  A Unicode code point is a unique number assigned to each Unicode character.  Examples:  <span class="coding">ord('0')</span> returns 48. <span class="coding">ord('0')</span> returns 49.  <span class="coding">ord('a')</span> returns 97.  <span class="coding">ord('z')</span> returns 122. 
   
-**chr**: Inverse function of ord.  Return a Unicode **string** of an integer.  For example, <span class="coding">chr(48)</span> returns '0'. <span class="coding">chr(49)</span> returns '1'.  Guess what, <span class="coding">chr(97)</span> returns 'a'.  
+**chr** is the inverse function of ord.  Return a Unicode **string** of an integer.  For example, <span class="coding">chr(48)</span> returns '0'. <span class="coding">chr(49)</span> returns '1'.  Guess what, <span class="coding">chr(97)</span> returns 'a'.  
 
-![codepoint](../images/posts/codepoint.PNG)
+![codepoint](../images/posts/codepoint.png)
 
 # Convert string to integer
 

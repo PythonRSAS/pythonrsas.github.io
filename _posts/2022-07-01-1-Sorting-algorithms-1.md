@@ -24,7 +24,16 @@ There are two main types of sorting: by comparison and not by comparion.  All of
 
 ![Sorting algorithms and time efficiencies](../images/posts/sort.PNG)
 
-Note that Python's built-in <span class="coding">list.sort</span> implements the Timsort algorithm, and is faster than most methods. 
+Note that "stable" is one other important criteria.  Stable means keeping the orginal order of values if they are equal.  This is relevant if we need to sort multiple passes: first by country, then by sales amount, or vice versa.  
+
+For example, if we sort first by country and then by sales.  We expect the result to be like the following.  But if the sort is not a stable one, we may end up with the wrong order. 
+
+country | sales 
+---------|----------
+ A | 2 
+ B | 2 
+
+Python's built-in <span class="coding">list.sort</span> is an inplace sort and implements the Timsort algorithm, and is faster than most methods.   It works only on lists.  See [source](https://github.com/python/cpython/blob/d246a6766b9d8cc625112906299c4cb019944300/Python/bltinmodule.c#L2236-L2237).     The non-inplace <span class="coding">sorted</span>  works on all objects.  See [source](https://github.com/python/cpython/blob/d246a6766b9d8cc625112906299c4cb019944300/Python/bltinmodule.c#L2236-L2237).
 
 # Insertion sort
 Insertion sort feels like some kind of depth-first algorithm although it does not have anything to do with trees.
