@@ -13,10 +13,11 @@ image: images/posts/photos/IMG-0631.JPG
 </figure> 
 
 # How to work from the time & place dimensions
-To me, there are two modes of work:
+To me, there are three modes of work:
 1. Solitude: anyting that requires quiet thinking, such as reading, coding. 
-2. In a group: interacting with others
-3. Anywhere in between the above
+2. Work with one or two partners. Best explained by [All I Really Need to Know about Pair Programming I Learned In Kindergarten
+](https://collaboration.csc.ncsu.edu/laurie/Papers/Kindergarten.PDF)
+3. Work with a team and meetings
 
 For solitude work, it is best when it is dark outside when everyone is asleep.  Since staying up at night will result in bad long term health, getting up before 4:30 am is the only option.   The catch is that I need to remember to go to sleep early (before 9 pm).  
 
@@ -27,9 +28,45 @@ Mode of work | When  | Where
 Solitude | 4:30 am before 8:30 am | Home office or quiet quarter in office
 With others | 8:30 am to 5 pm | Office or anywhere with the phone
 
+## Work with partner(s)
+
+*All I Really Need to Know I Learned in Kindergarten*
+
+- By Robert Fulghum (Fulghum 1988)
+
+*Share everything.*
+
+*Play fair.*
+
+*Don’t hit people.*
+
+*Put things back where you found them.*
+
+*Clean up your own mess.*
+
+*Don’t take things that aren’t yours.*
+
+*Say you’re sorry when you hurt somebody.*
+
+*Wash your hands before you eat.*
+
+*Flush.*
+
+*Warm cookies and cold milk are good for you.*
+
+*Live a balanced life – learn some and think some and draw and paint and sing and*
+
+*dance and play and work every day some.*
+
+*Take a nap every afternoon.*
+
+*When you go out into the world, watch out for traffic, hold hands and stick together.*
+
+*Be aware of wonder.*
+
 # So
 
-since staying up at night will result in a poor workday, 
+Since staying up at night will result in a poor workday, 
 
 - It is focusing on the **priorities**.
 - It is **consistenly** making progress.  
@@ -97,6 +134,6 @@ Very important tool for work!
 ## Coding
 ![](\images\posts\vscode_shortcuts.PNG)
 
-
-
+# Reference
+[Kindergarten](https://collaboration.csc.ncsu.edu/laurie/Papers/Kindergarten.PDF)
 

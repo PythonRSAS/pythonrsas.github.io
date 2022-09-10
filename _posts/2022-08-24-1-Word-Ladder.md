@@ -8,9 +8,12 @@ author: Sarah Chen
 image: images/posts/wordLadderBFS.PNG
 
 ---
-Quote from [Wikipedia](https://en.wikipedia.org/wiki/Word_ladder) "Word ladder (also known asdoublets, word-links, change-the-word puzzles, paragrams, laddergrams, or word golf) is a word game invented by Lewis Carroll..
+Quote from [Wikipedia](https://en.wikipedia.org/wiki/Word_ladder) "Word ladder (also known asdoublets, word-links, change-the-word puzzles, paragrams, laddergrams, or word golf) is a word game invented by Lewis Carroll in the 19th century
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Head_to_tail_word_ladder.svg/220px-Head_to_tail_word_ladder.svg.png)
+
+And from tears to smile:
+tears → sears → spars → spare → spire → spile → smile
 
 # Problem
 The problem is [Leetcode 127. Word Ladder](https://leetcode.com/problems/word-ladder/).  
@@ -30,9 +33,7 @@ Input: beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","
 Output: 0
 
 # Class representative hash table - adjacency dictionary + BFS
-For each word in the wordList, and the beginning word, we mask one letter at a time.  For the word "hot", since it has 3 letters, there are 3 ways to mask it. \*ot, h\*t, and ho\*.
-
-Let these masked words be class representatives (dictionary keys).  And the respective classes that they represent are lists of relatives who would be the same as each other if masked at the same position.  For example, the three class representatives have the following classes: 
+For each word in the wordList, and the beginning word, we mask one letter at a time.  For the word "hot", since it has 3 letters, there are 3 ways to mask it. \*ot, h\*t, and ho\*.   Let these masked words be class representatives (dictionary keys).  And the respective classes that they represent are lists of relatives who would be the same as each other if masked at the same position.  For example, the three class representatives have the following classes: 
 
 *ot ['hot', 'dot', 'lot', 'cot']
 
@@ -40,8 +41,13 @@ h*t ['hot', 'hit']
 
 ho* ['hot']
 
-## Build class representative hashtable or adjacency dictionary
-We first build an adjacency dictionary, where class representative is they, and the class contains words that can be represented by the representative. 
+To implement it, we build an adjacency dictionary or hashtable, where class representatives are <span class="coding">[word[:i] + "*" + word[i+1:]]</span>, and the class contains words that can be represented by its representative. We use <span class="coding">collections.defaultdict(list)</span> to store the hashtable.  Note that some words may be included in multiple classes.  So it is important to check if we have visited words before. 
+
+```python
+    for word in w_lt:
+        for i in range(len(word)):
+            clsTbl[word[:i] + "*" + word[i+1:]].append(word)
+```
 
 Then we traverse the graph (represented by the adjacency dictionary) using BFS, layer by layer, and check if anyone we encounter is the endWord "cog".  Each layer we visit adds 1 to the ladder. 
 
@@ -71,9 +77,23 @@ hi* ['hit']
 ## How do we guarantee shortest
 When there are multiple members in a class representation, the path may not be unique.  But breadth-first search guarantees shortest.  This is because the class representations are exhaustive. 
 
-**Each layer in BFS = members of three associated classes from the word just visited (or popped)**, if members have not visited yet. 
+**Each layer in BFS = all members of three associated classes from the word just visited (or popped)**, if members have not visited yet.  
 
+Note that we do not include any members of the three associated classes that have already been previously visited.  This eliminates redundancy and building unnecessary longer or infinite loop ladders (*if this word previously did not get us to the endWord, why include it again*). 
+
+The visited ones are saved in a set <span class="coding">visited = set(start)</span>
+```python
+if value not in visited:
+    que.append(value)
+    visited.add(value)
+```
 We pop (check) them one by one <span class="coding">word = que.popleft()</span> using the queue structure.  As soon as we find the target word, the search is immediately ended.   
+
+The search is guaranteed to give us the shortest path because of the construct of the layers. 
+
+# Complexity
+
+When building the hashtable, we have a double loop. $$O(n*l)$$, where $$n$$ is the length of the word list, and $$l$$ is word length.  And in BFS, we have triple loop. 
 
 <div class="code-head"><span>code</span>word ladder.py</div>
 
@@ -89,7 +109,7 @@ def seqLength(start, end, w_lt): # start=beginWord; end=endWord
         for i in range(len(word)):
             clsTbl[word[:i] + "*" + word[i+1:]].append(word) 
     # BFS
-    visit = set([start])
+    visited = set(start)
     que = deque()
     que.append(start)
     res = 1
@@ -100,16 +120,16 @@ def seqLength(start, end, w_lt): # start=beginWord; end=endWord
                 return res # exit 出口
             for j in range(len(word)):
                 for value in clsTbl[word[:j] + "*" + word[j+1:]]:
-                    if value not in visit:
+                    if value not in visited:
                         que.append(value)
-                        visit.add(value)
+                        visited.add(value)
         res += 1
     return 0
 beginWord = "hit";  endWord = "cog";  wordList = ["hot","dot","dog","lot","log","cog", "fog", "cot"]
 print(seqLength(beginWord, endWord, wordList))
 # 4
 ```
-
+If the endWord is in the last layer, the traversal can be seen as a partition of all the words: collectively exhaustive and mutually exclusive. 
 
 # Appendix
 I added lots of print statements to the let the executed code explain for itself the process. 
@@ -131,8 +151,8 @@ def seqLength(start, end, w_lt): # start=beginWord; end=endWord
     # for k, v in clsTbl.items(): # for explaination
     #     print(k, v)
     # BFS
-    visit = set([start])
-    # print("visit begins with: ", visit)
+    visited = set(start)
+    # print("visited begins with: ", visited)
     que = deque()
     que.append(start)
     # print('que begins with', que)
@@ -146,10 +166,10 @@ def seqLength(start, end, w_lt): # start=beginWord; end=endWord
                 return res # exit 出口
             for j in range(len(word)):
                 for value in clsTbl[word[:j] + "*" + word[j+1:]]:
-                    if value not in visit:
+                    if value not in visited:
                         que.append(value)
                         # print("Add to que ", value)
-                        visit.add(value)
+                        visited.add(value)
             # print("i:", i)
         res += 1
         print("current res is ", res)

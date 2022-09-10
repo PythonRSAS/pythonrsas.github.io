@@ -3,7 +3,7 @@ layout: post
 tag: sharding
 category: education
 title: "System design basic concepts"
-description: sharding
+description:  design data-intensive web-based applications
 author: Sarah Chen
 image: images/posts/photos/sf/IMG-0955.JPG
 ---
@@ -14,7 +14,7 @@ image: images/posts/photos/sf/IMG-0955.JPG
 
 
 
-- [What is bit](#what-is-bit)
+- [What is system design](#what-is-system-design)
 - [Binary vs decimal number system](#binary-vs-decimal-number-system)
 - [Bit-wise operations](#bit-wise-operations)
 - [Examples](#examples)
@@ -24,46 +24,17 @@ image: images/posts/photos/sf/IMG-0955.JPG
 - [Use in set operations](#use-in-set-operations)
 - [Reference](#reference)
 
-Below table summarizes bit-wise operations, which should be taken *very literally*.  
-
-
-| And| $$0$$ | $$1$$ || Or| $$0$$ | $$1$$ || XOR| $$0$$ | $$1$$ |
-| ---------|:---------:|----------|| ---------|:---------:|----------|| ---------|:---------:|----------|
-| $$0$$ | $$0$$ | $$0$$ || $$0$$ | $$0$$ | $$1$$ || $$0$$ | $$0$$ | $$1$$ |
-| $$1$$ | $$0$$ | $$1$$ || $$1$$ | $$1$$ | $$1$$ || $$1$$ | $$1$$ | $$0$$ |
-
-
-Using addition as an example, since  $$1$$ only when both $$a$$ and $$b$$ are $$1$$, otherwise $$0$$. 
 
 * **sharding**: *optimization* technique for database horizontal scaling.  It lets you split up databases.  Sharding is a specific type of partitioning.  
   * Scaling up hardware. For example, doubling memory, processor.  But it is very expensive and has diminishing return. 
   * If scale out instead of scale up, make copies of databases.  Instead of one database overloaded with requests, have copies or replicas, eventually.  This introduces a problem: "eventual consistency".  Having eventual consistency can result in stale data.  We all have experienced not receiving text from friends and don't receive it until a day later.  
 
-* **<span class="coding">&</span>**: can be used to test if a certain bit is $$1$$ or $$0$$, and can be used to **clear bits**.  
-   
-* **<span class="coding">\<<</span>**: shift to left, i.e. double, or 乘2. 
 
-* Set a bit (where n is the bit number):
+# What is system design
 
-  unsigned char a |= (1 << n); 
-  It sets the nth bit to 1.   If n is 1, then it sets the second digit to 1.  4 |1<<1 is 6.  Because 4 is 100 and 6 is 110.  
+I have watched a few system design videos.  None bothered to give a definition of what is system design.  But from what I have heard, it seems that system design means how to design big data web-based applications such as Facebook, Instagram, Google, Twitter, and so on.  
 
-* Clear a bit:
-
-unsigned char b &= ~(1 << n);
-
-* Toggle a bit:
-
-unsigned char c ^= (1 << n);
-
-* Test a bit:
-
-unsigned char e = d & (1 << n);
-
-
-# What is bit
-
-> The bit: either "1" or "0", true/false, yes/no, and etc..
+![](../images/posts/data-intensive-apps.PNG)
 
 From Wikipedia: [The bit is the most basic unit of information in computing and digital communications. The name is a portmanteau of binary digit.](https://en.wikipedia.org/wiki/Bit).
 

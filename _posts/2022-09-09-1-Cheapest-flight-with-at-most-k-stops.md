@@ -10,12 +10,12 @@ image: images/posts/Air-route-network-connected-with-PEK-in-2018.jpg
 ---
 
 # My problem
-What is the cheapest total price from one place to another with at most k stops?  That seems to be the problem I have been working on.  The flights to China during this time has been very expensive, 10 times of pre-Covid prices.  Not only they are very expensive, they take a long time too.  Before Covid the non-stop flight to China was a little over 13 hours.  Now, a $20,000 economy ticket with 5 stops with total travel time of over 50 hours is not uncommon.  This's a practical problem, not just a puzzle. 
+What is the cheapest total price from one place to another with at most k stops?  The flights to China now are very expensive, 10 times of pre-Covid prices.  Not only they are very expensive, but also the length of time and number of stops are horendous.  Before Covid the non-stop flight to China was a little over 13 hours.  Now, a $20,000 economy ticket with 5 stops with total travel time of over 50 hours is not uncommon.  This's a practical problem, not just a puzzle. 
 
 ![](../images/posts/Air-route-network-connected-with-PEK-in-2018.jpg)
 
 Before quoting any named algorithm, how would we solve the problem?  
-Given the ticket scacity and high expense situation, *complicated* by zero-Covid strict policies in China that can result in things changing from one day to the next, I will pick any Chinese city close to my destination to get to China first, and then solve the cheapest problem again domestically.  My problem is complex: not only monetary costs, but also date/time of arrivals/departures for connecting the flights, taking into account any local lockdowns going on.  Furthermore, I cannot spend months in China simply waiting at some random cities.  Besides total cost is limited to k, the total time is also limited to some k. 
+Given the ticket scacity and high expense situation, *complicated* by zero-Covid strict policies in China that can result in things changing from one day to the next, I will pick any Chinese city close to my destination to get to China first, and then solve the cheapest problem again domestically.  My problem is complex: monetary costs,  date/time of arrivals/departures for connecting the flights, local lockdown severities, my own Covid tests, etcs..  Furthermore, I cannot spend months in China simply waiting at some random cities.  In all, it is a much more complicated and continuously changing problem than a puzzle. 
 
 To make problem as simple as possible (albeit unrealistic), I would focus on monetary cost only and pick one of the cities, say Beijing, as my destination.  And since tickets are usually sold as round trip prices, they can be treated as undirected edges in a graph. 
 
@@ -27,28 +27,29 @@ My solution seems to resemble Dijstra's algorithm: solving problem layer by laye
 
 But Dijstra was born way befor I was :).  
 
-# Dijstra's algorithm
-A type of "BFS" (best-first search), aka, "greedy" algorithm. 
+# How he discovered it
+"One of the reasons that it is so nice was that I designed it **without pencil and paper**. I learned later that one of the advantages of designing **without pencil and paper** is that you are almost forced to **avoid all avoidable complexities**. Eventually, that algorithm became to my great amazement, one of the cornerstones of my fame."
 
+— Edsger Dijkstra, in an interview with Philip L. Frana, [Communications of the ACM, 2001](https://cacm.acm.org/magazines/2010/8/96632-an-interview-with-edsger-w-dijkstra/fulltext?mobile=false)
 ## What I learn from Duhstra's computer programming path
 
 From [Wikipedia, Edsger Wybe Dijkstra](https://en.wikipedia.org/wiki/Edsger_W._Dijkstra) (11 May 1930 – 6 August 2002) was a Dutch computer scientist, programmer, software engineer, systems scientist, and science essayist.
 
 *"The point was that I was supposed to study theoretical physics at the University of Leiden simultaneously, and as I found the two activities harder and harder to combine, I had to make up my mind, either to stop programming and become a real, respectable theoretical physicist, or to carry my study of physics to a formal completion only, with a minimum of effort, and to become....., yes what? A programmer? But was that a respectable profession? For after all, what was programming? Where was the sound body of knowledge that could support it as an intellectually respectable discipline? I remember quite vividly how I envied my hardware colleagues, who, when asked about their professional competence, could at least point out that they knew everything about vacuum tubes, amplifiers and the rest, whereas I felt that, when faced with that question, I would stand empty-handed. Full of misgivings I knocked on Van Wijngaarden's office door, asking him whether I could "speak to him for a moment"; when I left his office a number of hours later, I was another person. For after having listened to my problems patiently, he agreed that up till that moment there was not much of a programming discipline, but then he went on to explain quietly that automatic computers were here to stay, that we were just at the beginning and could not I be one of the persons called to make programming a respectable discipline in the years to come? This was a turning point in my life and I completed my study of physics formally as quickly as I could."*
 
+— Edsger Dijkstra, The Humble Programmer (EWD340), Communications of the ACM
+
 The point I am making with such a long quote instead of just sharing a link is this: do it early, do it when it is not even a profession, or do it when not many people care about it yet.  When it is popular and hot, it is a little too late. 
 
 By this token, the career of a system engineer at one of the big tech firms is not the right path for big success.  
 
-— Edsger Dijkstra, The Humble Programmer (EWD340), Communications of the ACM
 
 Dijkstra to a promising reseacher's advice was ***"Do only what only you can do"***.  Note that there are two "only" in the quote.  It is not only do what only you can do, but also only do those only you can do. 
 
-## How he discovered it
-"One of the reasons that it is so nice was that I designed it **without pencil and paper**. I learned later that one of the advantages of designing **without pencil and paper** is that you are almost forced to **avoid all avoidable complexities**. Eventually, that algorithm became to my great amazement, one of the cornerstones of my fame."
+By the way, Dijkstra said many witty and sometimes outrageous words (we all do) that people still remember:
 
-— Edsger Dijkstra, in an interview with Philip L. Frana, Communications of the ACM, 2001
-
+"“Object-oriented programming is an exceptionally bad idea which could only have originated in California.”
+    - "Go To Statement Considered Harmful" (Communications of the ACM. 11 (3): 147–148)
 # Bellman-Ford algorithm
 Bellman-Ford is a single source shortest path (SSSP) algorithm for weighted directed graph.  But Bellman-Ford is not the ideal SSSP because of time complexity $$O(E*V)$$.  
 
@@ -197,3 +198,5 @@ print("The cheapest price is ", findCheapestPrice(n, G, origin, target, k))
 
 # Future reading
 [Bellman Ford](https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm)
+
+[Interview with Dijkstras](https://cacm.acm.org/magazines/2010/8/96632-an-interview-with-edsger-w-dijkstra/fulltext?mobile=false)
