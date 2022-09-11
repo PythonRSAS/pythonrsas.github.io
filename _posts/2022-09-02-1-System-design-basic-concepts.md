@@ -22,6 +22,7 @@ image: images/posts/photos/sf/IMG-0955.JPG
   - [Scalability](#scalability)
   - [Reliability](#reliability)
   - [Availability](#availability)
+  - [Reliability vs availability](#reliability-vs-availability)
 - [Reference](#reference)
 
 # What is system design
@@ -96,15 +97,17 @@ Slightly harder to define than hardware reliability.
 
 Mean time between failures (MTBF)
 
-$$ MTBF = {Total time } \over {Total down time} $$
+$$ MTBF = {{Total_time } \over {Total_down_time}} $$
 
 ## Availability
 Amount of time a system is operational during a period of time.
 Poorly designed software requriing downtime for updates is less available. 
 
-Often measured in 9's. 
+Often measured in 9's.  If the systems is available 23 hours out of a day, then availablity is $23/24=95.83%$
+Highly available systems require 5 9's: 99.999%, which is 5.26 minutes out of a year.
 
-
+## Reliability vs availability
+Reliable 
 # Reference
 
 [Bank of America prioritized internal cloud. Now it’s evaluating third-party providers](https://www.ciodive.com/news/bank-of-america-prioritized-internal-cloud-now-its-evaluating-third-party/565228/)
