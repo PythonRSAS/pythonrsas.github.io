@@ -130,13 +130,21 @@ Whether it can abstract away infrastrue so that product engineers don't have to 
 ## Efficiency
 Associated metrics are latency and throughput. 
 
+Latency table summarizes different access types and the amounts of time they take. 
 
 Access type | Time | Converted time
 ---------|----------|---------
- A1 | B1 | C1
- A2 | B2 | C2
- A3 | B3 | C3
+ CPU cycle | .3ns | 1s
+ CPU L1 cache | 1 nanosecond (ns) | 3s
+ CPU L2 cache | 3 ns | 9s
+ CPU L3 cache | 1 3ns | 43s
+ main memory | 120 ns | 6 minutes
+ SSD | 150 micro seconds | 6 days
+ HDD | 10 milliseconds (ms) | 1 year
+ SF to NYC | 40 ms | 4 years
+ SF to Australia | 183 ms | 19 years
 
+1 microsecond = $10^(-6)$ second. 
 
 
 
