@@ -96,7 +96,7 @@ Slightly harder to define than hardware reliability.
 
 Mean time between failures (MTBF)
 
-$$MTBF = {Total time } \over {Total down time}$$
+$$ MTBF = {Total time } \over {Total down time} $$
 
 ## Availability
 Amount of time a system is operational during a period of time.
