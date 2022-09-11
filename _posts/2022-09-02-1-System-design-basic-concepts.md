@@ -15,8 +15,7 @@ image: images/posts/photos/sf/IMG-0955.JPG
 
 
 - [What is system design](#what-is-system-design)
-- [Data systems](#data-systems)
-  - [Facebook data systems](#facebook-data-systems)
+  - [Meta data systems](#meta-data-systems)
   - [Google data systems](#google-data-systems)
   - [Large bank data systems](#large-bank-data-systems)
 - [Scalability, reliability and maintainability](#scalability-reliability-and-maintainability)
@@ -26,17 +25,12 @@ image: images/posts/photos/sf/IMG-0955.JPG
 
 # What is system design
 
-I have watched a few system design videos.  None bothered to give a definition of what is system design.  But from what I have heard, it seems that **system design means how to design big data web-based data systems and applications** such as Facebook, Instagram, Google, Twitter, and so on.  
+No places that talks about system design bothers to give a definition of what is system design.  But guessing from what I have read, it seems that **system design means how to design big data web-based data systems and applications** such as Facebook, Instagram, Google, Twitter, and so on.  Before diving into data system buzzword, let's see take a look at some companies' data systems and related applications. 
 
-# Data systems
-Before diving into buzzword definitions, let's see what they are used for doing what in various companies. 
+## Meta data systems
+Meta recieves petabytes of images and videos everyday, and even larger in read.  What does it use for its data systems?
 
-## Facebook data systems
-Facebook recieves petabytes of images and videos everyday, and even larger in read.  What does it use for its data systems?
-
-[From a Quara answer](https://www.quora.com/How-does-Facebook-use-MySQL-to-store-data)
-
-Facebook uses quite a lot databases:
+[From a Quara answer](https://www.quora.com/How-does-Facebook-use-MySQL-to-store-data), Meta uses quite a lot databases:
 
 1. To store user profile, their posts and timeline facebook uses **mysql** databases which runs in mutiple servers . 
 
@@ -45,10 +39,10 @@ Facebook uses quite a lot databases:
 3. To store those images and videos facebook uses a database called **haystack**. 
 4. For providing super fast result for searches and retrieving large amount of data faster while maintaining scalability facebook uses a database called **Apache cassandra**.
 
-And one response seems to come from a Facebook employee:
-*Data is sharded into logical databases, and there are many more logical databases than physical machines. So data is migrated by moving a logical database from one physical machine to another. This is relatively easy, we just dump the database to a file, copy it to another machine and reload it, and update the mapping of logical to physical machine.*
+One response from a Meta employee:
+*Data is **sharded into logical databases**, and there are many more logical databases than physical machines. So data is migrated by moving a logical database from one physical machine to another. This is relatively easy, we just dump the database to a file, copy it to another machine and reload it, and update the mapping of logical to physical machine.*
 
-*We don't ever move objects from one shard to another, because the object's id encodes its shard number. So changing shards would require changing id numbers and updating anything that referenced the old id, which is potentially a lot of things. Having the id encode the shard number is important for scaling - otherwise we would have to do an additional round trip to some directory service for every object access, and that directory service would have a ridiculously large number of entries.*
+*We don't ever move objects from one shard to another, because the object's ID encodes its shard number. So changing shards would require changing ID numbers and updating anything that referenced the old ID, which is potentially a lot of things. Having the ID encode the shard number is important for scaling - otherwise we would have to do an additional round trip to some directory service for every object access, and that directory service would have a ridiculously large number of entries.*
 
 ## Google data systems
 
@@ -92,6 +86,11 @@ Because it is big data, or data-indensive if you don't like the word "big data",
 ## Scalability
 The ability of a system to grow and manage as traffic increases.
 ## Reliability
+Probability that a system will fail during a period of time.
+Slightly harder to define than hardware reliability. 
+
+Mean time between failures (MTBF)
+$$ MTBF = {Total \space time } \over 2a} $$
 
 
 * **sharding**: *optimization* technique for database horizontal scaling.  It lets you split up databases.  Sharding is a specific type of partitioning.  
