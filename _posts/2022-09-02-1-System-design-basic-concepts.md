@@ -84,8 +84,16 @@ JPMC is comprised of multiple lines of business (LOBs) and corporate functions (
 ![](https://d2908q01vomqb2.cloudfront.net/b6692ea5df920cad691c20319a6fffd7a4a766b8/2021/05/05/bdb1455-jpmc-data-mesh-4.png)
 
 # Scalability, reliability and maintainability
-Because it is big data, or data-indensive if you don't like the word "big data", scalability is paramount.  
+*"If you are designing a data system or service, a lot of tricky questions arise. How do you ensure that the data remains correct and complete, even when things go wrong internally? How do you provide consistently good performance to clients, even when parts of your system are degraded? How do you scale to handle an increase in load? What does a good API for the service look like?"*
+
+  --designing-data-intensive-applications.
+
 ![](../images/posts/data-intensive-apps.PNG)
+
+Many factors determine the design: skills and experience of the people involved, legacy system dependencies, the time‐
+scale for delivery, your organization’s tolerance of different kinds of risk, regulatory constraints, etc. Those factors depend very much on the situation.
+
+Requirements often depend on industry and company specific goals.  For example, airplanes should have 100% reliability, but not necessarily high availability.  It can have downtime for maintainance. But when it is working, it must be 100% reliable.  On the contrary, a blogpost does not need to be highly reliable. 
 
 ## Scalability
 The ability of a system to grow and manage as traffic increases.
@@ -115,9 +123,8 @@ Reliable system is always an available system.
 Availability can be maintained by redundancy, but system may still be unreliable. 
 Reliable software will be more profitable because it provides the same services while requiring less backup resources.  
 Good software does not need as many redundancy.
-Requirements depend on industry and company specific goals.  For example, airplanes should have 100% reliability, but not necessarily high availability.  It can have downtime for maintainance. But when it is working, it must be 100% reliable. 
 
-On the contrary, a blogpost does not need to be highly reliable. 
+
 
 
 ## Maintainability or managebility
@@ -130,7 +137,7 @@ Whether it can abstract away infrastrue so that product engineers don't have to 
 ## Efficiency
 Associated metrics are latency and throughput. 
 
-Latency table summarizes different access types and the amounts of time they take. 
+[Latency numbers](https://youtu.be/MbjObHmDbZo?t=1306) table summarizes different access types and the amounts of time they take. 
 
 Access type | Time | Converted time
 ---------|----------|---------
@@ -146,10 +153,21 @@ Access type | Time | Converted time
 
 1 microsecond = $10^(-6)$ second. 
 
+* **Tips**:  
+  * Avoid network calls as much as possible
+  * Replicate data across data centers for disaster recovery
+  * Use **CDN**s to reduce latency
+  * Keep often queried data in memory as much as possible instead of from disk
+
+
+
 
 
 # Reference
 
+[System Design Dourse for Beginners](https://youtu.be/MbjObHmDbZo?t=1306)
+
 [Bank of America prioritized internal cloud. Now it’s evaluating third-party providers](https://www.ciodive.com/news/bank-of-america-prioritized-internal-cloud-now-its-evaluating-third-party/565228/)
+
 [CS50 Lecture by Mark Zuckerberg - 7 December 2005](https://www.youtube.com/watch?v=xFFs9UgOAlE&t=2745s))
 
