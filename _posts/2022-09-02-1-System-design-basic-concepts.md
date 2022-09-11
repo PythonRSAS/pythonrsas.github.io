@@ -23,6 +23,7 @@ image: images/posts/photos/sf/IMG-0955.JPG
   - [Reliability](#reliability)
   - [Availability](#availability)
   - [Reliability vs availability](#reliability-vs-availability)
+  - [Efficiency](#efficiency)
 - [Reference](#reference)
 
 # What is system design
@@ -92,7 +93,8 @@ The ability of a system to grow and manage as traffic increases.
   * If scale out instead of scale up, make copies of databases.  Instead of one database overloaded with requests, have copies or replicas, eventually.  This introduces a problem: "eventual consistency".  Having eventual consistency can result in stale data.  We all have experienced not receiving text from friends and don't receive it until a day later.  
 
 ## Reliability
-Probability that a system will fail during a period of time.
+Probability that a system will fail during a period of time.  I think it means "quality"质量. 
+
 Slightly harder to define than hardware reliability. 
 
 Mean time between failures (MTBF)
@@ -107,7 +109,21 @@ Often measured in 9's.  If the systems is available 23 hours out of a day, then 
 Highly available systems require 5 9's: 99.999%, which is 5.26 minutes out of a year.
 
 ## Reliability vs availability
-Reliable 
+$$Reliable => available$$
+Reliable system is always an available system.
+Availability can be maintained by redundancy, but system may still be unreliable. 
+Reliable software will be more profitable because it provides the same services while requiring less backup resources.  
+Good software does not need as many redundancy.
+Requirements depend on industry and company specific goals.  For example, airplanes should have 100% reliability, but not necessarily high availability.  It can have downtime for maintainance. But when it is working, it must be 100% reliable. 
+
+On the contrary, a blogpost does not need to be highly reliable. 
+
+## Efficiency
+
+
+
+
+
 # Reference
 
 [Bank of America prioritized internal cloud. Now it’s evaluating third-party providers](https://www.ciodive.com/news/bank-of-america-prioritized-internal-cloud-now-its-evaluating-third-party/565228/)
