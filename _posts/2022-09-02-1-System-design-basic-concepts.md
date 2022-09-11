@@ -21,6 +21,7 @@ image: images/posts/photos/sf/IMG-0955.JPG
 - [Scalability, reliability and maintainability](#scalability-reliability-and-maintainability)
   - [Scalability](#scalability)
   - [Reliability](#reliability)
+  - [Availability](#availability)
 - [Reference](#reference)
 
 # What is system design
@@ -85,17 +86,23 @@ Because it is big data, or data-indensive if you don't like the word "big data",
 
 ## Scalability
 The ability of a system to grow and manage as traffic increases.
+* **sharding**: *optimization* technique for database horizontal scaling.  It lets you split up databases.  Sharding is a specific type of partitioning.  
+  * Scaling up hardware. For example, doubling memory, processor.  But it is very expensive and has diminishing return. 
+  * If scale out instead of scale up, make copies of databases.  Instead of one database overloaded with requests, have copies or replicas, eventually.  This introduces a problem: "eventual consistency".  Having eventual consistency can result in stale data.  We all have experienced not receiving text from friends and don't receive it until a day later.  
+
 ## Reliability
 Probability that a system will fail during a period of time.
 Slightly harder to define than hardware reliability. 
 
 Mean time between failures (MTBF)
-$$ MTBF = {Total \space time } \over 2a} $$
 
+$$ MTBF = {Total time } \over 2a} $$
 
-* **sharding**: *optimization* technique for database horizontal scaling.  It lets you split up databases.  Sharding is a specific type of partitioning.  
-  * Scaling up hardware. For example, doubling memory, processor.  But it is very expensive and has diminishing return. 
-  * If scale out instead of scale up, make copies of databases.  Instead of one database overloaded with requests, have copies or replicas, eventually.  This introduces a problem: "eventual consistency".  Having eventual consistency can result in stale data.  We all have experienced not receiving text from friends and don't receive it until a day later.  
+## Availability
+Amount of time a system is operational during a period of time.
+Poorly designed software requriing downtime for updates is less available. 
+
+Often measured in 9's. 
 
 
 # Reference
