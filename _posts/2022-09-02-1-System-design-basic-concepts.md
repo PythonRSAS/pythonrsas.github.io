@@ -15,14 +15,83 @@ image: images/posts/photos/sf/IMG-0955.JPG
 
 
 - [What is system design](#what-is-system-design)
-- [Binary vs decimal number system](#binary-vs-decimal-number-system)
-- [Bit-wise operations](#bit-wise-operations)
-- [Examples](#examples)
-  - [count bits](#count-bits)
-  - [Reverse integer](#reverse-integer)
-  - [hex to RGB](#hex-to-rgb)
-- [Use in set operations](#use-in-set-operations)
+- [Data systems](#data-systems)
+  - [Facebook data systems](#facebook-data-systems)
+  - [Google data systems](#google-data-systems)
+  - [Large bank data systems](#large-bank-data-systems)
+- [Scalability, reliability and maintainability](#scalability-reliability-and-maintainability)
+  - [Scalability](#scalability)
+  - [Reliability](#reliability)
 - [Reference](#reference)
+
+# What is system design
+
+I have watched a few system design videos.  None bothered to give a definition of what is system design.  But from what I have heard, it seems that **system design means how to design big data web-based data systems and applications** such as Facebook, Instagram, Google, Twitter, and so on.  
+
+# Data systems
+Before diving into buzzword definitions, let's see what they are used for doing what in various companies. 
+
+## Facebook data systems
+Facebook recieves petabytes of images and videos everyday, and even larger in read.  What does it use for its data systems?
+
+[From a Quara answer](https://www.quora.com/How-does-Facebook-use-MySQL-to-store-data)
+
+Facebook uses quite a lot databases:
+
+1. To store user profile, their posts and timeline facebook uses **mysql** databases which runs in mutiple servers . 
+
+2. To avoid the heavy load on the mysql facebook uses a **nosql** database called memcached which is a *cache* system storing the frequently used data and objects in RAM.   
+
+3. To store those images and videos facebook uses a database called **haystack**. 
+4. For providing super fast result for searches and retrieving large amount of data faster while maintaining scalability facebook uses a database called **Apache cassandra**.
+
+And one response seems to come from a Facebook employee:
+*Data is sharded into logical databases, and there are many more logical databases than physical machines. So data is migrated by moving a logical database from one physical machine to another. This is relatively easy, we just dump the database to a file, copy it to another machine and reload it, and update the mapping of logical to physical machine.*
+
+*We don't ever move objects from one shard to another, because the object's id encodes its shard number. So changing shards would require changing id numbers and updating anything that referenced the old id, which is potentially a lot of things. Having the id encode the shard number is important for scaling - otherwise we would have to do an additional round trip to some directory service for every object access, and that directory service would have a ridiculously large number of entries.*
+
+## Google data systems
+
+According to this [answer on Quora from Robert Rossney, engineer at Google](https://www.quora.com/What-are-the-databases-used-by-Google), 
+Most engineers at Google work with are *not “databases” but “storage solutions.”* For instance, a lot of what any normal company would store in a database is, at Google, *a collection of serialized protocol buffers written to a file*. Indeed, you can work at Google quite a while running SQL queries against these “databases” before you run into an implementation detail that tips you off that things are not what they seem (e.g. **you can’t run joins across the other tables in this database because there aren’t any**).
+
+One flavor of these storage solutions these has long been productized as Cloud Datastore[1] , which is a way of storing serialized protocol buffers that supports replication and indexing and very fast direct access to keyed values. It’s what the kids today are calling a NoSQL database.
+
+Internally Google has long used the database that it has **productized as Cloud SQL**[2] for more structured data that doesn’t have to be replicated geographically. It’s a whole lot like MySQL or PostgresSQL, because, well, you’ll see.
+
+Most recently, Google’s been relying on Spanner, or as it’s called by people who don’t work there, Cloud Spanner. Spanner is the next state in the evolution of Google storage systems: it is, once again, really just a bunch of files containing serialized protocol buffers, but most of the time you don’t have to think about that unless what you want to store in a field is a protocol buffer. It also provides blazingly fast point lookups, distributed data, incredibly high reliability, and it supports transactions that simultaneously affect tables that are physically located on opposite sides of the world. Wired wrote a piece about Spanner[3] a while back that was full of gee-whizz astonishment (e.g. “this gives you faster-than-light coordination between two places”) and hype, and that is also not exaggerated. Spanner does give you faster-than-light coordination between two places[4]. It’s also crazy expensive right now, if you’re a hobbyist. (If you’re a Fortune 1000 company that wants to support operations with a fast, reliable global database, it’s dirt-cheap.)
+
+Then there’s Firebase, which has a database at its heart but which is really an infrastructure for developing distributed applications[5]. I really hesitate to call it a database, because it’s so many other things, but because it does include a database, and because I work on Firebase, I think it’s worth mentioning in a discussion of Google databases. It’s really freaking cool.
+
+[1] Google Cloud Datastore Overview  |  Cloud Datastore Documentation  |  Google Cloud Platform
+[2] Google Cloud SQL  |  Cloud SQL  |  Google Cloud Platform
+[3] Spanner, the Google Database That Mastered Time, Is Now Open to Everyone
+[4] Cloud Spanner: TrueTime and External Consistency  |  Cloud Spanner Documentation  |  Google Cloud Platform
+[5] Firebase
+
+Google uses databases based on *Cloud SQL* which are of relational kind database when compared with nonrelational NoSQL database like MongoDB.
+The primary data storage is **BigTable**, which was built in house, also known as "Distributed File System", and "Object-based storage".
+
+
+## Large bank data systems
+
+Like large tech companies, banks are striving to improve their customer experience.  However, unlike tech companies financial services institutions are particularly vulnerable because of regulatory and compliance pressures. uses multiple data systems, both large data centers and AWS cloud.  [Report](https://www.datacenterdynamics.com/en/news/jpmorgan-spent-2bn-on-new-data-centers-in-2021-and-plans-to-spend-more/) says that JPMorgan spent $2 billion on new data centers in 2021, despite a continued move to get its IT into the cloud.  The US finance giant spent $12 billion on technology in 2021, and plans to increase that further by eight percent. 
+
+According to [an article published by JM Morgan CTO office](https://aws.amazon.com/blogs/big-data/how-jpmorgan-chase-built-a-data-mesh-architecture-to-drive-significant-value-to-enhance-their-enterprise-data-platform/#:~:text=We%20store%20the%20data%20for,each%20lake%20using%20cloud%20services.) in May 2022, JP Morgan uses Amazon S3 for storage and AWS Glue for integration. 
+
+I read the word "*control*" multiple times in this article.  Understandably, banks are highly regulated.  
+
+JPMC is comprised of multiple lines of business (LOBs) and corporate functions (CFs) that span the organization. To enable data consumers across JPMC’s LOBs and CFs to more easily find and obtain the data they need, while providing the necessary **control** around the use of that data, JPM has data system design as followed:
+
+![](https://d2908q01vomqb2.cloudfront.net/b6692ea5df920cad691c20319a6fffd7a4a766b8/2021/05/05/bdb1455-jpmc-data-mesh-4.png)
+
+# Scalability, reliability and maintainability
+Because it is big data, or data-indensive if you don't like the word "big data", scalability is paramount.  
+![](../images/posts/data-intensive-apps.PNG)
+
+## Scalability
+The ability of a system to grow and manage as traffic increases.
+## Reliability
 
 
 * **sharding**: *optimization* technique for database horizontal scaling.  It lets you split up databases.  Sharding is a specific type of partitioning.  
@@ -30,260 +99,8 @@ image: images/posts/photos/sf/IMG-0955.JPG
   * If scale out instead of scale up, make copies of databases.  Instead of one database overloaded with requests, have copies or replicas, eventually.  This introduces a problem: "eventual consistency".  Having eventual consistency can result in stale data.  We all have experienced not receiving text from friends and don't receive it until a day later.  
 
 
-# What is system design
-
-I have watched a few system design videos.  None bothered to give a definition of what is system design.  But from what I have heard, it seems that system design means how to design big data web-based applications such as Facebook, Instagram, Google, Twitter, and so on.  
-
-![](../images/posts/data-intensive-apps.PNG)
-
-From Wikipedia: [The bit is the most basic unit of information in computing and digital communications. The name is a portmanteau of binary digit.](https://en.wikipedia.org/wiki/Bit).
-
-A 32-bit computer system can access $$2^(32)$$ different memory addresses, i.e 4 GB of RAM (and more).   A 64-bit system can access $$2^(64)$$ different memory addresses. 
-
-I first learned about bit-wise number system when I was a child.  It is nothing but using binary instead of decimal  
-
-# Binary vs decimal number system
-When we represent numbers in decimal number system, we use powers of 10. 
-
-$$1 = 10^0$$
-
-$$10 = 10^1$$
-
-$$100 = 10^2$$
-
-$$1000 = 10^3$$
-
-$$16= 10^1+6*10^0$$
-
-$$214 = 2*10^2+10^1 +4*10^0$$
-
-In the bit-wise or binary number system, we use powers of 2.
-
-$$1 = 2^0 => 1$$
-
-$$16 = 2^4 => 10000$$
-
-$$20 = 16 + 4 = 2^4 +2^2 => 10100$$
-
-```py
-print(bin(10))
-# 0b1010
-print(bin(10)[2:])
-# 1010
-bin(0xFF)
-# '0b11111111'
-
-int(bin(0xFF)[2:],2)
-# 255
-```
-We can use any number system.  Say it is 3.  Then all numbers will be decomposed as powers of 3. 
-
-# Bit-wise operations
-
-**And** <span class="coding">a & b</span>
-
-Example, if we want the lower (least significant) 4 bits of an integer, we <span class="coding">AND</span> it with $$15$$ (binary $$1111$$) so:
-
-$$201$$ is  $$1100 1001$$
-
-After "and" with $$15$$, all upper bits disappear, keeping only the lower 4 bits. 
-
-<div class="code-head"><span>code</span>Using And.py</div>
-
-```py
-print(bin(201))
-print(bin(15))
-print(bin(201&15))
-# 0b11001001
-# 0b1111
-# 0b1001
-print(201&15)
-# 9
-``` 
-
-Similarly, if we want to clear the lower 4 bits of the integer 201, we can do the following:
-```python
-int('0b11001001',2)
-201
-int('0b11000000',2)
-192
-bin(201&192)
-'0b11000000'
-```
-
-**Or** <span class="coding">a | b</span> is always $$1$$ except when both $$a$$ and $$b$$ are $$0$$.
-
-<span class="coding">|</span> is used to set a certain bit to $$1$$.  
-
-Counting from the lower and the first lower as 0, <span class="coding">x | 2</span> is used to set bit 1 of x to 1. 
-
-```python
-def setbit0_1(x):
-    print(bin(x|1))
-setbit0_1(4)
-# 0b101
-```
-
-<span class="coding">x & 1</span> can be used to test if bit 0 of x is 1 or 0.  
-
-**XOR** <span class="coding">a ^ b</span>
-
-<span class="coding">^</span> stands for "bitwise exclusive or".   Do not confuse it with <span class="coding">**</span>.
-
-It returns 1 only when $$a$$ and $$b$$ are different.  Note that the inverse function of xor is itself. 
-
-**Not** <span class="coding">~ a</span>
-
-Returns the complement of $$a$$.  If input is 0, then output is 1. It is the number you get by switching each 1 for a 0 and each 0 for a 1. This is the same as a - 1.
-
-
-**shifting** <span class="coding">a << b</span>  <span class="coding">a >> b</span>
-
-x << 1 is doubling and x >> 1 is halving. 
-
-```python
-print(-16>>1)
--8
-```
-
-<span class="coding">a << b</span> returns a with the bits shifted to the left by b places (and new bits on the right-hand-side are zeros).  
-
-In decimal system it is multiplying a by $$2^y$$.
-
-<span class="coding">a >> b</span> returns a with the bits shifted to the right by b places. This is the same as <span class="coding">a//2**b</span>.
-
-<div class="code-head"><span>code</span>bitwise operations.py</div>
-
-```py
-bin(10|2)[2:]
-# 1010
-bin(10) == bin(10|2)
-# True
-``` 
-
-
-# Examples
-
-## count bits
-In the first example, we count the number of 1's in a number.  <span class="coding">&1</span> removes all digits before the lowest one, and <span class="coding">x & 1</span> is simply 0 or 1 depending on weather the last digit of a number is 1 or 0. 
-
-We can also use <span class="coding">bit_count</span> or <span class="coding">bin(n).count('1')</span> to count non-zero bits.
-
-```python
-n = 4
-print(n.bit_count())
-# 1
-print(bin(4).count("1"))
-```
-<div class="code-head"><span>code</span>count bits.py</div>
-
-```py
-def count_bits(x):
-    numBits = 0
-    while x:
-        numBits += x & 1
-        x >>= 1
-    return numBits
-
-for i in range(5):
-    print("\n",i, "in binary system is:", bin(i)[2:])
-    print("The number of 1's or bits is", count_bits(i))
-
-#  0 in binary system is: 0
-# The number of 1's or bits is 0
-
-#  1 in binary system is: 1
-# The number of 1's or bits is 1
-
-#  2 in binary system is: 10
-# The number of 1's or bits is 1
-
-#  3 in binary system is: 11
-# The number of 1's or bits is 2
-
-#  4 in binary system is: 100
-# The number of 1's or bits is 1
-
-```
-
-## Reverse integer
-
-Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range $$[-2^31, 2^31 - 1]$$, then return 0.
-
-Assume the enviroment does not allow us to store 64-bit integers (signed or unsigned).
-
-<div class="code-head"><span>code</span>reverse integer.py</div>
-
-```py
-import math
-def reverse(x: int)-> int:
-    MIN = -2147483648
-    MAX = 2147483647
-
-    res = 0
-    while x:
-        digit = int(math.fmod(x, 10))
-        x = int(x / 10)
-
-        if (res > MAX // 10 or 
-            (res == MAX // 10 and digit >= MAX %10)):
-            return 0
-        if (res < MIN // 10 or 
-            (res == MIN // 10 and digit <= MIN %10)):
-            return 0
-        res = (res * 10) + digit
-    return res
-```
-
-## hex to RGB
-Below example of parsing hexadecimal colours came from [stackoverflow](https://stackoverflow.com/questions/1746613/bitwise-operation-and-usage).  
-
-It accepts a String like #FF09BE and returns a tuple of its Red, Green and Blue values.
-<div class="code-head"><span>code</span>hex to rgb.py</div>
-
-```py
-def hexToRgb(value):
-    # Convert string to hexadecimal number (base 16)
-    num = (int(value.lstrip("#"), 16))
-
-    # Shift 16 bits to the right, and then binary AND to obtain 8 bits representing red
-    r = ((num >> 16) & 0xFF)
-
-    # Shift 8 bits to the right, and then binary AND to obtain 8 bits representing green
-    g = ((num >> 8) & 0xFF)
-
-    # Simply binary AND to obtain 8 bits representing blue
-    b = (num & 0xFF)
-    return (r, g, b)
-```
-
-# Use in set operations
-
-<div class="code-head"><span>code</span>set operations.py</div>
-
-```py
-a = {1, 2, 3, 4, 5, 6}
-b = {4, 5, 6, 7, 8, 9}
-
-print(a | b)
-
-print(a & b)
-
-print(a - b)
-
-print(b - a)
-
-print(a ^ b)
-
-# {1, 2, 3, 4, 5, 6, 7, 8, 9}
-# {4, 5, 6}
-# {1, 2, 3}
-# {8, 9, 7}
-# {1, 2, 3, 7, 8, 9}
-```
-
 # Reference
 
-[bitwise operation and usage](https://stackoverflow.com/questions/1746613/bitwise-operation-and-usage)
-[Python operators](https://jakevdp.github.io/WhirlwindTourOfPython/04-semantics-operators.html)
+[Bank of America prioritized internal cloud. Now it’s evaluating third-party providers](https://www.ciodive.com/news/bank-of-america-prioritized-internal-cloud-now-its-evaluating-third-party/565228/)
+[CS50 Lecture by Mark Zuckerberg - 7 December 2005](https://www.youtube.com/watch?v=xFFs9UgOAlE&t=2745s))
 
