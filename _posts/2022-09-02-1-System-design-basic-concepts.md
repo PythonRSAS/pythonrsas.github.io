@@ -23,6 +23,7 @@ image: images/posts/photos/sf/IMG-0955.JPG
   - [Reliability](#reliability)
   - [Availability](#availability)
   - [Reliability vs availability](#reliability-vs-availability)
+  - [Maintainability or managebility](#maintainability-or-managebility)
   - [Efficiency](#efficiency)
 - [Reference](#reference)
 
@@ -118,8 +119,23 @@ Requirements depend on industry and company specific goals.  For example, airpla
 
 On the contrary, a blogpost does not need to be highly reliable. 
 
-## Efficiency
 
+## Maintainability or managebility
+
+Speed and difficulty with maintaining the system. 
+Observability, how hard to track bugs.
+Whether it is easy to deploy updates.
+Whether it can abstract away infrastrue so that product engineers don't have to worry about it. 
+
+## Efficiency
+Associated metrics are latency and throughput. 
+
+
+Access type | Time | Converted time
+---------|----------|---------
+ A1 | B1 | C1
+ A2 | B2 | C2
+ A3 | B3 | C3
 
 
 
