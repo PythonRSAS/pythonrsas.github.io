@@ -2,7 +2,7 @@
 layout: post
 tag: sharding
 category: education
-title: "System design basic concepts"
+title: "System design basics"
 description:  design data-intensive web-based applications
 author: Sarah Chen
 image: images/posts/photos/sf/IMG-0955.JPG
@@ -104,11 +104,7 @@ The ability of a system to grow and manage as traffic increases.
 ## Reliability
 Probability that a system will fail during a period of time.  I think it means "quality"质量. 
 
-Slightly harder to define than hardware reliability. 
-
-Mean time between failures (MTBF)
-
-$$ MTBF = {{Total_time } \over {Total_down_time}} $$
+Slightly harder to define than hardware reliability.  The metric often used is mean time between failures (MTBF = Total_time/ Total_down_time)
 
 ## Availability
 Amount of time a system is operational during a period of time.
