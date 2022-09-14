@@ -5,17 +5,31 @@ category: education
 title: "Topological sort"
 description: topological sort and the Khan's algorithm
 author: Sarah Chen
-image: images/posts/Air-route-network-connected-with-PEK-in-2018.jpg
+image: images/posts/topologicalSortYes.PNG
 
 ---
 
-# My problem
-What is the cheapest total price from one place to another with at most k stops?  The flights to China now are very expensive, 10 times of pre-Covid prices.  Not only they are very expensive, but also the length of time and number of stops are horendous.  Before Covid the non-stop flight to China was a little over 13 hours.  Now, a $20,000 economy ticket with 5 stops with total travel time of over 50 hours is not uncommon.  This's a practical problem, not just a puzzle. 
+# Problem
+Given a directed hierchical structure, how do we flatten it to an array so that the directions are preserved?  
+
+Recall my problem of trying to fly to Beijing, China, given so many flights (edges) and stops (nodes), what are the valid routes? How do I write each of the valid routes in their right order with sentences? 
 
 ![](../images/posts/Air-route-network-connected-with-PEK-in-2018.jpg)
 
+Below is taken from a course slide.  The problem is similar, except names of cities have become course numbers.  We want to write down the list of course in their dependency order. 
+![](../images/posts/topologicalSortCourses)
+
+
+![](../images/posts/topologicalSortYes.PNG)
+
+![](../images/posts/topologicalSortNot.PNG)
+
+Here is a different way posing a similar problem:
+![](https://en.wikipedia.org/wiki/Talk%3ATopological_sorting#/media/File:LampFlowchart.svg)
+
 Before quoting any named algorithm, how would we solve the problem?  
-Given the ticket scacity and high expense situation, *complicated* by zero-Covid strict policies in China that can result in things changing from one day to the next, I will pick any Chinese city close to my destination to get to China first, and then solve the cheapest problem again domestically.  My problem is complex: monetary costs,  date/time of arrivals/departures for connecting the flights, local lockdown severities, my own Covid tests, etcs..  Furthermore, I cannot spend months in China simply waiting at some random cities.  In all, it is a much more complicated and continuously changing problem than a puzzle. 
+
+We can write down the destination first, since it does not have any dependencies. Then we look at its "children", if any of them do not have any dependencies, then we can write it down next. And so forth. 
 
 To make problem as simple as possible (albeit unrealistic), I would focus on monetary cost only and pick one of the cities, say Beijing, as my destination.  And since tickets are usually sold as round trip prices, they can be treated as undirected edges in a graph. 
 
@@ -27,9 +41,9 @@ My solution seems to resemble Dijstra's algorithm: solving problem layer by laye
 
 # Topological sort
 
-![](https://en.wikipedia.org/wiki/Talk%3ATopological_sorting#/media/File:LampFlowchart.svg)
+<div class="code-head"><span>code</span>khans algorithm.py</div>
 
-
+```py
 from collections import deque
 from networkx.generators import directed
 from networkx.generators import random_graphs
@@ -42,9 +56,6 @@ adj_list = g.adjacency_list()
 bad_g = random_graphs.fast_gnp_random_graph(100, 0.2, directed=True)
 bad_adj_list = bad_g.adjacency_list()
 
-<div class="code-head"><span>code</span>khans algorithm.py</div>
-
-```py
 from collections import deque
 from networkx.generators import directed
 from networkx.generators import random_graphs
@@ -83,6 +94,11 @@ def topsort(adj_list):
     return L                   #   return L (a topologically sorted order)
 
 ```
+
+# Cycle detection
+
+# Compare with Floyd's algorithm for topological sort
+
 
 # Bellman-Ford algorithm
 Bellman-Ford is a single source shortest path (SSSP) algorithm for weighted directed graph.  But Bellman-Ford is not the ideal SSSP because of time complexity $$O(E*V)$$.  
@@ -179,7 +195,11 @@ print("The cheapest price is ", findCheapestPrice(n, G, origin, target, k))
 
 # Future reading
 
-[]
 [Bellman Ford](https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm)
 
 [Interview with Dijkstras](https://cacm.acm.org/magazines/2010/8/96632-an-interview-with-edsger-w-dijkstra/fulltext?mobile=false)
+
+[Washington University CSE 326 Lecture 20: Topo-Sort and Dijkstra’s Greedy Idea](https://courses.cs.washington.edu/courses/cse326/03wi/lectures/RaoLect20.pdf)
+
+[Wiki Talk Topological Sorting](https://en.wikipedia.org/wiki/Talk%3ATopological_sorting)
+ 

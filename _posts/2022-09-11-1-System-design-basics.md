@@ -41,6 +41,7 @@ Meta recieves petabytes of images and videos everyday, and even larger in read. 
 2. To avoid the heavy load on the mysql facebook uses a **nosql** database called memcached which is a *cache* system storing the frequently used data and objects in RAM.   
 
 3. To store those images and videos facebook uses a database called **haystack**. 
+
 4. For providing super fast result for searches and retrieving large amount of data faster while maintaining scalability facebook uses a database called **Apache cassandra**.
 
 One response from a Meta employee:
@@ -108,20 +109,19 @@ Slightly harder to define than hardware reliability.  The metric often used is m
 
 ## Availability
 Amount of time a system is operational during a period of time.
+
 Poorly designed software requriing downtime for updates is less available. 
 
 Often measured in 9's.  If the systems is available 23 hours out of a day, then availablity is $23/24=95.83%$
+
 Highly available systems require 5 9's: 99.999%, which is 5.26 minutes out of a year.
 
 ## Reliability vs availability
-$$Reliable => available$$
-Reliable system is always an available system.
+$$Reliable => available$$. Reliable system is always an available system.
+
 Availability can be maintained by redundancy, but system may still be unreliable. 
-Reliable software will be more profitable because it provides the same services while requiring less backup resources.  
-Good software does not need as many redundancy.
 
-
-
+Reliable software will be more profitable because it provides the same services while requiring less backup resources.  Good software does not need as many redundancy.
 
 ## Maintainability or managebility
 
@@ -165,5 +165,5 @@ Access type | Time | Converted time
 
 [Bank of America prioritized internal cloud. Now it’s evaluating third-party providers](https://www.ciodive.com/news/bank-of-america-prioritized-internal-cloud-now-its-evaluating-third-party/565228/)
 
-[CS50 Lecture by Mark Zuckerberg - 7 December 2005](https://www.youtube.com/watch?v=xFFs9UgOAlE&t=2745s))
+[CS50 Lecture by Mark Zuckerberg - 7 December 2005](https://www.youtube.com/watch?v=xFFs9UgOAlE&t=2745s)
 
