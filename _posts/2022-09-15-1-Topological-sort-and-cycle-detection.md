@@ -1,8 +1,8 @@
 ---
 layout: post
-tag : algorithm, graph, Khan's algoritm, topological sort, topological ordering, leetcode, course schedule
+tag : algorithm, graph, Khan's algoritm, topological sort, topological ordering, cycle detection, DAG, leetcode, course schedule
 category: education
-title: "Topological sort"
+title: "Topological sort and cycle detection"
 description: topological sort and the Khan's algorithm
 author: Sarah Chen
 image: images/posts/topologicalSortYes.PNG
