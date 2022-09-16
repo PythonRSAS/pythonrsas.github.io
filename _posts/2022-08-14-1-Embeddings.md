@@ -5,7 +5,7 @@ category: "machine learning"
 title: "Embeddings"
 description: There is a trade off between accuracy and interpretability.  High accuracy models have low interpretability and potential problems.  Explainable AI (XAI) is to have your cake and eat it too.
 author: Sarah Chen
-image: images/posts/photos/IMG-0631.JPG
+image: images/posts/photos/IMG-0868.JPG
 ---
 
 An embedding is a low-dimensional translation of a high-dimensional vector.  PCA (principal component analysis) is the most well known one. 
