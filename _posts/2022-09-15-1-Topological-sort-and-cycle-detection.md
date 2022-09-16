@@ -10,8 +10,8 @@ image: images/posts/topologicalSortYes.PNG
 ---
 - [Problem](#problem)
 - [Topological sort](#topological-sort)
-  - [Khan's algorithm](#khans-algorithm)
   - [DFS](#dfs)
+  - [Khan's algorithm](#khans-algorithm)
 - [Cycle detection](#cycle-detection)
   - [Leetcode 207. Course Schedule](#leetcode-207-course-schedule)
   - [Leetcode 210. Course Schedule II](#leetcode-210-course-schedule-ii)
@@ -34,6 +34,57 @@ Before quoting any named algorithm, how would we solve the problem?
 We can write down my starting place first, since it does not have any dependencies. Then we look at where the directed edges lead to, if any of them do not have any dependencies, then we can write it down next. And so forth until we are done. 
 
 # Topological sort
+## DFS 
+In [DFS](2022-09-15-1-Topological-sort-and-cycle-detection.md) we talked about topological sort and how it is just like DFS. 
+
+A topological sort is a graph traversal in which each node is visited only after all its dependencies are visited. This sounds very much like how DFS works.
+
+In DFS, each node at the top is not finished until its dependents are finished.
+
+
+A topological sort is a graph traversal in which each node is visited only after all its dependencies are visited.  This sounds very much like how DFS works. 
+
+In DFS, each node at the top is not finished until its dependents are finished. 
+
+![topologicalSort](../images/posts/topologicalSort.PNG)
+
+For every directed edge $$(u, v)$$ from vertex $$u$$ to vertex $$v$$, $$u$$ comes before $$v$$ in the ordering. 
+
+The only type of graph that can have topological orderings is DAG.  DAGs have no cycles. 
+
+The [graphlib](https://docs.python.org/3/library/graphlib.html) library, part of Python standard library.  Its <span class="coding">graphlib.TopologicalSorter</span> does exactly topological sort. 
+
+```python
+graph = {"D": {"B", "C"}, "C": {"A"}, "B": {"A"}}
+ts = TopologicalSorter(graph)
+tuple(ts.static_order())
+```
+<div class="code-head"><span>code</span>BFS.py</div>
+
+```python
+import graphlib
+from graphlib import TopologicalSorter
+
+# graph = {"D": {"B", "C"}, "C": {"A"}, "B": {"A"}}
+graph ={
+    'A': ['B', 'C'],
+    'B': ['D', 'E', 'F'],
+    'C': ['G'],
+    'D': [],
+    'E': [],
+    'F': ['H'],
+    'G': ['I'],
+    'H': [],
+    'G': []
+}
+ts = TopologicalSorter(graph)
+print(tuple(ts.static_order()))
+```
+
+The illustration below shows the one algorithm of doing topological sort with $$O(V+E)$$ time complexity. 
+
+![](../images/posts/topologicalSort_enqueue_deque.PNG)
+
 A topological ordering will be the following:
 
 New York, LA, London, Hong Kong, Beijing. 
@@ -157,10 +208,7 @@ def topsort(adj_list):
     return L                   #   return L (a topologically sorted order)
 
 ```
-## DFS 
-The illustration below shows the one algorithm of doing topological sort with $$O(V+E)$$ time complexity. 
 
-![](../images/posts/topologicalSort_enqueue_deque.PNG)
 
 # Cycle detection
 
