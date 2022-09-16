@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : algorithm, graph, Khan's algoritm, topological sort, topological ordering
+tag : algorithm, graph, Khan's algoritm, topological sort, topological ordering, leetcode, course schedule
 category: education
 title: "Topological sort"
 description: topological sort and the Khan's algorithm
@@ -8,7 +8,6 @@ author: Sarah Chen
 image: images/posts/topologicalSortYes.PNG
 
 ---
-Work in progress
 # Problem
 Given a directed hierchical structure, how do we flatten it to an array so that the directions are preserved?  
 
@@ -29,6 +28,33 @@ Below images are taken from Washington University Professor Rao's CSE 326 Lectur
 
 ![](../images/posts/topologicalSortYes.PNG)
 
+
+We use the dfs code below for topological sort. 
+<div class="code-head"><span>code</span>dfs.py</div>
+
+```py
+def dfs(G, startNode,visited):
+    # initial value
+    if startNode not in visited:
+        visited.append(startNode)
+    # recurse
+    for node in G[startNode]:
+        if node not in visited:
+            dfs(G, node, visited)
+    return visited
+```
+
+
+```python
+g = {'A': ['B', 'D'],
+    'B': ['C'],
+    'C': ['D', 'E'],
+    'D': ['E'],
+    'E': [],
+    'F': []}
+print(dfs(g, 'A', []))
+# ['A', 'B', 'C', 'D', 'E']
+```
 ![](../images/posts/topologicalSortNot.PNG)
 
 Here is a different way posing a similar problem:
@@ -112,7 +138,7 @@ Input: numCourses = 2, prerequisites = [[1,0],[0,1]]
 
 Output: false.  This is because to take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1.  So it is impossible.
 
-
+One of the solutions is to use topological sort with DFS.  The
 
 <div class="code-head"><span>code</span>course schedule explain version.py</div>
 
@@ -285,7 +311,7 @@ ax.margins(0.20)
 plt.axis("off")
 ```
 
-Below are the shorter version of the course schedule code in this post. 
+Below is the shorter version of the course schedule code in this post. 
 <div class="code-head"><span>code</span>course schedule.py</div>
 
 ```py
