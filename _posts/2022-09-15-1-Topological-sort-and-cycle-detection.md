@@ -8,6 +8,16 @@ author: Sarah Chen
 image: images/posts/topologicalSortYes.PNG
 
 ---
+- [Problem](#problem)
+- [Topological sort](#topological-sort)
+  - [Khan's algorithm](#khans-algorithm)
+  - [DFS](#dfs)
+- [Cycle detection](#cycle-detection)
+  - [Leetcode 207. Course Schedule](#leetcode-207-course-schedule)
+  - [Leetcode 210. Course Schedule II](#leetcode-210-course-schedule-ii)
+- [Compare with Floyd's algorithm for topological sort](#compare-with-floyds-algorithm-for-topological-sort)
+- [Appendix](#appendix)
+- [Reference](#reference)
 # Problem
 Given a directed hierchical structure, how do we flatten it to an array so that the directions are preserved?  
 
@@ -64,16 +74,26 @@ print(dfs(g, 'A', []))
 ![](../images/posts/topologicalSortNot.PNG)
 
 
-## Algorithm
-
-The illustration below shows the one algorithm of doing topological sort with $$O(V+E)$$ time complexity. 
-
-![](../images/posts/topologicalSort_enqueue_deque.PNG)
-
-
 ## Khan's algorithm
+One of these algorithms, first described by Kahn (1962), works by choosing vertices in the same order as the eventual topological sort. 
 
-Khan's algorithm with cycle detection
+First, find a list of "start nodes" which have no incoming edges and insert them into a set S; at least one such node must exist in a non-empty acyclic graph. Then:
+
+L ← Empty list that will contain the sorted elements
+S ← Set of all nodes with no incoming edge
+while S is non-empty do
+    remove a node n from S
+    add n to tail of L
+    for each node m with an edge e from n to m do
+        remove edge e from the graph
+        if m has no other incoming edges then
+            insert m into S
+if graph has edges then
+    return error   (graph has at least one cycle)
+else 
+    return L   (a topologically sorted order)
+
+In Kahn’s algorithm, we construct a topological sort on a DAG by finding nodes that have no incoming edges:
 
 **Step 1: Compute In-degree**: First we create compute a lookup for the in-degrees of every node. In this particular Leetcode problem, each node has a unique integer identifier, so we can simply store all the in-degrees values using a list where indegree[i] tells us the in-degree of node i.
 
@@ -137,6 +157,10 @@ def topsort(adj_list):
     return L                   #   return L (a topologically sorted order)
 
 ```
+## DFS 
+The illustration below shows the one algorithm of doing topological sort with $$O(V+E)$$ time complexity. 
+
+![](../images/posts/topologicalSort_enqueue_deque.PNG)
 
 # Cycle detection
 
@@ -446,6 +470,10 @@ def canDo(numCourses, prerequisites) -> bool:
 [Washington University CSE 326 Lecture 20: Topo-Sort and Dijkstra’s Greedy Idea](https://courses.cs.washington.edu/courses/cse326/03wi/lectures/RaoLect20.pdf)
 
 [Depth-First Search](https://courses.engr.illinois.edu/cs473/sp2017/notes/06-dfs.pdf)
+
+[Arthur Khan, Topological sorting of large networks, Communications of the ACMVolume 5 Issue 11 Nov. 1962 pp 558–562](https://dl.acm.org/doi/10.1145/368996.369025)
+
+[NetworkX](https://networkx.org/documentation/latest/auto_examples/basic/plot_simple_graph.html#sphx-glr-auto-examples-basic-plot-simple-graph-py)
 
 [Wiki Talk Topological Sorting](https://en.wikipedia.org/wiki/Talk%3ATopological_sorting)
  
