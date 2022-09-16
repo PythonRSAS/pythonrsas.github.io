@@ -1,9 +1,9 @@
 ---
 layout: post
-tag : algorithm, graph, Khan's algoritm, topological sort, topological ordering, cycle detection, DAG, leetcode, course schedule
+tag : algorithm, graph, Khan's algoritm, topological sort, topological ordering, cycle detection, DAG, leetcode, course schedule, graphlib, networkX
 category: education
 title: "Topological sort and cycle detection"
-description: topological sort and the Khan's algorithm
+description: topological sort, DFS, Khan's algorithm and cycle detection
 author: Sarah Chen
 image: images/posts/topologicalSortYes.PNG
 
@@ -17,6 +17,9 @@ image: images/posts/topologicalSortYes.PNG
   - [Leetcode 210. Course Schedule II](#leetcode-210-course-schedule-ii)
 - [Compare with Floyd's algorithm for topological sort](#compare-with-floyds-algorithm-for-topological-sort)
 - [Appendix](#appendix)
+- [Know your library](#know-your-library)
+  - [graphlib](#graphlib)
+  - [networkX](#networkx)
 - [Reference](#reference)
 # Problem
 Given a directed hierchical structure, how do we flatten it to an array so that the directions are preserved?  
@@ -36,15 +39,9 @@ We can write down my starting place first, since it does not have any dependenci
 # Topological sort
 ## DFS 
 In [DFS](2022-09-15-1-Topological-sort-and-cycle-detection.md) we talked about topological sort and how it is just like DFS. 
-
-A topological sort is a graph traversal in which each node is visited only after all its dependencies are visited. This sounds very much like how DFS works.
-
 In DFS, each node at the top is not finished until its dependents are finished.
 
-
-A topological sort is a graph traversal in which each node is visited only after all its dependencies are visited.  This sounds very much like how DFS works. 
-
-In DFS, each node at the top is not finished until its dependents are finished. 
+A topological sort is a graph traversal in which each node is visited only after all its dependencies are visited. This sounds very much like how DFS works.  The only difference is that in DFS the dependencies mean the children, whereas in topological sort it means the opposite.  Otherwise they are the same. 
 
 ![topologicalSort](../images/posts/topologicalSort.PNG)
 
@@ -54,18 +51,17 @@ The only type of graph that can have topological orderings is DAG.  DAGs have no
 
 The [graphlib](https://docs.python.org/3/library/graphlib.html) library, part of Python standard library.  Its <span class="coding">graphlib.TopologicalSorter</span> does exactly topological sort. 
 
-```python
-graph = {"D": {"B", "C"}, "C": {"A"}, "B": {"A"}}
-ts = TopologicalSorter(graph)
-tuple(ts.static_order())
-```
-<div class="code-head"><span>code</span>BFS.py</div>
+<div class="code-head"><span>code</span>DFS.py</div>
 
 ```python
 import graphlib
 from graphlib import TopologicalSorter
+graph = {"D": {"B", "C"}, "C": {"A"}, "B": {"A"}}
+ts = TopologicalSorter(graph)
+tuple(ts.static_order())
+tuple(ts.static_order())
+# ('A', 'C', 'B', 'D')
 
-# graph = {"D": {"B", "C"}, "C": {"A"}, "B": {"A"}}
 graph ={
     'A': ['B', 'C'],
     'B': ['D', 'E', 'F'],
@@ -79,6 +75,7 @@ graph ={
 }
 ts = TopologicalSorter(graph)
 print(tuple(ts.static_order()))
+# ('D', 'E', 'G', 'H', 'C', 'F', 'B', 'A')
 ```
 
 The illustration below shows the one algorithm of doing topological sort with $$O(V+E)$$ time complexity. 
@@ -92,6 +89,7 @@ New York, LA, London, Hong Kong, Beijing.
 My solution seems to resemble Khan's algorithm for topological sort: solving problem layer by layer: start from those that have no dependencies (no incoming edges), remove them and write them down (put them in a queue). Do it to the next batch.
 
 Below images are taken from Washington University Professor Rao's CSE 326 Lecture 20.  The problem is similar, except names of cities have become course numbers.  We want to write down the list of course in their dependency order. 
+
 ![](../images/posts/topologicalSortCourses)
 
 ![](../images/posts/topologicalSortYes.PNG)
@@ -126,29 +124,11 @@ print(dfs(g, 'A', []))
 
 
 ## Khan's algorithm
-One of these algorithms, first described by Kahn (1962), works by choosing vertices in the same order as the eventual topological sort. 
+One of these algorithms, first described by Kahn (1962), works by using a metric called "in-degree", which is the number of incoming edges. 
 
-First, find a list of "start nodes" which have no incoming edges and insert them into a set S; at least one such node must exist in a non-empty acyclic graph. Then:
+**Step 1: Compute In-degree**: First we create a lookup for the in-degrees of every node. 
 
-L ← Empty list that will contain the sorted elements
-S ← Set of all nodes with no incoming edge
-while S is non-empty do
-    remove a node n from S
-    add n to tail of L
-    for each node m with an edge e from n to m do
-        remove edge e from the graph
-        if m has no other incoming edges then
-            insert m into S
-if graph has edges then
-    return error   (graph has at least one cycle)
-else 
-    return L   (a topologically sorted order)
-
-In Kahn’s algorithm, we construct a topological sort on a DAG by finding nodes that have no incoming edges:
-
-**Step 1: Compute In-degree**: First we create compute a lookup for the in-degrees of every node. In this particular Leetcode problem, each node has a unique integer identifier, so we can simply store all the in-degrees values using a list where indegree[i] tells us the in-degree of node i.
-
-**Step 2: Keep track of all nodes with in-degree of zero**: If a node has an in-degree of zero it means it is a course that we can take right now. There are no other courses that it depends on. We create a queue q of all these nodes that have in-degree of zero. At any step of Khan's algorithm, if a node is in q then it is guaranteed that it's "safe to take this course" because it does not depend on any courses that "we have not taken yet".
+**Step 2: Keep track of all nodes with in-degree of zero**: If a node has an in-degree of zero then we can remove it since none else depends on it.  At any step of Khan's algorithm, if a node is in q then it is guaranteed that it's "safe to remove" because it does not depend on any node that "we have not taken yet".
 
 **Step 3: Delete node and edges, then repeat**: We take one of these special safe courses x from the queue q and conceptually treat everything as if we have deleted the node x and all its outgoing edges from the graph g. In practice, we don't need to update the graph g, for Khan's algorithm it is sufficient to just update the in-degree value of its neighbours to reflect that this node no longer exists.
 This step is basically as if a person took and passed the exam for course x, and now we want to update the other courses dependencies to show that they don't need to worry about x anymore.
@@ -513,6 +493,12 @@ def canDo(numCourses, prerequisites) -> bool:
       return False
   return True
 ```
+
+# Know your library
+## graphlib
+
+## networkX
+
 # Reference
 
 [Washington University CSE 326 Lecture 20: Topo-Sort and Dijkstra’s Greedy Idea](https://courses.cs.washington.edu/courses/cse326/03wi/lectures/RaoLect20.pdf)
