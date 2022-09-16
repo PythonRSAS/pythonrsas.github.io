@@ -31,7 +31,7 @@ But Dijstra was born way befor I was :).
 "One of the reasons that it is so nice was that I designed it **without pencil and paper**. I learned later that one of the advantages of designing **without pencil and paper** is that you are almost forced to **avoid all avoidable complexities**. Eventually, that algorithm became to my great amazement, one of the cornerstones of my fame."
 
 — Edsger Dijkstra, in an interview with Philip L. Frana, [Communications of the ACM, 2001](https://cacm.acm.org/magazines/2010/8/96632-an-interview-with-edsger-w-dijkstra/fulltext?mobile=false)
-## What I learn from Duhstra's computer programming path
+## What I learn from Dijkstra's computer programming path
 
 From [Wikipedia, Edsger Wybe Dijkstra](https://en.wikipedia.org/wiki/Edsger_W._Dijkstra) (11 May 1930 – 6 August 2002) was a Dutch computer scientist, programmer, software engineer, systems scientist, and science essayist.
 

@@ -22,6 +22,7 @@ image: images/posts/photos/IMG_0869.JPG
   - [DFS](#dfs)
     - [DFS edge classfication](#dfs-edge-classfication)
     - [Topological sort](#topological-sort)
+  - [BFS](#bfs)
   - [Compare iterative DFS and BFS](#compare-iterative-dfs-and-bfs)
 
 # Introduction
@@ -283,6 +284,79 @@ ts = TopologicalSorter(graph)
 print(tuple(ts.static_order()))
 ```
 
+## BFS
+
+A BFS starts at some arbitrary node and explores its neighbors first **before moving to the next level** of neighbors, in a layer by layer fashion. 
+
+BFS is a way to search graph broadly, and useful for finding the shortest path. 
+
+BFS uses a *queue* data structure to track which node to visit next because the traversal is first in and first out (**FIFO**).  
+
+In code below, I use **deque** in to keep track of the queue.  Deques are a generalization of stacks and queues.
+
+From Python documentation: [Deques support thread-safe, memory efficient appends and pops from either side of the deque with approximately the same O(1) performance in either direction.](https://docs.python.org/3/library/collections.html#deque-objects)
+
+> Though list objects support similar operations, they are **optimized for fast fixed-length operations** and incur $$O(n)$$ memory movement costs for <span class="coding">pop(0)</span> and <span class="coding">insert(0, v)</span> operations which change both the size and position of the underlying data representation.
+
+I could have used <span class="coding">extend</span> method instead of a for-loop to append each neighbor one by one because <span class="coding">extend</span> is much faster.  But there is no method that is the opposite of <span class="coding">extend</span> to pop multile items simutaneously.   So I stay with the for-loop. 
+
+What the <span class="coding">bfs</span> function does is to visit nodes **layer by layer, and from left to right**. 
+
+1. place starting node to the queue
+2. while anything is in queue, pop the first item from the queue. 
+3. if what's popped out has not been visited yet, add it to the
+4.  <span class="coding">visited</span> is a set instead of a list. 
+
+
+<div class="code-head"><span>code</span>BFS.py</div>
+
+```python
+graph ={
+    'A': ['B', 'C'],
+    'B': ['D', 'E', 'F'],
+    'C': ['G'],
+    'D': [],
+    'E': [],
+    'F': ['H'],
+    'G': ['I'],
+    'H': [],
+    'G': []
+}
+
+from collections import deque
+def bfs(G, startNode):
+    # initialize
+    Q = deque(startNode)
+    visited = set()
+    traversal = []
+
+    while Q: # do until no more node left
+        node = Q.popleft()
+        if node not in visited:
+            visited.add(node)
+            traversal.append(node)
+            Q.extend(G[node])
+        
+    return traversal
+
+print(bfs(graph, 'A'))
+
+``` 
+Although the input graph is represented as if it is a directed graph, the BFS works fine if just as well.  
+```python
+graph ={
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E', 'F'],
+    'C': ['A', 'G'],
+    'D': ['B'],
+    'E': ['B'],
+    'F': ['B','H'],
+    'G': ['C', 'I'],
+    'H': ['E'],
+    'G': ['C']
+}
+```
+> The negative side is that we have to do more membership tests.  For example, when we are at the $$B$$ node, we have to ask if $$A$$ was in the <span class="coding">visited</span> even though we just came from A. 
 
 ## Compare iterative DFS and BFS
 

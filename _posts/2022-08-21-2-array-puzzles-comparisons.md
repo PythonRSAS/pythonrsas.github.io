@@ -207,7 +207,9 @@ The problem statement is very long, even after I have shortened it. *Because it 
 
 Do we really need the "yearbooks"?   **An immobile student reunites with his yearbook is equivalent to a moving student reuniting with his original position after moving about according to the given order from the given array.**    The yearbook can be substituted with "soul", "mate", or just simply "self".  
 
-If we use initial positions (1, ..., n) to represent students 1 to n, the given array 
+If we use initial positions (1, ..., n) to represent students 1 to n, the given array A represent where to go, then, 
+
+Student i at index 0, moves to (A[0] - 1)th index, and moves to (A[A[0] - 1] - 1)th index, ..., until back to index 0. 
 
 Given n students, and array arr, which is a permutation of 1..n.  
 
