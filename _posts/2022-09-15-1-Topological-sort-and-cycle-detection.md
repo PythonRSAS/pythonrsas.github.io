@@ -17,9 +17,16 @@ Recall my problem of trying to fly to Beijing, China, while Zero-Covid policy is
 
 How do I write down each of the valid routes in their right order with sentences? 
 
+If we start the routes with "New York -> Beijing", that will not work for sure.  Because we left out other cities.  
+
 Before quoting any named algorithm, how would we solve the problem? 
 
 We can write down my starting place first, since it does not have any dependencies. Then we look at where the directed edges lead to, if any of them do not have any dependencies, then we can write it down next. And so forth until we are done. 
+
+# Topological sort
+A topological ordering will be the following:
+
+New York, LA, London, Hong Kong, Beijing. 
 
 My solution seems to resemble Khan's algorithm for topological sort: solving problem layer by layer: start from those that have no dependencies (no incoming edges), remove them and write them down (put them in a queue). Do it to the next batch.
 
@@ -44,7 +51,6 @@ def dfs(G, startNode,visited):
     return visited
 ```
 
-
 ```python
 g = {'A': ['B', 'D'],
     'B': ['C'],
@@ -57,12 +63,26 @@ print(dfs(g, 'A', []))
 ```
 ![](../images/posts/topologicalSortNot.PNG)
 
-Here is a different way posing a similar problem:
-![](https://en.wikipedia.org/wiki/Talk%3ATopological_sorting#/media/File:LampFlowchart.svg)
 
-# Topological sort
+## Algorithm
+
+The illustration below shows the one algorithm of doing topological sort with $$O(V+E)$$ time complexity. 
 
 ![](../images/posts/topologicalSort_enqueue_deque.PNG)
+
+
+## Khan's algorithm
+
+Khan's algorithm with cycle detection
+
+**Step 1: Compute In-degree**: First we create compute a lookup for the in-degrees of every node. In this particular Leetcode problem, each node has a unique integer identifier, so we can simply store all the in-degrees values using a list where indegree[i] tells us the in-degree of node i.
+
+**Step 2: Keep track of all nodes with in-degree of zero**: If a node has an in-degree of zero it means it is a course that we can take right now. There are no other courses that it depends on. We create a queue q of all these nodes that have in-degree of zero. At any step of Khan's algorithm, if a node is in q then it is guaranteed that it's "safe to take this course" because it does not depend on any courses that "we have not taken yet".
+
+**Step 3: Delete node and edges, then repeat**: We take one of these special safe courses x from the queue q and conceptually treat everything as if we have deleted the node x and all its outgoing edges from the graph g. In practice, we don't need to update the graph g, for Khan's algorithm it is sufficient to just update the in-degree value of its neighbours to reflect that this node no longer exists.
+This step is basically as if a person took and passed the exam for course x, and now we want to update the other courses dependencies to show that they don't need to worry about x anymore.
+
+**Step 4: Repeat**: When we removing these edges from x, we are decreasing the in-degree of x's neighbours; this can introduce more nodes with an in-degree of zero. During this step, if any more nodes have their in-degree become zero then they are added to q. We repeat step 3 to process these nodes. Each time we remove a node from q we add it to the final topological sort list result.
 
 <div class="code-head"><span>code</span>khans algorithm.py</div>
 
@@ -120,7 +140,11 @@ def topsort(adj_list):
 
 # Cycle detection
 
-Khan's algorithm of topological sort can be used for cycle detection.    
+Khan's algorithm of topological sort can be used for cycle detection.   
+If there is a cycle in the graph then result will not include all the nodes in the graph, result will return only some of the nodes. To check if there is a cycle, you just need to check whether the length of result is equal to the number of nodes in the graph, n.
+
+*Why does this work?*: Suppose there is a cycle in the graph: x1 -> x2 -> ... -> xn -> x1, then none of these nodes will appear in the list because their in-degree will not reach 0 during Khan's algorithm. Each node xi in the cycle can't be put into the queue q because there is always some other predecessor node x_(i-1) with an edge going from x_(i-1) to xi preventing this from happening.
+ 
 
 ## Leetcode 207. Course Schedule
 
@@ -276,7 +300,86 @@ print(canDo(numCourses, prerequisites))
 # True
 ```
 
+## Leetcode 210. Course Schedule II
 
+There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai.
+
+For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
+
+Return the ordering of courses you should take to finish all courses. If there are many valid answers, return any of them. If it is impossible to finish all courses, return an empty array.
+ 
+Example 1:
+
+Input: numCourses = 2, prerequisites = [[1,0]]
+Output: [0,1]
+Explanation: There are a total of 2 courses to take. To take course 1 you should have finished course 0. So the correct course order is [0,1].
+Example 2:
+
+Input: numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]
+Output: [0,2,1,3]
+Explanation: There are a total of 4 courses to take. To take course 3 you should have finished both courses 1 and 2. Both courses 1 and 2 should be taken after you finished course 0.
+So one correct course order is [0,1,2,3]. Another correct ordering is [0,2,1,3].
+Example 3:
+
+Input: numCourses = 1, prerequisites = []
+Output: [0]
+
+
+Constraints:
+
+1 <= numCourses <= 2000
+0 <= prerequisites.length <= numCourses * (numCourses - 1)
+prerequisites[i].length == 2
+0 <= ai, bi < numCourses
+ai != bi
+All the pairs [ai, bi] are distinct.
+
+<div class="code-head"><span>code</span>course schedule II.py</div>
+
+```py
+from collections import defaultdict
+
+def build_graph(edges, n):
+    g = defaultdict(list)
+    for i in range(n):
+        g[i] = []
+    for a, b in edges:
+        g[b].append(a)
+    return g
+
+def topsort(g, n):
+    # -- Step 1 --
+    indeg = [0] * n
+    for u in g:
+        for v in g[u]:
+            indeg[v] += 1
+
+
+    # -- Step 2 --
+    q = []
+    for i in range(n):
+        if indeg[i] == 0:
+            q.append(i)
+
+    # -- Step 3 and 4 --
+    result = []
+    while q:
+        x = q.pop()
+        result.append(x)
+        for y in g[x]:
+            indeg[y] -= 1
+            if indeg[y] == 0:
+                q.append(y)
+
+    return result
+
+def courses(n, edges):
+    g = build_graph(edges, n)
+    ordering = topsort(g, n)
+    # -- Step 5 --
+    has_cycle = len(ordering) < n
+    return [] if has_cycle else ordering
+```
 
 # Compare with Floyd's algorithm for topological sort
 
@@ -338,9 +441,11 @@ def canDo(numCourses, prerequisites) -> bool:
       return False
   return True
 ```
-# Future reading
+# Reference
 
 [Washington University CSE 326 Lecture 20: Topo-Sort and Dijkstra’s Greedy Idea](https://courses.cs.washington.edu/courses/cse326/03wi/lectures/RaoLect20.pdf)
+
+[Depth-First Search](https://courses.engr.illinois.edu/cs473/sp2017/notes/06-dfs.pdf)
 
 [Wiki Talk Topological Sorting](https://en.wikipedia.org/wiki/Talk%3ATopological_sorting)
  
