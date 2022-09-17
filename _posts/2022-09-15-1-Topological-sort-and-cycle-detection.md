@@ -12,6 +12,7 @@ image: images/posts/topologicalSortYes.PNG
 - [Topological sort](#topological-sort)
   - [DFS](#dfs)
   - [Khan's algorithm](#khans-algorithm)
+- [DFS vs. Khan's for topological sort](#dfs-vs-khans-for-topological-sort)
 - [Cycle detection](#cycle-detection)
   - [Leetcode 207. Course Schedule](#leetcode-207-course-schedule)
   - [Leetcode 210. Course Schedule II](#leetcode-210-course-schedule-ii)
@@ -19,7 +20,7 @@ image: images/posts/topologicalSortYes.PNG
 - [Appendix](#appendix)
 - [Know your library](#know-your-library)
   - [graphlib](#graphlib)
-    - [Can I use it for DFS:](#can-i-use-it-for-dfs)
+    - [Can I use it for DFS](#can-i-use-it-for-dfs)
   - [networkX](#networkx)
 - [Reference](#reference)
 # Problem
@@ -35,22 +36,24 @@ If we start the routes with "New York -> Beijing", that will not work for sure. 
 
 Before quoting any named algorithm, how would we solve the problem? 
 
-We can write down my starting place first, since it does not have any dependencies. Then we look at where the directed edges lead to, if any of them do not have any dependencies, then we can write it down next. And so forth until we are done. 
+We can write down my starting place first, since I cannot go anywhere without a starting place. Then we look at where the directed edges lead to, if any of them do not have any dependencies, then we can write it down next. And so forth until we are done. 
 
 # Topological sort
-## DFS 
-In [DFS](https://pythonrsas.github.io/3-DFS/) we talked about topological sort and how it is just like DFS. 
-In DFS, each node at the top is not finished until its dependents are finished.
+A topological sort is a graph traversal in which each node is visited only after all its dependencies are visited. This sounds very much like how DFS works when backtracking.  The only difference is that in DFS the dependencies mean the children, whereas in topological sort it means the opposite.  
 
-A topological sort is a graph traversal in which each node is visited only after all its dependencies are visited. This sounds very much like how DFS works.  The only difference is that in DFS the dependencies mean the children, whereas in topological sort it means the opposite.  Otherwise they are the same. 
+In a topological sort, **the parent needs to come before its children**.  
 
 ![topologicalSort](../images/posts/topologicalSort.PNG)
 
 For every directed edge $$(u, v)$$ from vertex $$u$$ to vertex $$v$$, $$u$$ comes before $$v$$ in the ordering. 
 
-The only type of graph that can have topological orderings is DAG.  DAGs have no cycles. 
+The only type of graph that can have topological orderings is DAG.  DAGs have no cycles.  An equal couple cannot be topologically sorted.  Only parent-children can be topologically sorted. 
 
+Topological sort can be done by DFS or BFS.  Khan's algorithm is BFS.
 
+## DFS 
+In [DFS](https://pythonrsas.github.io/3-DFS/) we talked about topological sort and how it is just like DFS. 
+In DFS, each node at the top is not finished until its dependents are finished.
 
 The illustration below shows the one algorithm of doing topological sort with $$O(V+E)$$ time complexity. 
 
@@ -69,7 +72,36 @@ Below images are taken from Washington University Professor Rao's CSE 326 Lectur
 ![](../images/posts/topologicalSortYes.PNG)
 
 
-We use the dfs code below for topological sort. 
+We use the dfs code see ([source](https://gist.github.com/kachayev/5910538)) below for topological sort. 
+<div class="code-head"><span>code</span>topSort_dfs.py</div>
+
+```py
+
+from collections import deque
+
+GRAY, BLACK = 0, 1
+def topological(graph):
+    order, enter, state = deque(), set(graph), {}
+
+    def dfs(node):
+        state[node] = GRAY
+        for k in graph.get(node, ()):
+            sk = state.get(k, None)
+            if sk == GRAY: raise ValueError("cycle")
+            if sk == BLACK: continue
+            enter.discard(k)
+            dfs(k)
+        order.appendleft(node)
+        state[node] = BLACK
+
+    while enter: dfs(enter.pop())
+    return order
+
+# check how it works
+graph0 = {'D': ['C', 'B'], 'C': ['A'], 'B': ['A'], 'A': []}
+print(topological(graph0))
+```
+
 <div class="code-head"><span>code</span>dfs.py</div>
 
 ```py
@@ -82,23 +114,21 @@ def dfs(G, startNode,visited):
         if node not in visited:
             dfs(G, node, visited)
     return visited
-```
 
-```python
 g = {'A': ['B', 'D'],
     'B': ['C'],
     'C': ['D', 'E'],
     'D': ['E'],
     'E': [],
     'F': []}
-print(dfs(g, 'A', []))
+print(dfs(g, 'A', [], 5))
 # ['A', 'B', 'C', 'D', 'E']
 ```
 ![](../images/posts/topologicalSortNot.PNG)
 
 
 ## Khan's algorithm
-One of these algorithms, first described by Kahn (1962), works by using a metric called "in-degree", which is the number of incoming edges. 
+Khan's algorithm was invented by Arthur Kahn (1962).  It is BFS and works by using a metric called "in-degree", which is the number of incoming edges. 
 
 **Step 1: Compute In-degree**: First we create a lookup for the in-degrees of every node. 
 
@@ -163,6 +193,14 @@ def topsort(adj_list):
 
 ```
 
+# DFS vs. Khan's for topological sort
+
+I got the answer from [SOF](https://stackoverflow.com/questions/69523839/topological-sort-kahns-algorithm-bfs-or-dfs):
+Kahn's algorithm and DFS are both used to topological sorting in practice. Which to choose depends on your graph and its representation:
+
+If you don't have easy access to the list of all vertices (like when you only get a reference to the root of the graph), then would have to do a search to find them all before implementing Kahn's algorithm, so you might as well use DFS and do your topological sort at the same time.
+
+If your graph might have a long path, then it would be inappropriate to use a recursive search. A DFS implementation should use an explicit stack, and that makes it more complicated than Kahn's algorithm. If you do have a list of all vertices, then you probably want to use Kahn's algorithm instead.
 
 # Cycle detection
 
@@ -474,7 +512,7 @@ def canDo(numCourses, prerequisites) -> bool:
 ## graphlib
 The [graphlib](https://docs.python.org/3/library/graphlib.html) library, part of Python standard library since Python 3.9.  It does not have a lot of functionality yet.  But it can do topological sort with <span class="coding">graphlib.TopologicalSorter</span> and cycle detection when the sorting fails. 
 
-### Can I use it for DFS:
+### Can I use it for DFS
 Because of topological sort is the reverse of DFS, let's see if we can use graphlib to perform DFS. 
 ![DAG_4nodes](..\images\posts\DAG_4nodes.PNG)
 <div class="code-head"><span>code</span>DFS.py</div>
@@ -483,6 +521,18 @@ Because of topological sort is the reverse of DFS, let's see if we can use graph
 import graphlib
 from graphlib import TopologicalSorter
 graph = {"D": {"B", "C"}, "C": {"A"}, "B": {"A"}}
+G = {k:list(v) for k,v in graph.items()}
+G['A'] = []
+G = defaultdict(list)^M
+    ...: for k, v in graph.items():^M
+    ...:   G[k].append(list(v))
+dfs_res = dfs(G, 'D',[])
+dfs_res.reverse()
+dfs_res
+# ['B', 'A', 'C', 'D']
+
+# ['D', 'C', 'A', 'B']
+# defaultdict(list, {'D': [['C', 'B']], 'C': [['A']], 'B': [['A']]})
 ts = TopologicalSorter(graph)
 tuple(ts.static_order())
 # ('A', 'C', 'B', 'D')
@@ -534,3 +584,4 @@ print(tuple(ts.static_order()))
 
 [Wiki Talk Topological Sorting](https://en.wikipedia.org/wiki/Talk%3ATopological_sorting)
  
+[Topological Sort Kahn's algorithm BFS or DFS](https://stackoverflow.com/questions/69523839/topological-sort-kahns-algorithm-bfs-or-dfs)
