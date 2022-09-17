@@ -38,7 +38,7 @@ We can write down my starting place first, since it does not have any dependenci
 
 # Topological sort
 ## DFS 
-In [DFS](2022-09-15-1-Topological-sort-and-cycle-detection.md) we talked about topological sort and how it is just like DFS. 
+In [DFS](https://pythonrsas.github.io/3-DFS/) we talked about topological sort and how it is just like DFS. 
 In DFS, each node at the top is not finished until its dependents are finished.
 
 A topological sort is a graph traversal in which each node is visited only after all its dependencies are visited. This sounds very much like how DFS works.  The only difference is that in DFS the dependencies mean the children, whereas in topological sort it means the opposite.  Otherwise they are the same. 
