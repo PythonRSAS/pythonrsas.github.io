@@ -19,6 +19,7 @@ image: images/posts/topologicalSortYes.PNG
 - [Appendix](#appendix)
 - [Know your library](#know-your-library)
   - [graphlib](#graphlib)
+    - [Can I use it for DFS:](#can-i-use-it-for-dfs)
   - [networkX](#networkx)
 - [Reference](#reference)
 # Problem
@@ -49,34 +50,7 @@ For every directed edge $$(u, v)$$ from vertex $$u$$ to vertex $$v$$, $$u$$ come
 
 The only type of graph that can have topological orderings is DAG.  DAGs have no cycles. 
 
-The [graphlib](https://docs.python.org/3/library/graphlib.html) library, part of Python standard library.  Its <span class="coding">graphlib.TopologicalSorter</span> does exactly topological sort. 
 
-<div class="code-head"><span>code</span>DFS.py</div>
-
-```python
-import graphlib
-from graphlib import TopologicalSorter
-graph = {"D": {"B", "C"}, "C": {"A"}, "B": {"A"}}
-ts = TopologicalSorter(graph)
-tuple(ts.static_order())
-tuple(ts.static_order())
-# ('A', 'C', 'B', 'D')
-
-graph ={
-    'A': ['B', 'C'],
-    'B': ['D', 'E', 'F'],
-    'C': ['G'],
-    'D': [],
-    'E': [],
-    'F': ['H'],
-    'G': ['I'],
-    'H': [],
-    'G': []
-}
-ts = TopologicalSorter(graph)
-print(tuple(ts.static_order()))
-# ('D', 'E', 'G', 'H', 'C', 'F', 'B', 'A')
-```
 
 The illustration below shows the one algorithm of doing topological sort with $$O(V+E)$$ time complexity. 
 
@@ -191,6 +165,8 @@ def topsort(adj_list):
 
 
 # Cycle detection
+
+A complete topological ordering is possible if and only if the graph has no directed cycles, that is, if it is a directed acyclic graph. 
 
 Khan's algorithm of topological sort can be used for cycle detection.   
 If there is a cycle in the graph then result will not include all the nodes in the graph, result will return only some of the nodes. To check if there is a cycle, you just need to check whether the length of result is equal to the number of nodes in the graph, n.
@@ -496,6 +472,53 @@ def canDo(numCourses, prerequisites) -> bool:
 
 # Know your library
 ## graphlib
+The [graphlib](https://docs.python.org/3/library/graphlib.html) library, part of Python standard library since Python 3.9.  It does not have a lot of functionality yet.  But it can do topological sort with <span class="coding">graphlib.TopologicalSorter</span> and cycle detection when the sorting fails. 
+
+### Can I use it for DFS:
+Because of topological sort is the reverse of DFS, let's see if we can use graphlib to perform DFS. 
+![DAG_4nodes](..\images\posts\DAG_4nodes.PNG)
+<div class="code-head"><span>code</span>DFS.py</div>
+
+```python
+import graphlib
+from graphlib import TopologicalSorter
+graph = {"D": {"B", "C"}, "C": {"A"}, "B": {"A"}}
+ts = TopologicalSorter(graph)
+tuple(ts.static_order())
+# ('A', 'C', 'B', 'D')
+
+H = nx.DiGraph(graph)  # create a Graph dict mapping nodes to nbrs
+print(list(H.edges()))
+nx.draw(H, with_labels=True, font_weight='bold')
+plt.show()
+
+
+graph ={
+    'A': ['B', 'C'],
+    'B': ['D', 'E', 'F'],
+    'C': ['G'],
+    'D': [],
+    'E': [],
+    'F': ['H'],
+    'G': ['I'],
+    'H': [],
+    'G': []
+}
+ts = TopologicalSorter(graph)
+print(tuple(ts.static_order()))
+# ('D', 'E', 'G', 'H', 'C', 'F', 'B', 'A')
+```
+
+<div class="code-head"><span>code</span>courses I using graphlib.py</div>
+
+```python
+[1,0],[0,1]
+course = {1: {0}, 0: {1}}
+ts = TopologicalSorter(course)
+print(tuple(ts.static_order()))
+# CycleError: ('nodes are in a cycle', [1, 0, 1])
+```
+
 
 ## networkX
 
