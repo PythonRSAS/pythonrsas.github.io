@@ -5,7 +5,7 @@ category: education
 title: "Palindrome"
 description: solving the longest palindrome puzzle
 author: Sarah Chen
-image: images/posts/photos/IMG_0869.JPG
+image: images/posts/photos/IMG_0937.JPG
 
 ---
 Quote from [Wikipedia](https://en.wikipedia.org/wiki/Longest_palindromic_substring#:~:text=In%20computer%20science%2C%20the%20longest,bananas%22%20is%20%22anana%22.) "In computer science, the longest palindromic substring or longest symmetric factor problem is the problem of finding a maximum-length contiguous substring of a given string that is also a palindrome. For example, the longest palindromic substring of "bananas" is "anana".
@@ -27,12 +27,8 @@ The method is like solving a very simple math problem.
 
 1. Let the length of the string be $$n$$.  Assume the longest is the entire string, check if it is palindrome. If yes, then done. 
 2. If the entire string is not a palindrome, then we decrease check length by 1:  check on continuous chunks of length $$n-1$$, and iterate through them. Say the string is "abcd", then the iterations are: "abc", and "bcd". There are $$4-3+1$$ of them. We generalize the number of substrings with length $$x$$ to $$n - X +1$$.  If any of them is palindrome, then we are done.  Else continue. 
-   
 
-all(s[i] == s[~i] for i in range(len(s) // 2))
-
-
-<div class="code-head"><span>code</span>palindrome_brute_force.py</div>\
+<div class="code-head"><span>code</span>palindrome_brute_force.py</div>
 
 ```py
 def checkPalindrome(s):
