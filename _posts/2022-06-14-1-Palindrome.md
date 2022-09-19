@@ -5,7 +5,7 @@ category: education
 title: "Palindrome"
 description: solving the longest palindrome puzzle
 author: Sarah Chen
-image: images/posts/photos/IMG_0937.JPG
+image: images/posts/photos/IMG_0937.jpg
 
 ---
 Quote from [Wikipedia](https://en.wikipedia.org/wiki/Longest_palindromic_substring#:~:text=In%20computer%20science%2C%20the%20longest,bananas%22%20is%20%22anana%22.) "In computer science, the longest palindromic substring or longest symmetric factor problem is the problem of finding a maximum-length contiguous substring of a given string that is also a palindrome. For example, the longest palindromic substring of "bananas" is "anana".
