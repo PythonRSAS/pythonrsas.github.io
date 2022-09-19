@@ -5,7 +5,7 @@ category: education
 title: "Topological sort and cycle detection"
 description: topological sort, DFS, Khan's algorithm and cycle detection
 author: Sarah Chen
-image: images/posts/topologicalSortYes.PNG
+image: images/posts/myTrip.PNG
 
 ---
 - [Problem](#problem)
