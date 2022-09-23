@@ -37,11 +37,14 @@ Before quoting any named algorithm, how would we solve the problem?
 We can write down my starting place first, since I cannot go anywhere without a starting place. Then we look at where the directed edges lead to, if any of them do not have any dependencies, then we can write it down next. And so forth until we are done. 
 
 # Topological sort
+![](../images/posts/topologicalSortCourses)
 A topological sort is a graph traversal in which each node is visited only after all its dependencies are visited. This sounds very much like how DFS works when backtracking.  The only difference is that in DFS the dependencies mean the children, whereas in topological sort it means the opposite.  
 
 In a topological sort, **the parent needs to come before its children**.  
 
 ![topologicalSort](../images/posts/topologicalSort.PNG)
+
+![](../images/posts/topologicalSortNot.PNG)
 
 For every directed edge $$(u, v)$$ from vertex $$u$$ to vertex $$v$$, $$u$$ comes before $$v$$ in the ordering. 
 
@@ -55,7 +58,6 @@ In DFS, each node at the top is not finished until its dependents are finished.
 
 The illustration below shows the one algorithm of doing topological sort with $$O(V+E)$$ time complexity. 
 
-![](../images/posts/topologicalSort_enqueue_deque.PNG)
 
 A topological ordering will be the following:
 
@@ -64,8 +66,6 @@ New York, LA, London, Hong Kong, Beijing.
 My solution seems to resemble Khan's algorithm for topological sort: solving problem layer by layer: start from those that have no dependencies (no incoming edges), remove them and write them down (put them in a queue). Do it to the next batch.
 
 Below images are taken from Washington University Professor Rao's CSE 326 Lecture 20.  The problem is similar, except names of cities have become course numbers.  We want to write down the list of course in their dependency order. 
-
-![](../images/posts/topologicalSortCourses)
 
 ![](../images/posts/topologicalSortYes.PNG)
 
@@ -122,11 +122,11 @@ g = {'A': ['B', 'D'],
 print(dfs(g, 'A', [], 5))
 # ['A', 'B', 'C', 'D', 'E']
 ```
-![](../images/posts/topologicalSortNot.PNG)
 
 
 ## Khan's algorithm
 Khan's algorithm was invented by Arthur Kahn (1962).  It is BFS and works by using a metric called "in-degree", which is the number of incoming edges. 
+![](../images/posts/topologicalSort_enqueue_deque.PNG)
 
 **Step 1: Compute In-degree**: First we create a lookup for the in-degrees of every node. 
 

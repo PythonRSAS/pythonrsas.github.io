@@ -1,8 +1,8 @@
 ---
 layout: post
-tag : algorithm, graph, Khan's algoritm, topological sort, topological ordering, cycle detection, DAG, leetcode, course schedule, graphlib, networkX
+tag : algorithm, graph, Khan's algoritm, topological sort, topological ordering, cycle detection, DAG, leetcode, course schedule
 category: education
-title: "Topological sort and cycle detection"
+title: "Course schedule II"
 description: topological sort, DFS, Khan's algorithm and cycle detection
 author: Sarah Chen
 image: images/posts/topologicalSortYes.PNG
@@ -10,7 +10,6 @@ image: images/posts/topologicalSortYes.PNG
 ---
 - [Compare with Floyd's algorithm for topological sort](#compare-with-floyds-algorithm-for-topological-sort)
 - [Appendix](#appendix)
-- [Reference](#reference)
 
 
 ## Leetcode 210. Course Schedule II
@@ -155,17 +154,3 @@ def canDo(numCourses, prerequisites) -> bool:
   return True
 ```
 
-
-# Reference
-
-[Washington University CSE 326 Lecture 20: Topo-Sort and Dijkstra’s Greedy Idea](https://courses.cs.washington.edu/courses/cse326/03wi/lectures/RaoLect20.pdf)
-
-[Depth-First Search](https://courses.engr.illinois.edu/cs473/sp2017/notes/06-dfs.pdf)
-
-[Arthur Khan, Topological sorting of large networks, Communications of the ACMVolume 5 Issue 11 Nov. 1962 pp 558–562](https://dl.acm.org/doi/10.1145/368996.369025)
-
-[NetworkX](https://networkx.org/documentation/latest/auto_examples/basic/plot_simple_graph.html#sphx-glr-auto-examples-basic-plot-simple-graph-py)
-
-[Wiki Talk Topological Sorting](https://en.wikipedia.org/wiki/Talk%3ATopological_sorting)
- 
-[Topological Sort Kahn's algorithm BFS or DFS](https://stackoverflow.com/questions/69523839/topological-sort-kahns-algorithm-bfs-or-dfs)

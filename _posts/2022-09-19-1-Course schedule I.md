@@ -2,28 +2,17 @@
 layout: post
 tag : algorithm, graph, Khan's algoritm, topological sort, topological ordering, cycle detection, DAG, leetcode, course schedule, graphlib, networkX
 category: education
-title: "Topological sort and cycle detection"
+title: "Course schedule I"
 description: topological sort, DFS, Khan's algorithm and cycle detection
 author: Sarah Chen
 image: images/posts/topologicalSortYes.PNG
 
 ---
-- [Cycle detection](#cycle-detection)
-  - [Leetcode 207. Course Schedule](#leetcode-207-course-schedule)
+- [Leetcode 207. Course Schedule](#leetcode-207-course-schedule)
 - [Appendix](#appendix)
 - [Reference](#reference)
 
-# Cycle detection
-
-A complete topological ordering is possible if and only if the graph has no directed cycles, that is, if it is a directed acyclic graph. 
-
-Khan's algorithm of topological sort can be used for cycle detection.   
-If there is a cycle in the graph then result will not include all the nodes in the graph, result will return only some of the nodes. To check if there is a cycle, you just need to check whether the length of result is equal to the number of nodes in the graph, n.
-
-*Why does this work?*: Suppose there is a cycle in the graph: x1 -> x2 -> ... -> xn -> x1, then none of these nodes will appear in the list because their in-degree will not reach 0 during Khan's algorithm. Each node xi in the cycle can't be put into the queue q because there is always some other predecessor node x_(i-1) with an edge going from x_(i-1) to xi preventing this from happening.
- 
-
-## Leetcode 207. Course Schedule
+# Leetcode 207. Course Schedule
 
 **Problem**:  There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. You are given an array prerequisites where $$prerequisites[i] = [a_i, b_i]$$ indicates that you must take course $$b_i$$ first if you want to take course $$a_i$$.  For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1. Return true if you can finish all courses. Otherwise, return false.
 
