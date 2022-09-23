@@ -11,14 +11,14 @@ image: images/posts/myTrip.PNG
 - [Problem](#problem)
 - [Topological sort](#topological-sort)
   - [DFS](#dfs)
+  - [Time complexity](#time-complexity)
   - [Khan's algorithm](#khans-algorithm)
 - [DFS vs. Khan's for topological sort](#dfs-vs-khans-for-topological-sort)
 - [Cycle detection](#cycle-detection)
 - [Compare with Floyd's algorithm for topological sort](#compare-with-floyds-algorithm-for-topological-sort)
 - [Appendix](#appendix)
 - [Know your library](#know-your-library)
-  - [graphlib](#graphlib)
-    - [Can I use it for DFS](#can-i-use-it-for-dfs)
+  - [graphlib.TopologicalSorter](#graphlibtopologicalsorter)
   - [networkX](#networkx)
 - [Reference](#reference)
 # Problem
@@ -42,7 +42,14 @@ A topological sort is a graph traversal in which each node is visited only after
 
 In a topological sort, **the parent needs to come before its children**.  
 
+
+Below images are taken from Washington University Professor Rao's CSE 326 Lecture 20.  The problem is similar, except names of cities have become course numbers.  We want to write down the list of course in their dependency order. 
+
+![](../images/posts/topologicalSortYes.PNG)
+
 ![topologicalSort](../images/posts/topologicalSort.PNG)
+
+The following is not a topological sort. 
 
 ![](../images/posts/topologicalSortNot.PNG)
 
@@ -56,19 +63,11 @@ Topological sort can be done by DFS or BFS.  Khan's algorithm is BFS.
 In [DFS](https://pythonrsas.github.io/3-DFS/) we talked about topological sort and how it is just like DFS. 
 In DFS, each node at the top is not finished until its dependents are finished.
 
-The illustration below shows the one algorithm of doing topological sort with $$O(V+E)$$ time complexity. 
-
-
 A topological ordering will be the following:
 
 New York, LA, London, Hong Kong, Beijing. 
 
 My solution seems to resemble Khan's algorithm for topological sort: solving problem layer by layer: start from those that have no dependencies (no incoming edges), remove them and write them down (put them in a queue). Do it to the next batch.
-
-Below images are taken from Washington University Professor Rao's CSE 326 Lecture 20.  The problem is similar, except names of cities have become course numbers.  We want to write down the list of course in their dependency order. 
-
-![](../images/posts/topologicalSortYes.PNG)
-
 
 We use the dfs code see ([source](https://gist.github.com/kachayev/5910538)) below for topological sort. 
 <div class="code-head"><span>code</span>topSort_dfs.py</div>
@@ -123,6 +122,8 @@ print(dfs(g, 'A', [], 5))
 # ['A', 'B', 'C', 'D', 'E']
 ```
 
+## Time complexity
+Topological sort can be done with $$O(V+E)$$ time complexity. 
 
 ## Khan's algorithm
 Khan's algorithm was invented by Arthur Kahn (1962).  It is BFS and works by using a metric called "in-degree", which is the number of incoming edges. 
@@ -272,13 +273,11 @@ def canDo(numCourses, prerequisites) -> bool:
 ```
 
 # Know your library
-## graphlib
+## graphlib.TopologicalSorter
 The [graphlib](https://docs.python.org/3/library/graphlib.html) library, part of Python standard library since Python 3.9.  It does not have a lot of functionality yet.  But it can do topological sort with <span class="coding">graphlib.TopologicalSorter</span> and cycle detection when the sorting fails. 
 
-### Can I use it for DFS
-Because of topological sort is the reverse of DFS, let's see if we can use graphlib to perform DFS. 
 ![DAG_4nodes](..\images\posts\DAG_4nodes.PNG)
-<div class="code-head"><span>code</span>DFS.py</div>
+<div class="code-head"><span>code</span>top sort using graphlib.py</div>
 
 ```python
 import graphlib
