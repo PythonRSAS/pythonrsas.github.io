@@ -5,7 +5,7 @@ category: education
 title: "Cycle detection"
 description: solving the linked list cycle detection puzzle using the fast-slow algorithm, also known as Floyd's tortoise-hare algorithm
 author: Sarah Chen
-image: images/posts/Tortoise_and_hare_algorithm.PNG
+image: images/posts/Tortoise_and_hare_algorithm.png
 
 ---
 
