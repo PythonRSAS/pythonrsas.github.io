@@ -5,7 +5,7 @@ category: education
 title: "Linked list"
 description: linked list as an abstract data structure, what, why, and how
 author: Sarah Chen
-image: images/posts/photos/IMG_0877.JPG
+image: images/posts/linked_list.jpg
 
 ---
 
