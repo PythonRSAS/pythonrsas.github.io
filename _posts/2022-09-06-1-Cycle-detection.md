@@ -5,13 +5,14 @@ category: education
 title: "Cycle detection"
 description: solving the linked list cycle detection puzzle using the fast-slow algorithm, also known as Floyd's tortoise-hare algorithm
 author: Sarah Chen
-image: images/posts/Tortoise_and_hare_algorithm.png
+image: images/posts/Tortoise_and_hare_algorithm.PNG
 
 ---
 
 - [Problem statement:](#problem-statement)
-- [Floyd's tortoise-hare](#floyds-tortoise-hare)
-- [Implement in code](#implement-in-code)
+- [Space $$O(n)$$ solution](#space-on-solution)
+- [Space $$O(1)$$ solution: Floyd's tortoise-hare](#space-o1-solution-floyds-tortoise-hare)
+  - [Implement in code](#implement-in-code)
 - [Solve our puzzle](#solve-our-puzzle)
 # Problem statement:
 
@@ -19,24 +20,18 @@ Given a linked list, if there is a cycle, return the start of the cycle.  The st
 If there is no cycle, return -1. 
 
 ![](../images/posts/linked_list_cycle.PNG)
+# Space $$O(n)$$ solution
+The natural solution of finding if there is a cycle is to go down the list using <span class="coding">.next</span> and store each visited in a hashtable or set.  A cycle exists if and only if we reach a node that is already visited. 
 
-# Floyd's tortoise-hare 
+# Space $$O(1)$$ solution: Floyd's tortoise-hare 
 A famous solution for detecting cycles is attributed to computer scientist [Robert Floyd](https://en.wikipedia.org/wiki/Robert_W._Floyd), who also co-designed the [Floyd-Warshall algorithm](https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm) for finding shortest paths in a directed weighted graph with positive or negative edge weights.  
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Tortoise_and_hare_algorithm.svg/560px-Tortoise_and_hare_algorithm.svg.png)
 
 From [wikipedia](https://en.wikipedia.org/wiki/Cycle_detection#Floyd's_tortoise_and_hare):
-The key insight in the algorithm is as follows. If there is a cycle, then, for any integers i ≥ μ and k ≥ 0, xi = xi + kλ, where λ is the length of the loop to be found, μ is the index of the first element of the cycle, and k is a whole integer representing the number of loops. 
+The key insight in the algorithm is as follows. use two iterators, a slow and a fast. The slow one moves one step at a time. The fast one moves two step (or more) at a time.  There is a cycle if and only if they meet. 
 
-Based on this, it can then be shown that i = kλ ≥ μ for some k if and only if xi = x2i (if xi = x2i in the cycle, then there exists some k such that 2i = i + kλ, which implies that i = kλ; and if there are some i and k such that i = kλ, then 2i = i + kλ and x2i = xi + kλ). 
-
-Thus, the algorithm only needs to check for repeated values of this special form, one twice as far from the start of the sequence as the other, to find a period ν of a repetition that is a multiple of λ. 
-
-Once ν is found, the algorithm retraces the sequence from its start to find the first repeated value xμ in the sequence, using the fact that λ divides ν and therefore that xμ = xμ + v. 
-
-Finally, once the value of μ is known it is trivial to find the length λ of the shortest repeating cycle, by searching for the first position μ + λ for which xμ + λ = xμ.
-
-# Implement in code
+## Implement in code
 
 The algorithm thus maintains two pointers into the given sequence, one (the tortoise) at xi, and the other (the hare) at x2i. At each step of the algorithm, it increases i by one, moving the tortoise one step forward and the hare two steps forward in the sequence, and then compares the sequence values at these two pointers. The smallest value of i > 0 for which the tortoise and hare point to equal values is the desired value ν.
 <div class="code-head"><span>code</span>floyd.py</div>\
