@@ -5,7 +5,7 @@ category: education
 title: "Cycle detection"
 description: solving the linked list cycle detection puzzle using the fast-slow algorithm, also known as Floyd's tortoise-hare algorithm
 author: Sarah Chen
-image: images/posts/Tortoise_and_hare_algorithm.PNG
+image: images/posts/Tortoise_and_hare_algorithm.png
 
 ---
 
@@ -24,9 +24,9 @@ The natural solution of finding if there is a cycle is to go down the list using
 # Space $$O(1)$$ solution: Floyd's tortoise-hare 
 A famous solution for detecting cycles is attributed to computer scientist [Robert Floyd](https://en.wikipedia.org/wiki/Robert_W._Floyd), who also co-designed the [Floyd-Warshall algorithm](https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm) for finding shortest paths in a directed weighted graph with positive or negative edge weights.  
 
+Image from [wikipedia](https://en.wikipedia.org/wiki/Cycle_detection#Floyd's_tortoise_and_hare):
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Tortoise_and_hare_algorithm.svg/560px-Tortoise_and_hare_algorithm.svg.png)
 
-From [wikipedia](https://en.wikipedia.org/wiki/Cycle_detection#Floyd's_tortoise_and_hare).
 
 * **first trick** is to use two iterators, a slow and a fast. The slow one moves one step at a time. The fast one moves two step (or more) at a time.  There is a cycle if and only if they meet.  
 
