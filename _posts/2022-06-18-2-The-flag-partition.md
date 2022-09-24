@@ -2,173 +2,21 @@
 layout: post
 tag : abstract data structure, python
 category: education
-title: "arrays"
-description: array as an abstract data type, and array in Python, where it is all about list
+title: "The flag partition"
+description: sorting into 3 buckets that look like 3 bands in the Dutch, French, 
 author: Sarah Chen
-image: images/posts/photos/IMG_0875.JPG
+image: images/posts/tricolors.PNG
 
 ---
-- [Array as an abstract data type](#array-as-an-abstract-data-type)
-  - [ArrayList](#arraylist)
-- [Array in python](#array-in-python)
-  - [Slicing](#slicing)
-  - [List comprehension](#list-comprehension)
-  - [Tips on working with arrays from computer science perspective](#tips-on-working-with-arrays-from-computer-science-perspective)
-- [Puzzles](#puzzles)
-  - [The Dutch flag partitioning problem](#the-dutch-flag-partitioning-problem)
-    - [Reversing an array](#reversing-an-array)
-    - [Rotating an array](#rotating-an-array)
-    - [Get missing number](#get-missing-number)
-    - [Get missing number](#get-missing-number-1)
-    - [Check for pair sum](#check-for-pair-sum)
-  
-# Array as an abstract data type
-As an abstract data type, an array is a list of similar data (sounds like circular definition). An array of an array is a 2-dimensional array, i.e. matrix. 
-- name
-- type: the type of data is stored, and all have to be the *same* within one array
-- size: it is fixed once it is defined, and **cannot be changed** once created
+- [The Dutch flag partitioning problem](#the-dutch-flag-partitioning-problem)
+- [Reversing an array](#reversing-an-array)
+- [Rotating an array](#rotating-an-array)
+- [Get missing number](#get-missing-number)
+- [Get missing number](#get-missing-number-1)
+- [Check for pair sum](#check-for-pair-sum)
 
-1. **Access**: random access use *index* as all elements are indexed, run time is $$O(1)$$.  This is the advantage of arrays. 
-2. Search:  $$O(n)$$, may need to go over each element to find an item from an unsorted array
-3. Insert:  $$O(n)$$, because we need to shift the elements, which are after the index where we want to insert the item, to the *'right'* for one space  
-4. Delete:  $$O(n)$$, because we need to shift the elements, which are after the index where we want to insert the item, to the *"left"* for one space  
-
-pros | cons
----------|----------
-efficient accessing | insert/delete are not as efficent 
-good for storing similar data | data must be the same; size cannot be changed once created 
-
-Array elements are stored in contiguous (continuous) memory locations. Its efficiency is in scaling its attributes to all its elements. 
-
-## ArrayList
-
-ArrayList is a derivation of array.  It is a *growing* array, where the size can be changed.  It has more functionality than an array, including the following 6 common methods:
-- add
-- remove
-- get
-- set
-- clear
-- toArray
-
-
-
-# Array in python
-
-Python does not have a native support for abstract data type of arrays. 
-
-**In Python, arrays and arrayLists are grouped together into a single data structured called "Lists"**.  See the [source code](https://github.com/python/cpython/blob/main/Objects/listobject.c).
-
-Numpy array is an multidimensional implementation of array.  It is efficient both in time and space complexity. 
-
- It has a more generic data structure called *list*.  Unlike arrays in some other languages, list length can be changed dynamically, and can hold different data types. 
-
-Because of these flexbilities, lists have a *higher costs*: for each element, we need eight bytes for the reference.   
-
-```python
-In [1]: A = ['me', 'you', 1, 2, (1,2)]
-
-In [2]: A[-1]
-Out[2]: (1, 2)
-
-In [3]: list(A[0])
-Out[3]: ['m', 'e']
-
-In [4]: A = [1]
-
-In [5]: A*5
-Out[5]: [1, 1, 1, 1, 1]
-```
-> Note that the *tuple* type is very similar to the *list* type, except that tuple type is immutable.  However, if a list is an element of a tuple, it is still mutable. 
-
-
-Action | syntax
----------|----------
- instantiating 1D array| <span class="coding"> [0,1,2,3,4]</span>,  <span class="coding">list(range(5))</span>
- instantiating 2D array| <span class="coding"> [[0,1,2,3,4],[1,2], [0]]</span>, also called "nested list"
- access |  <span class="coding">[0]</span> gives the first element,  <span class="coding">[~0] </span> reverse access| 
- append |  <span class="coding">.append() </span>
- insert |   <span class="coding">.insert(2,100)</span>
- reverse |  <span class="coding">.reverse()</span> in-place, or <span class="coding">reversed(list)</span> returns an iterator
-
-## Slicing
-Since accessing array is an $$O(1)$$ operation, it is important to know how to access elements via slicing using <span class="coding">:</span> the slicing operator and other directional operators <span class="coding">-</span> and, to a less extent, <span class="coding">~</span> (reverse direction). 
-* <span class="coding">[x:y:z]</span>:
-  begin at x, 
-  end at y-1, 
-  step size z.  
-For example <span class="coding">[5:1:-2]</span>  means begin at index 5, end at index 1, with step size -2, i.e. the indices sliced are: 5, 3
-
-* <span class="coding">[-1]</span>  is the last element of list 
-
-## List comprehension
-
-One special way to create lists is *list comprehension*.   
-
-```python
-In [6]: print([x**2 for x in range(6) if x%2 == 0])
-Out[6]: [0 4 16]
-```
-* **Loop through rows of numpy array as a list of lists**
-List comprehension can be used on numpy arrays.  
- <span class="coding">[i.mean() for i in A]</span> iterates through elements (rows) of array A, and outputs the mean for each.  
-
-```python
-In [7]: import numpy as np
-    ...: A = np.random.randint(10, size = (4,4))
-    ...: print(A)
-[[2 1 6 9]
- [3 9 6 8]
- [4 0 7 2]
- [8 6 4 6]]
-In [8]: [i.mean() for i in A]
-Out[8]: [4.5, 6.5, 3.25, 6.0]
-```
-
-* **Filtering** 
-List comprehension can be used to filter a list of strings. 
-
-```python
-In [9]: countries = ['USA', 'Uruguay','Uzbekistan','Venezuela','Vietnam','UFO']
-    ...: [i for i in countries if i.lower().startswith('u') and i.lower().endswith('a') and len(i) > 2]
-Out[9]: ['USA']
-```
-
-* **Access elements of elements** 
-List comprehension can be used to flatten a list of lists.  [i for i in A] produces the same A.  After the expression <span class="coding">i</span> is substituted by <span class="coding">j</span>, which iterates through <span class="coding">i</span>, we get the elements of the elements in one list. 
-```python
-In [10]: A = [[1,2,3],[(3.14, 2.718281828459045)],['sky','earth']]
-    ...: [i for i in A]
-Out[10]: [[1, 2, 3], [(3.14, 2.718281828459045)], ['sky', 'earth']]
-In [11]: [j for i in A for j in i]
-Out[11]: [1, 2, 3, (3.14, 2.718281828459045), 'sky', 'earth']
-```
-
-* **Test palindromic and other operations** 
-List comprehension is used in the following example to check if a string is palindromic. 
-
-```python
-In [12]: s = 'abcdcba'
-
-In [13]: all(s[i] == s[~i] for i in range(len(s) // 2))
-Out[13]: True
-```
-
-* **When NOT to use list comprehension**
-List comprehension is very useful for small lists. But, do not use list comprehension when:
-* the desired output is not a list
-* the list is long, which costs too much in memory and run time
-* although list comprehensions can handle multiple layers of loops, more than 2 layers becomes difficult to understand
-
-## Tips on working with arrays from computer science perspective
-
-* Inserting element to the front of array is slow.  It is faster to write to the back (append)
-* Deleting an element will require moving all subsequent elements.  It is better to overwrite it so as not to disturb other elements
-* Sort at the end when returning if possible
-* Try to reduce space complexity to $$O(1)$$ (in-place)
-
-# Puzzles
-
-## The Dutch flag partitioning problem
+![flag](../images/posts/tricolors.PNG) 
+# The Dutch flag partitioning problem
 We want to partition an array in the following fashion:
 Given an element called "pivot" (or the index of it) of the array of integers,  the ones smaller than this number should be placed before this number, and the ones before than this number after. 
 
@@ -281,7 +129,7 @@ print(a)
 
 ```
 
-### Reversing an array
+# Reversing an array
 
 <div class="code-head"><span>code</span>a1_reverseArry.py</div>
 
@@ -305,7 +153,7 @@ if __name__ == '__main__':
 
 ```
 
-### Rotating an array
+# Rotating an array
 
 <div class="code-head"><span>code</span>a2_arrayRotation.py</div>
 
@@ -335,7 +183,7 @@ if __name__ == '__main__':
     # After Rotation: 3 4 5 6 7 8 9 0 1 2
 ```
 
-### Get missing number
+# Get missing number
 
 <div class="code-head"><span>code</span>a3_findMissing.py</div>
 
@@ -364,7 +212,7 @@ if __name__ == '__main__':
     # Missing Element: 4
 ```
 
-### Get missing number
+# Get missing number
 
 <div class="code-head"><span>code</span>a4_odd_number_occurance.py</div>
 
@@ -390,7 +238,7 @@ if __name__ == '__main__':
     myArray = [3, 4, 1, 2, 4, 1, 2, 5, 6, 4, 6, 5, 3]
     print(printOddOccurences(myArray))      # 4
 ```
-### Check for pair sum
+# Check for pair sum
 
 <div class="code-head"><span>code</span>a5_CheckForPairSum.py</div>
 
