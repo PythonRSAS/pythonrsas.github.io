@@ -5,11 +5,11 @@ category: "Python for SAS"
 title: "SAS PROC SQL and python df.groupby and pivot_table, and simple joins"
 description:  On python pandas groupby, pivot_table and other methods and compare them to SAS PROC SQL, which is like most SQL
 author: Sarah Chen
-image: images/posts/photos/IMG-0672.JPG
+image: images/posts/photos/IMG-0650.JPG
 
 ---
 <figure> 
-   <img src="{{"/images/photos/posts/IMG-0672.jpg"| relative_url}}"> 
+   <img src="{{"/images/photos/posts/IMG-0650.jpg"| relative_url}}"> 
    <figcaption>Photo by Ji Biduan</figcaption>
 </figure> 
 

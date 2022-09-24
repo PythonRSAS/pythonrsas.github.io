@@ -1,9 +1,9 @@
 ---
 layout: post
 tag : email, automation, python
-category: "Python for SAS"
+category: "Education"
 title: "Sending Work Email Using Python"
-description: Sending individual email to many people Using Python at work
+description: Sending individual email to many people Using Python
 author: Sarah Chen
 image: images/posts/photos/IMG-0867.JPG
 
