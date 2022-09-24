@@ -5,7 +5,7 @@ category: education
 title: "Palindrome"
 description: solving the longest palindrome puzzle
 author: Sarah Chen
-image: images/posts/photos/IMG_0937.jpg
+image: images/posts/photos/IMG_0937.JPG
 
 ---
 ![](../images/posts/xi.jpg)
