@@ -12,8 +12,6 @@ image: images/posts/Tortoise_and_hare_algorithm.PNG
 - [Problem statement:](#problem-statement)
 - [Space $$O(n)$$ solution](#space-on-solution)
 - [Space $$O(1)$$ solution: Floyd's tortoise-hare](#space-o1-solution-floyds-tortoise-hare)
-  - [Implement in code](#implement-in-code)
-- [Solve our puzzle](#solve-our-puzzle)
 # Problem statement:
 
 Given a linked list, if there is a cycle, return the start of the cycle.  The start of cycle is defined as the place where 2 nodes meet.  
@@ -31,111 +29,63 @@ A famous solution for detecting cycles is attributed to computer scientist [Robe
 From [wikipedia](https://en.wikipedia.org/wiki/Cycle_detection#Floyd's_tortoise_and_hare):
 The key insight in the algorithm is as follows. use two iterators, a slow and a fast. The slow one moves one step at a time. The fast one moves two step (or more) at a time.  There is a cycle if and only if they meet. 
 
-## Implement in code
-
-The algorithm thus maintains two pointers into the given sequence, one (the tortoise) at xi, and the other (the hare) at x2i. At each step of the algorithm, it increases i by one, moving the tortoise one step forward and the hare two steps forward in the sequence, and then compares the sequence values at these two pointers. The smallest value of i > 0 for which the tortoise and hare point to equal values is the desired value ν.
-<div class="code-head"><span>code</span>floyd.py</div>\
-
-```py
-def floyd(f, x0):
-    # Main phase of algorithm: finding a repetition x_i = x_2i.
-    # The hare moves twice as quickly as the tortoise and
-    # the distance between them increases by 1 at each step.
-    # Eventually they will both be inside the cycle and then,
-    # at some point, the distance between them will be
-    # divisible by the period λ.
-    tortoise = f(x0) # f(x0) is the element/node next to x0.
-    hare = f(f(x0))
-    while tortoise != hare:
-        tortoise = f(tortoise)
-        hare = f(f(hare))
-  
-    # At this point the tortoise position, ν, which is also equal
-    # to the distance between hare and tortoise, is divisible by
-    # the period λ. So hare moving in circle one step at a time, 
-    # and tortoise (reset to x0) moving towards the circle, will 
-    # intersect at the beginning of the circle. Because the 
-    # distance between them is constant at 2ν, a multiple of λ,
-    # they will agree as soon as the tortoise reaches index μ.
-
-    # Find the position μ of first repetition.    
-    mu = 0
-    tortoise = x0
-    while tortoise != hare:
-        tortoise = f(tortoise)
-        hare = f(hare)   # Hare and tortoise move at same speed
-        mu += 1
- 
-    # Find the length of the shortest cycle starting from x_μ
-    # The hare moves one step at a time while tortoise is still.
-    # lam is incremented until λ is found.
-    lam = 1
-    hare = f(tortoise)
-    while tortoise != hare:
-        hare = f(hare)
-        lam += 1
- 
-    return lam, mu
-```
-
-# Solve our puzzle
-In code below, <span class="coding">detect_cycle_start</span> is the main function.  The trick is to define two separate movements: the slow one moves 1 step at a time.  The fast one moves two steps at a time. 
+In code below, <span class="coding">detect_cycle_start</span> is the main function.  The trick is to define two separate movements: the slow one moves 1 step at a time.  The fast one moves 2 steps at a time. 
 
 ```python
     slow = slow.next
     fast = fast.next.next
 ```
+If there is no cycle, then we will come out of the <span class="coding">while</span> loop as soon as <span class="coding">fast</span> exhausts all the linked nodes. 
 
-If there is a cycle, then they will meet.  We use a helper function <span class="coding">get_cycle_length</span> to get the cycle length, and break out of the <span class="coding">while</span> loop.  
+If there is a cycle, then they will meet for sure. This is intuitive: the 2-step is divisible by 1.  We use a helper function <span class="coding">get_cycle_length</span> to get the cycle length, and break out of the <span class="coding">while</span> loop.  
 
-If there is no cycle, then we will eventually come out of the <span class="coding">while</span> loop as soon as <span class="coding">fast</span> exhausts all the linked nodes. 
+However, when fast meets slow, they can meet somewhere (depends on the linked list) that is not the start of the cycle. 
 
-In the end, we return None if cycle length is not updated and return the meeting node if a cycle is detected. 
+To get the start of the cycle, we use another clever *trick* that is somewhat similar to the first trick: 
+We use two pointers, both start from the origin (head node), with one pointer <span class="coding">p1</span> moves $$||c||$$ (length of cycle) steps from the origin first.  Then <span class="coding">p1</span> and <span class="coding">p2</span> move in tandem.  Because they are exactly $$||c||$$ steps apart, then they meet, it has to be the start of the cycle.   It is easiler to understand illustrating for yourself with pencil and paper than words. 
 
-The time complexity is O(n) because we do not have double loops.  We have 1 loop in the main function. 
+To get cycle length, we use a helper function <span class="coding">cycle_len</span>.  The function starts at the meeting place where slow meets fast, which is somewhere on the cycle. 
 
-The space complexity is O(1) because we use a few pointers only. 
+In the end, we return <span class="coding">None</span> if cycle length is not updated and return the meeting node if a cycle is detected. 
 
-<div class="code-head"><span>code</span>linked list cycle detection.py</div>\
+
+<div class="code-head"><span>code</span>linked list cycle detection.py</div>
 
 ```py
 class Node:
   def __init__(self, x):
     self.val = x
     self.next = None
+class Node:
+  def __init__(self, x):
+    self.val = x
+    self.next = None
 
-def get_cycle_length(head: None) -> int: # helper function
-  cycle_len = 0
-  target = head
-  while True: # keep stepping next until it is back to its starting place
-    head = head.next
-    cycle_len += 1
-    if head == target:
-      break
-  return cycle_len
-
-def get_start_point(head: None, cycle_len: int) -> Node: # helper function
-  p1, p2 = head, head
-  for _ in range(cycle_len):
-    p2 = p2.next
-  while p1 != p2:
-    p1 = p1.next
-    p2 = p2.next
-  return p1 # return where p1 and p2 meet
-
-def detect_cycle_start(head: Node) -> Node:
+def has_cycle(head):
   if not head or not head.next:
-    return None
-  slow, fast = head, head
-  cycle_len = -1
-  while fast and fast.next:
-    slow = slow.next
-    fast = fast.next.next
-    if slow == fast:
-      cycle_len = get_cycle_length(slow)
-      break
-  return None if cycle_len == -1 else get_start_point(head, cycle_len)
-# testing code
+      return None # edge case
+  # helper function to get cycle length    
+  def cycle_len(meetingPlace):
+    start, steps = meetingPlace, 0
+    while True:
+      steps += 1
+      start = start.next
+      if start is meetingPlace:
+        return steps
+
+  fast = slow = head
+  while fast and fast.next and fast.next.next:
+    slow, fast = slow.next, fast.next.next
+    if slow is fast:
+      p1 = head
+      for _ in range(cycle_len(slow)):
+        p1 = p1.next # move p1 to ||c|| from the head Node
+      p2 = head
+      while p1 is not p2:
+        p1 = p1.next
+        p2 = p2.next 
+      return p1
+  return None
 h = Node(1)
 h.next = Node(2)
 h.next.next = Node(3)
@@ -144,11 +94,33 @@ h.next.next.next.next = Node(5)
 h.next.next.next.next.next = Node(6)
 h.next.next.next.next.next.next = Node(7)
 h.next.next.next.next.next.next.next = h.next.next
-result = detect_cycle_start(h)
+
+result = has_cycle(h)
+print(result.val)
+# 3
+g = Node(1)
+g.next = Node(2)
+g.next.next = Node(3)
+g.next.next.next = Node(4)
+g.next.next.next.next = Node(5)
+g.next.next.next.next.next = Node(6)
+g.next.next.next.next.next.next = Node(7)
+
+result = has_cycle(g)
 if result:
   print(result.val)
 else:
-  print("None")
-# 3
+  print("No cycle")
+# No cycle
 ```
 
+Note that we use <span class="coding">is</span> instead of <span class="coding">==</span> for testing if linked node is a cycle: 
+
+<span class="coding">if slow is fast</span> instead of <span class="coding">if slow == fast</span>, and <span class="coding">while p1 is not p2</span> instead of <span class="coding">while p1 != p2</span>. 
+
+This is because linked nodes may have nodes that have the same values, which may not have cycles. 
+
+
+The time complexity is O(n) because we do not have double loops.  We have 1 loop in the main function. 
+
+The space complexity is O(1) because we use a few pointers only. 
