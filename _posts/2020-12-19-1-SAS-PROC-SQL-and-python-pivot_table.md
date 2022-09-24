@@ -8,11 +8,8 @@ author: Sarah Chen
 image: images/posts/photos/IMG-0650.JPG
 
 ---
-<figure> 
-   <img src="{{"/images/photos/posts/IMG-0650.jpg"| relative_url}}"> 
-   <figcaption>Photo by Ji Biduan</figcaption>
-</figure> 
 
+![](/images/photos/posts/IMG-0650.JPG)
 
 The concepts between SAS <span class="coding">PROC SQL</span>, Excel pivot table, and <span class="coding">pandas.pivot_table</span>, <span class="coding">df.groupby</span> are similar: **to get summaries on a two-way table, where the rows are the group-by and the columns are the <span class="coding">select</span>**, using SQL language.   
 
