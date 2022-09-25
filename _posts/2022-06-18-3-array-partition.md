@@ -1,18 +1,18 @@
 ---
 layout: post
-tag : arrays, puzzles
+tag : arrays, partition, quicksort
 category: education
-title: "array puzzles"
-description: puzzles that based on arrays
+title: "Steps to make array monotonic"
+description: count the number of steps to make an array of integers non-decreasing
 author: Sarah Chen
 image: images/posts/photos/IMG_0875.JPG
 
 ---
 - [Review](#review)
   - [Slicing](#slicing)
-- [Puzzles](#puzzles)
-  - [Leetcode 2289. Steps to Make Array Non-decreasing](#leetcode-2289-steps-to-make-array-non-decreasing)
+- [Leetcode 2289. Steps to Make Array Non-decreasing](#leetcode-2289-steps-to-make-array-non-decreasing)
   - [Partitioning problem](#partitioning-problem)
+![2-part partition](https://pythonrsas.github.io/images/posts/quickSort.PNG)
 # Review
 Arrays have the following time complexity
 1. **Access**: random access use *index* as all elements are indexed, run time is $$O(1)$$.  This is the advantage of arrays. 
@@ -38,9 +38,9 @@ Since accessing array is an $$O(1)$$ operation, it is important to know how to a
   step size z.  
 For example <span class="coding">[5:1:-2]</span>  means begin at index 5, end at index 1, with step size -2, i.e. the indices sliced are: 5, 3
 
-# Puzzles
 
-## Leetcode 2289. Steps to Make Array Non-decreasing
+
+# Leetcode 2289. Steps to Make Array Non-decreasing
 
 Problem: You are given a 0-indexed integer array nums. In one step, remove all elements nums[i] where nums[i - 1] > nums[i] for all 0 < i < nums.length.
 
