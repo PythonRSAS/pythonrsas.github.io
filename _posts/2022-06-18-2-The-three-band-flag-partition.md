@@ -2,15 +2,15 @@
 layout: post
 tag : abstract data structure, python
 category: education
-title: "The flag partition"
+title: "The three-band flag partition"
 description: sorting into 3 buckets that look like 3 bands in the Dutch, French, 
 author: Sarah Chen
-image: images/posts/tricolors.PNG
+image: images/posts/tricolors.png
 
 ---
 - [The Dutch flag partitioning problem](#the-dutch-flag-partitioning-problem)
 
-![flag](../images/posts/tricolors.PNG) 
+![flag](../images/posts/tricolors.png) 
 # The Dutch flag partitioning problem
 We want to partition an array in the following fashion:
 Given an element called "pivot" (or the index of it) of the array of integers,  the ones smaller than this number should be placed before this number, and the ones before than this number after. 
