@@ -11,7 +11,6 @@ image: images/posts/photos/IMG_0875.JPG
 - [Review](#review)
   - [Slicing](#slicing)
 - [Leetcode 2289. Steps to Make Array Non-decreasing](#leetcode-2289-steps-to-make-array-non-decreasing)
-  - [Partitioning problem](#partitioning-problem)
 # Review
 Arrays have the following time complexity
 1. **Access**: random access use *index* as all elements are indexed, run time is $$O(1)$$.  This is the advantage of arrays. 
@@ -29,7 +28,6 @@ Action | syntax
  insert |   <span class="coding">.insert(2,100)</span>
  reverse |  <span class="coding">.reverse()</span> in-place, or <span class="coding">reversed(list)</span> returns an iterator
 
-## Slicing
 Since accessing array is an $$O(1)$$ operation, it is important to know how to access elements via slicing using <span class="coding">:</span> the slicing operator and other directional operators <span class="coding">-</span> and, to a less extent, <span class="coding">~</span> (reverse direction). 
 * <span class="coding">[x:y:z]</span>:
   begin at x, 
@@ -38,10 +36,8 @@ Since accessing array is an $$O(1)$$ operation, it is important to know how to a
 For example <span class="coding">[5:1:-2]</span>  means begin at index 5, end at index 1, with step size -2, i.e. the indices sliced are: 5, 3
 
 
-
-# Leetcode 2289. Steps to Make Array Non-decreasing
-
-Problem: You are given a 0-indexed integer array nums. In one step, remove all elements nums[i] where nums[i - 1] > nums[i] for all 0 < i < nums.length.
+**Leetcode 2289. Steps to Make Array Non-decreasing problem:** 
+You are given a 0-indexed integer array nums. In one step, remove all elements nums[i] where nums[i - 1] > nums[i] for all 0 < i < nums.length.
 
 Return the number of steps performed until nums becomes a non-decreasing array.
 
@@ -99,42 +95,4 @@ print(steps(nums))
 # ([4, 5, 7, 7, 13], [])
 # Indices to be removed  []
 # 0
-```
-
-## Partitioning problem
-We want to partition an array in the following fashion:
-Given an element called "pivot" (or the index of it) of the array of integers,  the ones smaller than this number should be placed before this number, and the ones larger than this number after. 
-
-The following solution has time complexity $$O(n)$$ and space complexity $$O(1)$$.  I did this problem a few times.  There are 4 places I found myself making mistakes:
-1. indent of the return (or forgot to return)
-2. compare with the pivot, not anything else
-3. the direction of the range
-4. forgot to increment/decrement the pointer indices
-
-<div class="code-head"><span>code</span>partition.py</div>
-
-```py
-def partition(pivot_idx, A):
-    pivot = A[pivot_idx]
-    N = len(A)
-    small_idx = 0
-    big_idx = N - 1
-    print("Pivot is ",A[pivot_idx])
-    # move smaller ones to the front
-    for i in range(N):
-        if A[i] < pivot:
-            A[i], A[small_idx] = A[small_idx], A[i]
-            small_idx += 1
-
-    # move bigger ones to the front
-    for i in reversed(range(N)):
-        if A[i] < pivot:
-            break
-        if A[i] > pivot:
-            A[i], A[big_idx] = A[big_idx], A[i]
-            big_idx -= 1
-
-    return A
-lt = [0, 1,2,0,2,1,1]
-print(partition(3,lt))
 ```
