@@ -37,25 +37,25 @@ For example <span class="coding">[5:1:-2]</span>  means begin at index 5, end at
 
 
 **Leetcode 2289. Steps to Make Array Non-decreasing problem:** 
-You are given a 0-indexed integer array nums. In one step, remove all elements nums[i] where nums[i - 1] > nums[i] for all 0 < i < nums.length.
+Given a 0-indexed integer array $$A$$. In one step, remove all elements $$A[i]$$ where $$A[i]$$ is less than its left neighbor, return the number of steps performed until nums becomes a non-decreasing array.
 
-Return the number of steps performed until nums becomes a non-decreasing array.
+* Input: $$[5,3,4,4,7,3,6,11,8,5,11]$$
+* Output: 3
 
-Input: nums = [5,3,4,4,7,3,6,11,8,5,11]
-Output: 3
 Explanation: The following are the steps performed:
-- Step 1: [5,3,4,4,7,3,6,11,8,5,11] becomes [5,4,4,7,6,11,11]
-- Step 2: [5,4,4,7,6,11,11] becomes [5,4,7,11,11]
-- Step 3: [5,4,7,11,11] becomes [5,7,11,11]
-[5,7,11,11] is a non-decreasing array. Therefore, we return 3.
+- Step 1: $$[5,3,4,4,7,3,6,11,8,5,11]$$ ==> $$[5,4,4,7,6,11,11]$$
+- Step 2: $$[5,4,4,7,6,11,11]$$ ==> $$[5,4,7,11,11]$$
+- Step 3: $$[5,4,7,11,11]$$ ==> $$[5,7,11,11]$$
+- $$[5,7,11,11]$$ is a non-decreasing array. Therefore, we return 3.
 
-Example 2:
+This is an easy Leetcode problem.  The intuitive solution is to
+Number of steps ct=:0; 
+1. record the indice of the elements that are smaller than its immediate left neighbor in [idx]
+2. drop those elements A[idx]
+3. ct++
+4. repeat the above steps until idx is empty
 
-Input: nums = [4,5,7,7,13]
-Output: 0
-
-Solution:
-This problem took me some thinking. 
+In the following Python implementation, I use a helper function <span class="coding">getIndex</span> to get the list of indices of incongruent elements. It returns a thinner array <span class="coding">[A[i] for i in range(len(A)) if not i in idx]</span> and list of indices (can be empty) of non-congruent elements. 
 
 <div class="code-head"><span>code</span>steps_to_non_decreasing_array.py</div>
 
