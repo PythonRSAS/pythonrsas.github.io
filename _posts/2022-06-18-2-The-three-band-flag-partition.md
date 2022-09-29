@@ -142,6 +142,7 @@ Like quicksort, the DNF algorithm is **not stable**. The relative order of simil
 The DNF is incorporated into C library qsort() and Java 6 system sort.
 
 # The counting approach
+Naturally, a child would have thought of a less contrived approach: just count how many of each color (category) and put the same color ones together. 
 
 <div class="code-head"><span>code</span>flag_partition.py</div>
 
@@ -187,38 +188,41 @@ countingSort(lt, n)
 ```
 
 # DNF 3-way sort
-Three-way quicksort improves quicksort when duplicate keys.
-The visual trace of the three-way quicksort is from [Princeton Unversity Computer Science course slide](https://www.cs.princeton.edu/courses/archive/spring15/cos226/lectures/23Quicksort.pdf)
-![Three-way quicksort](../images/posts/three_way_quicksort.PNG) 
-
+DNF-based 3-way sort can be used for quicksort.  
 
 We are not limited to 3 colors anymore, and we want to partition an array in the following fashion:
 Given an element called "pivot" (or the index of it) of the array of integers,  the ones smaller than this number should be placed before this number, and the ones bigger than this number after. This looks like quicksort. But what we are doing is a little different from quicksort as we want to take into account those that are *equal to the pivot*. 
 
 If we don't care about space, $$O(n)$$ space solution is very easy: create 3 arrays, for those smaller to the pivot, we put in the first array.  For those equal to the pivot, we put them in the second array.  For those larger than the pivot, we put then in the last array. 
 
-The following solution has time complexity $$O(n)$$ and space complexity $$O(1)$$.  We made two passes on the data. 
+## Two-way sort
 
-In the first example, the input array is [0, 1,2,0,2,1,1], and the pivot is 0. The output is [0, 0, 1, 2, 2, 1, 1] as all 0's are together, and the rest of the numbers are not sorted.   
+We make two passes on the array.  
+1. **From left to right**: if A[i] < pivot,, swap A[i] and A[L], L++, i++ (L and iterator i moves in tandem); when A[i] > pivot, i++
+2. **From right to left**: if A[i] > pivot,, swap A[i] and A[H], H--, i-- (H and iterator i moves in tandem); when A[i] < pivot, i--
 
-In the second example, the pivot is 1.  The output is [0, 0, 1, 1, 1, 2, 2].  
+In the left to right scan <span class="coding">for i in range(N)</span>, you can imagine the pointer L stays firm guarding the border of those smaller than the pivot.  It moves a step to the right only when the iterator i founds a new member smaller than the pivot.
 
-<div class="code-head"><span>code</span>flag_partition.py</div>
+In the right to left scan, the direction of the range is <span class="coding">for i in reversed(range(N))</span>. 
+
+It has time complexity $$O(n)$$ and space complexity $$O(1)$$.  
+
+<div class="code-head"><span>code</span>pre_dnf_partition.py</div>
 
 ```py
-def flag_partition(pivot_idx, A):
+def pre_dnf_partition(pivot_idx, A):
     pivot = A[pivot_idx]
     N = len(A)
     l = 0
     r = N - 1
     print("Pivot is ",A[pivot_idx])
-    # move smaller ones to the front
+    # move smaller ones to the left
     for i in range(N):
         if A[i] < pivot:
             A[i], A[l] = A[l], A[i]
             l += 1
 
-    # move bigger ones to the front
+    # move bigger ones to the right
     for i in reversed(range(N)):
         if A[i] < pivot:
             break
@@ -228,23 +232,63 @@ def flag_partition(pivot_idx, A):
 
     return A
 lt = [0, 1,2,0,2,1,1]
-print(flag_partition(3,lt))
+print(pre_dnf_partition(3,lt))
 # Pivot is  0
 # [0, 0, 1, 2, 2, 1, 1]
 lt = [0, 1,2,0,2,1,1]
-print(flag_partition(1,lt))
+print(pre_dnf_partition(1,lt))
 # Pivot is  1
 # [0, 0, 1, 1, 1, 2, 2]
-
-lt = [0, 1,2,0,2,1,3]
-print(flag_partition(3,lt))
 ```
-I did this problem a few times.  There are 4 places I found myself making mistakes:
-1. indent of the return (or forgot to return)
-2. compare with the pivot, not anything else
-3. the direction of the range
-4. forgot to increment/decrement the pointer indices
+**Note:**
+In the first example, the input array is [0, 1,2,0,2,1,1], and the pivot is 0. The output is [0, 0, 1, 2, 2, 1, 1] as all 0's are together, and the rest of the numbers are not sorted.   
 
+In the second example, the pivot is 1.  The output is [0, 0, 1, 1, 1, 2, 2].  So, unless the pivot is the median, we cannot get the three blocks of colors. 
+
+## One single pass
+The one single pass approach is just like the 3-color problem. We first agree to keep the four sections. 
+* A[0..Lo-1]  < pivot
+* A[Lo..M-1] == pivot
+* A[M..Hi] unknown
+* A[Hi+1..N-1] > pivot
+
+The unknown section is shrunk while maintaining these conditions:
+1. Lo := 0; M := 0; Hi := N-1;
+2. while M <= H do
+   1. if A[M] < pivot then swap A[M] with A[Lo]; Lo++; M++ 
+   2. else if A[M] == pivot then M++
+   3. else swap A[M] and A[Hi]; Hi--
+
+
+<div class="code-head"><span>code</span>dnf_partition.py</div>
+
+```py
+def dnf_partition(pivot_idx, A):
+    l, m, r = 0, 0, len(A) - 1
+    while m <= r:
+        if A[m] < A[pivot_idx]:
+            A[l], A[m] = A[m], A[l]
+            l += 1
+            m += 1
+        elif A[m] > A[pivot_idx]:
+            A[m], A[r] = A[r], A[m]
+            r -= 1
+        else:
+            m += 1
+    return A
+lt = [1, 1,  0, 2]
+print(dnf_partition(0, lt))
+# [0, 1, 1, 2]
+
+lt = [2, 4, 1, 0, 2, 2]
+print(dnf_partition(0, lt))
+
+# [1, 0, 2, 2, 2, 4]
+```
+
+Three-way quicksort improves quicksort when there are many duplicate keys.
+The visual trace of the three-way quicksort is from [Princeton Unversity Computer Science course slide](https://www.cs.princeton.edu/courses/archive/spring15/cos226/lectures/23Quicksort.pdf)
+![Three-way quicksort](../images/posts/three_way_quicksort.PNG) 
 
 # Variations of the UNF and the DNF
 We have an array of integers.  We want to sort it such that all even numbers are before the odd numbers.  
