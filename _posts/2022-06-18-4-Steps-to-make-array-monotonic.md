@@ -2,16 +2,13 @@
 layout: post
 tag : arrays, puzzles
 category: education
-title: "array puzzles"
-description: puzzles that based on arrays
+title: "Steps to make array monotonic"
+description: Steps to make array monotonic
 author: Sarah Chen
 image: images/posts/photos/IMG_0875.JPG
 
 ---
-- [Review](#review)
-  - [Slicing](#slicing)
-- [Leetcode 2289. Steps to Make Array Non-decreasing](#leetcode-2289-steps-to-make-array-non-decreasing)
-# Review
+**Review on arrays**
 Arrays have the following time complexity
 1. **Access**: random access use *index* as all elements are indexed, run time is $$O(1)$$.  This is the advantage of arrays. 
 2. Search:  $$O(n)$$, may need to go over each element to find an item from an unsorted array
@@ -57,6 +54,13 @@ Number of steps ct=:0;
 
 In the following Python implementation, I use a helper function <span class="coding">getIndex</span> to get the list of indices of incongruent elements. It returns a thinner array <span class="coding">[A[i] for i in range(len(A)) if not i in idx]</span> and list of indices (can be empty) of non-congruent elements. 
 
+When removing elements of arrays in loops, we need to remember that Python lists are mutable.  We need to be *careful not to use index that refer to the older list*.  Therefore, using *list comprehension* is a safe and concise way of removing those non-monontonic elements. 
+
+**Complexity:**
+<span class="coding">getIndex()</span> runs a loop.  If we find m indices to remove, then when returning the smaller array, the loop is n - m steps.  We may need to do this close to n times in the worst case when the first element is the largest.  For example [6, 1, 2, 3, 4, 5] takes len(A) - 1 steps.  So the time complexity is $$O(n^2)$$.  
+
+The space complexity is $$O(n)$$.
+
 <div class="code-head"><span>code</span>steps_to_non_decreasing_array.py</div>
 
 ```py
@@ -95,4 +99,35 @@ print(steps(nums))
 # ([4, 5, 7, 7, 13], [])
 # Indices to be removed  []
 # 0
+```
+My method is very intuitive, but it is not the best in time complexity. 
+
+# A very different approach
+
+This approach is from Leetcode discussion board. 
+
+<div class="code-head"><span>code</span>steps_to_non_decreasing_array.py</div>
+
+```py
+def totalSteps(A) -> int:
+    N = len(A)
+    dp = [0] *N
+    stack = []
+    for i in reversed(range(N)):
+        print("*********************\n")
+        print("i:",i)
+        while stack and (A[i] > A[stack[-1]]):
+            # print("*********************\n")
+            print("i:",i)
+            print("stack[-1]:", stack[-1])
+            print("Comparing: ", A[i], A[stack[-1]])
+            print("stack: ", stack)
+            print("dp:", dp)
+            dp[i] = max(dp[i] + 1, dp[stack.pop()])
+        stack.append(i)
+    return max(dp)
+totalSteps([6, 1, 2, 3, 4, 5])
+
+nums = [5,3,4,4,7,3,6,11,8,5,11]
+print(totalSteps(nums))
 ```
