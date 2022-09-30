@@ -2,104 +2,15 @@
 layout: post
 tag : arrays, puzzles, easy
 category: education
-title: "array puzzles"
+title: "Build array from permutation"
 description: easy puzzles that based on arrays from Leetcode
 author: Sarah Chen
 image: images/posts/photos/IMG_0875.JPG
 
 ---
-- [Review](#review)
-  - [Slicing](#slicing)
-- [Puzzles](#puzzles)
-  - [Leecode 665. Non-decreasing Array, Easy](#leecode-665-non-decreasing-array-easy)
-  - [Leetcode 1920. Build Array from Permutation](#leetcode-1920-build-array-from-permutation)
-  - [Leetcode 2011. Final Value of Variable After Performing Operations](#leetcode-2011-final-value-of-variable-after-performing-operations)
-  - [Leetcode 1672. Richest Customer Wealth- Max sum of subarrays](#leetcode-1672-richest-customer-wealth--max-sum-of-subarrays)
-# Review
-Arrays have the following time complexity
-1. **Access**: random access use *index* as all elements are indexed, run time is $$O(1)$$.  This is the advantage of arrays. 
-2. Search:  $$O(n)$$, may need to go over each element to find an item from an unsorted array
-3. Insert:  $$O(n)$$, because we need to shift the elements, which are after the index where we want to insert the item, to the *'right'* for one space  
-4. Delete:  $$O(n)$$, because we need to shift the elements, which are after the index where we want to insert the item, to the *"left"* for one space  
-
-
-Action | syntax
----------|----------
- instantiating 1D array| <span class="coding"> [0,1,2,3,4]</span>,  <span class="coding">list(range(5))</span>
- instantiating 2D array| <span class="coding"> [[0,1,2,3,4],[1,2], [0]]</span>, also called "nested list"
- access |  <span class="coding">[0]</span> gives the first element,  <span class="coding">[~0] </span> reverse access| 
- append |  <span class="coding">.append() </span>
- insert |   <span class="coding">.insert(2,100)</span>
- reverse |  <span class="coding">.reverse()</span> in-place, or <span class="coding">reversed(list)</span> returns an iterator
-
-## Slicing
-Since accessing array is an $$O(1)$$ operation, it is important to know how to access elements via slicing using <span class="coding">:</span> the slicing operator and other directional operators <span class="coding">-</span> and, to a less extent, <span class="coding">~</span> (reverse direction). 
-* <span class="coding">[x:y:z]</span>:
-  begin at x, 
-  end at y-1, 
-  step size z.  
-For example <span class="coding">[5:1:-2]</span>  means begin at index 5, end at index 1, with step size -2, i.e. the indices sliced are: 5, 3
-
-# Puzzles
-
-## Leecode 665. Non-decreasing Array, Easy
-
-* Problem:
-Given an array nums with n integers, your task is to check if it could become non-decreasing by modifying at most one element.
-
-We define an array is non-decreasing if nums[i] <= nums[i + 1] holds for every i (0-based) such that (0 <= i <= n - 2).
-
-The problem is labeled as "Medium", but it actually is very easy. 
-
-* Constraints:
-
-n == nums.length
-1 <= n <= 104
--10^5 <= nums[i] <= 10^5
-
-* Example 1:
-
-Input: nums = [4,2,3]
-Output: true
-Explanation: You could modify the first 4 to 1 to get a non-decreasing array.
-
-* Example 2:
-Input: nums = [4,2,1]
-Output: false
-Explanation: You can't get a non-decreasing array by modify at most one element.
-
-* Solution 1: Brute force
-
-Even though the solution is veyr easy, I made a mistake in the index range.  Whenever we need to compare adjacent elements, be mindful that $$i+1$$ can be out of range.  Hence, the loop should be $$range(len(A) - 1)$$ instead of $$range(len(A))$$.  
-
-* Complexity:
-We have a double loop.  Time complexity is $$O(n^2)$$.  
-
-```python
-def non_decreasing(A):
-    ct = 0
-    for i in range(len(A) - 1):
-        if A[i] > A[i +1]:
-            A[i] = A[i + 1] - 1
-            ct += 1
-    if ct > 1:
-        return False
-    else:
-        return True
-
-nums = [4,2,3]
-print(non_decreasing(nums))
-# True
-nums = [4,2,1]
-print(non_decreasing(nums))
-# False
-nums = [1, 2, 3, 3]
-print(non_decreasing(nums))
-# True
-```
-
-* Edge case:
-Note that the edge case A[i] = 10^5 and A[i] > A[i +1] is just not possible. So we are okay.  
+- [Leetcode 1920. Build Array from Permutation](#leetcode-1920-build-array-from-permutation)
+- [Leetcode 2011. Final Value of Variable After Performing Operations](#leetcode-2011-final-value-of-variable-after-performing-operations)
+- [Leetcode 1672. Richest Customer Wealth- Max sum of subarrays](#leetcode-1672-richest-customer-wealth--max-sum-of-subarrays)
 
 ## Leetcode 1920. Build Array from Permutation
 

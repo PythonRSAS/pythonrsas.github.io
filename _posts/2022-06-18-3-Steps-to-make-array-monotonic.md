@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : arrays, dp, Chinese
+tag : arrays, dp, stack, Chinese
 category: education
 title: "Steps to make array monotonic"
 description: Steps to make array monotonic using 2 different approaches
@@ -24,7 +24,6 @@ Explanation: The following are the steps performed:
 
 # My solution
 My solution is very straightforward. The steps are:
-
 Number of steps ct=:0; 
 1. record the indice of the elements that are smaller than its immediate left neighbor in [idx]
 2. drop those elements A[idx]
@@ -33,7 +32,9 @@ Number of steps ct=:0;
 
 In the following Python implementation, I use a helper function <span class="coding">getIndex</span> to get the list of indices of incongruent elements. It returns a thinner array <span class="coding">[A[i] for i in range(len(A)) if not i in idx]</span> and list of indices (can be empty) of non-congruent elements. 
 
-When removing elements of arrays in loops, we need to remember that Python lists are mutable.  We need to be *careful not to use index that refer to the older list*.  Therefore, using *list comprehension* is a safe and concise way of removing those non-monontonic elements. 
+When removing elements of arrays in loops, we need to remember that Python lists are mutable.  We need to be *careful not to use index that refer to the older list*.  <span class="coding">[A[i] for i in range(len(A)) if not i in idx]</span>
+
+Therefore, using *list comprehension* is a safe and concise way of removing those non-monontonic elements. 
 
 **Complexity:**
 <span class="coding">getIndex()</span> runs a loop.  If we find m indices to remove, then when returning the smaller array, the loop is n - m steps.  We may need to do this close to n times in the worst case when the first element is the largest.  For example [6, 1, 2, 3, 4, 5] takes len(A) - 1 steps.  So the time complexity is $$O(n^2)$$.  
@@ -83,7 +84,6 @@ print(steps(nums))
 # Indices to be removed  []
 # 0
 ```
-My method is very intuitive, but it is not the best in time complexity. 
 
 # A very different approach
 
@@ -104,11 +104,11 @@ As we are updating <span class="coding">dp</span> from back to front, it kind of
 
 
 Let's walk through an example. Given input $$A=[5, 3, 4]$$,
-* At the beginning of the loop, stack is empty.  dp is [0, 0, 0].
-* $$i$$ is 2, nothing in the stack, <span class="coding">while</span>  condition is not satisfied and dp update action is skipped. stack is [2]
-* $$i$$ is 1, stack is [2], <span class="coding">while</span>  condition is not satisfied and dp update action is skipped. stack is [2, 1]
-* $$i$$ is 0, looking at the last element $$5$$,  stack is [2, 1], <span class="coding">while</span>  condition is satisfied when compared with A[stack[1]] and dp updates to [1, 0, 0].  Stack is [2].
-* At this point, the <span class="coding">while</span> condtion is still satisfied because stack is [2] and 5 is greater than A[stack[2]].  So dp is updated again to be [2, 0, 0]. 
+* At the beginning of the loop, stack is empty.  dp is $$[0, 0, 0]$$.
+* $$i$$ is 2, nothing in the stack, <span class="coding">while</span>  condition is not satisfied and dp update action is skipped. stack is $$[2]$$
+* $$i$$ is 1, stack is $$[2]$$, <span class="coding">while</span>  condition is not satisfied and dp update action is skipped. stack is $$[2, 1]$$
+* $$i$$ is 0, looking at the last element $$5$$,  stack is $$[2, 1]$$, <span class="coding">while</span>  condition is satisfied when compared with $$A[stack[1]]$$ and dp updates to $$[1, 0, 0]$$.  Stack is $$[2]$$.
+* At this point, the <span class="coding">while</span> condtion is still satisfied because stack is $$[2]$$ and 5 is greater than $$A[stack[2]]$$.  So dp is updated again to be $$[2, 0, 0]$$. 
 * Finally, the stack is empty.  max(dp) is returned. 
 
 You can walk yourself through the second example of $$A=[5, 4, 3]$$.
@@ -190,6 +190,23 @@ nums = [5,3,4,4,7,3,6,11,8,5,11]
 print(totalSteps(nums))
 ```
 
+# More stack problems
+
+* Sum of Total Strength of Wizards
+* Car Fleet II
+* Find the Most Competitive Subsequence
+* Minimum Number of Removals to Make Mountain Array
+* Final Prices With a Special Discount in a Shop
+* Constrained Subsequence Sum
+* Minimum Cost Tree From Leaf Values
+* Sum of Subarray Minimums
+* Online Stock Span
+* Score of Parentheses
+* Next Greater Element II
+* Next Greater Element I
+* Largest Rectangle in Histogram
+* Trapping Rain Water
+  
 # Reference
 
 [leetcode](https://leetcode.com/problems/steps-to-make-array-non-decreasing/discuss/2085864/JavaC%2B%2BPython-Stack-%2B-DP-%2B-Explanation-%2B-Poem)
