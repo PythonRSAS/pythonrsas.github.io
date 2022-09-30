@@ -3,7 +3,7 @@ layout: post
 tag : arrays, dp, Chinese
 category: education
 title: "Steps to make array monotonic"
-description: Steps to make array monotonic
+description: Steps to make array monotonic using 2 different approaches
 author: Sarah Chen
 image: images/posts/photos/IMG_0877.JPG
 
@@ -191,5 +191,11 @@ print(totalSteps(nums))
 ```
 
 # Reference
+
+[leetcode](https://leetcode.com/problems/steps-to-make-array-non-decreasing/discuss/2085864/JavaC%2B%2BPython-Stack-%2B-DP-%2B-Explanation-%2B-Poem)
+
+
 [长江后浪推前浪](https://www.idongde.com/c/732D545aaC926f77.shtml)
-《增广贤文》是中国明代时期编写的儿童启蒙书目，集结了中国从古到今的各种格言、谚语，“长江后浪推前浪，世上新人换旧人”就是出自其中，另外还有很多耳熟能详的谚语，例如逢人且说三分话，未可全抛一片心；有意栽花花不发，无心插柳柳成荫；画虎画皮难画骨，知人知面不知心；路遥知马力，日久见人心等等。
+《增广贤文》是中国明代时期编写集结了中国从古到今的各种格言、谚语. “长江后浪推前浪，世上新人换旧人”  就是出自其中，另外还有很多耳熟能详的谚语，例如逢人且说三分话，未可全抛一片心；有意栽花花不发，无心插柳柳成荫；画虎画皮难画骨，知人知面不知心；路遥知马力，日久见人心, 一年之计在于春，一日之计在于寅，一家之计在于和，一生之计在于勤, 等等。 
+
+[增广贤文](https://ctext.org/wiki.pl?if=gb&chapter=223724&remap=gb): listed No. 35. “长江后浪推前浪，世上新人换旧人”
