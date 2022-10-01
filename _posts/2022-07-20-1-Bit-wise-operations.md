@@ -17,6 +17,11 @@ image: images/posts/photos/sf/IMG-0953.JPG
 - [What is bit](#what-is-bit)
 - [Binary vs decimal number system](#binary-vs-decimal-number-system)
 - [Bit-wise operations](#bit-wise-operations)
+  - [and](#and)
+  - [or](#or)
+  - [xor](#xor)
+  - [not](#not)
+  - [shifting](#shifting)
 - [Examples](#examples)
   - [count bits](#count-bits)
   - [Count odd number occurance](#count-odd-number-occurance)
@@ -27,13 +32,7 @@ image: images/posts/photos/sf/IMG-0953.JPG
 
 Bit-wise operations should be taken *very literally*: **bit-wise**.   We talked about element-wise operations.  Here we talk about bit-wise operations. 
 
-Using addition as an example, since  $$1$$ only when both $$a$$ and $$b$$ are $$1$$, otherwise $$0$$. 
 
-**<span class="coding">|</span>**: can be used to **set a certain bit to $$1$$**. 
-
-**<span class="coding">&</span>**: can be used to test if a certain bit is $$1$$ or $$0$$, and can be used to **clear bits**.  
-   
-**<span class="coding">\<<</span>**: shift to left, i.e. double, or 乘2. 
 
 Set a bit (where n is the bit number):  unsigned char a \|= (1 << n);  It sets the nth bit to 1.   If n is 1, then it sets the second digit to 1.  4 |1<<1 is 6.  Because 4 is 100 and 6 is 110.  
 
@@ -92,8 +91,15 @@ We can use any number system.  Say it is 3.  Then all numbers will be decomposed
 
 # Bit-wise operations
 
-**And** <span class="coding">a & b</span>
+## and 
+<span class="coding">a & b</span>
+$$1$$ only when both $$a$$ and $$b$$ are $$1$$, otherwise $$0$$. 
 
+**<span class="coding">|</span>**: can be used to **set a certain bit to $$1$$**. 
+
+**<span class="coding">&</span>**: can be used to test if a certain bit is $$1$$ or $$0$$, and can be used to **clear bits**.  
+   
+**<span class="coding">\<<</span>**: shift to left, i.e. double, or 乘2. 
 Example, if we want the lower (least significant) 4 bits of an integer, we <span class="coding">AND</span> it with $$15$$ (binary $$1111$$) so:
 
 $$201$$ is  $$1100 1001$$
@@ -123,7 +129,8 @@ bin(201&192)
 '0b11000000'
 ```
 
-**Or** <span class="coding">a | b</span> is always $$1$$ except when both $$a$$ and $$b$$ are $$0$$.
+## or
+<span class="coding">a | b</span> is always $$1$$ except when both $$a$$ and $$b$$ are $$0$$.
 
 <span class="coding">|</span> is used to set a certain bit to $$1$$.  
 
@@ -138,18 +145,21 @@ setbit0_1(4)
 
 <span class="coding">x & 1</span> can be used to test if bit 0 of x is 1 or 0.  
 
-**XOR** <span class="coding">a ^ b</span>
+## xor 
+<span class="coding">a ^ b</span>
 
 <span class="coding">^</span> stands for "bitwise exclusive or".   Do not confuse it with <span class="coding">**</span>.
 
 It returns 1 only when $$a$$ and $$b$$ are different.  Note that the inverse function of xor is itself. 
 
-**Not** <span class="coding">~ a</span>
+## not
+<span class="coding">~ a</span>
 
 Returns the complement of $$a$$.  If input is 0, then output is 1. It is the number you get by switching each 1 for a 0 and each 0 for a 1. This is the same as a - 1.
 
 
-**shifting** <span class="coding">a << b</span>  <span class="coding">a >> b</span>
+## shifting 
+<span class="coding">a << b</span>  <span class="coding">a >> b</span>
 
 x << 1 is doubling and x >> 1 is halving. 
 
