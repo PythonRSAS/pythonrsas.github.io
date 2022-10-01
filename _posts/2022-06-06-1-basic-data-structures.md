@@ -10,18 +10,12 @@ image: images/posts/photos/IMG_0878.JPG
 ---
   
 - [Array](#array)
-  - [Array in python](#array-in-python)
-  - [ArrayList](#arraylist)
-- [Stack](#stack)
-- [Queue](#queue)
+- [Stacks and queues](#stacks-and-queues)
 - [Linked List](#linked-list)
 - [Tree](#tree)
-- [Heap](#heap)
 
-In working in financial services, whether credit risk modeing, or insurnace pricing, I did not once need to use knowledge on data structures such as stack or queue.  Sometimes our data was big, but not so big that we have to care much about efficiency.  In anti-money laundry models, I worked with network or graphs, but still was using tabular data, relying on libraries to convert them into adjaceny lists. 
 
-However, in the machine learning era, it is necessary to understand basic abstract data structures, and why we need them. 
-
+In the machine learning era, it is necessary to understand basic abstract data structures, and why we need them. 
 
 Data structures are defined and built according to varied needs of different data types and algorithms. 
 For example, map of paths between cities.  From point A to point B there are many paths. The relationship of graphs are **many-to-many**, not linear one-to-one. 
@@ -53,11 +47,6 @@ efficient accessing | insert/delete are not as efficent
 
 Array elements are stored in contiguous (continuous) memory locations. Its efficiency is in scaling its attributes to all its elements. 
 
-## Array in python
-Numpy arrays depends on the numpy library.  Python does not have a native support for arrays, but has a more generic data structure called *list*. 
-
-## ArrayList
-
 ArrayList is a derivation of array.  It is a *growing* array, where the size can be changed.  It has more functionality than an array, including the following 6 common methods:
 - add
 - remove
@@ -66,9 +55,12 @@ ArrayList is a derivation of array.  It is a *growing* array, where the size can
 - clear
 - toArray
 
+Numpy arrays depends on the numpy library.  Python does not have a native support for arrays, but has a more generic data structure called *list*. 
+
+
 **In Python, arrays and arrayLists are grouped together into a single data structured called "Lists"**. 
 
-# Stack
+# Stacks and queues
 Like what it sounds like, a stack is a stack of something.  The last one added is the first one out. In life, undo, redo, go back, and etc. are all examples of "stacking".
 
 In computer, stack data structure is used for keeping track of active functions or subroutines. 
@@ -77,17 +69,7 @@ Stack is the backbone for all recursive processes in our computers.  Recursive p
 
 When the function calls itself, the call is aded to a stck of processes, keeping track of active subroutines in code and more. 
 
-<div class="code-head"><span>code</span>stack.py</div>
-
-```py
-
-```
-
-
-# Queue
-
 Queues are the opposite of stacks.  Queues are "FIFO". 
-
 
 # Linked List
 
@@ -129,8 +111,6 @@ A linked List is a data structure used for storing collections of data. A linked
 * Router algorithms
 * Form of a multi-stage decision-making (see business chess).
 
-
-# Heap
 
 
 
