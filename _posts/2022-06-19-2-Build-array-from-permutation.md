@@ -5,7 +5,7 @@ category: education
 title: "Build array from permutation"
 description: easy puzzles that based on arrays from Leetcode
 author: Sarah Chen
-image: images/posts/photos/IMG_0875.JPG
+image: images/posts/photos/sf/IMG-0938.JPG
 
 ---
 - [Leetcode 1920. Build Array from Permutation](#leetcode-1920-build-array-from-permutation)

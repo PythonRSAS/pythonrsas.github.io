@@ -1,9 +1,9 @@
 ---
 layout: post
-tag : arrays, puzzles, easy
+tag : array
 category: education
 title: "If Can make Non-decreasing Array"
-description: easy puzzles that based on arrays from Leetcode
+description: an easy array problem but has puzzling errors
 author: Sarah Chen
 image: images/posts/photos/IMG_0680.JPG
 
