@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : abstract data structure, python
+tag : abstract data structure, ADT
 category: education
 title: "Basic data structures"
 description: essentials in data structures including stack, queue, linked list. 

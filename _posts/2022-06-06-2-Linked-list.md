@@ -9,7 +9,8 @@ image: images/posts/linked_list.jpg
 
 ---
 
-# Linked List
+Linked lists were developed in 1955–1956, by Allen Newell, Cliff Shaw and Herbert A. Simon at RAND Corporation as the primary data structure for their Information Processing Language. IPL was used by the authors to develop several early artificial intelligence programs.
+
 
 A linked list is a kind of abstract data structure,  like a chain of objects, called *nodes*, each points to the next except the last one, which points to <span class="coding">\__None__</span> (NULL). 
 
@@ -39,6 +40,31 @@ Compare | array | linked list
 They are useful when we need fast insertion and deletion, and when we do not know in advance the size of data, or do not need random access when searching for items.   
 
 ![linked list uses](../images/posts/linked_list_uses.jpg)
+
+# Compare with arrays
+[I adapted from a bunch of gurus at SOF](https://stackoverflow.com/questions/393556/when-to-use-a-linked-list-over-an-array-array-list)
+Linked lists are preferable over arrays when:
+
+you need constant-time insertions/deletions from the list (such as in real-time computing where time predictability is absolutely critical)
+
+you don't know how many items will be in the list. With arrays, you may need to re-declare and copy memory if the array grows too big
+
+you don't need random access to any elements
+
+you want to be able to insert items in the middle of the list (such as a priority queue)
+
+Arrays are preferable when:
+
+you need indexed/random access to elements
+
+you know the number of elements in the array ahead of time so that you can allocate the correct amount of memory for the array
+
+you need speed when iterating through all the elements in sequence. You can use pointer math on the array to access each element, whereas you need to lookup the node based on the pointer for each element in linked list, which may result in page faults which may result in performance hits.
+
+memory is a concern. Filled arrays take up less memory than linked lists. Each element in the array is just the data. Each linked list node requires the data as well as one (or more) pointers to the other elements in the linked list.
+
+Array Lists (like those in .Net) give you the benefits of arrays, but dynamically allocate resources for you so that you don't need to worry too much about list size and you can delete items at any index without any effort or re-shuffling elements around. Performance-wise, arraylists are slower than raw arrays.
+
 
 # Linked list implementation
 Python does not have a native support for linked list. So we need to build the node class first and then implement linked list. 
@@ -376,3 +402,7 @@ myLinkedList.printLinkedList()
 # Reversed: 10 9 8 7 6 5 4 3 2 1
 
 ```
+# Reference
+[The quest for the fastest linked list by Johny’s Software Lab](https://johnysswlab.com/the-quest-for-the-fastest-linked-list/)
+
+[Linked List, Wikipedia](https://en.wikipedia.org/wiki/Linked_list)
