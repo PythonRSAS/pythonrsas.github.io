@@ -2,7 +2,7 @@
 layout: post
 tag : strings, int, ord, chr
 category: education
-title: "string int conversions"
+title: "String operations"
 description: explore string operations in Python and the ord, chr functions
 author: Sarah Chen
 image: images/posts/New_Unicode_logo.svg.PNG
