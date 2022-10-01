@@ -20,7 +20,6 @@ image: images/posts/photos/IMG_0878.JPG
 In the machine learning and artificial intelligence era, it is necessary to understand basic abstract data structures, and why we need them. 
 
 Data structures are defined and built according to varied needs of different data types and algorithms. 
-
  
 # Array
 Arrays are lists of similar data. An array of an array is a 2-dimensional array, i.e. matrix. 
@@ -75,19 +74,18 @@ Queues are the opposite of stacks.  Queues are "FIFO".
 [Linked lists](https://en.wikipedia.org/wiki/Linked_list#History) were developed in 1955–1956, by Allen Newell, Cliff Shaw and Herbert A. Simon at RAND Corporation as the primary data structure for their Information Processing Language. IPL was used by the authors to develop several early artificial intelligence programs, including the Logic Theory Machine, the General Problem Solver, and a computer chess program. 
 
 A linked List is a data structure used for storing collections of data. A linked list has the following properties.
-* Successive elements a re connected by pointers
+* Successive elements are connected by pointers
 * The last element points to <span class="coding">\__None__</span> (NULL)
 * Can grow or shrink in size during execution of a program
 * Can be made just as long as required (until systems memory exhausts)
 * Does not waste memory space (but takes some extra memory for pointers)
 
-* Linked lists are linear data structures that hold data in individual objects called nodes. These nodes hold both the data and a reference to the next node in the list.
+* Linked lists are **linear data structures** that hold data in individual objects called *nodes*. These nodes hold both the data and a reference to the next node in the list.
 * Each node contains a value, and a reference (also known as a pointer) to the next node. The last node, points to a null node. This means the list is at its end.
 * Linked lists offer some important advantages over other linear data structures. Unlike arrays, they are a dynamic data structure, resizable at run-time. Also, the insertion and deletion operations are efficient and easily implemented.
 * However, linked lists do have some drawbacks. Unlike arrays, linked lists aren't fast at finding the __n__th item.To find a node at position __n__, you have to start the search at the first node in the linked list, following the path of references  times. Also, because linked lists are inherently sequential in the forward direction, operations like backwards traversal--visiting every node starting from the end and ending in the front--is especially cumbersome. (__Only sequential search possible__)
 * Additionally, linked lists use more storage than the array due to their property of referencing the next node in the linked list.
 * Finally, unlike an array whose values are all stored in contiguous memory, a linked list's nodes are at arbitrary, possibly far apart locations in memory.
-
 
 # Graphs
 For example, social media networks, map of paths between cities.  From point A to point B there are many paths or connections. The relationship of graphs are **many-to-many**, not linear one-to-one. 
