@@ -13,6 +13,7 @@ image: images/posts/photos/IMG_0878.JPG
 - [Stacks and queues](#stacks-and-queues)
 - [Linked List](#linked-list)
 - [Tree](#tree)
+- [Reference](#reference)
 
 
 In the machine learning era, it is necessary to understand basic abstract data structures, and why we need them. 
@@ -62,6 +63,9 @@ Numpy arrays depends on the numpy library.  Python does not have a native suppor
 
 # Stacks and queues
 Like what it sounds like, a stack is a stack of something.  The last one added is the first one out. In life, undo, redo, go back, and etc. are all examples of "stacking".
+https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
+
+![stack push and pop](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Lifo_stack.svg/700px-Lifo_stack.svg.png)
 
 In computer, stack data structure is used for keeping track of active functions or subroutines. 
 
@@ -72,6 +76,8 @@ When the function calls itself, the call is aded to a stck of processes, keeping
 Queues are the opposite of stacks.  Queues are "FIFO". 
 
 # Linked List
+
+[Linked lists](https://en.wikipedia.org/wiki/Linked_list#History) were developed in 1955–1956, by Allen Newell, Cliff Shaw and Herbert A. Simon at RAND Corporation as the primary data structure for their Information Processing Language. IPL was used by the authors to develop several early artificial intelligence programs, including the Logic Theory Machine, the General Problem Solver, and a computer chess program. 
 
 A linked List is a data structure used for storing collections of data. A linked list has the following properties.
 * Successive elements a re connected by pointers
@@ -112,7 +118,8 @@ A linked List is a data structure used for storing collections of data. A linked
 * Form of a multi-stage decision-making (see business chess).
 
 
-
+# Reference
+[wikipedia](https://en.wikipedia.org/wiki/Stack_(abstract_data_type))
 
 
 
