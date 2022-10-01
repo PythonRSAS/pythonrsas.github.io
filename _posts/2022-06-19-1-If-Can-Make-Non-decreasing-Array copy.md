@@ -5,7 +5,7 @@ category: education
 title: "If Can make Non-decreasing Array"
 description: an easy array problem but has puzzling errors
 author: Sarah Chen
-image: images/posts/photos/IMG_0680.JPG
+image: images/posts/photos/IMG-0680.JPG
 
 ---
 - [Leecode 665. Non-decreasing Array, Easy](#leecode-665-non-decreasing-array-easy)
@@ -14,19 +14,11 @@ image: images/posts/photos/IMG_0680.JPG
 - [Compare 2 solutions](#compare-2-solutions)
 - [Reference](#reference)
 
-![non-decreasing](../images/posts/photos/IMG_0680.JPG)
+![non-decreasing](../images/posts/photos/IMG-0680.JPG)
 # Leecode 665. Non-decreasing Array, Easy
 
 * Problem:
 Given an array nums with n integers, check if it could become non-decreasing by modifying **at most one element**.
-
-The problem is labeled as "Medium", but it actually is very easy. 
-
-* Constraints:
-
-n == nums.length
-1 <= n <= 104
--10^5 <= nums[i] <= 10^5
 
 * Example 1:
 * Input: nums = [4,2,3]
@@ -76,7 +68,6 @@ We got the correct answers for all the test cases.  So why is it wrong?
 Consider $$[5, 5, 2, 2, 2]$$. 
 
 Even though the solution is veyr easy, I made a mistake in the index range.  Whenever we need to compare adjacent elements, be mindful that $$i+1$$ can be out of range.  Hence, the loop should be $$range(len(A) - 1)$$ instead of $$range(len(A))$$. 
-
 
 
 # A clever not not efficient approach
