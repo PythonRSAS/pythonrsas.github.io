@@ -12,20 +12,16 @@ image: images/posts/photos/IMG_0878.JPG
 - [Array](#array)
 - [Stacks and queues](#stacks-and-queues)
 - [Linked List](#linked-list)
+- [Graphs](#graphs)
 - [Tree](#tree)
 - [Reference](#reference)
 
 
-In the machine learning era, it is necessary to understand basic abstract data structures, and why we need them. 
+In the machine learning and artificial intelligence era, it is necessary to understand basic abstract data structures, and why we need them. 
 
 Data structures are defined and built according to varied needs of different data types and algorithms. 
-For example, map of paths between cities.  From point A to point B there are many paths. The relationship of graphs are **many-to-many**, not linear one-to-one. 
-![graph](https://pythonrsas.github.io/images/posts/myTrip.PNG)
 
-Hierchical data, the boss is in charge of a bunch of heads of departments.  The head of a department is in charge of a bunch of managers.  The manager of a team is in charge of a bunch of employees, and so on.   The relationship between boss to staff is **one-to-many**. 
-![org chart](https://www.ayoa.com/templates/wp-content/uploads/sites/5/2020/11/Company-organizational.jpg)
-
-  
+ 
 # Array
 Arrays are lists of similar data. An array of an array is a 2-dimensional array, i.e. matrix. 
 - name
@@ -38,8 +34,7 @@ There are 2 ways to create an array:
 
 1. Access: random access use *index* as all elements are indexed, run time is$$O(1)$$; 
 2. Search:$$O(n)$$, may need to go over each element to find an item from an unsorted array
-3. Insert:$$O(n)$$, because we need to shift the elements, which are after the index where we want to insert the item, to the *'right'* for one space  
-4. Delete:$$O(n)$$, because we need to shift the elements, which are after the index where we want to insert the item, to the *"left"* for one space  
+3. Insert:$$O(n)$$, because we need to shift the elements, which are after the index where we want to insert the item, to the *'right'* for one space  4. Delete:$$O(n)$$, because we need to shift the elements, which are after the index where we want to insert the item, to the *"left"* for one space  
 
 pros | cons
 ---------|----------
@@ -94,23 +89,27 @@ A linked List is a data structure used for storing collections of data. A linked
 * Finally, unlike an array whose values are all stored in contiguous memory, a linked list's nodes are at arbitrary, possibly far apart locations in memory.
 
 
+# Graphs
+For example, social media networks, map of paths between cities.  From point A to point B there are many paths or connections. The relationship of graphs are **many-to-many**, not linear one-to-one. 
+![graph](https://pythonrsas.github.io/images/posts/myTrip.PNG)
+
 
 # Tree
 
-* A tree is a data structure similar to a linked List but instead of each node pointing simply to the next node in a linear fashion, each node points to a number of nodes. Tree is an example of non-linear data structures. A tree structure is a way of representing the **hierarchical** nature of a structure in a graphical form.
-* The **root** of the tree is the node with no parents. There can be at most one root node in a tree.
+![org chart](https://www.ayoa.com/templates/wp-content/uploads/sites/5/2020/11/Company-organizational.jpg)
+The boss is in charge of a bunch of heads of departments.  The head of a department is in charge of a bunch of managers.  The manager of a team is in charge of a bunch of employees, and so on.   The relationship between boss to staff is **one-to-many**.  Hierchical data is represented by a special type of trees,
+
+A tree is a data structure **similar to a linked List** but instead of each node pointing simply to the next node in a linear fashion, each node points to a number of nodes. 
+
+Tree is an example of non-linear data structures. A tree structure is a way of representing the **hierarchical** nature of a structure in a graphical form.
+
+* The **root** of the tree is the node with no parents. **There can be at most one root node in a tree**.
 * The _edge_ refers to the link from parent to child.
 * A node with NO children is called _leaf_ node.
 * Children of same parent are called _siblings_.
-*  Manipulate hierarchical data.
-* Make information easy to search (see tree traversal).
-* Manipulate sorted lists of data.
-* As a workflow for compositing digital images for visual effects.
-* Router algorithms
-* Form of a multi-stage decision-making (see business chess).
 
 **Applications of trees**
-*  Manipulate hierarchical data.
+* Manipulate hierarchical data.
 * Make information easy to search (see tree traversal).
 * Manipulate sorted lists of data.
 * As a workflow for compositing digital images for visual effects.
