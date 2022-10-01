@@ -8,12 +8,50 @@ author: Sarah Chen
 image: images/posts/New_Unicode_logo.svg.PNG
 
 ---
+- [Leecode 2114. Max number of words in sentences](#leecode-2114-max-number-of-words-in-sentences)
+- [1528. Rearragne String](#1528-rearragne-string)
 - [Convert string to integer](#convert-string-to-integer)
 - [Convert integer to string](#convert-integer-to-string)
 - [Appendix](#appendix)
 - [Reference](#reference)
 - [Future reading list](#future-reading-list)
 
+
+
+# Leecode 2114. Max number of words in sentences
+
+* Problem:
+Given a list of sentences, find the maximum number of words of all the sentences.
+
+* Constraints:
+all lower case and no white space
+
+* Solution 1: Each sentence is an array of words separated with a space.  The number of words is the number of space + 1. 
+
+* Complexity:
+
+```python
+def MaxWords1(sentences):
+    # i represents a sentence in the list of sentences
+    return max([i.count(' ') for i in sentences])
+```
+
+# 1528. Rearragne String
+* Summary: this problem is super easy.  Just follow instruction and be careful. 
+
+* Problem
+Input: s = "codeleet", indices = [4,5,6,7,0,2,1,3]
+Output: "leetcode"
+Explanation: As shown, "codeleet" becomes "leetcode" after rearrange per indices.
+
+```python
+
+def newArray(A, B):
+    res = []
+    for index, alph in enumerate(A):
+        res[B[index]] = alph
+        return res
+```
 
 It seems super easy to convert int to string or from string to int.  Just use the <span class="coding">int</span> and <span class="coding">str</span> functions.   The <span class="coding">int</span> function not only can 
 - convert a string to number

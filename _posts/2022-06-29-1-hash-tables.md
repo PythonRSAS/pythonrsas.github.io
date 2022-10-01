@@ -22,6 +22,7 @@ image: images/posts/photos/IMG_0873.JPG
   - [Hash table examples](#hash-table-examples)
     - [Find anagram](#find-anagram)
     - [If letter can be constructed](#if-letter-can-be-constructed)
+- [Leetcode 1512. Number of identical pairs of numbers in an array](#leetcode-1512-number-of-identical-pairs-of-numbers-in-an-array)
 
 # hash table the basics
 
@@ -217,4 +218,40 @@ def L_subset_of_M(L, M):
     return not freq_L
 print(L_subset_of_M("adefghb","zhighuvdabfea"))
 
+```
+
+# Leetcode 1512. Number of identical pairs of numbers in an array
+
+* Problem: [1,2,3,1,1,3]
+A pair is identical if A[i] == A[j] & i < j. 
+
+* Input: nums = [1,2,3,1,1,3]
+Output: 4
+Explanation: There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.
+
+* Solution 1:
+Use <span class="coding">collections.Counter</span>, creates a dictionary of frequencies.
+Note that because the keys of the dictionary are integers, we **cannot** use <span class="coding">for key, value in Counter(A)</span>. 
+
+Instead, we can use <span class="coding">for value in Counter(A).values()</span>.
+```python
+from collections import Counter
+def countSame(A):
+    res = 0
+    for v in Counter(A).values():
+        if v >= 2:
+            res += v * (v - 1) /2
+    return int(res)
+nums = [1,2,3,1,1,3]
+print(countSame(nums))
+# 4
+```
+```python
+group=defaultdict(int)
+for i,k in enumerate(nums):
+        if k not in group:
+            group[k]=[i]
+        else:
+            group[k].append(i) 
+return int(sum([((len(n)*(len(n)-1))/2) for n in group.values()]))   ## using n(n-1)/2 to calculate the distinct pairs 
 ```

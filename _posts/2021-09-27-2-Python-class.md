@@ -409,5 +409,8 @@ A simple example usage is to use decorator on a class method so that it can be u
 
 # reference
 -----------
+[A Guide to Python's Magic Methods by Rafe Kettler](https://rszalski.github.io/magicmethods/)
+
 [Turtle code](https://github.com/magicmathmandarin/Turtle/blob/master/shapes.py)
+
 [Turtle library](https://docs.python.org/3/library/turtle.html)
