@@ -1,14 +1,14 @@
 ---
 layout: post
-tag : array
+tag : array, leetcode
 category: education
 title: "If can make non-decreasing Array"
 description: an easy array problem but has puzzling errors
 author: Sarah Chen
-image: images/posts/photos/IMG-0680.JPG
+image: images/posts/photos/IMG-0680.jpg
 
 ---
-![non-decreasing](../images/posts/photos/IMG-0680.JPG)
+![non-decreasing](../images/posts/photos/IMG-0680.jpg)
 
 - [Leecode 665. Non-decreasing Array, Easy](#leecode-665-non-decreasing-array-easy)
 - [My simple brute force](#my-simple-brute-force)

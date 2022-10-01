@@ -29,28 +29,19 @@ Bit-wise operations should be taken *very literally*: **bit-wise**.   We talked 
 
 Using addition as an example, since  $$1$$ only when both $$a$$ and $$b$$ are $$1$$, otherwise $$0$$. 
 
-* **<span class="coding">|</span>**: can be used to **set a certain bit to $$1$$**. 
+**<span class="coding">|</span>**: can be used to **set a certain bit to $$1$$**. 
 
-* **<span class="coding">&</span>**: can be used to test if a certain bit is $$1$$ or $$0$$, and can be used to **clear bits**.  
+**<span class="coding">&</span>**: can be used to test if a certain bit is $$1$$ or $$0$$, and can be used to **clear bits**.  
    
-* **<span class="coding">\<<</span>**: shift to left, i.e. double, or 乘2. 
+**<span class="coding">\<<</span>**: shift to left, i.e. double, or 乘2. 
 
-* Set a bit (where n is the bit number):
+Set a bit (where n is the bit number):  unsigned char a \|= (1 << n);  It sets the nth bit to 1.   If n is 1, then it sets the second digit to 1.  4 |1<<1 is 6.  Because 4 is 100 and 6 is 110.  
 
-  unsigned char a |= (1 << n); 
-  It sets the nth bit to 1.   If n is 1, then it sets the second digit to 1.  4 |1<<1 is 6.  Because 4 is 100 and 6 is 110.  
+**Clear a bit**: unsigned char b &= ~(1 << n);
 
-* Clear a bit:
+**Toggle a bit**: unsigned char c ^= (1 << n);
 
-unsigned char b &= ~(1 << n);
-
-* Toggle a bit:
-
-unsigned char c ^= (1 << n);
-
-* Test a bit:
-
-unsigned char e = d & (1 << n);
+**Test a bit**: unsigned char e = d & (1 << n);
 
 
 # What is bit
