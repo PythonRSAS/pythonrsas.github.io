@@ -5,15 +5,16 @@ category: education
 title: "If Can make Non-decreasing Array"
 description: easy puzzles that based on arrays from Leetcode
 author: Sarah Chen
-image: images/posts/photos/IMG_0870.JPG
+image: images/posts/photos/IMG_0680.JPG
 
 ---
 - [Leecode 665. Non-decreasing Array, Easy](#leecode-665-non-decreasing-array-easy)
-- [Brute force](#brute-force)
+- [My simple brute force](#my-simple-brute-force)
 - [A clever not not efficient approach](#a-clever-not-not-efficient-approach)
+- [Compare 2 solutions](#compare-2-solutions)
 - [Reference](#reference)
 
-
+![non-decreasing](../images/posts/photos/IMG_0680.JPG)
 # Leecode 665. Non-decreasing Array, Easy
 
 * Problem:
@@ -36,42 +37,47 @@ n == nums.length
 * Input: nums = [4,2,1]
 * Output: false
 
-# Brute force
+# My simple brute force
 
-The idea is that if left is larger than right, then let left= right - 1.   Iterate through the input array, if having to do this more than once, then return False else True.  
+The idea is that if left is larger than right, then let left=right. This smoothes the bump.  Iterate through the input array, if having to do this more than once, then return False else True.  
 
-Even though the solution is veyr easy, I made a mistake in the index range.  Whenever we need to compare adjacent elements, be mindful that $$i+1$$ can be out of range.  Hence, the loop should be $$range(len(A) - 1)$$ instead of $$range(len(A))$$.  
-
-* Complexity:
+*** Complexity**:
 We have a double loop.  Time complexity is $$O(n^2)$$.  
 
-<div class="code-head"><span>code</span>non_decreasing.py</div>
+<div class="code-head"><span>code</span>myCheckPossibility.py</div>
 
 ```py
-def non_decreasing(A):
+def myCheckPossibility(A):
     ct = 0
     for i in range(len(A) - 1):
         if A[i] > A[i + 1]: # if left is larger than right
-            A[i] = A[i + 1] - 1
+            A[i] = A[i + 1]
             ct += 1
     if ct > 1:
         return False
     else:
         return True
 
+print(myCheckPossibility([2, 4, 2, 3]))
+
 nums = [4,2,3]
-print(non_decreasing(nums))
+print(myCheckPossibility(nums))
 # True
 nums = [4,2,1]
-print(non_decreasing(nums))
+print(myCheckPossibility(nums))
 # False
 nums = [1, 2, 3, 3]
-print(non_decreasing(nums))
+print(myCheckPossibility(nums))
 # True
 ```
 
-* Edge case:
-Note that the edge case A[i] = 10^5 and A[i] > A[i +1] is just not possible. So we are okay.  
+We got the correct answers for all the test cases.  So why is it wrong?
+
+Consider $$[5, 5, 2, 2, 2]$$. 
+
+Even though the solution is veyr easy, I made a mistake in the index range.  Whenever we need to compare adjacent elements, be mindful that $$i+1$$ can be out of range.  Hence, the loop should be $$range(len(A) - 1)$$ instead of $$range(len(A))$$. 
+
+
 
 # A clever not not efficient approach
 
@@ -97,6 +103,38 @@ def checkPossibility(A):
             break
     return one == sorted(one) or two == sorted(two)
 ```
+# Compare 2 solutions
+The solution from leetcode discussion board is more work as it uses two <span class="coding">sorted</span>. 
+
+Let's do a comparison:
+```python
+import random
+from datetime import datetime
+from numpy import random as npr
+
+nSamples = 100
+npr.seed(1234)
+
+nums_lt = [[np.random.randint(0, 10) for i in range(5)] for j in range(nSamples)]
+
+t0 = datetime.now()
+myRes = [myCheckPossibility(i) for i in nums_lt]
+mytime = datetime.now() - t0
+
+t1 = datetime.now()
+hisRes = [checkPossibility(i) for i in nums_lt]
+histime = datetime.now() - t1
+
+compare = pd.DataFrame({'myRes':myRes, 'hisRes':hisRes,'nums_lt':nums_lt })
+compare[compare.myRes != compare.hisRes]
+
+for nums in nums_lt:
+    if myCheckPossibility(nums)  checkPossibility(nums):
+        print(nums)
+        print("my:", myCheckPossibility(nums))
+        print("his:",checkPossibility(nums) )
+```
+The very bizzare thing is that when I ran the code initially, it was showing erroneous results.  But after 3 or 4 times of running the same code, none is returned and everything is correct.  This is something I am still trying to figure out exactly where it went wrong. 
 
 # Reference
 
