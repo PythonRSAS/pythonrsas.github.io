@@ -1,11 +1,11 @@
 ---
 layout: post
-tag : arrays, dp, stack, Chinese
+tag : arrays, dp, stack, 长江后浪推前浪
 category: education
 title: "Steps to make array monotonic"
 description: Steps to make array monotonic using 2 different approaches
 author: Sarah Chen
-image: images/posts/photos/IMG_0877.JPG
+image: images/posts/photos/IMG_0877.jpg
 
 ---
 ![waves](../images/posts/photos/IMG_0877.JPG)
