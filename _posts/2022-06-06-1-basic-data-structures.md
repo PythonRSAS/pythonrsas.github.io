@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : computer data structure, python
+tag : abstract data structure, python
 category: education
 title: "Basic data structures"
 description: essentials in data structures including stack, queue, linked list. 
@@ -8,18 +8,6 @@ author: Sarah Chen
 image: images/posts/photos/IMG_0878.JPG
 
 ---
-In working in financial services, whether credit risk modeing, or insurnace pricing, I did not once need to use knowledge on data structures such as stack, queue.  Surely, I need to know how SAS, Python, and R processes data, in particular when working with large filres.  But the goal was to get insight, build models, and predict/forecast. Working in SAS, all you need to know are the <span class="coding">DATA</span> steps, procedures such as <span class="coding">PROC MEAN</span>, <span class="coding">PROC UNIVARIATE</span> and so on for basic data analysis, and more specific procedures for deeper dives and modeling.  Working in Python, the story was quite similar. You master pandas, maybe a little bit of matplotlib, seaborn, numpy and scipy, statsmodels, and sklearn, you've covered all the basics. 
-
-However, in the machine learning era, the goals and capacities of analytics have far expanded beyond statistics and modeling. Modelers may need to implement the models themselves.  In order to implement models, it is necessary to understand computer science fundamentals on data structures. 
-
-Data structures are defined and built according to varied needs of different data types and algorithms:
-* Stack is the backbone for all recursive processes in our computers because of its "Last In First Out" rule.  
-* Queue, the opposite of a stack, is used for queue-jobs because of its "First In First Out" rule. 
-* Linked list
-* Doubly linked list
-* dictionary and hash tables
-* trees and tries (for word-procssing algo)
-* heaps and grapsh
   
 - [Array](#array)
   - [Array in python](#array-in-python)
@@ -45,8 +33,19 @@ Data structures are defined and built according to varied needs of different dat
 - [Heap](#heap)
 - [Data structures in SAS](#data-structures-in-sas)
 
-In order to measure run time efficiency, the big $$O$$ metric is used. See [post "O"](2022-06-06-2-O.md)
+In working in financial services, whether credit risk modeing, or insurnace pricing, I did not once need to use knowledge on data structures such as stack or queue.  Sometimes our data was big, but not so big that we have to care much about efficiency.  In anti-money laundry models, I worked with network or graphs, but still was using tabular data, relying on libraries to convert them into adjaceny lists. 
 
+However, in the machine learning era, it is necessary to understand basic abstract data structures, and why we need them. 
+
+
+Data structures are defined and built according to varied needs of different data types and algorithms. 
+For example, map of paths between cities.  From point A to point B there are many paths. The relationship of graphs are **many-to-many**, not linear one-to-one. 
+![graph](https://pythonrsas.github.io/images/posts/myTrip.PNG)
+
+Hierchical data, the boss is in charge of a bunch of heads of departments.  The head of a department is in charge of a bunch of managers.  The manager of a team is in charge of a bunch of employees, and so on.   The relationship between boss to staff is **one-to-many**. 
+![org chart](https://www.ayoa.com/templates/wp-content/uploads/sites/5/2020/11/Company-organizational.jpg)
+
+  
 # Array
 Arrays are lists of similar data. An array of an array is a 2-dimensional array, i.e. matrix. 
 - name
@@ -337,72 +336,7 @@ When the function calls itself, the call is aded to a stck of processes, keeping
 Queues are the opposite of stacks.  Queues are "FIFO". 
 
 
-
-<div class="code-head"><span>code</span> Binary tree implementation.py</div>
-
-```py
-
-
-```
-
-
-
-
-
-
-
-
-
-
-
-<div class="code-head"><span>code</span> Binary tree implementation.py</div>
-
-```py
-
-
-```
-
-
-
-
-
-
-
-
-
-
-
-<div class="code-head"><span>code</span> Binary tree implementation.py</div>
-
-```py
-
-
-```
-
-
-
-
-
-
-
-
-
-
-
-<div class="code-head"><span>code</span> Binary tree implementation.py</div>
-
-```py
-
-
-```
-
-
-
-
-
-
 # Linked List
-
 
 A linked List is a data structure used for storing collections of data. A linked list has the following properties.
 * Successive elements a re connected by pointers

@@ -7,10 +7,6 @@ description: learning bit (binary) operations and use Python to illustrate
 author: Sarah Chen
 image: images/posts/photos/sf/IMG-0953.JPG
 ---
-<figure> 
-   <img src="{{"/images/posts/photos/sf/IMG-0955.JPGg"| relative_url}}"> 
-   <figcaption></figcaption>
-</figure> 
 
 ![sf](../images/posts/photos/sf/IMG-0953.JPG)
 
@@ -31,8 +27,6 @@ image: images/posts/photos/sf/IMG-0953.JPG
 - [Reference](#reference)
 
 Bit-wise operations should be taken *very literally*: **bit-wise**.   We talked about element-wise operations.  Here we talk about bit-wise operations. 
-
-
 
 Set a bit (where n is the bit number):  unsigned char a \|= (1 << n);  It sets the nth bit to 1.   If n is 1, then it sets the second digit to 1.  4 |1<<1 is 6.  Because 4 is 100 and 6 is 110.  
 
