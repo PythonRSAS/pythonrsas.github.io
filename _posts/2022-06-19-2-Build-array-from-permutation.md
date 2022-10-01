@@ -9,13 +9,13 @@ image: images/posts/photos/sf/IMG-0938.JPG
 
 ---
 ![waves](../images/posts/photos/sf/IMG-0938.JPG)
-- [Leetcode 1920. Build Array from Permutation](#leetcode-1920-build-array-from-permutation)
+
+- [Leetcode 1480. Running Sum of 1d Array](#leetcode-1480-running-sum-of-1d-array)
 - [Leetcode 2011. Final Value of Variable After Performing Operations](#leetcode-2011-final-value-of-variable-after-performing-operations)
 - [Leetcode 1672. Richest Customer Wealth- Max sum of subarrays](#leetcode-1672-richest-customer-wealth--max-sum-of-subarrays)
 
-## Leetcode 1920. Build Array from Permutation
+This problem came from Leetcode 1920. Build Array from Permutation. 
 
-* Problem:
 Given a zero-based permutation nums (0-indexed), build an array A of the same length where A[i] = nums[nums[i]] for each 0 <= i < nums.length and return it.
 
 * Constraints:
@@ -42,23 +42,6 @@ def buildArray2(nums):
 print(buildArray2(nums))
 ```
 
-<!-- * Solution 2: https://dev.to/vishnureddys/build-array-from-permutation-solution-to-leetcode-problem-357l I don't quite understand it 
-This solution makes use of the modulo. we can store two numbers in one element and extract them at our will. We are given that the range of nums[i] is between 0 to 1000. So we take modulo to be 1001.
-
-As the values in the input array are ranging from 0 to n-1 where $$n$$ is the length of the array, we can simply store the input array value in modulo by $$n$$ and modified value in divide by $$n$$. This solves the problem of adding extra space to our solution.
-
-We make use of the equation nums[i] = nums[i] + (n*(nums[nums[i]]%n)) to store the new values in the nums array. We then divide by n to get the required value to return.
-
-To understand this better, let’s assume an element is a and another element is b, both the elements are less than n. So if an element a is incremented by b*n, the element becomes a + b*n. So, when a + b*n is divided by n, the value is b and a + b*n % n is a.
-```python
-def buildArray(self, nums: List[int]) -> List[int]:
-    n = len(nums)
-    for i in range(0, len(nums)):
-        nums[i]=nums[i]+(n*(nums[nums[i]]%n))
-    for i in range(0, len(nums)):
-        nums[i] = int(nums[i]/n)
-    return nums
-``` -->
 
 ## Leetcode 1480. Running Sum of 1d Array
 Example 1:

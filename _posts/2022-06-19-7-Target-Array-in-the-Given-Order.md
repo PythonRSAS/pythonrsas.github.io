@@ -5,10 +5,10 @@ category: education
 title: "Target Array in the Given Order"
 description: easy puzzles that based on arrays from Leetcode
 author: Sarah Chen
-image: images/posts/photos/sf/IMG_0920.JPG
+image: images/posts/photos/sf/IMG-0920.JPG
 
 ---
-![](../images/posts/photos/sf/IMG_0920.JPG)
+![](../images/posts/photos/sf/IMG-0920.JPG)
 
 - [1389. Create Target Array in the Given Order - super easy](#1389-create-target-array-in-the-given-order---super-easy)
 

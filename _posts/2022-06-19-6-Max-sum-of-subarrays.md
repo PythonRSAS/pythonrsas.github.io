@@ -5,10 +5,10 @@ category: education
 title: "Max sum of subarrays"
 description: easy puzzles that based on arrays from Leetcode
 author: Sarah Chen
-image: images/posts/photos/sf/IMG_0922.JPG
+image: images/posts/photos/sf/IMG-0922.JPG
 
 ---
-![](../images/posts/photos/sf/IMG_0922.JPG)
+![](../images/posts/photos/sf/IMG-0922.JPG)
 
 - [Leetcode 1672. Max sum of subarrays](#leetcode-1672-max-sum-of-subarrays)
 - [1389. Create Target Array in the Given Order - super easy](#1389-create-target-array-in-the-given-order---super-easy)

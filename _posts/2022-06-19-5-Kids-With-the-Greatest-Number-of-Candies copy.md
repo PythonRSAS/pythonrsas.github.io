@@ -5,10 +5,10 @@ category: education
 title: "Kids With the Greatest Number of Candies"
 description: easy puzzles that based on arrays from Leetcode
 author: Sarah Chen
-image: images/posts/photos/sf/IMG_0923.JPG
+image: images/posts/photos/sf/IMG-0923.JPG
 
 ---
-![](../images/posts/photos/sf/IMG_0923.JPG)
+![](../images/posts/photos/sf/IMG-0923.JPG)
 
 - [Leetcode 1672. Max sum of subarrays](#leetcode-1672-max-sum-of-subarrays)
 - [1389. Create Target Array in the Given Order - super easy](#1389-create-target-array-in-the-given-order---super-easy)
@@ -54,3 +54,5 @@ print(runningMax(nums))
 # [10, 10, 10, 10]
 ```
 
+# Reference
+[leetcode 1431. Kids With the Greatest Number of Candies](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/)

@@ -5,20 +5,19 @@ category: education
 title: "If can make non-decreasing Array"
 description: an easy array problem but has puzzling errors
 author: Sarah Chen
-image: images/posts/photos/sf/IMG-0936.JPG
+image: images/posts/photos/IMG-0680.jpg
 
 ---
-![non-decreasing](../images/posts/photos/sf/IMG-0936.JPG)
+![non-decreasing](../images/posts/photos/IMG-0680.jpg)
 
-- [Leecode 665. Non-decreasing Array, Easy](#leecode-665-non-decreasing-array-easy)
-- [My simple brute force](#my-simple-brute-force)
+- [My simple brute force approach](#my-simple-brute-force-approach)
 - [A clever not not efficient approach](#a-clever-not-not-efficient-approach)
 - [Compare 2 solutions](#compare-2-solutions)
 - [Reference](#reference)
 
-# Leecode 665. Non-decreasing Array, Easy
+Rules or actions sometimes change not only those keys but also the relationships between the keys.  
 
-* Problem:
+This problem comes from Leecode 665. Non-decreasing Array:
 Given an array nums with n integers, check if it could become non-decreasing by modifying **at most one element**.
 
 * Example 1:
@@ -30,7 +29,7 @@ Given an array nums with n integers, check if it could become non-decreasing by 
 * Input: nums = [4,2,1]
 * Output: false
 
-# My simple brute force
+# My simple brute force approach
 
 The idea is that if left is larger than right, then let left=right. This smoothes the bump.  Iterate through the input array, if having to do this more than once, then return False else True.  
 
