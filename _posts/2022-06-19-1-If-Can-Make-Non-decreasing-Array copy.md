@@ -2,19 +2,20 @@
 layout: post
 tag : array
 category: education
-title: "If Can make Non-decreasing Array"
+title: "If can make non-decreasing Array"
 description: an easy array problem but has puzzling errors
 author: Sarah Chen
 image: images/posts/photos/IMG-0680.JPG
 
 ---
+![non-decreasing](../images/posts/photos/IMG-0680.JPG)
+
 - [Leecode 665. Non-decreasing Array, Easy](#leecode-665-non-decreasing-array-easy)
 - [My simple brute force](#my-simple-brute-force)
 - [A clever not not efficient approach](#a-clever-not-not-efficient-approach)
 - [Compare 2 solutions](#compare-2-solutions)
 - [Reference](#reference)
 
-![non-decreasing](../images/posts/photos/IMG-0680.JPG)
 # Leecode 665. Non-decreasing Array, Easy
 
 * Problem:

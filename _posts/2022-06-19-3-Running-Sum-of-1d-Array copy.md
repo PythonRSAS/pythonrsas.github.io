@@ -8,6 +8,8 @@ author: Sarah Chen
 image: images/posts/photos/sf/IMG-0939.JPG
 
 ---
+![waves](../images/posts/photos/sf/IMG_0939.JPG)
+
 - [Leetcode 1480. Running Sum of 1d Array](#leetcode-1480-running-sum-of-1d-array)
 - [Leetcode 2011. Final Value of Variable After Performing Operations](#leetcode-2011-final-value-of-variable-after-performing-operations)
 

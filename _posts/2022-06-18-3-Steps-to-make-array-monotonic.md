@@ -5,7 +5,7 @@ category: education
 title: "Steps to make array monotonic"
 description: Steps to make array monotonic using 2 different approaches
 author: Sarah Chen
-image: images/posts/photos/IMG_0877.jpg
+image: images/posts/photos/IMG_0877.JPG
 
 ---
 ![waves](../images/posts/photos/IMG_0877.JPG)

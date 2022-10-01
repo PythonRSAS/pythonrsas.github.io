@@ -5,14 +5,14 @@ category: education
 title: "Bit-wise operations"
 description: learning bit (binary) operations and use Python to illustrate
 author: Sarah Chen
-image: images/posts/photos/sf/IMG-0955.JPG
+image: images/posts/photos/sf/IMG-0953.JPG
 ---
 <figure> 
    <img src="{{"/images/posts/photos/sf/IMG-0955.JPGg"| relative_url}}"> 
    <figcaption></figcaption>
 </figure> 
 
-
+![sf](../images/posts/photos/sf/IMG-0953.JPG)
 
 - [What is bit](#what-is-bit)
 - [Binary vs decimal number system](#binary-vs-decimal-number-system)
@@ -25,14 +25,7 @@ image: images/posts/photos/sf/IMG-0955.JPG
 - [Use in set operations](#use-in-set-operations)
 - [Reference](#reference)
 
-Below table summarizes bit-wise operations, which should be taken *very literally*.  
-
-
-| And| $$0$$ | $$1$$ || Or| $$0$$ | $$1$$ || XOR| $$0$$ | $$1$$ |
-| ---------|:---------:|----------|| ---------|:---------:|----------|| ---------|:---------:|----------|
-| $$0$$ | $$0$$ | $$0$$ || $$0$$ | $$0$$ | $$1$$ || $$0$$ | $$0$$ | $$1$$ |
-| $$1$$ | $$0$$ | $$1$$ || $$1$$ | $$1$$ | $$1$$ || $$1$$ | $$1$$ | $$0$$ |
-
+Bit-wise operations should be taken *very literally*: **bit-wise**.   We talked about element-wise operations.  Here we talk about bit-wise operations. 
 
 Using addition as an example, since  $$1$$ only when both $$a$$ and $$b$$ are $$1$$, otherwise $$0$$. 
 

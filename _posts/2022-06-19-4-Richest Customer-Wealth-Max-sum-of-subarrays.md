@@ -8,6 +8,8 @@ author: Sarah Chen
 image: images/posts/photos/sf/IMG-0940.JPG
 
 ---
+![sunset](../images/posts/photos/sf/IMG-0940.JPG)
+
 - [Leetcode 2011. Final Value of Variable After Performing Operations](#leetcode-2011-final-value-of-variable-after-performing-operations)
 - [Leetcode 1672. Richest Customer Wealth- Max sum of subarrays](#leetcode-1672-richest-customer-wealth--max-sum-of-subarrays)
 
