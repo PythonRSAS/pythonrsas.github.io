@@ -23,6 +23,7 @@ image: images/posts/photos/IMG_0873.JPG
     - [Find anagram](#find-anagram)
     - [If letter can be constructed](#if-letter-can-be-constructed)
 - [Leetcode 1512. Number of identical pairs of numbers in an array](#leetcode-1512-number-of-identical-pairs-of-numbers-in-an-array)
+- [Replace your pandas valuc_counts()](#replace-your-pandas-valuc_counts)
 
 # hash table the basics
 
@@ -254,4 +255,27 @@ for i,k in enumerate(nums):
         else:
             group[k].append(i) 
 return int(sum([((len(n)*(len(n)-1))/2) for n in group.values()]))   ## using n(n-1)/2 to calculate the distinct pairs 
+```
+
+# Replace your pandas valuc_counts()
+You can skip using pandas df.value_counts() next time you need a frequency count.  In addition to frequency count, you can also use <span class="coding">most_common()</span> to get the most frequent ones.  
+
+<div class="code-head"><span>code</span>replace pandas value_counts.py</div>
+
+```py
+df = sns.load_dataset('iris')
+df.species.value_counts()
+# setosa        50
+# versicolor    50
+# virginica     50
+# Name: species, dtype: int64
+df.species.value_counts().nlargest(1)
+# setosa    50
+# Name: species, dtype: int64
+
+Counter(df.species)
+# Counter({'setosa': 50, 'versicolor': 50, 'virginica': 50})
+
+Counter(df.species).most_common(1)
+# [('setosa', 50)]
 ```

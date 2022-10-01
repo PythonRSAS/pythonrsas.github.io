@@ -1,45 +1,75 @@
 ---
 layout: post
-tag : arrays, puzzles, easy
+tag : array permutation
 category: education
 title: "Build array from permutation"
-description: easy puzzles that based on arrays from Leetcode
+description: array permutation
 author: Sarah Chen
 image: images/posts/photos/sf/IMG-0938.JPG
 
 ---
 ![waves](../images/posts/photos/sf/IMG-0938.JPG)
 
-- [Leetcode 1480. Running Sum of 1d Array](#leetcode-1480-running-sum-of-1d-array)
-- [Leetcode 2011. Final Value of Variable After Performing Operations](#leetcode-2011-final-value-of-variable-after-performing-operations)
-- [Leetcode 1672. Richest Customer Wealth- Max sum of subarrays](#leetcode-1672-richest-customer-wealth--max-sum-of-subarrays)
+- [Intuitive solution](#intuitive-solution)
+- [O(1) space complexity solution](#o1-space-complexity-solution)
+  - [Leetcode 1480. Running Sum of 1d Array](#leetcode-1480-running-sum-of-1d-array)
+  - [Leetcode 2011. Final Value of Variable After Performing Operations](#leetcode-2011-final-value-of-variable-after-performing-operations)
+  - [Leetcode 1672. Richest Customer Wealth- Max sum of subarrays](#leetcode-1672-richest-customer-wealth--max-sum-of-subarrays)
 
-This problem came from Leetcode 1920. Build Array from Permutation. 
+This problem came from Leetcode 1920. Build Array from Permutation. This is a very easy problem.  But more complicated problems may rely on this kind of simple steps. 
+Given a zero-based permutation A (0-indexed), build an array A of the same length where 
+$$A[i] = A[A[i]]$$ and return it.
 
-Given a zero-based permutation nums (0-indexed), build an array A of the same length where A[i] = nums[nums[i]] for each 0 <= i < nums.length and return it.
-
-* Constraints:
-
-1 <= nums.length <= 1000
-0 <= nums[i] < nums.length
-The elements in nums are distinct.
-
-* Example 1:
+Example 1:
 
 Input: nums = [0,2,1,5,3,4]
 Output: [0,1,2,4,5,3]
 
-* Solution 1:
-  
-This is a very easy problem.  But more complicated problems may rely on this kind of simple steps. 
-```python
-nums = [0,2,1,5,3,4]
+# Intuitive solution
+The intuitive solution is to follow exactly **what it says** says in $$A[i] = A[A[i]]$$:
+0th place of the new array $$A$$: get the key at the $$A[0]_th$$ index of the old array,
+1st place of the new array $$A$$: get the key at the $$A[1]_th$$ index of the old array 
+
+...
+<div class="code-head"><span>code</span>permute array.py</div>
+
+```py
 def buildArray2(nums):
     A = []
     for num in nums:
         A.append(nums[num])
     return A
+nums = [0,2,1,5,3,4]
 print(buildArray2(nums))
+
+```
+
+# O(1) space complexity solution
+
+<div class="code-head"><span>code</span>permute array constant space.py</div>
+
+```py
+def buildArray(nums: List[int]) -> List[int]:
+  q = len(nums)
+  
+  # turn the array into a=qb+r
+  for i in range(len(nums)):
+	r = nums[i]
+	
+	# retrieve correct value from potentially already processed element
+	# i.e. get r from something maybe already in the form a = qb + r
+	# if it isnt already processed (doesnt have qb yet), that's ok b/c
+	# r < q, so r % q will return the same value
+	b = nums[nums[i]] % q
+	
+    # put it all together
+	nums[i] = q*b + r
+	
+# extract just the final b values
+  for i in range(len(nums)):
+    nums[i] = nums[i] // q
+  
+  return nums
 ```
 
 
