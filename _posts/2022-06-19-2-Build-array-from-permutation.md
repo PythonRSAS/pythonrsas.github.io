@@ -46,7 +46,28 @@ print(buildArray2(nums))
 
 # O(1) space complexity solution
 
-This solution requires a clever math trick. 
+It seems impossible to solve it in-place: if we follow the instruction, as soon as we change one key to be nums[nums[i]], we would have changed the key of the original array and made it impossible for the instruction to be followed through. 
+
+But there is a way, and it requires a clever math trick. 
+
+$$a + b × n ≡ a (mod n)$$
+
+We can modify the elements of array such that it retains the original key and the future key. 
+
+Because each element of the input array is between $$0$$ and $$N-1$$, it is class representative of modular $$N$$.  
+
+**retaining the past**: If we add **some multiple** of $$N$$ to the $$nums[i]$$, we can retrieve the original $$nums[i]$$ by mod N. 
+
+**retaining the future**: Let the "some multiple" be $$nums[nums[i]]$$.  
+
+$$nums[i]  = nums[i] + nums[nums[i]] × N$$
+
+So, while keys are being modified while we apply this transformation, each still retains its past and future.  
+
+因為陣列中的數字介於 0 ～ n - 1 中，而這正好可以套入 a 、 b 的位置。因此我們在更動位置 i 時，我們可以將 nums[i] 加上 nums[nums[i]] 乘以 n 後的值。因此此時該位置的值便變成了 nums[i] + nums[nums[i]] × n，當模 n 時我們便可以求得原本位置 i 的數字 nums[i]、而除以 n 取整數便可以得到所求的 nums[nums[i]]。
+
+因此按照以上特性並套用到每個位置的值。最後再掃過一次對每個數字除以 n 並取整便可以得到所求陣列。
+
 
 <div class="code-head"><span>code</span>permute array constant space.py</div>
 
