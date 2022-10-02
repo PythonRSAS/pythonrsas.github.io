@@ -61,3 +61,21 @@ Focus on long-term impact
 Build awesome things
 Live in the future
 Be direct and respect your colleagues
+
+Here is a quote from a Quara member named Nat Russo:
+Being a real software engineer means solving real problems. And, real problems aren’t typically wrapped in nice packages with a neat little bow. Because real problems often have concealed requirements in domains that are arcane even for software engineers.
+
+Real software engineering isn’t about writing a binary tree or a linked list. It’s not about memorizing algorithms and design patterns. It’s about being a very good detective and problem solver with at least passable coding skills.
+
+Why only passable? Because coding isn’t the primary focus of software engineering. It’s not even close to being the most important skill set. Even if you’re the best technical coder in the world (in terms of rote memorization of concepts and language structures), you could still be the worst software engineer.
+
+I can teach you how to code. I can’t teach you how to adopt the mindset of a problem solver.
+
+It doesn’t matter how strong your coding skills are if you don’t know
+
+how to get to the root cause of a problem
+how to communicate with non-engineers (both verbally and in writing)
+how to work as a team member with a common goal
+how to make the hidden visible (a list of explicit requirements is great, but the ones that will get you every time are the implicit requirements).
+how to come to an understanding of what the client needs as opposed to what they’re asking for.
+how to extrapolate from a limited data set

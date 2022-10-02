@@ -54,9 +54,9 @@ We can modify the elements of array such that it retains the original key and th
 
 Because each element of the input array is between $$0$$ and $$N-1$$, it is class representative of modular $$N$$.  
 
-* **retaining the past**: If we add **some multiple** of $$N$$ to the $$nums[i]$$, we can retrieve the original $$nums[i]$$ by mod N. 
+**Retaining the past**: If we add **some multiple** of $$N$$ to the $$nums[i]$$, we can retrieve the original $$nums[i]$$ by mod N. 
 
-* **retaining the future**: Let the "some multiple" be $$nums[nums[i]]$$.  
+**Retaining the future**: Let the "some multiple" be $$nums[nums[i]]$$.  
 
 $$nums[i]  = nums[i] + nums[nums[i]] × N$$
 
