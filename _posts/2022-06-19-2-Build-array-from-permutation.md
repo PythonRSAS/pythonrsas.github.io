@@ -26,11 +26,11 @@ Input: nums = [0,2,1,5,3,4]
 Output: [0,1,2,4,5,3]
 
 # Intuitive solution
-The intuitive solution is to follow exactly **what it says** says in $$A[i] = A[A[i]]$$:
+The intuitive solution is to follow exactly **what it says** says in $$A[i] = A[A[i]]$$ and build a new array:
 0th place of the new array $$A$$: get the key at the $$A[0]_th$$ index of the old array,
 1st place of the new array $$A$$: get the key at the $$A[1]_th$$ index of the old array 
-
 ...
+
 <div class="code-head"><span>code</span>permute array.py</div>
 
 ```py
@@ -46,30 +46,34 @@ print(buildArray2(nums))
 
 # O(1) space complexity solution
 
+This solution requires a clever math trick. 
+
 <div class="code-head"><span>code</span>permute array constant space.py</div>
 
 ```py
-def buildArray(nums: List[int]) -> List[int]:
-  q = len(nums)
-  
-  # turn the array into a=qb+r
-  for i in range(len(nums)):
-	r = nums[i]
-	
-	# retrieve correct value from potentially already processed element
-	# i.e. get r from something maybe already in the form a = qb + r
-	# if it isnt already processed (doesnt have qb yet), that's ok b/c
-	# r < q, so r % q will return the same value
-	b = nums[nums[i]] % q
-	
-    # put it all together
-	nums[i] = q*b + r
-	
-# extract just the final b values
-  for i in range(len(nums)):
-    nums[i] = nums[i] // q
-  
-  return nums
+def buildArray(nums):
+    N = len(nums)
+    # turn the array into a = N *b + r
+    for i in range(N):
+	    nums[i] = N * nums[nums[i]] + nums[i]
+
+    for i in range(N):
+        nums[i] = (nums[i] - nums[i] % N) // N
+
+    for i in range(N):
+        nums[i] = nums[i] % N
+
+    return nums
+nums = [0,2,1,5,3,4]
+print(buildArray(nums))
+
+# def buildArray(nums):
+#   N = len(nums)
+#   for i, c in enumerate(nums):
+#     nums[i] += N * (nums[c] % N)
+#   for i,_ in enumerate(nums):
+#     nums[i] //= N
+#   return nums
 ```
 
 
