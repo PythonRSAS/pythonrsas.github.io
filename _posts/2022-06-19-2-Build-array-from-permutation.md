@@ -15,6 +15,7 @@ image: images/posts/photos/sf/IMG-0938.JPG
   - [Leetcode 1480. Running Sum of 1d Array](#leetcode-1480-running-sum-of-1d-array)
   - [Leetcode 2011. Final Value of Variable After Performing Operations](#leetcode-2011-final-value-of-variable-after-performing-operations)
   - [Leetcode 1672. Richest Customer Wealth- Max sum of subarrays](#leetcode-1672-richest-customer-wealth--max-sum-of-subarrays)
+- [Reference](#reference)
 
 This problem came from Leetcode 1920. Build Array from Permutation. This is a very easy problem.  But more complicated problems may rely on this kind of simple steps. 
 Given a zero-based permutation A (0-indexed), build an array A of the same length where 
@@ -62,12 +63,16 @@ Because each element of the input array is between $$0$$ and $$N-1$$, it is clas
 
 $$nums[i]  = nums[i] + nums[nums[i]] × N$$
 
-So, while keys are being modified while we apply this transformation, each still retains its past and future.  
+In other words,
+**nums[i]  =  original nums[i]  + future nums[i] × N**
 
-因為陣列中的數字介於 0 ～ n - 1 中，而這正好可以套入 a 、 b 的位置。因此我們在更動位置 i 時，我們可以將 nums[i] 加上 nums[nums[i]] 乘以 n 後的值。因此此時該位置的值便變成了 nums[i] + nums[nums[i]] × n，當模 n 時我們便可以求得原本位置 i 的數字 nums[i]、而除以 n 取整數便可以得到所求的 nums[nums[i]]。
+This is not exactly true because elements are modified, except the first (possibly one or more) element.  But because this is a linear transformation and a linear transformation of a linear transformation is still a linear transformation. We can get the two parts back! 
 
-因此按照以上特性並套用到每個位置的值。最後再掃過一次對每個數字除以 n 並取整便可以得到所求陣列。
+So, while keys are being modified while we apply this transformation, each still retains its past and future in compound way.  
 
+So, for each of the transformed nums[i], 
+* By taking mod N of the transformed we can retrieve the original nums[i].
+* By subtracting nums[i], divide by $$N$$, and take mod N, we get the clean nums[nums[i]]. 
 
 <div class="code-head"><span>code</span>permute array constant space.py</div>
 
@@ -244,3 +249,6 @@ def maxSubSum(A):
 accounts = [[1,2,3],[3,2,1]]
 print(maxSubSum(accounts))
 ```
+
+# Reference
+[](https://home.gamer.com.tw/artwork.php?sn=5302636)
