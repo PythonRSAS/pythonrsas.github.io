@@ -1,9 +1,9 @@
 ---
 layout: post
-tag : arrays, puzzles, easy
+tag : arrays, two-pointers
 category: education
 title: "Remove Duplicates from Sorted Array"
-description: two Leetcode problems of remove duplicates from sorted array
+description: two Leetcode problems of remove duplicates from sorted array solved by brute force and in-place
 author: Sarah Chen
 image: images/posts/photos/sf/IMG-0919.JPG
 
@@ -154,6 +154,7 @@ I use 2 arrays <span class="coding">keeps</span> and <span class="coding">extras
 from collections import Counter
 def removeDuplicate2_bf(A):
     keeps, extras = [], []
+    counts = Counter(A)
     for k, v in counts.items():
         keeps.extend([k]*min(2, v))
         extras.extend([k]*max(0, v - 2))
@@ -163,8 +164,12 @@ def removeDuplicate2_bf(A):
 
 nums = [1,1,1,2,2,3]
 print(removeDuplicate2_bf(nums))
-nums = [0,0,1,1,1,1,2,3,3]
+# [1, 1, 2, 2, 3, 1]
+# 5
+nums = [0,0,1,1,1,2,2,3,3,4]
 print(removeDuplicate2_bf(nums))
+# [0, 0, 1, 1, 2, 2, 3, 3, 4, 1]
+# 9
 ```
 
 ## Clever O(1) solution
@@ -194,6 +199,12 @@ nums = [0,0,1,1,1,2,2,3,3,4]
 print(removeDuplicates2(nums))
 # [0, 0, 1, 1, 2, 2, 3, 3, 4, 4]
 # 9
+# nums = [1,1,1,2,2,3]
+# 5
 ```
 # Reference
 https://home.gamer.com.tw/artwork.php?sn=5560599
+
+
+[Leetcode 80. Remove Duplicates from Sorted Array II](https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/)
+
