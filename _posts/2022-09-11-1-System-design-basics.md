@@ -1,6 +1,6 @@
 ---
 layout: post
-tag: sharding
+tag: 
 category: education
 title: "System design basics"
 description:  design data-intensive web-based applications
