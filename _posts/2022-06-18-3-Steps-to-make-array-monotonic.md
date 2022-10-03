@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : arrays, dp, stack, 长江后浪推前浪
+tag : array, dp, stack, 长江后浪推前浪
 category: education
 title: "Steps to make array monotonic"
 description: Steps to make array monotonic using 2 different approaches

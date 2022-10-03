@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : arrays,陣列, two-pointers
+tag : array,陣列, two-pointers
 category: education
 title: "Rearrange Array Elements by Sign"
 description: Leetcode 2149 solved by brute force and in-place

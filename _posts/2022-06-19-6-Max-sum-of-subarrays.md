@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : arrays, puzzles, easy
+tag : array, puzzles, easy
 category: education
 title: "Max sum of subarrays"
 description: easy puzzles that based on arrays from Leetcode

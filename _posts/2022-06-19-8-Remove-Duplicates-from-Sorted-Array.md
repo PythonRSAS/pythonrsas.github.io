@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : arrays, two-pointers
+tag : array, two-pointers
 category: education
 title: "Remove Duplicates from Sorted Array"
 description: two Leetcode problems of remove duplicates from sorted array solved by brute force and in-place

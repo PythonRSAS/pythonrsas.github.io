@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : arrays, puzzles, easy
+tag : array, puzzles, easy
 category: education
 title: "array puzzles comparisons"
 description: compare array puzzles that ask for some permutation of the array, and compare puzzles that ask for a number

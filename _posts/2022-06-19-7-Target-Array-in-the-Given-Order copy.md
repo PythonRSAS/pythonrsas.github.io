@@ -1,6 +1,6 @@
 ---
 layout: post
-tag : arrays, puzzles, easy
+tag : array, puzzles, easy
 category: education
 title: "Target Array in the Given Order"
 description: easy puzzles that based on arrays from Leetcode
