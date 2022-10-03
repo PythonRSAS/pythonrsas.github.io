@@ -43,7 +43,7 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 
 ## My brute force O(n) solution
 
-As usual, I start with my brute force solution.  Any swapping should be ruled out because the problem says input is sorted already.  Swapping will mess up the sorted order.  
+As usual, we start with a brute force solution.  Any swapping should be ruled out because the problem says input is sorted already.  Swapping will mess up the sorted order.  
 
 Using a hashmap to keep track of the unique numbers and their counts surely can solve the problem.  The limitation is the space $$O(n)$$.  
 
