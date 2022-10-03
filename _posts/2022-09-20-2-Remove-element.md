@@ -97,7 +97,7 @@ removeElement(nums, val)
 
 # O(1) solution: swapping instead of assigning
 
-A guy named klintan from [Leetcode discussion](https://leetcode.com/problems/remove-element/discuss/12584/6-line-Python-solution-48-ms) has a different way of looking at things. He names the two pointers slow and fast.  It uses swapping instead of assignment. 
+A guy named klintan from [Leetcode discussion](https://leetcode.com/problems/remove-element/discuss/12584/6-line-Python-solution-48-ms) has a different way of looking at things. He names the two pointers slow and fast.  It uses swapping instead of assignment. I like this solution a lot. 
 
 The <span class="coding">fast</span> pointer sweeps through the input array.  For each element that it encounters that is not equal to val, it throws it to the left.  
 
@@ -147,7 +147,7 @@ nums = [3,2,2,3]
 val = 3
 removeElement(nums, val)
 # [2, 2, 3, 3]
-# Out[110]: 2
+#  2
 nums = [0,1,2,2,3,0,4,2]
 val = 2
 print(removeElement(nums, val))
