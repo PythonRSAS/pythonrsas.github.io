@@ -20,29 +20,29 @@ The first problem is [Leetcode 2149. Rearrange Array Elements by Sign](https://l
 You are given a 0-indexed integer array nums of even length consisting of an **equal number** of positive and negative integers.
 
 You should rearrange the elements of nums such that the modified array follows the given conditions:
-
 Every **consecutive** pair of integers have **opposite signs**.
-
 For all integers with the same sign, the order in which they were present in nums is preserved.
-
 The rearranged array **begins with a positive integer**.
-
 Return the modified array.
+
 你被給定一個索引值從 0 開始的偶數長度之整數陣列 nums，其由等量的正整數以及負整數組成。
 
 你應重新排列這些元素使得修改後的陣列符合以下條件：
 每個相鄰整數有著相反的正負號。
 對於同一個正負號的所有整數，它們的順序應保持於原先在 nums 中的順序。
 重新排列的陣列開始於一個正整數。
-
 回傳重新排列後滿足以上條件的陣列。
 
 Example 1:
 
 Input: nums = [3,1,-2,-5,2,-4]
+
 Output: [3,-2,1,-5,2,-4]
+
 Explanation:
+
 The positive integers in nums are [3,1,2]. The negative integers are [-2,-5,-4].
+
 The only possible way to rearrange them such that they satisfy all conditions is [3,-2,1,-5,2,-4].
 Other ways such as [1,-2,2,-5,3,-4].
 
@@ -56,9 +56,7 @@ Other ways such as [1,-2,2,-5,3,-4].
 
 # My brute forece solution
 
-As usual, we start with a brute force solution.  Any swapping should be ruled out because the problem says to keep the current order as much as possible. 
-
-We keep 2 arrays, one positive and one negative, and then we zip them up.
+As usual, we start with a brute force solution.  We keep 2 arrays, one positive and one negative, and then we zip them up.
 
 <div class="code-head"><span>code</span>rearrange_by_sign_bf.py</div>
 
@@ -102,7 +100,7 @@ list(chain.from_iterable(zip(positive, negative)))
 
 # Simple O(n) solution 
 
-We allocate a new array <span class="coding">A</span>, and maintain 3 pointers: the first two are <span class="coding">pTail</span> and <span class="coding">nTail</span> that keep track of the frontiers of positive and negative integers, respectively.   
+We allocate a new array <span class="coding">A</span>, and maintain 2 pointers: <span class="coding">pTail</span> and <span class="coding">nTail</span> that keep track of the frontiers of positive and negative integers, respectively.  
 
 When we encounter a positive number, we put it in A[ptail] and increment <span class="coding">pTail</span> by 2. 
 When we encounter a negative number, we put it in A[ntail] and increment <span class="coding">nTail</span> by 2. 
