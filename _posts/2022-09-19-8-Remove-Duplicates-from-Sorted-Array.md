@@ -3,7 +3,7 @@ layout: post
 tag : array, two-pointers
 category: education
 title: "Remove Duplicates from Sorted Array"
-description: two Leetcode problems of remove duplicates from sorted array solved by brute force and in-place
+description: Leetcode 26 and Leetcode 80. Remove Duplicates from Sorted Array solved by brute force and in-place
 author: Sarah Chen
 image: images/posts/photos/sf/IMG-0919.JPG
 
@@ -18,15 +18,14 @@ image: images/posts/photos/sf/IMG-0919.JPG
 - [Reference](#reference)
 
 # Problem 1
-The first problem is Leetcode 26. Remove Duplicates from Sorted Array. 
+The first problem is [Leetcode 26. Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/). 
 Given an integer array nums *sorted in non-decreasing order*, remove the duplicates **in-place** such that each unique element appears only once. The relative order of the elements should be kept the same.  Return k after placing the final result in the first k slots of nums.
-
+給定一個已排序陣列 nums ，原地（In-Place）將重複的元素清除掉，也就是使每個元素只出現一次。並回傳新的陣列長度。
+請勿另開空間給另一個陣列，你只應藉由 O(1) 的額外空間並原地（In-Place）地更改輸入陣列。
 Example 1:
 
 Input: nums = [1,1,2]
-
 Output: 2, nums = [1,2,_]
-
 Explanation: Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively.
 
 *It does not matter what you leave beyond the returned k (hence they are underscores)*.
@@ -34,12 +33,8 @@ Explanation: Your function should return k = 2, with the first two elements of n
 Example 2:
 
 Input: nums = [0,0,1,1,1,2,2,3,3,4]
-
 Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
-
 Explanation: Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.
-
-It does not matter what you leave beyond the returned k (hence they are underscores).
 
 ## My brute force O(n) solution
 
@@ -70,7 +65,9 @@ print(removeDuplicate_bf(nums))
 
 The clever solution uses two-pointer approach: one pointer loops through input and the other keeps track of unique keys.
 
-The code below uses a pointer <span class="coding">newTail</span> to keep track of the frontier of unique keys.  At position <span class="coding">A[newTail]</span>, it is always the last unique key.  Therefore, we return <span class="coding">newTail + 1</span>.  
+用一個變數 x (newTail in code) 表示**新的元素應擺在哪個位置**。因為陣列元素已排序，因此從頭掃到尾，如果遇到該位置的元素與前一個位置的元素不一樣，則表示已經略過了前面被重複的元素（及前一個位置的元素）。此時可以將前一個位置的元素放到位置 x ，並將 x + 1。
+
+The code below uses a pointer <span class="coding">newTail</span> to keep track of where to put the next unique key.  Therefore, we return <span class="coding">newTail + 1</span>.  
 
 How do we enforce this frontier?  We iterate the **loop from 1 to the last place** and compare <span class="coding">A[i]</span> with <span class="coding">A[newTail]</span>.  If we run into a different value from <span class="coding">A[newTail]</span>, then we increment the frontier by 1 and update <span class="coding">A[newTail]</span> to be the latest unique value. 
 
@@ -80,9 +77,7 @@ Since we don't need to worry about those after the k unique values, we are done 
 
 ```py
 def removeDuplicates(A):
-    if not A:
-        return 0
-    newTail = 0
+    newTail = 0 # where to put the first new element
     for i in range(1, len(A)):
         if A[i] != A[newTail]:
             newTail += 1 # moves when encounter a new value A[i]
@@ -103,6 +98,23 @@ print(removeDuplicates(nums))
 # [0, 1, 2, 3, 4, 2, 2, 3, 3, 4]
 # [0, 1, 2, 3, 4, 2, 2, 3, 3, 4]
 # 5
+
+def removeDuplicates(A):
+    newTail = 0 # where to put the first new element
+    for i in range(1, len(A)):
+        if A[i] != A[i-1]:
+            newTail += 1 # moves when encounter a new value A[i]
+            A[newTail] = A[i] # frontier takes on the new value
+            print(A)
+    print(A)
+    return newTail + 1
+nums = [1, 2, 2]
+print(removeDuplicates(nums))
+# [1, 2, 2]
+# [1, 2, 2]
+# 2
+nums = [0,0,1,1,1,2,2,3,3,4]
+print(removeDuplicates(nums))
 ```
 # Problem 2
 

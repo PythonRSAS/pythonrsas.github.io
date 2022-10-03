@@ -32,8 +32,6 @@ How do I write down each of the valid routes in their right order with sentences
 
 If we start the routes with "New York -> Beijing", that will not work for sure.  Because we left out other cities.  
 
-Before quoting any named algorithm, how would we solve the problem? 
-
 We can write down my starting place first, since I cannot go anywhere without a starting place. Then we look at where the directed edges lead to, if any of them do not have any dependencies, then we can write it down next. And so forth until we are done. 
 
 # Topological sort
