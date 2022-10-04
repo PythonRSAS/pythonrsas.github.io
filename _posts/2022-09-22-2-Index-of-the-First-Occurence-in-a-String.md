@@ -1,8 +1,8 @@
 ---
 layout: post
-tag : array,陣列
+tag : string
 category: education
-title: "Remove Element"
+title: "Index of the First Occurrence in a String"
 description: Leetcode 28. Find the Index of the First Occurrence in a String
 author: Sarah Chen
 image: images/posts/photos/farm/IMG-1230.JPG
