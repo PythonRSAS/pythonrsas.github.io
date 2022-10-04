@@ -5,7 +5,7 @@ category: education
 title: "Maximum Subarray"
 description: The maximum subarray problem and solutions using brute force, greedy,dp and recursion. 
 author: Sarah Chen
-image: images/posts/photos/farm/IMG-1230.JPG
+image: images/posts/photos/farm/IMG-1230.jpg
 
 ---
 ![](../images/posts/photos/farm/IMG-1230.JPG)
