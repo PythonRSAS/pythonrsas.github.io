@@ -10,20 +10,19 @@ image: images/posts/photos/farm/IMG-1230.jpg
 ---
 ![](../images/posts/photos/farm/IMG-1230.JPG)
 - [Problem](#problem)
-  - [Brute force method](#brute-force-method)
-    - [1. $$O(n^3)$$](#1-on3)
-    - [2. $$O(n^2)$$ solution](#2-on2-solution)
-  - [Kadane's algorithm (Fast and Slow method)](#kadanes-algorithm-fast-and-slow-method)
-    - [Computing the best subarray's position](#computing-the-best-subarrays-position)
-  - [O(n*log(n)) divide-and-conquer recursion approach](#onlogn-divide-and-conquer-recursion-approach)
-  - [Memorizing method (DP)](#memorizing-method-dp)
+- [Brute force method](#brute-force-method)
+  - [1. $$O(n^3)$$](#1-on3)
+  - [2. $$O(n^2)$$ solution](#2-on2-solution)
+- [Kadane's algorithm (Fast and Slow method)](#kadanes-algorithm-fast-and-slow-method)
+- [Computing the best subarray's position](#computing-the-best-subarrays-position)
+- [$$O(n*log(n))$$ divide-and-conquer recursion approach](#onlogn-divide-and-conquer-recursion-approach)
+- [Memorizing method (DP)](#memorizing-method-dp)
 - [Reference](#reference)
   - [Five algorithmic solutions to the maximum subarray problem (see Bentley's Programming Pearls) by Michael Goldwasser](#five-algorithmic-solutions-to-the-maximum-subarray-problem-see-bentleys-programming-pearls-by-michael-goldwasser)
-- [print('Using seed: {0}'.format(options.seed))](#printusing-seed-0formatoptionsseed)
 
-The maximum subarray is a [well-known problem](https://en.wikipedia.org/wiki/Maximum_subarray_problem) in computer science. We discussed its brute force and dynamic programming solutions in [Dynamic programming](https://pythonrsas.github.io/1-Dynamic-programming/#subarray-with-the-greatest-sum).   In this post, we deep dive into this problem using [Leetcode 53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/) as an example. 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Maximum_Subarray_Visualization.svg/440px-Maximum_Subarray_Visualization.svg.png)
+The maximum subarray is a [well-known problem](https://en.wikipedia.org/wiki/Maximum_subarray_problem) in computer science. We discussed its brute force and dynamic programming solutions in [Dynamic programming](https://pythonrsas.github.io/1-Dynamic-programming/#subarray-with-the-greatest-sum).   In this post, we deep dive into this problem using [Leetcode 53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/) as a test example.  
 
+Please pardon me if you find the notes messy and send me a message if you see anything that should be corrected.   
 # Problem 
 
 Problem is from [Leetcode 53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/).  
@@ -47,13 +46,8 @@ Output: 23
 1 <= nums.length <= 105
 -104 <= nums[i] <= 104
  
-
-Follow up: If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
-
-
-## Brute force method
-
-### 1. $$O(n^3)$$ 
+# Brute force method
+## 1. $$O(n^3)$$ 
 Since there are $$\frac{(n+1)*n}{2}$$ subarrays, and each takes $$O(n)$$ to sum, the time complexity is $$O(n^3)$$. 
 
 <div class="code-head"><span>code</span>maxSubarray_bfO3.py</div>
@@ -73,7 +67,7 @@ nums = [-2,1,-3,4,-1,2,1,-5,4]
 print(max_subarray(nums))
 # 6
 ```
-### 2. $$O(n^2)$$ solution
+## 2. $$O(n^2)$$ solution
 We can improve the above $$O(n^3)$$ solution.
 Idea: The sum of A[i..j] can be efficiently calculated as (sum of A[i..j-1]) + A[j].
 
@@ -93,8 +87,7 @@ nums = [-2,1,-3,4,-1,2,1,-5,4]
 print(max_subarray(nums))
 # 6
 ```
-
-## Kadane's algorithm (Fast and Slow method)
+# Kadane's algorithm (Fast and Slow method)
 
 The Kadane's algorithm is a simple greedy strategy.  I call it "**Fast and Slow**" because it helps me unify similar approaches.  The method scans through input array once while maintaining two variables: the current sum and the max sum.  The max sum is a function of the current sum. 
 
@@ -136,8 +129,7 @@ nums = [-2,1,-3,4,-1,2,1,-5,4]
 print(max_subarray(nums))
 # 6
 ```
-
-### Computing the best subarray's position
+# Computing the best subarray's position
 The algorithm can be modified to keep track of the starting and ending indices of the maximum subarray as well.  The code below is adapted from [Wikipedia](https://en.wikipedia.org/wiki/Maximum_subarray_problem#Computing_the_best_subarray's_position). 
 
 To get both the current index and number during scan is to use <span class="coding">enumerate</span>. 
@@ -197,8 +189,7 @@ def algorithm4(A):
             maxsofar = (maxhere[0], maxhere[1], i)
     return maxsofar
 ```
-## O(n*log(n)) divide-and-conquer recursion approach
-
+# $$O(n*log(n))$$ divide-and-conquer recursion approach
 
 將目前的陣列分作兩半，遞迴左半邊
 以及右半邊各自的最大連續子陣列之和。停止條件很簡單，切到剩一個元素的時候直接回傳該元素值。
@@ -285,8 +276,7 @@ def algorithm3(A):
     """
     return recurse(A, 0, len(A))
 ```
-
-## Memorizing method (DP)
+# Memorizing method (DP)
 
 Each time when we enounter overlapping subproblems, it is time to consider dynamic programming. 
 
@@ -304,10 +294,6 @@ def maxSubArrayDP(A):
         maxSum = max(maxSum, runningSum - minSum)
     return maxSum
 ``` 
-
-
-
-
 # Reference
 
 [Wikipedia Maximum Subarray](https://en.wikipedia.org/wiki/Maximum_subarray_problem#Computing_the_best_subarray's_position
@@ -321,6 +307,8 @@ https://home.gamer.com.tw/artwork.php?sn=4871160
 ## [Five algorithmic solutions to the maximum subarray problem (see Bentley's Programming Pearls) by Michael Goldwasser](https://cs.slu.edu/~goldwamh/courses/slu/csci314/2012_Fall/lectures/maxsubarray/maxsubarray.py)
 
 In case address is changed and link is broken, I have copied all 4 algorithms that Professor Goldwasser posted. 
+
+```python
 
 """
 Five algorithmic solutions to the maximum subarray problem (see Bentley's Programming Pearls).
@@ -494,8 +482,7 @@ if __name__ == '__main__':
         quit('invalid number of algorithms to test')
     
     if options.seed is None:
-        options.seed = random.randrange(1000000)
-#        print('Using seed: {0}'.format(options.seed))
+        options.seed = random.randrange(1000000) # print('Using seed: {0}'.format(options.seed))
     random.seed(options.seed)
 
     data = [random.uniform(-100,100) for _ in range(options.size)]
@@ -509,3 +496,4 @@ if __name__ == '__main__':
         end = time.time()
         print("{0:<11} found sum(data[{1}:{2}])={3:.2f} using {4:.3f} seconds of computation".format(
             alg.__name__, answer[1], answer[2], answer[0], (end-start)))
+```
