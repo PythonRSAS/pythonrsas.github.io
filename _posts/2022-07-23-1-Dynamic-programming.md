@@ -7,16 +7,25 @@ description: dynamic programming to solve overlapping sub-problems in recursion
 author: Sarah Chen
 image: images/posts/photos/sf/IMG-0956.JPG
 ---
-<figure> 
-   <img src="{{"/images/posts/photos/sf/IMG-0956.JPG"| relative_url}}"> 
-   <figcaption></figcaption>
-</figure> 
 
+- [What is dynamic programming](#what-is-dynamic-programming)
+- [Problem with naive recursion](#problem-with-naive-recursion)
+- [How dynamic programming solves the problem](#how-dynamic-programming-solves-the-problem)
+  - [Top-down DP](#top-down-dp)
+  - [Bottom-up DP](#bottom-up-dp)
+- [Run time](#run-time)
+- [Subarray with the greatest sum](#subarray-with-the-greatest-sum)
+  - [Number of subarrays](#number-of-subarrays)
+  - [Brute force method](#brute-force-method)
+  - [Memorizing method (DP)](#memorizing-method-dp)
+- [Shortest path](#shortest-path)
+  - [Recursive thinking](#recursive-thinking)
+  - [Bottom-up thinking](#bottom-up-thinking)
+- [Reference](#reference)
+  
 > Dynamic programming (DP) is used to eliminate overlapping sub-problems in recursions.  
 
-In comparison with recursion, it reduces time complexity from exponential to polynomial. 
-
-But increases space complexity. 
+In comparison with recursion, it reduces time complexity from exponential to polynomial. But increases space complexity. 
 
 # What is dynamic programming
 

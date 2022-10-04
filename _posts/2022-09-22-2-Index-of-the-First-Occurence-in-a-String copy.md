@@ -101,6 +101,10 @@ def strStr(H, N):
         if H[i:i+len(N)] == N:
             return i
     return -1
+haystack = "sadbutsad"
+needle = "sad"
+print(needleHaystack(haystack, needle))
+# 0
 ```
 
 # Use Python in & .index
