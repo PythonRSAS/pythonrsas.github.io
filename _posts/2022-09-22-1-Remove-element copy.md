@@ -107,7 +107,7 @@ Whenever <span class="coding">fast</span> finds a good number, it passes it to <
 
 
 [**0** ,1,2,2,3,0,4,2], slow = 0, fast = 0
-$$0 ne 2$$, slow and fast swap (they are the same), slow ++
+$$0 != 2$$, slow and fast swap (they are the same), slow ++
 
 [0,**1** ,2,2,3,0,4,2], slow = 1, fast = 1
 $$1 != 2$$, slow and fast swap (they are the same), slow ++
@@ -119,7 +119,7 @@ $$2 = 2$$, no swapping
 $$2 = 2$$, no swapping
 
 [0,1,2,2, **3**,0,4,2], slow = 2, fast = 4
-$$3 ne 2$$, slow and fast swap, swap the first 2 with 3, slow ++
+$$3 != 2$$, slow and fast swap, swap the first 2 with 3, slow ++
 
 [0,1,3,2, 2, **0**,4,2], slow = 3, fast = 5
 $$0 != 2$$, slow and fast swap, 2 moves to where 0 is,  slow ++
