@@ -15,9 +15,11 @@ image: images/posts/photos/farm/IMG-1230.jpg
     - [2. $$O(n^2)$$ solution](#2-on2-solution)
   - [Kadane's algorithm (Fast and Slow method)](#kadanes-algorithm-fast-and-slow-method)
     - [Computing the best subarray's position](#computing-the-best-subarrays-position)
-  - [O(n*log(n)) divide-and-conquer approach](#onlogn-divide-and-conquer-approach)
+  - [O(n*log(n)) divide-and-conquer recursion approach](#onlogn-divide-and-conquer-recursion-approach)
   - [Memorizing method (DP)](#memorizing-method-dp)
 - [Reference](#reference)
+  - [Five algorithmic solutions to the maximum subarray problem (see Bentley's Programming Pearls) by Michael Goldwasser](#five-algorithmic-solutions-to-the-maximum-subarray-problem-see-bentleys-programming-pearls-by-michael-goldwasser)
+- [print('Using seed: {0}'.format(options.seed))](#printusing-seed-0formatoptionsseed)
 
 The maximum subarray is a [well-known problem](https://en.wikipedia.org/wiki/Maximum_subarray_problem) in computer science. We discussed its brute force and dynamic programming solutions in [Dynamic programming](https://pythonrsas.github.io/1-Dynamic-programming/#subarray-with-the-greatest-sum).   In this post, we deep dive into this problem using [Leetcode 53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/) as an example. 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Maximum_Subarray_Visualization.svg/440px-Maximum_Subarray_Visualization.svg.png)
@@ -168,7 +170,7 @@ def max_subarray(numbers):
     return slow_sum, slow_start, slow_end
 ```
 
-[Professor Michael Goldwasser](https://cs.slu.edu/~goldwamh/courses/slu/csci314/2012_Fall/lectures/maxsubarray/maxsubarray.py) maintains a tuple of (maxSum, starting position, ending position) 
+[St. Louis University Professor Michael Goldwasser's solutions](https://cs.slu.edu/~goldwamh/courses/slu/csci314/2012_Fall/lectures/maxsubarray/maxsubarray.py) maintain tuples of (maxSum, starting position, ending position) to keep track of the max sum and the start-end positions.  
 
 <div class="code-head"><span>code</span>maxSubarray_positions_fast_slow.py</div>
 
@@ -195,7 +197,43 @@ def algorithm4(A):
             maxsofar = (maxhere[0], maxhere[1], i)
     return maxsofar
 ```
-## O(n*log(n)) divide-and-conquer approach
+## O(n*log(n)) divide-and-conquer recursion approach
+
+
+將目前的陣列分作兩半，遞迴左半邊
+以及右半邊各自的最大連續子陣列之和。停止條件很簡單，切到剩一個元素的時候直接回傳該元素值。
+
+當求出左右兩邊各自的最大總和 L 、 R 之後，還會有一種情況我們沒有考慮到，也就是橫跨左右兩邊的連續最大。而該值可以藉由從中間開始，往左、往右找最長的總和非遞減數列。而該值 M 就是那兩個數列之和。
+
+所以目前陣列的最大即是 L 、 M 、 R 中的最大值。
+
+而這個方式為 O(n log n)。不過其實分治法一樣可以做到 O(n) ，待補。
+
+（2021 / 07 / 14 更新）
+可以看到我們的癥結點是在橫跨左右兩半的子陣列。不過仔細觀察後，可以看到它的內容必定是左側的最大後綴和以及右側的最大前綴和所合併而成。
+
+而實際上，一個陣列的最大後綴和、最大前綴和可以在分治的時候順便求得：
+假設我們現在要求
+最大連續和 M、
+最大前綴和 P、
+最大後綴和 S、
+陣列總和 T、
+這四個值。
+
+則對於陣列 nums 我們將其切一半：
+設左邊的解為 ML 、 PL 、 SL 、 和 TL
+設右邊的解為 MR 、 PR 、 SR 、 和 TR
+
+則我們可以合併左右兩半的解得到
+M = max(ML, MR, SL + PR)
+P = max(PL, TL + PR)
+S = max(SR, TR + SL)
+T = TL + TR
+
+而當陣列只有一個元素時，M = P = S = T = 該元素值。
+
+因此時間複雜度 T(n) = 2T(n ÷ 2) + O(1)。根據主定理（Master Theorem），可以看到 T(n) = O(n)。
+
 
 The following code is from [Professor Michael Goldwasser's course notes](https://cs.slu.edu/~goldwamh/courses/slu/csci314/2012_Fall/lectures/maxsubarray/maxsubarray.py).  
 
@@ -267,43 +305,6 @@ def maxSubArrayDP(A):
     return maxSum
 ``` 
 
-O(n) 的做法即這題的解法（的前半部分）。
-
-
-
-至於進階提及的分治法，則是以下：
-將目前的陣列分作兩半，遞迴左半邊以及右半邊各自的最大連續子陣列之和。停止條件很簡單，切到剩一個元素的時候直接回傳該元素值。
-
-當求出左右兩邊各自的最大總和 L 、 R 之後，還會有一種情況我們沒有考慮到，也就是橫跨左右兩邊的連續最大。而該值可以藉由從中間開始，往左、往右找最長的總和非遞減數列。而該值 M 就是那兩個數列之和。
-
-所以目前陣列的最大即是 L 、 M 、 R 中的最大值。
-
-而這個方式為 O(n log n)。不過其實分治法一樣可以做到 O(n) ，待補。
-
-（2021 / 07 / 14 更新）
-可以看到我們的癥結點是在橫跨左右兩半的子陣列。不過仔細觀察後，可以看到它的內容必定是左側的最大後綴和以及右側的最大前綴和所合併而成。
-
-而實際上，一個陣列的最大後綴和、最大前綴和可以在分治的時候順便求得：
-假設我們現在要求
-最大連續和 M、
-最大前綴和 P、
-最大後綴和 S、
-陣列總和 T、
-這四個值。
-
-則對於陣列 nums 我們將其切一半：
-設左邊的解為 ML 、 PL 、 SL 、 和 TL
-設右邊的解為 MR 、 PR 、 SR 、 和 TR
-
-則我們可以合併左右兩半的解得到
-M = max(ML, MR, SL + PR)
-P = max(PL, TL + PR)
-S = max(SR, TR + SL)
-T = TL + TR
-
-而當陣列只有一個元素時，M = P = S = T = 該元素值。
-
-因此時間複雜度 T(n) = 2T(n ÷ 2) + O(1)。根據主定理（Master Theorem），可以看到 T(n) = O(n)。
 
 
 
@@ -317,4 +318,194 @@ https://home.gamer.com.tw/artwork.php?sn=4871160
 
 [Notes on Maximum Subarray Problem](https://cs.slu.edu/~goldwamh/courses/slu/csci314/2012_Fall/lectures/maxsubarray/)
 
-[Five algorithmic solutions to the maximum subarray problem (see Bentley's Programming Pearls) by Michael Goldwasser](https://cs.slu.edu/~goldwamh/courses/slu/csci314/2012_Fall/lectures/maxsubarray/maxsubarray.py)
+## [Five algorithmic solutions to the maximum subarray problem (see Bentley's Programming Pearls) by Michael Goldwasser](https://cs.slu.edu/~goldwamh/courses/slu/csci314/2012_Fall/lectures/maxsubarray/maxsubarray.py)
+
+In case address is changed and link is broken, I have copied all 4 algorithms that Professor Goldwasser posted. 
+
+"""
+Five algorithmic solutions to the maximum subarray problem (see Bentley's Programming Pearls).
+
+Author: Michael Goldwasser
+
+Module can be executed as a test harness.
+
+Use -h flag for documentation on usage.
+"""
+
+#-----------------------------------------------------------------------
+def algorithm1(A):
+    """A brute-force algorithm using cubic-time.
+
+    This algorithm tries every possible i < j pair, and computes the
+    sum of entries in A[i:j].
+
+    Returns tuple designating optimal (maxsum, start, stop).
+    """
+    n = len(A)
+    maxsofar = (0, 0, 0)                    # (t, start, stop) with sum(A[start:stop]) = t
+    for i in range(n):                      # potential start index
+        for j in range(i+1, n+1):           # potential stop index
+            total = 0
+            for k in range(i,j):            # compute sum(A[i:j])
+                total += A[k]
+            if total > maxsofar[0]:         # if new best, record parameters
+                maxsofar = (total, i, j)
+    return maxsofar
+
+#-----------------------------------------------------------------------
+def algorithm2a(A):
+    """A quadratic time approach to brute force by using previous sums.
+
+    Uses fact that sum(A[i:j]) = sum(A[i:j-1]) + A[j-1] to avoid a third nested loop.
+
+    Returns tuple designating optimal (maxsum, start, stop).
+    """
+    n = len(A)
+    maxsofar = (0, 0, 0)                    # (t, start, stop) with sum(A[start:stop]) = t
+    for i in range(n):                      # potential start index
+        total = 0                           # maintain sum(A[i:j]) as j increases
+        for j in range(i+1, n+1):
+            total += A[j-1]                 # thus total is now sum(A[i:j])
+            if total > maxsofar[0]:
+                maxsofar = (total, i, j)
+    return maxsofar
+
+#-----------------------------------------------------------------------
+def algorithm2b(A):
+    """A quadratic time approach to brute force using prefix sums.
+
+    precomputes sum(A[0:j]) for each j.
+
+    That allows for O(1) time computation of sum(A[i:j]) = sum(A[0:j]) - sum(A[0:i])
+
+    Returns tuple designating optimal (maxsum, start, stop).
+    """
+    n = len(A)
+
+    cumulative = [0] * (n+1)                 # cumulative[i] = sum(A[0:i])
+    for i in range(n):
+        cumulative[i+1] = cumulative[i] + A[i]
+    
+    maxsofar = (0, 0, 0)                    # (t, start, stop) with sum(A[start:stop]) = t
+    for i in range(n):                      # potential start index
+        for j in range(i+1, n+1):
+            total = cumulative[j] - cumulative[i]
+            if total > maxsofar[0]:
+                maxsofar = (total, i, j)
+    return maxsofar
+
+#-----------------------------------------------------------------------
+def recurse(A, start, stop):
+    """Recursion for algorithm3 that only considers implicit slice A[start:stop])."""
+    if stop == start:                         # zero elements
+        return (0, 0, 0)               
+    elif stop == start + 1:                   # one element
+        if A[start] > 0:
+            return (A[start], start, stop)
+        else:
+            return (0, start, start)
+    else:                                     # two or more elements
+        mid = (start + stop) // 2
+
+        # find maximum sum(A[i:mid]) for i < mid
+        total = 0
+        lmax = (0, mid)                       # (t,i) such that sum(A[i:mid]) = t
+        for i in range(mid-1, start-1, -1):
+            total += A[i]
+            if total > lmax[0]:
+                lmax = (total,i)
+                
+        # find maximum sum(A[mid:j]) for j > mid
+        total = 0
+        rmax = (0, mid)                       # (t, j) such that sum(A[mid:j]) = t
+        for j in range(mid+1, stop+1):
+            total += A[j-1]
+            if total > rmax[0]:
+                rmax = (total,j)
+
+        overlay = (lmax[0]+rmax[0], lmax[1], rmax[1])
+
+        return max(recurse(A, start, mid),
+                   recurse(A, mid, stop),
+                   overlay)
+
+def algorithm3(A):
+    """A divide-and-conquer approach achieving O(n log n) time.
+
+    We find the maximum solution from the left half, the maximum from the right,
+    and the maximum solution that straddles the middle.  One of those three is
+    the true optimal solution.
+
+    Returns tuple designating optimal (maxsum, start, stop).
+    """
+    return recurse(A, 0, len(A))
+
+#-----------------------------------------------------------------------
+def algorithm4(A):
+    """A linear algoirthm based on a simple greedy strategy.
+
+    As we let index i increase, we keep track of two pieces of information:
+      * maxhere     which is maximum subarray ending specifically at index i
+      * maxsofar    which is maximum subarray for anything from A[0:i]
+
+    Returns tuple designating optimal (maxsum, start, stop).
+    """
+    n = len(A)
+    maxsofar = (0, 0, 0)           # (t, start, stop) such that sum(A[start,stop]) = t
+    maxhere = (0, 0)               # (t, start) such that sum(A[start:i]) = t
+    for i in range(1, n+1):
+        if maxhere[0] + A[i-1] > 0:
+            maxhere = (maxhere[0] + A[i-1], maxhere[1])
+        else:
+            maxhere = (0, i)
+        if maxhere[0] > maxsofar[0]:
+            maxsofar = (maxhere[0], maxhere[1], i)
+    return maxsofar
+
+
+#-----------------------------------------------------------------------
+if __name__ == '__main__':
+    from optparse import OptionParser
+    import sys
+    import time
+    import random
+
+    def quit(message=None):
+        if message: print(message)
+        sys.exit(1)
+
+    parser = OptionParser(usage='usage: %prog [options]')
+
+    parser.add_option('-n', dest='size', type='int', default=512,
+                      help='number of elements in data set [default: %default]')
+    
+    parser.add_option('-a', dest='num_alg', metavar='NUM', type='int', default=5,
+                      help='number of algorithms to test [default: %default]')
+    
+    parser.add_option('-s', dest='seed', type='int', default=None,
+                      help='random seed for data set [default: %default]')   
+
+    (options,args) = parser.parse_args()
+
+    if options.size <= 0:
+        quit('n must be positive')
+    
+    if not 1 <= options.num_alg <= 5:
+        quit('invalid number of algorithms to test')
+    
+    if options.seed is None:
+        options.seed = random.randrange(1000000)
+#        print('Using seed: {0}'.format(options.seed))
+    random.seed(options.seed)
+
+    data = [random.uniform(-100,100) for _ in range(options.size)]
+          
+    algorithms = (algorithm1, algorithm2a, algorithm2b, algorithm3, algorithm4)
+
+    print('Running tests for {0} algorithms using n={1} and seed={2}'.format(options.num_alg,options.size,options.seed))
+    for alg in reversed(algorithms[len(algorithms)-options.num_alg:]):
+        start = time.time()
+        answer = alg(data)
+        end = time.time()
+        print("{0:<11} found sum(data[{1}:{2}])={3:.2f} using {4:.3f} seconds of computation".format(
+            alg.__name__, answer[1], answer[2], answer[0], (end-start)))
