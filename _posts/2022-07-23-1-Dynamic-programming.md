@@ -79,9 +79,9 @@ In the Fibonaci case, using DP with recursion (top-down approach), the time comp
 
 Although this problem seems super easy, I did make a few mistakes: 
 
-* **Mistake 1**: I coded <span class="coding">if memo[n]</span>, thinking that it would have worked as boolean.   But no!  It gave me a key error.
+**Mistake 1**: I coded <span class="coding">if memo[n]</span>, thinking that it would have worked as boolean.   But no!  It gave me a key error.
 
-* **Mistake 2**:: I coded <span class="coding">memo[n] = memo[n - 1] + memo[n - 2]</span>.  Oops!
+**Mistake 2**:: I coded <span class="coding">memo[n] = memo[n - 1] + memo[n - 2]</span>.  Oops!
 
 In fact, the whole *invention* is **<span class="coding"> memo[n] = fibDP(n -1) + fibDP(n -2)</span>**.
 
@@ -207,9 +207,7 @@ print(datetime.now() - t2)
 
 # Subarray with the greatest sum
 
-We are given an array and asked to find the subarray with the greatest sum.  Note that subarrays need to be contiguous.
-
-Initially I thought, well, why don't we just sum all the positive numbers.  But, no. 
+We are given an array and asked to find the subarray with the greatest sum.  Note that subarrays need to be contiguous.  Initially I thought, well, why don't we just sum all the positive numbers.  But that's not necessarily contiguous. 
 
 ## Number of subarrays
 
@@ -232,12 +230,6 @@ That amounts to our familar $$\frac{(n+1)*n}{2}$$
 ## Brute force method
 
 Since there are $$\frac{(n+1)*n}{2}$$ subarrays, and each takes $$O(n)$$ to sum, the time complexity is $$O(n^3)$$. 
-
-The loop "for i in [0, 1, 2, ..., n-1]" gives the starting index of subarrays.
-
-The loop "for j in [i, ..., n-1]" gives the ending index.
-
-The loop " for k in (i, ..., j) sums the elements of subarrays. 
 
 ## Memorizing method (DP)
 

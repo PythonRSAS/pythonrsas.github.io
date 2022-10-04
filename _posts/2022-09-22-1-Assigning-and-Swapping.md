@@ -2,8 +2,8 @@
 layout: post
 tag : array,陣列
 category: education
-title: "Remove Element"
-description: Leetcode 27. Remove Element
+title: "Assigning and Swapping"
+description: Assigning vs Swapping solutions on Leetcode 27. Remove Element
 author: Sarah Chen
 image: images/posts/photos/farm/IMG-1229.JPG
 
@@ -106,28 +106,28 @@ The <span class="coding">fast</span> pointer sweeps through the input array.  Fo
 Whenever <span class="coding">fast</span> finds a good number, it passes it to <span class="coding">slow</span> and removes the bad one from <span class="coding">slow</span>. 
 
 
-[**0** ,1,2,2,3,0,4,2], slow = 0, fast = 0
-$$0 != 2$$, slow and fast swap (they are the same), slow ++
+[**0** ,1,2,2,3,0,4,2], slow = 0, fast = 0,
+$$0  \neq 2$$, slow and fast swap (they are the same), slow ++
 
-[0,**1** ,2,2,3,0,4,2], slow = 1, fast = 1
-$$1 != 2$$, slow and fast swap (they are the same), slow ++
+[0,**1** ,2,2,3,0,4,2], slow = 1, fast = 1,
+$$1  \neq 2$$, slow and fast swap (they are the same), slow ++
 
-[0,1,**2** ,2,3,0,4,2], slow = 2, fast = 2
+[0,1,**2** ,2,3,0,4,2], slow = 2, fast = 2,
 $$2 = 2$$, no swapping
 
-[0,1,2, **2**,3,0,4,2], slow = 2, fast = 3
+[0,1,2, **2**,3,0,4,2], slow = 2, fast = 3,
 $$2 = 2$$, no swapping
 
-[0,1,2,2, **3**,0,4,2], slow = 2, fast = 4
-$$3 != 2$$, slow and fast swap, swap the first 2 with 3, slow ++
+[0,1,2,2, **3**,0,4,2], slow = 2, fast = 4,
+$$3  \neq 2$$, slow and fast swap, swap the first 2 with 3, slow ++
 
-[0,1,3,2, 2, **0**,4,2], slow = 3, fast = 5
-$$0 != 2$$, slow and fast swap, 2 moves to where 0 is,  slow ++
+[0,1,3,2, 2, **0**,4,2], slow = 3, fast = 5,
+$$0  \neq 2$$, slow and fast swap, 2 moves to where 0 is,  slow ++
 
-[0,1,3,0 , 2, 2, **4**,2], slow = 4, fast = 6
-$$4 != 2$$, slow and fast swap, slow ++
+[0,1,3,0 , 2, 2, **4**,2], slow = 4, fast = 6,
+$$4  \neq 2$$, slow and fast swap, slow ++
 
-[0,1,3,0 , 4, 2, 2, **2**], slow = 5, fast = 7
+[0,1,3,0 , 4, 2, 2, **2**], slow = 5, fast = 7,
 $$2 = 2$$, no swapping 
 
 [0,1,3,0 , 4, 2, 2, 2]
