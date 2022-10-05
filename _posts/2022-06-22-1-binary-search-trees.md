@@ -13,9 +13,8 @@ image: images/posts/photos/IMG_0876.JPG
 - [Binary search trees uses](#binary-search-trees-uses)
 - [Tree traversing/walking](#tree-traversingwalking)
   - [Depth first search (DFS)](#depth-first-search-dfs)
-- [Binary search tree implementation in Python](#binary-search-tree-implementation-in-python)
   - [Libraries](#libraries)
-  - [Write it](#write-it)
+    - [Binary search tree implementation in Python](#binary-search-tree-implementation-in-python)
 
 # Binary search tree basics
 
@@ -122,17 +121,14 @@ Order | Vertical direction
  **Post_order LRN** | Up 
 
 
-# Binary search tree implementation in Python
-
-[Python does not have a built-in binary search tree](https://stackoverflow.com/questions/17857496/built-in-binary-search-tree-in-python).  
-
 ## Libraries
 
 * [sortedcontainers](https://grantjenks.com/docs/sortedcontainers/) module.
 * Underlying data structure: **sorted list of sorted list**
 * Time complexity: $$O(\sqrt{n})$$ (as compared with $$O(log(n))$$ for balanced binary search tree)
 
-## Write it 
+### Binary search tree implementation in Python
+[Python does not have a built-in binary search tree](https://stackoverflow.com/questions/17857496/built-in-binary-search-tree-in-python).  
 There can be many different ways to implement this.  All of them have 2 parts: Node and Tree.  
 
 The most complicated is for the delete function because we need to account for different situations.  
