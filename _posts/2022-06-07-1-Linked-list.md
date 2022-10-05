@@ -1,20 +1,18 @@
 ---
 layout: post
-tag : data structure, algorithm, python
+tag : data structure
 category: education
 title: "Linked list"
-description: linked list as an abstract data structure, what, why, and how
+description: linked list as an abstract data structure and implementation in Python
 author: Sarah Chen
 image: images/posts/linked_list.jpg
 
 ---
+Arrays are stored in contiguous blocks of memory in a compuater.  In C, array sizes are fixed.  This creates the need to have a data structure that allows data being stored in different places of a computer and are connected via pointers.  That is linked list. 
 
 Linked lists were developed in 1955–1956, by Allen Newell, Cliff Shaw and Herbert A. Simon at RAND Corporation as the primary data structure for their Information Processing Language. IPL was used by the authors to develop several early artificial intelligence programs.
 
-
 A linked list is a kind of abstract data structure,  like a chain of objects, called *nodes*, each points to the next except the last one, which points to <span class="coding">\__None__</span> (NULL). 
-
-Of course, it is made for doing something better than other data structures :)
 
 # Compare with (abstract) array
 * **Advantages**:
@@ -35,39 +33,20 @@ Compare | array | linked list
  ordering/sorting | fast direct access via index  | sequential, transverse from the head node via link (next)
  search | binary and linear search | linear search
 
+Linked lists are preferable over arrays when we need **constant-time insertions/deletions** from the list (such as in real-time computing where time predictability is absolutely critical) and we don't need random access to any elements
 # Linked lists uses
 
 They are useful when we need fast insertion and deletion, and when we do not know in advance the size of data, or do not need random access when searching for items.   
 
 ![linked list uses](../images/posts/linked_list_uses.jpg)
-
-# Compare with arrays
-[I adapted from a bunch of gurus at SOF](https://stackoverflow.com/questions/393556/when-to-use-a-linked-list-over-an-array-array-list)
-Linked lists are preferable over arrays when:
-
-you need constant-time insertions/deletions from the list (such as in real-time computing where time predictability is absolutely critical)
-
-you don't know how many items will be in the list. With arrays, you may need to re-declare and copy memory if the array grows too big
-
-you don't need random access to any elements
-
-you want to be able to insert items in the middle of the list (such as a priority queue)
-
-Arrays are preferable when:
-
-you need indexed/random access to elements
-
-you know the number of elements in the array ahead of time so that you can allocate the correct amount of memory for the array
-
-you need speed when iterating through all the elements in sequence. You can use pointer math on the array to access each element, whereas you need to lookup the node based on the pointer for each element in linked list, which may result in page faults which may result in performance hits.
-
-memory is a concern. Filled arrays take up less memory than linked lists. Each element in the array is just the data. Each linked list node requires the data as well as one (or more) pointers to the other elements in the linked list.
-
-Array Lists (like those in .Net) give you the benefits of arrays, but dynamically allocate resources for you so that you don't need to worry too much about list size and you can delete items at any index without any effort or re-shuffling elements around. Performance-wise, arraylists are slower than raw arrays.
-
-
-# Linked list implementation
-Python does not have a native support for linked list. So we need to build the node class first and then implement linked list. 
+# Linked list implementation in Python
+Given the flexibility of Python lists, Python does not have a native support for linked list.  So we need to build the node class first and then implement linked list. 
+In this implementation, linked list has the following common operations:
+* Insert, insert at end, insert at beginning, insert between
+* Delete (iterative find and then delete)               
+* Search (iterative search)  
+* Count number of elements
+* Print list   
 
 Each node is an *independent object that can contain anything*. 
         
@@ -97,13 +76,6 @@ class Node(object):
     def getNext(self):
         return self.next
 ```
-
-In this implementation, linked list has the following common operations:
-* Insert, insert at end, insert at beginning, insert between
-* Delete (iterative find and then delete)               
-* Search (iterative search)  
-* Count number of elements
-* Print list   
 
 The <span class="coding">count</span> attribute is convenient because we don't need to go through the entire linked list to get the number of elements.  With each insert, the count increments by 1 whereas delete decreases by 1 with <span class="coding">delete</span>. 
 
@@ -247,11 +219,6 @@ Searching for 'Hello'
 Hello
 
 ```
-
-* In general, __array__ is considered a data structure for which size is fixed at the compile time and array memory is allocated either from __Data section__ (e.g. global array) or __Stack section__ (e.g. local array). 
-* Similarly, linked list is considered a data structure for which size is not fixed and memory is allocated from __Heap section__ (e.g. using malloc() etc.) as and when needed. In this sense, array is taken as a static data structure (residing in Data or Stack section) while linked list is taken as a dynamic data structure (residing in Heap section).
-* The array elements are allocated memory in sequence i.e. __contiguous memory__ while nodes of a linked list are non-contiguous in memory. Though it sounds trivial yet this is the most important difference between array and linked list. It should be noted that due to this contiguous versus non-contiguous memory, array and linked list are different.
-
 # Implementing doubly linked list
 
 <div class="code-head"><span>code</span>doublyLlinkedList.py</div>
@@ -336,73 +303,9 @@ print()
 dll.printdll()
 
 ```
-
-# Linked list examples
-
-## Find linkedlist length
-
-
-<div class="code-head"><span>code</span>a1_findLlinkedListLength.py</div>
-
-```py
-
-import SinglyLinkedList
-
-def checkLength(linkedList):
-    count = 0
-    temp = linkedList.head
-    while(temp != None):
-        count += 1
-        temp = temp.next
-
-    return count
-
-myLinkedList = SinglyLinkedList.LinkedList()
-for i in range(10):
-    myLinkedList.insertAtStart(i)
-myLinkedList.printLinkedList()
-print()
-print('Length:', checkLength(myLinkedList))
-
-# OUTPUT:
-# 9 8 7 6 5 4 3 2 1 0
-# Length: 10
-    
-```
-
-<div class="code-head"><span>code</span>a2_reverseLlinkedListLength.py</div>
-
-```py
-import SinglyLinkedList
-
-def reverseLinkedList(myLinkedList):
-    previous = None
-    current = myLinkedList.head
-    while(current != None):
-        temp = current.next
-        current.next = previous
-        previous = current
-        current = temp
-    myLinkedList.head = previous
-
-
-myLinkedList = SinglyLinkedList.LinkedList()
-for i in range(10, 0, -1):
-    myLinkedList.insertAtStart(i)
-
-print('Original:', end = ' ')
-myLinkedList.printLinkedList()
-print()
-print('Reversed:', end = ' ')
-reverseLinkedList(myLinkedList)
-myLinkedList.printLinkedList()
-
-# OUTPUT:
-# Original: 1 2 3 4 5 6 7 8 9 10
-# Reversed: 10 9 8 7 6 5 4 3 2 1
-
-```
 # Reference
 [The quest for the fastest linked list by Johny’s Software Lab](https://johnysswlab.com/the-quest-for-the-fastest-linked-list/)
 
 [Linked List, Wikipedia](https://en.wikipedia.org/wiki/Linked_list)
+
+[Stackoverflow, when-to-use-a-linked-list-over-an-array-array-list](https://stackoverflow.com/questions/393556/when-to-use-a-linked-list-over-an-array-array-list)

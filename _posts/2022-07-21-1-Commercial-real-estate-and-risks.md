@@ -61,7 +61,10 @@ Industrial is not expected to suffer either. Demands for warehouse and distribut
 
 Office is a very different story, which is not so much inflation related.   
 
-After 2 years of staying home, office works are coming back to office.  But some never go back.  And many are working in hybrid mode.  If the hybrid mode stays, and those who have not come back to office never returns, then this sector may have serious problems. 
+After 2+ years of staying home, office works are coming back to office.  But some never go back.  And many are working in hybrid mode. As a result, occupancy rates are staying lower than prepandemic levels.  If the remote + hybrid mode stays, and those who have not come back to office never returns, then this sector may have serious problems. 
 
+With the crime rate increasing in some major metropolitan cities, office workers are even less inclined to come back to office 5 days a week. 
+
+Using myself as an example, before Covid, I used to be in the office nearly 7 days a week.  I liked to study and work on my book when the office was quiet during the weeekend.  Now, with the NYC crime rate, I try not to get out of my place if I can help it.  
 
 
