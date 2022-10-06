@@ -1,57 +1,23 @@
 ---
 layout: post
-tag : abstract data structure, python
+tag : ADT, tree traversal
 category: education
 title: "Trees"
-description: trees
+description: Binary tree implementations and traversals
 author: Sarah Chen
 image: images/posts/tree.PNG
 
 ---
   
-- [Applications of trees](#applications-of-trees)
-- [Binary Tree](#binary-tree)
-    - [Binary tree implementation in Python:](#binary-tree-implementation-in-python)
+- [Binary tree implementation in Python](#binary-tree-implementation-in-python)
   - [Breadth First Traversal](#breadth-first-traversal)
 - [Count number of leave nodes](#count-number-of-leave-nodes)
 - [Binary trees and arrays](#binary-trees-and-arrays)
+- [Root to Leaf Paths](#root-to-leaf-paths)
     - [Tree traversal:](#tree-traversal)
     - [Implementing tree traversals:](#implementing-tree-traversals)
 - [Reference](#reference)
-
-![tree](../images/posts/tree.PNG)
-A tree is a data structure similar to a linked List but instead of each node pointing simply to the next node in a linear fashion, each node points to a number of nodes. Tree is an example of non-linear data structures. A tree structure is a way of representing the **hierarchical** nature of a structure in a graphical form.
-
-* The **root** of the tree is the node with no parents. There can be at most one root node in a tree.
-* The _edge_ refers to the link from parent to child.
-* A node with NO children is called _leaf_ node.
-* Children of same parent are called _siblings_.
-# Applications of trees
-*  Manipulate hierarchical data.
-* Make information easy to search (see tree traversal).
-* Manipulate sorted lists of data.
-* As a workflow for compositing digital images for visual effects.
-* Router algorithms
-* Form of a multi-stage decision-making (see business chess).
-
-# Binary Tree
-* A tree is called _binary tree_ if each node of the tree has zero, one or two children.
-* Empty tree is also a valid binary tree.
-
-Types of binary trees:
-1. **Full binary tree**:
-A Binary Tree is full if every node has 0 or 2 children. Following are examples of full binary tree.
-2. **Complete binary tree**:
-A Binary Tree is complete Binary Tree if all levels are completely filled except possibly the last level and the last level has all keys as left as possible.
-3. **Perfect Binary Tree**:
-A Binary tree is Perfect Binary Tree in which all internal nodes have two children and all leaves are at same level.
-4. **Balanced Binary Tree**:
-A binary tree is balanced if height of the tree is O(Log n) where n is number of nodes. For Example, AVL tree maintain O(Log n) height by making sure that the difference between heights of left and right subtrees is 1. Red-Black trees maintain O(Log n) height by making sure that the number of Black nodes on every root to leaf paths are same and there are no adjacent red nodes. Balanced Binary Search trees are performance wise good as they provide O(log n) time for search, insert and delete.
-5. **A degenerate (or pathological) tree**:
-A Tree where every internal node has one child. Such trees are performance-wise same as linked list.
-
-For visualizations, see [Geeks for Geeks](http://www.geeksforgeeks.org/binary-tree-set-3-types-of-binary-tree/), and [more details on binary tree properties](http://www.geeksforgeeks.org/binary-tree-set-2-properties/)
-### Binary tree implementation in Python:
+# Binary tree implementation in Python
 Below code implements binary tree Node object, set leave nodes, and get leave nodes
 <div class="code-head"><span>code</span> Binary tree implementation.py</div>
 
@@ -135,10 +101,10 @@ if __name__ == '__main__':
 
 
 ```
-
 # Count number of leave nodes
 
 Leaf nodes are the nodes that do not have any children.
+
 <div class="code-head"><span>code</span> P02_CountLeafNodes.py</div>
 
 ```py
@@ -201,6 +167,7 @@ def buildTree(inOrder, preOrder, start, end):
     tNode.left = buildTree(inOrder, preOrder, start, rootIndex-1)
     tNode.right = buildTree(inOrder, preOrder, rootIndex+1, end)
 
+
     return tNode
 
 # function to search for the index
@@ -236,10 +203,7 @@ inorder(root)
 ```
 
 
-
-
-
-
+# Root to Leaf Paths
 
 <div class="code-head"><span>code</span> P04_RootToLeafPaths.py</div>
 
