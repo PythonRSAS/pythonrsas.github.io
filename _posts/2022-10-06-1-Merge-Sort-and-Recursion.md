@@ -3,13 +3,15 @@ layout: post
 tag : algorithm
 category: education
 title: "Merge Sort and Recursion"
-description: Merge sort step by step using recursion
+description: Merge sort step by step using recursion following CS50
 author: Sarah Chen
 image: images/posts/mergeSortDavidExample.PNG
 
 ---
 
 This post is a rewrite of an older post back in July, 2022.  Most of the addition is an edited transcript from the last few minutes of Professor David Malen's CS50 class on algorithm that was live streamed on September 22, 2022.  I know it is kind of strange to edit a transcript and put it in a post.  But the explanation is just that good. Better than anything I have seen. This particular class is just one of the best movies that I have ever watched (yes I call it a "movie" and mean it literally). 
+
+The last few seconds of the movie is quite dramtic. [Watch!](https://youtu.be/4oqjcKenCH8?t=9054)
 
 # My old post
 Like quicksort, merge sort is a divide-and-conquer recursive method. 
@@ -190,11 +192,7 @@ probably better to use something like merge sort or some other algorithm that's 
 
 In practice, most programmers are not implementing these sorting algorithms themselves, odds are they're using a library off the shelf that themselves have made the decision as to which of these algorithms to do. But generally speaking, we're seeing now this for the first time if you want to improve time,like use less time, write faster code, you've got to pay a price and that might be your human time just takes you more time to code up something more sophisticated more difficult to implement **or you need to spend something like space**.
 
-And as the shelves suggest that too is one of the key details of merge sort is that you **can't just have the elements swapping in place**.
-
-You need at least in an auxiliary array so that when you do the merging.
-
-but you do need more space back in the day, decades ago space was really expensive and so you know what,it might have been better to not use merge sort. Use bubble sort or selection sort even or some other algorithm altogether.
+And as the shelves suggest that too is one of the key details of merge sort is that you **can't just have the elements swapping in place**.  You need at least in an auxiliary array so that when you do the merging.  Back in the day, decades ago space was really expensive and so you know what,it might have been better to not use merge sort. Use bubble sort or selection sort even or some other algorithm altogether.
 
 ![compare sorting algorithms](../images/posts/mergeSortDavidCompareSort.PNG)
 
