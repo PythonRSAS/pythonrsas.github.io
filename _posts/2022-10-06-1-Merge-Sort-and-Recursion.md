@@ -194,9 +194,9 @@ And as the shelves suggest that too is one of the key details of merge sort is t
 
 You need at least in an auxiliary array so that when you do the merging.
 
-but you do need more space back in the day, decades ago space was really expensive and so you know what,
+but you do need more space back in the day, decades ago space was really expensive and so you know what,it might have been better to not use merge sort. Use bubble sort or selection sort even or some other algorithm altogether.
 
-it might have been better to not use merge sort. Use bubble sort or selection sort even or some other algorithm altogether.
+![compare sorting algorithms](../images/posts/mergeSortDavidCompareSort.PNG)
 
 Nowadays, space is relatively cheap and so these are more acceptable trade offs, but it totally depends on the application.
 
