@@ -2,14 +2,13 @@
 layout: post
 tag : ADT, tree traversal
 category: education
-title: "Trees"
+title: "Binary tree implementation"
 description: Binary tree implementations and traversals
 author: Sarah Chen
-image: images/posts/tree.PNG
+image: images/posts/photos/IMG_0871.JPG
 
 ---
   
-- [Binary tree implementation in Python](#binary-tree-implementation-in-python)
 - [Tree height](#tree-height)
 - [breadth First Traversal](#breadth-first-traversal)
 - [Count number of leave nodes](#count-number-of-leave-nodes)
@@ -18,8 +17,8 @@ image: images/posts/tree.PNG
     - [Tree traversal:](#tree-traversal)
     - [Implementing tree traversals:](#implementing-tree-traversals)
 - [Reference](#reference)
-# Binary tree implementation in Python
-To implement binary tree Node object, we only need to define the node itself, its value, and left and right attributes.  
+
+To implement binary tree, we only need to define the node itself, its value, and left and right attributes.  We can define methods after this. 
 <div class="code-head"><span>code</span> treeNode.py</div>
 
 ```py
