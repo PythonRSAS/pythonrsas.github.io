@@ -1,0 +1,500 @@
+---
+layout: post
+tag : abstract data structure, python
+category: education
+title: "Trees"
+description: trees
+author: Sarah Chen
+image: images/posts/tree.PNG
+
+---
+  
+- [Applications of trees](#applications-of-trees)
+- [Binary Tree](#binary-tree)
+    - [Binary tree implementation in Python:](#binary-tree-implementation-in-python)
+  - [Breadth First Traversal](#breadth-first-traversal)
+- [Count number of leave nodes](#count-number-of-leave-nodes)
+- [Binary trees and arrays](#binary-trees-and-arrays)
+    - [Tree traversal:](#tree-traversal)
+    - [Implementing tree traversals:](#implementing-tree-traversals)
+- [Reference](#reference)
+
+![tree](../images/posts/tree.PNG)
+A tree is a data structure similar to a linked List but instead of each node pointing simply to the next node in a linear fashion, each node points to a number of nodes. Tree is an example of non-linear data structures. A tree structure is a way of representing the **hierarchical** nature of a structure in a graphical form.
+
+* The **root** of the tree is the node with no parents. There can be at most one root node in a tree.
+* The _edge_ refers to the link from parent to child.
+* A node with NO children is called _leaf_ node.
+* Children of same parent are called _siblings_.
+# Applications of trees
+*  Manipulate hierarchical data.
+* Make information easy to search (see tree traversal).
+* Manipulate sorted lists of data.
+* As a workflow for compositing digital images for visual effects.
+* Router algorithms
+* Form of a multi-stage decision-making (see business chess).
+
+# Binary Tree
+* A tree is called _binary tree_ if each node of the tree has zero, one or two children.
+* Empty tree is also a valid binary tree.
+
+Types of binary trees:
+1. **Full binary tree**:
+A Binary Tree is full if every node has 0 or 2 children. Following are examples of full binary tree.
+2. **Complete binary tree**:
+A Binary Tree is complete Binary Tree if all levels are completely filled except possibly the last level and the last level has all keys as left as possible.
+3. **Perfect Binary Tree**:
+A Binary tree is Perfect Binary Tree in which all internal nodes have two children and all leaves are at same level.
+4. **Balanced Binary Tree**:
+A binary tree is balanced if height of the tree is O(Log n) where n is number of nodes. For Example, AVL tree maintain O(Log n) height by making sure that the difference between heights of left and right subtrees is 1. Red-Black trees maintain O(Log n) height by making sure that the number of Black nodes on every root to leaf paths are same and there are no adjacent red nodes. Balanced Binary Search trees are performance wise good as they provide O(log n) time for search, insert and delete.
+5. **A degenerate (or pathological) tree**:
+A Tree where every internal node has one child. Such trees are performance-wise same as linked list.
+
+For visualizations, see [Geeks for Geeks](http://www.geeksforgeeks.org/binary-tree-set-3-types-of-binary-tree/), and [more details on binary tree properties](http://www.geeksforgeeks.org/binary-tree-set-2-properties/)
+### Binary tree implementation in Python:
+Below code implements binary tree Node object, set leave nodes, and get leave nodes
+<div class="code-head"><span>code</span> Binary tree implementation.py</div>
+
+```py
+class Node(object):
+    def __init__(self, val = None):
+        self.left = None
+        self.right = None
+        self.val = val
+    def setLeft(self, node):
+        self.left = node
+    def setRight(self, node):
+        self.right = node
+root = Node(1)
+root.setLeft(Node(2))
+root.setRight(Node(3))
+root.left.setLeft(Node(4))
+In [32]: root.val
+Out[32]: 1
+
+In [33]: root.left.val
+Out[33]: 2
+''' for visualization only
+                    1
+                /       \
+            2            3
+        /
+    4
+'''
+```
+
+## Breadth First Traversal
+
+<div class="code-head"><span>code</span> P01_BreadthFirstTraversal.py</div>
+
+```py
+
+class Node(object):
+    def __init__(self, val = None):
+        self.leftChild = None
+        self.rightChild = None
+        self.val = val
+
+def height(node):
+    if node is None:
+        return 0
+    else:
+        leftHeight = height(node.leftChild)
+        rightHeight = height(node.rightChild)
+
+        if leftHeight > rightHeight:
+            return leftHeight + 1
+        else:
+            return rightHeight + 1
+
+def breadthFirstTraversal(root):
+    if root == None:
+        return 0
+    else:
+        h = height(root)
+        for i in range(1, h + 1):
+            printBFT(root, i)
+
+def printBFT(root, level):
+    if root is None:
+        return
+    else:
+        if level == 1:
+            print(root.val, end = ' ')
+        elif level > 1:
+            printBFT(root.leftChild, level - 1)
+            printBFT(root.rightChild, level - 1)
+
+if __name__ == '__main__':
+    root = Node(1)
+    root.leftChild = Node(2)
+    root.rightChild = Node(3)
+    root.leftChild.leftChild = Node(4)
+
+    breadthFirstTraversal(root)
+
+
+```
+
+# Count number of leave nodes
+
+Leaf nodes are the nodes that do not have any children.
+<div class="code-head"><span>code</span> P02_CountLeafNodes.py</div>
+
+```py
+
+from Tree import Node
+
+def countLeafNodes(root):
+    if root is None:
+        return 0
+    if(root.left is None and root.right is None):
+        return 1
+    else:
+        return countLeafNodes(root.left) + countLeafNodes(root.right)
+root = Node(1)
+root.setLeft(Node(2))
+root.setRight(Node(3))
+root.left.setLeft(Node(4))
+print('Count of leaf nodes:',countLeafNodes(root))
+```
+# Binary trees and arrays
+
+<div class="code-head"><span>code</span> P03_TreeFromInorderAndPreorder.py</div>
+
+```py
+# Python program to construct tree using inorder and
+# preorder traversals
+
+# A binary tree node
+class Node:
+
+    # Constructor to create a new node
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+"""Recursive function to construct binary of size len from
+   Inorder traversal in[] and Preorder traversal pre[].  Initial values
+   of start and end should be 0 and len -1.  The function doesn't
+   do any error checking for cases where inorder and preorder
+   do not form a tree """
+def buildTree(inOrder, preOrder, start, end):
+    if (start > end):
+        return None
+
+    # Pick current node from Preorder traversal using
+    # preIndex and increment preIndex
+    tNode = Node(preOrder[buildTree.preIndex])
+    buildTree.preIndex += 1
+
+    # If this node has no children then return
+    if start == end :
+        return tNode
+
+    # Else find the index of this node in Inorder traversal
+    rootIndex = search(inOrder, start, end, tNode.data)
+
+    # Using index in Inorder Traversal, construct left
+    # and right subtrees
+    tNode.left = buildTree(inOrder, preOrder, start, rootIndex-1)
+    tNode.right = buildTree(inOrder, preOrder, rootIndex+1, end)
+
+    return tNode
+
+# function to search for the index
+def search(arr, start, end, value):
+    for i in range(start, end+1):
+        if arr[i] == value:
+            return i
+
+# function to print the contents of the tree in inorder fashion
+def inorder(node):
+    if node is None:
+        return
+
+    # first recur on left child
+    inorder(node.left)
+    #then print the data of node
+    print (node.data, end = ' ')
+    # now recur on right child
+    inorder(node.right)
+
+# Driver program to test above function
+inOrder = ['D', 'B' ,'E', 'A', 'F', 'C']
+preOrder = ['A', 'B', 'D', 'E', 'C', 'F']
+
+# Static variable preIndex
+buildTree.preIndex = 0
+root = buildTree(inOrder, preOrder, 0, len(inOrder)-1)
+
+# Let us test the build tree by priting Inorder traversal
+print ("Inorder traversal of the constructed tree is")
+inorder(root)
+
+```
+
+
+
+
+
+
+
+<div class="code-head"><span>code</span> P04_RootToLeafPaths.py</div>
+
+```py
+
+# Use a path array path[] to store current root to leaf path. Traverse from root to all leaves in top-down fashion.
+# While traversing, store data of all nodes in current path in array path[]. When we reach a leaf node, print the path
+# array.
+
+class Node(object):
+    def __init__(self, data = None):
+        self.left = None
+        self.right = None
+        self.data = data
+
+def printPath(node, path = []):
+    if node is None:
+        return
+    path.append(node.data)
+
+    if (node.left is None) and (node.right is None):
+        print(' '.join([str(i) for i in path if i != 0]))
+    else:
+        printPath(node.left, path)
+        printPath(node.right, path[0:1])
+
+if __name__ == '__main__':
+    root = Node(1)
+    root.left = Node(2)
+    root.right = Node(3)
+    root.left.left = Node(4)
+    root.right.left = Node(5)
+
+    printPath(root)
+
+```
+
+
+
+
+
+
+
+<div class="code-head"><span>code</span> P05_InorderPredecessorAndSuccessor.py</div>
+
+```py
+
+# Input: root node, key
+#
+# Output: predecessor node, successor node
+# 1. If root is NULL
+#       then return
+# 2. if key is found then
+#     a. If its left subtree is not null
+#         Then predecessor will be the right most
+#         child of left subtree or left child itself.
+#     b. If its right subtree is not null
+#         The successor will be the left most child
+#         of right subtree or right child itself.
+#     return
+# 3. If key is smaller then root node
+#         set the successor as root
+#         search recursively into left subtree
+#     else
+#         set the predecessor as root
+#         search recursively into right subtree
+
+# Python program to find predecessor and successor in a BST
+
+# A BST node
+class Node(object):
+    # Constructor to create a new node
+    def __init__(self, data):
+        self.data  = data
+        self.left = None
+        self.right = None
+
+    # for finding the predecessor and successor of the node
+    def findPredecessorAndSuccessor(self, data):
+        global predecessor, successor
+        predecessor = None
+        successor = None
+
+        if self is None:
+            return
+
+        # if the data is in the root itself
+        if self.data == data:
+            # the maximum value in the left subtree is the predecessor
+            if self.left is not None:
+                temp = self.left
+                if temp.right is not None:
+                    while(temp.right):
+                        temp = temp.right
+                predecessor = temp
+
+            # the minimum of the right subtree is the successor
+            if self.right is not None:
+                temp = self.right
+                while(temp.left):
+                    temp = temp.left
+                successor = temp
+
+            return
+
+        #if key is smaller than root, go to left subtree
+        if data < self.data:
+            print('Left')
+            self.left.findPredecessorAndSuccessor(data)
+        else:
+            print('Right')
+            self.right.findPredecessorAndSuccessor(data)
+
+    def insert(self, data):
+        ''' For inserting the data in the Tree '''
+        if self.data == data:
+            return False        # As BST cannot contain duplicate data
+
+        elif data < self.data:
+            ''' Data less than the root data is placed to the left of the root '''
+            if self.left:
+                return self.left.insert(data)
+            else:
+                self.left = Node(data)
+                return True
+
+        else:
+            ''' Data greater than the root data is placed to the right of the root '''
+            if self.right:
+                return self.right.insert(data)
+            else:
+                self.right = Node(data)
+                return True
+
+if __name__ == '__main__':
+    root = Node(50)
+    root.insert(30)
+    root.insert(20)
+    root.insert(40)
+    root.insert(70)
+    root.insert(60)
+    root.insert(80)
+
+    # following BST is created
+    #               50
+    #            /     \
+    #           30      70
+    #          /  \    /  \
+    #        20   40  60   80
+
+    root.findPredecessorAndSuccessor(70)
+    if  (predecessor is not None) and (successor is not None):
+        print('Predecessor:', predecessor.data, 'Successor:', successor.data)
+    else:
+        print('Predecessor:', predecessor, 'Successor:', successor)
+
+```
+
+### Tree traversal:
+
+Unlike linear data structures (Array, Linked List, Queues, Stacks, etc) which have only one logical way to traverse them, trees can be traversed in different ways. The following are the generally used ways for traversing trees.
+
+* Inorder  中序   (left, data, right)
+* Preorder  前序 (data, left, right)
+* Postorder 後序 (left, right, data)
+
+
+中序運算式」「後序運算式」
+
+「中序運算式」，即是我們一般會看見的運算式形式。例如：２＋７ * ８，每個運算子都會被運算元所包圍（除非是一元運算子，或是括號）。
+
+「後序運算式」，則是電腦方便運算的運算式形式。例如，上面的２＋７ * ８的後序運算式為２７８ * ＋。而在生成後序運算式時，各個運算子的運算順序已經被考慮進去（包含括號），因此在裡面不會再看到括號的存在。
+
+可是為何有中序、後序之差？這是因為，每個運算式都可化為一個樹，以上面的２＋７ * ８為例，可化為：
+
+![computationTree](../images/posts/computationTree.png)
+如上圖，是一個二元樹（每個節點最多兩個子樹）。
+
+我們常見的「中序運算式」便是這棵樹經由「中序探訪」的「路徑」。先走左子樹，接下來是自己，最後再走右子樹。
+
+相似地，「後序運算式」為這棵樹的「後序探訪」。先走左子樹、再右子樹，最後才走根節點。
+
+
+
+而中序轉後序不需要真的建一棵二元樹，再用後序探訪找路徑。只需要堆疊，在輸入的時候即可轉變成後序運算式。
+
+以５＋７－８ /（６＋２）* ２為例：
+先讀入５，一讀入數字即可把它放進後序運算式的結果之中。現結果為５，堆疊為空。
+
+讀入＋，放進堆疊裡。現結果為５，堆疊裡有＋。
+
+讀入７，結果為５７，堆疊裡有＋。
+
+讀入－，判斷堆疊的頂端元素的優先順序，是否大於等於現在讀入的運算子之優先度。如果是，就一直把堆疊的頂端元素拿出，直到堆疊為空或是不符合為止。最後再放入現有的運算子。現結果為５７＋，堆疊裡有－。
+
+讀入８，結果為５７＋８，堆疊裡有－。
+
+讀入 / ，結果為５７＋８，堆疊裡有－ / 。
+
+讀入（，左括號很特別，要與右括號配對。結果為５７＋８，堆疊裡有－ / （。
+
+讀入６，結果為５７＋８６，堆疊裡有－ / （。
+
+讀入＋，結果為５７＋８６，堆疊裡有－ / （＋。
+
+讀入２，結果為５７＋８６２，堆疊裡有－ / （＋。
+
+讀入），把堆疊的頂端元素拿出，直到遇見（。現結果為５７＋８６２＋，堆疊裡有－ / 。
+
+讀入 * ，結果為５７＋８６２＋ / ，堆疊裡有－ * 。
+
+讀入２，結果為５７＋８６２＋ / ２，堆疊裡有－ * 。
+
+最後把堆疊清空，最終結果即為５７＋８６２＋ / ２ * －，即是題目所求。
+
+
+### Implementing tree traversals:
+
+
+<div class="code-head"><span>code</span> Binary tree implementation.py</div>
+
+```py
+# in this we traverse first to the leftmost node, then print its data and then traverse for rightmost node
+def inorder(Tree):
+    if Tree:
+        inorder(Tree.getLeft())
+        print(Tree.getData(), end = ' ')
+        inorder(Tree.getRight())
+    return
+
+# in this we first print the root node and then traverse towards leftmost node and then to the rightmost node
+def preorder(Tree):
+    if Tree:
+        print(Tree.getData(), end = ' ')
+        preorder(Tree.getLeft())
+        preorder(Tree.getRight())
+    return 
+
+# in this we first traverse to the leftmost node and then to the rightmost node and then print the data
+def postorder(Tree):
+    if Tree:
+        postorder(Tree.getLeft())
+        postorder(Tree.getRight())
+        print(Tree.getData(), end = ' ')
+    return
+
+print('Inorder  Traversal:')
+inorder(root)
+print('\nPreorder Traversal:')
+preorder(root)
+print('\nPostorder Traversal:')
+postorder(root)      
+
+```
+
+# Reference
+
+[Geeks for Geeks 3-types-of-binary-tree](http://www.geeksforgeeks.org/binary-tree-set-3-types-of-binary-tree/)
