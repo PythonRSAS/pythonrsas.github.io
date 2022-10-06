@@ -10,7 +10,8 @@ image: images/posts/tree.PNG
 ---
   
 - [Binary tree implementation in Python](#binary-tree-implementation-in-python)
-  - [Breadth First Traversal](#breadth-first-traversal)
+- [Tree height](#tree-height)
+- [breadth First Traversal](#breadth-first-traversal)
 - [Count number of leave nodes](#count-number-of-leave-nodes)
 - [Binary trees and arrays](#binary-trees-and-arrays)
 - [Root to Leaf Paths](#root-to-leaf-paths)
@@ -18,8 +19,8 @@ image: images/posts/tree.PNG
     - [Implementing tree traversals:](#implementing-tree-traversals)
 - [Reference](#reference)
 # Binary tree implementation in Python
-Below code implements binary tree Node object, set leave nodes, and get leave nodes
-<div class="code-head"><span>code</span> Binary tree implementation.py</div>
+To implement binary tree Node object, we only need to define the node itself, its value, and left and right attributes.  
+<div class="code-head"><span>code</span> treeNode.py</div>
 
 ```py
 class Node(object):
@@ -27,52 +28,65 @@ class Node(object):
         self.left = None
         self.right = None
         self.val = val
-    def setLeft(self, node):
-        self.left = node
-    def setRight(self, node):
-        self.right = node
-root = Node(1)
-root.setLeft(Node(2))
-root.setRight(Node(3))
-root.left.setLeft(Node(4))
-In [32]: root.val
-Out[32]: 1
 
-In [33]: root.left.val
-Out[33]: 2
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+root.right.left = Node(6)
+root.right.right = Node(7)
 ''' for visualization only
                     1
                 /       \
             2            3
-        /
-    4
+        /     \       /     \
+    4          5     6       7
 '''
 ```
 
-## Breadth First Traversal
-
-<div class="code-head"><span>code</span> P01_BreadthFirstTraversal.py</div>
+# Tree height
+We define a recursive function <span class="coding">height</span> for the object.  The height of a tree is max(height(node.left), height(node.right)) + 1, with the base case of 0 when node is None. 
+<div class="code-head"><span>code</span> treeHeight.py</div>
 
 ```py
-
-class Node(object):
-    def __init__(self, val = None):
-        self.leftChild = None
-        self.rightChild = None
-        self.val = val
-
 def height(node):
-    if node is None:
+    if node is None: # base case
         return 0
     else:
-        leftHeight = height(node.leftChild)
-        rightHeight = height(node.rightChild)
+        leftHeight = height(node.left)
+        # if node.left:
+        #     print("node.left:", node.left.val)
+        # print("leftHeight:", leftHeight)
+        rightHeight = height(node.right)
+        # print("rightHeight:", rightHeight)
+        # if node.right:
+        #     print("node.right:", node.right.val)
+        return max(leftHeight, rightHeight) + 1
 
-        if leftHeight > rightHeight:
-            return leftHeight + 1
-        else:
-            return rightHeight + 1
+''' for visualization only
+                    1
+                /       \
+            2            3
+'''
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+height(root)
+# leftHeight: 0
+# rightHeight: 0
+# node.left: 2
+# leftHeight: 1
+# leftHeight: 0
+# rightHeight: 0
+# rightHeight: 1
+# node.right: 3
+# Out[46]: 2
+```
+# breadth First Traversal
+<div class="code-head"><span>code</span> breadthFirstTraversal.py</div>
 
+```py
 def breadthFirstTraversal(root):
     if root == None:
         return 0
@@ -80,7 +94,6 @@ def breadthFirstTraversal(root):
         h = height(root)
         for i in range(1, h + 1):
             printBFT(root, i)
-
 def printBFT(root, level):
     if root is None:
         return
@@ -88,17 +101,11 @@ def printBFT(root, level):
         if level == 1:
             print(root.val, end = ' ')
         elif level > 1:
-            printBFT(root.leftChild, level - 1)
-            printBFT(root.rightChild, level - 1)
+            printBFT(root.left, level - 1)
+            printBFT(root.right, level - 1)
 
-if __name__ == '__main__':
-    root = Node(1)
-    root.leftChild = Node(2)
-    root.rightChild = Node(3)
-    root.leftChild.leftChild = Node(4)
-
-    breadthFirstTraversal(root)
-
+breadthFirstTraversal(root)
+# 1 2 3 4 5 6 7
 
 ```
 # Count number of leave nodes
@@ -201,8 +208,6 @@ print ("Inorder traversal of the constructed tree is")
 inorder(root)
 
 ```
-
-
 # Root to Leaf Paths
 
 <div class="code-head"><span>code</span> P04_RootToLeafPaths.py</div>
@@ -338,27 +343,26 @@ class Node(object):
                 self.right = Node(data)
                 return True
 
-if __name__ == '__main__':
-    root = Node(50)
-    root.insert(30)
-    root.insert(20)
-    root.insert(40)
-    root.insert(70)
-    root.insert(60)
-    root.insert(80)
+root = Node(50)
+root.insert(30)
+root.insert(20)
+root.insert(40)
+root.insert(70)
+root.insert(60)
+root.insert(80)
 
-    # following BST is created
-    #               50
-    #            /     \
-    #           30      70
-    #          /  \    /  \
-    #        20   40  60   80
+ # following BST is created
+ #               50
+ #            /     \
+ #           30      70
+ #          /  \    /  \
+ #        20   40  60   80
 
-    root.findPredecessorAndSuccessor(70)
-    if  (predecessor is not None) and (successor is not None):
-        print('Predecessor:', predecessor.data, 'Successor:', successor.data)
-    else:
-        print('Predecessor:', predecessor, 'Successor:', successor)
+root.findPredecessorAndSuccessor(70)
+if  (predecessor is not None) and (successor is not None):
+    print('Predecessor:', predecessor.data, 'Successor:', successor.data)
+else:
+    print('Predecessor:', predecessor, 'Successor:', successor)
 
 ```
 
