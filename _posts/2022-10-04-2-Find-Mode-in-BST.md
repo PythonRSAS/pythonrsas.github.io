@@ -5,12 +5,12 @@ category: education
 title: "Find Mode in BST"
 description: Find mode in sorted array and LeetCode - 501. Find Mode in Binary Search Tree
 author: Sarah Chen
-image: images/posts/photos/farm/IMG-1230.jpg
+image: images/posts/photos/farm/IMG-1930.jpg
 
 ---
 ![](../images/posts/photos/farm/IMG-1930.jpg)
 - [Problem 1: 最長連續字母](#problem-1-最長連續字母)
-  - [Solution](#solution)
+  - [Three-variable solution for arrays](#three-variable-solution-for-arrays)
 - [Problem 2: find Mode in Binary Search Tree](#problem-2-find-mode-in-binary-search-tree)
   - [Solution: reduce tree problem to array problem](#solution-reduce-tree-problem-to-array-problem)
   - [Other ways to get the list from tree traversal](#other-ways-to-get-the-list-from-tree-traversal)
@@ -40,20 +40,32 @@ x 12
 
 字串扫完后，字元 T 與整數 M 之值即為所求。
 
-## Solution
+## Three-variable solution for arrays
 We use 3 variables: 
+
 C: initialized as 1
+
 M: the maximum count, initialized as 1
+
 T: the letter when the mode occurs. Initialized as the first letter. 
+
 Procedures:
 For i in range(1, length of input):
+    
     Compare current letter with previous one.  
+    
     If they are the same then
+        
         C++
+    
     If they are not the same then
+        
         C restart at 1
+    
     If M < C then
+        
         M = C and update T to be the current letter
+
 Return M and T
 
 Note that this code can be **used for both strings and arrays**. 
