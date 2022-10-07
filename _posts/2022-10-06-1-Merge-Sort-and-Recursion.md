@@ -9,7 +9,7 @@ image: images/posts/mergeSortDavidExample.PNG
 
 ---
 
-This post is a rewrite of an older post back in July, 2022.  Most of the addition is an edited transcript from the last few minutes of Professor David Malen's CS50 class on algorithm that was live streamed on September 22, 2022.  I know it is kind of strange to edit a transcript and put it in a post.  But the explanation is just that good. Better than anything I have seen. This particular class is just one of the best movies that I have ever watched (yes I call it a "movie" and mean it literally). 
+This post is a rewrite of an older post back in July, 2022.  Most of the addition are my edited transcript from the last few minutes of Professor David Malen's CS50 class on algorithm that was live streamed on September 22, 2022.  I know it is kind of strange to edit a transcript and put it in a post.  But the explanation is just that good. Better than anything I have seen. This particular class is just one of the best movies that I have ever watched (yes I call it a "movie" and mean it literally). 
 
 The last few seconds of the movie is quite dramtic. [Watch!](https://youtu.be/4oqjcKenCH8?t=9054)
 
