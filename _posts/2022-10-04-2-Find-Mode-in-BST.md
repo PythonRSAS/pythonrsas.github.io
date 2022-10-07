@@ -42,30 +42,19 @@ x 12
 
 ## Three-variable solution for arrays
 We use 3 variables: 
-
 C: initialized as 1
-
 M: the maximum count, initialized as 1
-
 T: the letter when the mode occurs. Initialized as the first letter. 
 
 Procedures:
 For i in range(1, length of input):
-    
     Compare current letter with previous one.  
-    
     If they are the same then
-        
         C++
-    
     If they are not the same then
-        
         C restart at 1
-    
     If M < C then
-        
         M = C and update T to be the current letter
-
 Return M and T
 
 Note that this code can be **used for both strings and arrays**. 
