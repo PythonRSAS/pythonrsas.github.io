@@ -15,41 +15,6 @@ image: images/posts/photos/farm/IMG-1230.jpg
   - [Solution: reduce tree problem to array problem](#solution-reduce-tree-problem-to-array-problem)
   - [Other ways to get the list from tree traversal](#other-ways-to-get-the-list-from-tree-traversal)
 - [Work in progress](#work-in-progress)
-- [Definition for a binary tree node.](#definition-for-a-binary-tree-node)
-- [class TreeNode:](#class-treenode)
-- [def __init__(self, val=0, left=None, right=None):](#def-initself-val0-leftnone-rightnone)
-- [self.val = val](#selfval--val)
-- [self.left = left](#selfleft--left)
-- [self.right = right](#selfright--right)
-- [def dfs(node, C, M, prev, res):](#def-dfsnode-c-m-prev-res)
-- [if not node: # base case](#if-not-node--base-case)
-- [return](#return)
-- [dfs(node.left, C, M, prev, res)](#dfsnodeleft-c-m-prev-res)
-- [print('after left res', res)](#printafter-left-res-res)
-- [print("evaluating prev and val", prev, node.val)](#printevaluating-prev-and-val-prev-nodeval)
-- [res = [node.val]](#res--nodeval)
-- [if node.val != prev:  # restart the counting](#if-nodeval--prev---restart-the-counting)
-- [C = 1](#c--1)
-- [else:](#else)
-- [C += 1](#c--1-1)
-- [print("C, M", C, M)](#printc-m-c-m)
-- [print('res', res)](#printres-res)
-- [if C == M:](#if-c--m)
-- [print("C = M", C, M)](#printc--m-c-m)
-- [res.append(node.val)](#resappendnodeval)
-- [elif C > M:](#elif-c--m)
-- [print("C >M", C, M)](#printc-m-c-m-1)
-- [res = [node.val]](#res--nodeval-1)
-- [M = C](#m--c)
-- [prev = node.val](#prev--nodeval)
-- [dfs(node.right, C, M, prev, res)](#dfsnoderight-c-m-prev-res)
-- [print('after right res', res)](#printafter-right-res-res)
-- [C = 1](#c--1-2)
-- [M = 1](#m--1)
-- [prev = None](#prev--none)
-- [res = []](#res--)
-- [dfs(Root, C, M, prev, res)](#dfsroot-c-m-prev-res)
-- [```](#)
 - [Reference](#reference)
 
 In this post, we explore problems on counting the most frequent consecutive occurence of a number or string.  
@@ -302,7 +267,7 @@ def preorder(node, A):
 # res = []
 # dfs(Root, C, M, prev, res)
 # ```
-
+```
 # Reference
 
 [LeetCode - 501. Find Mode in Binary Search Tree](https://leetcode.com/problems/find-mode-in-binary-search-tree/)
