@@ -308,3 +308,5 @@ def preorder(node, A):
 [LeetCode - 501. Find Mode in Binary Search Tree](https://leetcode.com/problems/find-mode-in-binary-search-tree/)
 
 https://home.gamer.com.tw/artwork.php?sn=4971259
+
+[stackoverlow, inorder traversal of tree in python returning a list](https://stackoverflow.com/questions/49063499/inorder-traversal-of-tree-in-python-returning-a-list)
