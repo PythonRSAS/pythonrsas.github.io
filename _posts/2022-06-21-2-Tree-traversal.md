@@ -10,6 +10,7 @@ image: images/posts/photos/IMG_0871.JPG
 ---
   
 - [Tree Traversal](#tree-traversal)
+- [Tree representing arithmetic expression](#tree-representing-arithmetic-expression)
 - [Implementing tree traversals:](#implementing-tree-traversals)
   - [Preorder (DFS)](#preorder-dfs)
   - [breadth First Traversal](#breadth-first-traversal)
@@ -42,6 +43,7 @@ In-order:
 Post-order:
     A, C, E, D, B, H, I, G, F.
 
+# Tree representing arithmetic expression
 中序運算式」「後序運算式」
 
 「中序運算式」，即是我們一般會看見的運算式形式。例如：２＋７ * ８，每個運算子都會被運算元所包圍（除非是一元運算子，或是括號）。
@@ -93,14 +95,28 @@ Post-order:
 # Implementing tree traversals:
 
 ## Preorder (DFS)
-To traverse binary trees with depth-first search, perform the following operations at each node:[3][4]
+To traverse binary trees with depth-first search, perform the following operations at each node:
 
 If the current node is empty then return (base case).
-Execute the following three operations in a certain order:
-    N: Visit the current node.
-    L: *Recursively traverse the current node's left subtree*.
-    R: *Recursively traverse the current node's right subtree*.
 
+Execute the following three operations in a certain order:
+    * N: *Visit the current node*.
+    * L: *Recursively traverse the current node's left subtree*.
+    * R: *Recursively traverse the current node's right subtree*.
+
+procedure **iterativePreorder(node)**
+    if node = null
+        return
+    stack ← empty stack
+    stack.push(node)
+    while not stack.isEmpty()
+        node ← stack.pop()
+        visit(node)
+        // right child is pushed first so that left is processed first
+        if node.right ≠ null
+            stack.push(node.right)
+        if node.left ≠ null
+            stack.push(node.left)
 ## breadth First Traversal
 <div class="code-head"><span>code</span> breadthFirstTraversal.py</div>
 
