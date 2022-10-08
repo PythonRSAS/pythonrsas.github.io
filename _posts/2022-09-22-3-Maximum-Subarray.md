@@ -251,6 +251,9 @@ def algorithm4(A):
 Section 4.1 of Introduction to Algorithm describes a divide-and-conquer recursion approach. 
 ![max_subarray_recursion](..\images\posts\max_subarray_recursion.PNG).
 
+The maximum subarray has 3 possible locations: in the left half, in the right half, or in the middle.  We need to consider how to solve the middle section before recurse on the two halves. 
+
+![max_crossing_subarray](..\images\posts\max_crossing_subarray.PNG)
 將目前的陣列分作兩半，遞迴左半邊
 以及右半邊各自的最大連續子陣列之和。停止條件很簡單，切到剩一個元素的時候直接回傳該元素值。
 
