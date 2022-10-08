@@ -2,34 +2,131 @@
 layout: post
 tag : Array, BST, DFS
 category: education
-title: "Find Mode in BST"
-description: Find mode in sorted array and LeetCode - 501. Find Mode in Binary Search Tree
+title: "BST to and from Preorder Traversal"
+description: Preorder traversal of BST and Construct BST from Preorder Traversal LeetCode - 144 and 1008. 
 author: Sarah Chen
-image: images/posts/photos/farm/IMG-1930.jpg
+image: images/posts/photos/farm/IMG-1931.jpg
 
 ---
-![](../images/posts/photos/farm/IMG-1930.jpg)
-- [Problem 1: 最長連續字母](#problem-1-最長連續字母)
-  - [Three-variable solution for arrays](#three-variable-solution-for-arrays)
+![](../images/posts/photos/farm/IMG-1931.jpg)
+- [Problem 1: 中序以及後序探訪转成前序探訪](#problem-1-中序以及後序探訪转成前序探訪)
+- [Problem 2. Postorder from inorder and preorder](#problem-2-postorder-from-inorder-and-preorder)
+  - [Brute force: Back to Tree Then Convert to Postorder](#brute-force-back-to-tree-then-convert-to-postorder)
+- [Problem 3: Binary Tree Preorder Traversal](#problem-3-binary-tree-preorder-traversal)
+  - [Problem 3  LeetCode - 1008. Construct BST from Preorder Traversal](#problem-3--leetcode---1008-construct-bst-from-preorder-traversal)
 - [Problem 2: find Mode in Binary Search Tree](#problem-2-find-mode-in-binary-search-tree)
   - [Solution: reduce tree problem to array problem](#solution-reduce-tree-problem-to-array-problem)
   - [Other ways to get the list from tree traversal](#other-ways-to-get-the-list-from-tree-traversal)
 - [Work in progress](#work-in-progress)
 - [Reference](#reference)
 
-In this post, we explore problems on counting the most frequent consecutive occurence of a number or string.  
-Please pardon me if you find the notes messy (still working on it) and send me a message if you see anything that should be corrected.   
-# Problem 1: 最長連續字母
+In this post, we explore problems on binary search tree preorder traversal and the reverse: construct BST from preorder traversal. 
+先複習一下二元樹的前序、中序、後序探訪，它們的遞迴式依序是：
+**前序**：根節點 → 左子樹 → 右子樹
+**中序**： 左子樹 → 根節點 → 右子樹
+**後序**： 左子樹 → 右子樹 → 根節點
+
+# Problem 1: 中序以及後序探訪转成前序探訪
 題目大意：
-輸入有多列，給定一字串（只包含小寫字母）。求該字串中連續出現最多次的字母為何？如果有多個連續出現最多次的，則請找到最早出現的字母。
+給定一二元樹的中序以及後序探訪的排列，求此二元樹前序探訪的排列。
+
+此樹的每個節點用相異的大寫字母標記，保證不超過八個節點。
 
 範例輸入：
-abbcc
-cciiiiiiiixxxxxxxxxxxxguuuuuuufugpccccccc
-
+**中序**：BADC
+**後序**: BDCA
 範例輸出：
-b 2
-x 12
+ABCD
+
+解題思維：
+
+我們可以看出**後序排列的最後一個節點即是整棵樹的根節點**。以範例測資為例，中序是 BADC 、後序是 BDCA ，因此：
+A 是整棵樹的根節點、 B 是左子樹、 DC 是右子樹。
+遞迴求左子樹得左子樹的根節點為 B ；
+遞迴求右子樹得右子樹的根節點為 C 、 右子樹的左子樹為 D 。
+遞迴求右子樹的左子樹得其根節點為 D 。
+
+因此，前序探訪為 ABCD 。
+
+# Problem 2. Postorder from inorder and preorder
+Given Inorder and Preorder traversals of a binary tree, print Postorder traversal.
+
+Example:
+
+Input:
+Inorder traversal in[] = {4, 2, 5, 1, 3, 6}
+Preorder traversal pre[] = {1, 2, 4, 5, 3, 6}
+
+Output:
+Postorder traversal is {4, 5, 2, 6, 3, 1}
+## Brute force: Back to Tree Then Convert to Postorder
+A naive method is to first construct the tree, then use a simple recursive method to print postorder traversal of the constructed tree.
+
+```python
+# Python3 program to print postorder
+# traversal from preorder and inorder traversals
+def search(A, x, n):
+    """
+    utility function to search x in
+    arrary of size n
+    """
+	for i in range(n):
+		if (A[i] == x):
+			return i
+	return -1
+
+# Prints postorder traversal from
+# given inorder and preorder traversals
+def printPostOrder(I, P, n):
+	# The first element in pre-order is always
+	# root, search it in inorder to find left
+	# and right subtrees
+	root = search(I, P[0], n)
+	# If left subtree is not empty,
+	# print left subtree
+	if (root != 0):
+		printPostOrder(I, P[1:n], root)
+	# If right subtree is not empty,
+	# print right subtree
+	if (root != n - 1):
+		printPostOrder(I[root + 1 : n],
+					P[root + 1 : n],
+					n - root - 1)
+	# Print root
+	print(P[0], end = " ")
+
+# Driver code
+In = [ 4, 2, 5, 1, 3, 6 ]
+pre = [ 1, 2, 4, 5, 3, 6 ]
+n = len(In)
+
+print("Postorder traversal ")
+printPostOrder(In, pre, n)
+# Postorder traversal
+# 4 5 2 6 3 1
+```
+
+
+# Problem 3: Binary Tree Preorder Traversal
+[LeetCode - 144. Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/)
+
+題目大意：
+給定一個二元樹的根節點 root ，回傳其節點值之前序探訪（Preorder Traversal）。
+
+限制：
+樹中的節點數位於範圍 [0, 100] 中。
+-100 ≦ Node.val ≦ 100
+
+進階： 遞迴解顯而易見，那你可以改用迭代的方式解出來嗎？
+
+範例輸入：
+![bstPreOrder](..\images\posts\bstPreOrder.JPEG)
+輸入： root = [1,null,2,3]
+輸出： [1,2,3]
+
+範例 2：
+輸入： root = []
+輸出： []
 
 解題思維：
 **用一個整數變數 C (fast) 當作計數器**（一開始設為 1）、**一個整數變數 M (slow) 當作最大值**，**以及一個字元變數 T 儲存最大值發生時的字元（即所求）**。
@@ -40,28 +137,31 @@ x 12
 
 字串扫完后，字元 T 與整數 M 之值即為所求。
 
-## Three-variable solution for arrays
-We use 3 variables: 
-C: initialized as 1
-M: the maximum count, initialized as 1
-T: the letter when the mode occurs. Initialized as the first letter. 
+## Problem 3  [LeetCode - 1008. Construct BST from Preorder Traversal](https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/)
 
-Procedures:
-For i in range(1, length of input):
-    Compare current letter with previous one.  
-    If they are the same then
-        C++
-    If they are not the same then
-        C restart at 1
-    If M < C then
-        M = C and update T to be the current letter
-Return M and T
+Given an array of integers preorder, which represents the preorder traversal of a BST (i.e., binary search tree), construct the tree and return its root.
 
-Note that this code can be **used for both strings and arrays**. 
-<div class="code-head"><span>code</span>findMode_string.py</div>
+It is guaranteed that there is always possible to find a binary search tree with the given requirements for the given test cases.
+Example 1:
+
+![preorderContructBST](..\images\posts\preorderContructBST.PNG)
+Input: preorder = [8,5,1,7,10,12]
+Output: [8,5,10,1,7,null,12]
+Example 2:
+
+Input: preorder = [1,3]
+Output: [1,null,3]
+
+Constraints:
+
+1 <= preorder.length <= 100
+1 <= preorder[i] <= 1000
+All the values of preorder are unique.
+
+<div class="code-head"><span>code</span>bstFromPreorder.py</div>
 
 ```py
-def findMode(A):
+def bstFromPreorder(A):
     C = 1
     M = 1
     T = A[0]
@@ -271,8 +371,11 @@ def preorder(node, A):
 ```
 # Reference
 
-[LeetCode - 501. Find Mode in Binary Search Tree](https://leetcode.com/problems/find-mode-in-binary-search-tree/)
+[Geeks for Geeks: postorder from given inorder and preorder traversals](https://www.geeksforgeeks.org/print postorder-from-given-inorder-and-preorder-traversals/)
 
-https://home.gamer.com.tw/artwork.php?sn=4971259
+[LeetCode - 144. Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/)
+
+[LeetCode - 1008. Construct BST from Preorder Traversal](https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/)
+
 
 [stackoverlow, inorder traversal of tree in python returning a list](https://stackoverflow.com/questions/49063499/inorder-traversal-of-tree-in-python-returning-a-list)

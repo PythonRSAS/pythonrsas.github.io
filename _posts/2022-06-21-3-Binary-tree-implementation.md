@@ -9,12 +9,13 @@ image: images/posts/photos/IMG_0871.JPG
 
 ---
   
+- [Tree Traversal](#tree-traversal)
 - [Tree height](#tree-height)
 - [breadth First Traversal](#breadth-first-traversal)
 - [Count number of leave nodes](#count-number-of-leave-nodes)
 - [Binary trees and arrays](#binary-trees-and-arrays)
 - [Root to Leaf Paths](#root-to-leaf-paths)
-    - [Tree traversal:](#tree-traversal)
+    - [Tree traversal:](#tree-traversal-1)
     - [Implementing tree traversals:](#implementing-tree-traversals)
 - [Reference](#reference)
 
@@ -43,6 +44,13 @@ root.right.right = Node(7)
     4          5     6       7
 '''
 ```
+# Tree Traversal
+![tree](../images/posts/tree123.PNG)
+Inorder: 4, 2, 5, 1, 6, 3, 7
+Postorder: 4, 5, 2, 6, 7, 3, 1
+BFS:    1, 2, 3, 4, 5, 6, 7
+Preorder: 1, 2, 4, 5, 3, 6, 7
+DFS:    same as preorder
 
 # Tree height
 We define a recursive function <span class="coding">height</span> for the object.  The height of a tree is max(height(node.left), height(node.right)) + 1, with the base case of 0 when node is None. 
