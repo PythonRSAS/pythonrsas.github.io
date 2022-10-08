@@ -14,9 +14,9 @@ image: images/posts/photos/farm/IMG-1230.jpg
 - [Brute force method](#brute-force-method)
   - [1. $$O(n^3)$$](#1-on3)
   - [2. $$O(n^2)$$ solution](#2-on2-solution)
-- [O(n) Solution: Kadane's algorithm (Fast and Slow method)](#on-solution-kadanes-algorithm-fast-and-slow-method)
+- [$$O(n)$$ Solution: Kadane's algorithm (Fast and Slow method)](#on-solution-kadanes-algorithm-fast-and-slow-method)
 - [Computing the best subarray's position](#computing-the-best-subarrays-position)
-- [$$O(n*log(n))$$ divide-and-conquer recursion approach](#onlogn-divide-and-conquer-recursion-approach)
+- [$$O(n^2)$$ and $$O(n*log(n))$$ divide-and-conquer recursion approach](#on2-and-onlogn-divide-and-conquer-recursion-approach)
 - [Memorizing method (DP)](#memorizing-method-dp)
 - [Reference](#reference)
 
@@ -29,14 +29,11 @@ In Introduction to Algorithms (Cormen and others), the problem is presented as f
 Suppose that you been offered the opportunity to invest in the Volatile Chemical
 Corporation. Like the chemicals the company produces, the stock price of the
 Volatile Chemical Corporation is rather volatile. You are allowed to buy one unit
-of stock only one time and then sell it at a later date, buying and selling after the
-close of trading for the day. To compensate for this restriction, you are allowed to
+of stock only one time and then sell it at a later date. To compensate for this restriction, you are allowed to
 learn what the price of the stock will be in the future. Your goal is to maximize
 your profit. 
 
-In order to design an algorithm with an $$O(n^2)$$ running time, we will look at the
-input in a slightly different way. We want to find a sequence of days over which
-the net change from the first day to the last is maximum. Instead of looking at the
+In order to design an algorithm with an $$O(n^2)$$ running time, We want to find a sequence of days over which the net change from the first day to the last is maximum. Instead of looking at the
 daily prices, let us instead consider the daily change in price, where the change on
 day i is the difference between the prices after day i - 1 and after day i.   We now want to **find the nonempty, contiguous subarray of A whose values have the largest sum**. We call this contiguous subarray
 the **maximum subarray**. 
@@ -110,7 +107,7 @@ nums = [-2,1,-3,4,-1,2,1,-5,4]
 print(max_subarray(nums))
 # 6
 ```
-# O(n) Solution: Kadane's algorithm (Fast and Slow method)
+# $$O(n)$$ Solution: Kadane's algorithm (Fast and Slow method)
 
 The Kadane's algorithm is a simple greedy strategy.  I call it "**Fast and Slow**" because it helps me unify similar approaches.  The method scans through input array exactly once while maintaining two variables: the current sum and the max sum.  The max sum is a function of the current sum. 
 
@@ -153,11 +150,18 @@ print(max_subarray(nums))
 # 6
 ```
 # Computing the best subarray's position
-The algorithm can be modified to keep track of the starting and ending indices of the maximum subarray as well.  The code below is adapted from [Wikipedia](https://en.wikipedia.org/wiki/Maximum_subarray_problem#Computing_the_best_subarray's_position). 
+The algorithm can be modified to keep track of the starting and ending indices of the maximum subarray as well.  
+
+$$f$$: fast sum.
+$$s$$: slow (the maximum) sum.
+$$i$$: ending index of fast.
+$$slow/_start$$: starting index of slow.
+$$slow/_end$$: ending index of slow.
+In time, we normally think of start as larger than end.  But when we look at an array (or a ruler), the start is smaller than the end.  We update slow and its associated indices only when $$f>s$$.  
+
 <div class="code-head"><span>code</span>maxSubarray_positions_fast_slow.py</div>
 
 ```py
-def max_subarray(A):
 def max_subarray(A):
     fast_start = 0
     f = s = 0
@@ -175,10 +179,11 @@ def max_subarray(A):
     return s, slow_start, slow_end
 ```
 
-To get both the current index and number during scan is to use <span class="coding">enumerate</span>. 
+The code below is adapted from [Wikipedia](https://en.wikipedia.org/wiki/Maximum_subarray_problem#Computing_the_best_subarray's_position).  It is similar to the code above. 
 
-<span class="coding">fast_end</span>: keeps track of the position of the current number being added or restarted with.  At all times, $$fast\_start <= fast\_end$$.    In time, we normally think of start as larger than end.  But when we look at an array (or a ruler), the start is smaller than the end. 
+It uses <span class="coding">enumerate</span>get both the current index and number during scan instead of i and A[i].
 
+<span class="coding">fast_end</span>: keeps track of the position of the current number being added or restarted with.  At all times, $$fast\_start <= fast\_end$$.   
 We initialize slow_start, slow_end and slow_sum as zero, and update them only when fast_sum is bigger than slow_sum. 
 
 <div class="code-head"><span>code</span>maxSubarray_positions_fast_slow.py</div>
@@ -241,7 +246,10 @@ def algorithm4(A):
             maxsofar = (maxhere[0], maxhere[1], i)
     return maxsofar
 ```
-# $$O(n*log(n))$$ divide-and-conquer recursion approach
+# $$O(n^2)$$ and $$O(n*log(n))$$ divide-and-conquer recursion approach
+
+Section 4.1 of Introduction to Algorithm describes a divide-and-conquer recursion approach. 
+![max_subarray_recursion](..\images\posts\max_subarray_recursion.PNG).
 
 將目前的陣列分作兩半，遞迴左半邊
 以及右半邊各自的最大連續子陣列之和。停止條件很簡單，切到剩一個元素的時候直接回傳該元素值。
@@ -252,7 +260,7 @@ def algorithm4(A):
 
 而這個方式為 O(n log n)。不過其實分治法一樣可以做到 O(n) ，待補。
 
-（2021 / 07 / 14 更新）
+
 可以看到我們的癥結點是在橫跨左右兩半的子陣列。不過仔細觀察後，可以看到它的內容必定是左側的最大後綴和以及右側的最大前綴和所合併而成。
 
 而實際上，一個陣列的最大後綴和、最大前綴和可以在分治的時候順便求得：
