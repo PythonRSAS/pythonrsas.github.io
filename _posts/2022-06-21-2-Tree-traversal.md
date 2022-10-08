@@ -11,16 +11,19 @@ image: images/posts/photos/IMG_0871.JPG
   
 - [Tree Traversal](#tree-traversal)
 - [Implementing tree traversals:](#implementing-tree-traversals)
+  - [Preorder (DFS)](#preorder-dfs)
   - [breadth First Traversal](#breadth-first-traversal)
 - [Reference](#reference)
 
 
 # Tree Traversal
-Unlike linear data structures (Array, Linked List, Queues, Stacks, etc) which have only one logical way to traverse them, trees can be traversed in different ways. The following are the generally used ways for traversing trees.
+From [Wikipedia](https://en.wikipedia.org/wiki/Tree_traversal): Unlike linear data structures (Array, Linked List, Queues, Stacks, etc) which have only one logical way to traverse them, trees can be traversed in different ways. The following are the generally used ways for traversing trees.
 
 * Inorder  中序   (left, data, right)
 * Preorder  前序 (data, left, right)
 * Postorder 後序 (left, right, data)
+
+But that's not exactly what it is.  The left means recursively left.  The right means recursively right. 
 
 ![tree](../images/posts/tree123.PNG)
 Inorder: 4, 2, 5, 1, 6, 3, 7
@@ -29,6 +32,15 @@ BFS:    1, 2, 3, 4, 5, 6, 7
 Preorder: 1, 2, 4, 5, 3, 6, 7
 DFS:    same as preorder
 
+It takes sometime to get used to.
+![traversals](https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Sorted_binary_tree_ALL_RGB.svg/586px-Sorted_binary_tree_ALL_RGB.svg.png
+)
+Pre-order:
+    F, B, A, D, C, E, G, I, H;
+In-order:
+    A, B, C, D, E, F, G, H, I;
+Post-order:
+    A, C, E, D, B, H, I, G, F.
 
 中序運算式」「後序運算式」
 
@@ -79,6 +91,15 @@ DFS:    same as preorder
 
 
 # Implementing tree traversals:
+
+## Preorder (DFS)
+To traverse binary trees with depth-first search, perform the following operations at each node:[3][4]
+
+If the current node is empty then return (base case).
+Execute the following three operations in a certain order:
+    N: Visit the current node.
+    L: *Recursively traverse the current node's left subtree*.
+    R: *Recursively traverse the current node's right subtree*.
 
 ## breadth First Traversal
 <div class="code-head"><span>code</span> breadthFirstTraversal.py</div>
