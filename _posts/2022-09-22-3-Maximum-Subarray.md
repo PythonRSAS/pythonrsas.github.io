@@ -112,7 +112,7 @@ print(max_subarray(nums))
 ```
 # O(n) Solution: Kadane's algorithm (Fast and Slow method)
 
-The Kadane's algorithm is a simple greedy strategy.  I call it "**Fast and Slow**" because it helps me unify similar approaches.  The method scans through input array once while maintaining two variables: the current sum and the max sum.  The max sum is a function of the current sum. 
+The Kadane's algorithm is a simple greedy strategy.  I call it "**Fast and Slow**" because it helps me unify similar approaches.  The method scans through input array exactly once while maintaining two variables: the current sum and the max sum.  The max sum is a function of the current sum. 
 
 1. current sum (*Fast*) is the maximum cumulative sum at the current position in the scan. It is permitted to restart at any position, and choose between to restart at the current index or to cumulate. Formally, current sum = max(current sum + num[i], current sum)
 
@@ -154,10 +154,30 @@ print(max_subarray(nums))
 ```
 # Computing the best subarray's position
 The algorithm can be modified to keep track of the starting and ending indices of the maximum subarray as well.  The code below is adapted from [Wikipedia](https://en.wikipedia.org/wiki/Maximum_subarray_problem#Computing_the_best_subarray's_position). 
+<div class="code-head"><span>code</span>maxSubarray_positions_fast_slow.py</div>
+
+```py
+def max_subarray(A):
+def max_subarray(A):
+    fast_start = 0
+    f = s = 0
+    slow_start = slow_end = 0  # or: None
+    for i in range(len(A)):
+        if f + A[i] < 0:
+            f_start = i
+            f = 0
+        else:
+            f = f+ A[i]
+        if s < f:
+            s = f
+            slow_start = f_start
+            slow_end = i
+    return s, slow_start, slow_end
+```
 
 To get both the current index and number during scan is to use <span class="coding">enumerate</span>. 
 
-<span class="coding">fast_end</span>: keeps track of the position of the current number being added or restarted with.  At all times, $$fast_start <= fast_end$$.  We normally think of start as larger than end in terms of time.  But when we look at an array (or a ruler), the start is smaller than the end. 
+<span class="coding">fast_end</span>: keeps track of the position of the current number being added or restarted with.  At all times, $$fast\_start <= fast\_end$$.    In time, we normally think of start as larger than end.  But when we look at an array (or a ruler), the start is smaller than the end. 
 
 We initialize slow_start, slow_end and slow_sum as zero, and update them only when fast_sum is bigger than slow_sum. 
 
