@@ -9,11 +9,12 @@ image: images/posts/photos/farm/IMG-1230.jpg
 
 ---
 ![](../images/posts/photos/farm/IMG-1930.jpg)
-- [Problem](#problem)
+- [Maximum profit from buying and selling stocks](#maximum-profit-from-buying-and-selling-stocks)
+- [Leetcode problem](#leetcode-problem)
 - [Brute force method](#brute-force-method)
   - [1. $$O(n^3)$$](#1-on3)
   - [2. $$O(n^2)$$ solution](#2-on2-solution)
-- [Kadane's algorithm (Fast and Slow method)](#kadanes-algorithm-fast-and-slow-method)
+- [O(n) Solution: Kadane's algorithm (Fast and Slow method)](#on-solution-kadanes-algorithm-fast-and-slow-method)
 - [Computing the best subarray's position](#computing-the-best-subarrays-position)
 - [$$O(n*log(n))$$ divide-and-conquer recursion approach](#onlogn-divide-and-conquer-recursion-approach)
 - [Memorizing method (DP)](#memorizing-method-dp)
@@ -21,8 +22,28 @@ image: images/posts/photos/farm/IMG-1230.jpg
 
 The maximum subarray is a [well-known problem](https://en.wikipedia.org/wiki/Maximum_subarray_problem) in computer science. We discussed its brute force and dynamic programming solutions in [Dynamic programming](https://pythonrsas.github.io/1-Dynamic-programming/#subarray-with-the-greatest-sum).   In this post, we deep dive into this problem using [Leetcode 53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/) as a test example.  
 
-Please pardon me if you find the notes messy and send me a message if you see anything that should be corrected.   
-# Problem 
+Please pardon me if you find the notes messy and send me a message if you see anything that should be corrected.  
+
+# Maximum profit from buying and selling stocks
+In Introduction to Algorithms (Cormen and others), the problem is presented as follows:
+Suppose that you been offered the opportunity to invest in the Volatile Chemical
+Corporation. Like the chemicals the company produces, the stock price of the
+Volatile Chemical Corporation is rather volatile. You are allowed to buy one unit
+of stock only one time and then sell it at a later date, buying and selling after the
+close of trading for the day. To compensate for this restriction, you are allowed to
+learn what the price of the stock will be in the future. Your goal is to maximize
+your profit. 
+
+In order to design an algorithm with an $$O(n^2)$$ running time, we will look at the
+input in a slightly different way. We want to find a sequence of days over which
+the net change from the first day to the last is maximum. Instead of looking at the
+daily prices, let us instead consider the daily change in price, where the change on
+day i is the difference between the prices after day i - 1 and after day i.   We now want to **find the nonempty, contiguous subarray of A whose values have the largest sum**. We call this contiguous subarray
+the **maximum subarray**. 
+
+
+
+# Leetcode problem
 
 Problem is from [Leetcode 53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/).  
 
@@ -89,7 +110,7 @@ nums = [-2,1,-3,4,-1,2,1,-5,4]
 print(max_subarray(nums))
 # 6
 ```
-# Kadane's algorithm (Fast and Slow method)
+# O(n) Solution: Kadane's algorithm (Fast and Slow method)
 
 The Kadane's algorithm is a simple greedy strategy.  I call it "**Fast and Slow**" because it helps me unify similar approaches.  The method scans through input array once while maintaining two variables: the current sum and the max sum.  The max sum is a function of the current sum. 
 
@@ -102,13 +123,13 @@ I adapted the code from  [Wikipedia](https://en.wikipedia.org/wiki/Maximum_subar
 <div class="code-head"><span>code</span>maxSubarray_fast_slow.py</div>
 
 ```py
-def max_subarray(numbers):
+def max_subarray(A):
     """Find the largest sum of any contiguous subarray."""
-    if numbers == []:
+    if A == []:
         raise ValueError('Empty array has no nonempty subarrays')
 
     slow, fast = 0, 0
-    for x in numbers:
+    for x in A:
         fast = max(x, fast + x) # choose between restart at x or cumulate from its previous value
         slow = max(slow, fast) # update only if new fast is bigger than slow
     return slow
@@ -122,10 +143,10 @@ There are many variations of the same idea.  For example, the version below does
 <div class="code-head"><span>code</span>maxSubarray_fast_slow.py</div>
 
 ```py
-def max_subarray(numbers):
-    for i in range(len(numbers)):
-        numbers[i] = max(numbers[i], numbers[i-1] + numbers[i])
-    return max(numbers)
+def max_subarray(A):
+    for i in range(len(A)):
+        A[i] = max(A[i], A[i-1] + A[i])
+    return max(A)
 
 nums = [-2,1,-3,4,-1,2,1,-5,4]
 print(max_subarray(nums))
@@ -135,19 +156,20 @@ print(max_subarray(nums))
 The algorithm can be modified to keep track of the starting and ending indices of the maximum subarray as well.  The code below is adapted from [Wikipedia](https://en.wikipedia.org/wiki/Maximum_subarray_problem#Computing_the_best_subarray's_position). 
 
 To get both the current index and number during scan is to use <span class="coding">enumerate</span>. 
-<span class="coding">fast_end</span>: keeps track of the position of the current number being added or restarted with.  At all times, <span class="coding">fast_fast</span> $$<=$$ <span class="coding">fast_end</span>.
 
-slow_start = slow_end = 0, both of them and slow_sum are updated only when fast_sum is bigger than slow_sum. 
+<span class="coding">fast_end</span>: keeps track of the position of the current number being added or restarted with.  At all times, $$fast_start <= fast_end$$.  We normally think of start as larger than end in terms of time.  But when we look at an array (or a ruler), the start is smaller than the end. 
+
+We initialize slow_start, slow_end and slow_sum as zero, and update them only when fast_sum is bigger than slow_sum. 
 
 <div class="code-head"><span>code</span>maxSubarray_positions_fast_slow.py</div>
 
 ```py
-def max_subarray(numbers):
+def max_subarray(A):
     """Find a contiguous subarray with the largest sum."""
     slow_sum = 0  # or: float('-inf')
     slow_start = slow_end = 0  # or: None
     fast_sum = 0
-    for fast_end, x in enumerate(numbers):
+    for fast_end, x in enumerate(A):
         if fast_sum <= 0:
             # Start a new sequence at the current element
             fast_start = fast_end
@@ -162,6 +184,14 @@ def max_subarray(numbers):
             slow_end = fast_end + 1  # the +1 is to make 'slow_end' match Python's slice convention (endpoint excluded)
 
     return slow_sum, slow_start, slow_end
+nums = [-2,1,-3,4,-1,2,1,-5,4]
+print(max_subarray(nums))
+# 6
+slow_sum, slow_start, slow_end = max_subarray(nums)
+nums[slow_start: slow_end]
+# [4, -1, 2, 1]
+sum(nums[slow_start: slow_end])
+# 6
 ```
 
 [St. Louis University Professor Michael Goldwasser's solutions](https://cs.slu.edu/~goldwamh/courses/slu/csci314/2012_Fall/lectures/maxsubarray/maxsubarray.py) maintain tuples of (maxSum, starting position, ending position) to keep track of the max sum and the start-end positions.  
@@ -169,7 +199,7 @@ def max_subarray(numbers):
 <div class="code-head"><span>code</span>maxSubarray_positions_fast_slow.py</div>
 
 ```py
-def max_subarray(numbers):
+def max_subarray(A):
 def algorithm4(A):
     """A linear algoirthm based on a simple greedy strategy.
 
@@ -297,6 +327,7 @@ def maxSubArrayDP(A):
     return maxSum
 ``` 
 # Reference
+[Introduction to Algorithm, 3rd Edition, 4.1 The maximum-subarray problem](https://sd.blackball.lv/library/Introduction_to_Algorithms_Third_Edition_(2009).pdf)
 
 [Wikipedia Maximum Subarray](https://en.wikipedia.org/wiki/Maximum_subarray_problem#Computing_the_best_subarray's_position
 )
