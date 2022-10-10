@@ -261,7 +261,18 @@ The maximum subarray has 3 possible locations: in the left half, in the right ha
 With a linear-time FIND-MAX-CROSSING-SUBARRAY procedure in hand, we
 can write pseudocode for a divide-and-conquer algorithm to solve the maximumsubarray problem:
 ![max_subarray_recursion_pseudo_code](..\images\posts\max_subarray_recursion_pseudo_code.PNG)
-
+FIND-MAXIMUM-SUBARRAY (A, low, high)
+1. if high = = low
+2.     return (low, high, A[low]) // base case: only one element
+3. else mid = (low + high)/2
+4.      (left-low, left-high, left-sum) = FIND-MAXIMUM-SUBARRAY(A, low, mid)
+5.      (right-low,right-high,right-sum) = FIND-MAXIMUM-SUBARRAY(A, mid + 1, high)
+6.      (cross-low, cross-high, cross-sum)/ FIND-MAX-CROSSING-SUBARRAY(A, low, mid, high)
+7.      if left-sum >= right-sum and left-sum >= cross-sum
+8.           return (left-low, left-high, left-sum)
+9.      elseif right-sum >= left-sum and right-sum >= cross-sum
+10.          return (right-low,right-high,right-sum)
+11.     else return (cross-low, cross-high, cross-sum)
 The following code is from [Professor Michael Goldwasser's course notes](https://cs.slu.edu/~goldwamh/courses/slu/csci314/2012_Fall/lectures/maxsubarray/maxsubarray.py).  
 
 <div class="code-head"><span>code</span>maxSubarray_recurse.py</div>
