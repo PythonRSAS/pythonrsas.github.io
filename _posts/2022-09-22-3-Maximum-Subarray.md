@@ -13,10 +13,11 @@ image: images/posts/photos/farm/IMG-1230.jpg
 - [Leetcode problem](#leetcode-problem)
 - [Brute force method](#brute-force-method)
   - [1. $$O(n^3)$$](#1-on3)
-  - [2. $$O(n^2)$$ solution](#2-on2-solution)
-- [$$O(n)$$ Solution: Kadane's algorithm (Fast and Slow method)](#on-solution-kadanes-algorithm-fast-and-slow-method)
+  - [2. $$O(n^2)$$](#2-on2)
+- [Kadane's algorithm (Fast and Slow method) $$O(n)$$](#kadanes-algorithm-fast-and-slow-method-on)
 - [Computing the best subarray's position](#computing-the-best-subarrays-position)
-- [$$O(n^2)$$ and $$O(n*log(n))$$ divide-and-conquer recursion approach](#on2-and-onlogn-divide-and-conquer-recursion-approach)
+  - [Maxhere and maxsofar](#maxhere-and-maxsofar)
+- [Divide-and-conquer recursion approach: $$O(n^2)$$ and $$O(n*log(n))$$](#divide-and-conquer-recursion-approach-on2-and-onlogn)
 - [Memorizing method (DP)](#memorizing-method-dp)
 - [Reference](#reference)
 
@@ -46,14 +47,12 @@ Problem is from [Leetcode 53. Maximum Subarray](https://leetcode.com/problems/ma
 
 Given an integer array nums, find the **contiguous** subarray (containing at least one number) which has the largest sum and return its sum.  給定一整數陣列 nums，找到其最大連續子陣列（至少有一個元素）之和，並回傳該總和。
 
-Example 1:
 ![Example 1:](https://assets.leetcode.com/uploads/2019/12/18/q2-e1.png)
 
 Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
 Output: 6
 Explanation: [4,-1,2,1] has the largest sum = 6.
 
-Example 2:
 [Example 2:](https://assets.leetcode.com/uploads/2019/12/18/q2-e5-.png)
 
 Input: nums = [1]
@@ -87,7 +86,7 @@ nums = [-2,1,-3,4,-1,2,1,-5,4]
 print(max_subarray(nums))
 # 6
 ```
-## 2. $$O(n^2)$$ solution
+## 2. $$O(n^2)$$
 We can improve the above $$O(n^3)$$ solution.
 Idea: The sum of A[i..j] can be efficiently calculated as (sum of A[i..j-1]) + A[j].
 
@@ -107,7 +106,7 @@ nums = [-2,1,-3,4,-1,2,1,-5,4]
 print(max_subarray(nums))
 # 6
 ```
-# $$O(n)$$ Solution: Kadane's algorithm (Fast and Slow method)
+# Kadane's algorithm (Fast and Slow method) $$O(n)$$
 
 The Kadane's algorithm is a simple greedy strategy.  I call it "**Fast and Slow**" because it helps me unify similar approaches.  The method scans through input array exactly once while maintaining two variables: the current sum and the max sum.  The max sum is a function of the current sum. 
 
@@ -218,13 +217,13 @@ nums[slow_start: slow_end]
 sum(nums[slow_start: slow_end])
 # 6
 ```
-
-[St. Louis University Professor Michael Goldwasser's solutions](https://cs.slu.edu/~goldwamh/courses/slu/csci314/2012_Fall/lectures/maxsubarray/maxsubarray.py) maintain tuples of (maxSum, starting position, ending position) to keep track of the max sum and the start-end positions.  
+## Maxhere and maxsofar
+The same approach but interpreted differently is the maxhere and maxsofar from [St. Louis University Professor Michael Goldwasser's solutions](https://cs.slu.edu/~goldwamh/courses/slu/csci314/2012_Fall/lectures/maxsubarray/maxsubarray.py).
+It maintain tuples of (maxSum, starting position, ending position) to keep track of the max sum and the start-end positions.  The tuple approach to keep track of sum and the positions is cleaner than keeping track of each of them separately. 
 
 <div class="code-head"><span>code</span>maxSubarray_positions_fast_slow.py</div>
 
 ```py
-def max_subarray(A):
 def algorithm4(A):
     """A linear algoirthm based on a simple greedy strategy.
 
@@ -241,53 +240,27 @@ def algorithm4(A):
         if maxhere[0] + A[i-1] > 0:
             maxhere = (maxhere[0] + A[i-1], maxhere[1])
         else:
-            maxhere = (0, i)
+            maxhere = (0, i)        # restart
         if maxhere[0] > maxsofar[0]:
             maxsofar = (maxhere[0], maxhere[1], i)
     return maxsofar
 ```
-# $$O(n^2)$$ and $$O(n*log(n))$$ divide-and-conquer recursion approach
+# Divide-and-conquer recursion approach: $$O(n^2)$$ and $$O(n*log(n))$$ 
 
 Section 4.1 of Introduction to Algorithm describes a divide-and-conquer recursion approach. 
 ![max_subarray_recursion](..\images\posts\max_subarray_recursion.PNG).
 
 The maximum subarray has 3 possible locations: in the left half, in the right half, or in the middle.  We need to consider how to solve the middle section before recurse on the two halves. 
 
-![max_crossing_subarray](..\images\posts\max_crossing_subarray.PNG)
 將目前的陣列分作兩半，遞迴左半邊
 以及右半邊各自的最大連續子陣列之和。停止條件很簡單，切到剩一個元素的時候直接回傳該元素值。
 
 當求出左右兩邊各自的最大總和 L 、 R 之後，還會有一種情況我們沒有考慮到，也就是橫跨左右兩邊的連續最大。而該值可以藉由從中間開始，往左、往右找最長的總和非遞減數列。而該值 M 就是那兩個數列之和。
 
-所以目前陣列的最大即是 L 、 M 、 R 中的最大值。
-
-而這個方式為 O(n log n)。不過其實分治法一樣可以做到 O(n) ，待補。
-
-
-可以看到我們的癥結點是在橫跨左右兩半的子陣列。不過仔細觀察後，可以看到它的內容必定是左側的最大後綴和以及右側的最大前綴和所合併而成。
-
-而實際上，一個陣列的最大後綴和、最大前綴和可以在分治的時候順便求得：
-假設我們現在要求
-最大連續和 M、
-最大前綴和 P、
-最大後綴和 S、
-陣列總和 T、
-這四個值。
-
-則對於陣列 nums 我們將其切一半：
-設左邊的解為 ML 、 PL 、 SL 、 和 TL
-設右邊的解為 MR 、 PR 、 SR 、 和 TR
-
-則我們可以合併左右兩半的解得到
-M = max(ML, MR, SL + PR)
-P = max(PL, TL + PR)
-S = max(SR, TR + SL)
-T = TL + TR
-
-而當陣列只有一個元素時，M = P = S = T = 該元素值。
-
-因此時間複雜度 T(n) = 2T(n ÷ 2) + O(1)。根據主定理（Master Theorem），可以看到 T(n) = O(n)。
-
+![max_crossing_subarray](..\images\posts\max_crossing_subarray.PNG)
+With a linear-time FIND-MAX-CROSSING-SUBARRAY procedure in hand, we
+can write pseudocode for a divide-and-conquer algorithm to solve the maximumsubarray problem:
+![max_subarray_recursion_pseudo_code](..\images\posts\max_subarray_recursion_pseudo_code.PNG)
 
 The following code is from [Professor Michael Goldwasser's course notes](https://cs.slu.edu/~goldwamh/courses/slu/csci314/2012_Fall/lectures/maxsubarray/maxsubarray.py).  
 
