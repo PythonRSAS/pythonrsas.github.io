@@ -92,14 +92,23 @@ We expect to see reduced AFS in 2022 as the Fed has been increasing rates.  Inde
 
 # 2. Earnings and PPNR
 
-From earnings perspectively, it seems that smaller banks have better numbers especially in more recent years even though the numbers are quite close.  But we know that return on assets are small numbers that come from big denominators.  A small difference means a big difference.  So, we will get the data and plot them ourselves to get a closer look. 
+From earnings perspectively, it seems that smaller banks have better numbers especially in more recent years even though the numbers are quite close.  But we know that return on assets are small numbers that come from big denominators.  A small difference means a big difference.  So, we will get the data and plot them ourselves to get a closer look.  Note that PPNR is the sum of two types of net income: Net Interest Income + Net Non-Interest Income. 
 
-**Pre-Provision Net Revenue = Net Interest Income + Net Non-Interest Income**. 
-
-Net Interest Income + Non-Interest Income - Non-Interest Expenses
+**Pre-Provision Net Revenue = Net Interest Income + Non-Interest Income - Non-Interest Expenses**. 
 
 ## Return on Assets and Equity
 A closer look shows that the smaller banks (Banks and BHCs <$50bn) outperform the largest banks after **2012, when the regulators introduced many regulations targeting the largest banks**.   Sadly, the mid-range banks (BHCs $50bn-750bn) have had the worst luck.  They have the lowest return on equity.  They are just about as regulated as the largest banks but may not have the scale to support the functions to meet the regulatory demands. 
+
+• Statistics exclude financial firms that are not either commercial banks or part of a
+commercial bank holding company or intermediate holding companies (IHCs). This creates discontinuities in the
+time-series graphs when nonbanking firms entered or exit the industry due to acquired or sold by banks or BHCs, or when firms switch to or from a bank or BHC charter. 
+For example, in **2009:Q1, Goldman Sachs, Morgan Stanley, Ally Financial, and American Express each began filing a FR Y-9C** due to the conversion of each of these firms to a **commercial banking holding company charter**. This largely accounts for
+the **sharp *13%* increase in total measured industry assets in 2009:Q1**, and a corresponding discontinuous upward shift in the industry asset growth rate during 2009. 
+
+Similarly, in **2016:Q3 (Credit Suisse Holdings, Deutsche Bank USA, UBS Americas, and Barclays US) and other firms consolidate nonbanking assets under their designated IHC over the course of 2016**. This causes industry assets to rise by approximately 4% in 2016:Q3, and
+has smaller effects on industry assets in earlier quarters.
+
+• Only 4 of the 6 BHCs in the BHCs > $750bn group exist in the data for the entire sample period from 1991:Q1 onwards: **JPMorgan Chase, Bank of America, Wells Fargo, and Citigroup**. Goldman Sachs and Morgan Stanley enter the sample in 2009:Q1.
 
 Note: Chart measures debt and equity securities portfolios. Thus, trading portfolio excludes other types of
 trading assets such as whole loans and derivatives.
@@ -122,16 +131,14 @@ Note: Non-performing loans include loans that are
 (1) 90 days or more past due and still accruing or 
 (2) non-accrual. 
 
-The CECL factor: The adoption of the Financial Accounting Standards Board (FASB)’s new “current expected
+**The CECL factor**: The adoption of the Financial Accounting Standards Board (FASB)’s new “current expected
 credit losses” (CECL) methodology for estimating allowances for credit losses may have influenced the
 calculation of loan loss provisions and loan loss reserves. 
 
-The CARES Act Factor: Section 4013 of the *Coronavirus Aid, Relief, and Economic Security (CARES) Act* and the Interagency Statements on Loan Modifications
-issued on March 22 and April 7, 2020, as well as the ASU No. 2022-02, “Financial Instruments - Credit
-Losses (Topic 326): Troubled Debt Restructurings and Vintage Disclosures”, issued by FASB in March
-2022, may have impacted the calculation of loan loss provisions, loan loss reserves, non-performing
-loans and net charge-offs. 
+**The CARES Act Factor**: Section 4013 of the *Coronavirus Aid, Relief, and Economic Security (CARES) Act* and the Interagency Statements on Loan Modifications issued on March 22 and April 7, 2020.
 
+**Troubled Debt Restructurings and Vintage Disclosures**:  ASU No. 2022-02, “Financial Instruments - Credit
+Losses (Topic 326): Troubled Debt Restructurings and Vintage Disclosures”, issued by FASB in March 2022, may have impacted the calculation of loan loss provisions, loan loss reserves, non-performing loans and net charge-offs. 
 
 # Reference
 

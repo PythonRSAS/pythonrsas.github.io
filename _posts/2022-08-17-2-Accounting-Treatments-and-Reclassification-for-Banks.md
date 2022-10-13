@@ -5,15 +5,15 @@ category: "other risks"
 title: "Accounting Treatments and Reclassification"
 description: accounting treatments and reclassification on AFS, HTM, and trading
 author: Sarah Chen
-image: images/posts/balance_sheet_composition.PNG
+image: images/posts/AFS.PNG
 ---
 
-![balance_sheet_composition](../images/posts/balance_sheet_composition.PNG)
+![balance_sheet_composition](../images/posts/AFS.PNG)
 Image from [New York Fed Quarterly Trends for Consolidated U.S. Banking Organizations](https://www.newyorkfed.org/research/banking_research/quarterly_trends.html)
 Consolidated financial statistics for the U.S. commercial banking industry, including both bank holding companies (BHCs) and banks. Statistics are based on quarterly regulatory filings. Statistics are inclusive of BHCs' nonbank subsidiaries. 
 
 Look at it from distribution perspective overtime:
-[Balance Sheet Composition Percent of Assets](../images/posts/Balance Sheet Composition Percent of Assets.PNG)
+![Balance Sheet Composition Percent of Assets](../images/posts/Balance Sheet Composition Percent of Assets.PNG)
 
 # Accounting classifications of bank assets
 
