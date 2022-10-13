@@ -48,23 +48,90 @@ The equities has only very mild increase in the 30 year period.
 
 ![Balance Sheet Composition Percent of Assets](../images/posts/Balance Sheet Composition Percent of Assets.PNG)
 
-# Federal Funds Sold and Purchased
+## Federal Funds Sold and Purchased
 
 Both Fed Funds sold and purchased as percent of total assets have been dropping over time since 2002 when the data was available. Note: These charts begin in 2002:Q1 because data for repurchase agreements and federal funds are not consistently reported separately prior to that date. 
 ![Federal Funds Sold and Purchased](../images/posts/Federal Funds Sold and Purchased.PNG)
 
-# Repurchase Agreements
+## Repurchase Agreements
 
 Repo and reverse repo seem to be negatively correlated in a zero-sum game fashion over time since 2002 when the data was available. Note: These charts begin in 2002:Q1 because data for repurchase agreements and federal funds are not consistently reported separately prior to that date. 
 ![Repurchase Agreements](../images/posts/Repurchase Agreements.PNG)
 
-# Loans
+## Loans
 We already know that loans as % of total assets have dropped over the last 30 years.  However, looking closely, we see that the decrease mainly come from *Residential Real Estate, C&I, and consumer*.  CRE loans as % of total assets has remained more or less the same. 
 ![Loans](../images/posts/Loans.PNG)
 
-## consumer loans
+### Consumer loans
 Among consumer loans, it is worth taking a closer look at the breakdown between credit cards, auto and other.  It seems that *credit cards have remained more or less around 3% of total assets*.  
 ![consumer loans](../images/posts/consumer loans.PNG)
+
+## Trading Assets and Liabilities
+Note: The subcomponents of trading assets and liabilities in the above chart only represent banks and
+BHCs that reported total trading assets of $10 million or more in any of the four preceding quarters, and
+$2 million or more in average trading assets in any of the four preceding quarters prior to 2018:Q2.
+![Trading Assets and Liabilities](../images/posts/Trading Assets and Liabilities.PNG)
+
+## Securities Portfolios
+The HTM category has been growing since the GFC. 
+
+Note: Chart measures debt and equity securities portfolios. Thus, trading portfolio excludes other types of
+trading assets such as whole loans and derivatives.
+![Securities Portfolios](../images/posts/Securities Portfolios.PNG)
+
+### AFS
+The **U.S. Treasury Securities category** within AFS has been growing since the GFC, whereas the **U.S. Government Agency Obligations** category has been dropping during the same period of time. 
+
+When combined with the **U.S. State and Municipal Debt** category, the three together went from slighly below **5% of total assets** to slightly above 5%.  As a group they are very steady. 
+
+**AFS as a whole decreased** the most (slope the steepest) after 2003 until the GFC.   Was it **due to rising rates** of that period?  
+
+We expect to see reduced AFS in 2022 as the Fed has been increasing rates.  Indeed, even with 1 quarter of the data in 2022, we see that AFS has dropped. 
+
+![AFS](../images/posts/AFS.PNG)
+
+# 2. Earnings and PPNR
+
+From earnings perspectively, it seems that smaller banks have better numbers especially in more recent years even though the numbers are quite close.  But we know that return on assets are small numbers that come from big denominators.  A small difference means a big difference.  So, we will get the data and plot them ourselves to get a closer look. 
+
+**Pre-Provision Net Revenue = Net Interest Income + Net Non-Interest Income**. 
+
+Net Interest Income + Non-Interest Income - Non-Interest Expenses
+
+## Return on Assets and Equity
+A closer look shows that the smaller banks (Banks and BHCs <$50bn) outperform the largest banks after **2012, when the regulators introduced many regulations targeting the largest banks**.   Sadly, the mid-range banks (BHCs $50bn-750bn) have had the worst luck.  They have the lowest return on equity.  They are just about as regulated as the largest banks but may not have the scale to support the functions to meet the regulatory demands. 
+
+Note: Chart measures debt and equity securities portfolios. Thus, trading portfolio excludes other types of
+trading assets such as whole loans and derivatives.
+
+![return on assets](../images/posts/return on assets.PNG)
+
+![return on equity](../images/posts/return on equity.PNG)
+
+## Net Interest Margin and Noninterest Income Ratio
+
+![Net Interest Margin](../images/posts/Net Interest Margin.PNG)
+![Noninterest Income Ratio](../images/posts/Noninterest Income Ratio.PNG)
+
+Net operating revenue is defined as net interest income plus noninterest income.
+![Noninterest Income Share](../images/posts/Noninterest Income Share.PNG)
+
+# 3. Loan Performance
+
+Note: Non-performing loans include loans that are 
+(1) 90 days or more past due and still accruing or 
+(2) non-accrual. 
+
+The CECL factor: The adoption of the Financial Accounting Standards Board (FASB)’s new “current expected
+credit losses” (CECL) methodology for estimating allowances for credit losses may have influenced the
+calculation of loan loss provisions and loan loss reserves. 
+
+The CARES Act Factor: Section 4013 of the *Coronavirus Aid, Relief, and Economic Security (CARES) Act* and the Interagency Statements on Loan Modifications
+issued on March 22 and April 7, 2020, as well as the ASU No. 2022-02, “Financial Instruments - Credit
+Losses (Topic 326): Troubled Debt Restructurings and Vintage Disclosures”, issued by FASB in March
+2022, may have impacted the calculation of loan loss provisions, loan loss reserves, non-performing
+loans and net charge-offs. 
+
 
 # Reference
 
