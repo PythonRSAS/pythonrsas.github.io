@@ -260,10 +260,10 @@ The maximum subarray has 3 possible locations: in the left half, in the right ha
 ![max_crossing_subarray](..\images\posts\max_crossing_subarray.PNG)
 With a linear-time FIND-MAX-CROSSING-SUBARRAY procedure in hand, we
 can write pseudocode for a divide-and-conquer algorithm to solve the maximumsubarray problem:
-![max_subarray_recursion_pseudo_code](..\images\posts\max_subarray_recursion_pseudo_code.PNG)
+
 FIND-MAXIMUM-SUBARRAY (A, low, high)
 1. if high = = low
-2.     return (low, high, A[low]) // base case: only one element
+2.       return (low, high, A[low]) # base case: only one element
 3. else mid = (low + high)/2
 4.      (left-low, left-high, left-sum) = FIND-MAXIMUM-SUBARRAY(A, low, mid)
 5.      (right-low,right-high,right-sum) = FIND-MAXIMUM-SUBARRAY(A, mid + 1, high)
