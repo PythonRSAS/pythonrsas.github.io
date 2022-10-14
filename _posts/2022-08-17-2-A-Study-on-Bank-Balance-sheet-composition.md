@@ -84,7 +84,7 @@ Note: Chart measures debt and equity securities and excludes other types of trad
 
 As [this post](https://libertystreeteconomics.newyorkfed.org/2015/02/available-for-sale-understanding-bank-securities-portfolios/) describes, the largest category of securities for both portfolio types is **agency pass-through MBS**.   These are pools of securitized mortgages with a credit guarantee from Fannie Mae, Freddie Mac, or Ginnie Mae.    Closely related, and also significant in size, are agency collateralized mortgage obligations (CMOs), which are structured securities created from agency mortgage pools.
  
-In line with the risk management explanation, in the agency MBS market it’s common for lenders to engage in “**swap transactions**” with the government-sponsored enterprises (GSEs) Fannie Mae and Freddie Mac.   In such transactions, the bank swaps a pool of conforming mortgages for an MBS pool backed by the same pool of loans but that carries a credit guarantee from the GSE.   As a result, the bank is insulated against credit risk but still retains the interest rate and prepayment risk . This type of **loan-for-security swap** is attractive from the perspective of **improving regulatory capital adequacy**, since agency MBS carry lower risk weights for regulatory capital purposes than do the underlying mortgages.   Furthermore, agency MBS also have relatively little liquidity risk, since their secondary market is large and liquid compared to most loan or fixed-income markets.
+Banks engage in “**swap transactions**” with the government-sponsored enterprises (GSEs) Fannie Mae and Freddie Mac to swap a pool of conforming mortgages for an MBS pool backed by the same pool of loans but that carries a credit guarantee from the GSE.   As a result, the bank is insulated against credit risk but still retains the interest rate and prepayment risk . This type of **loan-for-security swap** is attractive from the perspective of **improving regulatory capital adequacy**, since agency MBS carry lower risk weights for regulatory capital purposes than do the underlying mortgages.   Furthermore, agency MBS also have relatively little liquidity risk, since their secondary market is large and liquid compared to most loan or fixed-income markets.
 
 ### AFS
 The **U.S. Treasury Securities category** within AFS has been growing since the GFC, whereas the **U.S. Government Agency Obligations** category has been dropping during the same period of time. 
@@ -99,8 +99,9 @@ We expect to see reduced AFS in 2022 as the Fed has been increasing rates.  Inde
 
 # 2. Earnings and PPNR
 
-From earnings perspectively, it seems that smaller banks have better numbers especially in more recent years even though the numbers are quite close.  But we know that return on assets are small numbers that come from big denominators.  A small difference means a big difference.  So, we will get the data and plot them ourselves to get a closer look.  Note that PPNR is the sum of two types of net income: Net Interest Income + Net Non-Interest Income. 
+From earnings perspectively, it seems that smaller banks have better numbers especially in more recent years. Is it because smaller banks are exempt from the heavy burdens of regulations?  CCAR, DFAST, risk capital rules and stringent accounting treatments specifically targeting large banks.  These not only add significantly to the expenses of the large banks but also impact ways they do business. 
 
+Note that PPNR is the sum of two types of net income: Net Interest Income + Net Non-Interest Income. 
 **Pre-Provision Net Revenue = Net Interest Income + Non-Interest Income - Non-Interest Expenses**. 
 
 ## Return on Assets and Equity
