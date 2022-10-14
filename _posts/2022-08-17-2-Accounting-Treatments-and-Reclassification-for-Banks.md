@@ -13,10 +13,10 @@ image: images/posts/AFS.PNG
 - [Reclassifying](#reclassifying)
 - [Unanswered questions](#unanswered-questions)
 - [Reference](#reference)
+
 Accounting is a complicated topic.  This post tries to summarize the types of accounting classifications on bank assets and impacts on reclassification. 
 
-Image from [New York Fed Quarterly Trends for Consolidated U.S. Banking Organizations](https://www.newyorkfed.org/research/banking_research/quarterly_trends.html)
-Consolidated financial statistics for the U.S. commercial banking industry, including both bank holding companies (BHCs) and banks. Statistics are based on quarterly regulatory filings. Statistics are inclusive of BHCs' nonbank subsidiaries. 
+Image from [New York Fed Quarterly Trends for Consolidated U.S. Banking Organizations](https://www.newyorkfed.org/research/banking_research/quarterly_trends.html).  Consolidated financial statistics for the U.S. commercial banking industry, including both bank holding companies (BHCs) and banks. Statistics are based on quarterly regulatory filings. Statistics are inclusive of BHCs' nonbank subsidiaries. 
 
 Look at it from distribution perspective overtime:
 ![Balance Sheet Composition Percent of Assets](../images/posts/Balance Sheet Composition Percent of Assets.PNG)

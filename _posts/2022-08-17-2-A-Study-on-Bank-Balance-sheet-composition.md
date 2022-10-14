@@ -79,7 +79,12 @@ Note: Chart measures debt and equity securities and excludes other types of trad
 ![Securities Portfolios](../images/posts/Securities Portfolios.PNG)
 
 • HTM category has been growing since the GFC. 
+
 • Steady increases in debt and equity securities held for trading purposes in the period after the repeal of the Glass-Steagall Act in 1999 (this act had largely separated investment banking and commercial banking up to that point).  During the GFC, there was a sharp decline which would have been larger if not for the conversion of two large trading firms, Goldman Sachs and Morgan Stanley, to bank holding companies in September 2008.
+
+As [this post](https://libertystreeteconomics.newyorkfed.org/2015/02/available-for-sale-understanding-bank-securities-portfolios/) describes, the largest category of securities for both portfolio types is **agency pass-through MBS**.   These are pools of securitized mortgages with a credit guarantee from Fannie Mae, Freddie Mac, or Ginnie Mae.    Closely related, and also significant in size, are agency collateralized mortgage obligations (CMOs), which are structured securities created from agency mortgage pools.
+ 
+In line with the risk management explanation, in the agency MBS market it’s common for lenders to engage in “**swap transactions**” with the government-sponsored enterprises (GSEs) Fannie Mae and Freddie Mac.   In such transactions, the bank swaps a pool of conforming mortgages for an MBS pool backed by the same pool of loans but that carries a credit guarantee from the GSE.   As a result, the bank is insulated against credit risk but still retains the interest rate and prepayment risk . This type of **loan-for-security swap** is attractive from the perspective of **improving regulatory capital adequacy**, since agency MBS carry lower risk weights for regulatory capital purposes than do the underlying mortgages.   Furthermore, agency MBS also have relatively little liquidity risk, since their secondary market is large and liquid compared to most loan or fixed-income markets.
 
 ### AFS
 The **U.S. Treasury Securities category** within AFS has been growing since the GFC, whereas the **U.S. Government Agency Obligations** category has been dropping during the same period of time. 
@@ -147,3 +152,5 @@ Losses (Topic 326): Troubled Debt Restructurings and Vintage Disclosures”, iss
 [Quarterly Trends for Consolidated U.S. Banking Organizations
 First Quarter 2022
 Federal Reserve Bank of New York](https://www.newyorkfed.org/medialibrary/media/research/banking_research/quarterlytrends2022q1.pdf?la=en)
+
+[Available for Sale: Understanding Nank Securities Portfolios](https://libertystreeteconomics.newyorkfed.org/2015/02/available-for-sale-understanding-bank-securities-portfolios/)
