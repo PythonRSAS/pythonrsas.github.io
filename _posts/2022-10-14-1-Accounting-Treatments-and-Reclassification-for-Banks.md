@@ -48,21 +48,20 @@ To understand how and why banks classify assets, we should first know why banks 
 
 Since AFS is a catch-all category, that means that banks can move assets in or out of the AFS to the other ones when the intent has changed.  For example, HTM to AFS and vice versa. Why?  Mostly to stablize capital adequacy ratio and to stablize earnings. 
 ![securities of three accounting classes](https://pythonrsas.github.io/images/posts/Securities%20Portfolios.PNG)
-![AFS](../images/posts/AFS.PNG)
-
-![HTM](../images/posts/HTM.PNG)
-
 Notice in the chart the HTM (red) has more than doubled in size as a percentage of all bank assets over the past several years. 
 
+![AFS](../images/posts/AFS.PNG)
+
 A key difference between HTM and AFS is the accounting treatment of gains and losses as described at the begnning of the post.   The gains and losses in the value of HTM  that result from market movements (e.g., interest rates) aren’t recognized unless the asset is sold.   
+
+![HTM](../images/posts/HTM.PNG)
 
 For AFS securities, however, such shifts in value, while not affecting accounting income, do affect the measurement of regulatory capital adequacy for **large** banks under the Basel III framework (for so-called “advanced approaches” firms).  
 
 On Oct 11, 2013, the [Federal Register](https://www.govinfo.gov/content/pkg/FR-2013-10-11/pdf/2013-21653.pdf), published by the Department of Treasury and the OCC, wrote "[...] consistent with Basel III, the agencies and the FDIC proposed to
-require banking organizations to include
-the majority of AOCI components in common equity tier 1 capital."   Then it went on to say that they received a significant number of comments on the proposal to require banking organizations to recognize AOCI in common equity tier 1 capital.  Interestingly, the comments expressed concerns that became reality:
-the change would introduce significant volatility in banking organizations’ capital ratios due in large part to
-fluctuations in benchmark interest rates, and would result in many banks moving AFS securitiesinto HTM or holding additional regulatory capital solely to mitigate the volatility resultingfrom temporary unrealized gains and losses in the AFS securities portfolio.The commenters also asserted that the change would likely impair lending and negatively affect banks’ ability to manage liquidity and interest rate risk and to maintain compliance with legal lending limits. 
+require banks to include
+the majority of AOCI components in common equity tier 1 capital."   Then it went on to say that they received a significant number of comments on the proposal to require banks to recognize AOCI in common equity tier 1 capital.  Interestingly, the comments expressed concerns that became reality:
+the change would introduce significant volatility in banks’ capital ratios due in large part to fluctuations in benchmark interest rates, and would result in many banks moving AFS securitiesinto HTM or holding additional regulatory capital solely to mitigate the volatility resultingfrom temporary unrealized gains and losses in the AFS securities portfolio.The commenters also asserted that the change would likely impair lending and negatively affect banks’ ability to manage liquidity and interest rate risk and to maintain compliance with legal lending limits. 
 
 For example, in 2014, [Bloomberg reported](https://www.bloomberg.com/news/articles/2014-02-26/banks-averting-bond-losses-with-accounting-twist-credit-markets) that JMPC and Wells Fargo are leading a shift in how banks account for their bond investments after a $44 billion plunge in value exposed a potential drain on capital under new rules.  It also reported that The largest U.S. lenders are moving assets into HTM instead of designating them as AFS.
 
