@@ -16,19 +16,18 @@ Consolidated financial statistics for the U.S. commercial banking industry, incl
 Look at it from distribution perspective overtime:
 
 # Q1 2022 recent trends
-• Decreased return on equity and return on assets both decreased from 11.06% and 1.06% in 2021:Q4 to
-10.34% and 0.93% in 2022:Q1 respectively, reflecting an **increase in quarterly loan loss provisions and noninterest expense**.
+• **Decreased return on equity and return on assets**, from 11.06% and 1.06% in 2021:Q4 to 10.34% and 0.93% in 2022:Q1 respectively, reflecting an **increase in quarterly loan loss provisions and noninterest expense**.
 
-• Net interest margin remains low, (net interest margin defined as net interest income as a percentage of interest earning assets),
+• **Net interest margin remains low**, (net interest margin defined as net interest income as a percentage of interest earning assets),
 remained the same as last quarter at 2.10%. The current net interest margin of 2.10% is below its post-crisis (2009:Q1 – 2022:Q1) average of 2.61%.
 
-• Reduced noninterest income ratio, measured as noninterest income as a percentage of total assets, declined from 1.96% in 2021:Q4 to 1.90% in 2022:Q1, which is below its post-crisis average of 2.17%.
+• **Reduced noninterest income ratio**, measured as noninterest income as a percentage of total assets, declined from 1.96% in 2021:Q4 to 1.90% in 2022:Q1, which is below its post-crisis average of 2.17%.
 
-• Slower asset growth from 8.29% in 2021:Q4 to 6.26% in 2022:Q1. However, *loan growth rose from 3.99% to 4.83%*. So, which asset growth decreased the most? 
+• **Slower asset growth** from 8.29% in 2021:Q4 to 6.26% in 2022:Q1. However, *loan growth rose from 3.99% to 4.83%*. So, which asset growth decreased the most? 
 
-• Significant decreased domestic deposit growth from 12.55% to 8.94%.
+• **Significant decreased domestic deposit growth from 12.55% to 8.94%**.
 
-• Capital remains high by historical standards. Common equity tier 1 (CET1) capital as a percentage of risk-weighted assets (RWA) stands at 12.41%, well above its pre-crisis (2001:Q1 – 2007:Q3) average of 8.25%.
+• **Capital remains high by historical standards**. Common equity tier 1 (CET1) capital as a percentage of risk-weighted assets (RWA) stands at 12.41%, well above its pre-crisis (2001:Q1 – 2007:Q3) average of 8.25%.   Note that in 2015:Q1 firms commenced reporting risk weighted assets according to Basel III definitions rather than Basel I definitions.   This contributes to the **sharp increase in the ratio of risk weighted assets to total assets observed in 2015:Q1**.
 
 # Composition of Banking Industry Assets and Liabilities
 
@@ -47,6 +46,8 @@ And from the liability side:
 The equities has only very mild increase in the 30 year period.
 
 ![Balance Sheet Composition Percent of Assets](../images/posts/Balance Sheet Composition Percent of Assets.PNG)
+
+![Balance Sheet Composition, Percent of Assets Current Quarter](../images/posts/Balance Sheet Composition, Percent of Assets Current Quarter.PNG)
 
 ## Federal Funds Sold and Purchased
 
@@ -128,7 +129,7 @@ Net operating revenue is defined as net interest income plus noninterest income.
 # 3. Loan Performance
 
 Note: Non-performing loans include loans that are 
-(1) 90 days or more past due and still accruing or 
+(1) 90 days or more past due and still accruing,or 
 (2) non-accrual. 
 
 **The CECL factor**: The adoption of the Financial Accounting Standards Board (FASB)’s new “current expected
