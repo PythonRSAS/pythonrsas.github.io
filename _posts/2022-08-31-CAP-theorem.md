@@ -8,8 +8,6 @@ author: Sarah Chen
 image: images/posts/CAP_Theorem.PNG
 ---
 ![CAP](https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/CAP_Theorem.svg/330px-CAP_Theorem.svg.png)
-To support all those types of computing, a robust, distributed database is a prerequisite. The distributed databases, mostly NoSQL, come in a wide variety of data models, including key-value, document, columnar and graph formats; Apache HBase, Cassandra, Redis, MongoDB, Elastic Search, Solr, Neo4j to name a few. However, to effectively pick the tool of choice, a basic idea of the CAP Theorem (Brewer’s Theorem) is essential.
-
 The CAP (Consistency, Availability and Partition Tolerance) Theorem states that a distributed system cannot be strictly consistent, highly available and fault tolerant at the same time. The system designers MUST choose at most two out of three guarantees in the system.
 
 # Consistency
@@ -27,9 +25,7 @@ For example, a user searches for some goods during peak time. Once in a while Am
 
 # Partition Tolerance
 
-Partition tolerance means that the system will continue operate even if any number of messages sent between nodes is lost. A single node failure should not cause the entire system to collapse. A three-legged cat is partition tolerant. If it was a horse, we would have to put it out of misery.
-
-In the above LinkedIn scenario, the site continues to operate even if the node in United States goes down or loses communication to other nodes in Asia and Europe.
+Partition tolerance means that the system will continue operate even if any number of messages sent between nodes is lost. A single node failure should not cause the entire system to collapse. 
 
 # The CAP Trade-off
 ## CA (Consistency and Availability) – Non-distributed system
