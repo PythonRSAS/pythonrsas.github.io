@@ -8,6 +8,11 @@ author: Sarah Chen
 image: images/posts/AFS.PNG
 ---
 
+- [Accounting classifications of bank assets](#accounting-classifications-of-bank-assets)
+- [Why do banks own securities besides loans](#why-do-banks-own-securities-besides-loans)
+- [Reclassifying](#reclassifying)
+- [Unanswered questions](#unanswered-questions)
+- [Reference](#reference)
 Accounting is a complicated topic.  This post tries to summarize the types of accounting classifications on bank assets and impacts on reclassification. 
 
 Image from [New York Fed Quarterly Trends for Consolidated U.S. Banking Organizations](https://www.newyorkfed.org/research/banking_research/quarterly_trends.html)
@@ -19,25 +24,47 @@ Look at it from distribution perspective overtime:
 # Accounting classifications of bank assets
 
 Below is a summary of the three accounting classifications of bank assets:
-**Trading**: Securities (debt and equity) that are bought and held for the purpose of selling in the near term. They are reported at fair value.  **Unrealized gains and losses are included in the earnings**. 
 
-**Held to maturity (HTM)**: Debt securities that the firm has the positive intent and ability to hold until maturity. (Equities can’t be included in this category since they don’t mature.)   They are reported at **amortized cost**.  
+**Trading**: Securities (debt and equity) that are bought and held for the purpose of selling in the near term. They are reported at fair value.  ***Unrealized gains and losses are included in the earnings***. 
 
-**Available for sale (AFS)**: A catch-all for debt and equity securities not captured by either of the above definitions. These are securities that the bank may retain for long periods but that may also be sold.  Often, they are held in the Treasury department of large banks.  The types of securities may include: US Treasury, sovereign debt, MBS, municipal bonds, corporate bonds, and so on.  They are reported at **fair value**.  However, **unrealized gains and losses are excluded from earnings**. Unrealized gains/losses are reported in a separate component of shareholders equity. 
+**Held to maturity (HTM)**: Debt securities that the firm has the positive intent and ability to hold until maturity. (Equities can’t be included in this category since they don’t mature.)   They are reported at ***amortized cost***.  
 
-Because of the different accounting treatments, in particular, 
+**Available for sale (AFS)**: A catch-all for debt and equity securities not captured by either of the above definitions. These are securities that the bank may retain for long periods but that may also be sold.  Often, they are held in the Treasury department of large banks.  The types of securities may include: US Treasury, sovereign debt, MBS, municipal bonds, corporate bonds, and so on.  They are reported at **fair value**.  However, ***non-credit related unrealized gains and losses are excluded from earnings***.    The noncredit-related component of the fair value decline is recognize in other comprehensive income (*OCI*). See [source](https://www.federalreserve.gov/supervisionreg/topics/faq-new-accounting-standards-on-financial-instruments-credit-losses-accessible.htm). 
+
+Because of the different accounting treatments, in particular on HTM and AFS, banks have been reclassifying their assets for various purposes. 
+
+# Why do banks own securities besides loans
+
+To understand how and why banks classify assets, we should first know why banks hold security assets in addition to loans.
+
+1. Banks may face an **imbalance between desposits and lendings**.   For example, there may not be enough good profitable lending opportunities.   In such cases, funding-rich banks may choose to invest in securities that reflect lending by other banks or by nonbank lenders (e.g., mortgage-backed securities issued by another lender), or direct debt issuance by nonfinancial firms (e.g., corporate bonds).
+
+2. For risk management and to meet regulatory requirements: securities can be sold more easily and with lower price impact than loans, for which the secondary market is less active. Regulation such as the **liquidity coverage ratio** developed as part of the Basel III Capital Accord requires banks to hold enough high-quality liquid assets to meet their liquidity needs under a thirty-day liquidity stress scenario.
+
+3. From a risk management point of view, holding securities may help the bank diversify or mitigate its risk exposures. Conversely, adjusting securities holdings can provide a straightforward way for banks to ramp up their level of risk in an effort to increase expected returns. For example, recent research argues that banks respond to expansionary monetary policy by lengthening the maturity of their securities portfolios, in an effort to boost yields.
+
+4. Keeping an inventory of securitiesfor market-making, broker-dealers services.
+
+5. Regulatory arbitrage:  holding securities instead of loans may reduce capital requirements.
+
 # Reclassifying
 
-Since AFS is a catch-all category, that means that banks can move assets in or out of the AFS to the other ones when the intent has changed.  For example, HTM to AFS and vice versa. Why?  Mostly to stablize earnings. 
+Since AFS is a catch-all category, that means that banks can move assets in or out of the AFS to the other ones when the intent has changed.  For example, HTM to AFS and vice versa. Why?  Mostly to stablize capital adequacy ratio and to stablize earnings. 
+![securities of three accounting classes](https://pythonrsas.github.io/images/posts/Securities%20Portfolios.PNG)
 
-### AFS
-The **U.S. Treasury Securities category** within AFS has been growing since the GFC, whereas the **U.S. Government Agency Obligations** category has been dropping during the same period of time. 
+Notice in the chart the HTM (red) has more than doubled in size as a percentage of all bank assets over the past several years. 
 
-When combined with the **U.S. State and Municipal Debt** category, the three together went from slighly below **5% of total assets** to slightly above 5%.  As a group they are very steady. 
+A key difference between HTM and AFS is the accounting treatment of gains and losses as described at the begnning of the post.   The gains and losses in the value of HTM  that result from market movements (e.g., interest rates) aren’t recognized unless the asset is sold.   
 
-**AFS as a whole decreased** the most (slope the steepest) after 2003 until the GFC.   Was it **due to rising rates** of that period?  
+For AFS securities, however, such shifts in value, while not affecting accounting income, do affect the measurement of regulatory capital adequacy for large banks under the Basel III framework (for so-called “advanced approaches” firms). Correspondingly, increasing the fraction of securities classified as HTM has the capacity to reduce the volatility of regulatory capital ratios but will limit banks’ ability to sell those securities in the future.
 
-We expect to see reduced AFS in 2022 as the Fed has been increasing rates.  Indeed, even with 1 quarter of the data in 2022, we see that AFS has dropped. 
+For example, in 2014, [Bloomberg reported](https://www.bloomberg.com/news/articles/2014-02-26/banks-averting-bond-losses-with-accounting-twist-credit-markets) that JMPC and Wells Fargo are leading a shift in how banks account for their bond investments after a $44 billion plunge in value exposed a potential drain on capital under new rules.  It also reported that The largest U.S. lenders are moving assets into HTM instead of designating them as AFS.
+
+# Unanswered questions
+
+**AFS as a whole decreased** the most (slope the steepest) after 2003 until the GFC.   Was it **due to rising rates** of that period?  What was the accounting method before and after 2003? 
+
+If it was due to rising rates, then we expect to see reduced AFS in 2022 as the Fed has been increasing rates.  Indeed, even with 1 quarter of the data in 2022, we see that AFS has dropped.  We will find out more when the new quarterly reports comes out.  
 
 ![AFS](../images/posts/AFS.PNG)
 
@@ -50,3 +77,5 @@ We expect to see reduced AFS in 2022 as the Fed has been increasing rates.  Inde
 [Quarterly Trends for Consolidated U.S. Banking Organizations
 First Quarter 2022
 Federal Reserve Bank of New York](https://www.newyorkfed.org/medialibrary/media/research/banking_research/quarterlytrends2022q1.pdf?la=en)
+
+[Bloomberg: Banks Averting Bond Losses With Accounting Twist: Credit Markets](https://www.bloomberg.com/news/articles/2014-02-26/banks-averting-bond-losses-with-accounting-twist-credit-markets)

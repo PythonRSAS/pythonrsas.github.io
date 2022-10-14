@@ -3,7 +3,7 @@ layout: post
 tag: CAP theorem and the financial industry
 category: "other risks"
 title: "CAP theorem"
-description: Strong and immediate consistency and availability are the requirements for banking apps. 
+description: Strong and immediate consistency and availability are the requirements for banks and trading firms
 author: Sarah Chen
 image: images/posts/CAP_Theorem.png
 ---
