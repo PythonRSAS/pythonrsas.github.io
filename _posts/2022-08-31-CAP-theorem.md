@@ -5,9 +5,9 @@ category: "other risks"
 title: "CAP theorem"
 description: Strong and immediate consistency and availability are the requirements for banking apps. 
 author: Sarah Chen
-image: images/posts/photos/IMG-0683.jpg
+image: images/posts/CAP_Theorem.PNG
 ---
-
+![CAP](https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/CAP_Theorem.svg/330px-CAP_Theorem.svg.png)
 To support all those types of computing, a robust, distributed database is a prerequisite. The distributed databases, mostly NoSQL, come in a wide variety of data models, including key-value, document, columnar and graph formats; Apache HBase, Cassandra, Redis, MongoDB, Elastic Search, Solr, Neo4j to name a few. However, to effectively pick the tool of choice, a basic idea of the CAP Theorem (Brewer’s Theorem) is essential.
 
 The CAP (Consistency, Availability and Partition Tolerance) Theorem states that a distributed system cannot be strictly consistent, highly available and fault tolerant at the same time. The system designers MUST choose at most two out of three guarantees in the system.
@@ -23,7 +23,7 @@ For many other companies, the strict immediate consistency that banks require is
 
 Availability means that every request receives a response about whether it was successful or failed. Whether you want to read or write you will get some response back. i.e. the system continues to work and serve data despite node failures. This is achieved by using many replicas to store data such that clients always have access to at least one working replica guarantees availability.
 
-For example, a user in LinkedIn might try accessing a resource like shared post or video during peak time. Now due to overloading the LinkedIn will reply to requests with an error code “try again later.” Being told this immediately is more favorable than having to wait minutes or hours before one gives up.
+For example, a user searches for some goods during peak time. Once in a while Amazon or Walmart may reply to requests with an error code “try again later.” Being told this immediately is more favorable than having to wait minutes or hours before one gives up.
 
 # Partition Tolerance
 
