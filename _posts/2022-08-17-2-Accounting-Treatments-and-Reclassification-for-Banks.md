@@ -24,6 +24,21 @@ Look at it from distribution perspective overtime:
 **Available for sale (AFS)**: A catch-all for debt and equity securities not captured by either of the above definitions. These are securities that the bank may retain for long periods but that may also be sold.
 
 
+# Reclassifying
+
+Since AFS is a catch-all category, that means that banks can move assets in or out of the AFS to the other ones.  For example, HTM to AFS and vice versa. Why?  Mostly to stablize earnings. 
+
+### AFS
+The **U.S. Treasury Securities category** within AFS has been growing since the GFC, whereas the **U.S. Government Agency Obligations** category has been dropping during the same period of time. 
+
+When combined with the **U.S. State and Municipal Debt** category, the three together went from slighly below **5% of total assets** to slightly above 5%.  As a group they are very steady. 
+
+**AFS as a whole decreased** the most (slope the steepest) after 2003 until the GFC.   Was it **due to rising rates** of that period?  
+
+We expect to see reduced AFS in 2022 as the Fed has been increasing rates.  Indeed, even with 1 quarter of the data in 2022, we see that AFS has dropped. 
+
+![AFS](../images/posts/AFS.PNG)
+
 # Reference
 
 [Available for Sale? Understanding Bank Securities Portfolios](https://libertystreeteconomics.newyorkfed.org/2015/02/available-for-sale-understanding-bank-securities-portfolios/)
