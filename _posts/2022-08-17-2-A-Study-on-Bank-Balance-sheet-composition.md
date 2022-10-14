@@ -74,11 +74,12 @@ $2 million or more in average trading assets in any of the four preceding quarte
 ![Trading Assets and Liabilities](../images/posts/Trading Assets and Liabilities.PNG)
 
 ## Securities Portfolios
-The HTM category has been growing since the GFC. 
 
-Note: Chart measures debt and equity securities portfolios. Thus, trading portfolio excludes other types of
-trading assets such as whole loans and derivatives.
+Note: Chart measures debt and equity securities and excludes other types of trading assets such as whole loans and derivatives.
 ![Securities Portfolios](../images/posts/Securities Portfolios.PNG)
+
+• HTM category has been growing since the GFC. 
+• Steady increases in debt and equity securities held for trading purposes in the period after the repeal of the Glass-Steagall Act in 1999 (this act had largely separated investment banking and commercial banking up to that point).  During the GFC, there was a sharp decline which would have been larger if not for the conversion of two large trading firms, Goldman Sachs and Morgan Stanley, to bank holding companies in September 2008.
 
 ### AFS
 The **U.S. Treasury Securities category** within AFS has been growing since the GFC, whereas the **U.S. Government Agency Obligations** category has been dropping during the same period of time. 

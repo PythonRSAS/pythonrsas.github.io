@@ -5,7 +5,7 @@ category: "other risks"
 title: "CAP theorem"
 description: Strong and immediate consistency and availability are the requirements for banking apps. 
 author: Sarah Chen
-image: images/posts/CAP_Theorem.PNG
+image: images/posts/CAP_Theorem.png
 ---
 ![CAP](https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/CAP_Theorem.svg/330px-CAP_Theorem.svg.png)
 The CAP (Consistency, Availability and Partition Tolerance) Theorem states that a distributed system cannot be strictly consistent, highly available and fault tolerant at the same time. The system designers MUST choose at most two out of three guarantees in the system.
@@ -25,7 +25,7 @@ For example, a user searches for some goods during peak time. Once in a while Am
 
 # Partition Tolerance
 
-Partition tolerance means that the system will continue operate even if any number of messages sent between nodes is lost. A single node failure should not cause the entire system to collapse. 
+Partition tolerance means that the system will continue operate during partitioning even if any number of messages sent between nodes is lost. A single node failure should not cause the entire system to collapse. 
 
 # The CAP Trade-off
 ## CA (Consistency and Availability) – Non-distributed system
