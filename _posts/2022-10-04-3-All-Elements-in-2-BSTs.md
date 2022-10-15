@@ -5,7 +5,7 @@ category: education
 title: "All Elements in 2 BSTs"
 description: Leetcode 1305. All Elements in Two Binary Search Trees
 author: Sarah Chen
-image: images/posts/photos/farm/IMG-1230.jpg
+image: images/posts/photos/farm/IMG-1930.jpg
 
 ---
 ![](../images/posts/photos/farm/IMG-1930.jpg)
@@ -29,6 +29,7 @@ Example 1:
 Input: root1 = [2,1,4], root2 = [1,0,3],
 Output: [0,1,1,2,3,4]
 ![allElements2BST](..\images\posts\allElements2BST.PNG)
+
 Example 2:
 
 Input: root1 = [1,null,8], root2 = [8,1],
@@ -47,6 +48,21 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+def preorderTraversal(root):
+        res = []
+        preorder(root, res)       
+        return res
+def preorder(node, A):
+        if not node:
+            return
+        A.append(node.val)
+        preorder(node.left, A)
+        preorder(node.right, A)
+# define the trees
+# root1 = [2,1,4], root2 = [1,0,3]
+Root1 = TreeNode(val = 1)        
+Root.right = TreeNode(val = 4)
+Root.right.left = TreeNode(val = 2)
 def findMode(A):
     """
     return mode of consecutive number or letter from input array
@@ -65,18 +81,14 @@ def findMode(A):
             M = C
             T = A[i]
     return T
-def inorder(root):
+def preorder(root):
     """
     inorder traversal that returns the list of visited nodes
     """
     if root==None:
         return []
     return inorder(root.left) + [root.val] + inorder(root.right)
-# define the trees
-# root1 = [2,1,4], root2 = [1,0,3]
-Root1 = TreeNode(val = 1)        
-Root.right = TreeNode(val = 4)
-Root.right.left = TreeNode(val = 2)
+
 
 A = inorder(Root) # get array from inorder traversal
 print(findMode(A)) # calling the function
