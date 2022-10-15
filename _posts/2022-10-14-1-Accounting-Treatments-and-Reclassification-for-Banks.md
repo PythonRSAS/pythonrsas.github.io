@@ -60,12 +60,15 @@ For AFS securities, however, such shifts in value, while not affecting accountin
 
 On Oct 11, 2013, the [Federal Register](https://www.govinfo.gov/content/pkg/FR-2013-10-11/pdf/2013-21653.pdf), published by the Department of Treasury and the OCC, wrote "[...] consistent with Basel III, the agencies and the FDIC proposed to
 require banks to include
-the majority of AOCI components in common equity tier 1 capital."   Then it went on to say that they received a significant number of comments on the proposal to require banks to recognize AOCI in common equity tier 1 capital.  Interestingly, the comments expressed concerns that became reality:
-the change would introduce significant volatility in banks’ capital ratios due in large part to fluctuations in benchmark interest rates, and would result in many banks moving AFS securitiesinto HTM or holding additional regulatory capital solely to mitigate the volatility resultingfrom temporary unrealized gains and losses in the AFS securities portfolio.The commenters also asserted that the change would likely impair lending and negatively affect banks’ ability to manage liquidity and interest rate risk and to maintain compliance with legal lending limits. 
+the majority of AOCI components in common equity tier 1 capital."   
 
-For example, in 2014, [Bloomberg reported](https://www.bloomberg.com/news/articles/2014-02-26/banks-averting-bond-losses-with-accounting-twist-credit-markets) that JMPC and Wells Fargo are leading a shift in how banks account for their bond investments after a $44 billion plunge in value exposed a potential drain on capital under new rules.  It also reported that The largest U.S. lenders are moving assets into HTM instead of designating them as AFS.
+Then it went on to say that they received a significant number of comments on the proposal to require banks to recognize AOCI in common equity tier 1 capital.  Interestingly, the comments expressed concerns that became reality:
 
-If you own that bond for investment purposes, and you don't have any "intent of selling it within hours or days," you have an investment loss on paper, but you get to treat it a bit more gently. (This is called "available for sale," or AFS.) The loss doesn't flow through your net income; instead it flows through a different place called "other comprehensive income," and everyone agrees to treat that as somewhat less important than net income. Everyone except Basel III bank capital regulation: Last year, regulators ungallantly decided to require you to treat those unrealized investment losses as reducing your capital.
+"the change would introduce significant volatility in banks’ capital ratios due in large part to fluctuations in benchmark interest rates, and would **result in many banks moving AFS securities into HTM or holding additional regulatory capital** solely to mitigate the volatility resultingfrom temporary unrealized gains and losses in the AFS securities portfolio."
+
+The commenters also asserted that the change would likely impair lending and negatively affect banks’ ability to manage liquidity and interest rate risk and to maintain compliance with legal lending limits."
+
+In 2014, [Bloomberg reported](https://www.bloomberg.com/news/articles/2014-02-26/banks-averting-bond-losses-with-accounting-twist-credit-markets) that JMPC and Wells Fargo are leading a shift in how banks account for their bond investments after a $44 billion plunge in value exposed a potential drain on capital under new rules.  It also reported that The largest U.S. lenders are moving assets into HTM instead of designating them as AFS.
 
 # Unanswered questions
 

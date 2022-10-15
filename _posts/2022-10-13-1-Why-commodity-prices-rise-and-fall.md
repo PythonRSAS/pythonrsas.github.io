@@ -44,3 +44,7 @@ The same factors that impact demand do impact supply as well.  We will just high
 2. **Extraordinary events** can affect supply.  The Russia-Ukraine war damanged pipes, routes and ports for transporting natural gas, wheat, corn and other commodity.  As a result, supply has dropped.   
 
 3. Regulation can definitely change supply.  When some commodity when from illegal to legal status, or the opposite, supply dynamics will very quicky change.  
+
+# Reference
+
+[RICHARD N. COOPER Yale University ROBERT Z. LAWRENCE Brookinzgs Institution and Yale University,  The 1972-75 Commodity Boom](https://www.brookings.edu/wp-content/uploads/1975/12/1975c_bpea_cooper_lawrence_bosworth_houthakker.pdf)
