@@ -64,7 +64,7 @@ the majority of AOCI components in common equity tier 1 capital."
 
 Then it went on to say that they received a significant number of comments on the proposal to require banks to recognize AOCI in common equity tier 1 capital.  Interestingly, the comments expressed concerns that became reality:
 
-"the change would introduce significant volatility in banks’ capital ratios due in large part to fluctuations in benchmark interest rates, and would **result in many banks moving AFS securities into HTM or holding additional regulatory capital** solely to mitigate the volatility resultingfrom temporary unrealized gains and losses in the AFS securities portfolio."
+"[…] the change would introduce significant volatility in banks’ capital ratios due in large part to fluctuations in benchmark interest rates, and would **result in many banks moving AFS securities into HTM or holding additional regulatory capital** solely to mitigate the volatility resultingfrom temporary unrealized gains and losses in the AFS securities portfolio."
 
 The commenters also asserted that the change would likely impair lending and negatively affect banks’ ability to manage liquidity and interest rate risk and to maintain compliance with legal lending limits."
 
