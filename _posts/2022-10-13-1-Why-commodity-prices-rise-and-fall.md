@@ -8,35 +8,39 @@ author: Sarah Chen
 image: images/posts/photos/sf/IMG_0934.JPG
 ---
 
+Commodity prices are driven by supply and demand, of course.  What drives supply and demand then? And what else impact commodity prices? 
 
-Ten year Treasury (aka 'T10') is one of the most watched metric for financial institutions.  It has been rising lately after a long period of staying very low. 
+# Inflation and deflation
 
-Yield rise is because prices are down.  
+Inflation and deflation affect prices of almost all goods, including commodities.  Take oil for example, oil prices are higher in an inflationary enviroment since dollar is the currency that is used for most trades.  If one dollar is less than it was a year ago, then it should buy less oil.  Equivalently, prices are higher for the same quantity of oil.  
 
-Prices are down because demand has droppoed, and more are selling than buying. 
+People often thought inflation was caused by higher oil prices.  I think that's not the correct logic.  The right logic is that higher oil prices are the result of inflation.  Since most products and goods are related to oil prices, their prices will go up as well.  
 
-Why are people (and 'people') selling bonds(T10)?  
+There are also situations that oil prices go up due to supply constraints and subsequently cause higher prices in everything.  That's a different story.  
 
-Patrick Pancoast from Intuition Learning explains the reason.
+# Demand
+Stronger or weaker demand can very quickly impact prices.  
 
-We all know that inflation has been rising.  
+1. **Economic strength impact demand**.
 
-People look at inflation, and they anticipate the Fed will be raising rates (and the Fed has been). 
+For example, when the Chinese economy and the housing market was skyrocketing, the demand was strong on many commodities, especially iron ore prices.  As the Chinese economy and the housing market slow down, iron ore prices are projected to be lower due to weaker demands. 
 
-They do not want to hold on bonds. 
+Another example, as countries came out of Covid lockdowns, the demand for traveling suddenly increased many fold.  This puts upper pressure on fuel prices. 
 
-> "If I hold the bonds, **when the Fed raises rates, prices of the bonds will drop**."  
+2. **expectation can drive up demand** However, besides consumption, expectation of events can as well.  When people hear about some possible upcoming crisis (Covid lockdown, supply chain problem, hurricane, inflation), they go out and buy those things they need (or they can sell) and hoard.  If many people are buying and hoarding at the same time, prices will be higher, or goods become simply not available. 
 
-> "So I should sell them.  If I want to buy T10, I will buy the newly issued bonds (at a cheaper price) later when rates are higher" 
+When there is a strong expectation of inflation, financial institutions and large businesses want to hedge for inflation.  They buy commodity futures.  Just like the hoarders, their actions drive up demand and subsequently the prices. 
 
-Therefore, when there is expectation that the Fed is raising rates, bond yield will rise. 
+3. **Behavior changes can also impact demand**
+   
+4. **Regulation can also impact demand**.  For example, some states forbid new homes using natural gas as a heating source.  So from a local perspective, eventually demand for natural gas will be lower than before the regulation.   As another example, many states give tax incentives for electric vehicles, which can lower demand for petro-fueled cars.  
 
-# Why 2 year Treasury yield higher than 10 year?
+# Supply
+Now we come to supply. Supply and price have inverse relationship.  Oversupply leads to lower prices, and vice versa.  Precious metals are expensive because the supply is limited. 
 
-Normally, consider time value of money, we would expect longer term yield to be higher than shorter term ones.  But often it is not the case.  
+The same factors that impact demand do impact supply as well.  We will just highlight a couple. 
+1. **Investments and commodity business cycles impact supply**.  Like almost all businesses, the best of time is also the worst of time.  In the best of time, commodity business is very profitable.  So more investments come in to produce more of the commodity.  But when economic slows down couples with an oversupply of goods, prices will fall sharply.  When prices are low, commodity producers and investors lose money.  Many exit the market.  Supply drops.  This creates a cycle. 
 
-Right now 2Y yield is above 3.128%. Whereas the 10Y is below 3%.  Why is that?
+2. **Extraordinary events** can affect supply.  The Russia-Ukraine war damanged pipes, routes and ports for transporting natural gas, wheat, corn and other commodity.  As a result, supply has dropped.   
 
-There may be two reasons:
-1. Investors believe long term rates will back down because they believe the Fed cannot keep rates high either due to recession or inflation will be fixed before too long.
-2. There are more buyers of 10Y Treasury than buyers of 2Y.  Or possibly the other way around: there are more sellers of 2Y Treasury than 10Y.  This may likely because of near term rate hike expectations. ****
+3. Regulation can definitely change supply.  When some commodity when from illegal to legal status, or the opposite, supply dynamics will very quicky change.  
