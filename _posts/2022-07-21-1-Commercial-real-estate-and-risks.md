@@ -28,7 +28,7 @@ Commercial real estate risks vary greatly by location and property type, and man
 4. Interest rates
    Floating rate loans will suffer a lot more in a rising inflationary enviroment.
 
-   IO (interest-only) loans may have higher risks as well.  IO loans do not pay down principal overtime.  And the final payment is a balloon payment. If borrower cannot refinance at affordable terms then there is a strong default risk. 
+   IO (interest-only) loans may have higher risks as well.  IO loans do not pay down principal overtime.  And the final payment is a balloon payment. If borrower cannot refinance at affordable terms then there is a strong default risk.  Loans with large balloon payments can be distressed when maturity dates are near. 
 
 5. Lease tems
    While hotel property type has an immediate response to macroeconomic shocks and disasters (e.g., 9/11 terror attack, Covid pandemic), offices and industrial property types often have long term leases, some are well over 10 years, and will show a lagged response to stress. 
@@ -67,4 +67,13 @@ With the crime rate increasing in some major metropolitan cities, office workers
 
 Using myself as an example, before Covid, I used to be in the office nearly 7 days a week.  I liked to study and work on my book when the office was quiet during the weeekend.  Now, with the NYC crime rate, I try not to get out of my place if I can help it.  
 
+# CRE risk models
 
+CRE models are commonly segmented by property type,  and sometimes also geographic locations.  
+Often they take a two-step approach: first model the CRE fundamentals like the NOI, vacancy rates, 
+
+1. Some models are segmented by property type and geographic locations.  Probability of default and rating migration models: First simulate NOI and value paths, along the paths determine DSCR and LTV; then the PD and TM models are functions of the LTV and DSCR.  The LGD model is a function of LTV, which is estimated by using an adjustment for accrued interest, cost and distress property value for each simulated path. 
+2. Some models may also be segmented by property type and geographic location and have similar drivers except not based on simulation.  
+3. Some others may first models NOI growth rate and price (or value) growth rate using econometic approach using rental rates, occupancy rates, and MEVs.  FOr PD, besides DSCR and LTV, other factors are: recent changes to the property value, property type, vintage, delinquency, market tier, loan type, and remaining term.
+4. In addition to default rate, some may use survival modeling approach and have time to liquidation as target, which tries to capture the effects of accrued interest, deterioration of property and fees/costs.  
+   

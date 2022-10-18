@@ -5,10 +5,10 @@ category: education
 title: "All Elements in 2 BSTs"
 description: Leetcode 1305. All Elements in Two Binary Search Trees
 author: Sarah Chen
-image: images/posts/photos/farm/IMG-1930.jpg
+image: images/posts/photos/farm/IMG-2256.jpg
 
 ---
-![](../images/posts/photos/farm/IMG-1930.jpg)
+![](../images/posts/photos/farm/IMG-2256.jpg)
 - [Problem](#problem)
 - [Brute force method O(n log(n))](#brute-force-method-on-logn)
 - [O(n) solution](#on-solution)

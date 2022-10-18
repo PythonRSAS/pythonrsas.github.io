@@ -21,8 +21,27 @@ For example, some have multiple places of unnecessary indicator variable creatio
 
 Because PD and LGD are modeling labels and continuous numbers, respectively.  The visualizations and metrics will be two different sets corresponding to categorical target and continuous numeric taget, respectively. 
 
+## Bad examples
+In the following code, it is completely unnecessary to create so many columns out of the original date columns.  It not only takes up more space by creating many new columns but is more error prone.
+<div class="code-head"><span>code</span>redundant columns.py</div>
+
+```py
+df['date'] = df['original_date'].dt.strftime('%d/%m/%Y')
+df['year'] = pd.DateimeIndex(df['date']).year
+df['month'] = pd.DateimeIndex(df['date']).month
+df['day'] = pd.DateimeIndex(df['date']).day
+df['year_month'] = df['year']*10000 + df['month']*100
+df['year_month_str'] = df['year_month'].astype(str)
+df['year_month_day'] = df['year_month'] + df['day']
+df['year_month_day_str'] = df['year_month_str'].astype(str)
+df['ID_year_month_day'] = df['ID=='] + '_' +  df['ID_year_month_day']
+...
+```
+
 ## PD specifically
 PD by year/quarter plot: 
 -	Although we use boxplots routinely on LGD, there is no such thing as boxplot for binary targets.
 -   However, quarterly average PD rates can be used as alternative data points. Boxplot can be used on them. 
+
+
 
