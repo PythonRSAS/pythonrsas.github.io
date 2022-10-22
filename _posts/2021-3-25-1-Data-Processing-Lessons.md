@@ -14,14 +14,15 @@ For example, some have multiple places of unnecessary indicator variable creatio
 
 > Need to be disciplined and organized!
 # General principles
-1.	Move all data format correction code in block.
-2.	Do not create indictor variables here and there.  Do it in one shot.
-3.	Do not output describe until unneeded variables are mostly dropped.
-4.	Plot scatterplots in one shot for all numeric variables.
+1.	Don't create (too many) unnecessary columns.  
+2.  Move all data format correction code in block.
+3.	Do not create indictor variables here and there.  Do it in one shot.
+4.	Do not output describe until unneeded variables are mostly dropped.
+5.	Plot scatterplots in one shot for all numeric variables.
 
 Because PD and LGD are modeling labels and continuous numbers, respectively.  The visualizations and metrics will be two different sets corresponding to categorical target and continuous numeric taget, respectively. 
 
-## Bad examples
+## 1. Don't create (too many) unnecessary columns
 In the following code, it is completely unnecessary to create so many columns out of the original date columns.  It not only takes up more space by creating many new columns but is more error prone.
 <div class="code-head"><span>code</span>redundant columns.py</div>
 
@@ -36,7 +37,41 @@ df['year_month_day'] = df['year_month'] + df['day']
 df['year_month_day_str'] = df['year_month_str'].astype(str)
 df['ID_year_month_day'] = df['ID=='] + '_' +  df['ID_year_month_day']
 ...
+...
 ```
+## 2. Move all data format correction code in block
+In the data discovery phase,  yes, you may need to correct data format as discovered.  Afterwards, we need to clean up the code and consolidate data format corrections.  Sometimes, you can even put them all in the input step.  
+Regulatory models often use quarterly data.   Some metrics may use quarterly average.  Some just pick either start of the quarters of end of the quarters. 
+For example,  to pick only March, June, September and December data.
+
+<div class="code-head"><span>code</span>data formatting.py</div>
+
+```py
+cols = ['Facility_id', 'obligor_id', 'loan_balance', 'elapse_time', 'remaining_time', 'facility_type', 'industry', 'region', 'date']
+data_types = {
+    'Facility_id': str,
+     'obligor_id': str,
+     'loan_balance': float,
+     'elapse_time': float,
+     'remaining_time': float,
+     'facility_type': str,
+     'industry': str,
+     'region': str
+}
+df = pd.read_csv(filename, usecols = cols, dtype = data_types)
+df['date'] = pd.to_datetime(df['date'])
+df[df['date'].month.isin(3, 6, 9, 12)]
+```
+
+## Data aggregation
+We routinely need aggregation by some categorical variable such as industry, product or regions, and date. 
+
+
+```python
+df1 = pd.concat([df.groupby[('category', 'date')]['balance'].sum(), df.groupby[('category', 'date')]['limit'].sum()], axis =1).reset_index()
+df1['use'] = df['balance'] / df['limit']
+```
+
 
 ## PD specifically
 PD by year/quarter plot: 

@@ -8,7 +8,7 @@ author: Sarah Chen
 image: images/posts/photos/sf/IMG_0934.JPG
 ---
 
-Commodity prices are driven by supply and demand, of course.  What drives supply and demand then? And what else impact commodity prices? 
+Commodity prices are driven by supply and demand, of course.  What drives supply and demand then? And what else impact commodity prices?  Weather, climate change, geopolitical events, technology, behavior change, regulation, just to name a few.  However, it is important to keep in mind that markets have very quick ways to adjust itself.  A **shortage can quickly turn into an oversupply**.  
 
 # Inflation and deflation
 
@@ -41,9 +41,31 @@ Now we come to supply. Supply and price have inverse relationship.  Oversupply l
 The same factors that impact demand do impact supply as well.  We will just highlight a couple. 
 1. **Investments and commodity business cycles impact supply**.  Like almost all businesses, the best of time is also the worst of time.  In the best of time, commodity business is very profitable.  So more investments come in to produce more of the commodity.  But when economic slows down couples with an oversupply of goods, prices will fall sharply.  When prices are low, commodity producers and investors lose money.  Many exit the market.  Supply drops.  This creates a cycle. 
 
-2. **Extraordinary events** can affect supply.  The Russia-Ukraine war damanged pipes, routes and ports for transporting natural gas, wheat, corn and other commodity.  As a result, supply has dropped.   
+2. **Geopolitical events** can affect supply.  The Russia-Ukraine war damanged pipes, routes and ports for transporting natural gas, wheat, corn natural gas and other commodity.  As a result, supply has dropped.    Spikes are 40% to 50% or even higher changes up and down.  
 
 3. Regulation can definitely change supply.  When some commodity when from illegal to legal status, or the opposite, supply dynamics will very quicky change.  
+   
+4. Weather
+Whenever we have a hurricane coming or other types of severe storm, the energy prices always.  For example, during Hrricane Katrina and Rita, and the Texas snow storm, energy prices spiked, but then quickly returned to pre-hurricane level after the bad weather passed. 
+
+# Commodity and climate change
+ 
+A closely related perspective is climate change.  It is often quoted that the last ten years the world has observed more extreme weather than the decade before: extreme heat, drought, flooding, etc. can all aggrevate the commodity markt. 
+
+# Commodity positions
+Portfolio diversification across the value chain is critial for commodities. 
+
+Sector  | Producers | Refiners | Consumers | Hedge Funds and Investors
+---------|----------|---------
+ Position | "long" raw material | "short" raw material & "long" product |  "short" product | 
+ Transaction | sell raw material or sell product forward | Buy product forward | Buy and sell based on perception of market
+
+A large bank may engage with all sectors of customers, including producers, refiners, consumers and investors.  By doing so, the bank will have a diversified portfolio that has off-setting positions, as well as more products for broader customer base. 
+
+
+Question: 
+1. how fast
+2. what kind of research that goes into your : geopolitical.  everything is event based.  And look at the fundamental.  If you have a shock, can you wheather the shock.   Never do going Jan and Feb 
 
 # Reference
 
