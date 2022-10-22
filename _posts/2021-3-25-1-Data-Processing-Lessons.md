@@ -22,8 +22,26 @@ For example, some have multiple places of unnecessary indicator variable creatio
 
 Because PD and LGD are modeling labels and continuous numbers, respectively.  The visualizations and metrics will be two different sets corresponding to categorical target and continuous numeric taget, respectively. 
 
-## 1. Don't create (too many) unnecessary columns
+## Don't create (too many) unnecessary columns
 In the following code, it is completely unnecessary to create so many columns out of the original date columns.  It not only takes up more space by creating many new columns but is more error prone.
+
+If you need month, year, day, you can use the following code.  And there is no sense of creating a string type of all the dates.
+
+```python
+df.date.dt.month
+df.date.dt.year
+df.date.dt.day
+```
+
+If you need both year and month together, you can do the following instead of getting year and month, and then concatenate them:
+```python
+df.date.dt.to_period('m')
+# 2020-09
+# 2020-12
+# 2020-09
+```
+
+
 <div class="code-head"><span>code</span>redundant columns.py</div>
 
 ```py
@@ -39,10 +57,9 @@ df['ID_year_month_day'] = df['ID=='] + '_' +  df['ID_year_month_day']
 ...
 ...
 ```
-## 2. Move all data format correction code in block
+
+## Move all data format correction code in block
 In the data discovery phase,  yes, you may need to correct data format as discovered.  Afterwards, we need to clean up the code and consolidate data format corrections.  Sometimes, you can even put them all in the input step.  
-Regulatory models often use quarterly data.   Some metrics may use quarterly average.  Some just pick either start of the quarters of end of the quarters. 
-For example,  to pick only March, June, September and December data.
 
 <div class="code-head"><span>code</span>data formatting.py</div>
 
@@ -60,17 +77,36 @@ data_types = {
 }
 df = pd.read_csv(filename, usecols = cols, dtype = data_types)
 df['date'] = pd.to_datetime(df['date'])
+```
+
+Regulatory models often use quarterly data.   Some metrics may use quarterly average.  Some just pick either start of the quarters or end of the quarters. 
+For example,  to pick only March, June, September and December data.
+
+```python
 df[df['date'].month.isin(3, 6, 9, 12)]
 ```
 
+
 ## Data aggregation
 We routinely need aggregation by some categorical variable such as industry, product or regions, and date. 
-
+Note that in code below, the purpose of the programmer was to computer the usage column by date and some categorical variable. It is unnessarily doing two separate groupbys and reset index and set index again.  
 
 ```python
-df1 = pd.concat([df.groupby[('category', 'date')]['balance'].sum(), df.groupby[('category', 'date')]['limit'].sum()], axis =1).reset_index()
+df1 = pd.concat([df.groupby[('category', 'date')]['balance'].sum(), df.groupby[('category', 'date')]['limit'].sum()], axis =1).reset_index().set_index('date')
 df1['use'] = df['balance'] / df['limit']
 ```
+
+Instead, it is much simpler to do the following:
+```python
+df[['category', 'date', 'balance', 'limit']].groupby[('category', 'date')].sum().droplevel(0)
+             balance     limit
+# date      
+# 2020-09
+# 2020-12
+# 2020-09
+
+```
+
 
 
 ## PD specifically
