@@ -2,7 +2,7 @@
 layout: splash
 heading: sarah chen
 title: Sarah Chen
-description: Personal Website of Sarah Chen
+description: Senior data scientist and beginning gardener
 color: grad-about
 permalink: /
 ---
