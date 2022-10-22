@@ -107,12 +107,51 @@ df[['category', 'date', 'balance', 'limit']].groupby[('category', 'date')].sum()
 
 ```
 
+# Cartesian product
+Most of the time, we want data joins to be key-based one to one joins.  Sometimes however, we use cartesian product for data manipulation.  For example, we want to compare at obligor (or facility level) its metrics at time t and metrics before time t for all t that it exists in the data. 
+
+For each data point in the Cartesian product, we use date0 as the anchor, and keep only those records that have date0 as historical. 
+
+<div class="code-head"><span>code</span>use cartesian product to compare history.py</div>
+
+```py
+df_copy = df.copy()
+df_copy.rename(columns = {'date': 'date0', 'balance': 'balance0', 'limit': 'limit0'})
+df_cartisian = pd.merge(df, df_copy, on = 'id')
+df_cartisian0 = df_cartesian[df_cartesian['date'] > df_cartesian['date0']]
+```
 
 
-## PD specifically
+# Plotting
+
+We routinely need to plot historical time series together.  There are many ways to plot time series plots for multiple metrics.  Below is a simple version to get a quick view.  You can do deep dives once you notice something worth deep diving. 
+
+<div class="code-head"><span>code</span>time series plots for multiple metrics.py</div>
+
+```py
+def ts_multi_metric(df, cate):
+    temp = df[df['category'] == cate].copy()
+    fig = plt.figure()
+    ax1 = fig.add_subplot(1, 1, 1)
+    ax2 = ax1.twinx()
+
+    l1 = ax1.plot(temp['metric1'], c = grey, label = 'metric1')
+    l2 = ax1.plot(temp['metric2'], c = blue, label = 'metric2')
+    l3 = ax2.plot(temp['metric3'], c = green, label = 'metric3', linestyle = ':')
+
+    ax1.set_xlabel('date')
+    ax1.set_ylabel('metric 1&2 unit')
+    ax2.set_ylabel('metric 3 unit')
+
+    # legend
+    lines = l1 + l2 + l3
+    labels = [l.get_label() for l in lines]
+    plt.legend(lines, labels)
+    ax1.set_title(cate)
+ts_multi_metric(df, cate)
+```
+
 PD by year/quarter plot: 
 -	Although we use boxplots routinely on LGD, there is no such thing as boxplot for binary targets.
 -   However, quarterly average PD rates can be used as alternative data points. Boxplot can be used on them. 
-
-
 
