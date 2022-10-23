@@ -2,7 +2,7 @@
 layout: splash
 heading: sarah chen
 title: Sarah Chen
-description: Data scientist and beginning gardener
+description: Data scientist and gardener
 color: grad-about
 permalink: /
 ---
