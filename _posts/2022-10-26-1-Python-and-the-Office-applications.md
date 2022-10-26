@@ -1,6 +1,6 @@
 ---
 layout: post
-tag: Office, VBA, python, automation
+tag: Microsoft Office, VBA, python, automation
 category: "education"
 title: "Python and the Office applications"
 description: Use VBA in Python and the other way too
@@ -12,6 +12,9 @@ image: images/posts/office.PNG
 - [Excel](#excel)
 - [Outlook](#outlook)
 - [PowerPoint](#powerpoint)
+  - [Create dashboard](#create-dashboard)
+  - [Copy from Excel to PowerPoint](#copy-from-excel-to-powerpoint)
+- [Run VBA code from Python](#run-vba-code-from-python)
 
 # Introduction
 Most of the corporate office work is still immersed in MS Office: Excel, Outlook emails, PowerPoint and Word documents.  To reduce Office fatigue, we can use Python.  
@@ -161,6 +164,7 @@ You can add images and attachments too.
 # PowerPoint
 For Powerpoint, <span class="coding">pptx</span> is one other library.  I find it easy to use. 
 
+## Create dashboard
 In the code below, I create a Powerpoint presentation or dashboard of 9 timeseries with a header and footer textboxes filled with text hardcoded or imported.  We can specify font type, size, color and whether we want text wrapping. 
 
 We have already created the 9 timeseries plots and saved them individually in our images folder. These 9 timeseries can be major economic indicators, key commodity prices, foreign exchange rates, swap rates, stock indices, etc.  
@@ -258,3 +262,71 @@ run.font.color.rgb = RGBColor(90, 90, 90) # lighter color for footer
 # save pptx
 prs.save("my_presentation%s.pptx"%TODAY)
 ```
+
+## Copy from Excel to PowerPoint
+Copying tables, charts and heatmaps from Excel to PowerPoint is something that office workers do all the time.  
+
+**Copy from Excel tables to PowerPoint**
+This example references code from [Sigma Coding's Github](https://github.com/areed1192/sigma_coding_youtube/blob/master/python/python-vba-powerpoint/Win32COM%20-%20PowerPoint%20To%20Excel%20-%20Chart%20Objects.py).  
+
+
+<div class="code-head"><span>code</span>Excel range to pptx.py</div>
+
+```python
+import win32com.client
+from win32com.client import constants as c
+# Grab the Active Instance of Excel.
+ExcelApp = win32com.client.GetActiveObject("Excel.Application")
+ExcelApp.Visible = True # this is optional
+wb1 = ExcelApp.Workbooks.Open(r"C:/users/SarahChen/RangeBook.xlsm")
+# create a dictionary object
+d = {}
+for namedRng in wb1.Names:
+    rngIdx = namedRng.Index
+    rngName = namedRng.Name
+    d[rngIdx] = rngName
+print(d)
+
+PPTApp = win32com.client.gencache.EnsureDispatch("PowerPoint.Application")
+PPTApp.Visible = True
+# Add a presentation to the PowerPoint Application, returns a Presentation Object.
+PPTPresentation = PPTApp.Presentations.Add()
+for key, value in d.items():
+    PPTslide = PPTPresentation.Slides.Add(Index = key, Layout = 12) # 12 is blank layout
+    ExcelApp.Range(value).Copy()
+    PPTSlide.Shapes.PasteSpecial(DataType = 10, Link = True) # 10 is a ELEObject
+```
+
+**Copy from Excel charts to PowerPoint**
+
+<div class="code-head"><span>code</span>Excel charts to pptx.py</div>
+
+```python
+# Grab the workbook with the charts.
+wb = ExcelApp.Workbooks("MyChartObjects.xlsm")
+# Create a new instance of PowerPoint and make sure it's visible.
+PPTApp = win32com.client.gencache.EnsureDispatch("PowerPoint.Application")
+PPTApp.Visible = True
+# Add a presentation to the PowerPoint Application, returns a Presentation Object.
+PPTPresentation = PPTApp.Presentations.Add()
+# Loop through each Worksheet.
+for xlWorksheet in wb.Worksheets:
+    # Grab the ChartObjects Collection for each sheet.
+    xlCharts = xlWorksheet.ChartObjects()
+    # Loop through each Chart in the ChartObjects Collection.
+    for index, xlChart in enumerate(xlCharts):
+        # Each chart needs to be on it's own slide, so at this point create a new slide.
+        PPTSlide = PPTPresentation.Slides.Add(Index = index + 1, Layout = 12)  # 12 is a blank layout
+        # Display something to the user.
+        print('Exporting Chart {} from Worksheet {}'.format(xlChart.Name, xlWorksheet.Name))
+        # Copy the chart.
+        xlChart.Copy()
+        # Paste the Object to the Slide
+        PPTSlide.Shapes.PasteSpecial(DataType = 1) 
+# Save the presentation.
+PPTPresentation.SaveAs(r"FILE_PATH")
+```
+
+# Run VBA code from Python
+
+For non-VBA folks, you can run existing VBA code inherited from somewhere from Python.   The VBA code can be saved in the Excel file that you are to run. 
