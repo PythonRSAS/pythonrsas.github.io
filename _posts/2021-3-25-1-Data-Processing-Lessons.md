@@ -7,6 +7,15 @@ description: Data processing tips from experiences
 author: Sarah Chen
 image: images/posts/IMG-0648.JPG
 ---
+- [General principles](#general-principles)
+  - [Don't create (too many) unnecessary columns](#dont-create-too-many-unnecessary-columns)
+  - [Move all data format correction code in block](#move-all-data-format-correction-code-in-block)
+  - [Data aggregation](#data-aggregation)
+- [Functions](#functions)
+- [Plotting](#plotting)
+- [Other tips](#other-tips)
+  - [Cartesian product](#cartesian-product)
+  
 ![](/images/posts/IMG-0648.JPG)
 Although processes are iterative, it should still be organized, at least periodically.  If it becomes too chaotic, it becomes inefficient.
 
@@ -25,23 +34,6 @@ Because PD and LGD are modeling labels and continuous numbers, respectively.  Th
 ## Don't create (too many) unnecessary columns
 In the following code, it is completely unnecessary to create so many columns out of the original date columns.  It not only takes up more space by creating many new columns but is more error prone.
 
-If you need month, year, day, you can use the following code.  And there is no sense of creating a string type of all the dates.
-
-```python
-df.date.dt.month
-df.date.dt.year
-df.date.dt.day
-```
-
-If you need both year and month together, you can do the following instead of getting year and month, and then concatenate them:
-```python
-df.date.dt.to_period('m')
-# 2020-09
-# 2020-12
-# 2020-09
-```
-
-
 <div class="code-head"><span>code</span>redundant columns.py</div>
 
 ```py
@@ -56,6 +48,21 @@ df['year_month_day_str'] = df['year_month_str'].astype(str)
 df['ID_year_month_day'] = df['ID=='] + '_' +  df['ID_year_month_day']
 ...
 ...
+```
+If you need month, year, day, you can use the following code.  And there is no sense of creating a string type of all the dates.
+
+```python
+df.date.dt.month
+df.date.dt.year
+df.date.dt.day
+```
+
+If you need both year and month together, you can do the following instead of getting year and month, and then concatenate them:
+```python
+df.date.dt.to_period('m')
+# 2020-09
+# 2020-12
+# 2020-09
 ```
 
 ## Move all data format correction code in block
@@ -106,25 +113,20 @@ df[['category', 'date', 'balance', 'limit']].groupby[('category', 'date')].sum()
 # 2020-09
 
 ```
+# Functions
+The general advice on writing functions are: keep them short, simple, single-purposed, and think about ***cohesion*** (connecting the components).  
 
-# Cartesian product
-Most of the time, we want data joins to be key-based one to one joins.  Sometimes however, we use cartesian product for data manipulation.  For example, we want to compare at obligor (or facility level) its metrics at time t and metrics before time t for all t that it exists in the data. 
+Why keeping them short and single-purposed?  Because it makes it simplier to use and therefore more reusable.  You probably don't see contractors working with Swiis Army knifes. 
 
-For each data point in the Cartesian product, we use date0 as the anchor, and keep only those records that have date0 as historical. 
-
-<div class="code-head"><span>code</span>use cartesian product to compare history.py</div>
-
-```py
-df_copy = df.copy()
-df_copy.rename(columns = {'date': 'date0', 'balance': 'balance0', 'limit': 'limit0'})
-df_cartisian = pd.merge(df, df_copy, on = 'id')
-df_cartisian0 = df_cartesian[df_cartesian['date'] > df_cartesian['date0']]
-```
-
+As described in Mark Lutz's "Learning Python" book, 
+- **def creates an object and assigns it to a name**. 
+- **lambda creates an object but returns it as a result**.  Some say lambda functions are simply functions that you don't care to give them names so that you can do it in-line. 
+- **yield sends a result object back to the caller, but remembers where it left off**. Yield is often used with generator functions.  You can use it to save space. 
+- **global declares *module-level* variables**.  By defult, all names assigned ina function are local to the function and exist only while the function runs.    To assign a name in the enclosing module, functions need to be listed in a <span class="coding">global</span> statement.  This is very similar to SAS. 
 
 # Plotting
 
-We routinely need to plot historical time series together.  There are many ways to plot time series plots for multiple metrics.  Below is a simple version to get a quick view.  You can do deep dives once you notice something worth deep diving. 
+Plotting is a big topic.  We routinely need to plot historical time series together.  There are many ways to plot time series plots for multiple metrics.  Below is a simple version to get a quick view.  You can do deep dives once you notice something worth deep diving. 
 
 <div class="code-head"><span>code</span>time series plots for multiple metrics.py</div>
 
@@ -155,3 +157,17 @@ PD by year/quarter plot:
 -	Although we use boxplots routinely on LGD, there is no such thing as boxplot for binary targets.
 -   However, quarterly average PD rates can be used as alternative data points. Boxplot can be used on them. 
 
+# Other tips
+## Cartesian product
+Most of the time, we want data joins to be key-based one to one joins.  Sometimes however, we use cartesian product for data manipulation.  For example, we want to compare at obligor (or facility level) its metrics at time t and metrics before time t for all t that it exists in the data. 
+
+For each data point in the Cartesian product, we use date0 as the anchor, and keep only those records that have date0 as historical. 
+
+<div class="code-head"><span>code</span>use cartesian product to compare history.py</div>
+
+```py
+df_copy = df.copy()
+df_copy.rename(columns = {'date': 'date0', 'balance': 'balance0', 'limit': 'limit0'})
+df_cartisian = pd.merge(df, df_copy, on = 'id')
+df_cartisian0 = df_cartesian[df_cartesian['date'] > df_cartesian['date0']]
+```
