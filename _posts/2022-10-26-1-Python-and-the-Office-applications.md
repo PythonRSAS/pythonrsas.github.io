@@ -2,18 +2,22 @@
 layout: post
 tag: Office, VBA, python, automation
 category: "education"
-title: "Python and VBA"
+title: "Python and the Office applications"
 description: Use VBA in Python and the other way too
 author: Sarah Chen
 image: images/posts/office.PNG
 ---
 
+- [Introduction](#introduction)
 - [Excel](#excel)
 - [Outlook](#outlook)
 - [PowerPoint](#powerpoint)
 
-Most of the office work is still immersed in MS Office.  Corporate executives want work given to them in Excel, Outlook emails, PowerPoint and Word documents.  To reduce Office exposure, we can go to VBA from Python by using the <span class="coding">win32com</span> library.  This library enables use and publish our own COM (Component Object Model) objects without having to understand the details of how the object was created or implemented.
+# Introduction
+Most of the corporate office work is still immersed in MS Office: Excel, Outlook emails, PowerPoint and Word documents.  To reduce Office fatigue, we can use Python.  
 
+The <span class="coding">win32com</span> library enables use and publish our own COM (Component Object Model) objects without having to understand the details of how the object was created or implemented.
+In addition to <span class="coding">win32com</span>, the <span class="coding">openpyxl</span> library and <span class="coding">pptx</span>, as their names imply, help us create and modify Excel and PowerPoint files. 
 
 # Excel
 
