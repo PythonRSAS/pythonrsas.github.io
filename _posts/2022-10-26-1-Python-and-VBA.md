@@ -1,7 +1,7 @@
 ---
 layout: post
 tag: Office, VBA, python, automation
-category: "Education"
+category: "education"
 title: "Python and VBA"
 description: Use VBA in Python and the other way too
 author: Sarah Chen
