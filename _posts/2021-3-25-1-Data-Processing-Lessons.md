@@ -1,6 +1,6 @@
 ---
 layout: post
-tag: Assesing risk factor
+tag: Data processing, python
 category: "credit risk"
 title: "Data Processing Lessons"
 description: Data processing tips from experiences

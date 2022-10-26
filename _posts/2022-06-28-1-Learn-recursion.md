@@ -25,6 +25,8 @@ Recursion is a function that is defined with itself.  $$f(n) = \text{some combin
 
 The simplest example I think is the natural number sequence $$1, 2, 3, 4, 5, 6, ...$$
 
+An important tip: don't be intimated by recursions.  Insert as many print statements as you need to see what the program is doing. 
+
 ## Natural number
 The natural numbers can be expressed as:
 
