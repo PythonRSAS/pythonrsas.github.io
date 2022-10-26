@@ -16,15 +16,17 @@ image: images/posts/photos/IMG-0631.JPG
 
 In linear regression, there has been well-established theory and diagnostics on how a model works, such as the model statement y = a + bX, confidence interval, p-value (assuming x is not relevant what's the chance of having this kind of relationship to y) and etc.  
 
-In linear regression and situations where linear regression are used (in neural network as well) balance of bias and variance can be strived for by using regularizers to prevent overfitting and instability due to multicollinearity. 
+In linear regression and situations where linear regression are used (in neural network as well) balance of bias and variance can be strived for by using regularizers (for penalizing more variables and/or shrinking weights) to prevent overfitting and instability due to multicollinearity. 
 
-So, yes, machine learning is powerful leveraging computing power and data. But then, why should anyone just accept black boxes and expect less from the ML/AI models?   
+So, yes, machine learning is powerful leveraging computing power and data. But then, why should anyone just accept black boxes and expect less from the ML/AI models?  Some questions that may puzzle ML folks are questions from senior executives "**what are the degrees of freedom of this model?**"
 
 For low-consequence machine learning models or those that we find to be the best option such as those used in postal code sorting, image recognition, explanation is not necessary as long as we know that the algorithms are working as demonstrated--Blackboxes are fine. 
 
 However, in many context, especially those with high stake especially involving people, such as health care/medicine, financial industry, and the military, to be able to interprete model output is as important as the model.  
 
-In regulated industries, interpretability is required before adoption.  
+In regulated industries, interpretability is required before adoption.  Therefore, interpretability is essential, as it was important to evaluate confidence interval and p-values in traditional statics.
+
+In addition, bias prevention is important not only for regulatory and fairness concerns but also for more` accurate predictions.
 
 A genearal introduction from theoretical point of view on definitions of interpretability is in [Towards A Rigorous Science of Interpretable Machine Learning](https://arxiv.org/pdf/1702.08608.pdf){:target="_blank"}.
 
