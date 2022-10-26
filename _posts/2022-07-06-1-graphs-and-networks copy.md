@@ -21,9 +21,6 @@ image: images/posts/photos/7bridges.JPG
   - [Comparisons of representations](#comparisons-of-representations)
 - [Implementation](#implementation)
   - [undirected graph](#undirected-graph)
-- [Appendix](#appendix)
-  - [tuples](#tuples)
-  - [namedtuple](#namedtuple)
 
 # Introduction
 Graphs, or networks, are useful for representing relationships from social network,maps, the internet, and the universe.  In this post, we start with the humble beginning of graph theory from the problem of proving it is not possible to cross each of the 7 bridges of Konigsberg once and only once, and go over its three presentations, and implementating a graph object. 
@@ -458,56 +455,4 @@ g.print_graph()
 # H 0001100010
 # I 0000010100
 # J 0000011000
-```
-
-
-# Appendix
-## tuples
-
-Below notes are adapted from the book [Think Python](https://www.greenteapress.com/thinkpython/html/thinkpython013.html). 
-
-> Tuples are like lists, except tuples are immutable. 
-
-> A tuple is a comma-separated list of values, which **can be any type**, and they are indexed by integers, so in that respect tuples are a lot like lists. 
-
-> Most list operators also work on tuples. The bracket operator <span class="coding">[]</span> for indexing, and the slicing operator <span class="coding">:</span>. 
-
-> Tuple as function return values: allows us to return multiple values, a function can only return one value, but if the value is a tuple, the effect is the same as returning multiple values. 
-
-> Use <span class="coding">zip</span>, a built-in function, to take two or more sequences and “zips” them into a list of tuples. For example, we can zip a list of country, and a list of capitals associated with the countries. 
-
-```python
-t = 'a', 'b', 'c', 'd', 'e'
-```
-Although it is not necessary, it is common to enclose tuples in parentheses:
-
-```python
->>> t = ('a', 'b', 'c', 'd', 'e')
-```
-
-> Dictionaries have a method called <span class="coding">items</span> that returns an iterator, a list of tuples, where each tuple is a key-value pair.
-
-## namedtuple
-A [namedtuple](https://docs.python.org/3/library/collections.html?highlight=counter#collections.namedtuple) object is a new tuple subclass with a name we give it. 
-
-The new subclass is used to create tuple-like objects that have fields *accessible by the <span class="coding">.</span>* notation as well as inherited tuple attributes such as indexable and iterable. 
-In code below, we define a Graph class. <span class="coding">help(G)</span>
-
-```python
-help(G)
-# Help on Graph in module __main__ object:
-# class Graph(builtins.tuple)
-#  |  Graph(vertice, edge, weights)
-#  |
-#  |  Graph(vertice, edge, weights)
-#  |
-#  |  Method resolution order:
-#  |      Graph
-#  |      builtins.tuple
-#  |      builtins.object
-
-G[0]
-# ['A', 'B', 'C', 'D']
-G.vertice
-# ['A', 'B', 'C', 'D']
 ```

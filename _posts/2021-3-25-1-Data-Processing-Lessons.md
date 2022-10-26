@@ -12,6 +12,7 @@ image: images/posts/IMG-0648.JPG
   - [Move all data format correction code in block](#move-all-data-format-correction-code-in-block)
   - [Data aggregation](#data-aggregation)
 - [Functions](#functions)
+  - [Passing arguments](#passing-arguments)
 - [Plotting](#plotting)
 - [Other tips](#other-tips)
   - [Cartesian product](#cartesian-product)
@@ -124,8 +125,41 @@ As described in Mark Lutz's "Learning Python" book,
 - **yield sends a result object back to the caller, but remembers where it left off**. Yield is often used with generator functions.  You can use it to save space. 
 - **global declares *module-level* variables**.  By defult, all names assigned ina function are local to the function and exist only while the function runs.    To assign a name in the enclosing module, functions need to be listed in a <span class="coding">global</span> statement.  But don't be fooled by the name "global".   Names at the top level of a a file are global to code within that single file only.  There is no notion of a single, all-encompassing global file-based scope in Python.  This is very similar to SAS macro variable <span class="coding">%GLOBAL</span> statements that are "global" to the entire execution of the SAS session or job. Note that code typed in an interactive session are global and are available to modules for the session.   Anyway, try not to use global often.  It can mess up things easily and make code less reusuable. 
 - **nonlocal is neither local nor global** is only *defined within functions* and is often used in nested functions.  You cannot type <span class="coding">>>> nonlocal X</span>.   nonlocal assigned name and value within inner function will superseded the value in the outer function. See examples in [SOF](https://stackoverflow.com/questions/33211272/what-is-the-difference-between-non-local-variable-and-global-variable#:~:text=An%20important%20difference%20between%20nonlocal,new%20binding%20in%20the%20global) and [documentation](https://docs.python.org/3/reference/simple_stmts.html#the-nonlocal-statement).  
-- **Each call to a function creates a new local scope**.  This is important to remember for recusive functions in Python, in which each active call ***receives its own copy of the function's local variables***. This is why recursive functions can take a lot of memory. 
+- **Each call to a function creates a new local scope**.  This is important to remember for recusive functions in Python, in which each active call ***receives its own copy of the function's local variables***. This is why recursive functions can take a lot of memory. Below is a simple example of summation function.
+  
+```python
+def recSum(A):
+    if not A:
+        return 0
+    return A[0] + recSum(A[1:]) 
+recSum([1, 2, 3, 4, 5])
+# 15
+def recSum(A): # some may write it shorter 
+    return 0 if not A else A[0] + recSum(A[1:])
+recSum([1, 2, 3, 4, 5])
+# 15
+```
 
+## Passing arguments
+
+**Types of arguments**
+Passing arguments in Python is flexible. A single <span class="coding">*</span> starred indicates that Python does the unpacking of positional arguments.  Double <span class="coding">**</span> starred indicates that Python does the unpacking of keyword arguments.  
+```python
+def f(a, *pargs, **kargs):
+    print(a, pargs, kargs)
+
+f(1, 2, 3, 4, 5, s=1.1, t=1.2, u=1.3, v=1.4)
+# 1 (2, 3, 4, 5) {'s': 1.1, 't': 1.2, 'u': 1.3, 'v': 1.4}
+```
+**Ordering of arguments**
+Passing arguments in Python can be confusing in the orderings.  It suffices to note the following when in doubt of ordering. 
+
+```python
+def f(a, *b, c=100, **d):
+    print(a, b, c, d)
+f(1, *(2, 3), **dict(x=4, y=9))
+# 1 (2, 3) 100 {'x': 4, 'y': 9}
+```
 # Plotting
 
 Plotting is a big topic.  We routinely need to plot historical time series together.  There are many ways to plot time series plots for multiple metrics.  Below is a simple version to get a quick view.  You can do deep dives once you notice something worth deep diving. 
