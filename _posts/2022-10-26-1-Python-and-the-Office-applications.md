@@ -5,7 +5,7 @@ category: "education"
 title: "Python and the Office applications"
 description: Use VBA in Python and the other way too
 author: Sarah Chen
-image: images/posts/office.PNG
+image: images/posts/office.png
 ---
 
 - [Introduction](#introduction)
@@ -17,9 +17,11 @@ image: images/posts/office.PNG
 - [Run VBA code from Python](#run-vba-code-from-python)
 
 # Introduction
-Most of the corporate office work is still immersed in MS Office: Excel, Outlook emails, PowerPoint and Word documents.  To reduce Office fatigue, we can use Python.  
+Most of the corporate office work is still immersed in MS Office: Excel, Outlook emails, PowerPoint and Word documents.  To reduce Office fatigue, we can use Python. 
 
-The <span class="coding">win32com</span> library enables use and publish our own COM (Component Object Model) objects without having to understand the details of how the object was created or implemented.
+Python [standard libary ctypes](https://docs.python.org/3/library/ctypes.html) is a foreign function library. It provides C compatible data types, and allows calling functions in DLLs or shared libraries. It can be used to wrap these libraries in pure Python.
+
+The <span class="coding">win32com</span> library and <span class="coding">pywin32</span> library enable use and publish our own COM (Component Object Model) objects without having to understand the details of how the object was created or implemented.
 In addition to <span class="coding">win32com</span>, the <span class="coding">openpyxl</span> library and <span class="coding">pptx</span>, as their names imply, help us create and modify Excel and PowerPoint files. 
 
 # Excel
@@ -324,9 +326,61 @@ for xlWorksheet in wb.Worksheets:
         # Paste the Object to the Slide
         PPTSlide.Shapes.PasteSpecial(DataType = 1) 
 # Save the presentation.
-PPTPresentation.SaveAs(r"FILE_PATH")
+PPTPresentation.SaveAs(r"myPresentation.pptx")
 ```
-
 # Run VBA code from Python
 
 For non-VBA folks, you can run existing VBA code inherited from somewhere from Python.   The VBA code can be saved in the Excel file that you are to run. 
+
+
+<div class="code-head"><span>code</span>Run VBA from Python.py</div>
+
+```python
+import win32com.client
+
+# Grab the Active Instance of Excel.
+ExcelApp = win32com.client.GetActiveObject("Excel.Application")
+
+# Grab a workbook called "HasMyMacros". Technically you don't have to do this, but for demonstration purposes it helps out.
+xlWorkbook = ExcelApp.Workbooks("HasMyMacros.xlsm")
+
+# Execute the Macro "PopulateTwoCellsWithArguments", pass through the arguments ["Bob","Smith"]
+ExcelApp.Run("PopulateTwoCellsWithArguments", "Bob", "Smith")
+
+# Execute the Macro "PopulateTwoCells", which doesn't require any arguments.
+ExcelApp.Run("PopulateTwoCells")
+
+# ---------------------------------------------------------------------------------
+# VBA CODE - PopulateTwoCellsWithArguments
+# ---------------------------------------------------------------------------------
+
+# Sub PopulateTwoCellsWithArguments(FirstName As String, LastName As String)
+
+# Dim Cell1 As Range
+# Dim Cell2 As Range
+
+# Set Cell1 = Sheet1.Range("C5")
+# Set Cell2 = Sheet1.Range("C6")
+
+#     Cell1.Value = FirstName
+#     Cell2.Value = LastName
+
+# End Sub
+
+# ---------------------------------------------------------------------------------
+# VBA CODE - PopulateTwoCells
+# ---------------------------------------------------------------------------------
+
+# Sub PopulateTwoCells()
+
+# Dim Cell1 As Range
+# Dim Cell2 As Range
+
+# Set Cell1 = Sheet1.Range("C2")
+# Set Cell2 = Sheet1.Range("C3")
+
+#     Cell1.Value = 3000
+#     Cell2.Value = 4000
+
+# End Sub
+```
