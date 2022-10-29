@@ -16,6 +16,7 @@ image: images/posts/worldDebt.jpg
   - [Qualitative insights](#qualitative-insights)
   - [Data](#data)
     - [Asymmetry of information](#asymmetry-of-information)
+    - [Data we can capture](#data-we-can-capture)
   - [Analytics:](#analytics)
 At any given moment, there are hundreds of trillions of debt or credit.  This fantastic visualization (even though outdated) provides a sense of the scale and the relative scale of credit: [All of the World’s Money and Markets in One Visualization](https://money.visualcapitalist.com/worlds-money-markets-one-visualization-2017/)
 
@@ -28,6 +29,7 @@ Debt (or credit) can be categorized in 4 groups: government, financial sector, n
 
 Below is a summary of the different products or portfolios: 
 ## Consumer ###
+Consumer banking is often where most innovation are happening and most profitable as well.   That's why you see American Express, Discovery and some other credit card companies seem to be have much higher returns than larger banks that have large commercial lending. 
 •	Credit cards
 •	Deposit/attritions
 •	Auto loans
@@ -84,16 +86,25 @@ Similarly, credit providers do not know a lot about the credit receivers other t
 * **Bankruptcy** - about 50% of total losses of retail loans in financial institutions are from bankruptcy losses.   Why those bankruptcies happened and why they were not detected early on implies that financial institutions still do not know enough about what they don't know.
 
 However, intent is not easy to detect. 
+
+### Data we can capture
+Data that we can capture and are useful for monitoring credit risk differ greatly by lines of business and products. 
+
+**Credit cards**
+Rolling rate : Percent of credit card holders that rolls from one level (category) of delinquency to another level.  It is kind of like transition probability in the transition matrix credit models in wholesale credit.  
+
 ## Analytics:  
 
 The uncertainty can be examined in many ways. What is in common across different industries are the following two questions:
 1.  How likely is something going to happen
+2.  If it happens, what is the impact
 2.  If it happens, what is the impact
   
 For complex data that contains intricate interactions, and very non-linear data, traditional methodologies such as generalized linear regression (GLM), which includes logistic regression, a staple in credit scoring for years, just do not deliver the kind of accuracy that machine learning models do.   
 
 Of course, machine learning models predictions need to be well tested and understood before being used to make important credit decisions, especially when it is in a regulated institution.  
 
+Machine learning models are more established in retail credit than wholesale credit due to the large amount of data that makes it well suited for ML. 
 
 
 
