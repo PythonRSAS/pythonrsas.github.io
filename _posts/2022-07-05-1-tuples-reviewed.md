@@ -10,6 +10,8 @@ image: images/posts/photos/7bridges.JPG
 ---
 
 - [tuples](#tuples)
+  - [Use with dictionary](#use-with-dictionary)
+  - [Return a tuple of values in a function](#return-a-tuple-of-values-in-a-function)
 - [namedtuple](#namedtuple)
 
 # tuples
@@ -25,9 +27,9 @@ x
 # 1, 2, 3, 4
 ```
 
-> A tuple is a comma-separated list of values, which **can be any type**, and they are indexed by integers, so in that respect tuples are a lot like lists. 
+A tuple is a ***comma-separated list of values***, which **can be any type**, and they are indexed by integers, so in that respect tuples are a lot like lists. 
 
-> Most list operators also work on tuples. The bracket operator <span class="coding">[]</span> for indexing, and the slicing operator <span class="coding">:</span>. 
+**Most list operators also work on tuples**. The bracket operator <span class="coding">[]</span> for indexing, and the slicing operator <span class="coding">:</span>. 
 
 > Tuple as function return values: allows us to return multiple values, a function can only return one value, but if the value is a tuple, the effect is the same as returning multiple values. 
 
@@ -41,9 +43,24 @@ Although it is not necessary, it is common to enclose tuples in parentheses:
 ```python
 >>> t = ('a', 'b', 'c', 'd', 'e')
 ```
+## Use with dictionary
 
-> Dictionaries have a method called <span class="coding">items</span> that returns an iterator, a list of tuples, where each tuple is a key-value pair.
+**.items:** Dictionaries have a method called <span class="coding">items</span> that returns an iterator, a list of tuples, where each tuple is a key-value pair.
 
+**Use as dictionary keys:** tuples are often used as dictionary keys.
+For example, dictionary[last_name, first_name].  The key <span class="coding">last_name, first_name</span> is a tuple. 
+
+## Return a tuple of values in a function
+A function can return multiple values by return a tuple. 
+For example, I am using the function below to return mean, median, and the latest value of input data, which is a dataframe of timeseries index with datetime. 
+
+```python
+def get_stats(df):
+    Mean = df.mean()[0]
+    Median = df.median()
+    Latest = df.sort_index(ascending=False).iloc[0,0]
+    return(Mean, Median, Latest)
+```
 # namedtuple
 A [namedtuple](https://docs.python.org/3/library/collections.html?highlight=counter#collections.namedtuple) object is a new tuple subclass with a name we give it. 
 
