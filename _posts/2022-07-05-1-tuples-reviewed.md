@@ -10,6 +10,7 @@ image: images/posts/photos/7bridges.JPG
 ---
 
 - [tuples](#tuples)
+  - [tuples are like lists](#tuples-are-like-lists)
   - [Use with dictionary](#use-with-dictionary)
   - [Return a tuple of values in a function](#return-a-tuple-of-values-in-a-function)
 - [namedtuple](#namedtuple)
@@ -17,7 +18,9 @@ image: images/posts/photos/7bridges.JPG
 # tuples
 Some notes below are adapted from the book [Think Python](https://www.greenteapress.com/thinkpython/html/thinkpython013.html). 
 
-> Tuples are like lists, except tuples are immutable. 
+## tuples are like lists
+
+Tuples are like lists, except tuples are immutable, and they don't use square brackets. 
 
 Note that tuples are immutable meaning that you cannot modify it by assignment such as x[0] = 100.  But you can add elements to it just like you do to a list.  Note that it is like list means that you can do things like:
 ```python
