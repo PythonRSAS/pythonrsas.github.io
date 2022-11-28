@@ -77,33 +77,29 @@ def search(A, x, n):
 
 # Prints postorder traversal from
 # given inorder and preorder traversals
-def printPostOrder(I, P, n):
-	# The first element in pre-order is always
-	# root, search it in inorder to find left
-	# and right subtrees
-	root = search(I, P[0], n)
-	# If left subtree is not empty,
-	# print left subtree
+def f(IN, PRE, n):
+	root = search(IN, PRE[0], n)
 	if (root != 0):
-		printPostOrder(I, P[1:n], root)
-	# If right subtree is not empty,
-	# print right subtree
+		f(IN, PRE[1:n], root)
 	if (root != n - 1):
-		printPostOrder(I[root + 1 : n],
-					P[root + 1 : n],
+		f(IN[root + 1 : n],
+					PRE[root + 1 : n],
 					n - root - 1)
 	# Print root
-	print(P[0], end = " ")
+	print(PRE[0], end = " ")
 
-# Driver code
 In = [ 4, 2, 5, 1, 3, 6 ]
 pre = [ 1, 2, 4, 5, 3, 6 ]
 n = len(In)
-
 print("Postorder traversal ")
-printPostOrder(In, pre, n)
+f(In, pre, n)
 # Postorder traversal
 # 4 5 2 6 3 1
+In = [ 4, 2, 5, 1, 3, 12 ]
+pre = [ 1, 2, 4, 5, 3, 12 ]
+n = len(In)
+print("Postorder traversal ")
+postOrder(In, pre, n)
 ```
 
 

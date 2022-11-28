@@ -2,7 +2,7 @@
 layout: splash
 heading: sarah chen
 title: Sarah Chen
-description: Data scientist in banking and insurance
+description: Analytics for financial risk management and investment
 color: grad-about
 permalink: /
 ---
@@ -62,8 +62,10 @@ permalink: /
           <!-- <p style="margin-top: 0px !important;">I'm Sarah Chen. Analytic expert in banking and insurance.
           </p> -->
           <ul class="timeline">
-            <li>Domain expert in credit, market, operational risk in financial services, and insurance pricing and reserving.</li>
-            <li>Analytic lead with thirteen years of hands-on experience in development of predictive models and efficient algorithms in banking and insurance.</li>
+            <li>Credit, market, operational risks in financial services.</li>
+            <li>Climate credit risk modeling.</li>
+            <li>Insurance pricing and reserving risk and modeling.</li>
+            <li>Analytic lead with fifteen years of hands-on experience in development of predictive models and efficient algorithms in banking and insurance.</li>
             <li>Fellow of the <a href="https://www.casact.org/" target="_blank">Casualty Actuarial Society</a> (FCAS), Fellow of the <a href=" https://www.soa.org/" target="_blank"> Society of Actuaries</a> (FSA).</li>
             <!-- <li>Co-founder of <a href=" https://www.magicmathmandarin.org/"> Magic Math Mandarin </a></li> -->
             <li>Co-founder of Magic Math Mandarin</li>

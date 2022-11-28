@@ -3,7 +3,7 @@ layout: post
 tag : data structure, algorithm
 category: education
 title: "Sorting algorithms 2"
-description: quicksort,  heap sort, bucket sort
+description: quicksort, heap sort, bucket sort
 author: Sarah Chen
 image: images/posts/photos/IMG_0871.JPG
 

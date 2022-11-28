@@ -250,7 +250,6 @@ def maxSubArrayDP(A):
     return maxSum
 ```
 
-
 # Shortest path
 
 From city A to city B, what is the shortest path?   

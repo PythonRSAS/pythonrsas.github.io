@@ -2,7 +2,7 @@
 layout: page-default
 heading: blog
 title: Category Page
-subheading: Data scientist in banking and insurance
+subheading: Analytics for financial risk management and investment
 description: I'm Sarah Chen.  Analytic expert in banking and insurance.
 color: grad-blog
 image: /images/icons/logo.png

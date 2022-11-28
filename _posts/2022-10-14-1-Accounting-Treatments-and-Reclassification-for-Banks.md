@@ -60,7 +60,7 @@ For AFS securities, however, such shifts in value, while not affecting accountin
 
 On Oct 11, 2013, the [Federal Register](https://www.govinfo.gov/content/pkg/FR-2013-10-11/pdf/2013-21653.pdf), published by the Department of Treasury and the OCC, wrote "[...] consistent with Basel III, the agencies and the FDIC proposed to
 require banks to include
-the majority of AOCI components in common equity tier 1 capital."   
+the majory of AOCI components in common equity tier 1 capital."   
 
 Then it went on to say that they received a significant number of comments on the proposal to require banks to recognize AOCI in common equity tier 1 capital.  Interestingly, the comments expressed concerns that became reality:
 
