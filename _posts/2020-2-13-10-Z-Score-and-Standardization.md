@@ -29,7 +29,7 @@ If a variable is roughly normally distributed, z-scores will roughly follow a st
 
 For z-scores, by definition, a score of 1.5 means “1.5 standard deviations higher than average”.   If a variable also follows a standard normal distribution, then we also know that 1.5 roughly corresponds to the 95th percentile. 
 
-The linear transformation of data into z-score is also called standardizing.  Standardizing data is often a prerequisite in data analysis, statistical modeling and machine learning, which includes algorithms such as nearest neighbors, neural networks (and hence all deep learning), support vector machines, principal components analysis, linear discriminant analysis and more.  
+The linear transformation of data into z-score is also called standardizing.  Standardizing data is often a prerequisite in data analysis, statistical modeling and machine learning, which includes algorithms such as nearest neighbors, neural networks (and hence all climate risk), support vector machines, principal components analysis, linear discriminant analysis and more.  
 
 The importance is due to the fact that if a feature has a variance that is orders of magnitude larger than others, it might dominate the objective function and make the estimator unable to learn from other features correctly.   
 While z-score standardization can be easily coded from scratch using numpy, pandas, or even base Python, we can use readily available functions from <code class='coding'>scipy.stats</code> and sklearn. 

@@ -63,6 +63,8 @@ https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
 
 In computer, stack data structure is used for keeping track of active functions or subroutines. 
 
+In Powershell, to ask the computer to remember location history is <span class="coding">push-location</span>.   Whereas to go back to the previous location is <span class="coding">pop-location</span>. 
+
 Stack is the backbone for all recursive processes in our computers.  Recursive processes are those functions that call themselves within themselves. 
 
 When the function calls itself, the call is aded to a stck of processes, keeping track of active subroutines in code and more. 

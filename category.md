@@ -48,12 +48,12 @@ permalink: /category
           {% endfor %}
           <p class="no_of_posts">{{ credit_risk_count }} posts</p>
         </div>
-        <div class="deep-learning" onclick="location.href='{{ site.baseurl }}/deep-learning';">
-            <img src="{{ "/images/icons/deep-learning.svg" | relative_url }}" />
-            <h4>Deep Learning</h4>
-            <p>Deep learning in non-computer vision problems.</p>
+        <div class="climate-risk" onclick="location.href='{{ site.baseurl }}/climate-risk';">
+            <img src="{{ "/images/icons/climate-risk.svg" | relative_url }}" />
+            <h4>Climate Risk</h4>
+            <p>Climate risk in non-computer vision problems.</p>
             {% for post in site.posts %}
-            {% if post.categories contains 'deep learning' %}
+            {% if post.categories contains 'climate risk' %}
                 {% capture deep_learning_count %} {{ deep_learning_count | plus: 1 }} {% endcapture %}
               {% endif %}
           {% endfor %}

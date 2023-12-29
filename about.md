@@ -62,17 +62,17 @@ permalink: /
           <!-- <p style="margin-top: 0px !important;">I'm Sarah Chen. Analytic expert in banking and insurance.
           </p> -->
           <ul class="timeline">
-            <li>Credit, market, operational risks in financial services.</li>
-            <li>Climate credit risk modeling.</li>
+            <li>Climate, credit, market, operational risks in financial services.</li>
             <li>Insurance pricing and reserving risk and modeling.</li>
-            <li>Analytic lead with fifteen years of hands-on experience in development of predictive models and efficient algorithms in banking and insurance.</li>
+            <li>Analytic lead with sixteen years of hands-on experience in development of predictive models and efficient algorithms in banking and insurance.</li>
             <li>Fellow of the <a href="https://www.casact.org/" target="_blank">Casualty Actuarial Society</a> (FCAS), Fellow of the <a href=" https://www.soa.org/" target="_blank"> Society of Actuaries</a> (FSA).</li>
+            <li><a href="https://www.garp.org/scr" target="_blank">Sustainability and Climate Risk (SCR)</a> certified.</li>
             <!-- <li>Co-founder of <a href=" https://www.magicmathmandarin.org/"> Magic Math Mandarin </a></li> -->
             <li>Co-founder of Magic Math Mandarin</li>
             <li>Co-author of <a href="https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001" target="_blank">Python for SAS Users</a></li>
             <li><a href="https://www.math.columbia.edu/" target="_blank">Columbia University</a> 2007, B.A. Mathematics, summa cum laude</li>
           </ul>
-          <p><strong>Expertise: </strong>credit and marekt/traded risk management, insurance pricing/reserving, data management, time series analysis, algorithm design,statistical, machine learning, and deep learning models , Python, R, SAS and SQL.</p>
+          <p><strong>Expertise: </strong>climate risk, credit and marekt/traded risk management, insurance pricing/reserving, data management, time series analysis, algorithm design,statistical, machine learning, and climate risk models , Python, R, SAS and SQL.</p>
         </div>
       </div>
       </div>

@@ -111,7 +111,7 @@ Ex voluptate. **Blablasdf** and **Rdfdsgga**.
 Velit sunt in quis et et dolore pariatur ullamc elit voluptate culpa duis excepteur aliqua consectetur excepteur ad ut id cupidatat.
 
 <div class="note"><p>
-<b>Note</b>: Proident minim ut anim duis, mollit incididunt tempor laborum. <a href="https://www.coursera.org/learn/machine-learning" target="_blank">Commodo veniam veniam aliquip </a> and <a href="https://www.coursera.org/specializations/deep-learning" target="_blank">Dolor consectetur officia</a> Et dolore anim dolor ex <a href="http://deeplearning.stanford.edu/tutorial/" target="_blank">Stanford University's</a>.
+<b>Note</b>: Proident minim ut anim duis, mollit incididunt tempor laborum. <a href="https://www.coursera.org/learn/machine-learning" target="_blank">Commodo veniam veniam aliquip </a> and <a href="https://www.coursera.org/specializations/climate-risk" target="_blank">Dolor consectetur officia</a> Et dolore anim dolor ex <a href="http://deeplearning.stanford.edu/tutorial/" target="_blank">Stanford University's</a>.
 </p></div>
 
 Qui ut nulla non occaecat deserunt sed non esse officia dolore fugiat mollit eiusmod aliquip excepteur in consequat sit do dolor proident adipisicing culpa ut adipisicing incididunt quis in.

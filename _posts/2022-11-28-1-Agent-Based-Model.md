@@ -1,19 +1,19 @@
 ---
 layout: post
-tag: Monte Carlo simulation
+tag: ABM, agent based model
 category: "other risks"
-title: "Monte Carlo simulation"
-description: Monte Carlo simulation for risk management
+title: "Agent Based Model"
+description: Agent Based Model for risk management
 author: Sarah Chen
-image: images/posts/balance_sheet_composition.PNG
+image: images/posts/balance_sheet_composition.PNGB
 ---
 
-- [Why Monte Carlo simulation](#why-monte-carlo-simulation)
+- [Why Agent Based Model](#why-agent-based-model)
 - [Deterministic approach](#deterministic-approach)
 - [Non-deterministic approach](#non-deterministic-approach)
-- [Monte Carlo simulation](#monte-carlo-simulation)
+- [Agent Based Model](#agent-based-model)
 
-# Why Monte Carlo simulation
+# Why Agent Based Model
 
 Suppose we have an investment fund currently valued at $1,000,000, 100% invested in the S&P 500 ETF. 
 
@@ -65,7 +65,7 @@ for yr in range(1, time_horizon + 1):
 
 We can run the above simulation many times (e.g. 100000 times) to get an idea of the possibilities. 
 
-# Monte Carlo simulation
+# Agent Based Model
 
 > <BR>
 > $1,000,000 starter fund <BR>
@@ -89,7 +89,7 @@ stdev = 0.15
 pv = 1000000
 i = 0.08
 time_horizon = 30
-iterations = 2
+iterations = 100000
 returns_array = np.zeros((iterations, time_horizon))
 for iteration in range(iterations):
     for yr in range(0, time_horizon ):
@@ -104,3 +104,4 @@ for yr in range(1, time_horizon + 1):
     print("{:<10d} {:15,.0f}".format(yr, balance_t))
     pv = balance_t
 ```
+
