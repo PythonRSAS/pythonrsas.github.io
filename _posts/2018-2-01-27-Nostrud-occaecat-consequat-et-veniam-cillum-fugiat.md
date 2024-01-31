@@ -8,14 +8,7 @@ author: Sarah Chen
 image: https://drive.google.com/uc?id=1541eWZkwlPctAlVmVCPZ36NIGTD_QbEU
 ---
 
-**To reach Net zero emission goal by 2050/2060, a lot will need to be changed.  All industries will be going through changes [Keras](https://keras.io/){:target="_blank"} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque neque totam voluptatem porro accusantium id.**
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, similique minima repudiandae. Voluptate pariatur iusto quo voluptatibus eum? [Keras](https://keras.io/){:target="_blank"} Lorem ipsum dolor sit. [github](https://github.com/fchollet/keras){:target="_blank"} page.
-
-> **Update**: Lorem ipsum dolor. [end of life](https://pythonclock.org/), Aliquip ad magna laborum eu ut aute ut quis in veniam in. **Python3**.
-
-Enim exercitation in nostrud commodo do est sit nulla amet veniam laborum consequat est ut dolore. Non cillum tempor ea ut pariatur tempor elit sed et magna. Lorem ipsum esse in in minim quis ut occ!
-
+**To reach Net zero emission goal by 2050/2060, a lot will need to be changed.  All industries will be going through changes. The changes will require trillions of dollars of costs/investment, which will provide many opportunities to businesses.**
 
 ### What is Net Zero
 
@@ -23,8 +16,6 @@ Net Zero means that the GHG in atomosphere is no longer increasing.  In other wo
 
 The focus of GHG is CO2.  CO2 in atomosphere is like a blanket, keeping the Earth warm.   When CO2 increases, the tempreture increases.  Most of the energy on the Earth is absorbed by waters (oceans, lakes and rivers).  When tempretre warms up, the waters expand in volume.  Melting of the ice add more to the waters. 
 
-Enim cupidatat laboris **Bahlx** or **Merapi** Aliqua incididunt velit enim nulla nisi velit in magna. Lorem ipsum laboris veniam nostrud proident dolor fugiat . (Commodo irure eiusmod quis elit labor reprehenderit.). So, Ad cupidatat dolore esse nostrud duis deserunt veniam enim nostrud.
-In adipisicing anim culpa in in consectetur dolor elit velit tempor labore enim sunt dolore. [here](https://github.com){:target="_blank"}.
 
 ### Risks if climate change too much
 
@@ -50,11 +41,11 @@ Velit sunt in quis et et dolore pariatur ullamc elit voluptate culpa duis except
 
 Qui ut nulla non occaecat deserunt sed non esse officia dolore fugiat mollit eiusmod aliquip excepteur in consequat sit do dolor proident adipisicing culpa ut adipisicing incididunt quis in.
 
-### Sint ex magna incididunt in ir
+### High impact industries
 
-> Ut magna Consequat aute volupthenderit incididunt consequat amet. **Dfsd** and **Rfskldf Posoe**.
+> While all industries will need to adapt, some are much more impacted than others:  **Fossil fuel** (oil, gas and coal), **Power Generation**,  **Metals & Mining** and **Transportation** (including Auto and Aviation). 
 
- Consequat aute volupthenderit! Minim sed dolor in duis dolore consequat / quis magna excepteur id nostrud duis dolore elit labore commodo. Quis aliquip laboris magna in anim id do sit sint. Qui adipisicing incididunt amet aute eu veniam ad proident do ut adipisicing consectetur labore ex excepteur.
+ The sectors are not isolated from each other.  For example, some O&G companies are also in the business of renewable energy (wind, solar etc.), EV charging (BP and Shell both own many EV charging stations), and even metals & mining (Exxon has invested in lithium mining);  Furthermore, the dynamics within each sector can differ greatly.  
 
 * **Afsdd kifdgll** - Lorem, ipsum, nostrud ut, sed in aliqua do .
 * **Asdfsdfsd ksohk** - Deserunt, qislla, culpa, laborum, fugiat.
