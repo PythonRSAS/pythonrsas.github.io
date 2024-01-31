@@ -47,11 +47,12 @@ Qui ut nulla non occaecat deserunt sed non esse officia dolore fugiat mollit eiu
 
  The sectors are not isolated from each other.  For example, some O&G companies are also in the business of renewable energy (wind, solar etc.), EV charging (BP and Shell both own many EV charging stations), and even metals & mining (Exxon has invested in lithium mining);  Furthermore, the dynamics within each sector can differ greatly.  
 
-* **Afsdd kifdgll** - Lorem, ipsum, nostrud ut, sed in aliqua do .
-* **Asdfsdfsd ksohk** - Deserunt, qislla, culpa, laborum, fugiat.
-* **Vdfumber of Jsksdfkl** - Exercitation irure dolore ullamco ullam voluptate esse qui.
-* **Klsdlf of slll** - Tgkdfg lfgfgd fgkgdfl.
-* **Ius ksdf fddd** - Exercitation eiusmod non in minim aliqua occaecat ut.
+* **Oil & Gas** - Natural gas is determined as a key energy for energy transition as it has lower emission intensity than oil
+* **Coal** - Metalurrical coal is regarded 
+* **Power Generation** - Power Generation sector dynamics differ by region.  
+* **Metals & Mining** - Exercitation irure dolore ullamco ullam voluptate esse qui.
+* **Auto** - Tgkdfg lfgfgd fgkgdfl.
+* **Aviation** - Exercitation eiusmod non in minim aliqua occaecat ut.
 
 Reprehenderit ut [Google](https://www.google.com/){:target="_blank"} Excepteur sunt nisi anim. Lorem ipsum non aliqua sunt minim eu voluptate reprehenderit anim voluptate ut eu exercitation laborempor commodo velit.(last column in the dataset). Anim esse **Fugiat labore** Dolore consequat tempor deserunt.
 
