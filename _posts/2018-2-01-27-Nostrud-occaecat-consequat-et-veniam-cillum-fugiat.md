@@ -1,9 +1,9 @@
 ---
 layout: post
-tag: State of Climate Risk
+tag: net zero, climate
 category: "climate risk"
-title: "Work in Progress"
-description: Amet qui in qui eu deserunt nostrud quis amet ut ea dolore culpa consectetur sit deserunt.
+title: "Net Zero Costs and Opportunities"
+description: 
 author: Sarah Chen
 image: https://drive.google.com/uc?id=1541eWZkwlPctAlVmVCPZ36NIGTD_QbEU
 ---
@@ -17,9 +17,11 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, similique minim
 Enim exercitation in nostrud commodo do est sit nulla amet veniam laborum consequat est ut dolore. Non cillum tempor ea ut pariatur tempor elit sed et magna. Lorem ipsum esse in in minim quis ut occ!
 
 
-### Dolore nulla ut ut sint amet duis cillum.
+### What is Net Zero
 
-Fugiat elit cillum quis occaecat coms magna veniam in, In fugiat ut in do do dolore sint quis et id ea ex. Fugiat voluptate magna consectetur labore duis do sed pariatur. Tempor tempor anim consequat duis minim voluptate in elit exercitation nisi aute nulla aliqua voluptate aute velit laboris duis reprehenderit sint consequat.
+Net Zero means that the GHG in atomosphere is no longer increasing.  In other words, emission released and emission absorbed cancel out each other.  
+
+The focus of GHG is CO2.  CO2 in atomosphere is like a blanket, keeping the Earth warm.   When CO2 increases, the tempreture increases.  Most of the energy on the Earth is absorbed by waters (oceans, lakes and rivers).  When tempretre warms up, the waters expand in volume.  Melting of the ice add more to the waters. 
 
 Enim cupidatat laboris **Bahlx** or **Merapi** Aliqua incididunt velit enim nulla nisi velit in magna. Lorem ipsum laboris veniam nostrud proident dolor fugiat . (Commodo irure eiusmod quis elit labor reprehenderit.). So, Ad cupidatat dolore esse nostrud duis deserunt veniam enim nostrud.
 In adipisicing anim culpa in in consectetur dolor elit velit tempor labore enim sunt dolore. [here](https://github.com){:target="_blank"}.
@@ -82,7 +84,7 @@ fib(1000) = train_test_split(X, Y, test_size=0.33, random_state=seed)
 * Line (1-3) Proident dolor cupidatat nostrud irure commodo nostrud els esse officia exercitation.
 * Line (4-7) Sit irure ut ut id do culpa ullamco qui est.
 
-### Nulla proident dolor cupidatat  deserunt eiusmod eu id ex.
+### Behavior/Consumption Change
 
 Lorem ipsum sint ut labore fugiat eiusmod voluptate exercitana culpa dolore sit sint enim. Lorem ipsum in velit ex laborinisi dolor laboris sed do enim sit eu <span class="coding">Odkfsdy</span> dfsdgg.
 
