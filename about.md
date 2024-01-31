@@ -66,7 +66,6 @@ permalink: /
             <li>Deep domain knowledge and advance skills using statistical and machine learning</li>
             <li>Climate, credit, market, operational risks in financial services</li>
             <li>Collaborative team builder/leader with a proven capacity to work with stakeholders to identify risks/opportunities and provide quantitative guidance/solutions for business problems</li>
-            <li>Enterprise risk analytics, climate risk modeling, credit risk modeling, market risk, insurance loss reserving/ pricing models, and macroeconomic scenario stress testing</li>
             <li>Fellow of the <a href="https://www.casact.org/" target="_blank">Casualty Actuarial Society</a> (FCAS)</li>
             <li>Fellow of the <a href=" https://www.soa.org/" target="_blank"> Society of Actuaries</a> (FSA).</li>
             <li><a href="https://www.garp.org/scr" target="_blank">Sustainability and Climate Risk (SCR)</a> certified.</li>
@@ -75,7 +74,7 @@ permalink: /
             <li>Co-author of <a href="https://www.amazon.com/Python-SAS-Users-SAS-Oriented-Introduction/dp/1484250001" target="_blank">Python for SAS Users</a></li>
             <li><a href="https://www.math.columbia.edu/" target="_blank">Columbia University</a> 2007, B.A. Mathematics, summa cum laude</li>
           </ul>
-          <p><strong>Expertise: </strong>climate risk, credit and marekt/traded risk management, insurance pricing/reserving, data management, time series analysis, algorithm design,statistical, machine learning, and climate risk models , Python, R, SAS and SQL.</p>
+          <p><strong>Expertise: </strong>Enterprise risk analytics, climate risk modeling, credit risk modeling, market risk, insurance loss reserving/ pricing models, and macroeconomic scenario stress testing, data management, time series analysis, algorithm design,statistical, machine learning , Python, R, SAS and SQL.</p>
         </div>
       </div>
       </div>

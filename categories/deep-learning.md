@@ -1,8 +1,8 @@
 ---
 layout: page-doc
 title: Climate Risk
-subheading: Climate risk in non-computer vision problems
-description: Climate risk in non-computer vision problems
+subheading: 天地人
+description: 天地人
 color: grad-blog
 image: "/images/icons/climate-risk.svg"
 permalink: /climate-risk

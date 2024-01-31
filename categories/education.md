@@ -1,8 +1,8 @@
 ---
 layout: page-doc
 title: Education
-subheading: Different perspectives on educations.
-description: Different perspectives on educations.
+subheading: Teaching myself basic algorithms
+description: Teaching myself basic algorithms
 color: grad-blog
 image: "/images/icons/education.svg"
 permalink: /education

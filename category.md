@@ -51,7 +51,7 @@ permalink: /category
         <div class="climate-risk" onclick="location.href='{{ site.baseurl }}/climate-risk';">
             <img src="{{ "/images/icons/climate-risk.svg" | relative_url }}" />
             <h4>Climate Risk</h4>
-            <p>Climate risk in non-computer vision problems.</p>
+            <p>天地人.</p>
             {% for post in site.posts %}
             {% if post.categories contains 'climate risk' %}
                 {% capture deep_learning_count %} {{ deep_learning_count | plus: 1 }} {% endcapture %}
@@ -84,7 +84,7 @@ permalink: /category
         <div class="education" onclick="location.href='{{ site.baseurl }}/education';">
           <img src="{{ "/images/icons/education.svg" | relative_url }}" />
           <h4>Education</h4>
-          <p>Different perspectives on educations.</p>
+          <p>Teaching myself basic algorithms</p>
           {% for post in site.posts %}
             {% if post.categories contains 'education' %}
                 {% capture education_count %} {{ education_count | plus: 1 }} {% endcapture %}
