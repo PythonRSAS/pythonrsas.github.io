@@ -62,10 +62,13 @@ permalink: /
           <!-- <p style="margin-top: 0px !important;">I'm Sarah Chen. Analytic expert in banking and insurance.
           </p> -->
           <ul class="timeline">
-            <li>Climate, credit, market, operational risks in financial services.</li>
-            <li>Insurance pricing and reserving risk and modeling.</li>
-            <li>Analytic lead with sixteen years of hands-on experience in development of predictive models and efficient algorithms in banking and insurance.</li>
-            <li>Fellow of the <a href="https://www.casact.org/" target="_blank">Casualty Actuarial Society</a> (FCAS), Fellow of the <a href=" https://www.soa.org/" target="_blank"> Society of Actuaries</a> (FSA).</li>
+            <li>Seventeen years of hands-on analytics delivering business value in financial services</li>
+            <li>Deep domain knowledge and advance skills using statistical and machine learning</li>
+            <li>Climate, credit, market, operational risks in financial services</li>
+            <li>Collaborative team builder/leader with a proven capacity to work with stakeholders to identify risks/opportunities and provide quantitative guidance/solutions for business problems</li>
+            <li><strong>Enterprise risk analytics<strong>, <strong>climate risk modeling<strong>, <strong>credit risk modeling<strong>, market risk, <strong>insurance loss reserving/ pricing<strong> models, and <strong>macroeconomic scenario stress testing<strong></li>
+            <li>Fellow of the <a href="https://www.casact.org/" target="_blank">Casualty Actuarial Society</a> (FCAS)</li>
+            <li>Fellow of the <a href=" https://www.soa.org/" target="_blank"> Society of Actuaries</a> (FSA).</li>
             <li><a href="https://www.garp.org/scr" target="_blank">Sustainability and Climate Risk (SCR)</a> certified.</li>
             <!-- <li>Co-founder of <a href=" https://www.magicmathmandarin.org/"> Magic Math Mandarin </a></li> -->
             <li>Co-founder of Magic Math Mandarin</li>
