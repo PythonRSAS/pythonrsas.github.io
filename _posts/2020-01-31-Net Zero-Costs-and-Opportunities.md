@@ -2,7 +2,7 @@
 layout: post
 tag: net zero, climate
 category: "climate risk"
-title: "Net Zero Costs and Opportunities"
+title: "Net Zero: Costs and Opportunities"
 description: 
 author: Sarah Chen
 image: https://drive.google.com/uc?id=1541eWZkwlPctAlVmVCPZ36NIGTD_QbEU
@@ -12,34 +12,16 @@ image: https://drive.google.com/uc?id=1541eWZkwlPctAlVmVCPZ36NIGTD_QbEU
 
 ### What is Net Zero
 
-Net Zero means that the GHG in atomosphere is no longer increasing.  In other words, emission released and emission absorbed cancel out each other.  
+GHG emission has been increasing in a very fast pace since the industrial revolution.  Net Zero means the steady state that GHG in atomosphere is no longer increasing.  In other words, emission released and emission absorbed cancel out each other.  
 
-The focus of GHG is CO2.  CO2 in atomosphere is like a blanket, keeping the Earth warm.   When CO2 increases, the tempreture increases.  Most of the energy on the Earth is absorbed by waters (oceans, lakes and rivers).  When tempretre warms up, the waters expand in volume.  Melting of the ice add more to the waters. 
+The focus of GHG is CO2.  CO2 in atomosphere is like a blanket, keeping the Earth warm.   When CO2 increases, the tempreture increases.  Most of the energy on the Earth is absorbed by waters (oceans, lakes and rivers).  When tempretre warms up, the waters expand in volume.  Melting of the ice add more water.  
 
+### Risks and opportunities of climate change
 
-### Risks if climate change too much
+We all have heard a lot on the risk of climate change: the catastrophy of more frequent extreme weather can cause natural disasters, loss of life, financial stress, and political instability due to shortages of food and/water.  But my college political science professor made us take note that Siberia would benefit from warming: the vast northern land can become available for farming. 
 
-In consequat anim sunt excepteur. [Supervised Learning](https://en.wikipedia.org/wiki/Supervised_learning){:target="_blank"} problem.
+In order to slow down climate change, trillions of dollars would be spent in a multitude of ways and across many industries.  There will be many opportunities and "winners" in the transition.  
 
-<figure>
-  <img src="{{ "/images/posts/laptop.jpg" | relative_url }}">
-  <figcaption>Figure 1. Generic Laptop Screen</figcaption>
-</figure>
-
-Lorem ipsum deserunt consequat. **java tengh** Ad ex quis dolor oe esse qui. (**random** or **lorem values**). Lorem ipsum dolor sit amet, sicing elit. Error autem dolor dolores, Modi temporibus aitis? (**done** or **reb perfect**) Laborum do in ullamco duis magna et nostrud (adipisicing) commodo enim do.
-
-Ex voluptate. **Blablasdf** and **Rdfdsgga**.
-
-* **Blablasdf** - Aliqua reprehenderit Exercitation  **dgs* or a **sdsgsdry**, then it is a Classification problem. *Ex: Predicting the name of a flower species.*
-* **Rdfdsgga** - Sit eiusmerit laboris aliqua elit in est  **real** or **dhjhdfk** Cupidatat deserunt ex est ex ut voluptate et qui ex velit officia irure ut. *Ex: Anim eu reprehenderit nulla sunt ut laboris.*
-
-Velit sunt in quis et et dolore pariatur ullamc elit voluptate culpa duis excepteur aliqua consectetur excepteur ad ut id cupidatat.
-
-<div class="note"><p>
-<b>Note</b>: Proident minim ut anim duis, mollit incididunt tempor laborum. <a href="https://www.coursera.org/learn/machine-learning" target="_blank">Commodo veniam veniam aliquip </a> and <a href="https://www.coursera.org/specializations/climate-risk" target="_blank">Dolor consectetur officia</a> Et dolore anim dolor ex <a href="http://deeplearning.stanford.edu/tutorial/" target="_blank">Stanford University's</a>.
-</p></div>
-
-Qui ut nulla non occaecat deserunt sed non esse officia dolore fugiat mollit eiusmod aliquip excepteur in consequat sit do dolor proident adipisicing culpa ut adipisicing incididunt quis in.
 
 ### High impact industries
 
@@ -53,28 +35,6 @@ Qui ut nulla non occaecat deserunt sed non esse officia dolore fugiat mollit eiu
 * **Metals & Mining** - Exercitation irure dolore ullamco ullam voluptate esse qui.
 * **Auto** - Tgkdfg lfgfgd fgkgdfl.
 * **Aviation** - Exercitation eiusmod non in minim aliqua occaecat ut.
-
-Reprehenderit ut [Google](https://www.google.com/){:target="_blank"} Excepteur sunt nisi anim. Lorem ipsum non aliqua sunt minim eu voluptate reprehenderit anim voluptate ut eu exercitation laborempor commodo velit.(last column in the dataset). Anim esse **Fugiat labore** Dolore consequat tempor deserunt.
-
-* **1 = yes!** Excepteur et dolor commodo adipisicing s occaecat dolor.
-* **0 = no!** tExcepteur et dolor no commodo adipisicing s occaecat dolor.
-
-Nostrud ex non ea do elit dolore ut enim adipisicing cillum commodo sit proident quis Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta ipsa, ratione illo eius deleniti odio ipsum doloremque ut atque, recusandae asperiores enim accusantium distinctio quaerat blanditiis quidem, eaque ab voluptates.
-
-<div class="code-head"><span>code</span>sample-from-python-org.py</div>
-
-```python
-def fib(n):
-  a, b = 0, 1
-  while a < n:
-    print(a, end=' ')
-    a, b = b, a+b
-  print()
-fib(1000) = train_test_split(X, Y, test_size=0.33, random_state=seed)
-```
-
-* Line (1-3) Proident dolor cupidatat nostrud irure commodo nostrud els esse officia exercitation.
-* Line (4-7) Sit irure ut ut id do culpa ullamco qui est.
 
 ### Behavior/Consumption Change
 
