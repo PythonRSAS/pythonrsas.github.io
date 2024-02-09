@@ -74,11 +74,9 @@ We know that the success of a business needs to balance 平衡 risk management w
 
 Internal teams, such as product and marketing teams often are too excited in new product launches to appreciate the fraud risks.  
 
-It is important to have a good working partnership with Engineering, Product, Operations and Compliance teams to conceive, design, and monitor fraud strategies and recommend product features in order to mitigate fraud risk in the most precise manner (simple but not simpler), collaborate on technology that will fit with the organization’s overall IT architecture and strategy, and to secure the funding and IT resources to implement fraud controls.
+It is important to have a good working partnership with Engineering, Product, Operations and Compliance teams to conceive, design, and monitor fraud strategies and recommend product features in order to mitigate fraud risk in the most precise manner (simple but not simpler), collaborate on technology that will fit with the organization’s overall IT architecture and strategy, and to secure the funding and IT resources to implement fraud controls.   Externally, fraud risk team need to work with business partners and regulators. 
 
-Externally, fraud risk team need to work with business partners and regulators. 
-
-> **Fraud risk team**
+> **Technology**
 
 Mobile payment risk management heavily involves technology.  
 
