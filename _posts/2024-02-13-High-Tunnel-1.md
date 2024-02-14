@@ -137,10 +137,13 @@ Plan for proper disposal of the cover at the end of its useful life.
 Operation of equipment near and on the site shall not compromise the intended purpose of the high tunnel structure or its cover.
 
 ### REFERENCES
-Community Garden Guide Season Extension - High Tunnel, NRCS. Rose Lake Plant Materials Center, East Lansing, Michigan.
+- Community Garden Guide Season Extension - High Tunnel, NRCS. Rose Lake Plant Materials Center, East Lansing, Michigan.
 
-“High Tunnel Production Manual”. Penn State University College of Agriculture, Department of Horticulture. White, L. and Orzolek, M. 2003
-“High Tunnels: Using Low-Cost Technology to Increase Yields, Improve Quality and Extend the Season”. Ted Blomgren, Cornell Cooperative Extension, and Tracy Frisch, Regional Farm and Food Project. Published by the University of Vermont Center for Sustainable Agriculture. 2007.
-“Minnesota high tunnel production manual for commercial growers”. Edited by: Terrance T. Nennich, Sr., University of Minnesota Extension and Suzanne Wold-Burkness, University of Minnesota. 2013.
-“Growing Under Cover: A Guide to Polytunnel Options for Kansas Growers”; Kansas Rural Center; Kim Scherman, 2014.
+- “High Tunnel Production Manual”. Penn State University College of Agriculture, Department of Horticulture. White, L. and Orzolek, M. 2003
+
+- “High Tunnels: Using Low-Cost Technology to Increase Yields, Improve Quality and Extend the Season”. Ted Blomgren, Cornell Cooperative Extension, and Tracy Frisch, Regional Farm and Food Project. Published by the University of Vermont Center for Sustainable Agriculture. 2007.
+
+- “Minnesota high tunnel production manual for commercial growers”. Edited by: Terrance T. Nennich, Sr., University of Minnesota Extension and Suzanne Wold-Burkness, University of Minnesota. 2013.
+
+- “Growing Under Cover: A Guide to Polytunnel Options for Kansas Growers”; Kansas Rural Center; Kim Scherman, 2014.
 
