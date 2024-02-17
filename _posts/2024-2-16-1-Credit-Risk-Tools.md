@@ -1,9 +1,9 @@
 ---
 layout: post
-tag: Assesing risk factor
+tag: wholesale credit analysis
 category: "credit risk"
 title: "Credit Risk Tools"
-description: Thoughts on credit risk, and general wisdoms
+description: Tools for analyzing wholesale credit (mostly from a bank's perspective)
 author: Sarah Chen
 image: images/posts/worldDebt.jpg
 ---
@@ -32,3 +32,8 @@ Charlie Munger famously said that he dislike EBITDA because interest rate and ta
 | **Free Cash Flow**    | Cash flow from operations - capex - dividends    | Net cash generated or used by all regular strategic business & financial activities except debt repayment; *Excludes* exceptional sources and uses like acquisitions & divestitures, special dividends, or special share buyback     | Cash flow availabel for all other business & financial uses, includng acquisitions, special dividends, share buyback and debt repayment   |  
 | **Internal Cash Flow**    | (Income before taxes + interest expense)x(1 - tax rate) + D&A - capex - change in net working capital    | Cash generated before any payment to or from debt or equity     | Discounted cash flow method of firm valuation   |  
 
+## Profitability Ratios ##
+|  Name   | Calculation  | What it Measures  | How to Use   |
+|:------- |:-------- |:------- |:-------- |
+| **Gross Margin**   | (Sales - COGS)/Sales |Production efficiency; buyer power (product prices) & supplier power (input costs)  | Use for all companies especially relevant to retailers, wholesalers, and commodity producers|
+| **Cash Flow from Operations**    | Net income + D&A +/-other non-cash items +/- change in net working capital    | **Cash net income**; Includes interest and tax expenses and other non-operating income and expenses    | Key source of cash over the long term   |  
