@@ -18,9 +18,10 @@ Below is a summary of the different products or portfolios:
 ## Cash Flow Measures ##
 In wholesale credit analysis, it is important to analyze cash flow.  
 
-| Cash Flow Measures                      |
+| Cash Flow Measures                     | |
 |  Name   | Calculation  | What it Measures  | How to Use   |
 |:------- |:-------- |:------- |:-------- |
-| EBITDA   | Income before taxes + interest expense + D&A |** Near-cash operating income**; Igores other non-cash items, changes in working capital, and capex. May include non-operatingincome & expenses    | Profitability, leverage, and coverage analysis; Multiples valueation; Debt covenants|
-| data    | input    | data    | input    |  
+| **EBITDA**   | Income before taxes + interest expense + D&A |**Near-cash operating income**; Igores other non-cash items, changes in working capital, and capex. May include non-operatingincome & expenses    | Profitability, leverage, and coverage analysis; Multiples valueation; Debt covenants|
+| **Cash Flow from Operations**    | Net income + D&A +/-other non-cash items +/- change in net working capital    | **Cash net income**; Includes interest and tax expenses and other non-operating income and expenses    | Key source of cash over the long term   |  
+| **Free Cash Flow**    | Cash flow from operations - capex - dividends    | Net cash generated or used by all regular strategic business & financial activities except debt repayment; *Excludes* exceptional sources and uses like acquisitions & divestitures, special dividends, or special share buyback     | Cash flow availabel for all other business & financial uses, includng acquisitions, special dividends, share buyback and debt repayment   |  
 
