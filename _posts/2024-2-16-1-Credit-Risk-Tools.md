@@ -14,14 +14,11 @@ Wholesale credit analysis is a very labor intensive process.  Although there are
 
 |  Term   | Calculation  |
 |:------- |:-------- |
-|Operating income | Sales - COGS (including despreciation) - SG&A - other operating expense + other operating income|
-|EBIT | Income before taxes + interest expense|
-|EBITDA | Net i ncome before taxes + interest expense + depreciation & amortization|
-|Capital | Total debt + minority interest + preferred stock + owners' equity|
+|**Operating income** | Sales - COGS (including despreciation) - SG&A - other operating expense + other operating income|
+|**EBIT** | Income before taxes + interest expense|
+|**EBITDA** | Net i ncome before taxes + interest expense + depreciation & amortization|
+|**Capital** | Total debt + minority interest + preferred stock + owners' equity|
 
-
-
-| **Operating income** | 
 
 
 ## Cash Flow Measures ##
@@ -40,6 +37,7 @@ Charlie Munger famously said that he dislike EBITDA because interest rate and ta
 | **Internal Cash Flow**    | (Income before taxes + interest expense)x(1 - tax rate) + D&A - capex - change in net working capital    | Cash generated before any payment to or from debt or equity     | Discounted cash flow method of firm valuation   |  
 
 ## Profitability Ratios ##
+
 |  Name   | Calculation  | What it Measures  | How to Use   |
 |:------- |:-------- |:------- |:-------- |
 | **Gross Margin**   | (Sales - COGS)/Sales |Production efficiency; buyer power (product prices) & supplier power (input costs)  | Use for all companies especially relevant to *retailers, wholesalers, and commodity producers*|
