@@ -48,3 +48,16 @@ Charlie Munger famously said that he dislike EBITDA because interest rate and ta
 | **Return on Assets**    | (Net income)/(Total assets)   | Efficiency of the total investment in the firm | Esp. useful in asset-intensive industries |  
 | **Return on Equity**    | (Net income)/(Owner's equity)   | Efficiency of the shareholders' investment in the firm | Esp. useful in valuation analysis |  
 | **Return on Capital**    | EBIT/Capital   | Efficiency of the debt & equity capital investment in the firm | Esp. useful in valuation analysis |  
+
+## Coverage Ratios ##
+
+|  Name   | Calculation  | What it Measures  | How to Use   |
+|:------- |:-------- |:------- |:-------- |
+| **X Interest Earned**   | EBIT/Interest  | A company's ability to make interest payments from operating & non-operating income before interest and taxes |Use for all companies |
+| **EBITDA Coverage**    | EBITDA/Interest | A company's ability to make interest payments from near-cah income before interest & taxes  | Use for all companies,  especially when D&A, interest or tax expense is high |  
+| **EBIT margin**    | EBIT/Sales   | Operating efficiency + impact of non-operating income & expenses before interest & taxes   | Use when non-operating income or expenses are material & recurring   |  
+| **EBITDA margin**    | EBITDA/Sales   | Near-cash operating & non-operating efficiency before interest & taxes   | Use for all companies esp. when EBIT margins are low, interest or tax expenses are high, or D&A is high |  
+| **Net margin**    | (Net income)/Sales   | Operating, financial, and tax efficiency | Use for all companies esp. for valuation analysis |  
+| **Return on Assets**    | (Net income)/(Total assets)   | Efficiency of the total investment in the firm | Esp. useful in asset-intensive industries |  
+| **Return on Equity**    | (Net income)/(Owner's equity)   | Efficiency of the shareholders' investment in the firm | Esp. useful in valuation analysis |  
+| **Return on Capital**    | EBIT/Capital   | Efficiency of the debt & equity capital investment in the firm | Esp. useful in valuation analysis |  
