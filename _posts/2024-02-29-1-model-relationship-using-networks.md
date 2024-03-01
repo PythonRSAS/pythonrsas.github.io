@@ -49,7 +49,7 @@ pdot.write_png(png_path)
 
 
 
-Here is how I adatpt it for visualize relationships and borrow ideas from [python pandas recursive lookup between manager and employee ID's](https://stackoverflow.com/questions/58791543/python-pandas-recursive-lookup-between-manager-and-employee-ids):
+Here is a super simple example on how I visualize relationships.  I borrowed ideas from [python pandas recursive lookup between manager and employee ID's](https://stackoverflow.com/questions/58791543/python-pandas-recursive-lookup-between-manager-and-employee-ids):
 
 <div class="code-head"><span>code</span>graph representation 1.py</div>
 
