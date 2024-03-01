@@ -5,7 +5,7 @@ category: education
 title: "Model Relationship Using Networks"
 description: visualize relationships between models or things
 author: Sarah Chen
-image: images/posts/photos/7bridges.JPG
+image: images/posts/random_graph.png
 
 ---
 
