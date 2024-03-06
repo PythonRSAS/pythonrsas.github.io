@@ -23,8 +23,13 @@ Below tips are from our wonderful field officer, who had practiced farming growi
 6. For plants that go vertical, tie "bailing" strings on the structure and hang them down.  The strings don't need to be tied to the ground.  Climbing plants know how to find them. 
 7. Put beneficial insects such as lady bugs in the high tunnel for insect control
 8. Can mix rows of lavender, rows of daikon, and mix with rows of flowers such as roses. 
+9.  Although it is perfectly fine to build from scratch as shown in [How to Build a High-Tunnel Greenhouse](https://www.youtube.com/watch?v=GvfDUaKbej0&list=PLgsM8Qig7iL0SDhTFqAIVYa6KAXCDv-PK&index=5&t=249s), it also works by buying a package.  Actually, I learned more from the comment section of this video than the video itself.  
 
+### Tips I learn from [How to Build a High-Tunnel Greenhouse](https://www.youtube.com/watch?v=GvfDUaKbej0&list=PLgsM8Qig7iL0SDhTFqAIVYa6KAXCDv-PK&index=5&t=249s)
 
+1) The *plastic will need to be **removed** in advance of the summer heat*.  *Tie the plastic down instead of stapling* it so that the plastic can be reused in fall or spring. 
+    
+2) Critters are persistent.  Use the same frame for bird netting.  After draping the bird net, wrap the perimeter with wire fence.  (bird net keeps birds out, but critters such as rabbits and chipmunks chew through.)
 
 ### NRCS Practice: 325 - High Tunnel System
 
