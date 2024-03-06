@@ -11,6 +11,21 @@ image: images/posts/ht_summer.jpg
 Lately I am looking into high tunnels （高隧道).   High tunnel is similar to greenhouse, but it is not greenhouses or low tunnel systems. 可避免如強風、豪雨、冰雹、雪霜與乾旱等極端氣候現象造成的作物災損。此外，其優勢在於可拉長作物的產季、提高精品作物的生產量、延長貨架壽命(shelf life)等，以滿足廣大的高端消費市場。
 
 ![high tunnel in winter](../images/posts/ht_winter.jpg)
+### Tips on Using High Tunnel from an NRCS Field Officer
+
+Below tips are from our wonderful field officer, who had practiced farming growing up working with his mom in his grandmother's farm. 
+
+1. **Till & level**.  Learn how to level. 
+2. Remove weed/brush roots, especially those rhyzones that look like thick and white veins. 
+3. Build high tunnel structure.  Mow around it or use landscape fabric for weed control. 
+4. **Wood chip walkway**: Dig rows of ditches and fill them with wood chips for walking paths (2 to 3 feet wide).   
+5. Grow food in rows (1 foot wide) between the wood chip path.  
+6. For plants that go vertical, tie "bailing" strings on the structure and hang them down.  The strings don't need to be tied to the ground.  Climbing plants know how to find them. 
+7. Put beneficial insects such as lady bugs in the high tunnel for insect control
+8. Can mix rows of lavender, rows of daikon, and mix with rows of flowers such as roses. 
+
+
+
 ### NRCS Practice: 325 - High Tunnel System
 
 Scenario Description: Use in areas with low expected snow and wind loads. Quonset-style (round) manufactured frame of tubular steel (30 x 72 ft.) covered with 4-year 6
