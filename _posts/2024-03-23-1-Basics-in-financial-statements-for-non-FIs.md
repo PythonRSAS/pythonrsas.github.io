@@ -5,17 +5,18 @@ category: "other risks"
 title: "Basics in financial statements for non-FIs"
 description: basic understanding of the 3 financial statements and connections
 author: Sarah Chen
-image: images/posts/financial_statements.jpg
+image: images/posts/financial_statements.JPG
 ---
 
 This post covers the very basics of the three main financial statements and their connections.  
+
 Why do I write this post? I am writing the post because I need to use the financials in climate transition risk modeling.   Climate transition risk does not work like CCAR models where you model the relationship of macroeconomic variables such as GDP, housing price index, unemployment rate with default rate, LGD, EAD using same time or up to a few quarters' lag data.   As climate risk and opportunities are more strategic, the scenarios are quite different from CCAR ones.  We need to project how well the companies' bottom lines and financials will be when their costs go up due to carbon tax, due to demand change, due to availability of cheaper renewables, etc.   We then project the default probabilities based on the financials.  
 
 This scope of the post is on non-financial institution corporates.  The financial statements of financial institutions are very different due to the differences in business models and will be covered in a separate post.  I will also cover a very different topic on carbon accounting in a separate post. 
 
 In addition, when we compare financial statements, we need to keep in mind the context where the company operates: different jurisdiction have different accounting traditions/rules (IFRS in Europe and other places vs. US GAAP), and different industry have different norms, and different companies have different business models.
 
-![financial_statements](../images/posts/financial_statements.jpg)
+![financial_statements](../images/posts/financial_statements.JPG)
 
 # Income Statement to Cashflow Statement
 
