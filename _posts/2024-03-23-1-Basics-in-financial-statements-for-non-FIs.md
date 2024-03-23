@@ -5,7 +5,7 @@ category: "other risks"
 title: "Basics in financial statements for non-FIs"
 description: basic understanding of the 3 financial statements and connections
 author: Sarah Chen
-image: images/posts/financial_statements.JPG
+image: images/posts/financial_statements.jpg
 ---
 
 This post covers the very basics of the three main financial statements and their connections.  
@@ -16,7 +16,7 @@ This scope of the post is on non-financial institution corporates.  The financia
 
 In addition, when we compare financial statements, we need to keep in mind the context where the company operates: different jurisdiction have different accounting traditions/rules (IFRS in Europe and other places vs. US GAAP), and different industry have different norms, and different companies have different business models.
 
-![financial_statements](../images/posts/financial_statements.JPG)
+![financial_statements](../images/posts/financial_statements.jpg)
 
 # Income Statement to Cashflow Statement
 
