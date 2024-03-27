@@ -26,13 +26,16 @@ There are huge opportunities for banks and businesses.  Below screenshot is from
 
 ### Adapt and innovate
 People are great at adapting.  The history of the O&G industry is one example.  At the beginning, kerosene oil was extracted from crude oil for lights as it was much cheaper than whale fat that was used then for light.  Gasoline and other by products were dumped into the rivers.  It was only when automobile was invented that the use of gasoline as a fuel started.  Then we have petrochemical, and much more.  Look at what we have now: consuming millions of barrels of oil a day.   We will be changing and adapting again. 
+
 For banks, most term loans have maturity of only 3 to 5 years.  When the loans mature, the banks can decide whether to lend again or not.  Both borrowers and lenders have time to adapt and innovate.  
-If a company moves too fast to renewables, the cost may outweigh the income, and this is not sustainable for investors or the company.  For example, some large O&G companies have cut back on their green energy programs.   Changing too fast is often a risk in themselves, as everything in life. 
-### Climate simulation
-From a high level, one may take a look at the interactive scenarios that plays out for the next 80 years. 
-[MIT EN-ROADS](https://en-roads.climateinteractive.org/scenario.html?v=24.1.0)
-![](../images/posts/enroad.PNG)
+
+Companies have to be strategic about their transition.  If a company moves too slowly, it may fall behind and become uncompetitive when carbon taxes increase.  But if it moves too fast to renewables or other "green", the cost may be too high to be economically feasible, and this is not sustainable for investors or the company.  For example, some large O&G companies have cut back on their green energy programs.   Changing too fast is often a risk in themselves, as everything in life. 
 
 
 ## Opportunies
 Climate risk will not go away and it will only become more important, although it may take a backseat in the context of energy security and national security.  Climate transition is a great opportunity for banks and other financial institutions: carbon credit trading, green financing, transition financing, just to name a few.   Even top O&G companies have positioned themselves to benefit from the transition by filing for carbon technology patents.   The amount of money to be spent on climate-related over the long run will be a similar magnitude as AI. 
+
+### Climate scenarios
+From a high level, one may take a look at the interactive scenarios that plays out for the next 80 years. 
+[MIT EN-ROADS](https://en-roads.climateinteractive.org/scenario.html?v=24.1.0)
+![](../images/posts/enroad.PNG)
