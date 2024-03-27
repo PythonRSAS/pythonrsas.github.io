@@ -98,5 +98,8 @@ These cash flows are reported in the investing activities section of the cash fl
 
 # Reference
 
-[Youtube video: Connecting the Income Statement, Balance Sheet, and Cash Flow Statement](https://youtu.be/OGJBapKV1oE?si=3ghe1bPzzfS1qynT)
+[MIT OpenCourseWare: Financial Accounting](https://ocw.mit.edu/courses/15-511-financial-accounting-summer-2004/pages/lecture-notes/)
+
+video
+[Connecting the Income Statement, Balance Sheet, and Cash Flow Statement](https://youtu.be/OGJBapKV1oE?si=3ghe1bPzzfS1qynT)
 

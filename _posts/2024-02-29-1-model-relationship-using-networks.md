@@ -12,7 +12,7 @@ image: images/posts/random_graph.png
 We often want to visualize relationships: between models, people, or anything. 
 
 I learned a lot from a user's fun example:
-[How to customize a networkx graph?]https://github.com/pydot/pydot/issues/169
+[How to customize a networkx graph?](https://github.com/pydot/pydot/issues/169)
 
 <div class="code-head"><span>code</span>graph representation 1.py</div>
 
@@ -45,8 +45,6 @@ pdot.write_png(png_path)
 ```
 
 ![](../images/posts/random_graph.png)
-
-
 
 
 Here is a super simple example on how I visualize relationships.  I borrowed ideas from [python pandas recursive lookup between manager and employee ID's](https://stackoverflow.com/questions/58791543/python-pandas-recursive-lookup-between-manager-and-employee-ids):
