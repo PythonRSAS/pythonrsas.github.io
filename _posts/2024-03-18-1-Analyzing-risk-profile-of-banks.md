@@ -1,9 +1,9 @@
 ---
 layout: post
 tag : data cleaning, strings
-category: "Python for SAS"
-title: "Read PDFs"
-description: getting financial data from difference sources require matching company names
+category: "other risks"
+title: "Analyzing risk profile of banks"
+description: banks financials are different from corporates and require unique metrics to analyze their risk profiles
 author: Sarah Chen
 image: images/posts/photos/IMG_0875.JPG
 
@@ -57,25 +57,15 @@ In Europe, a lot of mortgages on the retail book.
 # Unfunded
 Unfunded commitments are important to consider because they represent potential future outflows of funds for the bank. While these commitments may not immediately impact the bank's balance sheet, they still represent obligations that the bank must fulfill when borrowers draw down on their credit lines or utilize their approved loans.
 
-When times are difficult, those in trouble will quickly draw down. 
+When times are difficult, those in trouble will quickly draw down.Unfunded can quickly be drawn down. 
 
-
-In a falling rate enviroment, then it is better to be in floating
-But in 
-
-
-Unfuned can quickly be drawn down. 
-A lot of unfunded. 
 
 # Santander
 
 off balance sheet risks:
 1. Loans commitment granted (undrawn): in bad days this can quicky become problem
-2. Financial guarantees: LCs
+2. Financial guarantees
    
-
-In DM, impairment after GFC was 10%.  In Ireland it was 30. 
-
 
 # Loan write off
 Accounting Treatment: The bank *records the loan as a loss* on its income statement, which reduces its net income for the period. Simultaneously, it *removes the loan from its balance sheet as an asset* and adjusts its loan loss reserve account to reflect the loss.
@@ -169,20 +159,8 @@ Overall, reserve adequacy is a critical aspect of prudent banking practices, ens
 
 # Stress testing
 
-Fashionable.  Stress testing. 
+Stress testings have been fashionable.
 Original rational is when the bank business opaque. 
-
-Why do we care about tax rate?  When we make reseves, 
-
-SVB 
-
-<div class="code-head"><span>code</span>plot model driver.py</div>
-
-```python
-
-
-
-```
 
 Images of this post are from [New York Fed Quarterly Trends for Consolidated U.S. Banking Organizations](https://www.newyorkfed.org/research/banking_research/quarterly_trends.html), based on onsolidated financial statistics for the U.S. commercial banking industry, including both bank holding companies (BHCs) and banks. Statistics are based on quarterly regulatory filings. Statistics are inclusive of BHCs' nonbank subsidiaries. 
 
@@ -202,16 +180,12 @@ Because of the different accounting treatments, in particular on HTM and AFS, ba
 # Compare loans and derivatives
 Loans are riskier, derivatives are more complex. 
 
-US GAAP is more sensible.  
-
-The total 
-
 On CIti BS, exposure is $75 B after netting and and cash collateral.  
 
 If comparing US bank with EU bank, need to compare on the same footing.   
 
-Deriv: liquidity risk, biggest is counterparty risk (CVA) and wwr (correlation btw PD and EAD)
-D is complex, sum of fair value today and future potential exposure (can only be estimated).  Potential: the closer to maturity the bigger the risk, impacted by netting, and cash collateral. 
+Derivatives: liquidity risk, biggest is counterparty risk (CVA) and wwr (correlation btw PD and EAD)
+Derivatives are complex, sum of fair value today and future potential exposure (can only be estimated).  Potential: the closer to maturity the bigger the risk, impacted by netting, and cash collateral. 
 
 Santander: Table 49, $224 Bm 
 Add-on: potential future exposure (PFE)
@@ -221,17 +195,12 @@ Why banks do derivative? Most (99%) is for market making for customers. 1% for s
 
 The most important is counterparty risk. Even if when it is exchange traded.  Because I am responsible for client's performance at the clearence house.   The risk is at the clearence house.  Also risk with the exchange.  The exchange is not rock solid. 
 
-There are market and 
 
 ## Contingent exposure
 
 Riskiest is the committed but undrawn, especially to commerical corporates. 
 
-Cover bond stays on the BS, securitization is sold
-synthetic securitization, SPV will 
-
-Myth
-Main attraction of securitization is 
+Cover bond stays on the BS, securitization is sold.
 
 
 # Earnings and sensitivity to market risk
@@ -248,24 +217,10 @@ https://macrotrends.net/definitions/terms/return-on-equity-roe/
 
 
 
-Table of Contents
-It Is More Accurate Than P/E
-P/B Shows Discount or Premium
-Price-To-Book Valuation Risks
-Bank Book Value FAQs
-The Bottom Line
-FUNDAMENTAL ANALYSIS TOOLS
+
 Book Value per Share for Banks: Is It a Good Measure?
 By JAY WEI Updated September 16, 2023
-Reviewed by MARGUERITA CHENG
-Fact checked by JARED ECKER
-BW Photo
-Fact checked by Jared Ecker
-Full Bio
-Jared Ecker is a researcher and fact-checker. He possesses over a decade of experience in the Nuclear and National Defense sectors resolving issues on platforms as varied as stealth bombers to UAVs. He holds an A.A.S. in Aviation Maintenance Technology, a B.A. in History, and a M.S. in Environmental Policy & Management.
-Learn about our editorial policies 
-Trending Videos
-Close this video player
+
 Bank stocks are notorious for trading at prices below book value per share, even when a bank's revenue and earnings are on the rise. As banks grow larger and expand into nontraditional financial activities, especially trading, their risk profiles become multidimensional and more difficult to construct. This increases business and investment uncertainties.
 
 This is presumably the main reason why bank stocks tend to be conservatively valued by investors who must be concerned about a bank's hidden risk exposures. Trading for their own accounts as dealers in various financial derivatives markets exposes banks to potentially large-scale losses, something investors have decided to take into full consideration when valuing bank stocks.
@@ -273,6 +228,7 @@ This is presumably the main reason why bank stocks tend to be conservatively val
 KEY TAKEAWAYS
 The book value per share is a company's book value for every common share outstanding. The book value is the difference between total assets and liabilities.
 Bank stocks tend to trade at prices below their book value per share as the prices consider the increased risks from a bank's trading activities.
+
 The price-to-book (P/B) ratio can be used to compare a company's market cap to its book value. This provides a comparison of market price to shareholders' equity rather than earnings, which can fluctuate more often, particularly through trading activities.
 An above-one P/B ratio means the stock is being valued at a premium in the market to equity book value, whereas a below-one P/B ratio means the stock is being valued at a discount to equity book value.
 Companies with large trading activities usually have P/B ratios below one because the ratio considers the inherent risks of trading.
@@ -281,7 +237,6 @@ Book value per share—or total shareholders' equity divided by total outstandin
 
 The alternative of comparing a stock's price to earnings, or price-to-earnings (P/E) ratio, may produce unreliable valuation results, as bank earnings can easily swing back and forth in large variations from one quarter to the next due to unpredictable, complex banking operations.
 
-
 Using book value per share, the valuation is referenced to equity with less ongoing volatility than quarterly earnings in terms of percentage changes because equity has a much larger base, providing a more stable valuation measurement.
 
 Price-To-Book Shows Discount or Premium
@@ -289,26 +244,19 @@ The P/B ratio can be above or below one, depending on whether a stock trades at 
 
 For instance, Capital One Financial (COF) and Citigroup (C) had P/B ratios of 0.73 and 0.436, respectively, on Sep. 15, 2023.
 1
-2
-
-Proprietary trading in banks can lead to substantial profits, but trading, particularly derivatives, comes with significant amounts of risk, often through leverage, that must be considered when evaluating a bank.
+1. Proprietary trading in banks can lead to substantial profits, but trading, particularly derivatives, comes with significant amounts of risk, often through leverage, that must be considered when evaluating a bank.
 Many banks rely on trading operations to boost core financial performance, with their annual dealer trading account profits all in the billions. However, trading activities present inherent risk exposures and could quickly turn to the downside.
 
 Wells Fargo & Co. (WFC) in 2021 saw its stock trading at a premium due to its equity book value per share, with a P/B ratio of 1.24 at the end of 2021.
-3
- One reason for this was that Wells Fargo was relatively less focused on trading activities than its peers, potentially reducing its risk exposures.
-4
-
-Price-To-Book Valuation Risks
+3. One reason for this was that Wells Fargo was relatively less focused on trading activities than its peers, potentially reducing its risk exposures.
+4. Price-To-Book Valuation Risks
 While trading mostly derivatives can generate some of the biggest profits for banks, it also exposes them to potentially catastrophic risks. A bank's investments in trading account assets can reach hundreds of billions of dollars, taking a large chunk out of its total assets.
 
 For Q4 2021, Bank of America (BAC) recorded its equity trading revenue at $1.4 billion, while its fixed-income trading revenue was $1.6 billion over the same period.
-5
- Moreover, trading investments are only part of a bank's total risk exposures when banks can leverage their derivatives trading to almost unimaginable amounts and keep them off the balance sheets.
+5. Moreover, trading investments are only part of a bank's total risk exposures when banks can leverage their derivatives trading to almost unimaginable amounts and keep them off the balance sheets.
 
 For example, at the end of 2021, Bank of America had total derivatives risk exposure of more than $18 trillion, and Citigroup had more than $47 trillion.
-6
- These stratospheric numbers in potential trading losses dwarfed their total market caps at the time of $377.8 billion and $122.8 billion for the two banks, respectively.
+6. These stratospheric numbers in potential trading losses dwarfed their total market caps at the time of $377.8 billion and $122.8 billion for the two banks, respectively.
 7
 8
 
@@ -585,6 +533,42 @@ Corporate Metrics | Corporates | Banks
    - **Corporates**: Efficiency ratios for corporates may vary depending on their industry and business model. Similar to banks, corporates aim to minimize operating expenses relative to revenue, but benchmarks may differ across industries.
 
 While these are some common financial metrics used to compare banks and corporates, it's essential to consider industry-specific factors, regulatory environments, and market conditions when conducting comparisons. Additionally, qualitative factors such as business strategy, competitive positioning, and risk management practices play a crucial role in assessing the overall performance and financial health of banks and corporates.
+
+KPI
+Loan/deposit
+maturity gap
+customer funding % total funed balancesheet (excluding derivatives)
+Inter-bank assets % inter-bank liabilities
+
+
+Liquidity coverage ratio
+Pool of liquid assets 
+# Stability of fundings
+Less liquid assets should be funded by stable funding. 
+Stable funding have higher weight. 
+The Net Stable Funding Ratio (NSFR) is a liquidity ratio introduced as part of the Basel III framework, aimed at ensuring that banks maintain a stable funding profile over the longer term relative to the liquidity of their assets and off-balance sheet exposures. The NSFR complements the Liquidity Coverage Ratio (LCR), which focuses on short-term liquidity risk.
+
+The NSFR requires banks to maintain stable funding sources over a one-year horizon to support their activities. It compares the amount of available stable funding (ASF) to the amount of required stable funding (RSF) based on the liquidity characteristics of banks' assets and activities.
+
+The formula for calculating the NSFR is as follows:
+
+NSFR = Available Stable Funding (ASF) / Required Stable Funding (RSF)
+
+- **Available Stable Funding (ASF)** represents the portion of a bank's liabilities and capital that is expected to be reliable over a one-year time horizon. This includes sources of stable funding such as retail deposits, long-term wholesale funding, and equity capital.
+
+- **Required Stable Funding (RSF)** represents the liquidity risk associated with a bank's assets and off-balance sheet exposures. It is calculated by applying predefined RSF factors to each asset category and off-balance sheet exposure. RSF factors reflect the potential liquidity risk of different types of assets and exposures.
+
+The NSFR requires banks to maintain an NSFR of at least 100%, indicating that they have sufficient stable funding to support their long-term assets and activities. Banks with an NSFR below 100% may be considered to have a funding shortfall and may be subject to regulatory action or additional capital requirements.
+
+Key features of the NSFR include:
+
+1. **Longer-Term Horizon**: Unlike the Liquidity Coverage Ratio (LCR), which focuses on short-term liquidity risk, the NSFR considers a longer-term horizon of one year, reflecting the stability of funding sources over a longer period.
+
+2. **Risk Sensitivity**: The NSFR applies predefined RSF factors to different types of assets and off-balance sheet exposures, reflecting the liquidity risk associated with each category. This risk sensitivity ensures that banks maintain stable funding relative to the liquidity risk of their activities.
+
+3. **Complementary to LCR**: The NSFR complements the Liquidity Coverage Ratio (LCR) by focusing on longer-term funding stability, while the LCR addresses short-term liquidity risk. Together, the NSFR and LCR provide a comprehensive framework for assessing and managing banks' liquidity risk.
+
+Overall, the Net Stable Funding Ratio (NSFR) is an important regulatory requirement aimed at promoting the resilience and stability of banks' funding profiles over the longer term. By ensuring that banks maintain sufficient stable funding to support their assets and activities, the NSFR contributes to the overall safety and soundness of the banking system.
 
 
 # Reference
