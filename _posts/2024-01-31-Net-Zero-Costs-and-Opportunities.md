@@ -21,8 +21,10 @@ The focus of GHG is CO2.  CO2 in atmosphere is like a blanket, keeping the Earth
 * **Aviation** - 
 ### Opportunities 机会
 There are huge opportunities for banks and businesses.  Below screenshot is from Santander 2023 Annual Report.  The bank deemed climate risk is not critical as a risk（风险）, but it is critical as an opportunity （机会）. 
-![opportunities](/images/posts/photos/santander2023.png)
-[](/images/posts/photos/IMG-0649.JPG)
+
+![opportunities](/images/posts/photos/santander2023.PNG)
+
+[  ](/images/posts/photos/IMG-0649.JPG)
 
 ### Adapt and innovate
 People are great at adapting.  The history of the O&G industry is one example.  At the beginning, kerosene oil was extracted from crude oil for lights as it was much cheaper than whale fat that was used then for light.  Gasoline and other by products were dumped into the rivers.  It was only when automobile was invented that the use of gasoline as a fuel started.  Then we have petrochemical, and much more.  Look at what we have now: consuming millions of barrels of oil a day.   We will be changing and adapting again. 
