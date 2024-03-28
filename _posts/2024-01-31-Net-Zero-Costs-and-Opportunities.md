@@ -39,3 +39,10 @@ Climate risk will not go away and it will only become more important, although i
 From a high level, one may take a look at the interactive scenarios that plays out for the next 80 years. 
 [MIT EN-ROADS](https://en-roads.climateinteractive.org/scenario.html?v=24.1.0)
 ![](../images/posts/enroad.PNG)
+
+
+### Climate risk large language models
+
+Banks and financial institutions are combing through reports after reports and hours after hours to review a company on its climate exposure.  It would be great to pre-run a NLP model such as sentiment analysis and text summarization before or in parallel with an analyst. 
+
+In addition, using LLM or ChatGPT-like application to signficantly may reduce the human workload and potentially standardize assessment.   The application can be trained on data such as CDP and company's own sustainability report.   
