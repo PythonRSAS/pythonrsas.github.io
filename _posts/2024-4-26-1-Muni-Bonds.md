@@ -5,7 +5,7 @@ category: "credit risk"
 title: "Muni Bonds"
 description: An overview of muni bonds
 author: Sarah Chen
-image: images/posts/muni.png
+image: images/posts/muni.PNG
 ---
 
 - [Bonds vs. Dividend Stocks](#bonds-vs-dividend-stocks)
