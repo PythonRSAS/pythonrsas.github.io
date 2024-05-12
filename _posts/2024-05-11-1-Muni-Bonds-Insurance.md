@@ -70,8 +70,7 @@ Historically, muni bonds are among the safest investoments.  Whether it will rem
 
 Municipal debt predates corporate debt by several centuries—the early Renaissance Italian city-states borrowed money from major banking families. Borrowing by American cities dates to the nineteenth century, and records of U.S. municipal bonds indicate use around the early 1800s. Officially the first recorded municipal bond was a general obligation bond issued by the City of New York for a canal in 1812.
 
-The American Civil War (April 12, 1861 – May 26, 1865)
-
+In the present US, muni bonds are important to the functioning of communities just like 30-year mortgage loans to families. 
 
 # Current situation and outlook
 
