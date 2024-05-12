@@ -12,9 +12,16 @@ image: images/posts/photos/sf/IMG-0919.JPG
 - [Beta](#beta)
 - [Getting Metrics](#getting-metrics)
 
-# Metrics
+There are hundreds if not thousands of ratios and metrics used in stock trading.  All metrics and ratios have their limitations and should be used with other metrics and qualitative analysis.  The limitations include (not comprehensive):
 
-All metrics and ratios have their limitations and should be used in conjunction with other valuation metrics and qualitative analysis when making investment decisions. Additionally, the accuracy of the metrics depends on the reliability of estimates and assumptions used in calculation.
+- metrics and ratios are based on historical data
+  - historical data may not be relevant for the future
+  - even if historical data is relevant, they may not be accurate or true (so we have to use them with a grain of salt)
+- metrics do not include important qualitative information 
+
+Additionally, the accuracy of the metrics depends on the reliability of estimates and assumptions used in calculation.
+
+# Metrics
 
 1. **short ratio:**
 The short ratio, in finance, refers to the ratio of shares sold short to the total number of outstanding shares. It's a measure used by investors to gauge market sentiment, specifically to determine the level of bearishness or pessimism surrounding a particular stock.
