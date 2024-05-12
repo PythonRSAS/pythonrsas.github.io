@@ -13,7 +13,7 @@ image: images/posts/photos/sf/IMG-0919.JPG
 - [Beta](#beta)
 - [Getting Metrics](#getting-metrics)
 
-There are hundreds if not thousands of ratios and metrics used in stock trading.  All metrics and ratios have their limitations and should be used with other metrics and qualitative analysis.  The limitations include (not comprehensive):
+There are hundreds of ratios and metrics used in stock trading.  All metrics and ratios have their limitations and should be used with other metrics and qualitative analysis.  The limitations include (not comprehensive):
 
 - metrics and ratios are based on historical data
   - historical data may not be relevant for the future
