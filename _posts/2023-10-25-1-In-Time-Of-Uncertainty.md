@@ -1,9 +1,9 @@
 ---
 layout: post
-tag: inflation, FRED, data analysis
+tag: inflation, war, pandemic, risk
 category: "other risks"
-title: "Inflation Data Analysis"
-description: Using FRED data to assess inflation risk and magnitude
+title: "In Time of Uncertainty"
+description: Thoughts on current events, historical parallels, and what's new
 author: Sarah Chen
 image: images/posts/photos/IMG-0869.JPG
 ---

@@ -51,7 +51,3 @@ Starting a bee hive requires several essential pieces of equipment to properly h
 
 These are the basic equipment needed to start a bee hive. As you gain experience and expand your beekeeping operation, you may acquire additional specialized equipment to meet the needs of your colony.
 
-# Reference
-
-[US environmentally extended input output useeio technical content](https://www.epa.gov/land-research/us-environmentally-extended-input-output-useeio-technical-content)
-[EPA EEIO Github](https://github.com/USEPA/USEEIO/)

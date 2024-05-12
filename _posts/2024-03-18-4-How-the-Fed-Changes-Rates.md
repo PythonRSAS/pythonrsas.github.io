@@ -2,7 +2,7 @@
 layout: post
 tag : data cleaning, strings
 category: "other risks"
-title: "Cover Bonds"
+title: "Why Short-Term Rates Are Higher"
 description: banks financials are different from corporates and require unique metrics to analyze their risk profiles
 author: Sarah Chen
 image: images/posts/photos/IMG_0875.JPG
@@ -10,9 +10,9 @@ image: images/posts/photos/IMG_0875.JPG
 ---
 
 # Double leverage
-Refco,very succesffully, 3 months collaped.  4 billion dollar hole on the BS.  At the time they had 17X double leverage.  There was no real capital in it. 
+The Fed has two ways of influencing the economy. It can impact interest rates by moving an interest rate it directly controls. The Fed also has the power to change the supply of money in the economy.  
 
-Cannot measure CME.  Parent company does not need to meet capital adequacy requirements.  If it were subject to Basel, it will not be allowed to do it. 
+
 
 It is a problem for both holdco and sub creditors. 
 

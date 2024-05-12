@@ -10,7 +10,6 @@ image: images/posts/AFS.PNG
 
 - [Accounting classifications of bank assets](#accounting-classifications-of-bank-assets)
 - [Why do banks own securities besides loans](#why-do-banks-own-securities-besides-loans)
-  - [Why banks own bonds in their asset](#why-banks-own-bonds-in-their-asset)
 - [Reclassifying](#reclassifying)
 - [Unanswered questions](#unanswered-questions)
 - [Reference](#reference)
@@ -23,16 +22,11 @@ Images of this post are from [New York Fed Quarterly Trends for Consolidated U.S
 
 Below is a summary of the three accounting classifications of bank assets:
 
-**Trading**: Securities (debt and equity) that are bought and held for the purpose of selling in the near term. They are reported at fair value.  ***Unrealized gains and losses are included in the earnings***.   Trading book is always marked to market. 
+**Trading**: Securities (debt and equity) that are bought and held for the purpose of selling in the near term. They are reported at fair value.  ***Unrealized gains and losses are included in the earnings***. 
 
-**Held to maturity (HTM)**: Debt securities (bonds) that the firm has the positive intent and ability to hold until maturity. (Equities can’t be included in this category since they don’t mature.)   The debt securities are reported at ***amortized cost***.  Note that SVB held most of their investments in long term governament bond.  They had big paper losses due to rising interest rates. But these unrealized losses were not impacting their earnings if they were not forced to take losses until tide changed.   Their start-up founder customers were in need of their money and wanted to take money out. So SVB tried to sell the bonds in a time of rising interest rate and the losses piled on until a bank run happened...and the bank run was rapid due to panic as most of the deposits were over the FDIC limits. 
+**Held to maturity (HTM)**: Debt securities that the firm has the positive intent and ability to hold until maturity. (Equities can’t be included in this category since they don’t mature.)   The debt securities are reported at ***amortized cost***.  
 
-Bank of America had $132 billion of unrealized losses in its held-to-maturity portfolio at the end of September, 2023, made up of government bonds and mortgage-related securities guaranteed by official agencies. [Banks’ hidden losses are surprise survivor of 2023](https://www.reuters.com/breakingviews/banks-hidden-losses-are-surprise-survivor-2023-2023-12-13/#:~:text=Bank%20of%20America%20had%20%24132,securities%20guaranteed%20by%20official%20agencies.&text=Opinions%20expressed%20are%20those%20of%20the%20author.)
-
-![unrealized_bank_losses]("./images/posts/unrealized_bank_losses.png)
-
-
-**Available for sale (AFS)**: A catch-all for debt and equity securities not captured by either of the above definitions. These are securities that the bank may retain for long periods but that may also be sold.  Often, they are held in the Treasury department of large banks.  The types of securities may include: US Treasury, sovereign debt, MBS, municipal bonds, corporate bonds, and so on.  They are reported at **fair value**.  However, ***non-credit related unrealized gains and losses are excluded from earnings***.    The noncredit-related component of the fair value decline is recognized in other comprehensive income (*OCI*). See [source](https://www.federalreserve.gov/supervisionreg/topics/faq-new-accounting-standards-on-financial-instruments-credit-losses-accessible.htm).  However, **OCI does impact regulatory capital** per Basel III. 
+**Available for sale (AFS)**: A catch-all for debt and equity securities not captured by either of the above definitions. These are securities that the bank may retain for long periods but that may also be sold.  Often, they are held in the Treasury department of large banks.  The types of securities may include: US Treasury, sovereign debt, MBS, municipal bonds, corporate bonds, and so on.  They are reported at **fair value**.  However, ***non-credit related unrealized gains and losses are excluded from earnings***.    The noncredit-related component of the fair value decline is recognize in other comprehensive income (*OCI*). See [source](https://www.federalreserve.gov/supervisionreg/topics/faq-new-accounting-standards-on-financial-instruments-credit-losses-accessible.htm).  However, **OCI does impact regulatory capital** per Basel III. 
 
 Because of the different accounting treatments, in particular on HTM and AFS, banks have been reclassifying their assets for various purposes. 
 
@@ -49,23 +43,6 @@ To understand how and why banks classify assets, we should first know why banks 
 4. Keeping an inventory of securitiesfor market-making, broker-dealers services.
 
 5. Regulatory arbitrage:  holding securities instead of loans may reduce capital requirements.
-
-## Why banks own bonds in their asset
-Banks hold bonds in their assets for several reasons, including:
-
-1. **Diversification of Assets**: Holding a variety of assets, including bonds, helps banks diversify their investment portfolios. Bonds provide a relatively stable source of income compared to other assets like stocks, which can be more volatile. By diversifying their assets, banks can reduce their overall risk exposure.
-
-2. **Liquidity Management**: Bonds can serve as a source of liquidity for banks. Banks can easily buy and sell bonds in the secondary market to manage their short-term liquidity needs. This flexibility is particularly important for banks to meet unexpected withdrawals or funding requirements.
-
-3. **Interest Income**: Bonds generate interest income for banks. When banks purchase bonds, they receive periodic interest payments from the bond issuer. This interest income contributes to the bank's overall revenue stream and helps support profitability.
-
-4. **Regulatory Requirements**: Regulatory bodies often require banks to hold certain types of assets, including high-quality bonds, as part of their regulatory capital requirements. Bonds are typically considered less risky assets compared to loans, so holding bonds can help banks meet regulatory standards for capital adequacy.
-
-5. **Asset-Liability Management**: Banks use bonds as part of their asset-liability management strategy. Bonds with specific maturity dates can be matched with liabilities, such as customer deposits or long-term borrowings, to manage interest rate risk and ensure that the bank's assets and liabilities are properly aligned.
-
-6. **Collateral**: Bonds can also serve as collateral for various transactions, including borrowing from central banks or other financial institutions. Banks can pledge bonds as collateral to obtain funding or liquidity in times of need.
-
-Overall, holding bonds in their assets allows banks to manage risk, generate income, meet regulatory requirements, and effectively manage their balance sheets. Bonds play a crucial role in the overall investment strategy and risk management practices of banks.
 
 # Reclassifying
 

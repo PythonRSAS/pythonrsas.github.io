@@ -29,8 +29,6 @@ The Federal Reserve typically raises interest rates through its monetary policy 
 By using these tools in combination, the Federal Reserve can implement its monetary policy objectives, including raising interest rates when it deems necessary to control inflation or maintain financial stability.
 
 
-
-
 # Reference
 
 [Federal Reserve Supervisory Policy and Guidance Topics on Accounting](https://www.federalreserve.gov/supervisionreg/topics/accounting.htm)
