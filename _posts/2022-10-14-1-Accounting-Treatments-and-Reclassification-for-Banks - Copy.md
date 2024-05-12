@@ -1,9 +1,9 @@
 ---
 layout: post
 tag: climate risk, physical risk, transition risk
-category: "other risks"
+category: "climate risk"
 title: "Climate Risk"
-description: the standard ways to study climate risk, according to the media
+description: the standard ways to study climate risk
 author: Sarah Chen
 image: images/posts/AFS.PNG
 ---
@@ -15,8 +15,6 @@ image: images/posts/AFS.PNG
 - [Stranded physical assets](#stranded-physical-assets)
 - [goal of net-zero emissions by 2050.](#goal-of-net-zero-emissions-by-2050)
 - [Physical risk](#physical-risk)
-- [Reclassifying](#reclassifying)
-- [Unanswered questions](#unanswered-questions)
 - [Reference](#reference)
 
 The more that people say the world is going to end, [...], the more times the word "climate catastrophy" is mentioned around the world, the higher and higher risk assets go.  What's going on?   
@@ -89,96 +87,26 @@ To reach net-zero emissions—a goal, many countries have set for themselves to 
 [TCFD](https://www.fsb-tcfd.org/about/) recommends that firms should disclose on four key parameters, ranging from the concrete to the abstract, so that stake-holders are aware of the progress the firms have made in their preparedness to tackle climate change. These are metrics and targets, that is, the metrics used by the firm in question to assess climate-related risks and opportunities; risk management, that is, what processes the firm has in place to manage climate risks; the firm’s strategy surrounding climate change; and the
 
 
-
 # Physical risk
 
-
-
-acute and chronic hazards. 
+Acute and chronic hazards. 
 
 The former includes weather-related or weather-exacerbated events, whose incidence are increasing with climate change, such as floods, hurricanes, and wildfires. 
 
 The latter includes gradual, long-term trends such as rising average temperatures and sea levels. 
 
 
-
 But for both kinds of risk to become manifest, hazards (or driving factors) are not enough alone. 
 
 In the face of these hazards and factors, different kinds of assets and companies will have differing levels of exposure and vulnerability. Exposure, here, is used in the classic financial sense of assets or firms that are in a vulnerable place or setting. A factory or warehouse in a low-lying coastal area would be exposed to sea level rise, and consequently so would the firm that owns the factory. 
 
-Vulnerability—a concept linked to notions of resilience, flexibility, and adaptation—is less of a focus in traditional financial risk, but it is integral to considerations of climate risk, especially physical climate risk. It refers to the propensity or predisposition of the asset (or firm) to suffer adversely from its exposure to hazards. At the facility level, vulnerability to physical climate risk typically depends on physical infrastruc-ture: for example, of two neighboring factories in a flood zone, only one may have flood pumps installed. Vulnerability can also be discussed at the facility level for transition risk, referring to the ease of reducing or eliminating emissions—for instance, through conversion to
+Vulnerability—a concept linked to notions of resilience, flexibility, and adaptation—is less of a focus in traditional financial risk, but it is integral to considerations of climate risk, especially physical climate risk. It refers to the propensity or predisposition of the asset (or firm) to suffer adversely from its exposure to hazards. At the facility level, vulnerability to physical climate risk typically depends on physical infrastruc-ture: for example, of two neighboring factories in a flood zone, only one may have flood pumps installed. Vulnerability can also be discussed at the facility level for transition risk, referring to the ease of reducing or eliminating emissions—for instance, through conversion to hydrogen-based production—as opposed to having to pre-maturely close a facility, thus stranding it (see Section 3.2.1). At the corporate level, vulnerability can refer to the lack of preparation for such issues as climate change mitigation and adaptation planning, or it can apply to a lack of financial resilience, such as through insurance-based mechanisms. Overall, the interaction between hazards or drivers, expo-sures, and vulnerability then produces the overall effect of climate risk (see Figure 3.1).
 
-hydrogen-based production—as opposed to having to pre-maturely close a facility, thus stranding it (see Section 3.2.1). At the corporate level, vulnerability can refer to the lack of preparation for such issues as climate change mitigation and adaptation planning, or it can apply to a lack of financial resilience, such as through insurance-based mechanisms. Overall, the interaction between hazards or drivers, expo-sures, and vulnerability then produces the overall effect of climate risk (see Figure 3.1).
-
-3.2.1 Stranded Assets The notion of stranded assets is particularly important in the context of climate risk, and it has grown to be an impor-tant focus of research and analytical efforts in recent years to better understand climate, environmental, and broader sustainability risks. Stranded assets are assets that have “suffered from unanticipated or premature write-downs, devaluations or conversion to liabilities” (Caldecott, 2013).
+Stranded Assets The notion of stranded assets is particularly important in the context of climate risk, and it has grown to be an impor-tant focus of research and analytical efforts in recent years to better understand climate, environmental, and broader sustainability risks. Stranded assets are assets that have “suffered from unanticipated or premature write-downs, devaluations or conversion to liabilities” (Caldecott, 2013).
 
 The concept of assets being left behind by external forces, leading to reduced valuations or complete write-downs, is not new, and it links to the idea of creative destruction. While the metaphor is obviously a physical one, the concept was first significantly applied to climate risk in the early 2010s in relation to the notion of “unburnable carbon” (for example, known oil or coal reserves that cannot be fully exploited if the agreed goals of limiting warming to 2°C or 1.5°C are to be met, thus making coal mines or oilfields into “stranded assets”). From there, the concept extended quite naturally to high-emitting industrial assets such as coal-fired power plants (see Section 3.4.1) or steel plants. The concept of stranded assets still refers most commonly to these assets with high transition risk, though the definition has been steadily expanding.
 
 
-
-
-
-
-1. Banks may face an **imbalance between desposits and lendings**.   For example, there may not be enough good profitable lending opportunities.   In such cases, funding-rich banks may choose to invest in securities that reflect lending by other banks or by nonbank lenders (e.g., mortgage-backed securities issued by another lender), or direct debt issuance by nonfinancial firms (e.g., corporate bonds).
-
-2. For risk management and to meet regulatory requirements: securities can be sold more easily and with lower price impact than loans, for which the secondary market is less active. Regulation such as the **liquidity coverage ratio** developed as part of the Basel III Capital Accord requires banks to hold enough high-quality liquid assets to meet their liquidity needs under a thirty-day liquidity stress scenario.
-
-3. From a risk management point of view, holding securities may help the bank diversify or mitigate its risk exposures. Conversely, adjusting securities holdings can provide a straightforward way for banks to ramp up their level of risk in an effort to increase expected returns. For example, recent research argues that banks respond to expansionary monetary policy by lengthening the maturity of their securities portfolios, in an effort to boost yields.
-
-4. Keeping an inventory of securitiesfor market-making, broker-dealers services.
-
-5. Regulatory arbitrage:  holding securities instead of loans may reduce capital requirements.
-
-# Reclassifying
-
-Since AFS is a catch-all category, that means that banks can move assets in or out of the AFS to the other ones when the intent has changed.  For example, HTM to AFS and vice versa. Why?  Mostly to stablize capital adequacy ratio and to stablize earnings. 
-![securities of three accounting classes](https://pythonrsas.github.io/images/posts/Securities%20Portfolios.PNG)
-Notice in the chart the HTM (red) has more than doubled in size as a percentage of all bank assets over the past several years. 
-
-![AFS](../images/posts/AFS.PNG)
-
-A key difference between HTM and AFS is the accounting treatment of gains and losses as described at the begnning of the post.   The gains and losses in the value of HTM  that result from market movements (e.g., interest rates) aren’t recognized unless the asset is sold.   
-
-![HTM](../images/posts/HTM.PNG)
-
-For AFS securities, however, such shifts in value, while not affecting accounting income, do affect the measurement of regulatory capital adequacy for **large** banks under the Basel III framework (for so-called “advanced approaches” firms).  
-
-On Oct 11, 2013, the [Federal Register](https://www.govinfo.gov/content/pkg/FR-2013-10-11/pdf/2013-21653.pdf), published by the Department of Treasury and the OCC, wrote "[...] consistent with Basel III, the agencies and the FDIC proposed to
-require banks to include
-the majory of AOCI components in common equity tier 1 capital."   
-
-Then it went on to say that they received a significant number of comments on the proposal to require banks to recognize AOCI in common equity tier 1 capital.  Interestingly, the comments expressed concerns that became reality:
-
-"[…] the change would introduce significant volatility in banks’ capital ratios due in large part to fluctuations in benchmark interest rates, and would **result in many banks moving AFS securities into HTM or holding additional regulatory capital** solely to mitigate the volatility resultingfrom temporary unrealized gains and losses in the AFS securities portfolio."
-
-The commenters also asserted that the change would likely impair lending and negatively affect banks’ ability to manage liquidity and interest rate risk and to maintain compliance with legal lending limits."
-
-In 2014, [Bloomberg reported](https://www.bloomberg.com/news/articles/2014-02-26/banks-averting-bond-losses-with-accounting-twist-credit-markets) that JMPC and Wells Fargo are leading a shift in how banks account for their bond investments after a $44 billion plunge in value exposed a potential drain on capital under new rules.  It also reported that The largest U.S. lenders are moving assets into HTM instead of designating them as AFS.
-
-# Unanswered questions
-
-1. **AFS as a whole decreased** the most (slope the steepest) after 2003 until the GFC.   Was it **due to rising rates** of that period?  If it was due to rising rates, then we expect to see reduced AFS in 2022 as the Fed has been increasing rates.  Indeed, even with 1 quarter of the data in 2022, we see that AFS has dropped.  We will find out more when the new quarterly reports comes out.  
-
-2. Transfering assets from AFS to HTM can educe the volatility of regulatory capital ratios.  However, the move will limit banks’ ability to sell those securities in the future.  What does that mean for risk management and profitability of the banks?  Would it affect negatively banks’ ability to manage liquidity and interest rate risk since banks won't be able to sell from HTM? 
-   
-3. I am curious as to if there are follow-up studies especially quantitatively on some of things raised in [Federal Register / Vol. 78, No. 198 / Friday, October 11, 2013 / Rules and Regulations](https://www.govinfo.gov/content/pkg/FR-2013-10-11/pdf/2013-21653.pdf).  Specifically, banks's comments of concerns of aggregate impact of Basel III rule changes regarding the
-potential aggregate impact of the banks and the overall U.S. economy. Many commenters argued that the new rules would have significant negative consequences for the financial services industry.  According to the commenters, by requiring banks to hold more capital and increase risk weighting on some of their assets, as well as to meet higher risk-based and leverage capital measures for certain PCA categories, the new rules would negatively affect the banking sector: restricted job growth; reduced lending or higher-cost lending, including to small businesses and low-income or minority communities; limited availability of certain types of financial products; reduced investor demand for banks’ equity; higher compliance costs; increased mergers and consolidation activity, specifically in rural markets, because banks would need to spread compliance costs among a larger customer base; and diminished access to the capital markets resulting from 
-reduced profit and from dividend restrictions associated with the capital buffers. The commenters also asserted that the recovery of the U.S. economy would be impaired by the new rules as a result of reduced lending by banks that the commenters believed would be attributable to the higher costs of regulatory compliance. In particular, the commenters expressed concern that a contraction in small business lending would adversely affect job growth and employment. 
-
-4. From the same [Federal Register](https://www.govinfo.gov/content/pkg/FR-2013-10-11/pdf/2013-21653.pdf), are the competitive concerns warranted?  "[...] would create an unlevel playing field between banking organizations and other financial services providers."  Credit unions,  foreign banks with significant U.S. operations, members of the Federal Farm Credit System, and entities in the shadow banking industry, and unregulated NBFIs, would have a competitive advantage over banking organizations as they are not subject to the new rules.  The data seems to support these claims.   
-   
-5. The new rules certainly increased complexity and implementation costs for large banks: software upgrades for new
-internal reporting systems, increased employee training, and the hiring of additional employees for compliance.  Is it true that "a simple increase in the minimum regulatory capital requirements would have provided increased protection and increase safety and soundness without adding complexity to the regulatory capital framework"?
-
 # Reference
 
 [Taskforce on Climate-related Financial Disclosures (TCFD)](https://www.fsb-tcfd.org/about/) , formed in 2015 under the aegis of the G20 Finan-cial Stability Board. This international body is chaired by Michael Bloomberg,
-
-[Federal Register / Vol. 78, No. 198 / Friday, October 11, 2013 / Rules and Regulations](https://www.govinfo.gov/content/pkg/FR-2013-10-11/pdf/2013-21653.pdf)
-
-[Available for Sale? Understanding Bank Securities Portfolios](https://libertystreeteconomics.newyorkfed.org/2015/02/available-for-sale-understanding-bank-securities-portfolios/)
-
-[Quarterly Trends for Consolidated U.S. Banking Organizations
-First Quarter 2022 Federal Reserve Bank of New York](https://www.newyorkfed.org/medialibrary/media/research/banking_research/quarterlytrends2022q1.pdf?la=en)
-
-[Bloomberg: Banks Averting Bond Losses With Accounting Twist: Credit Markets](https://www.bloomberg.com/news/articles/2014-02-26/banks-averting-bond-losses-with-accounting-twist-credit-markets)
