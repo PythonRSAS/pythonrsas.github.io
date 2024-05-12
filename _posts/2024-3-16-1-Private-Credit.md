@@ -65,7 +65,3 @@ The growth in alternative credit, also known as non-bank lending or shadow banki
 6. **Globalization**: The globalization of financial markets has facilitated the cross-border flow of capital and enabled alternative credit providers to operate on a global scale. This has created opportunities for borrowers and investors to access a broader range of credit products and investment opportunities across different geographies and asset classes.
 
 Overall, the growth in alternative credit reflects the evolving landscape of the financial industry, characterized by innovation, competition, and changing consumer preferences. While alternative credit presents opportunities for borrowers and investors alike, it also poses challenges related to regulatory oversight, credit risk management, and systemic stability, which require ongoing monitoring and supervision by policymakers and regulators.
-
-
-https://www.bloomberg.com/help/question/cancel-digital-access-subscription
-contactus@bloombergsupport.com

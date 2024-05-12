@@ -13,7 +13,7 @@ image: images/posts/photos/IMG_0875.JPG
 
 
 # Plotting all the (important) drivers in one figure
-Does my model result make sense?  We check, and usually we check both the largest (most important) companies, and we check randomly. 
+Does my model result make sense?  We have to check, and usually we check both the largest (most important) companies, and randomly. 
 Let's start with following a simple exmaple from seaborn.  As my models are on credit ratings forecast based on various point in time scenarios, I am focusing on line plots. 
 
 !(multi facet line plot)[https://seaborn.pydata.org/_images/faceted_lineplot.png]
@@ -108,26 +108,3 @@ print(incremental[-1](2))
 
 [Excel lambda-the-ultimatae-excel-worksheet-function](https://www.microsoft.com/en-us/research/blog/lambda-the-ultimatae-excel-worksheet-function/)
 
-
-import Levenshtein
-
-def match_names(column1, column2):
-    matches = {}
-    for name1 in column1:
-        min_distance = float('inf')
-        match = None
-        for name2 in column2:
-            distance = Levenshtein.distance(name1, name2)
-            if distance < min_distance:
-                min_distance = distance
-                match = name2
-        matches[name1] = match
-    return matches
-
-# Example usage:
-column1 = ["John", "Jane", "Michael"]
-column2 = ["Jon", "Janet", "Michele"]
-matches = match_names(column1, column2)
-
-for name1, match in matches.items():
-    print(f"{name1} matched with {match}")

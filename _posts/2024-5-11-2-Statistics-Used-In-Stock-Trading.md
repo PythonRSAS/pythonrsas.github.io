@@ -8,6 +8,7 @@ author: Sarah Chen
 image: images/posts/photos/sf/IMG-0919.JPG
 ---
 
+- [Housing stocks](#housing-stocks)
 - [Metrics](#metrics)
 - [Beta](#beta)
 - [Getting Metrics](#getting-metrics)
@@ -19,7 +20,20 @@ There are hundreds if not thousands of ratios and metrics used in stock trading.
   - even if historical data is relevant, they may not be accurate or true (so we have to use them with a grain of salt)
 - metrics do not include important qualitative information 
 
-Additionally, the accuracy of the metrics depends on the reliability of estimates and assumptions used in calculation.
+For example, if we see a company with good profit margin or revenue growth, don't jump into it.  Ask ourselves: 
+- **business model**: what is the business model?  Will the business model work in the changing time?   
+- **can you trust the company**: yes, this sounds like a stupid question.  But there are many people got defrauded each year. So you have to do research.  Research takes time and effort.  Don't be lazy!  A fraud will lie with the metrics.  
+- **business or industry cycle**: industry cycles are powerful.  It is important to consider the competitiveness and risks involved with the company in the context of industry cycle, and the economy at large. 
+
+# Housing stocks
+From my limited experience, 
+1. housing is a very **cyclical** industry, meaning it is dependent on supply and demand.  Supply can quickly overwhelme demand. 
+2. dependent on *interest rate*
+3. dependent on *location*
+
+People who have their mortgages with low rates are not willing to sell.  ==> Lower inventory
+
+
 
 # Metrics
 
