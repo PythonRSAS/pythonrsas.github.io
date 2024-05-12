@@ -6,6 +6,7 @@ title: "Climate Risk"
 description: the standard ways to study climate risk
 author: Sarah Chen
 image: images/posts/AFS.PNG
+
 ---
 
 - [Two types of climate risk](#two-types-of-climate-risk)
