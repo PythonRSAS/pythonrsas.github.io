@@ -3,303 +3,58 @@ layout: post
 tag: muni bonds
 category: "credit risk"
 title: "Muni Bond Insurance"
-description: An overview of muni bond insurance
+description: Basics of muni bond insurance
 author: Sarah Chen
 image: images/posts/muni.PNG
 ---
 
 - [Bonds vs. Dividend Stocks](#bonds-vs-dividend-stocks)
-- [Types of Muni Bonds](#types-of-muni-bonds)
-- [Who invest in munis](#who-invest-in-munis)
-- [Historical perspectives](#historical-perspectives)
-- [Current situation and outlook](#current-situation-and-outlook)
-- [Risks in Munis](#risks-in-munis)
-- [Muni bond insurance](#muni-bond-insurance)
-- [Climate risk in Muni bonds](#climate-risk-in-muni-bonds)
-- [Interest rate sensitivities](#interest-rate-sensitivities)
-- [Compute bond price](#compute-bond-price)
-  - [Bond duration](#bond-duration)
-- [Convexity](#convexity)
-- [Reference](#reference)
+- [What is municipal bond insurance and who provides it?](#what-is-municipal-bond-insurance-and-who-provides-it)
+- [Does it matter which company provides the bond insurance?](#does-it-matter-which-company-provides-the-bond-insurance)
+- [Do I need municipal bond insurance?](#do-i-need-municipal-bond-insurance)
+- [How are bond insurers regulated?](#how-are-bond-insurers-regulated)
+- [How do I get bond insurance?](#how-do-i-get-bond-insurance)
 
 # Bonds vs. Dividend Stocks
+Assured Guaranty
 
-Dividend stocks and bonds are two different types of investments that serve different purposes in an investor's portfolio.
 
-1. **Dividend Stocks:**
-   - Dividend stocks are shares of companies that distribute a portion of their earnings to shareholders in the form of dividends. These dividends are typically paid regularly, such as quarterly or annually.
-   - Investing in dividend stocks can provide investors with a steady stream of income, making them particularly attractive for income-oriented investors, such as retirees.
-   - Dividend stocks also offer the potential for capital appreciation, as the stock price may increase over time, providing additional returns beyond the dividends.
-   - However, dividend stocks are typically more volatile than bonds, as their value is influenced by factors such as company performance, market conditions, and investor sentiment.
+IF YOU ARE CONSIDERING BUYING MUNICIPAL BONDS, you will need to decide whether to buy bonds with insurance policies designed to protect your investment. This information sheet will help you make an informed decision about the value of insurance in your portfolio.
 
-2. **Bonds:**
-   - Bonds are debt securities issued by governments, municipalities, or corporations to raise capital. When an investor buys a bond, they are essentially lending money to the issuer in exchange for regular interest payments and the return of the principal amount at maturity.
-   - Bonds are generally considered less risky than stocks because they provide a fixed income stream and have a defined maturity date when the principal is repaid.
-   - Depending on the type of bond, they can offer different levels of risk and return. For example, government bonds are typically considered safer than corporate bonds, but they may offer lower returns.
-   - Bonds can also provide diversification benefits to a portfolio, as they often have low correlation with stocks and other asset classes.
+# What is municipal bond insurance and who provides it?
+It is simply a guaranty that the holder of a municipal bond will receive scheduled interest and principal payments when due, even if the municipal issuer fails to make these payments. It is literally an insurance policy against an issuer’s payment default. Only financial guaranty insurance companies may write bond insurance. You may hear these companies called “bond insurers,” “financial guarantors,” “monoline insurance companies” or just “monolines.” All these terms refer to the same group of companies, which operate solely as guarantors of financial obligations and are subject to specialized insurance regulation.
 
-In summary, dividend stocks are equity investments that offer the potential for income and capital appreciation but come with higher volatility, while bonds are debt investments that provide a fixed income stream and are generally less risky but offer lower potential returns. Investors often hold a mix of both dividend stocks and bonds in their portfolios to achieve a balance between income, growth, and risk.
+# Does it matter which company provides the bond insurance?
+Absolutely. The guarantor’s track record of protecting bondholders is a paramount consideration. Look for bonds insured by companies with a long history of proving themselves through both good and bad economic cycles and that maintain a large store of claims-paying resources and predictable future earnings. Another important consideration is *market liquidity* – how easy it is to sell your bonds when you choose to sell. Market liquidity is largely a function of the amount of bonds trading with a given insurer’s guaranty. Therefore, the larger a company’s insured portfolio, the more market liquidity its insured bonds will tend to have.
 
-Compare | Dividend Stocks | Muni Bonds
----------|----------|---------
- Periodic stable *"rental"* income | **Maybe** | yes
- Possible capital appreciation | Yes | No
- Risk | more volatile; high | low
- Energy and time required from investor | A lot | not much
- Suitable to | Not limited  | high net worth people seeking capital preservation; institutions seeking diversification
+The leading provider of municipal bond insurance is Assured Guaranty, a group of insurance companies that includes *Assured Guaranty Municipal Corp. (AGM) and Assured Guaranty Corp. (AGC)*. For more than three decades, through every market cycle, investors in bonds insured by Assured Guaranty have received every principal and interest payment on time and in full – even when the issuer failed to pay.
 
-# Types of Muni Bonds
+Across the group, Assured Guaranty has more claims-paying resources than any other bond insurer. It has a proven business model based on disciplined credit selection, underwriting, pricing and enterprise risk management. Its large reserves of deferred premiums, which have been collected but not yet earned, provide a significant base of future earnings. 
 
-Municipal bonds, or "munis," are debt securities issued by state or local governments, municipalities, or their agencies to finance public projects such as roads, schools, hospitals, and infrastructure development.  Their credit quality can vary significantly depending on the financial health of the issuing municipality. Investors should conduct thorough research or consult with a financial advisor to assess the creditworthiness of municipal bond issuers before investing.
+The group’s publicly traded holding company, Assured Guaranty Ltd. (ticker symbol: AGO), is subject to New York Stock Exchange and SEC regulation and therefore held to higher legal standards of disclosure, oversight and transparency than non-public companies.
 
-There are 2 types of municipal bonds: 
-1. GO (general obligation) bonds (backed by the full faith and credit of the issuer), 
-2. revenue bonds (backed by specific revenue streams, such as tolls or utility payments)
+Another strength of Assured Guaranty is the high level of market liquidity in the bonds it insures, with $2 billion of bonds traded each week, on average.
 
-In addition, municipalities may borrow short term.  Those debt securities are called "municipal notes".
+# Do I need municipal bond insurance?
+While municipal bond defaults have been rare, they do occur, ***more frequently in periods of economic stress***. Major municipalities, such as Detroit, Michigan, and Jefferson County, Alabama, have declared and exited bankruptcy with significant losses for bondholders who did not have insurance. Puerto Rico defaulted before entering a bankruptcy-like process that may take years to resolve. Assured Guaranty insured bondholders were fully protected in all those instances.
 
-# Who invest in munis
+The decision to buy insured bonds will depend on your circumstances and risk tolerance. Here are some questions to ask yourself and related reasons why you might prefer bonds with insurance:
 
-Municipal bonds are a possible place to get steady income streams for investors seeking, as the interest income generated from these bonds is often exempt from federal income taxes and, in some cases, state and local taxes, particularly if the investor resides in the same state as the issuer. This tax advantage can make munis attractive to investors in the ***highest tax brackets***.
+"How well do I know the municipality's fiscal condition and the structure of the bond?" Assured Guaranty insured bonds have been pre-selected for soundness by the guarantor’s trained underwriters. In general, each bond must be of investment grade quality before it is insured, and it must meet additional criteria based on the bond structure and other factors. Additionally, by choosing insured municipal bonds, you gain the benefit of a professional surveillance staff whose job is to keep tabs on the issuers of the insured bonds. In many cases, these professionals spot trouble ahead of time and can call upon, or even require, the municipality to take remedial steps before a default looms. 
 
-![muni](https://educationcontent.schwab.com/sites/g/files/eyrktu1071/files/Chart%206_32.png)
+And unlike rating agencies, guarantors *back up their opinions with an obligation to pay* interest and principal from their own capital if the issuer fails to do so.
 
-# Historical perspectives
+"Would I be able to tolerate a drop in market value, or even the potential inability to sell my bonds, if a municipal issuer's financial condition deteriorated?" Although bond insurance does not guarantee a particular market value or liquidity, distressed issuers’ bonds insured by highly rated guarantors have historically held their trading value better than comparable uninsured issues. For example, insured Louisiana bonds lost far less market value than uninsured bonds after Hurricane Katrina and, more recently, Puerto Rico bonds insured by Assured Guaranty traded near par value while comparable uninsured bonds were deeply discounted.
 
-Historically, muni bonds are among the safest investoments.  Whether it will remain so depends on the underlying conditions will remain true for the future.
+"If a municipality missed one or more interest or principal payments, could I afford to be without the cash flow for a number of years until I could obtain a recovery?" If the issuer of an insured municipal bond cannot make a scheduled interest or principal payment when it is due, the bond insurer is obligated to make prompt payment in full to the paying agent or trustee. The value of this benefit was evident during the prolonged efforts to resolve the incinerator debt problems in Harrisburg, Pennsylvania, as well as during Detroit’s bankruptcy and Puerto Rico’s defaults. In these and other cases, insured bondholders continued to receive full and uninterrupted payments of principal and interest when due, even when the issuer failed to pay.
 
-Municipal debt predates corporate debt by several centuries—the early Renaissance Italian city-states borrowed money from major banking families. Borrowing by American cities dates to the nineteenth century, and records of U.S. municipal bonds indicate use around the early 1800s. Officially the first recorded municipal bond was a general obligation bond issued by the City of New York for a canal in 1812.
+Assured Guaranty has shown strong commitment to fulfilling the timely payment obligation. When the trustee for certain Jefferson County, Alabama, obligations refused to draw on the insurance policy, Assured Guaranty arranged to make interest and principal payments directly to the Depository Trust Company, where the ownership accounts were maintained.
 
-In the present US, muni bonds are important to the functioning of communities just like 30-year mortgage loans to families. 
+# How are bond insurers regulated?
+As insurance companies, financial guarantors must be licensed to write insurance by the state insurance department in each state where they insure bonds and must meet their obligations to policyholders before other creditors. Additionally, financial guaranty insurers must restrict their business to financial guaranty and related types of insurance (hence the name “monolines”). Under financial guaranty statutes, financial guarantors must comply with capital, liquidity and reserving requirements as well as limits on their financial guaranty exposures.
 
-# Current situation and outlook
+# How do I get bond insurance?
+You generally do not buy the insurance directly. Instead, you buy bonds that were issued with insurance. (Issuers arrange to have their bonds insured in order to attract more investors and improve the efficiency of their bond offerings.) Insured bonds are available through full-service and discount brokerage firms that sell municipal bonds. In addition, dealers may purchase insurance for uninsured bonds that are already trading in the secondary market. Broker-dealers and financial advisors may be able to obtain insurance on behalf of their clients for lots as small as $50,000.
 
-Citigroup exit muni bonds market.  According to Citi, underwriting state and local debt was too big a drag on the bottom line, unable to compete with more lucrative lines of work. UBS Group AG made a similar decision in October, 2023.
-
-Bloomberg [Citigroup’s Muni-Market Exit Sows Fears of a Wall Street Retreat](https://www.bloomberg.com/news/articles/2023-12-15/citigroup-s-muni-market-exit-sows-fears-of-a-wall-street-retreat)
-
-1. More costly for local governments to finance infrastructure
-2. Potential increase in liquidity risk as broker dealers have already reduced their holdings of state and local government bonds sharply since the 2008 credit crisis.
-
-![Federal Reserve](https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iL7ys7OlzcvM/v2/pidjEfPlU1QWZop3vfGKsrX.ke8XuWirGYh1PKgEw44kE/-1x-1.png)
-
-Even though it’s exiting the underwriting business, Citigroup will still be a buyer of municipal bonds, like other banks who invest in the securities. The Wall Street giant holds nearly $10 billion of state and municipal debt securities, according to regulatory filings. The vast majority of that is classified as held-to-maturity.
-
-# Risks in Munis
-Munis are relatively low risk.  But there are still defaults, such as Detroit and Puerto Rico.   
-
-Bond market values are inversely related to interest rates.  If interest rates go higher, bond market value are reduced due to discounting.  For example, say we bought a muni bond that pays 3%.  Now the interest rate increases to 10%, we not only have the opportunity cost of "could have gotten 10% instead of 3%", but also if we were to sell the bond, we would have to sell it at a lower price...because who wants to get 3% instead of 10%.  
-
-**Price Risk:** If interest rates rise during the term of your bond, you're losing out on a better rate. This will also cause the bond you are holding to decline in value.
-**Default Risk:** Issuer defaults.
-
-The longer the term of the bond, the greater these risks are.  We can evaluate muni risks from 3 perspectives: 
-
-- ***issuer's financial health (obligor credit rating)***
-- global, national, and local ***economic conditions***: population growth rate, GDP growth rate per capita, unemployment rate, etc. 
-- ***specific features of the bond itself***
-
-Using Puerto Rico as an example:
-
-Financial health: To pay evergrowing deficit, it borrowed.  Over a decade, 18 different government entities borrowed many muni debt: muni bonds were issued to pay for schools, stadiums, hospitals, salaries, old debt, pensions, and more.  The island has no cental office overseeing bond-proceed spending.  No one knows exactly where the money went (wow! Isn't that *corruption* or poor *governance*?)
-
-Economy: Since 2006, Puerto Rico's economy contracted every year but one.  
-
-Specific features of the bond itself: the interest income is exempt from local, state, and federal taxes everywhere in the US (very special treatment!) & Wall Streeet was eager to lend.   
-
-1. **Creditworthiness of the Issuer**:
-   - budgetary practices, 
-   - debt levels
-   - revenue sources, and overall economic health. Credit rating agencies such as Moody's, Standard & Poor's, and Fitch provide credit ratings for municipal bonds, which can serve as a starting point for evaluating credit risk.
-  
-> Bonds with a rating of ***BBB-*** (on the Standard & Poor's and Fitch scale) or Baa3 (Moody's) or better are considered "*investment-grade*." Bonds with lower ratings are considered "speculative" and often referred to as "high-yield" or "junk" bonds.
-
-2. **Revenue Source**: Determine the revenue source backing the bonds. General obligation bonds are typically backed by the full faith and credit of the issuer, while revenue bonds are backed by specific revenue streams (e.g., tolls, utility payments). Assess the stability and predictability of the revenue source, as well as any potential risks that could impact revenue generation.
-
-3. **Debt Structure**: Evaluate the debt structure of the bonds, including maturity dates, interest rates, and call provisions. Longer maturity bonds may be more susceptible to interest rate risk, while callable bonds carry the risk of early redemption by the issuer. Understanding these features can help assess the bond's sensitivity to changes in interest rates and potential early repayment risk.
-
-4. **Market Conditions**: Consider prevailing market conditions, including interest rate trends, credit spreads, and liquidity conditions. Changes in interest rates can impact bond prices, while liquidity conditions can affect the ease of buying or selling bonds in the secondary market.
-
-5. **Legal and Regulatory Risks**: Understand any legal or regulatory risks associated with the bonds, such as changes in tax laws or regulations affecting municipal finance. Keep abreast of legislative developments and legal challenges that could impact the issuer's ability to meet its obligations.
-
-6. **Issuer-Specific Risks**: Evaluate any issuer-specific risks, such as exposure to specific industries or sectors, political instability, or governance issues. Assess how these factors may affect the issuer's ability to repay bondholders.
-
-7. **Tax Considerations**: Consider the tax implications of investing in municipal bonds, including the potential tax-exempt status of interest income at the federal, state, and local levels. Understand how changes in tax laws or regulations could impact the after-tax return on investment.
-
-8. **Diversification**: Spread investment across multiple municipal bonds or bond issuers to mitigate concentration risk. Diversification can help reduce the impact of credit events or defaults on individual bonds.
-
-By conducting thorough due diligence and considering these factors, investors can better evaluate the risks associated with investing in municipal bonds and make informed investment decisions. It's also advisable to consult with a financial advisor or investment professional for personalized guidance tailored to your specific financial situation and investment objectives.
-
-# Muni bond insurance
-
-Higher interest rates increase the attractiveness of bond insurance, while also allowing for higher investment income from the fixed income portfolio. 
-
-# Climate risk in Muni bonds
-Because muni bonds are long term debt.  
-
-U.S. Senator Sheldon Whitehouse (D-RI), Chairman of the U.S. Senate Budget Committee,[“Investing in the Future: Safeguarding Municipal Bonds from Climate Risk.”](https://www.budget.senate.gov/chairman/newsroom/press/climate-change-is-destabilizing-the-municipal-bond-market-tune-in-as-dr-chris-hartshorn-explains-how-climate-change-is-threatening-funding-sources-that-enable-local-governments-to-invest-in-communities)
-Which brings us to the topic of today’s hearing: the $4 trillion municipal bond market. 
-
-Municipal bonds—much like the 30-year mortgage—are a bedrock of our American economic system, enabling local governments to make investments that are essential for their communities: basic public services like water service, sewage treatment, electricity, and roads.  Local government bonds finance more than 70 percent of U.S. infrastructure, including airports, bridges, railways, and seaports.  Climate change now threatens that bond market.
-
-Historically, municipal bonds have a sterling reputation among investors, with default rates of less than one percent.  Investors lend their dollars to build a new school or highway and typically receive a tax-exempt stream of interest for the next fifteen or even thirty years.  These bonds, secured by government revenues, are among our most stable investments. 
-
-Climate change undermines this stability in two ways.  More intense storms, wildfires, droughts, heatwaves, and floods impose higher costs on state and local governments, putting pressure on the spending side. And on the revenue side, storm damage and insurance risk can undermine the municipal tax base.  Already, climate change is making it harder for municipalities to service their bond payments and making it harder for governments to raise new capital for needed climate investments. 
-
-After a disaster, communities’ local tax bases can be devastated.  Five years after the Camp Wildfire, only a third of the population has returned to Paradise, California.  Hurricane Matthew undermined tax bases across small towns in North Carolina.  After a disaster, population declines mean revenues decline.
-
-And bond markets are watching; fifteen- or thirty-year municipal bonds start to look less safe.  Moody’s has already given notice to coastal communities.
-
-This risk comes home to roost in the federal budget.  Over 40 percent of our national debt relates back to crises we did not prepare for, like the mortgage meltdown and the covid pandemic.  Today, we’ll hear more evidence that climate change is just such a crisis—an “impending budgetary and fiscal crisis facing our nation.”  It could well be the worst yet.  We’ve heard warnings about a coastal property values crash, a similar collapse in wildfire-adjacent areas, a bursting of the “carbon bubble,” of turmoil in insurance markets, climate inflation, and now danger to a pillar of American investment.  Nothing says this all doesn’t come to pass.  Ignoring it is akin to financial negligence.  If there’s one thing we should be able to agree on, it’s that we can’t afford to be negligent.
-
-# Interest rate sensitivities
-
-Bond prices are very sensititve to interest rates. 
-When evaluating the interest rate sensitivity of municipal bonds, several measures are commonly used. These measures help investors understand how changes in interest rates affect bond prices. The main measures include duration, convexity, and modified duration. Let's briefly discuss each:
-
-1. **Duration**: Duration is a measure of the sensitivity of a bond's price to changes in interest rates. It represents the weighted average time to receive the bond's cash flows, taking into account both the coupon payments and the return of the bond's face value at maturity. Duration provides an estimate of the percentage change in the bond's price for a 1% change in interest rates.
-
-2. **Modified Duration**: Modified duration is a modified version of duration that accounts for the fact that bond prices and yields move in opposite directions. It's calculated by dividing the bond's duration by (1 + yield), where yield is expressed as a decimal. Modified duration provides an estimate of the percentage change in the bond's price for a 1% change in yield.
-
-3. **Convexity**: Convexity is a measure of the curvature of the bond's price-yield relationship. It provides additional information beyond duration by capturing the second-order effect of changes in interest rates on bond prices. Convexity measures how much a bond's duration changes as interest rates change. It helps refine the estimate provided by duration, especially for larger interest rate changes.
-
-4. **Yield to Maturity (YTM)**: Yield to maturity represents the total return an investor can expect to receive by holding the bond until maturity, taking into account its current market price, coupon payments, and face value. YTM is also used as a measure of interest rate sensitivity because it reflects the relationship between the bond's current price and its coupon payments.
-
-These measures are essential tools for bond investors to assess and manage interest rate risk in their portfolios. Duration and convexity are particularly useful for estimating the impact of interest rate changes on bond prices, while modified duration and yield to maturity provide additional insights into the bond's sensitivity to interest rate movements.
-
-# Compute bond price
-Below is a simple Python code snippet to calculate the price of a bond:
-
-<div class="code-head"><span>code</span>bond price.py</div>
-
-```py
-def calculate_bond_price(face_value, coupon_rate, yield_to_maturity, years_to_maturity):
-    """
-    Calculate the price of a bond.
-    
-    Args:
-        face_value (float): Face value of the bond.
-        coupon_rate (float): Annual coupon rate (as a percentage).
-        yield_to_maturity (float): Yield to maturity (as a percentage).
-        years_to_maturity (int): Years to maturity of the bond.
-    
-    Returns:
-        float: Price of the bond.
-    """
-    coupon_payment = face_value * coupon_rate / 100
-    present_value = 0
-    for t in range(1, years_to_maturity + 1):
-        present_value += coupon_payment / (1 + yield_to_maturity / 100) ** t
-    present_value += face_value / (1 + yield_to_maturity / 100) ** years_to_maturity
-    return present_value
-
-# Example usage
-face_value = 1000  # Face value of the bond
-coupon_rate = 5  # Annual coupon rate (as a percentage)
-yield_to_maturity = 4  # Yield to maturity (as a percentage)
-years_to_maturity = 5  # Years to maturity of the bond
-
-bond_price = calculate_bond_price(face_value, coupon_rate, yield_to_maturity, years_to_maturity)
-print("Bond price:", round(bond_price, 2))
-```
-
-This code defines a function `calculate_bond_price` that takes the face value, coupon rate, yield to maturity, and years to maturity of a bond as input and returns the price of the bond. The price is calculated by discounting the future cash flows (coupon payments and face value at maturity) back to their present value using the yield to maturity. 
-
-You can adjust the values of `face_value`, `coupon_rate`, `yield_to_maturity`, and `years_to_maturity` to calculate the price of different bonds.
-
-
-## Bond duration
-Municipal bond duration is a measure of the sensitivity of a municipal bond's price to changes in interest rates. It helps investors understand the potential impact of interest rate changes on the bond's value. Duration is expressed in years and provides an estimate of the bond's price volatility.
-
-Here's a Python code snippet to calculate the duration of a municipal bond:
-
-<div class="code-head"><span>code</span>bond duration.py</div>
-
-```py
-def calculate_muni_bond_duration(face_value, coupon_rate, yield_to_maturity, years_to_maturity):
-    """
-    Calculate the duration of a municipal bond.
-    
-    Args:
-        face_value (float): Face value of the bond.
-        coupon_rate (float): Annual coupon rate (as a percentage).
-        yield_to_maturity (float): Yield to maturity (as a percentage).
-        years_to_maturity (int): Years to maturity of the bond.
-    
-    Returns:
-        float: Duration of the bond.
-    """
-    coupon_payment = face_value * coupon_rate / 100
-    present_value = 0
-    for t in range(1, years_to_maturity + 1):
-        present_value += (coupon_payment / (1 + yield_to_maturity / 100) ** t) * t
-    present_value += (face_value / (1 + yield_to_maturity / 100) ** years_to_maturity) * years_to_maturity
-    bond_price = present_value / (1 + yield_to_maturity / 100)
-    
-    macaulay_duration = present_value / bond_price
-    return macaulay_duration
-
-# Example usage
-face_value = 1000  # Face value of the bond
-coupon_rate = 5  # Annual coupon rate (as a percentage)
-yield_to_maturity = 4  # Yield to maturity (as a percentage)
-years_to_maturity = 5  # Years to maturity of the bond
-
-bond_duration = calculate_muni_bond_duration(face_value, coupon_rate, yield_to_maturity, years_to_maturity)
-print("Municipal bond duration:", round(bond_duration, 2), "years")
-
-
-```
-
-# Convexity
-
-Convexity is another important measure used in bond analysis, especially when assessing the sensitivity of bond prices to changes in interest rates. It provides additional information beyond duration by accounting for the curvature of the price-yield relationship. Here's a Python code snippet to calculate the convexity of a municipal bond:
-
-```python
-def calculate_muni_bond_convexity(face_value, coupon_rate, yield_to_maturity, years_to_maturity):
-    """
-    Calculate the convexity of a municipal bond.
-    
-    Args:
-        face_value (float): Face value of the bond.
-        coupon_rate (float): Annual coupon rate (as a percentage).
-        yield_to_maturity (float): Yield to maturity (as a percentage).
-        years_to_maturity (int): Years to maturity of the bond.
-    
-    Returns:
-        float: Convexity of the bond.
-    """
-    coupon_payment = face_value * coupon_rate / 100
-    present_value = 0
-    for t in range(1, years_to_maturity + 1):
-        present_value += (coupon_payment / (1 + yield_to_maturity / 100) ** t) * (t ** 2 + t)
-    present_value += (face_value / (1 + yield_to_maturity / 100) ** years_to_maturity) * (years_to_maturity ** 2 + years_to_maturity)
-    bond_price = present_value / (1 + yield_to_maturity / 100)
-    
-    convexity = present_value / (bond_price * (1 + yield_to_maturity / 100) ** 2)
-    return convexity
-
-# Example usage
-face_value = 1000  # Face value of the bond
-coupon_rate = 5  # Annual coupon rate (as a percentage)
-yield_to_maturity = 4  # Yield to maturity (as a percentage)
-years_to_maturity = 5  # Years to maturity of the bond
-
-bond_convexity = calculate_muni_bond_convexity(face_value, coupon_rate, yield_to_maturity, years_to_maturity)
-print("Municipal bond convexity:", round(bond_convexity, 2))
-```
-
-This code calculates the convexity of a municipal bond. Convexity measures the curvature of the bond's price-yield relationship. It's calculated as the second derivative of the bond price formula with respect to yield, divided by the bond price.
-
-The function `calculate_muni_bond_convexity` takes the face value, coupon rate, yield to maturity, and years to maturity of the bond as input and returns the convexity of the bond.
-
-You can adjust the values of `face_value`, `coupon_rate`, `yield_to_maturity`, and `years_to_maturity` to calculate the convexity of different municipal bonds.
-
-
-# Reference
-
-[Schwab: potential opportunities muni bond market](https://www.schwab.com/learn/story/potential-opportunities-muni-bond-market)
-[WHITEHOUSE: Climate change is threatening the municipal bond market](https://www.budget.senate.gov/chairman/newsroom/press/climate-change-is-destabilizing-the-municipal-bond-market-tune-in-as-dr-chris-hartshorn-explains-how-climate-change-is-threatening-funding-sources-that-enable-local-governments-to-invest-in-communities)
-
-[Bond Savvy, Steve Shaw, Eight Reasons Not To Own Vanguard VMFXX](https://www.bondsavvy.com/fixed-income-investments-blog/vmfxx-yield)
-[Bond Savvy, Steve Shaw, Corporate Bonds vs. Municipal Bonds](https://www.bondsavvy.com/corporate-vs-municipal-bonds)
+I own bonds insured by Financial Security Assurance (FSA), Radian Asset Assurance Inc. (Radian Asset) or CIFG Assurance North America, Inc. (CIFG NA). Is that insurance valuable?
+Yes. FSA is the same company as AGM, which became an Assured Guaranty company in July 2009. The name change following the acquisition has no effect on the status of FSA-insured bonds. Radian Asset and CIFG NA were acquired by and merged into AGC, so bonds insured by Radian Asset or CIFG NA now enjoy exactly the same protection as bonds insured by AGC.
